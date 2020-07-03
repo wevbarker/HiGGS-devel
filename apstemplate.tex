@@ -1,0 +1,156 @@
+\documentclass[aps,prd,reprint,preprintnumbers,superscriptaddress,showpacs,floatfix]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{hhline}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xspace}
+\usepackage{multirow,tabularx}
+\usepackage{siunitx}
+\usepackage{textgreek}
+\usepackage{upgreek}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{xstring}
+\usepackage{etoolbox}
+\usepackage{stmaryrd}
+\usepackage{notoccite}
+\usepackage{natbib}
+\usepackage{lineno}
+\usepackage{tensor}
+
+\DeclareSIUnit\parsec{pc} %define a parsec unit
+\DeclareSIUnit\littleh{\mathsf{h}} %define normalised Hubble number
+\DeclareSIUnit\ccs{{m_{\text{p}}}^2} %use of reduced Planck mass as unit
+\DeclareSIUnit\nothing{\relax} %enable use of dimensionless quantities via siunitx package
+
+% Journal names 
+\def\aj{\rm{AJ}}
+\def\actaa{\rm{Acta Astron.}}
+\def\araa{\rm{ARA\&A}}
+\def\apj{\rm{ApJ}}
+\def\apjl{\rm{ApJ}}
+\def\apjs{\rm{ApJS}}
+\def\ao{\rm{Appl.~Opt.}}
+\def\apss{\rm{Ap\&SS}}
+\def\aap{\rm{A\&A}}
+\def\aapr{\rm{A\&A~Rev.}}
+\def\aaps{\rm{A\&AS}}
+\def\azh{\rm{AZh}}
+\def\baas{\rm{BAAS}}
+\def\bac{\rm{Bull. astr. Inst. Czechosl.}}
+\def\caa{\rm{Chinese Astron. Astrophys.}}
+\def\cjaa{\rm{Chinese J. Astron. Astrophys.}}
+\def\icarus{\rm{Icarus}}
+\def\jcap{\rm{J. Cosmology Astropart. Phys.}}
+\def\jrasc{\rm{JRASC}}
+\def\memras{\rm{MmRAS}}
+\def\mnras{\rm{MNRAS}}
+\def\na{\rm{New A}}
+\def\nar{\rm{New A Rev.}}
+\def\pra{\rm{Phys.~Rev.~A}}
+\def\prb{\rm{Phys.~Rev.~B}}
+\def\prc{\rm{Phys.~Rev.~C}}
+\def\prd{\rm{Phys.~Rev.~D}}
+\def\pre{\rm{Phys.~Rev.~E}}
+\def\prl{\rm{Phys.~Rev.~Lett.}}
+\def\pasa{\rm{PASA}}
+\def\pasp{\rm{PASP}}
+\def\pasj{\rm{PASJ}}
+\def\rmxaa{\rm{Rev. Mexicana Astron. Astrofis.}}
+\def\qjras{\rm{QJRAS}}
+\def\skytel{\rm{S\&T}}
+\def\solphys{\rm{Sol.~Phys.}}
+\def\sovast{\rm{Soviet~Ast.}}
+\def\ssr{\rm{Space~Sci.~Rev.}}
+\def\zap{\rm{ZAp}}
+\def\nat{\rm{Nature}}
+\def\iaucirc{\rm{IAU~Circ.}}
+\def\aplett{\rm{Astrophys.~Lett.}}
+\def\apspr{\rm{Astrophys.~Space~Phys.~Res.}}
+\def\bain{\rm{Bull.~Astron.~Inst.~Netherlands}}
+\def\fcp{\rm{Fund.~Cosmic~Phys.}}
+\def\gca{\rm{Geochim.~Cosmochim.~Acta}}
+\def\grl{\rm{Geophys.~Res.~Lett.}}
+\def\jcp{\rm{J.~Chem.~Phys.}}
+\def\jgr{\rm{J.~Geophys.~Res.}}
+\def\jqsrt{\rm{J.~Quant.~Spec.~Radiat.~Transf.}}
+\def\memsai{\rm{Mem.~Soc.~Astron.~Italiana}}
+\def\nphysa{\rm{Nucl.~Phys.~A}}
+\def\physrep{\rm{Phys.~Rep.}}
+\def\physscr{\rm{Phys.~Scr}}
+\def\planss{\rm{Planet.~Space~Sci.}}
+\def\procspie{\rm{Proc.~SPIE}}
+
+\parskip 1mm
+\parindent 2mm
+
+\newcommand{\aneq}{\mathrel{\smash[t]{\stackrel{{\text{an}}}{=}}}} %analogue equality
+
+\newcommand{\comment}[1]{\par {\sffamily  \color{red} #1 \par}} %for comments during editing
+
+\input{cosmic_class_names.tex} %this formats the Class X notation for the various cosmologies
+
+\usepackage{hyperref}
+\hypersetup{
+     colorlinks = true,
+     linkcolor = Blue,
+     citecolor = Blue,
+     filecolor = Blue,
+     urlcolor = Blue 
+     }
+\usepackage[capitalize]{cleveref} %always load this last in preamble
+
+\begin{document}
+\setpagewiselikenumbers
+%\modulolinenumbers[5]
+
+\title{Hamiltonian analysis of novel Poincar{\'e} gauge theories: promising cases}
+
+\author{W.E.V. Barker}
+\email{wb263@cam.ac.uk}
+\affiliation{Astrophysics Group, Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
+\affiliation{Kavli Institute for Cosmology, Madingley Road, Cambridge CB3 0HA, UK}
+\author{A.N. Lasenby}
+\email{a.n.lasenby@mrao.cam.ac.uk}
+\affiliation{Astrophysics Group, Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
+\affiliation{Kavli Institute for Cosmology, Madingley Road, Cambridge CB3 0HA, UK}
+\author{M.P. Hobson}
+\email{mph@mrao.cam.ac.uk}
+\affiliation{Astrophysics Group, Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
+\author{W.J. Handley}
+\email{wh260@cam.ac.uk}
+\affiliation{Astrophysics Group, Cavendish Laboratory, JJ Thomson Avenue, Cambridge CB3 0HE, UK}
+\affiliation{Kavli Institute for Cosmology, Madingley Road, Cambridge CB3 0HA, UK}
+
+
+%\date{}
+
+\begin{abstract}
+
+\end{abstract}
+
+\pacs{04.50.Kd, 04.60.-m, 04.20.Fy, 98.80.-k, 90.80.Es}
+
+\maketitle
+
+\section{Introduction}
+
+\begin{equation}
+  L_{\text{T}}=\tensor{\hat{\alpha}}{_I}\tensor{\mathcal{  R}}{^{a}_{bcd}}\tensor[^I]{\mathcal{  P}}{_{a}^{bcd}_{i}^{jkl}}\tensor{\mathcal{  R}}{^{i}_{jkl}}+{m_\text{p}}^2\tensor{\hat{\beta}}{_I}\tensor{\mathcal{  T}}{^{a}_{bc}}\tensor[^I]{\mathcal{  P}}{_{a}^{bc}_{i}^{jk}}\tensor{\mathcal{  T}}{^{i}_{jk}}+L_{\text{m}}
+  %L_{\text{T}}=-\tfrac{1}{2}\tensor{\hat{\alpha}}{_0} {m_\text{p}}^2\mathcal{  R}+\tensor{\hat{\alpha}}{_I}\tensor{\mathcal{  R}}{^{a}_{bcd}}\tensor[^I]{\mathcal{  P}}{_{a}^{bcd}_{i}^{jkl}}\tensor{\mathcal{  R}}{^{i}_{jkl}}
+  \label{<+label+>}
+\end{equation}
+
+\begin{acknowledgments}
+
+
+\end{acknowledgments}
+
+\bibliographystyle{apsrev4-1}
+\bibliography{bibliography}
+
+\end{document}
