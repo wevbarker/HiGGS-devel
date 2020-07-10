@@ -1,7 +1,7 @@
 #	storage for all the parameters for the action
 
-parameter_system_names_table:=table([M="Mike's",W="Will's",Y="Yun-Cherng's",NY="Yun-Cherng's note version",Z="Zhang's",V="Minkevich's",G="Goenner's",cW1="Will's major cosmological",cW2="Will's minor cosmological",cZ="Zhang's major cosmological",cV="Minkevich's major cosmological",cG="Goenner's major cosmological"]):
-parameter_system_list:=[W,Y,NY,Z,V,G]:
+parameter_system_names_table:=table([M="Mike's",W="Will's",Y="Yun-Cherng's",NY="Yun-Cherng's note version",Z="Zhang's",V="Minkevich's",G="Goenner's",N="Nester's",cW1="Will's major cosmological",cW2="Will's minor cosmological",cZ="Zhang's major cosmological",cV="Minkevich's major cosmological",cG="Goenner's major cosmological"]):
+parameter_system_list:=[W,Y,NY,Z,V,G,N]:
 cosmological_system_list:=[cW1,cW2,cZ,cV,cG]:
 
 vY:=<R1,R2,R3,R4,R5,R6,T1,T2,T3,L>:
@@ -44,6 +44,19 @@ cB2_M:=<0|0|0|0|0|0|0|1|0|0>:
 cB3_M:=<0|0|0|0|0|0|0|0|1|0>:
 cA_M:=<0|0|0|0|0|0|0|0|0|1>:
 mWM:=<cA1_M,cA2_M,cA3_M,cA4_M,cA5_M,cA6_M,cB1_M,cB2_M,cB3_M,cA_M>:
+
+vN:=<hA1,hA2,hA3,hA4,hA5,hA6,hB1,hB2,hB3,hA>:
+hA1_M:=<0|0|0|1|1/2|1|0|0|0|0>:
+hA2_M:=<0|0|0|1|0|-1|0|0|0|0>:
+hA3_M:=<0|0|0|1|-1|1|0|0|0|0>:
+hA4_M:=<0|1/2|1/2|1|1/2|1|0|0|0|0>:
+hA5_M:=<0|1/2|-1/2|1|0|-1|0|0|0|0>:
+hA6_M:=<6|3/2|3/2|1|1/2|1|0|0|0|0>:
+hB1_M:=<0|0|0|0|0|0|1|1/2|0|0>:
+hB2_M:=<0|0|0|0|0|0|1|1/2|3/2|0>:
+hB3_M:=<0|0|0|0|0|0|1|-1|0|0>:
+hA_M:=<0|0|0|0|0|0|0|0|0|1>:
+mNM:=<hA1_M,hA2_M,hA3_M,hA4_M,hA5_M,hA6_M,hB1_M,hB2_M,hB3_M,hA_M>:
 
 vZ:=<b_1,b_2,b_3,b_4,b_5,b_6,a_1,a_2,a_3,a>:
 Zb1_M:=<0|0|0|2|1/2|0|0|0|0|0>:

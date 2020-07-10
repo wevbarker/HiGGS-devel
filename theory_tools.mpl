@@ -32,6 +32,10 @@ for ii in indices(literature_parameter_constraints) do
   literature_parameter_constraints_YC[ii[1]]:=simplify(literature_parameter_constraints[ii[1]][2],convert_parameters_return_equations(literature_parameter_constraints[ii[1]][1],Y,0)):
 end do:
 
+for ii in indices(literature_parameter_constraints) do
+  literature_parameter_constraints_N[ii[1]]:=simplify(literature_parameter_constraints[ii[1]][2],convert_parameters_return_equations(literature_parameter_constraints[ii[1]][1],N,0)):
+end do:
+
 modify_vY:=proc(ii::integer)::NULL;
   global vY;
   local rels;
