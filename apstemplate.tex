@@ -150,21 +150,22 @@ Break quadratic action down using irreducible projection operators (IPOs) with r
 Some definitions follow from this, for the parallel momenta
 \begin{subequations}
   \begin{align}
-    J^{-1}\tensor{\hat{\pi}}{_{i}^{\bar{k}}}=&\ 4\tensor{\hat{\beta}}{_{I}}\tensor{n}{_{[j}}\tensor*{\delta}{_{l]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_i^{jl}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
-    J^{-1}\tensor{\hat{\pi}}{_{ij}^{\bar{k}}}=&\ 4\tensor{\hat{\alpha}}{_{I}}\tensor{n}{_{[l}}\tensor*{\delta}{_{n]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_{ij}^{ln}_{mo}^{pq}}\tensor{\mathcal{  R}}{^{mo}_{pq}}.
+    J^{-1}\tensor{\hat{\pi}}{_{i}^{\overline{k}}}=&\ 4{m_\text{p}}^2\tensor{\hat{\beta}}{_{I}}\tensor[^I]{\mathcal{  P}}{_i^{\perp\overline{k}}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
+    J^{-1}\tensor{\hat{\pi}}{_{ij}^{\overline{k}}}=&\ 4\tensor{\hat{\alpha}}{_{I}}\tensor[^I]{\mathcal{  P}}{_{ij}^{\perp\overline{k}}_{mo}^{pq}}\tensor{\mathcal{  R}}{^{mo}_{pq}}.
     \label{<+label+>}
+    %J^{-1}\tensor{\hat{\pi}}{_{i}^{\overline{k}}}=&\ 4\tensor{\hat{\beta}}{_{I}}\tensor{n}{_{[j}}\tensor*{\delta}{_{l]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_i^{jl}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
+    %J^{-1}\tensor{\hat{\pi}}{_{ij}^{\bar{k}}}=&\ 4\tensor{\hat{\alpha}}{_{I}}\tensor{n}{_{[l}}\tensor*{\delta}{_{n]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_{ij}^{ln}_{mo}^{pq}}\tensor{\mathcal{  R}}{^{mo}_{pq}}.
   \end{align}
   \label{<+label+>}
 \end{subequations}
 Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Lorentz symmetry (not really broken because of lapse and shift) -- this process is very long. The computer cannot canonicalise the results so they have to be done by hand. This projection gives us the primary if-constraints. Next we evaluate Poisson brackets between these -- this requires field derivatives so must also be done by hand. Some very useful identities for this process in ADM are not given by Blagojevi\'c, Yo and Nester etc., so we write them out
 \begin{equation}
   \begin{gathered}
-    \frac{\partial\tensor{n}{_j}}{\partial\tensor{b}{^i_\mu}}=-\tensor{n}{_i}\tensor{h}{_{\bar{j}}^\mu}, \quad \frac{\partial\tensor{h}{_j^\nu}}{\partial\tensor{b}{^i_\mu}}=-\tensor{h}{_i^\nu}\tensor{h}{_j^\nu}, \quad \frac{\partial b}{\partial\tensor{b}{^i_\nu}}=b\tensor{h}{_i^\nu},\\
-    \frac{\partial J^{-1}\tensor{b}{^k_\alpha}\tensor*{\delta}{^\alpha_\nu}}{\partial \tensor{b}{^i_\mu}}=J^{-1}\tensor*{\delta}{^k_i}\tensor*{\delta}{^\mu_\alpha}\tensor*{\delta}{^\alpha_\nu}-J^{-1}\tensor{b}{^k_\alpha}\tensor*{\delta}{^\alpha_\nu}\tensor{h}{_{\bar{i}}^\mu}.
+    \frac{\partial\tensor{n}{_j}}{\partial\tensor{b}{^i_\mu}}=-\tensor{n}{_i}\tensor{h}{_{\overline{j}}^\mu}, \quad \frac{\partial\tensor{h}{_j^\nu}}{\partial\tensor{b}{^i_\mu}}=-\tensor{h}{_i^\nu}\tensor{h}{_j^\nu},\\
+    \frac{\partial b}{\partial\tensor{b}{^i_\nu}}=b\tensor{h}{_i^\nu}, \quad \frac{\partial J}{\partial\tensor{b}{^i_\nu}}=J\tensor{h}{_{\overline{i}}^\nu}
   \end{gathered}
   \label{<+label+>}
 \end{equation}
-Note the last identity is made more annoying by the restriction to the $3$-space (i.e. you can't just replace the contractions).
 
 \begin{acknowledgments}
 

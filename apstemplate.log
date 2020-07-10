@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  6 JUL 2020 22:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  9 JUL 2020 20:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1288,11 +1288,11 @@ and I'll forget about whatever was undefined.
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 177.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 177.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (./apstemplate.aux)
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 177.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `apstemplate.out' has not changed.
 (rerunfilecheck)             Checksum: 6B8943440F954D75B616AC17EAF77C0E;284.
 
@@ -1303,7 +1303,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  25315 strings out of 492167
  457701 string characters out of 6131558
- 568526 words of memory out of 5000000
+ 566526 words of memory out of 5000000
  29403 multiletter control sequences out of 15000+600000
  551589 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1318,7 +1318,7 @@ onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
 /share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 137452 bytes).
+Output written on apstemplate.pdf (1 page, 136425 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream
