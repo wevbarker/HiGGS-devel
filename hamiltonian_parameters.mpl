@@ -64,7 +64,7 @@ for jj in cases do
   dit({},"superficially free massless sectors:");
   print(op(free intersect massless)):
   print(op(theories[jj][2][2])):
-(*
+
   dit({},"finding minimal version");
   change:=true:
   while change do
@@ -80,7 +80,7 @@ for jj in cases do
       end if:
     end do: 
   end do:
-*)
+
 end do:
 
 
