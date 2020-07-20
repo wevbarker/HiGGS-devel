@@ -116,7 +116,12 @@ for ii in viable_cases do
   minimal:=eliminate(conditions,{hB1,hB2,hB3,hA1,hA2,hA3,hA4,hA5,hA6})[1]:
   minimal:=simplify(minimal,{hA=0}):
   print(minimal):
-  minimal:=convert(minimal,string);
+  #minimal:=Substitute(convert(minimal,string),"=","->");
+  minimal:=RegSubs("="="->",convert(minimal,string));
+  minimal:=RegSubs("hB(.)"="\\[Beta]\\1W",convert(minimal,string));
+  minimal:=RegSubs("hA(.)"="\\[Alpha]\\1W",convert(minimal,string));
+  minimal:=cat("TheoryCase",convert(ii,string),"=",minimal,";\n"):
+  print(minimal);
 end do:
 
 
