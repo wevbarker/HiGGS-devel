@@ -21,11 +21,18 @@
 \usepackage{natbib}
 \usepackage{lineno}
 \usepackage{tensor}
+\usepackage{kbordermatrix}
+%\usepackage{mathabx}
+\usepackage{bbm}
 
 \DeclareSIUnit\parsec{pc} %define a parsec unit
 \DeclareSIUnit\littleh{\mathsf{h}} %define normalised Hubble number
 \DeclareSIUnit\ccs{{m_{\text{p}}}^2} %use of reduced Planck mass as unit
 \DeclareSIUnit\nothing{\relax} %enable use of dimensionless quantities via siunitx package
+
+
+\renewcommand{\kbldelim}{(}% Left delimiter
+\renewcommand{\kbrdelim}{)}% Right delimiter
 
 % Journal names 
 \def\aj{\rm{AJ}}
@@ -161,11 +168,21 @@ Some definitions follow from this, for the parallel momenta
 Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Lorentz symmetry (not really broken because of lapse and shift) -- this process is very long. The computer cannot canonicalise the results so they have to be done by hand. This projection gives us the primary if-constraints. Next we evaluate Poisson brackets between these -- this requires field derivatives so must also be done by hand. Some very useful identities for this process in ADM are not given by Blagojevi\'c, Yo and Nester etc., so we write them out
 \begin{equation}
   \begin{gathered}
-    \frac{\partial\tensor{n}{_j}}{\partial\tensor{b}{^i_\mu}}=-\tensor{n}{_i}\tensor{h}{_{\overline{j}}^\mu}, \quad \frac{\partial\tensor{h}{_j^\nu}}{\partial\tensor{b}{^i_\mu}}=-\tensor{h}{_i^\nu}\tensor{h}{_j^\nu},\\
-    \frac{\partial b}{\partial\tensor{b}{^i_\nu}}=b\tensor{h}{_i^\nu}, \quad \frac{\partial J}{\partial\tensor{b}{^i_\nu}}=J\tensor{h}{_{\overline{i}}^\nu}
+    \frac{\partial\tensor{n}{_k}}{\partial\tensor{b}{^i_\mu}}=-\tensor{n}{_i}\tensor{h}{_{\overline{k}}^\mu}, \quad \frac{\partial\tensor{h}{_j^\nu}}{\partial\tensor{b}{^i_\mu}}=-\tensor{h}{_i^\nu}\tensor{h}{_j^\nu},\\
+    \frac{\partial b}{\partial\tensor{b}{^i_\nu}}=b\tensor{h}{_i^\nu}, \quad \frac{\partial J}{\partial\tensor{b}{^k_\nu}}=J\tensor{h}{_{\overline{k}}^\nu}
   \end{gathered}
   \label{<+label+>}
 \end{equation}
+Next the PIC matrix
+\begin{equation}
+  \kbordermatrix{
+    & \phi & \tensor{\tilde{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\hat{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\phi}{_{\perp\bar{l}}} \\
+  l & \cdot & \mathbf{0} \\
+    l & k & k 
+  }
+  \label{<+label+>}
+\end{equation}
+
 
 \begin{acknowledgments}
 
