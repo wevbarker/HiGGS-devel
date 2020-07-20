@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex apstemplate"] 1594324080 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1594832194
+["bibtex apstemplate"] 1594324080 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1594909557
   "/home/williamb/texmf/bibtex/bst/revtex/apsrev4-1.bst" 1585605303 71518 fec93f06df0c073f83d2330456bd19c2 ""
   "apstemplate.aux" 1594324557 1864 acae0d13014802b77aa208560fda8d86 "pdflatex"
   "apstemplateNotes.bib" 1594324557 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "bibliography.bib" 1592682223 64877 3ffc08932656fd907bea9e300e2599aa ""
   (generated)
-  "apstemplate.blg"
   "apstemplate.bbl"
-["pdflatex"] 1594324557 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1594832194
-  "/dev/null" 1594076387 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "apstemplate.blg"
+["pdflatex"] 1594324557 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1594909557
+  "/dev/null" 1594900689 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/williamb/texmf/tex/latex/revtex/aps10pt4-2.rtx" 1585605304 4585 2c26738a9d55d1e1125ad578ae3b2b8f ""
   "/home/williamb/texmf/tex/latex/revtex/aps4-2.rtx" 1585605304 16259 b5b93e312312adff1287c9c9887ddc57 ""
   "/home/williamb/texmf/tex/latex/revtex/revsymb4-2.sty" 1585605304 5433 fd7fccdc1ca7819d49e5bb1deb9d741b ""
@@ -172,8 +172,8 @@
   "apstemplate.tex" 1594324555 7074 00a4da54cc89e34f870437ec16298877 ""
   "cosmic_class_names.tex" 1592504508 2787 e4a858a315092d78ad35aaf28298247d ""
   (generated)
-  "apstemplate.out"
-  "apstemplate.log"
+  "apstemplate.pdf"
   "apstemplateNotes.bib"
   "apstemplate.aux"
-  "apstemplate.pdf"
+  "apstemplate.out"
+  "apstemplate.log"
