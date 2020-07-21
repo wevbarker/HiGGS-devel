@@ -1,7 +1,7 @@
  & \pic{B0p}  & \pic{B1p}  & \pic{A0p}  & \pic{A0m}  & \pic{A2p}  & \pic{A2m}  \\
-\pic{B0p}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
-\pic{B1p}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
-\pic{A0p}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
-\pic{A0m}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
-\pic{A2p}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
-\pic{A2m}  & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0}
+\pic{B0p}  & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{B1p}  & \cdot & \cdot & \APiP & \APiP & \APiP & \APiP \\
+\pic{A0p}  & \cdot & \APiP & \cdot & \cdot & \cdot & \cdot \\
+\pic{A0m}  & \cdot & \APiP & \cdot & \cdot & \cdot & \cdot \\
+\pic{A2p}  & \cdot & \APiP & \cdot & \cdot & \cdot & \cdot \\
+\pic{A2m}  & \cdot & \APiP & \cdot & \cdot & \cdot & \cdot
