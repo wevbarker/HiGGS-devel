@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  22 JUL 2020 00:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1329,12 +1329,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-(./test.txt)
-Overfull \hbox (86.11311pt too wide) detected at line 206
-[][]
- []
-
-(./apstemplate.bbl
+(./test.txt) (./apstemplate.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
@@ -1372,7 +1367,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 167926 bytes).
+Output written on apstemplate.pdf (1 page, 167801 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream

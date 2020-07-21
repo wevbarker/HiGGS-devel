@@ -1,7 +1,7 @@
  & \pic{B0p}  & \pic{B1p}  & \pic{A0p}  & \pic{A0m}  & \pic{A2p}  & \pic{A2m}  \\
-\pic{B0p}  & \partial & +\partial A+A\partial & +\partial A\partial & +\partial A+A\partial & +\partial A\partial & \partial \\
-\pic{B1p}  & +\partial A+A\partial & \partial & +\partial A+A\partial & +\partial A+A\partial & +\partial A\partial & +\partial A+A\partial \\
-\pic{A0p}  & +\partial A\partial & +\partial A+A\partial & +\partial A\partial & +\partial A\partial & +\partial A\partial & \partial \\
-\pic{A0m}  & +\partial A+A\partial & +\partial A+A\partial & +\partial A\partial & +\partial A\partial & +\partial A\partial & \partial \\
-\pic{A2p}  & +\partial A\partial & +\partial A\partial & +\partial A\partial & +\partial A\partial & \partial & \partial \\
-\pic{A2m}  & \partial & +\partial A+A\partial & \partial & \partial & \partial & \partial
+\pic{B0p}  &  & +\partial b+A &  &  &  &  \\
+\pic{B1p}  & +\partial b+A &  & \APiP & \APiP & \APiP & \APiP \\
+\pic{A0p}  &  & \APiP &  &  &  &  \\
+\pic{A0m}  &  & \APiP &  &  &  &  \\
+\pic{A2p}  &  & \APiP &  &  &  &  \\
+\pic{A2m}  &  & \APiP &  &  &  & 
