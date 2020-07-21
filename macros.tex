@@ -10,7 +10,6 @@
 }[#1]%
 }%
 
-
 \newrobustcmd{\pic}[2][placeholder]{%
 \IfEqCase{#2}{%
 {B0p}{\varphi}%
@@ -25,3 +24,7 @@
 {A2m}{\tensor[^{\text{T}}]{\varphi}{_{\overline{\indiq[#1]{3}}}}}%
 }[\packageError{cosmicclass}{Unidentified Critical Case: #1}{}]%
 }
+
+\newcommand{\APiP}{\tensor{\pi}{_{i,j}^{\overline{k}}}}
+\newcommand{\BPiP}{\tensor{\pi}{_{i}^{\overline{k}}}}
+\newcommand{\surface}{\partial}

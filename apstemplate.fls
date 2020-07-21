@@ -198,10 +198,10 @@ INPUT apstemplate.out
 INPUT apstemplate.out
 INPUT apstemplate.out
 INPUT apstemplate.out
+OUTPUT apstemplate.pdf
 INPUT ./apstemplate.out
 INPUT ./apstemplate.out
 OUTPUT apstemplate.out
-OUTPUT apstemplate.pdf
 OUTPUT apstemplateNotes.bib
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
