@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1339,15 +1339,9 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 217.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 217.
  (./apstemplate.aux)
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 217.
+Package rerunfilecheck Info: File `apstemplate.out' has not changed.
+(rerunfilecheck)             Checksum: 17B80557DD924AD2851B26C7315BBEB2;281.
 
-
-Package rerunfilecheck Warning: File `apstemplate.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `apstemplate.out':
-(rerunfilecheck)             Before: 6C9ABACD23A4683489106FC09019484E;281
-(rerunfilecheck)             After:  17B80557DD924AD2851B26C7315BBEB2;281.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1355,7 +1349,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  25413 strings out of 492167
  458901 string characters out of 6131558
- 615150 words of memory out of 5000000
+ 605150 words of memory out of 5000000
  29483 multiletter control sequences out of 15000+600000
  551589 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1373,7 +1367,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 167525 bytes).
+Output written on apstemplate.pdf (1 page, 167293 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
