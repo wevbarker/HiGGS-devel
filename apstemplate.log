@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 22:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1346,8 +1346,8 @@ Package rerunfilecheck Warning: File `apstemplate.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `apstemplate.out':
-(rerunfilecheck)             Before: 0BB1879EFAF2B1380112B012DCBD29EA;271
-(rerunfilecheck)             After:  6C9ABACD23A4683489106FC09019484E;281.
+(rerunfilecheck)             Before: 6C9ABACD23A4683489106FC09019484E;281
+(rerunfilecheck)             After:  17B80557DD924AD2851B26C7315BBEB2;281.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1373,7 +1373,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 167233 bytes).
+Output written on apstemplate.pdf (1 page, 167525 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
