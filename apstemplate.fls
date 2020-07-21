@@ -148,6 +148,8 @@ INPUT /usr/share/texmf-dist/tex/latex/accents/accents.sty
 INPUT /usr/share/texmf-dist/tex/latex/accents/accents.sty
 INPUT cosmic_class_names.tex
 INPUT cosmic_class_names.tex
+INPUT macros.tex
+INPUT macros.tex
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -284,7 +286,6 @@ INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT apstemplate.aux
 INPUT ./apstemplate.out
 INPUT ./apstemplate.out
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

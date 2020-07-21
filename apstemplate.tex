@@ -24,6 +24,7 @@
 \usepackage{kbordermatrix}
 %\usepackage{mathabx}
 \usepackage{bbm}
+%\usepackage{harpoon}
 \usepackage{accents}
 
 \DeclareSIUnit\parsec{pc} %define a parsec unit
@@ -31,9 +32,11 @@
 \DeclareSIUnit\ccs{{m_{\text{p}}}^2} %use of reduced Planck mass as unit
 \DeclareSIUnit\nothing{\relax} %enable use of dimensionless quantities via siunitx package
 
-
-\renewcommand{\kbldelim}{(}% Left delimiter
-\renewcommand{\kbrdelim}{)}% Right delimiter
+\renewcommand{\kbldelim}{|}% Left delimiter
+\renewcommand{\kbrdelim}{|}% Right delimiter
+%\renewcommand{\kbrowstyle}{\relax}
+\setlength{\kbrowsep}{5pt}
+\setlength{\kbcolsep}{5pt}
 
 % Journal names 
 \def\aj{\rm{AJ}}
@@ -96,11 +99,13 @@
 \parskip 1mm
 \parindent 2mm
 
+
 \newcommand{\aneq}{\mathrel{\smash[t]{\stackrel{{\text{an}}}{=}}}} %analogue equality
 
 \newcommand{\comment}[1]{\par {\sffamily  \color{red} #1 \par}} %for comments during editing
 
 \input{cosmic_class_names.tex} %this formats the Class X notation for the various cosmologies
+\input{macros.tex} %this formats the Class X notation for the various cosmologies
 
 \usepackage{hyperref}
 \hypersetup{
@@ -175,12 +180,20 @@ Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Loren
   \label{<+label+>}
 \end{equation}
 Next the PIC matrix
-\begin{equation}
+\begin{equation*}
   \kbordermatrix{
-    & \phi & \tensor{\tilde{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\hat{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\phi}{_{\perp\bar{l}}} & \tensor[^{\text{p}}]{\phi}{} & \tensor{\phi}{_\perp} &  \\
-  l & \cdot & \mathbf{0} \\
-    l & k & k 
-  }
+    & \pic{B0p} & \pic{B1p} & \pic{B1m} & \pic{B2p} & \pic{A0p} & \pic{A0m} & \pic{A1p} & \pic{A1m} & \pic{A2p} & \pic{A2m} \\
+  \pic{B0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{B1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{B1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{B2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A0m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot \\
+  \pic{A2m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot 
+}
   \label{<+label+>}
 \end{equation}
 
