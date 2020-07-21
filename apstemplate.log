@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  21 JUL 2020 23:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1329,7 +1329,12 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-(./test.txt) (./apstemplate.bbl
+(./test.txt)
+Overfull \hbox (86.11311pt too wide) detected at line 206
+[][]
+ []
+
+(./apstemplate.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
@@ -1349,7 +1354,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  25413 strings out of 492167
  458901 string characters out of 6131558
- 605150 words of memory out of 5000000
+ 615150 words of memory out of 5000000
  29483 multiletter control sequences out of 15000+600000
  551589 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1367,7 +1372,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 167293 bytes).
+Output written on apstemplate.pdf (1 page, 167926 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream

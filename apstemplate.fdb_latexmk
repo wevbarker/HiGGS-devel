@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex apstemplate"] 1595371570 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595371570
+["bibtex apstemplate"] 1595371570 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595372174
   "/home/williamb/texmf/bibtex/bst/revtex/apsrev4-1.bst" 1585605303 71518 fec93f06df0c073f83d2330456bd19c2 ""
-  "apstemplate.aux" 1595370142 2068 1d0b77c562679e1a550ee407751f26c0 "pdflatex"
-  "apstemplateNotes.bib" 1595370142 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "apstemplate.aux" 1595372093 2068 1d0b77c562679e1a550ee407751f26c0 "pdflatex"
+  "apstemplateNotes.bib" 1595372093 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "bibliography.bib" 1592682223 64877 3ffc08932656fd907bea9e300e2599aa ""
   (generated)
   "apstemplate.bbl"
   "apstemplate.blg"
-["pdflatex"] 1595371570 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595371570
+["pdflatex"] 1595372174 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595372174
   "/dev/null" 1594900689 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/williamb/texmf/tex/latex/revtex/aps10pt4-2.rtx" 1585605304 4585 2c26738a9d55d1e1125ad578ae3b2b8f ""
   "/home/williamb/texmf/tex/latex/revtex/aps4-2.rtx" 1585605304 16259 b5b93e312312adff1287c9c9887ddc57 ""
@@ -172,17 +172,17 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1590202987 4700588 6cff29fd2f933ef89e76aa832077506f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1590202964 8044939 58a871edd4638bf053026dab16a5cfd1 ""
-  "apstemplate.aux" 1595370142 2068 1d0b77c562679e1a550ee407751f26c0 "pdflatex"
+  "apstemplate.aux" 1595372093 2068 1d0b77c562679e1a550ee407751f26c0 "pdflatex"
   "apstemplate.bbl" 1595371570 1984 b68c31deb1db589a77cf4936360c75bb "bibtex apstemplate"
-  "apstemplate.out" 1595370142 281 17b80557dd924ad2851b26c7315bbeb2 "pdflatex"
+  "apstemplate.out" 1595372093 281 17b80557dd924ad2851b26c7315bbeb2 "pdflatex"
   "apstemplate.tex" 1595370140 8657 d35dde663cda77694c88d0b0b6e15843 ""
   "cosmic_class_names.tex" 1592504508 2787 e4a858a315092d78ad35aaf28298247d ""
   "kbordermatrix.sty" 1595281246 5523 bfa1a1f639d04118419d64fe784088b4 ""
   "macros.tex" 1595365097 975 8b86c8607236218ba9dc27001ea6d27c ""
-  "test.txt" 1595371570 114 439ddf3011b9e1f53600e30504e51403 ""
+  "test.txt" 1595372173 843 c1812df4cad9362096e6b77c6bc44e33 ""
   (generated)
-  "apstemplateNotes.bib"
-  "apstemplate.pdf"
-  "apstemplate.aux"
-  "apstemplate.out"
   "apstemplate.log"
+  "apstemplate.aux"
+  "apstemplate.pdf"
+  "apstemplateNotes.bib"
+  "apstemplate.out"
