@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex apstemplate"] 1595281453 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595284848
+["bibtex apstemplate"] 1595281453 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595285947
   "/home/williamb/texmf/bibtex/bst/revtex/apsrev4-1.bst" 1585605303 71518 fec93f06df0c073f83d2330456bd19c2 ""
-  "apstemplate.aux" 1595284831 1968 e741a449696fa5b9eff95ea989396da6 "pdflatex"
-  "apstemplateNotes.bib" 1595284831 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "apstemplate.aux" 1595285412 1968 e741a449696fa5b9eff95ea989396da6 "pdflatex"
+  "apstemplateNotes.bib" 1595285411 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "bibliography.bib" 1592682223 64877 3ffc08932656fd907bea9e300e2599aa ""
   (generated)
   "apstemplate.bbl"
   "apstemplate.blg"
-["pdflatex"] 1595284848 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595284848
+["pdflatex"] 1595285947 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595285947
   "/dev/null" 1594900689 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/williamb/texmf/tex/latex/revtex/aps10pt4-2.rtx" 1585605304 4585 2c26738a9d55d1e1125ad578ae3b2b8f ""
   "/home/williamb/texmf/tex/latex/revtex/aps4-2.rtx" 1585605304 16259 b5b93e312312adff1287c9c9887ddc57 ""
@@ -101,6 +101,7 @@
   "/usr/share/texmf-dist/tex/generic/unicode-data/UnicodeData.txt" 1572595918 1797778 755f6af699f8c8d2d958da411f78f6c6 ""
   "/usr/share/texmf-dist/tex/generic/xstring/xstring.sty" 1572592815 123 a302f2c651a95033260db60e51527ae8 ""
   "/usr/share/texmf-dist/tex/generic/xstring/xstring.tex" 1572592815 47762 87512aefe2c24c8c3ff58ba167aba4d9 ""
+  "/usr/share/texmf-dist/tex/latex/accents/accents.sty" 1572570994 7328 0be438db743f506252aa5bfa0a11a780 ""
   "/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1572595918 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1572595918 13829 94730e64147574077f8ecfea9bb69af4 ""
   "/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd" 1572595918 961 6518c6525a34feb5e8250ffa91731cff ""
@@ -172,15 +173,15 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1572595918 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1590202987 4700588 6cff29fd2f933ef89e76aa832077506f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1590202964 8044939 58a871edd4638bf053026dab16a5cfd1 ""
-  "apstemplate.aux" 1595284831 1968 e741a449696fa5b9eff95ea989396da6 "pdflatex"
+  "apstemplate.aux" 1595285412 1968 e741a449696fa5b9eff95ea989396da6 "pdflatex"
   "apstemplate.bbl" 1595281453 1984 b68c31deb1db589a77cf4936360c75bb "bibtex apstemplate"
-  "apstemplate.out" 1595284831 284 6b8943440f954d75b616ac17eaf77c0e "pdflatex"
-  "apstemplate.tex" 1595284846 7500 f300117c5e6bc71f5bdba174a53ebfc4 ""
+  "apstemplate.out" 1595285412 284 6b8943440f954d75b616ac17eaf77c0e "pdflatex"
+  "apstemplate.tex" 1595285946 7579 bc7c38c434a19c62b9f3be9e91339a10 ""
   "cosmic_class_names.tex" 1592504508 2787 e4a858a315092d78ad35aaf28298247d ""
   "kbordermatrix.sty" 1595281246 5523 bfa1a1f639d04118419d64fe784088b4 ""
   (generated)
-  "apstemplateNotes.bib"
   "apstemplate.aux"
+  "apstemplateNotes.bib"
   "apstemplate.out"
   "apstemplate.log"
   "apstemplate.pdf"

@@ -144,6 +144,8 @@ INPUT kbordermatrix.sty
 INPUT kbordermatrix.sty
 INPUT /usr/share/texmf-dist/tex/latex/bbm-macros/bbm.sty
 INPUT /usr/share/texmf-dist/tex/latex/bbm-macros/bbm.sty
+INPUT /usr/share/texmf-dist/tex/latex/accents/accents.sty
+INPUT /usr/share/texmf-dist/tex/latex/accents/accents.sty
 INPUT cosmic_class_names.tex
 INPUT cosmic_class_names.tex
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty

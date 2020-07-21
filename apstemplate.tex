@@ -24,6 +24,7 @@
 \usepackage{kbordermatrix}
 %\usepackage{mathabx}
 \usepackage{bbm}
+\usepackage{accents}
 
 \DeclareSIUnit\parsec{pc} %define a parsec unit
 \DeclareSIUnit\littleh{\mathsf{h}} %define normalised Hubble number
@@ -176,7 +177,7 @@ Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Loren
 Next the PIC matrix
 \begin{equation}
   \kbordermatrix{
-    & \phi & \tensor{\tilde{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\hat{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\phi}{_{\perp\bar{l}}} \\
+    & \phi & \tensor{\tilde{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\hat{\phi}}{_{\bar{k}\bar{l}}} & \tensor{\phi}{_{\perp\bar{l}}} & \tensor[^{\text{p}}]{\phi}{} & \tensor{\phi}{_\perp} &  \\
   l & \cdot & \mathbf{0} \\
     l & k & k 
   }
