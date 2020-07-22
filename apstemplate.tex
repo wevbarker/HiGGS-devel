@@ -21,7 +21,9 @@
 \usepackage{natbib}
 \usepackage{lineno}
 \usepackage{tensor}
-\usepackage{kbordermatrix}
+%\usepackage{kbordermatrix}
+%\usepackage{array,multirow}
+\usepackage[thinlines,thicklines]{easybmat}
 %\usepackage{mathabx}
 \usepackage{bbm}
 %\usepackage{harpoon}
@@ -182,7 +184,7 @@ Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Loren
 \end{equation}
 
 Template for the Poisson matrix of PICs:
-
+\iffalse
 \begin{equation*}
   \kbordermatrix{
     & \pic{B0p} & \pic{B1p} & \pic{B1m} & \pic{B2p} & \pic{A0p} & \pic{A0m} & \pic{A1p} & \pic{A1m} & \pic{A2p} & \pic{A2m} \\
@@ -217,10 +219,47 @@ Template for the Poisson matrix of PICs:
 \end{array}
   \label{<+label+>}
 \end{equation}
+\fi
+\iffalse
+\begin{equation}
+  \begin{BMAT}(b){rccccccccccl}{rccccccccccl}
+    & \pic{B0p} & \scriptstyle{\pic{B1p}} & \pic{B1m} & \pic{B2p} & \pic{A0p} & \pic{A0m} & \pic{A1p} & \pic{A1m} & \pic{A2p} & \pic{A2m} \\
+  \pic{B0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1 \\
+  \pic{B1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{B1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{B2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A0m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A2m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+	    & 1     & 1     & 1     & 1     & 1     & 1    & 1    & 1    & 1    & 1
+\end{BMAT}
+\end{equation}
+\fi
+
+\begin{equation}
+  \begin{BMAT}{rccl}{cccc}
+    & \scriptstyle{\pic{B1p}} & \scriptstyle{\pic{A2m}} &   \\
+    \scriptstyle{\pic{B1p}} & \cdot & \cdot & \scriptstyle{1}  \\
+   \scriptstyle{\pic{A2m}} & \cdot & \cdot & \scriptstyle{1}  \\
+   & \scriptstyle{1} & \scriptstyle{1} & 
+   \addpath{(1,1,0)uurrddll}
+  \end{BMAT}
+%  \label{<+label+>}
+\end{equation}
+
+\begin{equation}
+  \input{test2.txt}
+  \label{<+label+>}
+\end{equation}
+
+
 \section{Klein-Gordon theories}
 
 From general considerations, the novel
-
+\iffalse
 
 Case 20:
 \begin{equation}
@@ -265,14 +304,11 @@ Case 32:
   \label{<+label+>}
 \end{equation}
 test Case:
-\iffalse
+
 \begin{equation}
-  \kbordermatrix{
-    \input{test.txt}
-}
+    \input{test2.txt}
   \label{<+label+>}
 \end{equation}
-\fi
 \section{With Witten's graviton}
 Case 3:
 \begin{equation}
@@ -289,7 +325,7 @@ Case 17:
   \label{<+label+>}
 \end{equation}
 
-
+\fi
 \begin{acknowledgments}
 
 

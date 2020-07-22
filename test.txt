@@ -1,8 +1,8 @@
 \begin{array}{r|c|ccc|l}
  & \scriptstyle{\pic{B2p}}  & \scriptstyle{\pic{A0p}}  & \scriptstyle{\pic{A2p}}  & \scriptstyle{\pic{A2m}} & \\\hline
-\scriptstyle{\pic{B2p}}  & \partial & A & \APiP & b& \scriptstyle{1} \\\hline
-\scriptstyle{\pic{A0p}}  & A & \BPiP & \APiP & \partial&1 \\
-\scriptstyle{\pic{A2p}}  & \APiP & \APiP & \partial b & \BPiP&1 \\
-\scriptstyle{\pic{A2m}}  & b & \partial & \BPiP & \partial& \scriptstyle{1} \\\hline
+\scriptstyle{\pic{B2p}}  & \partial & \BPiP & \partial A & \APiP& \scriptstyle{1} \\\hline
+\scriptstyle{\pic{A0p}}  & \BPiP & \APiP & \cdot & A&1 \\
+\scriptstyle{\pic{A2p}}  & \partial A & \cdot & \BPiP & \partial A&1 \\
+\scriptstyle{\pic{A2m}}  & \APiP & A & \partial A & \partial& \scriptstyle{1} \\\hline
  & \scriptstyle{1}  & \scriptstyle{1}  & \scriptstyle{1}  & \scriptstyle{1} & \\\hline
 \end{array}

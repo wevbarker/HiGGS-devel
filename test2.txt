@@ -1,0 +1,13 @@
+\begin{BMAT}{rccccl}{cccccc}
+ & \scriptstyle{\pic{B2p}}  & \scriptstyle{\pic{A0p}}  & \scriptstyle{\pic{A2p}}  & \scriptstyle{\pic{A2m}} & \\
+\scriptstyle{\pic{B2p}}  & \APiP & A & b & \partial& \scriptstyle{5} \\
+\scriptstyle{\pic{A0p}}  & A & \APiP & \APiP & \partial b& \scriptstyle{1} \\
+\scriptstyle{\pic{A2p}}  & b & \APiP & b & \cdot& \scriptstyle{5} \\
+\scriptstyle{\pic{A2m}}  & \partial & \partial b & \cdot & \BPiP& \scriptstyle{5} \\
+ & \scriptstyle{5}  & \scriptstyle{1}  & \scriptstyle{5}  & \scriptstyle{5} & \n\addpath{(1,1,0)uuuu}
+\addpath{(5,1,0)uuuu}
+\addpath{(2,2,0)l}
+\addpath{(2,2,0)r}
+\addpath{(2,2,0)u}
+\addpath{(2,2,0)d}
+\end{BMAT}
