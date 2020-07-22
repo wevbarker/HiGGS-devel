@@ -35,8 +35,8 @@
 \renewcommand{\kbldelim}{|}% Left delimiter
 \renewcommand{\kbrdelim}{|}% Right delimiter
 %\renewcommand{\kbrowstyle}{\relax}
-\setlength{\kbrowsep}{5pt}
-\setlength{\kbcolsep}{5pt}
+\setlength{\kbrowsep}{3pt}
+\setlength{\kbcolsep}{3pt}
 
 
 % Journal names 
@@ -180,7 +180,9 @@ Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Loren
   \end{gathered}
   \label{<+label+>}
 \end{equation}
-Next the PIC matrix
+
+Template for the Poisson matrix of primary if-constraints:
+
 \begin{equation*}
   \kbordermatrix{
     & \pic{B0p} & \pic{B1p} & \pic{B1m} & \pic{B2p} & \pic{A0p} & \pic{A0m} & \pic{A1p} & \pic{A1m} & \pic{A2p} & \pic{A2m} \\
@@ -197,10 +199,20 @@ Next the PIC matrix
 }
   \label{<+label+>}
 \end{equation}
+\section{Klein-Gordon theories}
 
+\section{With Witten's graviton}
+Case 3:
 \begin{equation}
   \kbordermatrix{
-    \input{test.txt}
+    \input{Case-3}
+}
+  \label{<+label+>}
+\end{equation}
+Case 17:
+\begin{equation}
+  \kbordermatrix{
+    \input{Case-17}
 }
   \label{<+label+>}
 \end{equation}
