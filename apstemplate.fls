@@ -288,13 +288,11 @@ INPUT Case-25
 INPUT Case-25
 INPUT Case-26
 INPUT Case-26
-INPUT Case-28
-INPUT Case-28
-INPUT Case-32
-INPUT Case-32
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT test.txt
-INPUT test.txt
+INPUT Case-28
+INPUT Case-28
+INPUT Case-32
+INPUT Case-32
 INPUT Case-3
 INPUT Case-3
 INPUT Case-17

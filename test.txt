@@ -1,5 +1,8 @@
- & \pic{B2p}  & \pic{A0p}  & \pic{A2p}  & \pic{A2m}  \\
-\pic{B2p}  & \BPiP+\PiP{B1p} & \PiP{B1p} & \APiP & \APiP+\PiP{A0p}+\PiP{A0m}+\PiP{A1p}+\PiP{A1m}+\PiP{A2p}+\PiP{A2m} \\
-\pic{A0p}  & \PiP{B1p} & \PiP{A1m}+\PiP{A2p}+\PiP{A2m} & \cdot & \cdot \\
-\pic{A2p}  & \APiP & \cdot & \cdot & \cdot \\
-\pic{A2m}  & \APiP+\PiP{A0p}+\PiP{A0m}+\PiP{A1p}+\PiP{A1m}+\PiP{A2p}+\PiP{A2m} & \cdot & \cdot & \cdot
+\begin{array}{r|c|ccc|l}
+ & \scriptstyle{\pic{B2p}}  & \scriptstyle{\pic{A0p}}  & \scriptstyle{\pic{A2p}}  & \scriptstyle{\pic{A2m}} & \\\hline
+\scriptstyle{\pic{B2p}}  & \partial & A & \APiP & b& \scriptstyle{1} \\\hline
+\scriptstyle{\pic{A0p}}  & A & \BPiP & \APiP & \partial&1 \\
+\scriptstyle{\pic{A2p}}  & \APiP & \APiP & \partial b & \BPiP&1 \\
+\scriptstyle{\pic{A2m}}  & b & \partial & \BPiP & \partial& \scriptstyle{1} \\\hline
+ & \scriptstyle{1}  & \scriptstyle{1}  & \scriptstyle{1}  & \scriptstyle{1} & \\\hline
+\end{array}

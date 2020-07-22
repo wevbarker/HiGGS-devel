@@ -199,6 +199,24 @@ Template for the Poisson matrix of PICs:
 }
   \label{<+label+>}
 \end{equation}
+
+\begin{equation*}
+  \begin{array}{r|cccc|cccccc|l}
+    & \pic{B0p} & \scriptstyle{\pic{B1p}} & \pic{B1m} & \pic{B2p} & \pic{A0p} & \pic{A0m} & \pic{A1p} & \pic{A1m} & \pic{A2p} & \pic{A2m} \\\hline
+  \pic{B0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1 \\
+  \pic{B1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{B1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{B2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\\hline
+  \pic{A0p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A0m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A1p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A1m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A2p} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\
+  \pic{A2m} & \cdot & \cdot & \cdot & \cdot & \cdot &\cdot &\cdot &\cdot &\cdot &\cdot &1\\\hline
+	    & 1     & 1     & 1     & 1     & 1     & 1    & 1    & 1    & 1    & 1
+\end{array}
+  \label{<+label+>}
+\end{equation}
 \section{Klein-Gordon theories}
 
 From general considerations, the novel
@@ -247,13 +265,14 @@ Case 32:
   \label{<+label+>}
 \end{equation}
 test Case:
+\iffalse
 \begin{equation}
   \kbordermatrix{
     \input{test.txt}
 }
   \label{<+label+>}
 \end{equation}
-
+\fi
 \section{With Witten's graviton}
 Case 3:
 \begin{equation}
