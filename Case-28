@@ -1,0 +1,7 @@
+ & \pic{B0p}  & \pic{B1m}  & \pic{B2p}  & \pic{A0p}  & \pic{A2p}  & \pic{A2m}  \\
+\pic{B0p}  & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{B1m}  & \cdot & \BPiP & \cdot & \APiP & \APiP & \APiP \\
+\pic{B2p}  & \cdot & \cdot & \BPiP & \cdot & \APiP & \APiP \\
+\pic{A0p}  & \cdot & \APiP & \cdot & \cdot & \cdot & \cdot \\
+\pic{A2p}  & \cdot & \APiP & \APiP & \cdot & \cdot & \cdot \\
+\pic{A2m}  & \cdot & \APiP & \APiP & \cdot & \cdot & \cdot

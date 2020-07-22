@@ -13,18 +13,14 @@ dit({},"now looking at function");
 
 dit({},"simplify..");
 
-
 read(`theories.mpl`):
-
-theories[2];
-
 
 sectors:=indices(Hamiltonian_partitions,`nolist`):
 cases:=[indices(theories,`nolist`)]:
 minimal_theories:=table([]):
 eqs:=convert_parameters_return_equations(Y,N):
 
-cases:={seq(i,i=1..41)}:
+cases:={seq(i,i=1..58)}:
 
 viable_cases:={1,2,3,4,5,6,7,10,11,12,14,15,16,17,18,19}:
 
@@ -97,7 +93,8 @@ eliminate_complexity:=proc(case,sub_case):
   return ret:
 end proc:
 
-for ii in viable_cases do
+for ii from 1 to 58 do 
+#for ii in viable_cases do
   dit({fred,underline},"--------------------------------------------------------------------------------------------");
   dit({},"case %d",ii):
   conditions:=converted_theories[ii][1]:

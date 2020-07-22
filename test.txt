@@ -1,6 +1,5 @@
- & \pic{B0p}  & \pic{B1p}  & \pic{A0p}  & \pic{A2p}  & \pic{A2m}  \\
-\pic{B0p}  & \cdot & \partial b+A & \cdot & \cdot & \cdot \\
-\pic{B1p}  & \partial b+A & \cdot & \APiP & \APiP & \APiP \\
-\pic{A0p}  & \cdot & \APiP & \cdot & \cdot & \cdot \\
-\pic{A2p}  & \cdot & \APiP & \cdot & \cdot & \cdot \\
-\pic{A2m}  & \cdot & \APiP & \cdot & \cdot & \cdot
+ & \pic{B2p}  & \pic{A0p}  & \pic{A2p}  & \pic{A2m}  \\
+\pic{B2p}  & \BPiP+\PiP{B1p} & \PiP{B1p} & \APiP & \APiP+\PiP{A0p}+\PiP{A0m}+\PiP{A1p}+\PiP{A1m}+\PiP{A2p}+\PiP{A2m} \\
+\pic{A0p}  & \PiP{B1p} & \PiP{A1m}+\PiP{A2p}+\PiP{A2m} & \cdot & \cdot \\
+\pic{A2p}  & \APiP & \cdot & \cdot & \cdot \\
+\pic{A2m}  & \APiP+\PiP{A0p}+\PiP{A0m}+\PiP{A1p}+\PiP{A1m}+\PiP{A2p}+\PiP{A2m} & \cdot & \cdot & \cdot

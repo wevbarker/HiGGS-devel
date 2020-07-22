@@ -1,0 +1,6 @@
+ & \pic{A0p}  & \pic{A1p}  & \pic{A1m}  & \pic{A2p}  & \pic{A2m}  \\
+\pic{A0p}  & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{A1p}  & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{A1m}  & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{A2p}  & \cdot & \cdot & \cdot & \cdot & \cdot \\
+\pic{A2m}  & \cdot & \cdot & \cdot & \cdot & \cdot

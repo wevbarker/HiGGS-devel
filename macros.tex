@@ -15,13 +15,28 @@
 {B0p}{\varphi}%
 {B1p}{\tensor{\overset{\wedge}{\varphi}}{_{\overline{\indiq[#1]{2}}}}}%
 {B1m}{\tensor{\varphi}{_{\perp\overline{\indiq[#1]{1}}}}}%
-{B2p}{\tensor{\overset{\sim}{\varphi}}{_{\perp\overline{\indiq[#1]{2}}}}}%
+{B2p}{\tensor{\overset{\sim}{\varphi}}{_{\overline{\indiq[#1]{2}}}}}%
 {A0p}{\tensor{\varphi}{_\perp}}%
 {A0m}{\tensor[^{\text{P}}]{\varphi}{}}%
 {A1p}{\tensor{\overset{\wedge}{\varphi}}{_{\perp\overline{\indiq[#1]{2}}}}}%
 {A1m}{\tensor{\overset{\rightharpoonup}{\varphi}}{_{\overline{\indiq[#1]{1}}}}}%
 {A2p}{\tensor{\overset{\sim}{\varphi}}{_{\perp\overline{\indiq[#1]{2}}}}}%
 {A2m}{\tensor[^{\text{T}}]{\varphi}{_{\overline{\indiq[#1]{3}}}}}%
+}[\packageError{cosmicclass}{Unidentified Critical Case: #1}{}]%
+}
+
+\newrobustcmd{\PiP}[2][placeholder]{%
+\IfEqCase{#2}{%
+{B0p}{\hat{\pi}}%
+{B1p}{\tensor{\overset{\wedge}{\hat{\pi}}}{_{\overline{\indiq[#1]{2}}}}}%
+{B1m}{\tensor{\hat{\pi}}{_{\perp\overline{\indiq[#1]{1}}}}}%
+{B2p}{\tensor{\overset{\sim}{\hat{\pi}}}{_{\overline{\indiq[#1]{2}}}}}%
+{A0p}{\tensor{\hat{\pi}}{_\perp}}%
+{A0m}{\tensor[^{\text{P}}]{\hat{\pi}}{}}%
+{A1p}{\tensor{\overset{\wedge}{\hat{\pi}}}{_{\perp\overline{\indiq[#1]{2}}}}}%
+{A1m}{\tensor{\overset{\rightharpoonup}{\hat{\pi}}}{_{\overline{\indiq[#1]{1}}}}}%
+{A2p}{\tensor{\overset{\sim}{\hat{\pi}}}{_{\perp\overline{\indiq[#1]{2}}}}}%
+{A2m}{\tensor[^{\text{T}}]{\hat{\pi}}{_{\overline{\indiq[#1]{3}}}}}%
 }[\packageError{cosmicclass}{Unidentified Critical Case: #1}{}]%
 }
 
