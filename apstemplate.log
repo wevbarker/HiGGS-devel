@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  22 JUL 2020 19:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  22 JUL 2020 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1076,77 +1076,8 @@ Package: accents 2006/05/12 v1.4 Math Accent Tools
 \cc@code=\count299
 \cc@group=\count300
 \cc@skewchar=\count301
-)
-
-! LaTeX Error: Command \kbldelim undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \renewcommand{\kbldelim}
-                             {|}% Left delimiter
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \kbrdelim undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.38 \renewcommand{\kbrdelim}
-                             {|}% Right delimiter
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-<argument> \kbrowsep 
-                     
-l.40 \setlength{\kbrowsep}{3pt}
-                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.40 \setlength{\kbrowsep}{3pt}
-                               
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-<argument> \kbcolsep 
-                     
-l.41 \setlength{\kbcolsep}{3pt}
-                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (14.44449pt too wide) in paragraph at lines 40--42
-[]\OT1/cmr/m/n/10 3pt
- []
-
-
-Overfull \hbox (14.44449pt too wide) in paragraph at lines 40--42
-\OT1/cmr/m/n/10 3pt 
- []
-
-(./cosmic_class_names.tex) (./macros.tex)
-(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (./cosmic_class_names.tex) (./macros.tex) (/usr/share/texmf-dist/tex/latex/hy
+perref/hyperref.sty
 Package: hyperref 2019/09/28 v7.00a Hypertext links for LaTeX
 
 (/usr/share/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -1248,7 +1179,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip63
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 120.
+Package hyperref Info: Option `colorlinks' set `true' on input line 111.
 
 (/usr/share/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
@@ -1269,11 +1200,53 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 52.
 )
 Class revtex4-2 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 123.
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 123.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 123.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 123.
+lass! (Proceeding with fingers crossed.) on input line 114.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 114.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 114.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 114.
  (./apstemplate.aux
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
 
 LaTeX Warning: Label `<+label+>' multiply defined.
 
@@ -1301,27 +1274,27 @@ LaTeX Warning: Label `<+label+>@cref' multiply defined.
 )
 \openout1 = `apstemplate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 123.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 114.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 1
-23.
+14.
  (/usr/share/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 123.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 123.
-LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1438,7 +1411,7 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
 \AtBeginShipoutBox=\box82
-Package hyperref Info: Link coloring ON on input line 123.
+Package hyperref Info: Link coloring ON on input line 114.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1448,39 +1421,39 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count318
 )
-LaTeX Info: Redefining \ref on input line 123.
-LaTeX Info: Redefining \pageref on input line 123.
-LaTeX Info: Redefining \nameref on input line 123.
+LaTeX Info: Redefining \ref on input line 114.
+LaTeX Info: Redefining \pageref on input line 114.
+LaTeX Info: Redefining \nameref on input line 114.
 
 (./apstemplate.out) (./apstemplate.out)
 \@outlinefile=\write4
 \openout4 = `apstemplate.out'.
 
-Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 123.
+Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 114.
 Class revtex4-2 Info: Overriding lineo.sty, restoring output routine, on input 
-line 123.
-Class revtex4-2 Info: Line numbering not turned on yet on input line 123.
+line 114.
+Class revtex4-2 Info: Line numbering not turned on yet on input line 114.
 \openout3 = `apstemplateNotes.bib'.
 
-Class revtex4-2 Info: Overriding \@LN@LLerror on input line 123.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 123
+Class revtex4-2 Info: Overriding \@LN@LLerror on input line 114.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 114
 .
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 123
+LaTeX Font Info:    Trying to load font information for U+msb on input line 114
 .
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
-23.
+14.
 
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 ! Undefined control sequence.
-l.124 \setpagewiselikenumbers
+l.115 \setpagewiselikenumbers
                              
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1488,7 +1461,17 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-(./test2.txt
+(./Case-20
+! Undefined control sequence.
+l.8 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Case-24
 ! Undefined control sequence.
 l.7 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
                                                   \addpath{(1,1,0)uuuu}
@@ -1498,31 +1481,97 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+) (./Case-25
+! Undefined control sequence.
+l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Case-26
+! Undefined control sequence.
+l.11 ... & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Case-28
+! Undefined control sequence.
+l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Case-32
+! Undefined control sequence.
+l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Case-3
+! Undefined control sequence.
+l.8 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Case-17
+! Undefined control sequence.
+l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 ) (./apstemplate.bbl
+
+LaTeX Warning: Reference `LastBibItem' on page 2 undefined on input line 9.
+
 
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 337.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 337.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
+ [2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
  (./apstemplate.aux)
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 337.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
 Package rerunfilecheck Info: File `apstemplate.out' has not changed.
-(rerunfilecheck)             Checksum: 8B8BBAF24FA2505FB961B2E1DAE44F15;348.
+(rerunfilecheck)             Checksum: 12F31B12CEA75730F3CE32B482EA7E8B;406.
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25622 strings out of 492167
- 461762 string characters out of 6131558
- 605947 words of memory out of 5000000
- 29685 multiletter control sequences out of 15000+600000
+ 25648 strings out of 492167
+ 461985 string characters out of 6131558
+ 690958 words of memory out of 5000000
+ 29691 multiletter control sequences out of 15000+600000
  551589 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,20n,67p,524b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,20n,67p,842b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1536,10 +1585,10 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti9.pfb>
-Output written on apstemplate.pdf (1 page, 160782 bytes).
+Output written on apstemplate.pdf (2 pages, 168523 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 132 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
