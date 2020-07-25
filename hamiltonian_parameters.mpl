@@ -18,7 +18,11 @@ read(`theories.mpl`):
 sectors:=indices(Hamiltonian_partitions,`nolist`):
 cases:=[indices(theories,`nolist`)]:
 minimal_theories:=table([]):
-eqs:=convert_parameters_return_equations(Y,N):
+eqs:=convert_parameters_return_equations(Y,N);
+eqs:=convert_parameters_return_equations(N,M);
+eqs:=convert_parameters_return_equations(M,N);
+
+fin();
 
 cases:={seq(i,i=1..58)}:
 
