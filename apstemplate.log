@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  22 JUL 2020 20:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  26 JUL 2020 01:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1271,6 +1271,24 @@ LaTeX Warning: Label `<+label+>' multiply defined.
 
 LaTeX Warning: Label `<+label+>@cref' multiply defined.
 
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
 )
 \openout1 = `apstemplate.aux'.
 
@@ -1481,7 +1499,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Case-25
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Case-25
 ! Undefined control sequence.
 l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
                                                   \addpath{(1,1,0)uuuuuu}
@@ -1511,7 +1529,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Case-32
+) (./Case-32
 ! Undefined control sequence.
 l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
                                                   \addpath{(1,1,0)uuuuuu}
@@ -1549,11 +1567,11 @@ LaTeX Warning: Reference `LastBibItem' on page 2 undefined on input line 9.
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 265.
  [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
  (./apstemplate.aux)
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
 Package rerunfilecheck Info: File `apstemplate.out' has not changed.
 (rerunfilecheck)             Checksum: 12F31B12CEA75730F3CE32B482EA7E8B;406.
 
@@ -1565,30 +1583,31 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25648 strings out of 492167
- 461985 string characters out of 6131558
- 690958 words of memory out of 5000000
- 29691 multiletter control sequences out of 15000+600000
- 551589 words of font info for 97 fonts, out of 8000000 for 9000
+ 25653 strings out of 492167
+ 462045 string characters out of 6131558
+ 782925 words of memory out of 5000000
+ 29692 multiletter control sequences out of 15000+600000
+ 551935 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,20n,67p,842b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmti9.pfb>
-Output written on apstemplate.pdf (2 pages, 168523 bytes).
+s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on apstemplate.pdf (2 pages, 187639 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
+ 143 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

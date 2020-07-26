@@ -148,33 +148,60 @@
 Break quadratic action down using irreducible projection operators (IPOs) with respect to $\mathrm{SO}(1,3)$ -- six for curvature and three for torsion. We write this as
 \begin{equation}
 \begin{aligned}
-  L_{\text{T}}=&\ {m_\text{p}}^2\tensor{\hat{\beta}}{_I}\tensor{\mathcal{  T}}{^{i}_{jk}}\tensor[^I]{\mathcal{  P}}{_{i}^{jk}_{l}^{nm}}\tensor{\mathcal{  T}}{^{l}_{nm}}\\
-  &+\tensor{\hat{\alpha}}{_I}\tensor{\mathcal{  R}}{^{ij}_{kl}}\tensor[^I]{\mathcal{  P}}{_{ij}^{kl}_{nm}^{op}}\tensor{\mathcal{  R}}{^{nm}_{op}}+L_{\text{m}}
-  %L_{\text{T}}=-\tfrac{1}{2}\tensor{\hat{\alpha}}{_0} {m_\text{p}}^2\mathcal{  R}+\tensor{\hat{\alpha}}{_I}\tensor{\mathcal{  R}}{^{a}_{bcd}}\tensor[^I]{\mathcal{  P}}{_{a}^{bcd}_{i}^{jkl}}\tensor{\mathcal{  R}}{^{i}_{jkl}}
+  L_{\text{T}}=&\ \sum_{I=1}^{3}{m_\text{p}}^2\tensor{\hat{\beta}}{_I}\tensor{\mathcal{  T}}{^{i}_{jk}}\tensor[^I]{\mathcal{  P}}{_{i}^{jk}_{l}^{nm}}\tensor{\mathcal{  T}}{^{l}_{nm}}\\
+  &+\sum_{I=1}^{6}\tensor{\hat{\alpha}}{_I}\tensor{\mathcal{  R}}{^{ij}_{kl}}\tensor[^I]{\mathcal{  P}}{_{ij}^{kl}_{nm}^{pq}}\tensor{\mathcal{  R}}{^{nm}_{pq}}+L_{\text{m}}
   \label{<+label+>}
 \end{aligned}
 \end{equation}
-Some definitions follow from this, for the parallel momenta
+The \emph{canonical} momenta are 
+\begin{equation}
+  \tensor{\pi}{_i^\mu}\equiv\frac{\partial bL}{\partial\partial_0\tensor{b}{^i_{\mu}}}, \quad \tensor{\pi}{_{ij}^{\mu}}\equiv\frac{\partial bL}{\partial\partial_0\tensor{A}{^{ij}_{\mu}}}
+  \label{<+label+>}
+\end{equation}
+from which we define \emph{parallel} momenta $\tensor{\hat{\pi}}{_{i}^{\overline{k}}}\equiv\tensor{\pi}{_{i}^\alpha}\tensor{b}{^{k}_\alpha}$ and $\tensor{\hat{\pi}}{_{ij}^{\overline{k}}}\equiv\tensor{\pi}{_{ij}^\alpha}\tensor{b}{^{k}_\alpha}$, which are
 \begin{subequations}
   \begin{align}
-    J^{-1}\tensor{\hat{\pi}}{_{i}^{\overline{k}}}=&\ 4{m_\text{p}}^2\tensor{\hat{\beta}}{_{I}}\tensor[^I]{\mathcal{  P}}{_i^{\perp\overline{k}}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
-    J^{-1}\tensor{\hat{\pi}}{_{ij}^{\overline{k}}}=&\ 4\tensor{\hat{\alpha}}{_{I}}\tensor[^I]{\mathcal{  P}}{_{ij}^{\perp\overline{k}}_{mo}^{pq}}\tensor{\mathcal{  R}}{^{mo}_{pq}}.
+    J^{-1}\tensor{\hat{\pi}}{_{i}^{\overline{k}}}=&\ \frac{\partial L}{\partial \tensor{\mathcal{  T}}{^i_{\perp\overline{k}}}}=\sum_{I=1}^{3}4{m_\text{p}}^2\tensor{\hat{\beta}}{_{I}}\tensor[^I]{\mathcal{  P}}{_i^{\perp\overline{k}}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
+    J^{-1}\tensor{\hat{\pi}}{_{ij}^{\overline{k}}}=&\ \frac{\partial L}{\partial \tensor{\mathcal{  R}}{^{ij}_{\perp\overline{k}}}}=\sum_{I=1}^{6}8\tensor{\hat{\alpha}}{_{I}}\tensor[^I]{\mathcal{  P}}{_{ij}^{\perp\overline{k}}_{mn}^{pq}}\tensor{\mathcal{  R}}{^{mn}_{pq}}.
     \label{<+label+>}
-    %J^{-1}\tensor{\hat{\pi}}{_{i}^{\overline{k}}}=&\ 4\tensor{\hat{\beta}}{_{I}}\tensor{n}{_{[j}}\tensor*{\delta}{_{l]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_i^{jl}_n^{mo}}\tensor{\mathcal{  T}}{^n_{mo}},\\
-    %J^{-1}\tensor{\hat{\pi}}{_{ij}^{\bar{k}}}=&\ 4\tensor{\hat{\alpha}}{_{I}}\tensor{n}{_{[l}}\tensor*{\delta}{_{n]}^{\bar{k}}}\tensor[^I]{\mathcal{  P}}{_{ij}^{ln}_{mo}^{pq}}\tensor{\mathcal{  R}}{^{mo}_{pq}}.
   \end{align}
   \label{<+label+>}
 \end{subequations}
 Next we project out $\mathrm{O}(3)$ irreps using $\tensor{n}{_i}$ to break Lorentz symmetry (not really broken because of lapse and shift). Next we evaluate Poisson brackets between these. The following very useful identities for this process in ADM are not given in the literature: 
 \begin{equation}
   \begin{gathered}
-    \frac{\partial\tensor{n}{_k}}{\partial\tensor{b}{^i_\mu}}=-\tensor{n}{_i}\tensor{h}{_{\overline{k}}^\mu}, \quad \frac{\partial\tensor{h}{_j^\nu}}{\partial\tensor{b}{^i_\mu}}=-\tensor{h}{_i^\nu}\tensor{h}{_j^\nu},\\
-    \frac{\partial b}{\partial\tensor{b}{^i_\nu}}=b\tensor{h}{_i^\nu}, \quad \frac{\partial J}{\partial\tensor{b}{^k_\nu}}=J\tensor{h}{_{\overline{k}}^\nu}.
+    \frac{\partial\tensor{n}{_l}}{\partial\tensor{b}{^k_\mu}}=-\tensor{n}{_k}\tensor{h}{_{\overline{l}}^\mu}, \quad \frac{\partial\tensor{h}{_l^\nu}}{\partial\tensor{b}{^k_\mu}}=-\tensor{h}{_k^\nu}\tensor{h}{_l^\nu},\\
+    \frac{\partial b}{\partial\tensor{b}{^k_\nu}}=b\tensor{h}{_k^\nu}, \quad \frac{\partial J}{\partial\tensor{b}{^k_\nu}}=J\tensor{h}{_{\overline{k}}^\nu}.
   \end{gathered}
   \label{<+label+>}
 \end{equation}
 
-More formulation to be added etc.
+The super-Hamiltonian is
+\begin{equation}
+  \mathcal{  H}_{\perp}=\tensor{\hat{\pi}}{_i^{\overline{k}}}\tensor{\mathcal{  T}}{^i_{\perp\overline{k}}}+\frac{1}{2}\tensor{\hat{\pi}}{_{ij}^{\overline{k}}}\tensor{\mathcal{  R}}{^{ij}_{\perp\overline{k}}}-JL-\tensor{n}{^k}\tensor{D}{_\alpha}\tensor{\pi}{_k^\alpha}
+  \label{<+label+>}
+\end{equation}
+from which we eventually get
+\begin{equation}
+\begin{aligned}
+  \mathcal{  H}_{\perp}=&\ \sum_{I=1}^{3}{m_\text{p}}^2\tensor{\hat{\beta}}{_{I}}\Big[4\tensor{\mathcal{  T}}{^i_{\perp\overline{k}}}\tensor[^I]{\mathcal{  P}}{_i^{\perp\overline{k}}_j^{\perp\overline{l}}}\tensor{\mathcal{  T}}{^j_{\perp\overline{l}}}\\
+  &-\tensor{\mathcal{  T}}{^i_{\overline{mk}}}\tensor[^I]{\mathcal{  P}}{_i^{\overline{mk}}_j^{\overline{nl}}}\tensor{\mathcal{  T}}{^j_{\overline{nl}}}\Big]\\
+  +&\ \sum_{I=1}^{6}\tensor{\hat{\alpha}}{_{I}}\Big[4\tensor{\mathcal{  R}}{^{ip}_{\perp\overline{k}}}\tensor[^I]{\mathcal{  P}}{_{ip}^{\perp\overline{k}}_{jq}^{\perp\overline{l}}}\tensor{\mathcal{  R}}{^{jq}_{\perp\overline{l}}}\\
+  &-\tensor{\mathcal{  R}}{^{ip}_{\overline{mk}}}\tensor[^I]{\mathcal{  P}}{_{ip}^{\overline{mk}}_{jq}^{\overline{nl}}}\tensor{\mathcal{  R}}{^{jq}_{\overline{nl}}}\Big]-\tensor{n}{^k}\tensor{D}{_\alpha}\tensor{\pi}{_k^\alpha}\\
+  \label{<+label+>}
+\end{aligned}
+\end{equation}
+-- thus easy to see that super-Hamiltonian decomposes into quadratic canonical terms and terms which can be made canonical by substituting with any nonvanishing constraint functions.
+
+
+
+
+
+
+
+
+
+
 
 \section{Massive theories}
 
