@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex apstemplate"] 1595722779 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595772743
+["bibtex apstemplate"] 1595784156 "apstemplate.aux" "apstemplate.bbl" "apstemplate" 1595784680
   "/home/williamb/texmf/bibtex/bst/revtex/apsrev4-1.bst" 1585605303 71518 fec93f06df0c073f83d2330456bd19c2 ""
-  "apstemplate.aux" 1595722780 3152 cc2b18c27cd12620fc0bcc2be3eb3691 "pdflatex"
-  "apstemplateNotes.bib" 1595722779 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "apstemplate.aux" 1595784599 3156 8177ff5aed067f60eb151760472beb1f "pdflatex"
+  "apstemplateNotes.bib" 1595784599 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "bibliography.bib" 1592682223 64877 3ffc08932656fd907bea9e300e2599aa ""
   (generated)
   "apstemplate.bbl"
   "apstemplate.blg"
-["pdflatex"] 1595772743 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595772743
+["pdflatex"] 1595784680 "apstemplate.tex" "apstemplate.pdf" "apstemplate" 1595784680
   "/dev/null" 1594900689 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/williamb/texmf/tex/latex/revtex/aps10pt4-2.rtx" 1585605304 4585 2c26738a9d55d1e1125ad578ae3b2b8f ""
   "/home/williamb/texmf/tex/latex/revtex/aps4-2.rtx" 1585605304 16259 b5b93e312312adff1287c9c9887ddc57 ""
@@ -184,15 +184,15 @@
   "Case-28" 1595443688 1011 cdb147298ab434e9eb20e482068277c9 ""
   "Case-3" 1595444284 842 64c3408905adc1854b86abdfa8fd5d3f ""
   "Case-32" 1595443953 1011 8381b94d2d277662dd6740dfb765d5b4 ""
-  "apstemplate.aux" 1595722780 3152 cc2b18c27cd12620fc0bcc2be3eb3691 "pdflatex"
-  "apstemplate.bbl" 1595722779 1984 b68c31deb1db589a77cf4936360c75bb "bibtex apstemplate"
-  "apstemplate.out" 1595722780 406 12f31b12cea75730f3ce32b482ea7e8b "pdflatex"
-  "apstemplate.tex" 1595772742 10172 6494b3ef48de26f396cfc05ae3738629 ""
+  "apstemplate.aux" 1595784599 3156 8177ff5aed067f60eb151760472beb1f "pdflatex"
+  "apstemplate.bbl" 1595784156 1984 b68c31deb1db589a77cf4936360c75bb "bibtex apstemplate"
+  "apstemplate.out" 1595784599 406 12f31b12cea75730f3ce32b482ea7e8b "pdflatex"
+  "apstemplate.tex" 1595784678 10627 c38094c82e86ce64ebe0b3eb2029ed6c ""
   "cosmic_class_names.tex" 1592504508 2787 e4a858a315092d78ad35aaf28298247d ""
   "macros.tex" 1595714069 1797 21ffe49962598aab391be33d2783d0ed ""
   (generated)
-  "apstemplate.log"
-  "apstemplate.pdf"
-  "apstemplateNotes.bib"
   "apstemplate.aux"
+  "apstemplateNotes.bib"
+  "apstemplate.pdf"
   "apstemplate.out"
+  "apstemplate.log"
