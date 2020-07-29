@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  26 JUL 2020 18:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.5.23)  28 JUL 2020 23:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1289,6 +1289,12 @@ LaTeX Warning: Label `<+label+>' multiply defined.
 
 LaTeX Warning: Label `<+label+>@cref' multiply defined.
 
+
+LaTeX Warning: Label `<+label+>' multiply defined.
+
+
+LaTeX Warning: Label `<+label+>@cref' multiply defined.
+
 )
 \openout1 = `apstemplate.aux'.
 
@@ -1559,20 +1565,29 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./apstemplate.bbl
+) (./test.txt
+! Undefined control sequence.
+l.9 ...  & \scriptstyle{5}  & \scriptstyle{5} & \n
+                                                  \addpath{(1,1,0)uuuuuu}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Warning: Reference `LastBibItem' on page 2 undefined on input line 9.
+) [2] (./apstemplate.bbl
 
-[2]
+LaTeX Warning: Reference `LastBibItem' on page 3 undefined on input line 9.
+
 
 Package natbib Warning: Empty `thebibliography' environment on input line 53.
 
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 280.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 285.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 280.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 285.
  (./apstemplate.aux)
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 280.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 285.
 Package rerunfilecheck Info: File `apstemplate.out' has not changed.
 (rerunfilecheck)             Checksum: 12F31B12CEA75730F3CE32B482EA7E8B;406.
 
@@ -1584,13 +1599,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25667 strings out of 492167
- 462255 string characters out of 6131558
- 814925 words of memory out of 5000000
+ 25671 strings out of 492167
+ 462286 string characters out of 6131558
+ 664931 words of memory out of 5000000
  29694 multiletter control sequences out of 15000+600000
  551935 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,20n,67p,842b,865s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,20n,67p,842b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1605,10 +1620,10 @@ st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on apstemplate.pdf (3 pages, 189799 bytes).
+Output written on apstemplate.pdf (3 pages, 190637 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
