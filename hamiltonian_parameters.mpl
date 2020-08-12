@@ -19,10 +19,10 @@ sectors:=indices(Hamiltonian_partitions,`nolist`):
 cases:=[indices(theories,`nolist`)]:
 minimal_theories:=table([]):
 eqs:=convert_parameters_return_equations(Y,N);
-eqs:=convert_parameters_return_equations(N,M);
-eqs:=convert_parameters_return_equations(M,N);
 
-fin();
+#eqs:=convert_parameters_return_equations(N,M);
+#eqs:=convert_parameters_return_equations(M,N);
+#fin();
 
 cases:={seq(i,i=1..58)}:
 
@@ -68,11 +68,36 @@ find_primaries:=proc(conditions):
   return ret:
 end proc:
 
+find_frees:=proc(primaries):
+  ret:={sectors} minus primaries:
+  return ret:
+end proc:
+
 find_simple_primaries:=proc(conditions,primaries):
   ret:={}:
   for ii in primaries do
-    #if simplify(Hamiltonian_partitions[ii][2],conditions)=0 then #counts as simple only if not vanishing by construction!
     if (simplify(Hamiltonian_partitions[ii][2],conditions) in {0,none}) then
+      ret:=ret union {ii}:
+    end if:
+  end do:
+  return ret:
+end proc:
+
+find_massless_primaries:=proc(conditions,primaries):
+  ret:={}:
+  for ii in primaries do
+    if (0 in simplify(convert(Hamiltonian_partitions[ii][3],set),conditions)) then
+      print(simplify(convert(Hamiltonian_partitions[ii][3],set),conditions));
+      ret:=ret union {ii}:
+    end if:
+  end do:
+  return ret:
+end proc:
+
+find_massless_frees:=proc(conditions,frees):
+  ret:={}:
+  for ii in frees do
+    if (0 in convert(simplify(Hamiltonian_partitions[ii][3],conditions),set)) then
       ret:=ret union {ii}:
     end if:
   end do:
@@ -97,6 +122,63 @@ eliminate_complexity:=proc(case,sub_case):
   return ret:
 end proc:
 
+simple_cases:={20,24,25,26,28,32,3,17}:
+
+YN_higher_spin:={YN1p,YN1m,YN2p,YN2m,YN0m2m1,YN0m2m2,KN}:
+
+for ii in simple_cases do 
+#for ii in viable_cases do
+  dit({fred,underline},"--------------------------------------------------------------------------------------------");
+  dit({},"case %d",ii):
+  conditions:=converted_theories[ii][1]:
+  primaries:=find_primaries(conditions):
+  simple_primaries:=find_simple_primaries(conditions,primaries):
+  massless_primaries:=find_massless_primaries(conditions,primaries):
+  frees:=find_frees(primaries):
+  simple_frees:=find_simple_primaries(conditions,frees):
+  massless_frees:=find_massless_frees(conditions,frees):
+  dit({},"primaries:"):
+  print(op(primaries)):
+  dit({},"of which simple:"):
+  print(op(simple_primaries)):
+  dit({},"of which massless:"):
+  print(op(massless_primaries)):
+  dit({},"frees:"):
+  print(op(frees)):
+  dit({},"of which simple:"):
+  print(op(simple_frees)):
+  dit({},"of which massless:"):
+  print(op(massless_frees)):
+end do:
+
+fin();
+
+for ii in YN_higher_spin do 
+#for ii in viable_cases do
+  dit({fred,underline},"--------------------------------------------------------------------------------------------");
+  dit({},"case %s",convert(ii,string)):
+  conditions:=theories[ii][1]:
+  primaries:=find_primaries(conditions):
+  simple_primaries:=find_simple_primaries(conditions,primaries):
+  massless_primaries:=find_massless_primaries(conditions,primaries):
+  frees:=find_frees(primaries):
+  massless_frees:=find_massless_frees(conditions,frees):
+  dit({},"primaries:"):
+  print(op(primaries)):
+  dit({},"of which simple:"):
+  print(op(simple_primaries)):
+  dit({},"of which massless:"):
+  print(op(massless_primaries)):
+  dit({},"frees:"):
+  print(op(frees)):
+  dit({},"of which massless:"):
+  print(op(massless_frees)):
+end do:
+
+
+fin();
+
+#	this was used to identify cases for which the roton-roton sector is malignant
 for ii from 1 to 58 do 
 #for ii in viable_cases do
   dit({fred,underline},"--------------------------------------------------------------------------------------------");
