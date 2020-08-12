@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    456800,      11854]
-NotebookOptionsPosition[    456478,      11840]
-NotebookOutlinePosition[    456813,      11855]
-CellTagsIndexPosition[    456770,      11852]
+NotebookDataLength[    456825,      11856]
+NotebookOptionsPosition[    456504,      11842]
+NotebookOutlinePosition[    456838,      11857]
+CellTagsIndexPosition[    456795,      11854]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,12 +44,14 @@ Cell[BoxData[{
    RowBox[{"SuperTheory", "=", "TheoryCase17"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"dimension", "=", "4"}], ";", "                                  ", 
-  
+  RowBox[{
+   RowBox[{"dimension", "=", "4"}], ";"}], 
+  "                                  ", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{"dimension", " ", "of", " ", "space"}], "-", 
-    RowBox[{"time", " ", "manifold"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"time", " ", "manifold"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"DefManifold", "[", 
    RowBox[{"M4", ",", "dimension", ",", 
     RowBox[{"IndexRange", "[", 
@@ -11838,8 +11840,8 @@ super-Hamiltonian\>\"", ",", "Orange", ",", "10"}], "]"}], "]"}], ";"}],
    3.8062428698056297`*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
 e14a5acdfa7a"]
 },
-WindowSize->{808, 911},
-WindowMargins->{{278, Automatic}, {Automatic, 59}},
+WindowSize->{1920, 1148},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
 FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
@@ -11854,7 +11856,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 455916, 11818, 38995, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a",
+Cell[558, 20, 455942, 11820, 25563, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a",
  InitializationCell->True]
 }
 ]

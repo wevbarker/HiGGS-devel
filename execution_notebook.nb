@@ -1,0 +1,96 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3501,         88]
+NotebookOptionsPosition[      3084,         72]
+NotebookOutlinePosition[      3421,         87]
+CellTagsIndexPosition[      3378,         84]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<Shortcuts`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Shortcuts", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Get", "[", 
+  "\"\</home/williamb/Documents/physics/papers/paper-4/modular.m\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Quit", "[", "]"}]}], "Input",
+ CellChangeTimes->{{3.806239568339717*^9, 3.806239585738196*^9}, {
+  3.806240402292877*^9, 3.806240415475031*^9}, {3.806241057763398*^9, 
+  3.806241093482312*^9}, {3.806241257840599*^9, 3.806241334119728*^9}, {
+  3.8062414157279787`*^9, 3.806241422670911*^9}, {3.8062414551609373`*^9, 
+  3.80624145539051*^9}, {3.806241561847784*^9, 3.8062415927333117`*^9}, {
+  3.80624167519061*^9, 3.806241677236101*^9}, {3.806241719182035*^9, 
+  3.80624174700342*^9}, {3.806242153904653*^9, 3.806242195838764*^9}, {
+  3.806242595006617*^9, 3.806242621674469*^9}, {3.8062430627745457`*^9, 
+  3.806243146188836*^9}, {3.8062438133993473`*^9, 3.806243834757765*^9}, {
+  3.806244076120253*^9, 
+  3.806244084555089*^9}},ExpressionUUID->"bfec7d9f-08b0-4348-90be-\
+7c12ca768400"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"/home/williamb/.Mathematica/DocumentationIndices\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/SystemFiles/Links\"\>", 
+   ",", "\<\"/home/williamb/.Mathematica/Kernel\"\>", 
+   ",", "\<\"/home/williamb/.Mathematica/Autoload\"\>", 
+   ",", "\<\"/home/williamb/.Mathematica/Applications\"\>", 
+   ",", "\<\"/usr/share/Mathematica/Kernel\"\>", 
+   ",", "\<\"/usr/share/Mathematica/Autoload\"\>", 
+   ",", "\<\"/usr/share/Mathematica/Applications\"\>", ",", "\<\".\"\>", 
+   ",", "\<\"/home/williamb\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/AddOns/Packages\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/SystemFiles/Autoload\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/AddOns/Autoload\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/AddOns/Applications\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/AddOns/ExtraPackages\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/SystemFiles/Kernel/Packages\"\
+\>", ",", \
+"\<\"/usr/local/Wolfram/Mathematica/11.3/Documentation/English/System\"\>", 
+   ",", "\<\"/usr/local/Wolfram/Mathematica/11.3/SystemFiles/Data/ICC\"\>"}], 
+  "}"}]], "Print",
+ CellChangeTimes->{3.806243148167115*^9, 3.806243213253291*^9, 
+  3.806243835294446*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d570814f-bb9e-4d2c-9149-a2604d7d8769"]
+}, Open  ]]
+},
+WindowSize->{1920, 1148},
+WindowMargins->{{1920, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1094, 20, 103, "Input",ExpressionUUID->"bfec7d9f-08b0-4348-90be-7c12ca768400"],
+Cell[1677, 44, 1391, 25, 92, "Print",ExpressionUUID->"d570814f-bb9e-4d2c-9149-a2604d7d8769"]
+}, Open  ]]
+}
+]
+*)
+
