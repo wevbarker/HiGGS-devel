@@ -7,6 +7,11 @@ ClearAll/@ Names["Global`*"];
 Get["variations`"];
 Needs["xAct`xTras`"];
 
+Ld=3;
+Print[%]
+
+Quit[]
+
 SuperTheory=TheoryCase17;
 
 dimension=4;                                  (* dimension of space-time manifold *)
@@ -630,6 +635,11 @@ Quit[]
 *)
 <<LagrangianHamiltonian.mx;
 
+Print["yalla"]
+1+1;
+Print[%]
+Quit[]
+
 Freedoms={};
 CriticalCombinations={\[Beta]2W,\[Beta]1W+2\[Beta]3W,2\[Beta]1W+\[Beta]2W,\[Beta]1W,\[Alpha]4W+\[Alpha]6W,\[Alpha]2W+\[Alpha]3W,\[Alpha]2W+\[Alpha]5W,\[Alpha]4W+\[Alpha]5W,\[Alpha]1W+\[Alpha]4W,\[Alpha]1W+\[Alpha]2W};
 Relevants={};
@@ -663,7 +673,10 @@ ConstraintHamiltonian=ConstraintHamiltonian//ToCanonical//ScreenDollarIndices//C
 LagrangianHamiltonian=LagrangianHamiltonian/.Theory//ToCanonical;
 LagrangianHamiltonian=LagrangianHamiltonian//ToCanonical//ScreenDollarIndices//CollectTensors;
 SuperHamiltonian=ConstraintHamiltonian+LagrangianHamiltonian//ToCanonical//ScreenDollarIndices//CollectTensors
+Print[SuperHamiltonian]
 *)
+Quit[]
+
 DefTensor[J[],M4];
 AutomaticRules[J,MakeRule[{J[]Ji[],1},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[J,MakeRule[{CD[-a][J[]],Evaluate[J[]H[-k,n]PPara[k,-i]CD[-a][B[i,-n]]/.PADMActivate]},MetricOn->All,ContractMetrics->True]];
@@ -784,6 +797,9 @@ InertDerB=MakeRule[{CD[-a][B[-b,-c]],KX[-a,-b,-c]},MetricOn->All,ContractMetrics
 InertDerA=MakeRule[{CD[-a][A[-b,-c,-d]],KKX[-a,-b,-c,-d]},MetricOn->All,ContractMetrics->True];
 InertDer=Join[InertDerB,InertDerA];
 DefConstantSymbol[\[CapitalXi]];
+
+Print[Style["Considering secondary constraints"]]
+
 Quit[]
 MomentaList={}
 
