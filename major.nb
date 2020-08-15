@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    467223,      12043]
-NotebookOptionsPosition[    466929,      12030]
-NotebookOutlinePosition[    467263,      12045]
-CellTagsIndexPosition[    467220,      12042]
+NotebookDataLength[    468364,      12065]
+NotebookOptionsPosition[    468070,      12052]
+NotebookOutlinePosition[    468404,      12067]
+CellTagsIndexPosition[    468361,      12064]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,22 +32,25 @@ Cell[BoxData[{
   RowBox[{"Get", "[", "\"\<variations`\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
+  RowBox[{"Needs", "[", "\"\<xAct`xTras`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{
-   RowBox[{"Needs", "[", "\"\<xAct`xTras`\>\"", "]"}], ";"}], 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"$Path", ",", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"SuperTheory", "=", "TheoryCase24"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"dimension", "=", "4"}], ";"}], 
-  "                                  ", 
+  RowBox[{"dimension", "=", "4"}], ";", "                                  ", 
+  
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{"dimension", " ", "of", " ", "space"}], "-", 
-    RowBox[{"time", " ", "manifold"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
+    RowBox[{"time", " ", "manifold"}]}], " ", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"DefManifold", "[", 
    RowBox[{"M4", ",", "dimension", ",", 
     RowBox[{"IndexRange", "[", 
@@ -3068,8 +3071,8 @@ Cell[BoxData[{
          RowBox[{"V", "[", 
           RowBox[{"-", "a"}], "]"}]}], ",", "0"}], "}"}], ",", 
       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], ";"}],
- "\[IndentingNewLine]", 
+      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"AutomaticRules", "[", 
    RowBox[{"G3", ",", 
@@ -4535,7 +4538,6 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
                     RowBox[{"Print", "[", 
                     RowBox[{"Style", "[", 
                     RowBox[{
-                    
                     "\"\<\!\(\*SuperscriptBox[\(2\), \(-\)]\) non-canonical\>\
 \"", ",", "Blue", ",", "10"}], "]"}], "]"}], "\[IndentingNewLine]", 
                     "PhiA2mNonCanonical"}], "=", 
@@ -11030,9 +11032,25 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
  RowBox[{
   RowBox[{
    RowBox[{"Print", "[", "FullPoissonMatrix", "]"}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"DumpSave", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+    "\"\<mx_dumps/determinants.mx\>\""}], ",", 
+   RowBox[{"{", "FullPoissonMatrix", "}"}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Quit", "[", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<check recovery\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"<<", "mx_dumps/determinants.mx"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "FullPoissonMatrix", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"num", "=", 
@@ -12024,8 +12042,12 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
    3.806427416666606*^9, 3.806427484895876*^9}, {3.806427624641511*^9, 
    3.806427626097494*^9}, {3.806428103712964*^9, 3.8064281301138363`*^9}, {
    3.806428282159474*^9, 3.806428357621571*^9}, 3.8064285799211187`*^9, {
-   3.806428764768506*^9, 
-   3.806428793957695*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
+   3.806428764768506*^9, 3.806428793957695*^9}, {3.806435674612726*^9, 
+   3.806435718948392*^9}, {3.8064363358709917`*^9, 3.8064363361622877`*^9}, {
+   3.806436462582427*^9, 3.80643650814322*^9}, {3.806436690667303*^9, 
+   3.806436739778911*^9}, {3.806436772233193*^9, 3.806436779499111*^9}, {
+   3.80643686830606*^9, 3.8064368855975637`*^9}, {3.806480327579782*^9, 
+   3.8064803819955883`*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
 e14a5acdfa7a"]
 },
 WindowSize->{1920, 1148},
@@ -12044,7 +12066,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 466367, 12008, 26144, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
+Cell[558, 20, 467508, 12030, 26397, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
 }
 ]
 *)

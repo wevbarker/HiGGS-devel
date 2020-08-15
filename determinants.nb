@@ -1,0 +1,436 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13893,        428]
+NotebookOptionsPosition[     13479,        412]
+NotebookOutlinePosition[     13813,        427]
+CellTagsIndexPosition[     13770,        424]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Primary Poisson matrix determinant positivity", "Title",
+ CellChangeTimes->{{3.806435393050124*^9, 
+  3.806435430561584*^9}},ExpressionUUID->"77e55c47-c773-4a9c-9969-\
+e7c76c84ace4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<xAct`xCoba`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<xAct`xTras`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"$Path", ",", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dimension", "=", "3"}], ";"}], 
+  "                                  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"dimension", " ", "of", " ", "space"}], "-", 
+    RowBox[{"time", " ", "manifold"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"DefManifold", "[", 
+    RowBox[{"M3", ",", "dimension", ",", 
+     RowBox[{"IndexRange", "[", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "z"}], "}"}], "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"DefMetric", "[", 
+     RowBox[{"1", ",", 
+      RowBox[{"G", "[", 
+       RowBox[{
+        RowBox[{"-", "a"}], ",", 
+        RowBox[{"-", "c"}]}], "]"}], ",", "CD", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<;\>\"", ",", "\"\<\[Del]\>\""}], "}"}], ",", 
+      RowBox[{"PrintAs", "\[Rule]", "\"\<g\>\""}]}], "]"}], ";"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"DefChart", "[", 
+  RowBox[{"cart", ",", "M3", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cx", "[", "]"}], ",", 
+     RowBox[{"Cy", "[", "]"}], ",", 
+     RowBox[{"Cz", "[", "]"}]}], "}"}], ",", 
+   RowBox[{"FormatBasis", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      StyleBox["\"\<Partials\>\"", "MSG"], ",", "\"\<Differentials\>\""}], 
+     "}"}]}], ",", 
+   RowBox[{"ChartColor", "\[Rule]", "Green"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"G", "=", 
+  RowBox[{"CTensor", "[", 
+   RowBox[{
+    RowBox[{"DiagonalMatrix", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", 
+       RowBox[{"-", "1"}], ",", 
+       RowBox[{"-", "1"}]}], "}"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "cart"}], ",", 
+      RowBox[{"-", "cart"}]}], "}"}], ",", "0"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetCMetric", "[", 
+   RowBox[{"G", ",", "cart", ",", 
+    RowBox[{"SignatureOfMetric", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "3", ",", "0"}], "}"}]}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiB0p", "[", "]"}], ",", "M3", ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]b0p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiB1p", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "}"}], "]"}], ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]b1p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiB1m", "[", 
+     RowBox[{"-", "a"}], "]"}], ",", "M3", ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]b1m\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiB2p", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Symmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "}"}], "]"}], ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]b2p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA0p", "[", "]"}], ",", "M3", ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A0p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA0m", "[", "]"}], ",", "M3", ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A0m\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA1p", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "}"}], "]"}], ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A1p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA1m", "[", 
+     RowBox[{"-", "a"}], "]"}], ",", "M3", ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A1m\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA2p", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Symmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "}"}], "]"}], ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A2p\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"PiA2m", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}], ",", 
+      RowBox[{"-", "c"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}]}], "}"}], "]"}], ",", 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<\[Pi]A2m\>\""}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AutomaticRules", "[", 
+    RowBox[{"PiA2m", ",", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"PiA2m", "[", 
+          RowBox[{"a", ",", 
+           RowBox[{"-", "b"}], ",", 
+           RowBox[{"-", "a"}]}], "]"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"Eps", "[", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}], ",", 
+      RowBox[{"-", "c"}]}], "]"}], ",", "M3", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "a"}], ",", 
+       RowBox[{"-", "b"}], ",", 
+       RowBox[{"-", "c"}]}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AutomaticRules", "[", 
+    RowBox[{"Eps", ",", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Eps", "[", 
+          RowBox[{
+           RowBox[{"-", "a"}], ",", 
+           RowBox[{"-", "b"}], ",", 
+           RowBox[{"-", "c"}]}], "]"}], ",", 
+         RowBox[{"etaDowncart", "[", 
+          RowBox[{
+           RowBox[{"-", "a"}], ",", 
+           RowBox[{"-", "b"}], ",", 
+           RowBox[{"-", "c"}]}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"<<", "mx_dumps/determinants.mx"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "FullPoissonMatrix", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"DefTensor", "[", 
+  RowBox[{
+   RowBox[{"MF", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], ",", "M3", ",", 
+   RowBox[{"Antisymmetric", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "}"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"ComponentArray", "[", 
+      RowBox[{"MF", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", ",", "cart"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "cart"}]}], "}"}]}], "]"}], "]"}], "//", 
+     "ToCanonical"}], "//", "MatrixForm"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"test", "=", 
+  RowBox[{"Part", "[", 
+   RowBox[{"FullPoissonMatrix", ",", "1", ",", "1"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "test", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<Attempt using componentarray\>\"", ",", "Purple", ",", "16"}],
+    "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"StringTest", "=", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{
+     RowBox[{"ToString", "[", 
+      RowBox[{"InputForm", "[", "test", "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<-a\>\"", "\[Rule]", "\"\<{-a,-cart}\>\""}], ",", 
+       RowBox[{"\"\<-e\>\"", "\[Rule]", "\"\<{-e,-cart}\>\""}], ",", 
+       RowBox[{"\"\<-b\>\"", "\[Rule]", "\"\<{-b,-cart}\>\""}], ",", 
+       RowBox[{"\"\<-f\>\"", "\[Rule]", "\"\<{-f,-cart}\>\""}]}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"CartTest", "=", 
+   RowBox[{"ToExpression", "[", "StringTest", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ArrayTest", "=", 
+   RowBox[{
+    RowBox[{"ComponentArray", "[", "CartTest", "]"}], "//", "ToCanonical"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "ArrayTest", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{
+   "\"\<Attempt using tableofcomponents\>\"", ",", "Purple", ",", "16"}], 
+   "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TableTest", "=", 
+   RowBox[{
+    RowBox[{"TableOfComponents", "[", 
+     RowBox[{"test", ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"e", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"f", ",", "cart"}], "}"}]}]}], "]"}], "//", "ToCanonical"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "TableTest", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TableTest", "=", 
+   RowBox[{
+    RowBox[{"TableOfComponents", "[", 
+     RowBox[{"test", ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"e", ",", "cart"}], "}"}]}], ",", 
+      RowBox[{"-", 
+       RowBox[{"{", 
+        RowBox[{"f", ",", "cart"}], "}"}]}]}], "]"}], "//", "ToCanonical"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "TableTest", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<try to flatten this\>\"", ",", "Purple", ",", "16"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MatrixTest", "=", 
+   RowBox[{
+    RowBox[{"Flatten", "[", 
+     RowBox[{"TableTest", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"3", ",", "4"}], "}"}]}], "}"}]}], "]"}], "//", 
+    "MatrixForm"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "MatrixTest", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdzW8o43EcB/Bf2uiEowvX2QMLPy2E3J+2RcbK7N8D63Indu6XP2eOO8bC
+oq0k6x5M/owYasQl7oG60vL3rJ0UaSVzp9yDa5y7Fg/GxcTv/X3w6fXk/X5/
++MyHkuoQiqIE7MECSVdMTvk/yZC7m+ha0/Lh2cYbGkrPO5/D7Ya1QvhelVwC
+2x4ua+C+OvgKNlDGCrhqvdPDdYvJCIPe8k1oehxwwXlZxKGMtSo04yf8GG94
+UMzaoQ2GQ0NjEw2Lap0CuHBEy2DlZDtRF8N7DRPSl2pJfkoxBK+Z7FGYl+8+
+hzzu8X+4Yp8KkePP7EAc/OpXDMLmR2k2KL7Y/wVbE5/9hmHXKj88WKy6gj2M
+OlrBemQOxMJ5g4RSsu5VnnLgF1FUFBRd9dNwy2EWQttwD1HArcuFHT6xHHqf
+zrVAk1RlgH3eol4Va//fSAs06Z02OMxLH4G0T/gZTjjaidyRXb6adVo0lwSX
+lTupMCKwKoDMyfdMWNZ38wIuXXjE0GKx5sFETZMcnpbqFVA+fqaBbSmZDNRy
+bnWQI6yoh3TvSyN0PKnpgrI4uxW+/aYegN5PKXY4Y74k/si62YQ6h9ANx6qd
+HriY9u4A+makf8iep5G4vVPqJz2li3gPLFI2HQ==
+  
+  "],ExpressionUUID->"74710c35-0a7b-4b78-a113-c31cb1164be3"]
+}, Open  ]]
+},
+WindowSize->{1920, 1148},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 188, 3, 99, "Title",ExpressionUUID->"77e55c47-c773-4a9c-9969-e7c76c84ace4"],
+Cell[771, 27, 12692, 382, 1278, "Input",ExpressionUUID->"74710c35-0a7b-4b78-a113-c31cb1164be3"]
+}, Open  ]]
+}
+]
+*)
+
