@@ -137,6 +137,8 @@ for ii in simple_cases do
   frees:=find_frees(primaries):
   simple_frees:=find_simple_primaries(conditions,frees):
   massless_frees:=find_massless_frees(conditions,frees):
+  dit({},"conditions:"):
+  print(op(conditions)):
   dit({},"primaries:"):
   print(op(primaries)):
   dit({},"of which simple:"):
