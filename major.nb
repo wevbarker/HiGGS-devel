@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    586202,      15246]
-NotebookOptionsPosition[    585909,      15233]
-NotebookOutlinePosition[    586242,      15248]
-CellTagsIndexPosition[    586199,      15245]
+NotebookDataLength[    684008,      17753]
+NotebookOptionsPosition[    683715,      17740]
+NotebookOutlinePosition[    684048,      17755]
+CellTagsIndexPosition[    684005,      17752]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -67,7 +67,8 @@ Cell[BoxData[{
       RowBox[{"-", "c"}]}], "]"}], ",", "CD", ",", 
     RowBox[{"{", 
      RowBox[{"\"\<;\>\"", ",", "\"\<\[Del]\>\""}], "}"}], ",", 
-    RowBox[{"PrintAs", "\[Rule]", "\"\<g\>\""}]}], "]"}], 
+    RowBox[{"PrintAs", "\[Rule]", "\"\<g\>\""}], ",", 
+    RowBox[{"SymCovDQ", "\[Rule]", "True"}]}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"DefTensor", "[", 
@@ -11845,8 +11846,8 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
         ",", "f2", ",", "f1a", ",", "f2a", ",", "f1b", ",", "f2b", ",", "nf1",
          ",", "nf2", ",", "NonVanishing", ",", "final", ",", "failtrue", ",", 
         "BracketForm", ",", "BracketAnsatzFull", ",", "BracketAnsatz", ",", 
-        "BracketSolution", ",", "AnsatzSolutions", ",", "difference"}], "}"}],
-       ",", 
+        "BracketSolution", ",", "AnsatzSolutions", ",", "difference", ",", 
+        "ret"}], "}"}], ",", 
       RowBox[{
        RowBox[{"Print", "[", 
         RowBox[{"Style", "[", 
@@ -12215,27 +12216,64 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
          RowBox[{
          "\"\<Total Poisson bracket at edge of mass shell\>\"", ",", "Red", 
           ",", "10"}], "]"}], "]"}], ";", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"failtrue", "\[Equal]", "0"}], ",", 
+           RowBox[{"final", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"res", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "-", 
+               RowBox[{
+                RowBox[{"CD", "[", 
+                 RowBox[{"-", "z"}], "]"}], "[", 
+                RowBox[{"res", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
+              "StandardSimplifier"}], "//", "Simplify"}]}], ",", 
+           RowBox[{"final", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"res", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}], "//",
+              "Simplify"}]}]}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
        RowBox[{"If", "[", 
         RowBox[{
          RowBox[{"failtrue", "\[Equal]", "0"}], ",", 
-         RowBox[{"final", "=", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{
+           RowBox[{"final", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"res", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "-", 
+              RowBox[{
+               RowBox[{"CD", "[", 
+                RowBox[{"-", "z"}], "]"}], "[", 
+               RowBox[{"res", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
+             "StandardSimplifier"}]}], ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", "0", ",", "0"}], "}"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"final", "=", 
             RowBox[{
              RowBox[{"res", "[", 
-              RowBox[{"[", "1", "]"}], "]"}], "-", 
-             RowBox[{
-              RowBox[{"CD", "[", 
-               RowBox[{"-", "z"}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}]}], 
+           ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", 
               RowBox[{"res", "[", 
-               RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
-            "StandardSimplifier"}], "//", "Simplify"}]}], ",", 
-         RowBox[{"final", "=", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"res", "[", 
-             RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}], "//",
-            "Simplify"}]}]}], "]"}], ";", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"res", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}]}], "}"}]}], "]"}], 
+       ";", 
+       RowBox[{"Print", "[", "final", "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", "final", "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"If", "[", 
         RowBox[{
@@ -12304,11 +12342,8 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
          RowBox[{"NonVanishing", "=", "1"}], ",", 
          RowBox[{"NonVanishing", "=", "0"}], ",", 
          RowBox[{"NonVanishing", "=", "1"}]}], "]"}], ";", 
-       RowBox[{"Print", "[", "NonVanishing", "]"}], ";", 
-       RowBox[{"{", 
-        RowBox[{"NonVanishing", ",", "BracketSolution", ",", "final"}], 
-        "}"}]}]}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "NonVanishing", "]"}], ";", "ret"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -12322,8 +12357,8 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
         ",", "f2", ",", "f1a", ",", "f2a", ",", "f1b", ",", "f2b", ",", "nf1",
          ",", "nf2", ",", "NonVanishing", ",", "final", ",", "failtrue", ",", 
         "BracketForm", ",", "BracketAnsatzFull", ",", "BracketAnsatz", ",", 
-        "BracketSolution", ",", "AnsatzSolutions", ",", "difference"}], "}"}],
-       ",", 
+        "BracketSolution", ",", "AnsatzSolutions", ",", "difference", ",", 
+        "ret"}], "}"}], ",", 
       RowBox[{
        RowBox[{"Print", "[", 
         RowBox[{"Style", "[", 
@@ -12703,22 +12738,37 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
        RowBox[{"If", "[", 
         RowBox[{
          RowBox[{"failtrue", "\[Equal]", "0"}], ",", 
-         RowBox[{"final", "=", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{
-            RowBox[{"res", "[", 
-             RowBox[{"[", "1", "]"}], "]"}], "-", 
+           RowBox[{"final", "=", 
             RowBox[{
-             RowBox[{"CD", "[", 
-              RowBox[{"-", "z"}], "]"}], "[", 
-             RowBox[{"res", "[", 
-              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
-           "StandardSimplifier"}]}], ",", 
-         RowBox[{"final", "=", 
+             RowBox[{
+              RowBox[{"res", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "-", 
+              RowBox[{
+               RowBox[{"CD", "[", 
+                RowBox[{"-", "z"}], "]"}], "[", 
+               RowBox[{"res", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
+             "StandardSimplifier"}]}], ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", "0", ",", "0"}], "}"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{"res", "[", 
-            RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}]}]}], 
-        "]"}], ";", 
+           RowBox[{"final", "=", 
+            RowBox[{
+             RowBox[{"res", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}]}], 
+           ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", 
+              RowBox[{"res", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"res", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}]}], "}"}]}], "]"}], 
+       ";", 
        RowBox[{"Print", "[", "final", "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{"Style", "[", 
@@ -12732,294 +12782,8 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
          RowBox[{"NonVanishing", "=", "1"}], ",", 
          RowBox[{"NonVanishing", "=", "0"}], ",", 
          RowBox[{"NonVanishing", "=", "1"}]}], "]"}], ";", 
-       RowBox[{"Print", "[", "NonVanishing", "]"}], ";", 
-       RowBox[{"{", 
-        RowBox[{"final", ",", 
-         RowBox[{"res", "[", 
-          RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}]}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{
-    "Print", "[", 
-     "\"\<PB between constraints and free constraint functions\>\"", "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2m", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}], ",", 
-        RowBox[{"-", "c"}]}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2m", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}], ",", 
-        RowBox[{"-", "c"}]}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA0p", "[", "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA0p", "[", "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}]}], "]"}], ",", "AA"}], "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}]}], 
-   "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{
-    "Print", "[", "\"\<PB between constraints and Riemann tensor\>\"", "]"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2m", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}], ",", 
-        RowBox[{"-", "c"}]}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA1p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiA0p", "[", "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB2p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB1m", "[", 
-       RowBox[{"-", "a"}], "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "j"}], ",", "e"}], "]"}], 
-       RowBox[{"PPara", "[", 
-        RowBox[{
-         RowBox[{"-", "k"}], ",", "f"}], "]"}], 
-       RowBox[{"R", "[", 
-        RowBox[{
-         RowBox[{"-", "h"}], ",", 
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "e"}], ",", 
-         RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], "\[IndentingNewLine]", 
-   "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "NonVanishing", "]"}], ";", "ret"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"DefTensor", "[", 
    RowBox[{
@@ -13027,292 +12791,2907 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
      RowBox[{"-", "a"}], "]"}], ",", "M4"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Ripe", "=", 
+  RowBox[{
+   RowBox[{"SuperHamiltonian", "=", 
+    RowBox[{
+     RowBox[{"SuperHamiltonian", " ", 
+      RowBox[{"S", "[", "x", "]"}], " ", 
+      RowBox[{"S", "[", "y", "]"}], 
+      RowBox[{"S", "[", "z", "]"}]}], "//", "ToCanonical"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{
-    RowBox[{"SuperHamiltonian", " ", 
-     RowBox[{"S", "[", "x", "]"}], 
-     RowBox[{"S", "[", "y", "]"}], 
-     RowBox[{"S", "[", "z", "]"}]}], "//", "ToCanonical"}]}], 
+    RowBox[{"RawSecondary", "[", 
+     RowBox[{"fx_", ",", "superhamiltonian_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "Temp", ",", "Frees", ",", "FreeIndexList", ",", "Nm", ",", "Vects", 
+        ",", "Gs", ",", "SuperSubs", ",", "Tes", ",", "return", ",", "Sub1", 
+        ",", "Sub2", ",", "Sub3", ",", "Sub2a", ",", "Sub3a", ",", "Sub4", 
+        ",", "Sub5", ",", "Sub6", ",", "Sub5a", ",", "Sub6a", ",", "Sub7", 
+        ",", "Sub8", ",", "Sub9", ",", "Sub8a", ",", "Sub9a", ",", "Sub10", 
+        ",", "Sub11", ",", "Sub12", ",", "Sub11a", ",", "Sub12a", ",", 
+        "Sub13", ",", "Sub14", ",", "Sub15", ",", "Sub14a", ",", "Sub15a", 
+        ",", "OmniSubs"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Evaluating basic secondary constraint for:\>\"", ",", "Red", 
+          ",", "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "fx", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Stripping indices...\>\"", ",", "Blue", ",", "16"}], 
+         "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Frees", "=", 
+        RowBox[{"FindFreeIndices", "[", "fx", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"FreeIndexList", "=", 
+        RowBox[{"Developer`ToList", "[", 
+         RowBox[{"Delete", "[", 
+          RowBox[{
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"ToString", "[", "#", "]"}], "&"}], ",", "Frees"}], 
+            "]"}], ",", "0"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Nm", "=", 
+        RowBox[{"Length", "[", "FreeIndexList", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Vects", "=", 
+        RowBox[{"{", 
+         RowBox[{"\"\<S[x]\>\"", ",", "\"\<S[y]\>\"", ",", "\"\<S[z]\>\""}], 
+         "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Gs", "=", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<G[x,-k]\>\"", ",", "\"\<G[y,-k]\>\"", ",", "\"\<G[z,-k]\>\""}], 
+         "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"SuperSubs", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"ii", "=", "1"}], ",", 
+         RowBox[{"ii", "<", 
+          RowBox[{"Nm", "+", "1"}]}], ",", 
+         RowBox[{"ii", "++"}], ",", 
+         RowBox[{"SuperSubs", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"SuperSubs", ",", 
+            RowBox[{
+             RowBox[{"Vects", "[", 
+              RowBox[{"[", "ii", "]"}], "]"}], "\[Rule]", 
+             RowBox[{"StringReplace", "[", 
+              RowBox[{
+               RowBox[{"Gs", "[", 
+                RowBox[{"[", "ii", "]"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"\"\<-k\>\"", "\[Rule]", 
+                 RowBox[{"FreeIndexList", "[", 
+                  RowBox[{"[", "ii", "]"}], "]"}]}], "}"}]}], "]"}]}]}], 
+           "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "SuperSubs", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Riemann bracket...\>\"", ",", "Blue", ",", "20"}], 
+         "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Temp", "=", 
+        RowBox[{"ConstraintFieldPoissonBracket", "[", 
+         RowBox[{"fx", ",", 
+          RowBox[{
+           RowBox[{"PPara", "[", 
+            RowBox[{
+             RowBox[{"-", "i"}], ",", "e"}], "]"}], 
+           RowBox[{"PPara", "[", 
+            RowBox[{
+             RowBox[{"-", "j"}], ",", "f"}], "]"}], 
+           RowBox[{"R", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "e"}], ",", 
+             RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub1", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<RD[-g,-h,-i,-j,-x,-y,-z]S[x]S[y]S[z]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub2", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<RDS1[-g,-h,-i,-j,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub3", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<RDS2[-g,-h,-i,-j,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub2a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][RDS1[-g,-h,-i,-j,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", 
+                ",", "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub3a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][RDS2[-g,-h,-i,-j,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", 
+                ",", "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Torsion bracket...\>\"", ",", "Blue", ",", "20"}], 
+         "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Temp", "=", 
+        RowBox[{"ConstraintFieldPoissonBracket", "[", 
+         RowBox[{"fx", ",", 
+          RowBox[{
+           RowBox[{"PPara", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", "e"}], "]"}], 
+           RowBox[{"PPara", "[", 
+            RowBox[{
+             RowBox[{"-", "h"}], ",", "f"}], "]"}], 
+           RowBox[{"T", "[", 
+            RowBox[{
+             RowBox[{"-", "d"}], ",", 
+             RowBox[{"-", "e"}], ",", 
+             RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub4", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<TD[-d,-g,-h,-x,-y,-z]S[x]S[y]S[z]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub5", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<TDS1[-d,-g,-h,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub6", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<TDS2[-d,-g,-h,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub5a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][TDS1[-d,-g,-h,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub6a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][TDS2[-d,-g,-h,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Surface bracket...\>\"", ",", "Blue", ",", "20"}], 
+         "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Temp", "=", 
+        RowBox[{"ConstraintFieldPoissonBracket", "[", 
+         RowBox[{"fx", ",", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"V", "[", "k", "]"}]}], 
+           RowBox[{"G3", "[", 
+            RowBox[{"m", ",", 
+             RowBox[{"-", "n"}]}], "]"}], 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"CD", "[", 
+               RowBox[{"-", "m"}], "]"}], "[", 
+              RowBox[{"BPi", "[", 
+               RowBox[{
+                RowBox[{"-", "k"}], ",", "n"}], "]"}], "]"}], "-", 
+             RowBox[{
+              RowBox[{"A", "[", 
+               RowBox[{"s", ",", 
+                RowBox[{"-", "k"}], ",", 
+                RowBox[{"-", "m"}]}], "]"}], 
+              RowBox[{"BPi", "[", 
+               RowBox[{
+                RowBox[{"-", "s"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}]}],
+        ";", "\[IndentingNewLine]", 
+       RowBox[{"Sub7", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{"\"\<QD[-x,-y,-z]S[x]S[y]S[z]\>\"", ",", "SuperSubs"}],
+                "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub8", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<QDS1[-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", "SuperSubs"}], 
+               "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub9", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<QDS2[-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", "SuperSubs"}], 
+               "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub8a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][QDS1[-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub9a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][QDS2[-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Constraint B1p bracket...\>\"", ",", "Blue", ",", "20"}], "]"}],
+         "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Temp", "=", 
+        RowBox[{"ConstraintPoissonBracket", "[", 
+         RowBox[{"fx", ",", 
+          RowBox[{"PhiB1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}]}], "]"}], ",", "AA"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub10", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDB1p[-a,-b,-x,-y,-z]S[x]S[y]S[z]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub11", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDS1B1p[-a,-b,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub12", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDS2B1p[-a,-b,-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub11a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][PhiDS1B1p[-a,-b,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",",
+                 "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub12a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][PhiDS2B1p[-a,-b,-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",",
+                 "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Constraint A0m bracket...\>\"", ",", "Blue", ",", "20"}], "]"}],
+         "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Temp", "=", 
+        RowBox[{"ConstraintPoissonBracket", "[", 
+         RowBox[{"fx", ",", 
+          RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub13", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDA0m[-x,-y,-z]S[x]S[y]S[z]\>\"", ",", "SuperSubs"}], 
+               "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub14", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDS1A0m[-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub15", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<PhiDS2A0m[-x,-y,-c,z]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"Temp", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub14a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][PhiDS1A0m[-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Sub15a", "=", 
+        RowBox[{"MakeRule", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{
+               "\"\<CD[-u][PhiDS2A0m[-x,-y,-c,z]]S[x]S[y]S[c]\>\"", ",", 
+                "SuperSubs"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "u"}], "]"}], "[", 
+             RowBox[{"Evaluate", "[", 
+              RowBox[{"Temp", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+          RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"OmniSubs", "=", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+         "Sub1", ",", "Sub2", ",", "Sub3", ",", "Sub2a", ",", "Sub3a", ",", 
+          "Sub4", ",", "Sub5", ",", "Sub6", ",", "Sub5a", ",", "Sub6a", ",", 
+          "Sub7", ",", "Sub8", ",", "Sub9", ",", "Sub8a", ",", "Sub9a", ",", 
+          "Sub10", ",", "Sub11", ",", "Sub12", ",", "Sub11a", ",", "Sub12a", 
+          ",", "Sub13", ",", "Sub14", ",", "Sub15", ",", "Sub14a", ",", 
+          "Sub15a"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Substituting into super-Hamiltonian\>\"", ",", "Orange", ",", 
+          "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"return", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Evaluate", "[", "superhamiltonian", "]"}], "/.", 
+          "OmniSubs"}], "//", "StandardSimplifier"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "return", "]"}], ";", "\[IndentingNewLine]", 
+       "return"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{"RawSecondary", "[", 
+    RowBox[{
+     RowBox[{"PhiB2p", "[", 
+      RowBox[{"-", "p"}], "]"}], ",", "SuperHamiltonian"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"Print", "[", "Ripe", "]"}], ";"}], 
+   RowBox[{"DumpSave", "[", 
+    RowBox[{"\"\<SecondaryB2p.mx\>\"", ",", 
+     RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"DumpSave", "[", 
+     RowBox[{"\"\<SecondaryB0p.mx\>\"", ",", 
+      RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"<<", "SecondaryB1m.mx"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "Secondary", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefConstantSymbol", "[", " ", "\[CapitalPi]", " ", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagAOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"A", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", 
+         RowBox[{"-", "c"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"A", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "c"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagAPiOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"APi", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", 
+         RowBox[{"-", "c"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"APi", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "c"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagBPiOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"BPi", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"BPi", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagAPiPOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"APiP", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", 
+         RowBox[{"-", "c"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"APiP", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "c"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagBPiPOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"BPiP", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"BPiP", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagCDBOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"-", "z"}], "]"}], "[", 
+        RowBox[{"B", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}]}], "]"}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{
+         RowBox[{"CD", "[", 
+          RowBox[{"-", "z"}], "]"}], "[", 
+         RowBox[{"B", "[", 
+          RowBox[{
+           RowBox[{"-", "a"}], ",", 
+           RowBox[{"-", "b"}]}], "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagROrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"R", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", 
+         RowBox[{"-", "c"}], ",", 
+         RowBox[{"-", "d"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"R", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "c"}], ",", 
+          RowBox[{"-", "d"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TagTOrder", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"T", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", 
+         RowBox[{"-", "c"}]}], "]"}], ",", 
+       RowBox[{"\[CapitalPi]", " ", 
+        RowBox[{"T", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", 
+          RowBox[{"-", "b"}], ",", 
+          RowBox[{"-", "c"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TagOrder", "=", 
+    RowBox[{"Join", "[", 
+     RowBox[{
+     "TagAOrder", ",", "TagAPiOrder", ",", "TagBPiOrder", ",", "TagCDBOrder", 
+      ",", "TagBPiPOrder", ",", "TagAPiPOrder", ",", "TagROrder", ",", 
+      "TagTOrder"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClipOrder", "[", "secondary_", "]"}], ":=", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", "return", "}"}], ",", 
+      RowBox[{
+       RowBox[{"return", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"secondary", "/.", "TagOrder"}], "//", 
+          "StandardSimplifier"}], "//", "CollectConstants"}]}], ";", 
+       RowBox[{"return", "=", 
+        RowBox[{"return", "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "2"}], "\[Rule]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "3"}], "\[Rule]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "4"}], "\[Rule]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "5"}], "\[Rule]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "6"}], "\[Rule]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"\[CapitalPi]", "^", "7"}], "\[Rule]", "0"}]}], "}"}]}]}],
+        ";", 
+       RowBox[{"return", "=", 
+        RowBox[{"return", "/.", 
+         RowBox[{"{", 
+          RowBox[{"\[CapitalPi]", "\[Rule]", "1"}], "}"}]}]}], ";", 
+       "return"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClipSimplifier", "[", "secondary_", "]"}], ":=", 
+    RowBox[{"Catch", "[", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "ret", "}"}], ",", 
+       RowBox[{
+        RowBox[{"ret", "=", "secondary"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<Initial application of Clip order\>\"", ",", "Orange", ",", 
+           "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ret", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"ret", "//", "StandardSimplifier"}], "//", "NoScalar"}], "//",
+           "ClipOrder"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", "ret", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ret", "\[Equal]", "0"}], ",", 
+          RowBox[{"Throw", "[", "ret", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<Expanding the field strength projectors\>\"", ",", "Orange", 
+           ",", "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ret", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"ret", "/.", "PActivate"}], "//", "NoScalar"}], "//", 
+            "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}],
+         ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", "ret", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ret", "\[Equal]", "0"}], ",", 
+          RowBox[{"Throw", "[", "ret", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<Expanding the ADM projectors\>\"", ",", "Orange", ",", "20"}], 
+          "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ret", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"ret", "/.", "PADMActivate"}], "//", "NoScalar"}], "//", 
+            "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}],
+         ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", "ret", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ret", "\[Equal]", "0"}], ",", 
+          RowBox[{"Throw", "[", "ret", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<Expanding the remaining constraint functions\>\"", ",", 
+           "Orange", ",", "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ret", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"ret", "/.", "PhiActivate"}], "//", "NoScalar"}], "//", 
+            "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}],
+         ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", "ret", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ret", "\[Equal]", "0"}], ",", 
+          RowBox[{"Throw", "[", "ret", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<Expanding the field strengths\>\"", ",", "Orange", ",", "20"}],
+           "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ret", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"ret", "/.", "ExpandStrengths"}], "//", "NoScalar"}], "//",
+             "StandardSimplifier"}], "//", "NoScalar"}], "//", 
+          "ClipOrder"}]}], ";", "ret"}]}], "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Secondary", "=", 
+    RowBox[{"ClipSimplifier", "[", "Secondary", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", "%", "]"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Print", "[", 
    RowBox[{"Style", "[", 
     RowBox[{
-    "\"\<Let us focus on secondary constraint of simplest case; B0p\>\"", ",",
-      "Orange", ",", "20"}], "]"}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+    "\"\<Proceeding with naive linearization\>\"", ",", "20", ",", "Purple"}],
+     "]"}], "]"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Naive", " ", "perturbation", " ", "suite"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"STemp", "=", 
-   RowBox[{"ConstraintFieldPoissonBracket", "[", 
-    RowBox[{
-     RowBox[{"PhiB0p", "[", "]"}], ",", 
-     RowBox[{
-      RowBox[{"PPara", "[", 
-       RowBox[{
-        RowBox[{"-", "i"}], ",", "e"}], "]"}], 
-      RowBox[{"PPara", "[", 
-       RowBox[{
-        RowBox[{"-", "j"}], ",", "f"}], "]"}], 
-      RowBox[{"R", "[", 
-       RowBox[{
-        RowBox[{"-", "g"}], ",", 
-        RowBox[{"-", "h"}], ",", 
-        RowBox[{"-", "e"}], ",", 
-        RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Temp", "=", 
-   RowBox[{"STemp", "[", 
-    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubA", "=", 
+  RowBox[{"PostTheoryA", "=", 
    RowBox[{"MakeRule", "[", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{
-       RowBox[{
-        RowBox[{"RD", "[", 
-         RowBox[{
-          RowBox[{"-", "g"}], ",", 
-          RowBox[{"-", "h"}], ",", 
-          RowBox[{"-", "i"}], ",", 
-          RowBox[{"-", "j"}], ",", 
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "z"}]}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "z", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
-     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Temp", "=", 
-   RowBox[{"STemp", "[", 
-    RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubB", "=", 
-   RowBox[{"MakeRule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"RDd", "[", 
-         RowBox[{
-          RowBox[{"-", "g"}], ",", 
-          RowBox[{"-", "h"}], ",", 
-          RowBox[{"-", "i"}], ",", 
-          RowBox[{"-", "j"}], ",", 
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "c"}], ",", "z"}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "c", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
-     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"STemp", "=", 
-   RowBox[{"ConstraintFieldPoissonBracket", "[", 
-    RowBox[{
-     RowBox[{"PhiB0p", "[", "]"}], ",", 
-     RowBox[{
-      RowBox[{"PPara", "[", 
-       RowBox[{
-        RowBox[{"-", "g"}], ",", "e"}], "]"}], 
-      RowBox[{"PPara", "[", 
-       RowBox[{
-        RowBox[{"-", "h"}], ",", "f"}], "]"}], 
-      RowBox[{"T", "[", 
-       RowBox[{
-        RowBox[{"-", "d"}], ",", 
-        RowBox[{"-", "e"}], ",", 
-        RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Temp", "=", 
-   RowBox[{"STemp", "[", 
-    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubC", "=", 
-   RowBox[{"MakeRule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"TD", "[", 
-         RowBox[{
-          RowBox[{"-", "d"}], ",", 
-          RowBox[{"-", "g"}], ",", 
-          RowBox[{"-", "h"}], ",", 
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "z"}]}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "z", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
-     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Temp", "=", 
-   RowBox[{"STemp", "[", 
-    RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubD", "=", 
-   RowBox[{"MakeRule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"TDd", "[", 
-         RowBox[{
-          RowBox[{"-", "d"}], ",", 
-          RowBox[{"-", "g"}], ",", 
-          RowBox[{"-", "h"}], ",", 
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "c"}], ",", "z"}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "c", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
-     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Temp", "=", 
-   RowBox[{
-    RowBox[{"ConstraintFieldPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{
-       RowBox[{"-", 
-        RowBox[{"V", "[", "k", "]"}]}], 
-       RowBox[{"G3", "[", 
-        RowBox[{"m", ",", 
-         RowBox[{"-", "n"}]}], "]"}], 
-       RowBox[{"(", 
+       RowBox[{"APi", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}], ",", "c"}], "]"}], ",", 
+       RowBox[{"Evaluate", "[", 
         RowBox[{
          RowBox[{
-          RowBox[{"CD", "[", 
-           RowBox[{"-", "m"}], "]"}], "[", 
-          RowBox[{"BPi", "[", 
+          RowBox[{
            RowBox[{
-            RowBox[{"-", "k"}], ",", "n"}], "]"}], "]"}], "-", 
+            RowBox[{"PA0mT", "[", 
+             RowBox[{
+              RowBox[{"-", "a"}], ",", 
+              RowBox[{"-", "b"}], ",", "z", ",", "i", ",", "j", ",", 
+              RowBox[{"-", "g"}]}], "]"}], 
+            RowBox[{"APi", "[", 
+             RowBox[{
+              RowBox[{"-", "i"}], ",", 
+              RowBox[{"-", "j"}], ",", "u"}], "]"}], 
+            RowBox[{"G3", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"-", "u"}]}], "]"}], 
+            RowBox[{"B", "[", 
+             RowBox[{"g", ",", 
+              RowBox[{"-", "x"}]}], "]"}], 
+            RowBox[{"PPara", "[", 
+             RowBox[{
+              RowBox[{"-", "z"}], ",", "y"}], "]"}], 
+            RowBox[{"H", "[", 
+             RowBox[{
+              RowBox[{"-", "y"}], ",", "c"}], "]"}]}], "/.", "PO3TActivate"}],
+           "/.", "PADMActivate"}], "//", "ToCanonical"}], "]"}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PostTheoryB", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"BPi", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", "c"}], "]"}], ",", 
+       RowBox[{"Evaluate", "[", 
+        RowBox[{
          RowBox[{
-          RowBox[{"A", "[", 
-           RowBox[{"s", ",", 
-            RowBox[{"-", "k"}], ",", 
-            RowBox[{"-", "m"}]}], "]"}], 
-          RowBox[{"BPi", "[", 
+          RowBox[{
            RowBox[{
-            RowBox[{"-", "s"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}], "[", 
-    
-    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubE", "=", 
-   RowBox[{"MakeRule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"QD", "[", 
-         RowBox[{
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "z"}]}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "z", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
+            RowBox[{"PB1pT", "[", 
+             RowBox[{
+              RowBox[{"-", "a"}], ",", "z", ",", "i", ",", 
+              RowBox[{"-", "g"}]}], "]"}], 
+            RowBox[{"BPi", "[", 
+             RowBox[{
+              RowBox[{"-", "i"}], ",", "u"}], "]"}], 
+            RowBox[{"G3", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"-", "u"}]}], "]"}], 
+            RowBox[{"B", "[", 
+             RowBox[{"g", ",", 
+              RowBox[{"-", "x"}]}], "]"}], 
+            RowBox[{"PPara", "[", 
+             RowBox[{
+              RowBox[{"-", "z"}], ",", "y"}], "]"}], 
+            RowBox[{"H", "[", 
+             RowBox[{
+              RowBox[{"-", "y"}], ",", "c"}], "]"}]}], "/.", "PO3TActivate"}],
+           "/.", "PADMActivate"}], "//", "ToCanonical"}], "]"}]}], "}"}], ",", 
      RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PostTheory", "=", 
+  RowBox[{"Join", "[", 
+   RowBox[{"PostTheoryA", ",", "PostTheoryB"}], 
+   "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Temp", "=", 
+  RowBox[{"DefConstantSymbol", "[", "\[Zeta]", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
    RowBox[{
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiB1p", "[", 
-       RowBox[{
-        RowBox[{"-", "a"}], ",", 
-        RowBox[{"-", "b"}]}], "]"}], ",", "AA"}], "]"}], "[", 
-    RowBox[{"[", "3", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"SubF", "=", 
-   RowBox[{"MakeRule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"PhiDB1p", "[", 
-         RowBox[{
-          RowBox[{"-", "a"}], ",", 
-          RowBox[{"-", "b"}], ",", 
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "z"}]}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "z", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
-     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
-     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+    RowBox[{"Hx", "[", 
+     RowBox[{"a", ",", "b"}], "]"}], ",", "M4"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Temp", "=", 
+  RowBox[{"DefTensor", "[", 
    RowBox[{
-    RowBox[{"ConstraintPoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}], "[", 
-    RowBox[{"[", "3", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"Bx", "[", 
+     RowBox[{"a", ",", "b"}], "]"}], ",", "M4"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"SubG", "=", 
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"Ax", "[", 
+     RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", "M4", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"APix", "[", 
+     RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", "M4", ",", 
+    RowBox[{"Antisymmetric", "[", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"BPix", "[", 
+     RowBox[{"a", ",", "c"}], "]"}], ",", "M4"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefTensor", "[", 
+   RowBox[{
+    RowBox[{"Vx", "[", 
+     RowBox[{"-", "a"}], "]"}], ",", "M4"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AutomaticRules", "[", 
+   RowBox[{"Vx", ",", 
+    RowBox[{"MakeRule", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"CD", "[", 
+          RowBox[{"-", "a"}], "]"}], "[", 
+         RowBox[{"Vx", "[", 
+          RowBox[{"-", "b"}], "]"}], "]"}], ",", "0"}], "}"}], ",", 
+      RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AutomaticRules", "[", 
+   RowBox[{"Vx", ",", 
+    RowBox[{"MakeRule", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"G3", "[", 
+          RowBox[{"a", ",", "b"}], "]"}], 
+         RowBox[{"Vx", "[", 
+          RowBox[{"-", "b"}], "]"}]}], ",", "0"}], "}"}], ",", 
+      RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Orthog", "=", 
    RowBox[{"MakeRule", "[", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{
        RowBox[{
-        RowBox[{"PhiDA0m", "[", 
-         RowBox[{
-          RowBox[{"-", "x"}], ",", 
-          RowBox[{"-", "y"}], ",", 
-          RowBox[{"-", "z"}]}], "]"}], 
-        RowBox[{"S", "[", "x", "]"}], 
-        RowBox[{"S", "[", "y", "]"}], 
-        RowBox[{"S", "[", "z", "]"}]}], ",", 
-       RowBox[{"Evaluate", "[", "Temp", "]"}]}], "}"}], ",", 
+        RowBox[{"Vx", "[", "a", "]"}], 
+        RowBox[{"Vx", "[", "b", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"G", "[", 
+         RowBox[{"a", ",", "b"}], "]"}], "-", 
+        RowBox[{"G3", "[", 
+         RowBox[{"a", ",", "b"}], "]"}]}]}], "}"}], ",", 
      RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
      RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Derivative3Bx", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"-", "a"}], "]"}], "[", 
+        RowBox[{"Bx", "[", 
+         RowBox[{"b", ",", 
+          RowBox[{"-", "c"}]}], "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"G3", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", "d"}], "]"}], 
+        RowBox[{
+         RowBox[{"CD", "[", 
+          RowBox[{"-", "d"}], "]"}], "[", 
+         RowBox[{"Bx", "[", 
+          RowBox[{"b", ",", 
+           RowBox[{"-", "c"}]}], "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Derivative3Ax", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"-", "a"}], "]"}], "[", 
+        RowBox[{"Ax", "[", 
+         RowBox[{"b", ",", "e", ",", 
+          RowBox[{"-", "c"}]}], "]"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"G3", "[", 
+         RowBox[{
+          RowBox[{"-", "a"}], ",", "d"}], "]"}], 
+        RowBox[{
+         RowBox[{"CD", "[", 
+          RowBox[{"-", "d"}], "]"}], "[", 
+         RowBox[{"Ax", "[", 
+          RowBox[{"b", ",", "e", ",", 
+           RowBox[{"-", "c"}]}], "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Derivative3x", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"Derivative3Bx", ",", "Derivative3Ax"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionH", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"H", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"G", "[", 
+         RowBox[{"a", ",", "b"}], "]"}], "+", 
+        RowBox[{"\[Zeta]", " ", 
+         RowBox[{"Hx", "[", 
+          RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionB", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"B", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"G", "[", 
+         RowBox[{"a", ",", "b"}], "]"}], "+", 
+        RowBox[{"\[Zeta]", " ", 
+         RowBox[{"Bx", "[", 
+          RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionA", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"A", "[", 
+        RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", 
+       RowBox[{"\[Zeta]", " ", 
+        RowBox[{"Ax", "[", 
+         RowBox[{"a", ",", "b", ",", "c"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionAPi", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"APi", "[", 
+        RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", 
+       RowBox[{"\[Zeta]", " ", 
+        RowBox[{"APix", "[", 
+         RowBox[{"a", ",", "b", ",", "c"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionBPi", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"BPi", "[", 
+        RowBox[{"a", ",", "c"}], "]"}], ",", 
+       RowBox[{"\[Zeta]", " ", 
+        RowBox[{"BPix", "[", 
+         RowBox[{"a", ",", "c"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NaiveExpansionV", "=", 
+   RowBox[{"MakeRule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"V", "[", 
+        RowBox[{"-", "a"}], "]"}], ",", 
+       RowBox[{"Vx", "[", 
+        RowBox[{"-", "a"}], "]"}]}], "}"}], ",", 
+     RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+     RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"OmniSubs", "=", 
+   RowBox[{"NaiveExpansion", "=", 
     RowBox[{"Join", "[", 
      RowBox[{
-     "SubA", ",", "SubB", ",", "SubC", ",", "SubD", ",", "SubE", ",", "SubF", 
-      ",", "SubG"}], "]"}]}], ";"}], 
+     "NaiveExpansionH", ",", "NaiveExpansionB", ",", "NaiveExpansionA", ",", 
+      "NaiveExpansionAPi", ",", "NaiveExpansionBPi", ",", "NaiveExpansionV"}],
+      "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{"Secondary", "/.", "Derivative3x"}], "//", 
+    "StandardSimplifier"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{"Secondary", "/.", "PostTheory"}], "//", "StandardSimplifier"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Secondary", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Secondary", "/.", "NaiveExpansion"}], "//", 
+      "StandardSimplifier"}], "//", "CollectConstants"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Ripe", "=", 
+  RowBox[{"Print", "[", 
    RowBox[{
-    RowBox[{"Ripe", "/.", "OmniSubs"}], "//", "StandardSimplifier"}]}], 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Coefficient", "[", 
+        RowBox[{"Secondary", ",", "\[Zeta]", ",", "0"}], "]"}], "/.", 
+       "Orthog"}], "/.", "Derivative3x"}], "//", "StandardSimplifier"}], "//",
+     "CollectTensors"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Coefficient", "[", 
+         RowBox[{"Secondary", ",", "\[Zeta]", ",", "1"}], "]"}], "/.", 
+        "Orthog"}], "/.", "Derivative3x"}], "//", "StandardSimplifier"}], "//",
+      "CollectTensors"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Coefficient", "[", 
+         RowBox[{"Secondary", ",", "\[Zeta]", ",", "1"}], "]"}], "/.", 
+        "Orthog"}], "/.", "Derivative3x"}], "//", "StandardSimplifier"}], "//",
+      "SymmetrizeCovDs"}], "]"}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{"Secondary", "//", "ClipOrder"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{
+   "\"\<Expanding the field strength projectors\>\"", ",", "Orange", ",", 
+    "20"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Secondary", "/.", "PActivate"}], "//", "NoScalar"}], "//", 
+      "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "Secondary", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<Expanding the ADM projectors\>\"", ",", "Orange", ",", "20"}], "]"}],
+    "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Secondary", "/.", "PADMActivate"}], "//", "NoScalar"}], "//", 
+      "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "Secondary", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{
+   "\"\<Expanding the remaining constraint functions\>\"", ",", "Orange", ",",
+     "20"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Secondary", "/.", "PhiActivate"}], "//", "NoScalar"}], "//", 
+      "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "Secondary", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<Expanding the field strengths\>\"", ",", "Orange", ",", "20"}], 
+    "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Secondary", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Secondary", "/.", "ExpandStrengths"}], "//", "NoScalar"}], "//",
+       "StandardSimplifier"}], "//", "NoScalar"}], "//", "ClipOrder"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"Print", "[", "Ripe", "]"}], ";"}], 
+   RowBox[{"Print", "[", "Secondary", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DumpSave", "[", 
+   RowBox[{"\"\<SecondaryClippedB0p.mx\>\"", ",", 
+    RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"<<", "SecondaryClippedB0p.mx"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+  "(*", "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Print", "[", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Let us focus on secondary constraint of simplest case; B0p\>\"", 
+         ",", "Orange", ",", "20"}], "]"}], "]"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "Temp"}], "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "i"}], ",", "e"}], "]"}], 
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "j"}], ",", "f"}], "]"}], 
+        RowBox[{"R", "[", 
+         RowBox[{
+          RowBox[{"-", "g"}], ",", 
+          RowBox[{"-", "h"}], ",", 
+          RowBox[{"-", "e"}], ",", 
+          RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub1", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RD", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub2", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub3", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub2a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"RDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "i"}], ",", 
+             RowBox[{"-", "j"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub3a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"RDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "i"}], ",", 
+             RowBox[{"-", "j"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "g"}], ",", "e"}], "]"}], 
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "h"}], ",", "f"}], "]"}], 
+        RowBox[{"T", "[", 
+         RowBox[{
+          RowBox[{"-", "d"}], ",", 
+          RowBox[{"-", "e"}], ",", 
+          RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub4", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TD", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub5", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub6", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub5a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"TDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "d"}], ",", 
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub6a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"TDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "d"}], ",", 
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"V", "[", "k", "]"}]}], 
+        RowBox[{"G3", "[", 
+         RowBox[{"m", ",", 
+          RowBox[{"-", "n"}]}], "]"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "m"}], "]"}], "[", 
+           RowBox[{"BPi", "[", 
+            RowBox[{
+             RowBox[{"-", "k"}], ",", "n"}], "]"}], "]"}], "-", 
+          RowBox[{
+           RowBox[{"A", "[", 
+            RowBox[{"s", ",", 
+             RowBox[{"-", "k"}], ",", 
+             RowBox[{"-", "m"}]}], "]"}], 
+           RowBox[{"BPi", "[", 
+            RowBox[{
+             RowBox[{"-", "s"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}]}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Sub7", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QD", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub8", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub9", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub8a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"QDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub9a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"QDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{"PhiB1p", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}]}], "]"}], ",", "AA"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub10", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDB1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub11", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS1B1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub12", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS2B1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub11a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS1B1p", "[", 
+            RowBox[{
+             RowBox[{"-", "a"}], ",", 
+             RowBox[{"-", "b"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub12a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS2B1p", "[", 
+            RowBox[{
+             RowBox[{"-", "a"}], ",", 
+             RowBox[{"-", "b"}], ",", 
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub13", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDA0m", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub14", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS1A0m", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub15", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS2A0m", "[", 
+           RowBox[{
+            RowBox[{"-", "x"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub14a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS1A0m", "[", 
+            RowBox[{
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub15a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS2A0m", "[", 
+            RowBox[{
+             RowBox[{"-", "x"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "x", "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"OmniSubs", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+      "Sub1", ",", "Sub2", ",", "Sub3", ",", "Sub2a", ",", "Sub3a", ",", 
+       "Sub4", ",", "Sub5", ",", "Sub6", ",", "Sub5a", ",", "Sub6a", ",", 
+       "Sub7", ",", "Sub8", ",", "Sub9", ",", "Sub8a", ",", "Sub9a", ",", 
+       "Sub10", ",", "Sub11", ",", "Sub12", ",", "Sub11a", ",", "Sub12a", ",",
+        "Sub13", ",", "Sub14", ",", "Sub15", ",", "Sub14a", ",", "Sub15a"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+      "\"\<Sub-bracket rules evaluated, now subbing into super-Hamil\>\"", 
+       ",", "Orange", ",", "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Ripe", "=", 
+     RowBox[{
+      RowBox[{"Ripe", "/.", "OmniSubs"}], "//", "StandardSimplifier"}]}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"Ripe", "=", 
+     RowBox[{
+      RowBox[{"Ripe", "/.", "OmniSubs"}], "//", "StandardSimplifier"}]}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "Ripe", "]"}], ";", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"DumpSave", "[", 
+     RowBox[{"\"\<RipeB0p.mx\>\"", ",", 
+      RowBox[{"{", "Ripe", "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Quit", "[", "]"}]}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Print", "[", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Let us focus on secondary constraint of simplest case; B0p\>\"", 
+         ",", "Orange", ",", "20"}], "]"}], "]"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "Temp"}], "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB1m", "[", 
+        RowBox[{"-", "p"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "i"}], ",", "e"}], "]"}], 
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "j"}], ",", "f"}], "]"}], 
+        RowBox[{"R", "[", 
+         RowBox[{
+          RowBox[{"-", "g"}], ",", 
+          RowBox[{"-", "h"}], ",", 
+          RowBox[{"-", "e"}], ",", 
+          RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub1", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RD", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub2", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub3", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"RDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "i"}], ",", 
+            RowBox[{"-", "j"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub2a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"RDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "i"}], ",", 
+             RowBox[{"-", "j"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub3a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"RDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "i"}], ",", 
+             RowBox[{"-", "j"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB1m", "[", 
+        RowBox[{"-", "p"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "g"}], ",", "e"}], "]"}], 
+        RowBox[{"PPara", "[", 
+         RowBox[{
+          RowBox[{"-", "h"}], ",", "f"}], "]"}], 
+        RowBox[{"T", "[", 
+         RowBox[{
+          RowBox[{"-", "d"}], ",", 
+          RowBox[{"-", "e"}], ",", 
+          RowBox[{"-", "f"}]}], "]"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub4", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TD", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub5", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub6", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "d"}], ",", 
+            RowBox[{"-", "g"}], ",", 
+            RowBox[{"-", "h"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub5a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"TDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "d"}], ",", 
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub6a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"TDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "d"}], ",", 
+             RowBox[{"-", "g"}], ",", 
+             RowBox[{"-", "h"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintFieldPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB1m", "[", 
+        RowBox[{"-", "p"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"V", "[", "k", "]"}]}], 
+        RowBox[{"G3", "[", 
+         RowBox[{"m", ",", 
+          RowBox[{"-", "n"}]}], "]"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "m"}], "]"}], "[", 
+           RowBox[{"BPi", "[", 
+            RowBox[{
+             RowBox[{"-", "k"}], ",", "n"}], "]"}], "]"}], "-", 
+          RowBox[{
+           RowBox[{"A", "[", 
+            RowBox[{"s", ",", 
+             RowBox[{"-", "k"}], ",", 
+             RowBox[{"-", "m"}]}], "]"}], 
+           RowBox[{"BPi", "[", 
+            RowBox[{
+             RowBox[{"-", "s"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}]}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Sub7", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QD", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub8", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QDS1", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub9", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"QDS2", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub8a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"QDS1", "[", 
+            RowBox[{
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub9a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"QDS2", "[", 
+            RowBox[{
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB1m", "[", 
+        RowBox[{"-", "p"}], "]"}], ",", 
+       RowBox[{"PhiB1p", "[", 
+        RowBox[{
+         RowBox[{"-", "a"}], ",", 
+         RowBox[{"-", "b"}]}], "]"}], ",", "AA"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub10", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDB1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub11", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS1B1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub12", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS2B1p", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub11a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS1B1p", "[", 
+            RowBox[{
+             RowBox[{"-", "a"}], ",", 
+             RowBox[{"-", "b"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub12a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS2B1p", "[", 
+            RowBox[{
+             RowBox[{"-", "a"}], ",", 
+             RowBox[{"-", "b"}], ",", 
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Temp", "=", 
+     RowBox[{"ConstraintPoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB1m", "[", 
+        RowBox[{"-", "p"}], "]"}], ",", 
+       RowBox[{"PhiA0m", "[", "]"}], ",", "AA"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub13", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDA0m", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "z"}]}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "z", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub14", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS1A0m", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub15", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiDS2A0m", "[", 
+           RowBox[{
+            RowBox[{"-", "p"}], ",", 
+            RowBox[{"-", "y"}], ",", 
+            RowBox[{"-", "c"}], ",", "z"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Temp", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub14a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS1A0m", "[", 
+            RowBox[{
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Sub15a", "=", 
+     RowBox[{"MakeRule", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"CD", "[", 
+            RowBox[{"-", "u"}], "]"}], "[", 
+           RowBox[{"PhiDS2A0m", "[", 
+            RowBox[{
+             RowBox[{"-", "p"}], ",", 
+             RowBox[{"-", "y"}], ",", 
+             RowBox[{"-", "c"}], ",", "z"}], "]"}], "]"}], 
+          RowBox[{"S", "[", "y", "]"}], 
+          RowBox[{"S", "[", "c", "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"CD", "[", 
+           RowBox[{"-", "u"}], "]"}], "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Temp", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"MetricOn", "\[Rule]", "All"}], ",", 
+       RowBox[{"ContractMetrics", "\[Rule]", "True"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"OmniSubs", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+      "Sub1", ",", "Sub2", ",", "Sub3", ",", "Sub2a", ",", "Sub3a", ",", 
+       "Sub4", ",", "Sub5", ",", "Sub6", ",", "Sub5a", ",", "Sub6a", ",", 
+       "Sub7", ",", "Sub8", ",", "Sub9", ",", "Sub8a", ",", "Sub9a", ",", 
+       "Sub10", ",", "Sub11", ",", "Sub12", ",", "Sub11a", ",", "Sub12a", ",",
+        "Sub13", ",", "Sub14", ",", "Sub15", ",", "Sub14a", ",", "Sub15a"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+      "\"\<Sub-bracket rules evaluated, now subbing into super-Hamil\>\"", 
+       ",", "Orange", ",", "20"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Ripe", "=", 
+     RowBox[{
+      RowBox[{"Ripe", "/.", "OmniSubs"}], "//", "StandardSimplifier"}]}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"Ripe", "=", 
+     RowBox[{
+      RowBox[{"Ripe", "/.", "OmniSubs"}], "//", "StandardSimplifier"}]}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "Ripe", "]"}], ";", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"DumpSave", "[", 
+     RowBox[{"\"\<RipeB1m.mx\>\"", ",", 
+      RowBox[{"{", "Ripe", "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Quit", "[", "]"}]}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"<<", "RipeB0p"}], ".", "mx"}], ";"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"<<", "RipeB1m.mx"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Print", "[", "\"\<Now to attempt expanding...\>\"", "]"}], 
@@ -13373,16 +15752,14 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
       "StandardSimplifier"}], "//", "NoScalar"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"DumpSave", "[", 
-   RowBox[{"\"\<RipeB0p.mx\>\"", ",", 
-    RowBox[{"{", "Ripe", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
-
+  RowBox[{
+   RowBox[{"DumpSave", "[", 
+    RowBox[{"\"\<RiperB0p.mx\>\"", ",", 
+     RowBox[{"{", "Ripe", "}"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{
-    RowBox[{"<<", "RipeB0p"}], ".", "mx"}], ";"}], 
+   RowBox[{"<<", "RiperB0p.mx"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Print", "[", "Ripe", "]"}], "\[IndentingNewLine]", 
@@ -13770,107 +16147,144 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
       RowBox[{"jj", "=", "1"}], ",", 
       RowBox[{"jj", "<", "11"}], ",", 
       RowBox[{"jj", "++"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"If", "[", 
-         RowBox[{
-          RowBox[{"ii", "<=", "jj"}], ",", 
-          RowBox[{"If", "[", 
-           RowBox[{
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"failtrue", "\[Equal]", "0"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"final", "=", 
             RowBox[{
              RowBox[{
-              RowBox[{"Evaluate", "[", 
-               RowBox[{"ToExpression", "[", 
-                RowBox[{"\"\<\[Lambda]\>\"", "<>", 
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", 
-                 "\"\</.Freedoms\>\""}], "]"}], "]"}], "==", "0"}], "&&", 
-             RowBox[{
-              RowBox[{"Evaluate", "[", 
-               RowBox[{"ToExpression", "[", 
-                RowBox[{"\"\<\[Lambda]\>\"", "<>", 
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "jj", "]"}], "]"}], "]"}], "<>", 
-                 "\"\</.Freedoms\>\""}], "]"}], "]"}], "==", "0"}]}], ",", 
-            RowBox[{
-             RowBox[{"Print", "[", 
-              RowBox[{"Style", "[", 
-               RowBox[{
-                RowBox[{
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"", 
-                 "<>", 
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Green", 
-                ",", "16"}], "]"}], "]"}], ";", 
-             RowBox[{"{", 
+              RowBox[{"res", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "-", 
               RowBox[{
-               RowBox[{"PoissonBracket", "=", 
-                RowBox[{"ConstraintPoissonBracket", "[", 
+               RowBox[{"CD", "[", 
+                RowBox[{"-", "z"}], "]"}], "[", 
+               RowBox[{"res", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "//", 
+             "StandardSimplifier"}]}], ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", "0", ",", "0"}], "}"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"final", "=", 
+            RowBox[{
+             RowBox[{"res", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "//", "StandardSimplifier"}]}], 
+           ",", 
+           RowBox[{"ret", "=", 
+            RowBox[{"{", 
+             RowBox[{"final", ",", 
+              RowBox[{"ret", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"ret", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}]}], "}"}]}], "]"}], 
+       ";", 
+       RowBox[{"Print", "[", "final", "]"}], ";", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"ii", "<=", "jj"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"Evaluate", "[", 
+                RowBox[{"ToExpression", "[", 
+                 RowBox[{"\"\<\[Lambda]\>\"", "<>", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", 
+                  "\"\</.Freedoms\>\""}], "]"}], "]"}], "==", "0"}], "&&", 
+              RowBox[{
+               RowBox[{"Evaluate", "[", 
+                RowBox[{"ToExpression", "[", 
+                 RowBox[{"\"\<\[Lambda]\>\"", "<>", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "jj", "]"}], "]"}], "]"}], "<>", 
+                  "\"\</.Freedoms\>\""}], "]"}], "]"}], "==", "0"}]}], ",", 
+             RowBox[{
+              RowBox[{"Print", "[", 
+               RowBox[{"Style", "[", 
+                RowBox[{
                  RowBox[{
-                  RowBox[{"Constraint1", "[", 
-                   RowBox[{"[", "ii", "]"}], "]"}], ",", 
-                  RowBox[{"Constraint2", "[", 
-                   RowBox[{"[", "jj", "]"}], "]"}], ",", 
-                  RowBox[{"Sector", "[", 
-                   RowBox[{"ii", ",", "jj"}], "]"}]}], "]"}]}], ",", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"",
+                   "<>", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Green", 
+                 ",", "16"}], "]"}], "]"}], ";", 
+              RowBox[{"{", 
                RowBox[{
-                RowBox[{"mat", "[", 
-                 RowBox[{"[", 
-                  RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", 
-                RowBox[{"PoissonBracket", "[", 
-                 RowBox[{"[", "1", "]"}], "]"}]}], ",", 
-               RowBox[{
-                RowBox[{"FullPoissonMatrix", "[", 
-                 RowBox[{"[", 
-                  RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", 
-                RowBox[{"PoissonBracket", "[", 
-                 RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ";"}], ",", 
-            RowBox[{
-             RowBox[{"Print", "[", 
-              RowBox[{"Style", "[", 
-               RowBox[{
+                RowBox[{"PoissonBracket", "=", 
+                 RowBox[{"ConstraintPoissonBracket", "[", 
+                  RowBox[{
+                   RowBox[{"Constraint1", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], ",", 
+                   RowBox[{"Constraint2", "[", 
+                    RowBox[{"[", "jj", "]"}], "]"}], ",", 
+                   RowBox[{"Sector", "[", 
+                    RowBox[{"ii", ",", "jj"}], "]"}]}], "]"}]}], ",", 
                 RowBox[{
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"", 
-                 "<>", 
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Red", ",", 
-                "16"}], "]"}], "]"}], ";", 
-             RowBox[{
-              RowBox[{"mat", "[", 
-               RowBox[{"[", 
-                RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", "Red"}], ";"}], 
-            ",", 
-            RowBox[{
-             RowBox[{"Print", "[", 
-              RowBox[{"Style", "[", 
-               RowBox[{
+                 RowBox[{"mat", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", 
+                 RowBox[{"PoissonBracket", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}]}], ",", 
                 RowBox[{
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"", 
-                 "<>", 
-                 RowBox[{"ToString", "[", 
-                  RowBox[{"SectorNames", "[", 
-                   RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Red", ",", 
-                "16"}], "]"}], "]"}], ";", 
+                 RowBox[{"FullPoissonMatrix", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", 
+                 RowBox[{"PoissonBracket", "[", 
+                  RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ";"}], ",", 
              RowBox[{
-              RowBox[{"mat", "[", 
-               RowBox[{"[", 
-                RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", "Red"}], 
-             ";"}]}], "]"}]}], "]"}], ",", 
-        RowBox[{"Print", "[", 
-         RowBox[{"mat", "//", "MatrixForm"}], "]"}], ",", 
-        RowBox[{"Print", "[", 
-         RowBox[{"FullPoissonMatrix", "//", "MatrixForm"}], "]"}]}], "}"}]}], 
-     "]"}]}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+              RowBox[{"Print", "[", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"",
+                   "<>", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Red", ",",
+                  "16"}], "]"}], "]"}], ";", 
+              RowBox[{
+               RowBox[{"mat", "[", 
+                RowBox[{"[", 
+                 RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", "Red"}], ";"}],
+              ",", 
+             RowBox[{
+              RowBox[{"Print", "[", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\< \>\"",
+                   "<>", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"SectorNames", "[", 
+                    RowBox[{"[", "jj", "]"}], "]"}], "]"}]}], ",", "Red", ",",
+                  "16"}], "]"}], "]"}], ";", 
+              RowBox[{
+               RowBox[{"mat", "[", 
+                RowBox[{"[", 
+                 RowBox[{"ii", ",", "jj"}], "]"}], "]"}], "=", "Red"}], 
+              ";"}]}], "]"}]}], "]"}], ",", 
+         RowBox[{"Print", "[", 
+          RowBox[{"mat", "//", "MatrixForm"}], "]"}], ",", 
+         RowBox[{"Print", "[", 
+          RowBox[{"FullPoissonMatrix", "//", "MatrixForm"}], "]"}]}], 
+        "}"}]}]}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Opts", "=", 
@@ -15227,8 +17641,101 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
    3.8069437950673647`*^9, 3.806943832635211*^9}, {3.806943866973049*^9, 
    3.806943876826496*^9}, {3.806943927144513*^9, 3.806943929923985*^9}, {
    3.8069441097162724`*^9, 3.806944184588766*^9}, {3.806944247285026*^9, 
-   3.806944427123912*^9}, {3.80694446037955*^9, 
-   3.806944518411976*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
+   3.806944427123912*^9}, {3.80694446037955*^9, 3.806944518411976*^9}, {
+   3.8069449045194397`*^9, 3.8069449704285107`*^9}, {3.8069454162980423`*^9, 
+   3.806945500656684*^9}, {3.806945716531541*^9, 3.8069458335087147`*^9}, {
+   3.8069473292952843`*^9, 3.806947601186654*^9}, {3.80694772817913*^9, 
+   3.8069477283088818`*^9}, {3.806947773106378*^9, 3.8069477791668453`*^9}, {
+   3.806947902902776*^9, 3.806947918183207*^9}, {3.806947990006531*^9, 
+   3.806948068687405*^9}, {3.8069481455417767`*^9, 3.806948265601454*^9}, {
+   3.8069483457050047`*^9, 3.806948364793051*^9}, {3.806948541384715*^9, 
+   3.8069486143689337`*^9}, {3.806948679433494*^9, 3.8069486921948023`*^9}, {
+   3.806948787933919*^9, 3.80694882624072*^9}, {3.8069488658688097`*^9, 
+   3.806948876925929*^9}, {3.806949032314252*^9, 3.806949052899981*^9}, {
+   3.806949212113525*^9, 3.806949212335647*^9}, {3.806949364666628*^9, 
+   3.806949364796516*^9}, {3.806949709956985*^9, 3.806949710170929*^9}, {
+   3.806949842104917*^9, 3.8069498552819157`*^9}, {3.806949892411087*^9, 
+   3.806949893025312*^9}, {3.806951431215694*^9, 3.806951559627831*^9}, {
+   3.8069516813424263`*^9, 3.806951904675953*^9}, {3.8069520169059067`*^9, 
+   3.806952051188252*^9}, {3.806952254262607*^9, 3.806952316356628*^9}, {
+   3.806953980529523*^9, 3.806954124521282*^9}, {3.8069541550855303`*^9, 
+   3.8069541931777782`*^9}, {3.8069542342663593`*^9, 
+   3.8069542754783916`*^9}, {3.8069543164561987`*^9, 3.806954317634872*^9}, {
+   3.806954486240365*^9, 3.806954489007002*^9}, {3.8069546025245857`*^9, 
+   3.806954621362566*^9}, {3.8069570933625727`*^9, 3.806957102104941*^9}, {
+   3.806957166551256*^9, 3.806957190985209*^9}, {3.806957266791746*^9, 
+   3.806957268294487*^9}, {3.806957633514398*^9, 3.8069577497684*^9}, {
+   3.806957804486952*^9, 3.806957838454015*^9}, {3.806957868706649*^9, 
+   3.806957868859743*^9}, {3.80695802486025*^9, 3.806958108441041*^9}, {
+   3.80695815038993*^9, 3.8069581805992603`*^9}, {3.806958425851819*^9, 
+   3.8069584489070253`*^9}, {3.806958479231824*^9, 3.806958479798963*^9}, {
+   3.80695859774089*^9, 3.806958599711026*^9}, {3.806958664849698*^9, 
+   3.806958665575694*^9}, {3.806958719161165*^9, 3.806958725535634*^9}, {
+   3.8069587658416*^9, 3.8069587712243423`*^9}, {3.806958806895174*^9, 
+   3.8069588090946817`*^9}, {3.806958847770947*^9, 3.8069588947289257`*^9}, 
+   3.806995232370289*^9, {3.806995279610157*^9, 3.8069952816974773`*^9}, {
+   3.8069953170569773`*^9, 3.8069954106330957`*^9}, {3.8069954646579514`*^9, 
+   3.8069954796737547`*^9}, {3.8069956666282043`*^9, 3.806995740583664*^9}, {
+   3.8069957777339363`*^9, 3.8069958078276167`*^9}, {3.8069958443104486`*^9, 
+   3.806996040445662*^9}, {3.8069963712116747`*^9, 3.806996375508868*^9}, {
+   3.806996415137081*^9, 3.806996438387724*^9}, {3.806996508862706*^9, 
+   3.806996512596739*^9}, {3.806996630043466*^9, 3.8069968626084223`*^9}, 
+   3.806996940892702*^9, 3.80699784407724*^9, {3.806998120816497*^9, 
+   3.806998219173808*^9}, {3.807000563764254*^9, 3.807000700691184*^9}, {
+   3.807000764346858*^9, 3.807000822841651*^9}, {3.8070009067761602`*^9, 
+   3.807001052805552*^9}, {3.8070010958681393`*^9, 3.807001155375924*^9}, {
+   3.807001203336275*^9, 3.807001214580008*^9}, {3.807001324523583*^9, 
+   3.807001358626988*^9}, {3.807001403523535*^9, 3.807001444412059*^9}, {
+   3.807001537384988*^9, 3.8070015419435596`*^9}, {3.807001606423148*^9, 
+   3.807001642214485*^9}, {3.8070017354294024`*^9, 3.807001856690875*^9}, {
+   3.807002130213624*^9, 3.807002163316728*^9}, {3.807004698201393*^9, 
+   3.807004703102664*^9}, {3.807004736796412*^9, 3.807004738481855*^9}, {
+   3.807004861212615*^9, 3.807004868930584*^9}, {3.807004957475841*^9, 
+   3.8070049823237867`*^9}, {3.807005015327886*^9, 3.8070050226892138`*^9}, {
+   3.8070050827906923`*^9, 3.807005089423667*^9}, {3.8070051428042583`*^9, 
+   3.807005159486368*^9}, {3.807005253206365*^9, 3.8070053670590343`*^9}, {
+   3.807006693429243*^9, 3.8070067797283773`*^9}, {3.807006818458729*^9, 
+   3.807006834392148*^9}, {3.8070068663514214`*^9, 3.807006943878978*^9}, {
+   3.807008542288601*^9, 3.807008595805793*^9}, {3.807021472630567*^9, 
+   3.8070215000673513`*^9}, {3.8070215608748007`*^9, 3.807021585668509*^9}, {
+   3.807022433873554*^9, 3.8070225196806383`*^9}, {3.807026231659401*^9, 
+   3.807026257730321*^9}, {3.80702796477689*^9, 3.807027989828116*^9}, {
+   3.8070280392944803`*^9, 3.8070282914822283`*^9}, {3.807028427685823*^9, 
+   3.80702843249131*^9}, {3.807028484250586*^9, 3.807028484859782*^9}, {
+   3.8070286823280897`*^9, 3.807028685170307*^9}, {3.80702877500171*^9, 
+   3.8070287916888113`*^9}, {3.8070291316182537`*^9, 
+   3.8070291343634872`*^9}, {3.807029669616873*^9, 3.80702969094158*^9}, {
+   3.8070301228408537`*^9, 3.807030165301074*^9}, {3.807030255908608*^9, 
+   3.807030266787915*^9}, {3.807030301655582*^9, 3.807030412033987*^9}, {
+   3.807030463051334*^9, 3.80703048809232*^9}, {3.80703053558827*^9, 
+   3.807030537021121*^9}, {3.807030574527527*^9, 3.807030867192459*^9}, {
+   3.807030939109436*^9, 3.807030968187241*^9}, {3.8070310384737463`*^9, 
+   3.807031052330559*^9}, {3.807031149246131*^9, 3.807031191799124*^9}, {
+   3.807031289733739*^9, 3.807031363231555*^9}, {3.807031544596774*^9, 
+   3.807031586448481*^9}, {3.8070317425737953`*^9, 3.807031783264838*^9}, {
+   3.807031838889758*^9, 3.8070318637457533`*^9}, {3.807031904731147*^9, 
+   3.807031922086231*^9}, {3.807032012281666*^9, 3.807032012447283*^9}, {
+   3.807032172172105*^9, 3.807032181685191*^9}, {3.807033618430106*^9, 
+   3.8070336222406607`*^9}, {3.807033869263102*^9, 3.807033881552018*^9}, {
+   3.8070339814211884`*^9, 3.807033984051709*^9}, {3.8070341039245567`*^9, 
+   3.807034106180778*^9}, {3.807034248649684*^9, 3.807034250349389*^9}, {
+   3.807034661622056*^9, 3.807034667190806*^9}, {3.807034728253931*^9, 
+   3.807034744394116*^9}, {3.807035129671932*^9, 3.8070351340241537`*^9}, {
+   3.807035966217555*^9, 3.807036028775049*^9}, 3.807036173144588*^9, {
+   3.807036230961677*^9, 3.8070362628778553`*^9}, {3.807036347721034*^9, 
+   3.8070363571282578`*^9}, {3.807036401183127*^9, 3.8070364139757557`*^9}, {
+   3.8070365180813637`*^9, 3.807036520868499*^9}, {3.8070365679988117`*^9, 
+   3.807036569300159*^9}, {3.807036625585491*^9, 3.8070366268946*^9}, {
+   3.807041818134598*^9, 3.807041823388817*^9}, {3.8070418632434196`*^9, 
+   3.807041869910252*^9}, {3.807042145446169*^9, 3.807042256331623*^9}, {
+   3.807042306319903*^9, 3.8070423360866613`*^9}, {3.807042367757064*^9, 
+   3.8070424809258327`*^9}, 3.807042698014647*^9, {3.8070428877449007`*^9, 
+   3.807042905271853*^9}, {3.807043055359602*^9, 3.807043102434863*^9}, {
+   3.807043326963622*^9, 3.8070433354048243`*^9}, {3.807043993748238*^9, 
+   3.80704399639178*^9}, {3.807044212710945*^9, 3.807044256911029*^9}, {
+   3.807045202855122*^9, 3.80704524092302*^9}, {3.807045438633679*^9, 
+   3.807045447667317*^9}, {3.8070486924588757`*^9, 
+   3.807048716776321*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
 e14a5acdfa7a"]
 },
 WindowSize->{960, 1148},
@@ -15247,7 +17754,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 585347, 15211, 33366, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
+Cell[558, 20, 683153, 17718, 38108, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
 }
 ]
 *)
