@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    653733,      16757]
-NotebookOptionsPosition[    653439,      16744]
-NotebookOutlinePosition[    653773,      16759]
-CellTagsIndexPosition[    653730,      16756]
+NotebookDataLength[    655665,      16785]
+NotebookOptionsPosition[    655371,      16772]
+NotebookOutlinePosition[    655705,      16787]
+CellTagsIndexPosition[    655662,      16784]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -63,8 +63,10 @@ Cell[BoxData[{
   RowBox[{"AddIndices", "[", 
    RowBox[{"TangentM4", ",", 
     RowBox[{"{", 
-     RowBox[{"x1", ",", "y1", ",", "z1"}], "}"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+     "a1", ",", "b1", ",", "c1", ",", "d1", ",", "e1", ",", "f1", ",", "g1", 
+      ",", "h1", ",", "i1", ",", "x1", ",", "y1", ",", "z1"}], "}"}]}], "]"}],
+   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"DefMetric", "[", 
    RowBox[{
@@ -8507,6 +8509,17 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
        RowBox[{"-", "z"}], ",", "v"}], "]"}], ",", "M4"}], "]"}], ";"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Please", " ", 
+     RowBox[{"note", "!"}], " ", "In", " ", "what", " ", "follows", " ", 
+     "the", " ", "factor", " ", 
+     RowBox[{"1", "/", "4"}], " ", "was", " ", "replaced", " ", "by", " ", 
+     RowBox[{"1", "/", "16"}], " ", "following", " ", "some", " ", 
+     RowBox[{"considerations", " ", "--"}], " ", "must", " ", "revisit", " ", 
+     "this", " ", "if", " ", "things", " ", "are", " ", "no", " ", 
+     "consistent", " ", "later"}], "..."}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{"PBs", " ", "on", " ", "constraint", " ", "functions"}], 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
@@ -8517,7 +8530,7 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
       RowBox[{
        RowBox[{"2", 
         RowBox[{"(", 
-         RowBox[{"1", "/", "4"}], ")"}], 
+         RowBox[{"1", "/", "16"}], ")"}], 
         RowBox[{"Ji", "[", "]"}], 
         RowBox[{"(", 
          RowBox[{
@@ -9266,7 +9279,7 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
           RowBox[{
            RowBox[{
             RowBox[{"(", 
-             RowBox[{"1", "/", "4"}], ")"}], 
+             RowBox[{"1", "/", "16"}], ")"}], 
             RowBox[{"(", 
              RowBox[{
               RowBox[{"\[Omega]B0p", " ", 
@@ -9441,7 +9454,7 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
            RowBox[{
             RowBox[{
              RowBox[{"(", 
-              RowBox[{"1", "/", "4"}], ")"}], 
+              RowBox[{"1", "/", "16"}], ")"}], 
              RowBox[{"(", 
               RowBox[{
                RowBox[{"\[Omega]B0p", " ", 
@@ -9617,7 +9630,7 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
            RowBox[{
             RowBox[{
              RowBox[{"(", 
-              RowBox[{"1", "/", "4"}], ")"}], 
+              RowBox[{"1", "/", "16"}], ")"}], 
              RowBox[{"(", 
               RowBox[{
                RowBox[{"\[Omega]B0p", " ", 
@@ -10197,8 +10210,9 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
  RowBox[{
   RowBox[{"LagrangianHamiltonianBilinear", "=", 
    RowBox[{
-    RowBox[{"LagrangianHamiltonianBilinear", "/.", "Theory"}], "//", 
-    "ToCanonical"}]}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"LagrangianHamiltonianBilinear", "/.", "NewFreedoms"}], "/.", 
+     "Theory"}], "//", "ToCanonical"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"LagrangianHamiltonianBilinear", "=", 
    RowBox[{
@@ -10209,8 +10223,9 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
  RowBox[{
   RowBox[{"ConstraintLagrangianMeasure", "=", 
    RowBox[{
-    RowBox[{"ConstraintLagrangianMeasure", "/.", "Theory"}], "//", 
-    "ToCanonical"}]}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ConstraintLagrangianMeasure", "/.", "NewFreedoms"}], "/.", 
+     "Theory"}], "//", "ToCanonical"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ConstraintLagrangianMeasure", "=", 
    RowBox[{
@@ -10221,8 +10236,9 @@ non-canonical\>\"", ",", "Blue", ",", "10"}], "]"}], "]"}],
  RowBox[{
   RowBox[{"SurfaceHamiltonian", "=", 
    RowBox[{
-    RowBox[{"SurfaceHamiltonian", "/.", "Theory"}], "//", "ToCanonical"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"SurfaceHamiltonian", "/.", "NewFreedoms"}], "/.", "Theory"}], "//",
+     "ToCanonical"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"SurfaceHamiltonian", "=", 
    RowBox[{
@@ -13760,12 +13776,12 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
                 RowBox[{"-", "k"}], ",", "n"}], "]"}], "]"}], "-", 
              RowBox[{
               RowBox[{"A", "[", 
-               RowBox[{"s", ",", 
+               RowBox[{"w", ",", 
                 RowBox[{"-", "k"}], ",", 
                 RowBox[{"-", "m"}]}], "]"}], 
               RowBox[{"BPi", "[", 
                RowBox[{
-                RowBox[{"-", "s"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}]}],
+                RowBox[{"-", "w"}], ",", "n"}], "]"}]}]}], ")"}]}]}], "]"}]}],
         ";", "\[IndentingNewLine]", 
        RowBox[{"Sub7", "=", 
         RowBox[{"MakeRule", "[", 
@@ -14184,32 +14200,28 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
           "OmniSubs"}], "//", "StandardSimplifier"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Print", "[", "return", "]"}], ";", "\[IndentingNewLine]", 
-       "return"}]}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+       "return"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Secondary", "=", 
    RowBox[{"RawSecondary", "[", 
     RowBox[{
-     RowBox[{"PhiB1m", "[", 
-      RowBox[{"-", "t"}], "]"}], ",", "SuperHamiltonian"}], "]"}]}], 
+     RowBox[{"PhiA2m", "[", 
+      RowBox[{
+       RowBox[{"-", "a1"}], ",", 
+       RowBox[{"-", "b1"}], ",", 
+       RowBox[{"-", "c1"}]}], "]"}], ",", "SuperHamiltonian"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"DumpSave", "[", 
-    RowBox[{"\"\<SecondaryB1m.mx\>\"", ",", 
-     RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"DumpSave", "[", 
-     RowBox[{"\"\<SecondaryB0p.mx\>\"", ",", 
-      RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
-   "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"DumpSave", "[", 
+   RowBox[{"\"\<SecondaryA2m.mx\>\"", ",", 
+    RowBox[{"{", "Secondary", "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Quit", "[", "]"}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"<<", "SecondaryB1m.mx"}], ";"}], 
+   RowBox[{"<<", "SecondaryA2p.mx"}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -14944,7 +14956,6 @@ CollectTensors//ScreenDollarIndices;\>\""}], "]"}], "]"}], ";",
           RowBox[{"ToString", "[", "sectr", "]"}], "<>", 
           "\"\<Canonical=Phi\>\"", "<>", 
           RowBox[{"ToString", "[", "sectr", "]"}], "<>", 
-          
           "\"\<Canonical/.Theory/.ExpandStrengths/.PiToPiP//ToCanonical//\
 CollectTensors//ScreenDollarIndices;\>\""}], "]"}], "]"}], ";", 
        RowBox[{"Evaluate", "[", 
@@ -16738,8 +16749,25 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
    3.807102251693638*^9}, {3.807102332882362*^9, 3.807102356281798*^9}, {
    3.807102403589624*^9, 3.807102455370131*^9}, {3.807102592658567*^9, 
    3.8071026062975407`*^9}, {3.80710264172121*^9, 3.807102659937726*^9}, {
-   3.807102820049876*^9, 
-   3.8071028218934393`*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
+   3.807102820049876*^9, 3.8071028218934393`*^9}, {3.807116128543088*^9, 
+   3.8071161311891003`*^9}, {3.807123005239835*^9, 3.807123113596966*^9}, {
+   3.807123212304311*^9, 3.807123214824242*^9}, {3.807123288790443*^9, 
+   3.807123311726519*^9}, {3.807123412890992*^9, 3.8071234219507513`*^9}, {
+   3.8071236704172688`*^9, 3.80712370702271*^9}, {3.807123808176325*^9, 
+   3.8071238107763033`*^9}, {3.807123857682798*^9, 3.8071238746256237`*^9}, {
+   3.807123906741477*^9, 3.807123906870779*^9}, {3.8071240058889627`*^9, 
+   3.807124034879299*^9}, {3.807124100722334*^9, 3.807124119440137*^9}, {
+   3.807124349796999*^9, 3.80712436382052*^9}, {3.807124582067504*^9, 
+   3.807124585605098*^9}, {3.807124764388433*^9, 3.807124774352189*^9}, {
+   3.807124857968257*^9, 3.807124893826255*^9}, {3.807124926035758*^9, 
+   3.8071249269483747`*^9}, {3.8071250334770937`*^9, 3.807125052990555*^9}, {
+   3.8071252605177*^9, 3.807125296754965*^9}, {3.807125377823888*^9, 
+   3.807125377959311*^9}, {3.807125504704761*^9, 3.807125531769025*^9}, {
+   3.807125760309222*^9, 3.80712576376068*^9}, {3.807126157411839*^9, 
+   3.8071261578692636`*^9}, {3.807126302613307*^9, 3.807126311238411*^9}, {
+   3.807126419436122*^9, 3.8071264545163307`*^9}, {3.807126617991918*^9, 
+   3.80712662556524*^9}, {3.8071267832922907`*^9, 
+   3.807126798413994*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
 e14a5acdfa7a"]
 },
 WindowSize->{1920, 1148},
@@ -16758,7 +16786,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 652877, 16722, 35693, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
+Cell[558, 20, 654809, 16750, 35716, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
 }
 ]
 *)
