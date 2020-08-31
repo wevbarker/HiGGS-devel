@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    763158,      19444]
-NotebookOptionsPosition[    762864,      19431]
-NotebookOutlinePosition[    763198,      19446]
-CellTagsIndexPosition[    763155,      19443]
+NotebookDataLength[    767125,      19552]
+NotebookOptionsPosition[    766831,      19539]
+NotebookOutlinePosition[    767165,      19554]
+CellTagsIndexPosition[    767122,      19551]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -13748,10 +13748,13 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
             RowBox[{
              RowBox[{
               RowBox[{
-               RowBox[{"f1x", "/.", "PiPO3Activate"}], "/.", "PiPToPi"}], "/.",
-               "PhiActivate"}], "/.", "Theory"}], "/.", "ExpandStrengths"}], "//",
-            "NoScalar"}], "//", "StandardSimplifier"}], "//", "NoScalar"}]}], 
-       ";", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"f1x", "/.", "PiPO3Activate"}], "/.", 
+                 "PO3PiActivate"}], "/.", "PADMPiActivate"}], "/.", 
+               "PiPToPi"}], "/.", "PhiActivate"}], "/.", "Theory"}], "/.", 
+            "ExpandStrengths"}], "//", "NoScalar"}], "//", 
+          "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
        RowBox[{"f2", "=", 
         RowBox[{
          RowBox[{
@@ -13760,10 +13763,13 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
             RowBox[{
              RowBox[{
               RowBox[{
-               RowBox[{"f2x", "/.", "PiPO3Activate"}], "/.", "PiPToPi"}], "/.",
-               "PhiActivate"}], "/.", "Theory"}], "/.", "ExpandStrengths"}], "//",
-            "NoScalar"}], "//", "StandardSimplifier"}], "//", "NoScalar"}]}], 
-       ";", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"f2x", "/.", "PiPO3Activate"}], "/.", 
+                 "PO3PiActivate"}], "/.", "PADMPiActivate"}], "/.", 
+               "PiPToPi"}], "/.", "PhiActivate"}], "/.", "Theory"}], "/.", 
+            "ExpandStrengths"}], "//", "NoScalar"}], "//", 
+          "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
        RowBox[{"nf1", "=", 
         RowBox[{"Length", "[", 
          RowBox[{"FindFreeIndices", "[", "f1", "]"}], "]"}]}], ";", 
@@ -14266,10 +14272,13 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
              RowBox[{
               RowBox[{
                RowBox[{
-                RowBox[{"f1x", "/.", "PiPO3Activate"}], "/.", "PiPToPi"}], "/.",
-                "PhiActivate"}], "/.", "Theory"}], "/.", "PADMActivate"}], "/.",
-             "ExpandStrengths"}], "//", "NoScalar"}], "//", 
-          "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"f1x", "/.", "PiPO3Activate"}], "/.", 
+                  "PO3PiActivate"}], "/.", "PADMPiActivate"}], "/.", 
+                "PiPToPi"}], "/.", "PhiActivate"}], "/.", "Theory"}], "/.", 
+             "PADMActivate"}], "/.", "ExpandStrengths"}], "//", "NoScalar"}], 
+          "//", "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Print", "[", "\"\<f1\>\"", "]"}], ";", "\[IndentingNewLine]", 
        
@@ -14283,10 +14292,13 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
              RowBox[{
               RowBox[{
                RowBox[{
-                RowBox[{"f2x", "/.", "PiPO3Activate"}], "/.", "PiPToPi"}], "/.",
-                "PhiActivate"}], "/.", "Theory"}], "/.", "PADMActivate"}], "/.",
-             "ExpandStrengths"}], "//", "NoScalar"}], "//", 
-          "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"f2x", "/.", "PiPO3Activate"}], "/.", 
+                  "PO3PiActivate"}], "/.", "PADMPiActivate"}], "/.", 
+                "PiPToPi"}], "/.", "PhiActivate"}], "/.", "Theory"}], "/.", 
+             "PADMActivate"}], "/.", "ExpandStrengths"}], "//", "NoScalar"}], 
+          "//", "StandardSimplifier"}], "//", "NoScalar"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Print", "[", "\"\<f2\>\"", "]"}], ";", "\[IndentingNewLine]", 
        
@@ -17095,10 +17107,96 @@ vanish on shell\>\"", ",", "20", ",", "Purple"}], "]"}], "]"}],
    RowBox[{"TotalLinearise", "[", "Rot1p", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
+  RowBox[{"Rot1m", "=", 
+   RowBox[{"TotalLinearise", "[", "Rot1m", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FC1", "=", 
+   RowBox[{"TotalLinearise", "[", "FC1", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{
-   RowBox[{"Rot1m", "=", 
-    RowBox[{"TotalLinearise", "[", "Rot1m", "]"}]}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"FC2", "=", 
+    RowBox[{"TotalLinearise", "[", "FC2", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<Final results\>\"", ",", "Red", ",", "20"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<super-Hamiltonian \!\(\*SuperscriptBox[\(0\), \(+\)]\)\>\"", ",", 
+     "Magenta", ",", "16"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{
+    RowBox[{"Ham0p", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<super-momentum \!\(\*SuperscriptBox[\(1\), \(-\)]\)\>\"", ",", 
+     "Magenta", ",", "16"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{
+    RowBox[{"Mom1m", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<super-angular momentum \!\(\*SuperscriptBox[\(1\), \(+\)]\)\>\"", 
+     ",", "Magenta", ",", "16"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{
+    RowBox[{"Rot1p", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<super-angular momentum \!\(\*SuperscriptBox[\(1\), \(-\)]\)\>\"", 
+     ",", "Magenta", ",", "16"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{
+    RowBox[{"Rot1m", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<FC1\>\"", ",", "Cyan", ",", "16"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{
+    RowBox[{"FC1", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<FC2\>\"", ",", "Cyan", ",", "16"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"FC2", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
@@ -19426,7 +19524,17 @@ ScreenDollarIndices\>\""}], "]"}], "]"}], "]"}], ";",
    3.807877906072628*^9, 3.807877972452631*^9}, {3.8078780770628157`*^9, 
    3.8078781032972116`*^9}, {3.807878151419382*^9, 3.807878165916918*^9}, {
    3.8078794188050413`*^9, 3.807879616209362*^9}, {3.807879746582583*^9, 
-   3.807879841481167*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
+   3.807879841481167*^9}, {3.8078808212956*^9, 3.807880881870905*^9}, {
+   3.8078809262027063`*^9, 3.807881094415866*^9}, {3.807881153287266*^9, 
+   3.80788127925603*^9}, {3.8078815559662933`*^9, 3.807881568896531*^9}, 
+   3.8078816723418007`*^9, {3.807881703382902*^9, 3.807881717587099*^9}, {
+   3.807882009854342*^9, 3.807882019449751*^9}, {3.807882129185932*^9, 
+   3.807882131251911*^9}, {3.807882183025433*^9, 3.807882186933957*^9}, {
+   3.8078822233621883`*^9, 3.80788222688571*^9}, 3.807882377280596*^9, {
+   3.807882408689024*^9, 3.807882451572631*^9}, {3.807882516042417*^9, 
+   3.8078825692850246`*^9}, {3.807882972038438*^9, 3.8078829751978483`*^9}, {
+   3.8078832231371737`*^9, 
+   3.807883238031906*^9}},ExpressionUUID->"302d49ba-2028-4b7e-8fc0-\
 e14a5acdfa7a"]
 },
 WindowSize->{1920, 1148},
@@ -19445,7 +19553,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 762302, 19409, 40853, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
+Cell[558, 20, 766269, 19517, 41179, "Input",ExpressionUUID->"302d49ba-2028-4b7e-8fc0-e14a5acdfa7a"]
 }
 ]
 *)
