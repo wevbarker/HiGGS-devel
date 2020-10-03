@@ -51,7 +51,7 @@ end do:
 
 selection:={3,17,20,24,25,26,28,32}:
 
-cosmic_coefficients:=table([hB1="\\bet{1}",hB2="\\bet{2}",hB3="\\bet{3}",hA1="\\alp{1}",hA2="\\alp{2}",hA3="\\alp{3}",hA4="\\alp{4}",hA5="\\alp{5}",hA6="\\alp{6}"]);
+cosmic_coefficients:=table([hA="\\alp{0}",hB1="\\bet{1}",hB2="\\bet{2}",hB3="\\bet{3}",hA1="\\alp{1}",hA2="\\alp{2}",hA3="\\alp{3}",hA4="\\alp{4}",hA5="\\alp{5}",hA6="\\alp{6}"]);
 
 oneside:=proc(eq)
   return lhs(eq)-rhs(eq);
@@ -60,7 +60,7 @@ end proc:
 for jj in selection do
   conditions:=converted_theories[jj][1]:
   better_condiions:=solve(conditions):
-  best_conditions:=map(oneside,better_condiions):
+  best_conditions:=map(oneside,better_condiions) minus {0,hA}:
   constraint:=map(primpart,best_conditions):
   consr:=convert(constraint,string);
   for ii in hB1,hB2,hB3,hA1,hA2,hA3,hA4,hA5,hA6 do
@@ -80,10 +80,10 @@ for jj in selection do
   better_conditions_unitary:=map(simplify,conditions_unitarity,better_condiions):
   constraint:=better_conditions_unitary:
   inequalitise:=proc(expr::algebraic)::`<`;
-    if op(1,expr)=-1 then
-       return -expr<0;	
+    if op(1,expr)=-1 or op(1,expr)=-2 then
+       return -primpart(expr)<0;	
     else
-      return expr>0;
+      return primpart(expr)>0;
     end if;
   end proc;
   constraint:=map(inequalitise,constraint);
@@ -98,6 +98,7 @@ for jj in selection do
     return evalb(s="*");
   end proc;
   consr:=Remove(star,consr);
+  consr:=SubstituteAll(consr,",","\\wedge");
   consr:=cat("${",consr,"}$");
   unitarity_constraint_||jj:=consr;
   print(%);
@@ -105,11 +106,11 @@ end do;
 
 particles:=proc(critical_case::integer)::NULL;
   local tmp,tmp2,gauge,gauges,m,p;
-  tmp:=particle_content[critical_case];
+  tmp:=new_particle_content[critical_case];
   for JP in {J0Pm,J0Pp,J1Pm,J1Pp,J2Pm,J2Pp} do
     tmp2:=tmp[JP];
     if assigned(tmp2) then
-      texfilename:=cat("./particle_content_icons/critical_case_",convert(critical_case,string),"_",convert(JP,string),".tex");
+      texfilename:=cat("../paper-4/particle_content_icons/critical_case_",convert(critical_case,string),"_",convert(JP,string),".tex");
       gauge:=-1;
       gauges:=numelems(convert(eval(tmp2),list));
       if gauges=1 then
@@ -154,7 +155,7 @@ sample_particles:=proc(critical_case::integer)::NULL;
   for JP in {J0Pm,J0Pp,J1Pm,J1Pp,J2Pm,J2Pp} do
     tmp2:=tmp[JP];
     if assigned(tmp2) then
-      texfilename:=cat("./particle_content_icons/sample_critical_case_",convert(critical_case,string),"_",convert(JP,string),".tex");
+      texfilename:=cat("../paper-4/particle_content_icons/sample_critical_case_",convert(critical_case,string),"_",convert(JP,string),".tex");
       gauge:=-1;
       gauges:=numelems(convert(eval(tmp2),list));
       if gauges=1 then
@@ -249,23 +250,23 @@ end do;
 
 #	now we would like to craft the flesh of the table
 
-writeto("./particle_content_table.tex");
+writeto("../paper-4/particle_content_table.tex");
 for ii in selection do
   printf(cat("\\criticalcase{",convert(ii,string),"}"));
   printf(cat("&",constraint_||ii));
   printf(cat("&",unitarity_constraint_||ii));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J0Pm.pdf}"));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J0Pp.pdf}"));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J1Pm.pdf}"));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J1Pp.pdf}"));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J2Pm.pdf}"));
-  printf(cat("& \\includegraphics[width=0.4cm]{particle_content_icons/critical_case_",convert(ii,string),"_J2Pp.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J0Pm.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J0Pp.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J1Pm.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J1Pp.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J2Pm.pdf}"));
+  printf(cat("& \\includegraphics[width=0.5cm]{particle_content_icons/critical_case_",convert(ii,string),"_J2Pp.pdf}"));
   if ii=3 then
-     printf(cat("& \\includegraphics[width=0.4cm]{massive.pdf}\\includegraphics[width=0.4cm]{massless.pdf}\\includegraphics[width=0.4cm]{massless.pdf}"));
+     printf(cat("& \\includegraphics[width=0.5cm]{massive.pdf}\\includegraphics[width=0.5cm]{massless.pdf}\\includegraphics[width=0.5cm]{massless.pdf}"));
   elif ii=17 then
-     printf(cat("& \\includegraphics[width=0.4cm]{massless.pdf}\\includegraphics[width=0.4cm]{massless.pdf}"));
+     printf(cat("& \\includegraphics[width=0.5cm]{massless.pdf}\\includegraphics[width=0.5cm]{massless.pdf}"));
   elif ii=20 then
-     printf(cat("& \\multirow{6}{*}{\\includegraphics[width=0.4cm]{massive.pdf}}"));
+     printf(cat("& \\multirow{6}{*}{\\includegraphics[width=0.5cm]{massive.pdf}}"));
   else
     printf("&");
   end if;
