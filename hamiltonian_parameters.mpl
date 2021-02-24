@@ -147,7 +147,7 @@ eliminate_complexity:=proc(case,sub_case):
   return ret:
 end proc:
 
-simple_cases:={20,24,25,26,28,32,3,17}:
+simple_cases:={20,24,25,26,28,32,3,17,16}:
 
 YN_higher_spin:={YN1p,YN1m,YN2p,YN2m,YN0m2m1,YN0m2m2,KN}:
 
