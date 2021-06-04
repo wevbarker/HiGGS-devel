@@ -34,7 +34,7 @@ print(eqs2);
 
 cases:={seq(i,i=1..58)}:
 
-viable_cases:={1,2,3,4,5,6,7,10,11,12,14,15,16,17,18,19}:
+viable_cases:={1,2,3,4,5,6,7,10,11,12,14,15,16,17,18,19,26}:
 
 converted_theories:=table([]):
 
@@ -147,14 +147,14 @@ eliminate_complexity:=proc(case,sub_case):
   return ret:
 end proc:
 
-simple_cases:={20,24,25,26,28,32,3,17,16}:
+simple_cases:={20,24,25,26,28,32,3,17,16,26}:
 
 YN_higher_spin:={YN1p,YN1m,YN2p,YN2m,YN0m2m1,YN0m2m2,KN}:
 
 
 #mock version of kinetic part of Hamiltonian
 
-
+fin();
 
 for ii in simple_cases do 
 #for ii in viable_cases do
@@ -200,6 +200,10 @@ end do:
 
 fin();
 
+(*
+
+fin();
+
 for ii in YN_higher_spin do 
 #for ii in viable_cases do
   dit({fred,underline},"--------------------------------------------------------------------------------------------");
@@ -224,6 +228,8 @@ end do:
 
 
 fin();
+
+*)
 
 #	this was used to identify cases for which the roton-roton sector is malignant
 for ii from 1 to 58 do 
@@ -250,7 +256,7 @@ for ii from 1 to 58 do
   minimal:=RegSubs("hB(.)"="\\[Beta]\\1W",convert(minimal,string));
   minimal:=RegSubs("hA(.)"="\\[Alpha]\\1W",convert(minimal,string));
   minimal:=cat("TheoryCase",convert(ii,string),"=",minimal,";\n"):
-  fprintf("/home/williamb/cases_definitions.txt",minimal):
+  fprintf("./new_cases_definitions.txt",minimal):
 end do:
 
 
