@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4858,        150]
-NotebookOptionsPosition[      4566,        137]
-NotebookOutlinePosition[      4904,        152]
-CellTagsIndexPosition[      4861,        149]
+NotebookDataLength[     10708,        317]
+NotebookOptionsPosition[     10160,        298]
+NotebookOutlinePosition[     10498,        313]
+CellTagsIndexPosition[     10455,        310]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"equations", "=", 
@@ -75,7 +77,8 @@ Cell[BoxData[{
          RowBox[{"Sqrt", "[", "3", "]"}], " ", "scale"}], "-", 
         RowBox[{"3", " ", 
          RowBox[{"scale", "^", "2"}], " ", "\[Xi]0"}]}], ")"}]}], "\[Equal]", 
-     "0"}], "&&", 
+     "0"}], "&&", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"24", " ", 
       RowBox[{"scale", "^", "2"}], " ", "\[Xi]1"}], "\[Equal]", "0"}], "&&", 
@@ -131,9 +134,167 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"Quit", "[", "]"}], ";"}]}], "Input",
  CellChangeTimes->{{3.833685925559218*^9, 3.8336859362435617`*^9}, {
-  3.8336862533443537`*^9, 
-  3.8336862534755363`*^9}},ExpressionUUID->"4d4d0145-1de0-42e0-b049-\
-3ac969ce6957"]
+  3.8336862533443537`*^9, 3.8336862534755363`*^9}, {3.833777003699967*^9, 
+  3.833777003737258*^9}},ExpressionUUID->"4d4d0145-1de0-42e0-b049-\
+3ac969ce6957"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "4"}], " ", 
+         SqrtBox["2"]}], "+", 
+        RowBox[{"8", " ", 
+         SqrtBox["6"], " ", "scale", " ", "\[Xi]0"}]}], ")"}], " ", 
+      "lambda"}], "+", 
+     InterpretationBox[
+      SuperscriptBox[
+       RowBox[{"O", "[", "lambda", "]"}], "6"],
+      SeriesData[$CellContext`lambda, 0, {}, 1, 6, 1],
+      Editable->False]}],
+    SeriesData[$CellContext`lambda, 
+     0, {(-4) 2^Rational[1, 2] + 
+      8 6^Rational[1, 2] $CellContext`scale $CellContext`\[Xi]0}, 1, 6, 1],
+    Editable->False], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"4", " ", 
+     SqrtBox["3"], " ", "scale", " ", "\[Xi]0"}]}], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"8", " ", 
+          SuperscriptBox["scale", "2"], " ", "\[Zeta]0"}], "3"]}], "-", 
+       FractionBox[
+        RowBox[{"8", " ", "\[Alpha]5W", " ", "\[Zeta]0"}], "3"], "+", 
+       RowBox[{"2", " ", "cAlp5", " ", "\[Chi]0"}]}], ")"}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"4", " ", 
+         SqrtBox["2"], " ", 
+         SuperscriptBox["scale", "2"]}], "+", 
+        RowBox[{"4", " ", 
+         SqrtBox["2"], " ", "\[Alpha]5W"}]}], ")"}], " ", "lambda"}], "+", 
+     InterpretationBox[
+      SuperscriptBox[
+       RowBox[{"O", "[", "lambda", "]"}], "6"],
+      SeriesData[$CellContext`lambda, 0, {}, 0, 6, 1],
+      Editable->False]}],
+    SeriesData[$CellContext`lambda, 0, {
+     Rational[-8, 3] $CellContext`scale^2 $CellContext`\[Zeta]0 + 
+      Rational[-8, 3] $CellContext`\[Alpha]5W $CellContext`\[Zeta]0 + 
+      2 $CellContext`cAlp5 $CellContext`\[Chi]0, 
+      4 2^Rational[1, 2] $CellContext`scale^2 + 
+      4 2^Rational[1, 2] $CellContext`\[Alpha]5W}, 0, 6, 1],
+    Editable->False], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"32", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SqrtBox[
+          FractionBox["2", "3"]], " ", "scale", " ", "\[Zeta]0"}], ")"}], " ",
+        "lambda"}]}], "+", 
+     RowBox[{"16", " ", 
+      SqrtBox["3"], " ", "scale", " ", 
+      SuperscriptBox["lambda", "2"]}], "+", 
+     InterpretationBox[
+      SuperscriptBox[
+       RowBox[{"O", "[", "lambda", "]"}], "6"],
+      SeriesData[$CellContext`lambda, 0, {}, 1, 6, 1],
+      Editable->False]}],
+    SeriesData[$CellContext`lambda, 
+     0, {(-32) 
+      Rational[2, 3]^Rational[1, 2] $CellContext`scale $CellContext`\[Zeta]0, 
+      16 3^Rational[1, 2] $CellContext`scale}, 1, 6, 1],
+    Editable->False], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"8", " ", 
+         SqrtBox["6"], " ", "scale"}], "-", 
+        RowBox[{"24", " ", 
+         SqrtBox["2"], " ", 
+         SuperscriptBox["scale", "2"], " ", "\[Xi]0"}]}], ")"}], " ", 
+      "lambda"}], "+", 
+     InterpretationBox[
+      SuperscriptBox[
+       RowBox[{"O", "[", "lambda", "]"}], "6"],
+      SeriesData[$CellContext`lambda, 0, {}, 1, 6, 1],
+      Editable->False]}],
+    SeriesData[$CellContext`lambda, 0, {
+     8 6^Rational[1, 2] $CellContext`scale - 24 
+      2^Rational[1, 2] $CellContext`scale^2 $CellContext`\[Xi]0}, 1, 6, 1],
+    Editable->False], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   RowBox[{"24", " ", 
+    SuperscriptBox["scale", "2"], " ", "\[Xi]1"}], "\[Equal]", "0"}], "&&", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"32", " ", "scale"}], 
+        SqrtBox["3"]], "+", 
+       FractionBox[
+        RowBox[{"8", " ", "\[Alpha]5W"}], 
+        RowBox[{
+         SqrtBox["3"], " ", "scale"}]], "+", 
+       FractionBox[
+        RowBox[{"16", " ", "scale", " ", "\[Zeta]1"}], 
+        SqrtBox["3"]], "+", 
+       RowBox[{"16", " ", 
+        SuperscriptBox["scale", "2"], " ", "\[Xi]0"}], "-", 
+       RowBox[{"8", " ", "\[Alpha]5W", " ", "\[Xi]0"}], "-", 
+       RowBox[{"8", " ", "cAlp5", " ", "\[Chi]1"}]}], ")"}], "+", 
+     RowBox[{"24", " ", 
+      SqrtBox["2"], " ", 
+      SuperscriptBox["scale", "2"], " ", "\[Xi]1", " ", "lambda"}], "+", 
+     InterpretationBox[
+      SuperscriptBox[
+       RowBox[{"O", "[", "lambda", "]"}], "6"],
+      SeriesData[$CellContext`lambda, 0, {}, 0, 6, 1],
+      Editable->False]}],
+    SeriesData[$CellContext`lambda, 0, {
+     32 3^Rational[-1, 2] $CellContext`scale + 
+      8 3^Rational[-1, 2] $CellContext`scale^(-1) $CellContext`\[Alpha]5W + 
+      16 3^Rational[-1, 2] $CellContext`scale $CellContext`\[Zeta]1 + 
+      16 $CellContext`scale^2 $CellContext`\[Xi]0 - 
+      8 $CellContext`\[Alpha]5W $CellContext`\[Xi]0 - 
+      8 $CellContext`cAlp5 $CellContext`\[Chi]1, 24 
+      2^Rational[1, 2] $CellContext`scale^2 $CellContext`\[Xi]1}, 0, 6, 1],
+    Editable->False], "\[Equal]", "0"}]}]], "Print",
+ CellChangeTimes->{3.833686273934815*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c69ef165-0d83-473c-a4c3-9d120e96a567"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Print",
+ CellChangeTimes->{3.833686273936263*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d201dfcd-1ef1-43fb-b567-52969ea6f501"]
+}, Open  ]]
+}, Open  ]]
 },
 WindowSize->{1920, 1148},
 WindowMargins->{{-1920, Automatic}, {0, Automatic}},
@@ -151,10 +312,14 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 4004, 115, 193, "Input",ExpressionUUID->"4d4d0145-1de0-42e0-b049-3ac969ce6957"]
+Cell[CellGroupData[{
+Cell[580, 22, 4124, 116, 239, "Input",ExpressionUUID->"4d4d0145-1de0-42e0-b049-3ac969ce6957"],
+Cell[CellGroupData[{
+Cell[4729, 142, 5210, 145, 102, "Print",ExpressionUUID->"c69ef165-0d83-473c-a4c3-9d120e96a567"],
+Cell[9942, 289, 190, 5, 25, "Print",ExpressionUUID->"d201dfcd-1ef1-43fb-b567-52969ea6f501"]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
