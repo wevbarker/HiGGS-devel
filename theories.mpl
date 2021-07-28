@@ -1,7 +1,7 @@
 
 theories:=table([
 1=[{R1,R3/2-R4,T1,T3,L,R6},[{X0m},{X,Y}],{}],
-2=[{R1,R3/2-R4,T1,L,R6},[{X0m},{X,Y}],{T2,-R2,-R3*(2*R3+R5)*(R3+2*R5)}],
+2=[{R1,R3/2-R4,T1,L,R6},[{X0m},{X,Y}],{T2,-R2,-R3*(2*R3+R5)*(R3+2*R5)},{R2,R1-R3,2*R3+R5,R1+R3+2*R5,T2,T3}],
 3=[{R1,R3,R4,T1+T2,T3,L,R6},[{X0m},{X,Y},{}],{-R2,-R5,-T1}],
 4=[{R2,R1-R3,R4,T1+T2,T3,L,R6},[{X2m},{X,Y}],{}],
 5=[{R2,R1-R3,R4,T2,T1+T3,L,R6},[{X2m},{X,Y}],{}],
@@ -15,7 +15,7 @@ theories:=table([
 13=[{R2,2*R1-2*R3+R4,T1,T2,T3,L,R6},[{},{X,Y}],{}],
 14=[{R1,R2,R3/2-R4,T1,T2,L,R6},[{},{X,Y}],{}],
 15=[{R1,R2,R3/2-R4,T1,L,R6},[{},{X,Y}],{}],
-16=[{R1,R3/2-R4,T1,T2,L,R6},[{},{X,Y}],{-R3*(2*R3+R5)*(R3+2*R5)}],
+16=[{R1,R3/2-R4,T1,T2,L,R6},[{},{X,Y}],{-R3*(2*R3+R5)*(R3+2*R5)},{R2,R3,2*R3+R5,R3+2*R5,T3}],
 17=[{R1,R2,R3,R4,T1+T2,T3,L,R6},[{},{X,Y}],{-R5}],
 18=[{R1,R2,R3,R4,T2,T1+T3,L,R6},[{},{X,Y}],{}],
 19=[{R1,R2,2*R3-R4,T1+T2,T3,L,R6},[{},{X,Y}],{}],
@@ -80,16 +80,16 @@ SN12=[{hA1+hA2,hA4+hA5,hA2+hA5},[{X0p,X0m},{}]]
 ]):
 
 Hamiltonian_partitions:=table([
-B0p=[hB2,none,[hA,2*hA+hB2]],
-B1p=[hB1+2*hB3,hB1-hB3,[hA/2+hB3,hB1-hA]],
-B1m=[2*hB1+hB2,hB1-hB2,[2*hA+hB2,hB1-hA]],
-B2p=[hB1,none,[hB1-hA,hA]],
-A0p=[hA4+hA6,hA4-hA6,[hA,2*hA+hB2]],
-A0m=[hA2+hA3,hA2-hA3,[hA/2+hB3]],
-A1p=[hA2+hA5,hA2-hA5,[hA/2+hB3,hB1-hA]],
-A1m=[hA4+hA5,hA4-hA5,[2*hA+hB2,hB1-hA]],
-A2p=[hA1+hA4,hA1-hA4,[hB1-hA,hA]],
-A2m=[hA1+hA2,hA1-hA2,[hB1-hA]]]):
+B0p=[hB2,none,[hA,2*hA+hB2],2*hA+hB2,2*hA+hB2],
+B1p=[hB1+2*hB3,hB1-hB3,[hA/2+hB3,hB1-hA],hA/2+hB3,hA/2+hB3],
+B1m=[2*hB1+hB2,hB1-hB2,[2*hA+hB2,hB1-hA],2*hA+hB2,2*hA+hB2],
+B2p=[hB1,none,[hB1-hA,hA],hB1-hA,hB1-hA],
+A0p=[hA4+hA6,hA4-hA6,[hA,2*hA+hB2],hA*(2*hA+hB2),2*hA+hB2],
+A0m=[hA2+hA3,hA2-hA3,[hA/2+hB3],hA/2+hB3,0],
+A1p=[hA2+hA5,hA2-hA5,[hA/2+hB3,hB1-hA],(hA/2+hB3)*(hB1-hA),hA/2+hB3],
+A1m=[hA4+hA5,hA4-hA5,[2*hA+hB2,hB1-hA],(2*hA+hB2)*(hB1-hA),2*hA+hB2],
+A2p=[hA1+hA4,hA1-hA4,[hB1-hA,hA],(hB1-hA)*hA,hB1-hA],
+A2m=[hA1+hA2,hA1-hA2,[hB1-hA],hB1-hA,0]]):
 
 
 
