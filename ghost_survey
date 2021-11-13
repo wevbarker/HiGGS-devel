@@ -1,0 +1,19 @@
+1	bad A2p, A1p, A1m good A0m  no A0p                                   (y)
+2	bad A2p, A1p, A1m good A0m  no A0p                                   (y)
+3	good A0m, A1m,           not A1p,   no A0p                           y
+4	good A2m, A1m,		not A1p, 	no A0p                       y
+5	good A2m, A1p,           maybe not A1m      no A0p                   y 
+6       good A1m, A0m              not A1p            no A0p                 y
+7      good A2m, A1m,             no A0p A1p                                 y
+8       bad A2m, A1p, A1m,              no A0p                              (y)
+9        bad A2m, A1p, A1m,              no A0p                             (y)
+10      bad A1p A2p A1m               no A0p                                (y)
+11      bad A1p A2p A1m               no A0p A0m                            (y)
+12      bad A1p A2p A1m               no A0p                                (y)
+13      bad A1m A1p A2m                     no A0p                          (y)
+14      bad A1p A2p A1m               no A0p                                (y)
+15      bad A1p A2p A1m               no A0p                                (y)
+16     bad A1p A2p A1m               no A0p, A0m                            (y)
+17     good A1m,                    not  A1p    no A0p                       y 
+18      good A1p                   not A1m     no A0p                        y
+19       good A1m,               not A1p         no A0p                      y
