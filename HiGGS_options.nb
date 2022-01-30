@@ -5,18 +5,792 @@
 
 (* CreatedBy='Mathematica 11.3' *)
 
-                  * Internal cache information:
+(*CacheID: 234*)
+(* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[         0,          0]
-NotebookDataLength[         0,          0]
-NotebookOptionsPosition[         0,          0]
-NotebookOutlinePosition[         0,          0]
-CellTagsIndexPosition[         0,          0]
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33925,        839]
+NotebookOptionsPosition[     30884,        794]
+NotebookOutlinePosition[     31222,        809]
+CellTagsIndexPosition[     31179,        806]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
+Cell["HiGGS options", "Chapter",
+ CellChangeTimes->{{3.852187568461096*^9, 
+  3.8521875928129063`*^9}},ExpressionUUID->"dda15d03-dcf1-4eee-8b19-\
+83c56d1dd0c5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AppendTo", "[", 
+   RowBox[{"$Path", ",", 
+    RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MyImport", "[", "x_", "]"}], ":=", 
+   RowBox[{"Check", "[", 
+    RowBox[{
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"\"\<<<\>\"", "<>", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<mx_dumps/\>\"", "<>",
+        "x", "<>", "\"\<;\>\""}], "]"}], ",", 
+     RowBox[{"Print", "[", "\"\<not ready yet...\>\"", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Check", "[", 
+    RowBox[{
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"\"\<<<\>\"", "<>", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+       "\"\<mx_dumps/HiGGS_options.mx;\>\""}], "]"}], ",", 
+     RowBox[{"Print", "[", "\"\<not ready yet...\>\"", "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<O13Projections\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "O13ProjectionsToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<CheckOrthogonality\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "CheckOrthogonalityToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<ShowIrreps\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "ShowIrrepsToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<O3T\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "O3TToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<phiactivate\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "phiactivateToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<phinoncanonicalactivate\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "phinoncanonicalactivateToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<chiperpactivate\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "chiperpactivateToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<chisingactivate\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "chisingactivateToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<ProjectionNormalisations\>\"", ",", "20", ",", "Red"}], "]"}],
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "ProjectionNormalisationsToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<ProjectionNormalisationsCheck\>\"", ",", "20", ",", "Red"}], 
+   "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "ProjectionNormalisationsCheckToggle", "]"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<O3AntiDifferences\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "O3AntiDifferencesToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<ComplementActivate\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "ComplementActivateToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<phitonesterformphi\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "phitonesterformphiToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<linearisation\>\"", ",", "20", ",", "Red"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"SetterBar", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "linearisationToggle", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"False", ",", "True"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<\>\"", ",", "20", ",", "Red"}], "]"}], "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"SetterBar", "[", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", "Toggle", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"False", ",", "True"}], "}"}]}], "]"}]}], 
+   "\[IndentingNewLine]", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.852187605325431*^9, 3.8521876055126762`*^9}, {
+   3.852188089675119*^9, 3.852188160652182*^9}, {3.852188316534605*^9, 
+   3.85218838522234*^9}, {3.852188527380731*^9, 3.852188588668365*^9}, {
+   3.852189278534915*^9, 3.8521892973837957`*^9}, {3.852189696554366*^9, 
+   3.85218971400143*^9}, 3.852194287968828*^9, {3.8521943383351316`*^9, 
+   3.852194338528455*^9}, {3.852194371014863*^9, 3.852194371209402*^9}, {
+   3.85219443226226*^9, 3.852194432431222*^9}, {3.8521944826697807`*^9, 
+   3.852194482901615*^9}, {3.852194595236878*^9, 3.8521945954066973`*^9}, {
+   3.85219505364852*^9, 3.8521950538342447`*^9}, {3.852195126095812*^9, 
+   3.8521951262810802`*^9}, {3.852195197567316*^9, 3.852195197698151*^9}, {
+   3.8521953325739307`*^9, 3.852195439723194*^9}, {3.852557043919689*^9, 
+   3.85255706766251*^9}, {3.85255951414293*^9, 3.852559522479917*^9}, {
+   3.852559907499065*^9, 
+   3.852559926715066*^9}},ExpressionUUID->"8a983a35-e7d5-419d-aef7-\
+97505f9480b4"],
+
+Cell[BoxData[
+ StyleBox["\<\"O13Projections\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.852557144001732*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4ec21cfb-7912-4563-aed3-3cba505ff5fb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`O13ProjectionsToggle], {False}, "False"], 
+      SetterBox[Dynamic[$CellContext`O13ProjectionsToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`O13ProjectionsToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144025242*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"e97ea74f-2e1e-4f9a-b79a-48d95dd5199c"],
+
+Cell[BoxData[
+ StyleBox["\<\"CheckOrthogonality\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440267687`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"a0d13d21-8f2c-4742-aa87-fe250fb39841"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`CheckOrthogonalityToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`CheckOrthogonalityToggle], {True}, 
+       "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`CheckOrthogonalityToggle], {False, True}]]], "Output",\
+
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.8525571440286217`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"d5e832ad-f05a-43af-95d2-0602cc90dc5c"],
+
+Cell[BoxData[
+ StyleBox["\<\"ShowIrreps\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440299683`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5c7491e4-f81e-4bc1-abd4-2e4bfcbf4355"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`ShowIrrepsToggle], {False}, "False"], 
+      SetterBox[Dynamic[$CellContext`ShowIrrepsToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`ShowIrrepsToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144031652*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"0e284d7a-2cf4-4b27-aac3-d0f04ebf9934"],
+
+Cell[BoxData[
+ StyleBox["\<\"O3T\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.852557144033011*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"7989360a-2d23-4e8b-a765-b4beb68ea536"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`O3TToggle], {False}, "False"], 
+      SetterBox[Dynamic[$CellContext`O3TToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`O3TToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144034758*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"7b52703c-3d3d-4d65-a0e4-0214fc08ecd6"],
+
+Cell[BoxData[
+ StyleBox["\<\"phiactivate\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440360622`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0b230fe0-8c51-4bf0-809a-76cd4c09cd0d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`phiactivateToggle], {False}, "False"], 
+      SetterBox[Dynamic[$CellContext`phiactivateToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`phiactivateToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.85255714404342*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"23133381-9c7c-4608-b232-2eff9c1f8b09"],
+
+Cell[BoxData[
+ StyleBox["\<\"phinoncanonicalactivate\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440452623`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"7fbb4a36-19be-4087-afcb-55b15a04e1f8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`phinoncanonicalactivateToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`phinoncanonicalactivateToggle], {True}, 
+       "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`phinoncanonicalactivateToggle], {
+   False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.8525571440474167`*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"9d633062-6573-4233-bc26-8af1144d1d83"],
+
+Cell[BoxData[
+ StyleBox["\<\"chiperpactivate\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.852557144048705*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d71f207f-86ac-409b-bbe6-084893710577"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`chiperpactivateToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`chiperpactivateToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`chiperpactivateToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.8525571440504427`*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"cd721c02-9de2-40af-9d79-2246041bcf9d"],
+
+Cell[BoxData[
+ StyleBox["\<\"chisingactivate\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.852557144052236*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"114ca054-7bfb-498b-8b74-6237f7dcf226"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`chisingactivateToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`chisingactivateToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`chisingactivateToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144054792*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"9cc2179b-59b4-42a3-8340-24ecec1dbb72"],
+
+Cell[BoxData[
+ StyleBox["\<\"O3Differences\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.852557144056898*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c90b8682-0682-478f-a67f-08a8dd8cc6bf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`O3DifferencesToggle], {False}, "False"], 
+      
+      SetterBox[Dynamic[$CellContext`O3DifferencesToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`O3DifferencesToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144059627*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"e15ba225-f6d0-4cf0-a616-e1f5f0db2021"],
+
+Cell[BoxData[
+ StyleBox["\<\"O3AntiDifferences\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440618896`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"11ab6c16-97a4-4c97-8400-b5c19c1cbf79"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`O3AntiDifferencesToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`O3AntiDifferencesToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`O3AntiDifferencesToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144064061*^9},
+ CellLabel->"Out[23]=",ExpressionUUID->"34db57cc-b7be-413b-8013-263ab9b2d420"],
+
+Cell[BoxData[
+ StyleBox["\<\"ComplementActivate\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440653687`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b560c359-de39-45bb-a717-e4b8e23ffb64"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`ComplementActivateToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`ComplementActivateToggle], {True}, 
+       "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`ComplementActivateToggle], {False, True}]]], "Output",\
+
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.8525571440671473`*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"9e39eb84-ff57-4ffd-a22d-752dbb723714"],
+
+Cell[BoxData[
+ StyleBox["\<\"phitonesterformphi\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.85255714406843*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"936ca4b8-f002-4d45-a53a-2bbf05810778"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`phitonesterformphiToggle], {False}, 
+       "False"], 
+      SetterBox[Dynamic[$CellContext`phitonesterformphiToggle], {True}, 
+       "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`phitonesterformphiToggle], {False, True}]]], "Output",\
+
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.8525571440701637`*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"05b0cf98-6c27-4685-867e-e2752368b806"],
+
+Cell[BoxData[
+ StyleBox["\<\"linearisation\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->20,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{3.8521885981200953`*^9, 3.8521889276941433`*^9, 
+  3.852189006096777*^9, 3.852189427307022*^9, 3.85218946312186*^9, 
+  3.8521955908469563`*^9, 3.852557092241681*^9, 3.8525571440714893`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"8552a9ad-588b-4ca0-8308-d32eedfe50bd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[GridBox[{
+     {
+      SetterBox[Dynamic[$CellContext`linearisationToggle], {False}, "False"], 
+      
+      SetterBox[Dynamic[$CellContext`linearisationToggle], {True}, "True"]}
+    },
+    BaselinePosition->{1, 1},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Deployed->True],
+  SetterBar[
+   Dynamic[$CellContext`linearisationToggle], {False, True}]]], "Output",
+ CellChangeTimes->{{3.852187611688931*^9, 3.852187644909814*^9}, {
+   3.852187886582177*^9, 3.8521879555652103`*^9}, 3.852188105053327*^9, 
+   3.852188598147163*^9, 3.852188927730688*^9, 3.8521890061220016`*^9, 
+   3.852189427324942*^9, 3.852189463145545*^9, 3.852195590877042*^9, 
+   3.852557092268201*^9, 3.852557144073101*^9},
+ CellLabel->"Out[29]=",ExpressionUUID->"99f343b9-32ad-4a74-92b3-90cc8509fc60"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"DumpSave", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+      "\"\<mx_dumps/HiGGS_options.mx\>\""}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "O13ProjectionsToggle", ",", "CheckOrthogonalityToggle", ",", 
+       "ShowIrrepsToggle", ",", "O3TToggle", ",", "phiactivateToggle", ",", 
+       "phinoncanonicalactivateToggle", ",", "chiperpactivateToggle", ",", 
+       "chisingactivateToggle", ",", "ProjectionNormalisationsToggle", ",", 
+       "ProjectionNormalisationsCheckToggle", ",", "O3AntiDifferencesToggle", 
+       ",", "ComplementActivateToggle", ",", "phitonesterformphiToggle", ",", 
+       "linearisationToggle"}], "}"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.852187740868203*^9, 3.852187773692429*^9}, {
+   3.852187811347402*^9, 3.852187814171232*^9}, {3.8521883279911947`*^9, 
+   3.852188338726294*^9}, {3.8521889184105797`*^9, 3.852188918568837*^9}, {
+   3.852189306870681*^9, 3.8521893070234137`*^9}, {3.8521897192348003`*^9, 
+   3.852189719418758*^9}, {3.852195488236372*^9, 3.852195581158531*^9}, {
+   3.852195626236072*^9, 3.8521956266909313`*^9}, {3.8525570810686617`*^9, 
+   3.852557082534659*^9}, 3.852559503752865*^9, {3.852559888482601*^9, 
+   3.852559889444727*^9}},ExpressionUUID->"838f8084-1cf6-4961-8aeb-\
+2e770069b21b"]
+}, Open  ]]
 },
 WindowSize->{1920, 1147},
 WindowMargins->{{Automatic, 1080}, {Automatic, 53}},
@@ -34,6 +808,39 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 160, 3, 70, "Chapter",ExpressionUUID->"dda15d03-dcf1-4eee-8b19-83c56d1dd0c5"],
+Cell[CellGroupData[{
+Cell[765, 29, 7318, 181, 837, "Input",ExpressionUUID->"8a983a35-e7d5-419d-aef7-97505f9480b4"],
+Cell[8086, 212, 583, 14, 35, "Print",ExpressionUUID->"4ec21cfb-7912-4563-aed3-3cba505ff5fb"],
+Cell[8672, 228, 1038, 23, 49, "Output",ExpressionUUID->"e97ea74f-2e1e-4f9a-b79a-48d95dd5199c"],
+Cell[9713, 253, 589, 14, 35, "Print",ExpressionUUID->"a0d13d21-8f2c-4742-aa87-fe250fb39841"],
+Cell[10305, 269, 1070, 26, 49, "Output",ExpressionUUID->"d5e832ad-f05a-43af-95d2-0602cc90dc5c"],
+Cell[11378, 297, 581, 14, 35, "Print",ExpressionUUID->"5c7491e4-f81e-4bc1-abd4-2e4bfcbf4355"],
+Cell[11962, 313, 1026, 23, 49, "Output",ExpressionUUID->"0e284d7a-2cf4-4b27-aac3-d0f04ebf9934"],
+Cell[12991, 338, 572, 14, 35, "Print",ExpressionUUID->"7989360a-2d23-4e8b-a765-b4beb68ea536"],
+Cell[13566, 354, 1006, 23, 49, "Output",ExpressionUUID->"7b52703c-3d3d-4d65-a0e4-0214fc08ecd6"],
+Cell[14575, 379, 582, 14, 35, "Print",ExpressionUUID->"0b230fe0-8c51-4bf0-809a-76cd4c09cd0d"],
+Cell[15160, 395, 1029, 23, 49, "Output",ExpressionUUID->"23133381-9c7c-4608-b232-2eff9c1f8b09"],
+Cell[16192, 420, 594, 14, 35, "Print",ExpressionUUID->"7fbb4a36-19be-4087-afcb-55b15a04e1f8"],
+Cell[16789, 436, 1088, 26, 49, "Output",ExpressionUUID->"9d633062-6573-4233-bc26-8af1144d1d83"],
+Cell[17880, 464, 584, 14, 35, "Print",ExpressionUUID->"d71f207f-86ac-409b-bbe6-084893710577"],
+Cell[18467, 480, 1052, 24, 49, "Output",ExpressionUUID->"cd721c02-9de2-40af-9d79-2246041bcf9d"],
+Cell[19522, 506, 584, 14, 35, "Print",ExpressionUUID->"114ca054-7bfb-498b-8b74-6237f7dcf226"],
+Cell[20109, 522, 1050, 24, 49, "Output",ExpressionUUID->"9cc2179b-59b4-42a3-8340-24ecec1dbb72"],
+Cell[21162, 548, 582, 14, 35, "Print",ExpressionUUID->"c90b8682-0682-478f-a67f-08a8dd8cc6bf"],
+Cell[21747, 564, 1043, 24, 49, "Output",ExpressionUUID->"e15ba225-f6d0-4cf0-a616-e1f5f0db2021"],
+Cell[22793, 590, 588, 14, 35, "Print",ExpressionUUID->"11ab6c16-97a4-4c97-8400-b5c19c1cbf79"],
+Cell[23384, 606, 1056, 24, 49, "Output",ExpressionUUID->"34db57cc-b7be-413b-8013-263ab9b2d420"],
+Cell[24443, 632, 589, 14, 35, "Print",ExpressionUUID->"b560c359-de39-45bb-a717-e4b8e23ffb64"],
+Cell[25035, 648, 1071, 26, 49, "Output",ExpressionUUID->"9e39eb84-ff57-4ffd-a22d-752dbb723714"],
+Cell[26109, 676, 586, 14, 35, "Print",ExpressionUUID->"936ca4b8-f002-4d45-a53a-2bbf05810778"],
+Cell[26698, 692, 1071, 26, 49, "Output",ExpressionUUID->"05b0cf98-6c27-4685-867e-e2752368b806"],
+Cell[27772, 720, 584, 14, 35, "Print",ExpressionUUID->"8552a9ad-588b-4ca0-8308-d32eedfe50bd"],
+Cell[28359, 736, 1043, 24, 49, "Output",ExpressionUUID->"99f343b9-32ad-4a74-92b3-90cc8509fc60"]
+}, Open  ]],
+Cell[29417, 763, 1451, 28, 101, "Input",ExpressionUUID->"838f8084-1cf6-4961-8aeb-2e770069b21b"]
+}, Open  ]]
 }
 ]
 *)
