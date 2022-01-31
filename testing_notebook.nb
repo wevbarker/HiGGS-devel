@@ -1,0 +1,163 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5212,        155]
+NotebookOptionsPosition[      4574,        135]
+NotebookOutlinePosition[      4912,        150]
+CellTagsIndexPosition[      4869,        147]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Testing book", "Title",
+ CellChangeTimes->{{3.8526371763575*^9, 
+  3.8526371785974894`*^9}},ExpressionUUID->"451258e8-3a56-4969-adc2-\
+18acecd09333"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Get", "[", "\"\<variations`\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Needs", "[", "\"\<xAct`xTras`\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Get", "[", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+      "\"\<mx_cache/HiGGS.mx\>\""}], "]"}]}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<xAct`xTras`\>\"", ",", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+       "\"\<mx_cache/HiGGS.mx\>\""}]}], "}"}]}], "\[IndentingNewLine]", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Needs", "[", "\"\<HiGGS`\>\"", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"TPShellDefinition", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"ShellParaB1p", " ", 
+          RowBox[{"V", "[", 
+           RowBox[{"-", "a"}], "]"}], 
+          RowBox[{"TP1p", "[", 
+           RowBox[{
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "c"}]}], "]"}]}], "+", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{"1", "/", "6"}], ")"}]}], "ShellParaB0m", " ", 
+          RowBox[{"PT0m", "[", 
+           RowBox[{
+            RowBox[{"-", "a"}], ",", 
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "c"}]}], "]"}], 
+          RowBox[{"TP0m", "[", "]"}]}], "+", "\[IndentingNewLine]", " ", 
+         RowBox[{"ShellParaB1m", " ", 
+          RowBox[{"Antisymmetrize", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", 
+              RowBox[{"PPara", "[", 
+               RowBox[{
+                RowBox[{"-", "a"}], ",", 
+                RowBox[{"-", "b"}]}], "]"}]}], 
+             RowBox[{"TP1m", "[", 
+              RowBox[{"-", "c"}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "b"}], ",", 
+              RowBox[{"-", "c"}]}], "}"}]}], "]"}]}], "+", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"4", "/", "3"}], ")"}], "ShellParaB2m", " ", 
+          RowBox[{"TP2m", "[", 
+           RowBox[{
+            RowBox[{"-", "b"}], ",", 
+            RowBox[{"-", "c"}], ",", 
+            RowBox[{"-", "a"}]}], "]"}]}]}], "/.", "ShellFreedomsActivate"}], 
+       "/.", "PO3TActivate"}], "/.", "PADMActivate"}], "//", 
+     "ToCanonical"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quit", "[", "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.852637184087694*^9, 3.852637220189293*^9}, {
+  3.852637274326056*^9, 3.85263727542173*^9}, {3.852637378423078*^9, 
+  3.852637378944355*^9}, {3.8526375326443872`*^9, 3.852637532787184*^9}, {
+  3.852640551543282*^9, 3.852640563263383*^9}, {3.852640603168021*^9, 
+  3.852640606849148*^9}},ExpressionUUID->"3210121e-b61c-41c7-9dae-\
+d64eed2b4d8b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Get","noopen",
+   "\"Cannot open \\!\\(\\*RowBox[{\\\"\\\\\\\"HiGGS`\\\\\\\"\\\"}]\\).\"",2,
+   1,1,24570350340086859776,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.852640565801759*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0f4d7e24-3014-4b87-99eb-0ef8b586ab48"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Needs","nocont",
+   "\"Context \\!\\(\\*RowBox[{\\\"\\\\\\\"HiGGS`\\\\\\\"\\\"}]\\) was not \
+created when Needs was evaluated.\"",2,1,2,24570350340086859776,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8526405658326597`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e15b1949-2150-4b0b-aa0d-f6d32207ea0e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 1147},
+WindowMargins->{{Automatic, 1080}, {Automatic, 53}},
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 155, 3, 99, "Title",ExpressionUUID->"451258e8-3a56-4969-adc2-18acecd09333"],
+Cell[CellGroupData[{
+Cell[760, 29, 3043, 80, 362, "Input",ExpressionUUID->"3210121e-b61c-41c7-9dae-d64eed2b4d8b"],
+Cell[3806, 111, 349, 9, 23, "Message",ExpressionUUID->"0f4d7e24-3014-4b87-99eb-0ef8b586ab48"],
+Cell[4158, 122, 388, 9, 29, "Message",ExpressionUUID->"e15b1949-2150-4b0b-aa0d-f6d32207ea0e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

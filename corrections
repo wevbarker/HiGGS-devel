@@ -1,5 +1,0 @@
-Seems that vector T is used in the definition of Phi in Case 17 and Case 3, this probably causes some problems for the commutators in the PPM
-so when you checkout bdd376d you find the nonlinear Poisson brackets were determined before the projeciton operators. This seems more promising, because the projeciton operator inspection contained the automated rules to go to Tc, Rc etc...
-
-
-beta index in (8a)
