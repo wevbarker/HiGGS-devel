@@ -1,3 +1,3 @@
 (* ::Package:: *)
 
-Get["HiGGS`HiGGS`"]
+Get["xAct/HiGGS/HiGGS.m"]
