@@ -86,13 +86,14 @@ SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight (C) 2005-2018, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
-Print["This version of HiGGS is an open source dependent of the xAct bundle, but not an official part thereof."];
+Print["This free version of HiGGS is an open source dependent of the xAct bundle, but NOT an official part thereof."];
 Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
 (**)
-ActiveCellTags={"build","cache","documentation"};
+(*ActiveCellTags={"build","cache","documentation"};*)
+ActiveCellTags={"build","cache"};
 NotebookEvaluate[NotebookDirectory[]<>"/HiGGS_sources.nb",EvaluationElements->"Tags"->ActiveCellTags];
 Print["The context on quitting HiGGS.nb is ",$Context,"."];
 Quit[];

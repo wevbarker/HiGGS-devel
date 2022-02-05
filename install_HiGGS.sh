@@ -1,5 +1,7 @@
 #!/bin/bash
 
+tree > .directory_tree
+
 rm -rf ~/.Mathematica/Applications/xAct
 mkdir ~/.Mathematica/Applications/xAct
 mkdir ~/.Mathematica/Applications/xAct/HiGGS
