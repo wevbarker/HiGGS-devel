@@ -1,12 +1,12 @@
 #!/bin/bash
 
-tree HiGGS > .directory_tree
+tree xAct > .directory_tree
 
-rm -rf ~/.Mathematica/Applications/xAct
-mkdir ~/.Mathematica/Applications/xAct
-mkdir ~/.Mathematica/Applications/xAct/HiGGS
+#rm -rf ~/.Mathematica/Applications/xAct
+#mkdir ~/.Mathematica/Applications/xAct
+#mkdir ~/.Mathematica/Applications/xAct/HiGGS
 
-/bin/cp -rf HiGGS ~/.Mathematica/Applications/xAct/
+#/bin/cp -rf HiGGS ~/.Mathematica/Applications/xAct/
 #/bin/cp -rf HiGGS /usr/share/Mathematica/Applications/xAct/
 
 
