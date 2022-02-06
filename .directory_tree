@@ -1,10 +1,14 @@
 HiGGS
 ├── bin
-│   ├── build
-│   │   ├── CompleteO3ProjectionsToggle.mx
-│   │   ├── O13ProjectionsToggle.mx
-│   │   └── ProjectionNormalisationsToggle.mx
-│   └── HiGGS.mx
+│   └── build
+│       ├── CanonicalPhiToggle.mx
+│       ├── ChiPerpToggle.mx
+│       ├── ChiSingToggle.mx
+│       ├── CompleteO3ProjectionsToggle.mx
+│       ├── NonCanonicalPhiToggle.mx
+│       ├── O13ProjectionsToggle.mx
+│       ├── ProjectionNormalisationsToggle.mx
+│       └── TransferCouplingsPerpPerpToggle.mx
 ├── Documentation
 │   ├── HiGGS.pdf
 │   └── HiGGS_sources.pdf
@@ -14,4 +18,4 @@ HiGGS
 └── Kernel
     └── init.wl
 
-4 directories, 10 files
+4 directories, 14 files

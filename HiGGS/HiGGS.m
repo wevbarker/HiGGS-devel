@@ -91,21 +91,29 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-(**)
-(*ActiveCellTags={"build","cache","documentation"};*)
-ActiveCellTags={"build","cache"};
-NotebookEvaluate[NotebookDirectory[]<>"/HiGGS_sources.nb",EvaluationElements->"Tags"->ActiveCellTags];
-Print["The context on quitting HiGGS.nb is ",$Context,"."];
-Quit[];
-(**)
+Print["The notebook directory is "<>NotebookDirectory[]];
+$HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
+Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
+$HiGGSInstallDirectory=NotebookDirectory[];
 
 
 (* ::Input::Initialization:: *)
-Get["xAct/HiGGS/bin/HiGGS.mx"];
-Print[$Context];
+ActiveCellTags={"build","cache"};
+UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle"};
+PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
+BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle"};
+BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
+ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
+Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
+
+
+(* ::Input::Initialization:: *)
+NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags];
+Print["The context on quitting HiGGS.nb is ",$Context,"."];
 
 
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
 End[];
 EndPackage[];
+Quit[];
