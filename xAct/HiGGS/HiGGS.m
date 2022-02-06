@@ -94,7 +94,7 @@ Print[xAct`xCore`Private`bars];
 Print["The notebook directory is "<>NotebookDirectory[]];
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
-$HiGGSInstallDirectory=NotebookDirectory[];
+$HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};
 
 
 (* ::Input::Initialization:: *)
@@ -108,12 +108,24 @@ Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sourc
 
 
 (* ::Input::Initialization:: *)
-NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags];
+(*
+NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements\[Rule]"Tags"->ActiveCellTags];
 Print["The context on quitting HiGGS.nb is ",$Context,"."];
+*)
+
+
+(* ::Input::Initialization:: *)
+BuildHiGGS::usage="Rebuild the HiGGS session";
 
 
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
+
+BuildHiGGS[]:=NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags];
+Print["The context on quitting HiGGS.nb is ",$Context,"."];
+
 End[];
 EndPackage[];
+(*
 Quit[];
+*)
