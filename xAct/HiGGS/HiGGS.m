@@ -115,7 +115,10 @@ Print["The context on quitting HiGGS.nb is ",$Context,"."];
 
 
 (* ::Input::Initialization:: *)
+$Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
 BuildHiGGS::usage="Rebuild the HiGGS session";
+DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
+BuildShell::usage="Define a set of rules which can be used to restrict quantities to the constrained shell";
 
 
 (* ::Input::Initialization:: *)
