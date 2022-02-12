@@ -87,6 +87,7 @@ Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight (C) 2005-2018, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["This free version of HiGGS is an open source dependent of the xAct bundle, but NOT an official part thereof."];
+Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
 Print[xAct`xCore`Private`bars];
 
 
@@ -95,6 +96,7 @@ Print["The notebook directory is "<>NotebookDirectory[]];
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
 $HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};
+Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
@@ -104,7 +106,6 @@ PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaT
 BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle"};
 BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
 ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
-Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
 
 
 (* ::Input::Initialization:: *)
@@ -123,9 +124,13 @@ BuildShell::usage="Define a set of rules which can be used to restrict quantitie
 
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
-
-BuildHiGGS[]:=NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags];
+BuildHiGGS[]:=Module[{},
+xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
+Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
+NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags,InsertResults->False];
 Print["The context on quitting HiGGS.nb is ",$Context,"."];
+Print["The HiGGS environment is now ready to use."];
+];
 
 End[];
 EndPackage[];
