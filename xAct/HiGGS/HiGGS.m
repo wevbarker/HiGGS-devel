@@ -124,12 +124,20 @@ BuildShell::usage="Define a set of rules which can be used to restrict quantitie
 
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
-BuildHiGGS[]:=Module[{},
+BuildHiGGS[]:=Module[{PriorMemory,UsedMemory},
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
+(*List of all print cells in front end before this notebook starts to run*)
+$PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
+PriorMemory=MemoryInUse[];
+Print["RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
 Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
 NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags,InsertResults->False];
 Print["The context on quitting HiGGS.nb is ",$Context,"."];
-Print["The HiGGS environment is now ready to use."];
+(*Purge all cells created during build process*)
+Pause[2];
+UsedMemory=MemoryInUse[]-PriorMemory;
+NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
+Print["The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 ];
 
 End[];
