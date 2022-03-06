@@ -103,23 +103,22 @@ Print[xAct`xCore`Private`bars];
 ActiveCellTags={"build","cache"};
 UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle"};
 PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
-BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle","GeneralComplementsToggle"};
+BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle","GeneralComplementsToggle","CDPiPToCDPiPO3","NesterFormIfConstraints"};
 BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
 ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
-(*
-NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements\[Rule]"Tags"->ActiveCellTags];
-Print["The context on quitting HiGGS.nb is ",$Context,"."];
-*)
+BuildHiGGS::usage="Rebuild the HiGGS session";
+ToNesterForm::usage="Express quantity in terms of human-readable irreps";
+ToBasicForm::usage="Express quantity in terms of basic gauge fields";
+PoissonBracket::usage="Calculate a Poisson bracket between two quantities";
+DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
+Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
 
 
 (* ::Input::Initialization:: *)
 $Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
-BuildHiGGS::usage="Rebuild the HiGGS session";
-DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
-BuildShell::usage="Define a set of rules which can be used to restrict quantities to the constrained shell";
 
 
 (* ::Input::Initialization:: *)
@@ -129,15 +128,15 @@ xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for ke
 (*List of all print cells in front end before this notebook starts to run*)
 $PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 PriorMemory=MemoryInUse[];
-Print["RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
-Print["Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
+Print["** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
+Print["** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
 NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags,InsertResults->False];
-Print["The context on quitting HiGGS.nb is ",$Context,"."];
+Print["** BuildHiGGS: The context on quitting HiGGS.nb is ",$Context,"."];
 (*Purge all cells created during build process*)
 Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
 NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
-Print["The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
+Print["** BuildHiGGS: The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 ];
 
 End[];

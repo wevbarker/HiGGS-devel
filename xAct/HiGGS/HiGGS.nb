@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     39538,        889]
-NotebookOptionsPosition[     35286,        804]
-NotebookOutlinePosition[     35657,        820]
-CellTagsIndexPosition[     35614,        817]
+NotebookDataLength[     30360,        716]
+NotebookOptionsPosition[     27090,        648]
+NotebookOutlinePosition[     27461,        664]
+CellTagsIndexPosition[     27418,        661]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -238,8 +238,6 @@ Cell["Welcome message:", "Text",
   3.852968848351556*^9}},ExpressionUUID->"bab4f562-c219-41ad-b8ee-\
 40683d357449"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"Print", "[", 
@@ -282,72 +280,10 @@ public repository at https://github.com/xAct-contrib/examples.\>\"", "]"}],
   3.853680106448228*^9}},
  CellLabel->"In[81]:=",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286"],
 
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Package xAct`HiGGS`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"2.2.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"2022", ",", "2", ",", "1"}], "}"}]}],
-  SequenceForm["Package xAct`HiGGS`  version ", "2.2.1", ", ", {2022, 2, 1}],
-  Editable->False]], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.855075064096946*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"83e2aece-4be3-40c1-ae81-eb36b2df23a7"],
-
-Cell[BoxData["\<\"CopyRight (C) 2005-2018, Will E. V. Barker, under the \
-General Public License.\"\>"], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.855075064098674*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"0caea964-134d-4463-8266-9d28f1a4eb5a"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.8550750641014767`*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"14dfbd8e-b36a-482c-9f2f-82b940b43d47"],
-
-Cell[BoxData["\<\"This free version of HiGGS is an open source dependent of \
-the xAct bundle, but NOT an official part thereof.\"\>"], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.8550750641027718`*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"cc7b2cc2-e3ed-4229-b63c-22302c2fe2ef"],
-
-Cell[BoxData["\<\"This free version of HiGGS incorporates Cyril Pitrou's code \
-from the public repository at \
-https://github.com/xAct-contrib/examples.\"\>"], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.855075064103985*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"1b6b046d-c943-4e64-9d1e-caf11be147ac"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.855072098685657*^9, 3.8550721287081757`*^9}, {
-  3.8550750637815943`*^9, 3.8550750641051807`*^9}},
- CellLabel->
-  "During evaluation of \
-In[81]:=",ExpressionUUID->"2b9ed5ae-bc34-4508-a0f8-c2ceeabd0a82"]
-}, Open  ]]
-}, Open  ]],
-
 Cell["Find the install directory:", "Text",
  CellChangeTimes->{{3.8531382478255568`*^9, 
   3.8531382517167587`*^9}},ExpressionUUID->"3066e085-60fe-46a4-b1eb-\
 230ba01a30d9"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -388,35 +324,6 @@ Cell[BoxData[{
   3.853171989019854*^9}, {3.853679053744432*^9, 3.853679053897645*^9}},
  CellLabel->"In[87]:=",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c"],
 
-Cell[CellGroupData[{
-
-Cell[BoxData["\<\"The notebook directory is \
-/home/williamb/Documents/physics/projects/HiGGS_development/xAct/HiGGS/\"\>"],\
- "Print",
- CellChangeTimes->{{3.855072098748033*^9, 3.855072128772109*^9}, {
-  3.855075063844206*^9, 3.855075064142786*^9}},
- CellLabel->
-  "During evaluation of \
-In[87]:=",ExpressionUUID->"5faedfc1-71aa-40ff-9540-2ddba403288e"],
-
-Cell[BoxData["\<\"At least one HiGGS installation directory was found at \
-/home/williamb/.Mathematica/Applications/xAct/HiGGS.\"\>"], "Print",
- CellChangeTimes->{{3.855072098748033*^9, 3.855072128772109*^9}, {
-  3.855075063844206*^9, 3.855075064144432*^9}},
- CellLabel->
-  "During evaluation of \
-In[87]:=",ExpressionUUID->"d5035151-4da4-4b4d-ba16-8ffea2b67be7"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.855072098748033*^9, 3.855072128772109*^9}, {
-  3.855075063844206*^9, 3.855075064184173*^9}},
- CellLabel->
-  "During evaluation of \
-In[87]:=",ExpressionUUID->"03d88661-df2b-4919-bb64-d5b681b1b53b"]
-}, Open  ]]
-}, Open  ]],
-
 Cell["Set up run options:", "Text",
  CellChangeTimes->{{3.8529688586235228`*^9, 3.852968861239352*^9}, {
   3.853060046104252*^9, 3.853060048860321*^9}, {3.853167628096277*^9, 
@@ -452,7 +359,8 @@ Cell[BoxData[{
      "\"\<ProjectionNormalisationsToggle\>\"", ",", 
      "\"\<CanonicalPhiToggle\>\"", ",", "\"\<NonCanonicalPhiToggle\>\"", ",", 
      "\"\<ChiPerpToggle\>\"", ",", "\"\<ChiSingToggle\>\"", ",", 
-     "\"\<GeneralComplementsToggle\>\""}], "}"}]}], 
+     "\"\<GeneralComplementsToggle\>\"", ",", "\"\<CDPiPToCDPiPO3\>\"", ",", 
+     "\"\<NesterFormIfConstraints\>\""}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"BuiltBinaries", "=", 
@@ -543,103 +451,9 @@ Cell[BoxData[{
    3.853167582470661*^9, {3.853169933313843*^9, 3.853169933633769*^9}, {
    3.853170418816285*^9, 3.853170455477961*^9}, {3.8531705048569307`*^9, 
    3.853170559585513*^9}, {3.853678865611082*^9, 3.853678867344268*^9}, {
-   3.855072055544059*^9, 3.8550720630158033`*^9}},
+   3.855072055544059*^9, 3.8550720630158033`*^9}, {3.855166225683258*^9, 
+   3.855166232201021*^9}, {3.8551678874322367`*^9, 3.855167889832632*^9}},
  CellLabel->"In[92]:=",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb"],
-
-Cell["Run the HiGGS_sources.nb notebook:", "Text",
- CellChangeTimes->{{3.853167607800308*^9, 3.853167616472488*^9}, {
-  3.853170781379531*^9, 
-  3.853170781891445*^9}},ExpressionUUID->"fb8bd4c7-3ec5-4735-8a6f-\
-5f5727579c71"],
-
-Cell[BoxData[
- RowBox[{"(*", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"NotebookEvaluate", "[", 
-    RowBox[{
-     RowBox[{"FileNameJoin", "@", 
-      RowBox[{"{", 
-       RowBox[{"$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-       "}"}]}], ",", 
-     RowBox[{"EvaluationElements", "\[Rule]", 
-      RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}]}], "]"}], ";", 
-   "\[IndentingNewLine]", 
-   RowBox[{"Print", "[", 
-    RowBox[{
-    "\"\<The context on quitting HiGGS.nb is \>\"", ",", "$Context", ",", 
-     "\"\<.\>\""}], "]"}], ";"}], "\[IndentingNewLine]", "*)"}]], "Input",
- InitializationCell->True,
- CellChangeTimes->{
-  3.852967459972611*^9, {3.8529689128394413`*^9, 3.852968920823333*^9}, {
-   3.852970652665737*^9, 3.852970672782729*^9}, {3.852970974445826*^9, 
-   3.852970975652095*^9}, {3.8529712280996513`*^9, 3.85297124515383*^9}, {
-   3.8529731738510103`*^9, 3.852973177583789*^9}, {3.852976029510406*^9, 
-   3.852976065372921*^9}, {3.8529762237278*^9, 3.8529762419077253`*^9}, {
-   3.852977712895081*^9, 3.8529777353493443`*^9}, {3.852978519811467*^9, 
-   3.85297852825455*^9}, {3.852978607637608*^9, 3.8529786114058447`*^9}, {
-   3.85297887720429*^9, 3.852978955474533*^9}, {3.852979003901278*^9, 
-   3.8529790143709373`*^9}, {3.852979079579483*^9, 3.852979079937933*^9}, {
-   3.8529863230249166`*^9, 3.85298636330215*^9}, {3.852988334733179*^9, 
-   3.8529883402839603`*^9}, {3.852988400773406*^9, 3.852988407483302*^9}, {
-   3.852989282173565*^9, 3.8529892892032137`*^9}, {3.8529893222322817`*^9, 
-   3.852989328561973*^9}, {3.852989377691245*^9, 3.852989380929812*^9}, {
-   3.852990196365418*^9, 3.852990205738681*^9}, {3.85299143639785*^9, 
-   3.852991447583028*^9}, {3.853051025625658*^9, 3.8530510369441223`*^9}, {
-   3.853051270913691*^9, 3.853051278157467*^9}, {3.853051892634858*^9, 
-   3.853051932327196*^9}, {3.853054966877211*^9, 3.8530549779320107`*^9}, {
-   3.853055076884405*^9, 3.853055078882551*^9}, {3.8530554365453997`*^9, 
-   3.853055461079866*^9}, {3.853055522536605*^9, 3.853055524535722*^9}, {
-   3.853055944849126*^9, 3.8530559590907993`*^9}, {3.853058436149022*^9, 
-   3.85305848045177*^9}, {3.853058519163412*^9, 3.8530585426348057`*^9}, {
-   3.853058884774562*^9, 3.853058887839644*^9}, {3.85305897142451*^9, 
-   3.853058997430588*^9}, {3.853059161518241*^9, 3.853059195324615*^9}, {
-   3.853059464540225*^9, 3.853059476514266*^9}, {3.85305951880396*^9, 
-   3.853059526369225*^9}, {3.853059655561936*^9, 3.853059658975263*^9}, {
-   3.853060179611755*^9, 3.853060187307988*^9}, {3.85306094106218*^9, 
-   3.8530609427722816`*^9}, {3.8530614699045486`*^9, 3.853061521463073*^9}, {
-   3.853061560215312*^9, 3.8530616188488493`*^9}, {3.853063756330799*^9, 
-   3.853063760546484*^9}, 3.853066254206355*^9, {3.853078449292013*^9, 
-   3.853078459611306*^9}, {3.85308763969492*^9, 3.853087641301765*^9}, {
-   3.853089649273025*^9, 3.8530896529465723`*^9}, {3.853089698757922*^9, 
-   3.85308970041854*^9}, {3.853090390141275*^9, 3.8530904241078444`*^9}, {
-   3.853092290163992*^9, 3.853092302602083*^9}, {3.853092360237317*^9, 
-   3.853092361889926*^9}, {3.853092536649592*^9, 3.853092540696064*^9}, {
-   3.853092635051022*^9, 3.853092637391449*^9}, {3.853092721871703*^9, 
-   3.853092724494668*^9}, {3.853092782768385*^9, 3.853092785830083*^9}, {
-   3.8530933115785437`*^9, 3.853093332952744*^9}, {3.853093396873664*^9, 
-   3.8530934000640583`*^9}, {3.853093435181541*^9, 3.853093437872435*^9}, {
-   3.8530935590962133`*^9, 3.853093584886444*^9}, {3.853093857957346*^9, 
-   3.8530938607797003`*^9}, {3.853093917549806*^9, 3.853093919363532*^9}, {
-   3.853135730858262*^9, 3.853135733506613*^9}, {3.8531357677048798`*^9, 
-   3.8531357680006123`*^9}, {3.853135984243615*^9, 3.853136000686736*^9}, {
-   3.853136345428708*^9, 3.853136349467491*^9}, {3.853136557657587*^9, 
-   3.853136566657819*^9}, {3.85313663057231*^9, 3.853136632688813*^9}, {
-   3.853136827512618*^9, 3.853136857703672*^9}, {3.853137056638713*^9, 
-   3.853137142412573*^9}, 3.8531376916113977`*^9, {3.85313776922571*^9, 
-   3.853137826062319*^9}, {3.8531378700226803`*^9, 3.853137930980474*^9}, {
-   3.853137977327692*^9, 3.853138035580152*^9}, {3.853138211510901*^9, 
-   3.853138226546315*^9}, {3.853138330057292*^9, 3.853138337072912*^9}, {
-   3.8531411942331953`*^9, 3.853141303165792*^9}, {3.853143580129961*^9, 
-   3.853143583459922*^9}, {3.853144753039977*^9, 3.853144766462068*^9}, {
-   3.853144832350379*^9, 3.85314484707469*^9}, {3.8531448975341682`*^9, 
-   3.853144929003953*^9}, {3.8531450225026608`*^9, 3.853145058219513*^9}, {
-   3.853146597490546*^9, 3.8531466346331863`*^9}, {3.853146746881111*^9, 
-   3.853146816408081*^9}, {3.853146847608798*^9, 3.853146850879599*^9}, {
-   3.8531468924958887`*^9, 3.853146895519331*^9}, {3.8531469280172043`*^9, 
-   3.853146933439102*^9}, {3.8531469703674498`*^9, 3.8531470598863497`*^9}, {
-   3.8531472119735003`*^9, 3.8531472656848783`*^9}, {3.8531473515323887`*^9, 
-   3.8531474891872587`*^9}, {3.853147718235957*^9, 3.853147757738016*^9}, {
-   3.8531477932757683`*^9, 3.853147795681527*^9}, {3.853147904347486*^9, 
-   3.853147976520487*^9}, {3.8531480206075487`*^9, 3.853148026752223*^9}, {
-   3.8531481518740587`*^9, 3.853148200334557*^9}, {3.853148230390353*^9, 
-   3.853148278358109*^9}, {3.853153537611676*^9, 3.853153580387149*^9}, {
-   3.853156514633996*^9, 3.8531565340166397`*^9}, {3.8531573755551033`*^9, 
-   3.853157377284873*^9}, {3.8531625858353252`*^9, 3.853162588862109*^9}, 
-   3.853163044096754*^9, {3.8531635598399143`*^9, 3.8531635897410927`*^9}, {
-   3.8531667969526787`*^9, 3.8531668163704*^9}, 3.853166853455162*^9, {
-   3.853167582470661*^9, 3.8531675946089163`*^9}, {3.85317135420172*^9, 
-   3.853171359007372*^9}},
- CellLabel->"In[98]:=",ExpressionUUID->"662298c5-8166-4a1e-b14f-ea6d368adbee"],
 
 Cell["Define the package functions:", "Text",
  CellChangeTimes->{{3.853171109713401*^9, 
@@ -649,13 +463,23 @@ Cell["Define the package functions:", "Text",
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"$Theory", "::", "usage"}], "=", 
-   "\"\<The gauge theory as defined by a system of equations which constrains \
-the coupling coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
    RowBox[{"BuildHiGGS", "::", "usage"}], "=", 
    "\"\<Rebuild the HiGGS session\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToNesterForm", "::", "usage"}], "=", 
+   "\"\<Express quantity in terms of human-readable irreps\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToBasicForm", "::", "usage"}], "=", 
+   "\"\<Express quantity in terms of basic gauge fields\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PoissonBracket", "::", "usage"}], "=", 
+   "\"\<Calculate a Poisson bracket between two quantities\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"DefTheory", "::", "usage"}], "=", 
@@ -663,15 +487,35 @@ the coupling coefficients\>\""}], ";"}], "\[IndentingNewLine]",
 coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"BuildShell", "::", "usage"}], "=", 
-   "\"\<Define a set of rules which can be used to restrict quantities to the \
-constrained shell\>\""}], ";"}]}], "Input",
+   RowBox[{"Velocity", "::", "usage"}], "=", 
+   "\"\<Calculate the velocity of a quantity with respect to the Hamiltonian \
+indicated by DefTheory\>\""}], ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.853171149996469*^9, 3.8531711706735353`*^9}, {
    3.853171250440598*^9, 3.853171258064022*^9}, {3.853582318943416*^9, 
    3.8535824033001537`*^9}, 3.8535825635709143`*^9, {3.8535826681305237`*^9, 
-   3.8535827243300323`*^9}, {3.8535867584016333`*^9, 3.853586834327335*^9}},
- CellLabel->"In[99]:=",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da"]
+   3.8535827243300323`*^9}, {3.8535867584016333`*^9, 3.853586834327335*^9}, {
+   3.855576540725806*^9, 3.8555765503642597`*^9}, {3.855576679268778*^9, 
+   3.8555767171792192`*^9}, {3.855576756634934*^9, 3.8555767631149397`*^9}, {
+   3.855576864482386*^9, 3.855576911825713*^9}, {3.8555769440992613`*^9, 
+   3.855576945193932*^9}, {3.855577015338291*^9, 3.8555770617776203`*^9}, {
+   3.855577194209269*^9, 
+   3.855577205488092*^9}},ExpressionUUID->"eb42d413-bde6-4045-8550-\
+27ab8196f2da"],
+
+Cell["Global variables:", "Text",
+ CellChangeTimes->{{3.855576953025096*^9, 
+  3.855576956753236*^9}},ExpressionUUID->"c2ed4da8-3421-43c6-ba96-\
+3d57eb8054a1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Theory", "::", "usage"}], "=", 
+   "\"\<The gauge theory as defined by a system of equations which constrains \
+the coupling coefficients\>\""}], ";"}]], "Input",
+ InitializationCell->
+  True,ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -719,8 +563,8 @@ Cell[BoxData[{
         RowBox[{"MemoryInUse", "[", "]"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<RAM used by kernel \>\"", ",", "$KernelID", ",", "\"\< is \>\"", 
-         ",", 
+        "\"\<** BuildHiGGS: RAM used by kernel \>\"", ",", "$KernelID", ",", 
+         "\"\< is \>\"", ",", 
          RowBox[{"Dynamic", "[", 
           RowBox[{"Refresh", "[", 
            RowBox[{
@@ -728,7 +572,7 @@ Cell[BoxData[{
             RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}], "]"}], ",", 
          "\"\< bytes.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
-        RowBox[{"\"\<Building session from \>\"", ",", 
+        RowBox[{"\"\<** BuildHiGGS: Building session from \>\"", ",", 
          RowBox[{"FileNameJoin", "@", 
           RowBox[{"{", 
            RowBox[{
@@ -749,8 +593,8 @@ Cell[BoxData[{
        "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<The context on quitting HiGGS.nb is \>\"", ",", "$Context", ",", 
-         "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+        "\"\<** BuildHiGGS: The context on quitting HiGGS.nb is \>\"", ",", 
+         "$Context", ",", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"(*", 
         RowBox[{
         "Purge", " ", "all", " ", "cells", " ", "created", " ", "during", " ",
@@ -773,9 +617,9 @@ Cell[BoxData[{
        ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<The HiGGS environment is now ready to use and is occupying \>\"",
-          ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}], ";"}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], 
+        "\"\<** BuildHiGGS: The HiGGS environment is now ready to use and is \
+occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}], 
+       ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"End", "[", "]"}], ";"}], "\[IndentingNewLine]", 
@@ -788,13 +632,13 @@ Cell[BoxData[{
    "*)"}]}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQA2IQvS+V5f3nLW8c0za5fQbRcyxEnrhtfeOY0OsHpqNc
+1:eJxTTMoPSmViYGCQAGIQvS+V5f3nLW8c0za5fQbRcyxEnrhtfeOY0OsHpqNc
 q2Z4AulvjxrAtN0pGSEvIO0zNRRMX7DeFxIOpL3MjkaAaKnXH+JBtJn00WQQ
 ndZyqAZEr3siVwuiIxLC5V23vXG8Z6OgAKLvXGli8gDSOl8F2EG0sYSyIIjm
 WRwFprnKlZVAtICsK5g+o/Z4uh+QVtkdNANEVy8IWAyitStyV4DoLgHX7SDa
 qzz2CIjeoG6h7A+kU87bgmneukxNEP2AJ0cbRP+Y6jUvD0iX/fu7BET3eDmu
 AdHavuabQfS2Ww6HQLRXQNEJEL3rpuBDEL0vz/cXiNbT3vYfRLdolDHkA+kE
-FS5ZEG0jMkUBRAMAAE2wxw==
+FS5ZEG0jMkUBRD/ucSo5tBPoz5aochB9KfRRI4ju0pvfBKIBX0/EIg==
   "],
  CellLabel->
   "In[103]:=",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"]
@@ -845,41 +689,24 @@ Cell[7766, 220, 196, 3, 36, "Text",ExpressionUUID->"5a88bace-e271-41bb-9dea-df6a
 Cell[7965, 225, 312, 8, 47, "Input",ExpressionUUID->"a91a3a17-0644-45a1-9dfe-a4b7dee47013",
  InitializationCell->True],
 Cell[8280, 235, 158, 3, 36, "Text",ExpressionUUID->"bab4f562-c219-41ad-b8ee-40683d357449"],
-Cell[CellGroupData[{
-Cell[8463, 242, 1788, 40, 169, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
+Cell[8441, 240, 1788, 40, 169, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
  InitializationCell->True],
-Cell[CellGroupData[{
-Cell[10276, 286, 587, 13, 25, "Print",ExpressionUUID->"83e2aece-4be3-40c1-ae81-eb36b2df23a7"],
-Cell[10866, 301, 337, 6, 25, "Print",ExpressionUUID->"0caea964-134d-4463-8266-9d28f1a4eb5a"],
-Cell[11206, 309, 322, 6, 25, "Print",ExpressionUUID->"14dfbd8e-b36a-482c-9f2f-82b940b43d47"],
-Cell[11531, 317, 370, 6, 25, "Print",ExpressionUUID->"cc7b2cc2-e3ed-4229-b63c-22302c2fe2ef"],
-Cell[11904, 325, 393, 7, 25, "Print",ExpressionUUID->"1b6b046d-c943-4e64-9d1e-caf11be147ac"],
-Cell[12300, 334, 322, 6, 25, "Print",ExpressionUUID->"2b9ed5ae-bc34-4508-a0f8-c2ceeabd0a82"]
-}, Open  ]]
-}, Open  ]],
-Cell[12649, 344, 173, 3, 36, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
-Cell[CellGroupData[{
-Cell[12847, 351, 1455, 37, 142, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
+Cell[10232, 282, 173, 3, 36, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
+Cell[10408, 287, 1455, 37, 142, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
  InitializationCell->True],
-Cell[CellGroupData[{
-Cell[14327, 392, 355, 7, 25, "Print",ExpressionUUID->"5faedfc1-71aa-40ff-9540-2ddba403288e"],
-Cell[14685, 401, 363, 6, 25, "Print",ExpressionUUID->"d5035151-4da4-4b4d-ba16-8ffea2b67be7"],
-Cell[15051, 409, 316, 6, 25, "Print",ExpressionUUID->"03d88661-df2b-4919-bb64-d5b681b1b53b"]
-}, Open  ]]
-}, Open  ]],
-Cell[15394, 419, 258, 4, 36, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
-Cell[15655, 425, 7114, 121, 163, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
+Cell[11866, 326, 258, 4, 36, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
+Cell[12127, 332, 7289, 123, 186, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
  InitializationCell->True],
-Cell[22772, 548, 225, 4, 36, "Text",ExpressionUUID->"fb8bd4c7-3ec5-4735-8a6f-5f5727579c71"],
-Cell[23000, 554, 5797, 87, 117, "Input",ExpressionUUID->"662298c5-8166-4a1e-b14f-ea6d368adbee",
+Cell[19419, 457, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
+Cell[19593, 462, 1801, 41, 163, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
  InitializationCell->True],
-Cell[28800, 643, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
-Cell[28974, 648, 1162, 25, 117, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[21397, 505, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[21559, 510, 295, 7, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30173, 678, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[30385, 684, 4861, 115, 537, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[21891, 522, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[22103, 528, 4947, 115, 537, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]
