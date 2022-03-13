@@ -124,19 +124,22 @@ $Theory::usage="The gauge theory as defined by a system of equations which const
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
 BuildHiGGS[]:=Module[{PriorMemory,UsedMemory},
+Print["hithere"];
+(*
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
 (*List of all print cells in front end before this notebook starts to run*)
-$PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
+$PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle\[Rule]{"Print"}];
 PriorMemory=MemoryInUse[];
-Print["** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
+Print["** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval\[Rule]1]]," bytes."];
 Print["** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
-NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags,InsertResults->False];
+NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements\[Rule]"Tags"->ActiveCellTags,InsertResults\[Rule]False];
 Print["** BuildHiGGS: The context on quitting HiGGS.nb is ",$Context,"."];
 (*Purge all cells created during build process*)
 Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
-NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
+NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle\[Rule]{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
 Print["** BuildHiGGS: The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
+*)
 ];
 
 End[];
