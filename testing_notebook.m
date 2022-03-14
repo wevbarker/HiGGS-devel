@@ -8,7 +8,8 @@
 (*Start timing*)
 StartTime=AbsoluteTime[];
 (*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
-AppendTo[$Path,NotebookDirectory[]];
+(*AppendTo[$Path,NotebookDirectory[]];*)
+AppendTo[$Path,"/home/wb263/HiGGS_development/"];
 (*Load the package*)
 Needs["xAct`HiGGS`"]
 (*Build the HiGGS environment*)
