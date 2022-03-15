@@ -93,10 +93,11 @@ Print[xAct`xCore`Private`bars];
 
 (* ::Input::Initialization:: *)
 Print["The notebook directory is "<>NotebookDirectory[]];
-(*This needed for developer version*)
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
-$HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};
+(*This needed for developer version*)
+$HiGGSInstallDirectory=FileNameJoin@{"/home/wb263/HiGGS_development/","xAct/HiGGS"};
+(*$HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};*)
 Print[xAct`xCore`Private`bars];
 
 
