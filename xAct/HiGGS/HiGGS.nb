@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     35089,        831]
-NotebookOptionsPosition[     30777,        745]
-NotebookOutlinePosition[     31211,        762]
-CellTagsIndexPosition[     31168,        759]
+NotebookDataLength[     31490,        742]
+NotebookOptionsPosition[     28115,        672]
+NotebookOutlinePosition[     28591,        690]
+CellTagsIndexPosition[     28548,        687]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -145,7 +145,7 @@ Cell[BoxData[
  InitializationCell->True,
  CellChangeTimes->{{3.852966905210271*^9, 3.852966943449995*^9}},
  CellLabel->"In[57]:=",ExpressionUUID->"0ae9969f-57d8-4f01-b570-ec08f6dd60c2"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -188,7 +188,7 @@ Cell["\<\
  InitializationCell->True,
  CellChangeTimes->{{3.852966996112625*^9, 3.8529671020884857`*^9}},
  CellLabel->"In[58]:=",ExpressionUUID->"a6b814a1-b722-4bc4-bba9-24ee9c6fd016"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -238,8 +238,6 @@ Cell["Welcome message:", "Text",
   3.852968848351556*^9}},ExpressionUUID->"bab4f562-c219-41ad-b8ee-\
 40683d357449"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"Print", "[", 
@@ -282,79 +280,22 @@ public repository at https://github.com/xAct-contrib/examples.\>\"", "]"}],
   3.853680106448228*^9}},
  CellLabel->"In[83]:=",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286"],
 
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Package xAct`HiGGS`  version \"\>", 
-   "\[InvisibleSpace]", "\<\"2.2.1\"\>", "\[InvisibleSpace]", "\<\", \"\>", 
-   "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"2022", ",", "2", ",", "1"}], "}"}]}],
-  SequenceForm["Package xAct`HiGGS`  version ", "2.2.1", ", ", {2022, 2, 1}],
-  Editable->False]], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.856166030994875*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"e82d8662-da7a-47e1-bfa0-334c64c2648c"],
-
-Cell[BoxData["\<\"CopyRight (C) 2005-2018, Will E. V. Barker, under the \
-General Public License.\"\>"], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.8561660309974613`*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"c86d51e5-d713-4a9a-90df-08b98b215b10"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.856166030999981*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"fb1c0ec8-c775-4d6f-a7b7-69d729375b47"],
-
-Cell[BoxData["\<\"This free version of HiGGS is an open source dependent of \
-the xAct bundle, but NOT an official part thereof.\"\>"], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.8561660310008707`*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"0d0c0071-ff17-49e2-9a03-faca9a286eb3"],
-
-Cell[BoxData["\<\"This free version of HiGGS incorporates Cyril Pitrou's code \
-from the public repository at \
-https://github.com/xAct-contrib/examples.\"\>"], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.856166031001739*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"fd8cf19f-0d15-431b-a4bc-43cf55c2ad90"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.856118298015736*^9, 3.856118298410123*^9}, {
-  3.8561660306795273`*^9, 3.856166031002499*^9}},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"3fd68cd1-48b9-412d-80a0-473d69a5098d"]
-}, Open  ]]
-}, Open  ]],
-
 Cell["Find the install directory:", "Text",
  CellChangeTimes->{{3.8531382478255568`*^9, 
   3.8531382517167587`*^9}},ExpressionUUID->"3066e085-60fe-46a4-b1eb-\
 230ba01a30d9"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Print", "[", 
-   RowBox[{"\"\<The notebook directory is \>\"", "<>", 
-    RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<The notebook directory is \>\"", "<>", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "This", " ", "needed", " ", "for", " ", "developer", " ", "version"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"$HiGGSInstallDirectory", "=", 
    RowBox[{
@@ -385,37 +326,10 @@ Cell[BoxData[{
  InitializationCell->True,
  CellChangeTimes->{{3.8531412926564617`*^9, 3.853141294333889*^9}, {
   3.853153658506897*^9, 3.8531536880497828`*^9}, {3.853171974350483*^9, 
-  3.853171989019854*^9}, {3.853679053744432*^9, 3.853679053897645*^9}},
- CellLabel->"In[89]:=",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData["\<\"The notebook directory is \
-/home/williamb/Documents/physics/projects/HiGGS_development/xAct/HiGGS/\"\>"],\
- "Print",
- CellChangeTimes->{{3.856118298076942*^9, 3.856118298468803*^9}, {
-  3.8561660307411118`*^9, 3.856166031048449*^9}},
- CellLabel->
-  "During evaluation of \
-In[89]:=",ExpressionUUID->"b01c0850-2d58-40e3-b5e7-8029ac7581ce"],
-
-Cell[BoxData["\<\"At least one HiGGS installation directory was found at \
-/home/williamb/.Mathematica/Applications/xAct/HiGGS.\"\>"], "Print",
- CellChangeTimes->{{3.856118298076942*^9, 3.856118298468803*^9}, {
-  3.8561660307411118`*^9, 3.8561660310496473`*^9}},
- CellLabel->
-  "During evaluation of \
-In[89]:=",ExpressionUUID->"efda241a-ad6a-4d37-975d-b5a5def3e767"],
-
-Cell[BoxData["\<\"------------------------------------------------------------\
-\"\>"], "Print",
- CellChangeTimes->{{3.856118298076942*^9, 3.856118298468803*^9}, {
-  3.8561660307411118`*^9, 3.8561660310938473`*^9}},
- CellLabel->
-  "During evaluation of \
-In[89]:=",ExpressionUUID->"e52cf9e6-725c-43de-bbf7-cf2e125da77f"]
-}, Open  ]]
-}, Open  ]],
+  3.853171989019854*^9}, {3.853679053744432*^9, 3.853679053897645*^9}, {
+  3.8563712696983223`*^9, 
+  3.856371278766849*^9}},ExpressionUUID->"e8759fa5-a487-477b-8e5e-\
+7b9223ad8d0c"],
 
 Cell["Set up run options:", "Text",
  CellChangeTimes->{{3.8529688586235228`*^9, 3.852968861239352*^9}, {
@@ -426,16 +340,15 @@ Cell["Set up run options:", "Text",
 Cell[BoxData[{
  RowBox[{
   RowBox[{"ActiveCellTags", "=", 
-   RowBox[{"{", 
-    RowBox[{"\"\<build\>\"", ",", "\"\<cache\>\""}], "}"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+   RowBox[{"{", "\"\<build\>\"", "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"UnitTests", "=", 
    RowBox[{"{", 
     RowBox[{
     "\"\<CheckOrthogonalityToggle\>\"", ",", "\"\<ShowIrrepsToggle\>\"", ",", 
      "\"\<ProjectionNormalisationsCheckToggle\>\"", ",", 
-     "\"\<ShowIrrepsToggle\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     "\"\<ShowIrrepsToggle\>\"", ",", "\"\<documentation\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PrematureCellTags", "=", 
    RowBox[{"{", 
@@ -546,8 +459,9 @@ Cell[BoxData[{
    3.853170559585513*^9}, {3.853678865611082*^9, 3.853678867344268*^9}, {
    3.855072055544059*^9, 3.8550720630158033`*^9}, {3.855166225683258*^9, 
    3.855166232201021*^9}, {3.8551678874322367`*^9, 3.855167889832632*^9}, {
-   3.856270053121922*^9, 
-   3.8562700553827887`*^9}},ExpressionUUID->"ba635768-7f14-4841-8aec-\
+   3.856270053121922*^9, 3.8562700553827887`*^9}, {3.856370202890411*^9, 
+   3.856370211305882*^9}, {3.8563710787677526`*^9, 
+   3.8563710789195642`*^9}},ExpressionUUID->"ba635768-7f14-4841-8aec-\
 bf8ba09709eb"],
 
 Cell["Define the package functions:", "Text",
@@ -676,20 +590,38 @@ Cell[BoxData[{
            "}"}]}], ",", "\"\< with active CellTags \>\"", ",", 
          "ActiveCellTags", ",", "\"\<.\>\""}], "]"}], ";", 
        "\[IndentingNewLine]", 
-       RowBox[{"NotebookEvaluate", "[", 
+       RowBox[{"(*", 
         RowBox[{
-         RowBox[{"FileNameJoin", "@", 
-          RowBox[{"{", 
-           RowBox[{
-           "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-           "}"}]}], ",", 
-         RowBox[{"EvaluationElements", "\[Rule]", 
-          RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}], ",", 
-         RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";", 
-       "\[IndentingNewLine]", 
+         RowBox[{"NotebookEvaluate", "[", 
+          RowBox[{
+           RowBox[{"FileNameJoin", "@", 
+            RowBox[{"{", 
+             RowBox[{
+             "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"NotebookEvaluate", "[", 
+          RowBox[{
+           RowBox[{"FileNameJoin", "@", 
+            RowBox[{"{", 
+             RowBox[{
+             "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
+             "}"}]}], ",", 
+           RowBox[{"EvaluationElements", "\[Rule]", 
+            RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}], ",", 
+           RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Get", "[", 
+        RowBox[{"FileNameJoin", "@", 
+         RowBox[{"{", 
+          RowBox[{"$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.m\>\""}], 
+          "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<** BuildHiGGS: The context on quitting HiGGS.nb is \>\"", ",", 
+        "\"\<** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",", 
          "$Context", ",", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"(*", 
         RowBox[{
@@ -720,25 +652,20 @@ occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}],
  RowBox[{
   RowBox[{"End", "[", "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"EndPackage", "[", "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
-   "*)"}]}]}], "Input",
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGCQBmIQvS+V5f3nLW8c0za5fQbRcyxEnrhtfeOY0OsHpqNc
-q2Z4AulvjxrAtN0pGSEvIO0zNRRMX7DeFxIOpL3MjkaAaKnXH+JBtJn00WQQ
-ndZyqAZEr3siVwuiIxLC5V23vXG8Z6OgAKLvXGli8gDSOl8F2EG0sYSyIIjm
-WRwFprnKlZVAtICsK5g+o/Z4uh+QVtkdNANEVy8IWAyitStyV4DoLgHX7SDa
-qzz2CIjeoG6h7A+kU87bgmneukxNEP2AJ0cbRP+Y6jUvD0iX/fu7BET3eDmu
-AdHavuabQfS2Ww6HQLRXQNEJEL3rpuBDEL0vz/cXiNbT3vYfRLdolDHkA+kE
-FS5ZEG0jMkUBRD/ucSo5tBPoz5aochB9KfRRI4ju0pvfBKJ/txxw+LbrjeOi
-C52OIDqsekobiG6Y/RtMb3TI6ufdDdTn/AhMAwATyeE1
-  "],
- CellLabel->
-  "In[107]:=",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"]
+1:eJwdz1sog2EAxvG1lIga7UKOY3Ka3CiUQ/to4mtjCdOkLWdyTuYcs9RmckMU
+IZZcSA4zbLW0KEmRlEMS40L5ihKJHN7nvXj6XT0X//Dy5oIqPo/HE5FBZ5XH
+y5uVY6o3st/gTIrwMXuLY7SjeVS1rHsql/jhHqBmHAX7s0T5RBH1NNVZqCKy
+SQclMPD5VQOTgg4qYLXB1QtXH0P7YIlWFSazccxtmkgEb871/Bxi/LvAEyYG
+iP2gz6Ka6q0TR0BBiIx6HPUwmUeMdBRMwZ555SKUdDYuQ5NAtg1ZXdk+XItO
+EecTK0/Sqb79dbHwzqdBAj8n2NkmYsfvjwWaWWYFShTJm9B2LXVBVtl2CO1X
+fvfQ2aT4ggkS2x80xHTwmonaSO8QmCYcF8EHc2a7a5d0GtQ6eFbkHoSmhDk9
+/DbsST/sHLNwamRgcc/4MByY/qauS+vHfB3kl+WmLhRypbXEmpFODdxX6hQt
+xEqvSyWMW0oeaiVaNoeo56pcI7y82DFDudWyAp+6rNR/VGoOCg==
+  
+  "],ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -746,6 +673,7 @@ C52OIDqsekobiG6Y/RtMb3TI6ufdDdTn/AhMAwATyeE1
 AutoGeneratedPackage->Automatic,
 WindowSize->{1440., 770.25},
 WindowMargins->{{0, Automatic}, {Automatic, -790.5}},
+TaggingRules-><|"TryRealOnly" -> False|>,
 FrontEndVersion->"13.0 for Linux x86 (64-bit) (December 2, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"4509d8af-0a15-43d7-a404-426abcd89f34"
@@ -770,16 +698,16 @@ Cell[CellGroupData[{
 Cell[2178, 66, 164, 3, 54, "Subsection",ExpressionUUID->"a1470f91-8827-4be2-99fe-88764a8e956a"],
 Cell[CellGroupData[{
 Cell[2367, 73, 154, 3, 45, "Subsubsection",ExpressionUUID->"a8ffc361-72b6-42aa-b6dd-61cb34e1a946"],
-Cell[2524, 78, 3268, 68, 462, "Input",ExpressionUUID->"0ae9969f-57d8-4f01-b570-ec08f6dd60c2",
+Cell[2524, 78, 3268, 68, 417, "Input",ExpressionUUID->"0ae9969f-57d8-4f01-b570-ec08f6dd60c2",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[5829, 151, 223, 4, 37, "Subsubsection",ExpressionUUID->"1089a2e0-a024-4bc1-aab5-e55cbfa034ec"],
-Cell[6055, 157, 689, 32, 522, "Input",ExpressionUUID->"a6b814a1-b722-4bc4-bba9-24ee9c6fd016",
+Cell[5829, 151, 223, 4, 45, "Subsubsection",ExpressionUUID->"1089a2e0-a024-4bc1-aab5-e55cbfa034ec"],
+Cell[6055, 157, 689, 32, 496, "Input",ExpressionUUID->"a6b814a1-b722-4bc4-bba9-24ee9c6fd016",
  InitializationCell->True]
-}, Closed]],
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[6781, 194, 211, 4, 37, "Subsubsection",ExpressionUUID->"badbfcd7-848f-47b1-98c0-534445fd2823"],
+Cell[6781, 194, 211, 4, 45, "Subsubsection",ExpressionUUID->"badbfcd7-848f-47b1-98c0-534445fd2823"],
 Cell[6995, 200, 183, 3, 35, "Text",ExpressionUUID->"b86168c7-e89b-492b-9bee-4b120e0b7444"],
 Cell[7181, 205, 582, 13, 45, "Input",ExpressionUUID->"77c25d27-2ce0-41ba-b462-edbc7571188f",
  InitializationCell->True],
@@ -787,41 +715,24 @@ Cell[7766, 220, 196, 3, 35, "Text",ExpressionUUID->"5a88bace-e271-41bb-9dea-df6a
 Cell[7965, 225, 312, 8, 45, "Input",ExpressionUUID->"a91a3a17-0644-45a1-9dfe-a4b7dee47013",
  InitializationCell->True],
 Cell[8280, 235, 158, 3, 35, "Text",ExpressionUUID->"bab4f562-c219-41ad-b8ee-40683d357449"],
-Cell[CellGroupData[{
-Cell[8463, 242, 1788, 40, 149, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
+Cell[8441, 240, 1788, 40, 149, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
  InitializationCell->True],
-Cell[CellGroupData[{
-Cell[10276, 286, 585, 13, 23, "Print",ExpressionUUID->"e82d8662-da7a-47e1-bfa0-334c64c2648c"],
-Cell[10864, 301, 337, 6, 23, "Print",ExpressionUUID->"c86d51e5-d713-4a9a-90df-08b98b215b10"],
-Cell[11204, 309, 318, 6, 23, "Print",ExpressionUUID->"fb1c0ec8-c775-4d6f-a7b7-69d729375b47"],
-Cell[11525, 317, 368, 6, 23, "Print",ExpressionUUID->"0d0c0071-ff17-49e2-9a03-faca9a286eb3"],
-Cell[11896, 325, 391, 7, 23, "Print",ExpressionUUID->"fd8cf19f-0d15-431b-a4bc-43cf55c2ad90"],
-Cell[12290, 334, 318, 6, 23, "Print",ExpressionUUID->"3fd68cd1-48b9-412d-80a0-473d69a5098d"]
-}, Open  ]]
-}, Open  ]],
-Cell[12635, 344, 173, 3, 35, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
-Cell[CellGroupData[{
-Cell[12833, 351, 1455, 37, 129, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
+Cell[10232, 282, 173, 3, 35, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
+Cell[10408, 287, 1642, 44, 149, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
  InitializationCell->True],
-Cell[CellGroupData[{
-Cell[14313, 392, 357, 7, 23, "Print",ExpressionUUID->"b01c0850-2d58-40e3-b5e7-8029ac7581ce"],
-Cell[14673, 401, 367, 6, 23, "Print",ExpressionUUID->"efda241a-ad6a-4d37-975d-b5a5def3e767"],
-Cell[15043, 409, 320, 6, 23, "Print",ExpressionUUID->"e52cf9e6-725c-43de-bbf7-cf2e125da77f"]
-}, Open  ]]
-}, Open  ]],
-Cell[15390, 419, 258, 4, 35, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
-Cell[15651, 425, 7356, 125, 170, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
+Cell[12053, 333, 258, 4, 35, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
+Cell[12314, 339, 7449, 125, 170, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
  InitializationCell->True],
-Cell[23010, 552, 171, 3, 35, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
-Cell[23184, 557, 1823, 41, 149, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[19766, 466, 171, 3, 35, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
+Cell[19940, 471, 1823, 41, 149, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
  InitializationCell->True],
-Cell[25010, 600, 159, 3, 35, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
-Cell[25172, 605, 320, 8, 45, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
+Cell[21766, 514, 159, 3, 35, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[21928, 519, 320, 8, 45, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[25529, 618, 209, 4, 45, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[25741, 624, 4996, 116, 479, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[22285, 532, 209, 4, 45, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[22497, 538, 5578, 129, 459, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]

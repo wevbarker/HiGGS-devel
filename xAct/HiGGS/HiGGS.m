@@ -93,6 +93,7 @@ Print[xAct`xCore`Private`bars];
 
 (* ::Input::Initialization:: *)
 Print["The notebook directory is "<>NotebookDirectory[]];
+(*This needed for developer version*)
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
 $HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};
@@ -100,8 +101,8 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-ActiveCellTags={"build","cache"};
-UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle"};
+ActiveCellTags={"build"};
+UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle","documentation"};
 PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
 BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle","GeneralComplementsToggle","CDPiPToCDPiPO3","NesterFormIfConstraints","VelocityToggle"};
 BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
@@ -130,8 +131,10 @@ $PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"P
 PriorMemory=MemoryInUse[];
 Print["** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
 Print["** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
-NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements->"Tags"->ActiveCellTags,InsertResults->False];
-Print["** BuildHiGGS: The context on quitting HiGGS.nb is ",$Context,"."];
+(*NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},InsertResults\[Rule]False];*)
+(*NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements\[Rule]"Tags"->ActiveCellTags,InsertResults\[Rule]False];*)
+Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.m"}];
+Print["** BuildHiGGS: The context on quitting HiGGS.m is ",$Context,"."];
 (*Purge all cells created during build process*)
 Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
@@ -141,6 +144,3 @@ Print["** BuildHiGGS: The HiGGS environment is now ready to use and is occupying
 
 End[];
 EndPackage[];
-(*
-Quit[];
-*)
