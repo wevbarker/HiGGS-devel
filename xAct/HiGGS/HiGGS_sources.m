@@ -24,9 +24,6 @@
 $PrintCellsBeforeBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 (*Purge all print cells produced since notebook starts to run*)
 ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
-(*
-AppendTo[$Path,NotebookDirectory[]];
-*)
 (*This setup works for CellTags*)
 DirectoryEnvironment[]:=Module[{RelevantTag,CurrentCell},
 CurrentCell=EvaluationCell[];
