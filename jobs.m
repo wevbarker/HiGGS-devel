@@ -41,6 +41,7 @@ EndTime=AbsoluteTime[];
 TotTime=EndTime-StartTime;
 (*save to mx cache*)
 DumpSave[FileNameJoin@{Directory[],"bin","results-"<>ToString@x<>".mx"},{TotTime,TensorsList}];
+Quit[];
 ];
 (*Make sure the BatchJob function is distributed over all parallel kernels*)
 DistributeDefinitions[BatchJob];
