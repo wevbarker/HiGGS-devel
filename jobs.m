@@ -29,8 +29,6 @@ TheoryList={{"simple_spin_1+",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,B
 BatchJob[x_]:=Module[{},
 (*Start timing*)
 StartTime=AbsoluteTime[];
-
-(*
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -39,8 +37,6 @@ DefTheory[x[[2]]];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]],PoissonBracket[$IfConstraints[[ii]],IndIfConstraints[[jj]]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
-*)
-
 (*Finish timing*)
 EndTime=AbsoluteTime[];
 TotTime=EndTime-StartTime;
