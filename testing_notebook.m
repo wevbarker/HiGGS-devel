@@ -28,14 +28,16 @@ Needs["xAct`HiGGS`"];
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory[{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}];
-Print[$IfConstraints]
-Quit[];
+
 (*List of constraints with fresh indices for PBs*)
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 
 (*Evaluate lots of Poisson brackets*)
 PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]],PoissonBracket[$IfConstraints[[ii]],IndIfConstraints[[jj]]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]
 
+Print[PrimaryPoissonMatrix]
+Print[IndIfConstraints]
+Print[$IfConstraints]
 (*Evaluate some velocities*)
 (*
 Vel=Velocity[PhiB0p[]];
