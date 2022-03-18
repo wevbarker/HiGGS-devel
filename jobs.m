@@ -45,8 +45,10 @@ DefTheory[x[[2]]];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]],PoissonBracket[$IfConstraints[[ii]],IndIfConstraints[[jj]]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+(*New indices again*)
+IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
-Velocities=(Velocity@#)&/@$IfConstraints;
+Velocities=(Velocity@#)&/@IndIfConstraints2;
 (*extend constraints*)
 $IfConstraints=$IfConstraints~Join~Velocities;
 (*List of constraints with fresh indices for PBs*)
