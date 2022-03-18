@@ -40,7 +40,7 @@ TensorsList=$Tensors;
 EndTime=AbsoluteTime[];
 TotTime=EndTime-StartTime;
 (*save to mx cache*)
-DumpSave[FileNameJoin@{Directory[],ToString@x<>"tests.mx"},{TotTime,TensorsList}];
+DumpSave[FileNameJoin@{Directory[],"bin","results-"<>ToString@x<>".mx"},{TotTime,TensorsList}];
 ];
 (*Make sure the BatchJob function is distributed over all parallel kernels*)
 DistributeDefinitions[BatchJob];
@@ -51,7 +51,8 @@ ParallelNeeds["xAct`HiGGS`"];
 (*Off we go...*)
 LaunchKernels[];
 (*Submit to the queue*)
-Jobs=Table[ParallelSubmit@BatchJob[ii],{ii,20}];
+JobLabels=Table[ii,{ii,20}]
+Jobs=(ParallelSubmit@BatchJob@#)&/@Labels
 (*{ParallelSubmit@BatchJob["firstjob"],ParallelSubmit@BatchJob["secondjob"],ParallelSubmit@BatchJob["thirdjob"]};*)
 (*Do the work*)
 WaitAll[Jobs];
