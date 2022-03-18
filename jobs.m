@@ -51,8 +51,8 @@ ParallelNeeds["xAct`HiGGS`"];
 (*Off we go...*)
 LaunchKernels[];
 (*Submit to the queue*)
-JobLabels=Table[ii,{ii,20}]
-Jobs=(ParallelSubmit@BatchJob@#)&/@Labels
+JobLabels=Table[ii,{ii,20}];
+Jobs=(ParallelSubmit@BatchJob@#)&/@JobLabels;
 (*{ParallelSubmit@BatchJob["firstjob"],ParallelSubmit@BatchJob["secondjob"],ParallelSubmit@BatchJob["thirdjob"]};*)
 (*Do the work*)
 WaitAll[Jobs];
