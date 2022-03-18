@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8373,        210]
-NotebookOptionsPosition[      7792,        190]
-NotebookOutlinePosition[      8268,        208]
-CellTagsIndexPosition[      8225,        205]
+NotebookDataLength[      8496,        212]
+NotebookOptionsPosition[      7915,        192]
+NotebookOutlinePosition[      8391,        210]
+CellTagsIndexPosition[      8348,        207]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -67,7 +67,8 @@ Cell[BoxData[
        RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
        RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
        RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], "]"}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "$IfConstraints", "]"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
@@ -184,7 +185,8 @@ Cell[BoxData[
    3.856549677197238*^9}, {3.856550750202263*^9, 3.856550754237236*^9}, {
    3.856584484801955*^9, 3.856584543913227*^9}, {3.856584817941999*^9, 
    3.856584869979888*^9}, 3.856585073668594*^9, {3.85658620385732*^9, 
-   3.856586205956044*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.856586205956044*^9}, {3.856588920521818*^9, 3.856588921557769*^9}, 
+   3.856588960476514*^9},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -209,7 +211,7 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 165, 3, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
-Cell[748, 27, 7028, 160, 644, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[748, 27, 7151, 162, 644, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
