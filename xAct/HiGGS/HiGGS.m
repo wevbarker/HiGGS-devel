@@ -94,7 +94,7 @@ Print[xAct`xCore`Private`bars];
 (* ::Input::Initialization:: *)
 (*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
 Print["The working directory is "<>Directory[]];
-AppendTo[$Path,Directory[]];
+$Path~AppendTo~Directory[];
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
 (*This needed for developer version*)
