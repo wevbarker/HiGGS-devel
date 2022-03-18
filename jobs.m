@@ -49,7 +49,7 @@ TotTime=EndTime-StartTime;
 (*save to mx cache*)
 DumpSave[FileNameJoin@{Directory[],"bin","results-"<>ToString@x[[1]]<>".mx"},{TotTime,PrimaryPoissonMatrix}];
 (*It is very important to kill each kernel after the evaluation, otherwise it blocks the queue!*)
-Quit[];
+(*Quit[];*)
 ];
 (*Make sure the BatchJob function is distributed over all parallel kernels*)
 DistributeDefinitions[BatchJob];
