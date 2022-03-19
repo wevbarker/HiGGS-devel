@@ -38,9 +38,12 @@ BuildHiGGS[];
 DefTheory[{Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0},"Export"->"MyTheory"];
 *)
 (**)
-DefTheory[,"Import"->"MyTheory"];
-(**)
+DefTheory["Import"->"MyTheory"];
+(*
 PoissonBracket[PhiB0p[],PhiB2p[-i,-j]];
+*)
+(**)
+PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True];
 (**)
 Quit[];
 
