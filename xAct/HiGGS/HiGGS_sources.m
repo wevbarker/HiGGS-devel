@@ -650,6 +650,8 @@ CollapseJ2=MakeRule[{J[]Ji[]^2,Ji[]},MetricOn->All,ContractMetrics->True];
 CollapseJ3=MakeRule[{J[]^2Ji[],J[]},MetricOn->All,ContractMetrics->True];
 CollapseJ=Join[CollapseJ1,CollapseJ2,CollapseJ3];
 
+JiToJ=MakeRule[{Ji[],1/J[]},MetricOn->All,ContractMetrics->True];
+
 APiSymb="\!\(\*SubscriptBox[\(\[Pi]\), \(\[ScriptCapitalA]\)]\)";
 DefTensor[APi[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APiSymb]];
 DeclareOrder[APi[-a,-b,-c],1,"IsUnityWithEHTerm"->True];
@@ -3253,8 +3255,8 @@ res=res/.StrengthLambdaPerpToStrengthLambdaPerpO3;
 res=res//ToNewCanonical;
 res=res/.PiPToPiPO3;
 res=res//ToNewCanonical;
-(*If[OptionValue["ToShell"],res=res/.ManualA2m];
-*)res=ToOrderCanonical[res,OptionValue["Order"]];
+(**)If[OptionValue["ToShell"],res=res/.ManualA2m];
+(**)res=ToOrderCanonical[res,OptionValue["Order"]];
 NotebookDelete[printer];
 res];
 ClearBuild[];
@@ -3422,6 +3424,8 @@ res=res//CollapseA;
 If[OptionValue["GToFoliG"],res=res/.GToFoliG];
 res=res//ToNewCanonical;
 res=res/.CollapseJ;
+(*Adding this*)
+res=res/.JiToJ;
 res=ToOrderCanonical[res,OptionValue["Order"]];
 (*res=res//ToNewCanonical;*)
 NotebookDelete[printer];
