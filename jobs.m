@@ -34,8 +34,9 @@ TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[E
 
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(**)
+DefTheory[{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0},"Cache"->"MyTheory"];
 (*
-DefTheory[{Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0},"Cache"->"MyTheory"];
 PoissonBracket[PhiB0p[],PhiB0p[]];
 *)
 Quit[];
