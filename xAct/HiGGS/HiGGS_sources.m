@@ -4673,9 +4673,14 @@ res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((Lis
 res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-Options[DefTheory]={"Cache"->False,"Import"->False};
+Options[DefTheory]={"Export"->False,"Import"->False};
 DefTheory[InputSystem_:Null,OptionsPattern[]]:=Catch@Module[{res},
-If[!OptionValue@"Import",
+If[StringQ@OptionValue@"Import",
+Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
+Check[ToExpression["<<"<>BinaryLocation@RelevantTag<>";"],
+Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
+Quit[];
+];,
 (*check if a real theory was provided*)
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 (*define the theory constant in Global`*)
@@ -4693,16 +4698,11 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];,
-Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
-Check[ToExpression["<<"<>BinaryLocation@RelevantTag<>";"],
-Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
-Quit[];
+DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 ];
-];
-If[!OptionValue@"Cache",,
-Print[" ** DefTheory: Caching the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"}];
-(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"})~DumpSave~{$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
+If[StringQ@OptionValue@"Export",
+Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
 ];
 ];
 ClearBuild[];
