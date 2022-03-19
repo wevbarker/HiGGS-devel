@@ -4700,8 +4700,7 @@ Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@Op
 Quit[];
 ];
 ];
-If[!OptionValue@"Cache",
-,
+If[!OptionValue@"Cache",,
 Print[" ** DefTheory: Caching the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"})~DumpSave~{$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
 ];
