@@ -4687,7 +4687,7 @@ Options[DefTheory]={"Export"->False,"Import"->False};
 DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
 If[StringQ@OptionValue@"Import",
 Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
-Check[ToExpression["<<"<>BinaryLocation@RelevantTag<>";"],
+Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
 ];,
