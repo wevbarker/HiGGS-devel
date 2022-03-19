@@ -42,10 +42,23 @@ DefTheory["Import"->"MyTheory"];
 (*
 PoissonBracket[PhiB0p[],PhiB2p[-i,-j]];
 *)
-(**)
-PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True];
-Print["updated"]
-(**)
+
+(*Make sure all other Mathematica kernels are dead*)
+(*CloseKernels[];*)
+(*Specify to load HiGGS in all new kernels*)
+ParallelNeeds["xAct`HiGGS`"];
+(*Off we go...*)
+(*LaunchKernels[];*)
+(*Submit to the queue*)
+Jobs=(ParallelSubmit@#)&/@{PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]};
+(*{ParallelSubmit@BatchJob["firstjob"],ParallelSubmit@BatchJob["secondjob"],ParallelSubmit@BatchJob["thirdjob"]};*)
+(*Do the work*)
+WaitAll[Jobs];
+(*Make sure all kernerls are dead again*)
+(*CloseKernels[];*)
+(*what are the kernels*)
+Print@Kernels[];
+(*kill this kernel too*)
 Quit[];
 
 TheoryList={{"simple_spin_2-",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},{"simple_spin_0-2-_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},

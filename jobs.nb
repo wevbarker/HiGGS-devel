@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34864,        772]
-NotebookOptionsPosition[     34191,        751]
-NotebookOutlinePosition[     34667,        769]
-CellTagsIndexPosition[     34624,        766]
+NotebookDataLength[     37195,        832]
+NotebookOptionsPosition[     36522,        811]
+NotebookOutlinePosition[     36998,        829]
+CellTagsIndexPosition[     36955,        826]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -310,20 +310,79 @@ Cell[BoxData[
         RowBox[{
          RowBox[{"-", "i"}], ",", 
          RowBox[{"-", "j"}]}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
-    "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Make", " ", "sure", " ", "all", " ", "other", " ", "Mathematica", " ", 
+     "kernels", " ", "are", " ", "dead"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"CloseKernels", "[", "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Specify", " ", "to", " ", "load", " ", "HiGGS", " ", "in", " ", "all", 
+     " ", "new", " ", "kernels"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"PoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiB2p", "[", 
-       RowBox[{
-        RowBox[{"-", "i"}], ",", 
-        RowBox[{"-", "j"}]}], "]"}], ",", 
-      RowBox[{"\"\<Parallel\>\"", "->", "True"}]}], "]"}], ";"}], 
+    RowBox[{"ParallelNeeds", "[", "\"\<xAct`HiGGS`\>\"", "]"}], ";"}], 
    "\[IndentingNewLine]", 
-   RowBox[{"Print", "[", "\"\<updated\>\"", "]"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Off", " ", "we", " ", "go"}], "..."}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"LaunchKernels", "[", "]"}], ";"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Submit", " ", "to", " ", "the", " ", "queue"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Jobs", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"ParallelSubmit", "@", "#"}], ")"}], "&"}], "/@", 
+      RowBox[{"{", 
+       RowBox[{"PoissonBracket", "[", 
+        RowBox[{
+         RowBox[{"PhiB0p", "[", "]"}], ",", 
+         RowBox[{"PhiB2p", "[", 
+          RowBox[{
+           RowBox[{"-", "i"}], ",", 
+           RowBox[{"-", "j"}]}], "]"}], ",", 
+         RowBox[{"\"\<Parallel\>\"", "->", "True"}]}], "]"}], "}"}]}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ParallelSubmit", "@", 
+        RowBox[{"BatchJob", "[", "\"\<firstjob\>\"", "]"}]}], ",", 
+       RowBox[{"ParallelSubmit", "@", 
+        RowBox[{"BatchJob", "[", "\"\<secondjob\>\"", "]"}]}], ",", 
+       RowBox[{"ParallelSubmit", "@", 
+        RowBox[{"BatchJob", "[", "\"\<thirdjob\>\"", "]"}]}]}], "}"}], ";"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Do", " ", "the", " ", "work"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"WaitAll", "[", "Jobs", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Make", " ", "sure", " ", "all", " ", "kernerls", " ", "are", " ", "dead",
+      " ", "again"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"CloseKernels", "[", "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"what", " ", "are", " ", "the", " ", "kernels"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "@", 
+     RowBox[{"Kernels", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"kill", " ", "this", " ", "kernel", " ", "too"}], "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
@@ -744,8 +803,9 @@ Cell[BoxData[
    3.8567026639724407`*^9}, {3.856702933353261*^9, 3.856702937571703*^9}, {
    3.856702969037169*^9, 3.8567029816901608`*^9}, {3.856703272825307*^9, 
    3.8567032770478907`*^9}, {3.856703434516992*^9, 3.856703449079845*^9}, {
-   3.856703764231814*^9, 
-   3.856703769679906*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.856703764231814*^9, 3.856703769679906*^9}, {3.85670523350788*^9, 
+   3.856705255121399*^9}, {3.856705300802005*^9, 3.8567053440432377`*^9}, 
+   3.8567053835308113`*^9},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -771,7 +831,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 33192, 716, 2129, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 35523, 776, 2397, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }

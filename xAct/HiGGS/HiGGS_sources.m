@@ -3944,6 +3944,8 @@ Print[{f1x,f2x}," = ",res];
 ];
 ];
 res];
+DistributeDefinitions[PoissonBracket];
+ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
