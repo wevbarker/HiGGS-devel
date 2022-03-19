@@ -3803,7 +3803,16 @@ Scan[(res=res+A[#,-dummy,ind]ReplaceIndex[Evaluate[expr],#->dummy])&,UpperInds];
 res=res//ToNewCanonical;
 res];
 
-Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True};
+Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
+
+PoissonBracket[f1x_,f2x_,options___?((OptionQ&&#~MemberQ~("Parallel"->True))&)]:=Module[{},
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+(*Evaluate the Poisson bracket*)
+PoissonBracket[f1x,f2x,options~Complement~("Parallel"->True)]];
+
 PoissonBracket[f1x_,f2x_,OptionsPattern[]]:=Catch@Module[{sur,sur1,sur2,res,ris,f1,f2,f1a,f2a,f1b,f2b,nf1,nf2,NonVanishing,final,failtrue,BracketForm,BracketAnsatzFull,BracketAnsatz,BracketSolution,AnsatzSolutions,difference,ret,test,Variationalf1B,Variationalf2B,Variationalf1A,Variationalf2A,Variationalf1BPi,Variationalf2BPi,Variationalf1APi,Variationalf2APi,Partialf1B,Partialf2B,Partialf1A,Partialf2A,Partialf1BPi,Partialf2BPi,Partialf1APi,Partialf2APi,Partialf1DBz,Partialf2DBz,Partialf1DAz,Partialf2DAz,Partialf1DBPiz,Partialf2DBPiz,Partialf1DAPiz,Partialf2DAPiz,Partialf1DBv,Partialf2DBv,Partialf1DAv,Partialf2DAv,Partialf1DBPiv,Partialf2DBPiv,Partialf1DAPiv,Partialf2DAPiv,BarPartialf1B,BarPartialf2B,BarPartialf1A,BarPartialf2A,BarPartialf1BPi,BarPartialf2BPi,BarPartialf1APi,BarPartialf2APi,BarVariationalf1B,BarVariationalf2B,BarVariationalf1A,BarVariationalf2A,BarVariationalf1BPi,BarVariationalf2BPi,BarVariationalf1APi,BarVariationalf2APi,DeltaDelta,DDeltaDelta,DeltaDDelta,DDeltaDDelta,return,fieldversion,momentafail,ras,D0Term,D1Term,D2Term,D0TermPrimitive,SecondIndices,printer,printer2,printer3},
 (*a message*)
 printer={};
@@ -4663,19 +4672,18 @@ res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((Lis
 ];
 res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
-DefTheory[InputSystem_]:=Catch@Module[{res},
+DefTheory::nobin="The binary at `1` cannot be found; quitting.";
+Options[DefTheory]={"Cache"->False,"Import"->False};
+DefTheory[InputSystem_:Null]:=Catch@Module[{res},
+If[!OptionValue@"Import",
 (*check if a real theory was provided*)
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
-
 (*define the theory constant in Global`*)
 $Theory=InputSystem;
-
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$ToTheory for the theory",""}];
-
 (*these are rules we can always use to impose the theory*)
 $ToTheory=Quiet[Solve[InputSystem,Join[cAlp,cBet,{Alp0},Alp,Bet]][[1]]];
-
 (*these functions do all the hard work*)
 ComputeShellFreedoms[$ToTheory,$Theory];
 DefFieldStrengthShell[$ToShellFreedoms,$Theory];
@@ -4685,7 +4693,18 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
+DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];,
+Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
+Check[ToExpression["<<"<>BinaryLocation@RelevantTag<>";"],
+Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
+Quit[];
+];
+];
+If[!OptionValue@"Cache",
+,
+Print[" ** DefTheory: Caching the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Cache"<>"DefTheory.mx"})~DumpSave~{$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
+];
 ];
 ClearBuild[];
 
