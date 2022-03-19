@@ -3805,7 +3805,7 @@ res];
 
 Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
 
-PoissonBracket[f1x_,f2x_,options__?((OptionQ&&{#}~MemberQ~("Parallel"->True))&)]:=Module[{},
+PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4432,7 +4432,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 Options[Velocity]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True,"Parallel"->False};
 
-Velocity[Psi_,options__?((OptionQ&&{#}~MemberQ~("Parallel"->True))&)]:=Module[{},
+Velocity[Psi_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
