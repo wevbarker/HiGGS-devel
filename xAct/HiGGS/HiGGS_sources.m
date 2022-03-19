@@ -4445,10 +4445,10 @@ Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFr
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** Velocity of ",Psi," with options ",Options[Velocity],"..."];
-
-(*We don't want our theory-defining rules to have unintended side-effects... so we only keep zeros which pop out of the initial rules.*)
+(*
+(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&;
+*)
 KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
-
 (*We fix EH0 legacy*)
 Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,EH0=0,1,EH0=1];
 
