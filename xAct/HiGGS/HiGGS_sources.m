@@ -84,11 +84,11 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*Probably a better place to put this at the top*)
-AbsoluteTime[]>>FileNameJoin@{$WorkingDirectory,"record"};
+Put[AbsoluteTime[],FileNameJoin@{$WorkingDirectory,"record"}];
 ToNewCanonical[x_]:=Module[{temp,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
-AbsoluteTime[]>>>FileNameJoin@{$WorkingDirectory,"record"};
+PutAppend[AbsoluteTime[],FileNameJoin@{$WorkingDirectory,"record"}];
 temp=x;
 temp=temp//ToCanonical;
 temp=temp//ContractMetric;
