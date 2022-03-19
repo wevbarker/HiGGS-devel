@@ -51,7 +51,7 @@ ParallelNeeds["xAct`HiGGS`"];
 (*LaunchKernels[];*)
 (*Submit to the queue*)
 BracketList=Hold@{PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
-Jobs=(ParallelSubmit@#)&/@BracketList;
+Jobs=(ParallelSubmit@Evaluate@#)&/@BracketList;
 (*{ParallelSubmit@BatchJob["firstjob"],ParallelSubmit@BatchJob["secondjob"],ParallelSubmit@BatchJob["thirdjob"]};*)
 (*Do the work*)
 WaitAll[Jobs];
