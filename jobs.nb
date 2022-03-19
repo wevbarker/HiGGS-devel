@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     37305,        835]
-NotebookOptionsPosition[     36632,        814]
-NotebookOutlinePosition[     37108,        832]
-CellTagsIndexPosition[     37065,        829]
+NotebookDataLength[     37392,        837]
+NotebookOptionsPosition[     36719,        816]
+NotebookOutlinePosition[     37195,        834]
+CellTagsIndexPosition[     37152,        831]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -337,15 +337,16 @@ Cell[BoxData[
     RowBox[{"Submit", " ", "to", " ", "the", " ", "queue"}], "*)"}], 
    "\[IndentingNewLine]", 
    RowBox[{"BracketList", "=", 
-    RowBox[{"{", 
-     RowBox[{"PoissonBracket", "[", 
-      RowBox[{
-       RowBox[{"PhiB0p", "[", "]"}], ",", 
-       RowBox[{"PhiB2p", "[", 
-        RowBox[{
-         RowBox[{"-", "i"}], ",", 
-         RowBox[{"-", "j"}]}], "]"}], ",", 
-       RowBox[{"\"\<Parallel\>\"", "->", "True"}]}], "]"}], "}"}]}], 
+    RowBox[{"Hold", "@", 
+     RowBox[{"{", 
+      RowBox[{"PoissonBracket", "[", 
+       RowBox[{
+        RowBox[{"PhiB0p", "[", "]"}], ",", 
+        RowBox[{"PhiB2p", "[", 
+         RowBox[{
+          RowBox[{"-", "i"}], ",", 
+          RowBox[{"-", "j"}]}], "]"}], ",", 
+        RowBox[{"\"\<Parallel\>\"", "->", "True"}]}], "]"}], "}"}]}]}], 
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Jobs", "=", 
@@ -807,8 +808,9 @@ Cell[BoxData[
    3.8567032770478907`*^9}, {3.856703434516992*^9, 3.856703449079845*^9}, {
    3.856703764231814*^9, 3.856703769679906*^9}, {3.85670523350788*^9, 
    3.856705255121399*^9}, {3.856705300802005*^9, 3.8567053440432377`*^9}, 
-   3.8567053835308113`*^9, {3.856716776053294*^9, 
-   3.856716798617839*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.8567053835308113`*^9, {3.856716776053294*^9, 3.856716798617839*^9}, {
+   3.856717296675805*^9, 
+   3.856717300454899*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -834,7 +836,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 35633, 779, 2418, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 35720, 781, 2418, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
