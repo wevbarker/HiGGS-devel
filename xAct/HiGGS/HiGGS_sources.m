@@ -3805,7 +3805,7 @@ res];
 
 Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
 
-PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Module[{},
+PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Catch@Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4716,6 +4716,7 @@ DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Export";
+DistributeDefinitions@$TheoryName;
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
 ];
 ];

@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     33452,        788]
-NotebookOptionsPosition[     30077,        718]
-NotebookOutlinePosition[     30553,        736]
-CellTagsIndexPosition[     30510,        733]
+NotebookDataLength[     33470,        788]
+NotebookOptionsPosition[     30095,        718]
+NotebookOutlinePosition[     30571,        736]
+CellTagsIndexPosition[     30528,        733]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -619,7 +619,7 @@ Cell[BoxData[{
         RowBox[{"MemoryInUse", "[", "]"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<** BuildHiGGS: RAM used by kernel \>\"", ",", "$KernelID", ",", 
+        "\"\< ** BuildHiGGS: RAM used by kernel \>\"", ",", "$KernelID", ",", 
          "\"\< is \>\"", ",", 
          RowBox[{"Dynamic", "[", 
           RowBox[{"Refresh", "[", 
@@ -628,7 +628,7 @@ Cell[BoxData[{
             RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}], "]"}], ",", 
          "\"\< bytes.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
-        RowBox[{"\"\<** BuildHiGGS: Building session from \>\"", ",", 
+        RowBox[{"\"\< ** BuildHiGGS: Building session from \>\"", ",", 
          RowBox[{"FileNameJoin", "@", 
           RowBox[{"{", 
            RowBox[{
@@ -667,7 +667,7 @@ Cell[BoxData[{
           "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",", 
+        "\"\< ** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",", 
          "$Context", ",", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"(*", 
         RowBox[{
@@ -691,7 +691,7 @@ Cell[BoxData[{
        ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
         RowBox[{
-        "\"\<** BuildHiGGS: The HiGGS environment is now ready to use and is \
+        "\"\< ** BuildHiGGS: The HiGGS environment is now ready to use and is \
 occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}], 
        ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
@@ -701,16 +701,16 @@ occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}],
   RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJwdz1sog2EAxvG1lIga7UKOY3Ka3CiUQ/to4mtjCdOkLWdyTuYcs9RmckMU
-IZZcSA4zbLW0KEmRlEMS40L5ihKJHN7nvXj6XT0X//Dy5oIqPo/HE5FBZ5XH
-y5uVY6o3st/gTIrwMXuLY7SjeVS1rHsql/jhHqBmHAX7s0T5RBH1NNVZqCKy
-SQclMPD5VQOTgg4qYLXB1QtXH0P7YIlWFSazccxtmkgEb871/Bxi/LvAEyYG
-iP2gz6Ka6q0TR0BBiIx6HPUwmUeMdBRMwZ555SKUdDYuQ5NAtg1ZXdk+XItO
-EecTK0/Sqb79dbHwzqdBAj8n2NkmYsfvjwWaWWYFShTJm9B2LXVBVtl2CO1X
-fvfQ2aT4ggkS2x80xHTwmonaSO8QmCYcF8EHc2a7a5d0GtQ6eFbkHoSmhDk9
-/DbsST/sHLNwamRgcc/4MByY/qauS+vHfB3kl+WmLhRypbXEmpFODdxX6hQt
-xEqvSyWMW0oeaiVaNoeo56pcI7y82DFDudWyAp+6rNR/VGoOCg==
-  
+1:eJwd0Fsog3EABfCRElEjDzKXMblNXhTKpX008WUst61Jlju5J3PPZSlMXogi
+xJIHCZu5TEuLkhRJuSQxHshXlEju//N/OP2ezsM5/oW1mSX2PB7PnwRaShye
+X40cU7qa/AonYzzuk9c4Rj2UTlVJW8dTie+2LmrCgbc7S0wbzaEex1qyFUQ2
+ak8JvZ5eCmCUYK8Ilmqt7XDp3rcDKtUKP6mJY67jhEJ4ddpjn0IMf+M7wkhP
+kRt0mVNRnTWiAMj3kVIPg+7G0omB5sxx2DYjn4Pi5uoFOMCXrkNWk78Ll4Nj
+RBnE4qN4qmtnRSi8cakSw49RdqqG2PT7o4c6llmEYlm0AZouJVbIyhv24daF
+2y201Mg+YYTY9Ae1IU28WqI60NkHxnmMCOGdLrHRukl2alUaeJJj64YDEdM9
+8Eu7I3nf4pjZ434G5raN9MGuiS/qiqRy2NVMekk26mw2l1dOLBtsLoC7co2s
+jljsdC6HYfPRvfVEvaGXeqpI7YfnZxs6mGbUL8KHFiP1O2tNINgmP9k9esN/
+fC4V6A==
   "],ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"]
 }, Open  ]]
 }, Open  ]]
@@ -778,7 +778,7 @@ Cell[23890, 565, 320, 8, 45, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[24247, 578, 209, 4, 45, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[24459, 584, 5578, 129, 459, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[24459, 584, 5596, 129, 459, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]
