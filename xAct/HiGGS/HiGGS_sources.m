@@ -87,6 +87,7 @@ ClearBuild[];
 ToNewCanonical[x_]:=Module[{temp,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
+AbsoluteTime[]>>>FileNameJoin@{$WorkingDirectory,"record"};
 temp=x;
 temp=temp//ToCanonical;
 temp=temp//ContractMetric;
