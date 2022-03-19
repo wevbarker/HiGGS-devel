@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     32913,        732]
-NotebookOptionsPosition[     32240,        711]
-NotebookOutlinePosition[     32716,        729]
-CellTagsIndexPosition[     32673,        726]
+NotebookDataLength[     33116,        737]
+NotebookOptionsPosition[     32443,        716]
+NotebookOutlinePosition[     32919,        734]
+CellTagsIndexPosition[     32876,        731]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -265,7 +265,12 @@ Cell[BoxData[
             RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
             RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}]}], "}"}]}], 
      ";"}], "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Build", " ", "the", " ", "HiGGS", " ", "environment"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"BuildHiGGS", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"DefTheory", "[", 
      RowBox[{
@@ -704,8 +709,8 @@ Cell[BoxData[
    3.8566070793089247`*^9}, {3.856607285519328*^9, 3.856607350667756*^9}, {
    3.8566074599074087`*^9, 3.85660763592397*^9}, {3.856615179405943*^9, 
    3.856615210040922*^9}, {3.856630195894566*^9, 3.856630253259329*^9}, {
-   3.8566931344471893`*^9, 
-   3.856693204813795*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.8566931344471893`*^9, 3.856693204813795*^9}, 
+   3.856693305118594*^9},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -731,7 +736,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 31241, 676, 1923, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 31444, 681, 1944, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
