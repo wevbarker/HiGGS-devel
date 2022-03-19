@@ -4690,6 +4690,7 @@ DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
 If[StringQ@OptionValue@"Import",
 Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Import";
+DistributeDefinitions@$TheoryName;
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
