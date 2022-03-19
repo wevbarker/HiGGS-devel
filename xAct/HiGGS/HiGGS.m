@@ -130,8 +130,14 @@ $Theory::usage="The gauge theory as defined by a system of equations which const
 
 (* ::Input::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
-BuildHiGGS[]:=Module[{PriorMemory,UsedMemory},
+(*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
+$HiGGSBuilt=False;
+HiGGS::built="The HiGGS environment has already been built.";
+BuildHiGGS[]:=Catch@Module[{PriorMemory,UsedMemory},
+(*A message*)
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
+(*Check for pre-existing build*)
+If[$HiGGSBuilt,Throw@Message[BuildHiGGS::built]];
 (*List of all print cells in front end before this notebook starts to run*)
 $PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 PriorMemory=MemoryInUse[];
@@ -146,6 +152,7 @@ Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
 NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
 Print[" ** BuildHiGGS: The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
+$HiGGSBuilt=True;
 ];
 
 End[];
