@@ -4674,7 +4674,7 @@ res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 Options[DefTheory]={"Cache"->False,"Import"->False};
-DefTheory[InputSystem_:Null]:=Catch@Module[{res},
+DefTheory[InputSystem_:Null,OptionsPattern[]]:=Catch@Module[{res},
 If[!OptionValue@"Import",
 (*check if a real theory was provided*)
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
