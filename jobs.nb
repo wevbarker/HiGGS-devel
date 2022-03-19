@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     33562,        744]
-NotebookOptionsPosition[     32889,        723]
-NotebookOutlinePosition[     33365,        741]
-CellTagsIndexPosition[     33322,        738]
+NotebookDataLength[     33598,        745]
+NotebookOptionsPosition[     32925,        724]
+NotebookOutlinePosition[     33401,        742]
+CellTagsIndexPosition[     33358,        739]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -296,13 +296,13 @@ Cell[BoxData[
         RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], ",", 
       RowBox[{"\"\<Export\>\"", "->", "\"\<MyTheory\>\""}]}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
-   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"PoissonBracket", "[", 
-     RowBox[{
-      RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"PhiB0p", "[", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"PoissonBracket", "[", 
+      RowBox[{
+       RowBox[{"PhiB0p", "[", "]"}], ",", 
+       RowBox[{"PhiB0p", "[", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+    "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
@@ -716,8 +716,9 @@ Cell[BoxData[
    3.856693563355632*^9, 3.856693567190674*^9}, {3.856693669447075*^9, 
    3.8566936779144287`*^9}, {3.8566938062708397`*^9, 3.856693808318098*^9}, {
    3.8566939398466473`*^9, 3.856693942230942*^9}, {3.856697869620206*^9, 
-   3.856697873773686*^9}, {3.856698360189404*^9, 
-   3.856698371872653*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.856697873773686*^9}, {3.856698360189404*^9, 3.856698371872653*^9}, {
+   3.856700875553402*^9, 
+   3.8567008771913757`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -743,7 +744,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 31890, 688, 2005, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 31926, 689, 2005, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
