@@ -4750,6 +4750,7 @@ For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholderBracketRules=Append[Placeho
 PlaceholderBracketActivate={};
 
 If[OptionValue["Parallel"],
+Print["trying parallel"];
 DistributeDefinitions@PlaceholderBracketRules;
 DistributeDefinitions@EH0;
 DistributeDefinitions@Psi;
