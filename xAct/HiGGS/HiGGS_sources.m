@@ -4438,13 +4438,11 @@ InertMakeRule[Replacement_List]:=MakeRule[Replacement,MetricOn->All,ContractMetr
 
 
 (* ::Input::Initialization:: *)
-RiemannBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+RiemannBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
@@ -4554,13 +4552,11 @@ NotebookDelete[printer];
 
 
 (* ::Input::Initialization:: *)
-TorsionBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+TorsionBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
@@ -4611,13 +4607,11 @@ Print["1"];
 
 
 (* ::Input::Initialization:: *)
-SurfaceBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+SurfaceBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
@@ -4664,13 +4658,11 @@ Print["1"];
 
 
 (* ::Input::Initialization:: *)
-MeasureBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+MeasureBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
@@ -4717,13 +4709,11 @@ Print["1"];
 
 
 (* ::Input::Initialization:: *)
-LapseBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+LapseBracketParallel[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
@@ -4770,13 +4760,11 @@ Print["1"];
 
 
 (* ::Input::Initialization:: *)
-ConstraintBracketParallel[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-If[Parallel,
+ConstraintBracketParallel[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListStringInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-];
 PsiInert=ToString@Psi;
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
 EH0Inert=ToString@EH0;
