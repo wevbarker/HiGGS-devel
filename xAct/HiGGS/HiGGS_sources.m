@@ -4865,7 +4865,9 @@ DistributeDefinitions@PlaceholderBracketRules;
 Print["DistributeDefinitions@EH0;"];
 DistributeDefinitions@EH0;
 Print["DistributeDefinitions@Psi;"];
+(*
 DistributeDefinitions@Psi;
+*)
 Print["Jobs={Pa"];
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@TorsionBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@SurfaceBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@MeasureBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@LapseBracketParallel[Psi,PlaceholderBracketRules,EH0]};
 Print["Phis={Ph"];
