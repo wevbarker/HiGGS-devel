@@ -4445,7 +4445,10 @@ BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 ];
-RiemannBracket[Psi,PlaceholderBracketRules,EH0]];
+PsiInert=ToString@Psi;
+PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
+EH0Inert=ToString@EH0;
+ToExpression@("RiemannBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>"]")];
 
 RiemannBracket[Psi_,PlaceholderBracketRules_,EH0_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 printer={};
