@@ -4752,7 +4752,6 @@ PlaceholderBracketActivate={};
 If[OptionValue["Parallel"],
 DistributeDefinitions@PlaceholderBracketRules;
 DistributeDefinitions@EH0;
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~;
 Jobs={ParallelSubmit@RiemannBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@TorsionBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@SurfaceBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@MeasureBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@LapseBracket[PlaceholderBracketRules,EH0,True]};
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
