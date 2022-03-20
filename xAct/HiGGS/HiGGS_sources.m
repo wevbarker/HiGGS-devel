@@ -4434,38 +4434,16 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Options[Velocity]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True,"Parallel"->False};
-
-Velocity[Psi_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Module[{},
+RiemannBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-(*Evaluate the Poisson bracket*)
-Velocity[Psi,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]
 ];
-
-Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer},
-(*a message*)
 printer={};
-printer=printer~Append~PrintTemporary[" ** Velocity of ",Psi," with options ",Options[Velocity],"..."];
-(*
-(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&;
-*)
-KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
-(*We fix EH0 legacy*)
-Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,EH0=0,1,EH0=1];
-
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Stripping indices..."];
-PsiFreeIndices=FindFreeIndices[Psi];
-PsiFreeIndexList=Developer`ToList[Delete[Map[ToString[#]&,PsiFreeIndices],0]];
-PsiFreeIndexListLength=Length[PsiFreeIndexList];
-PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-PlaceholderBracketRules={};
-For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[ii]]->StringReplace[DeltaList[[ii]],{"-k"->PsiFreeIndexList[[ii]]}]]];
 PlaceholderBracketActivate={};
-(**)
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4501,6 +4479,23 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+TorsionBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
+printer={};
+PlaceholderBracketActivate={};
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Torsion bracket..."];
 Temp=PoissonBracket[Psi,PPara[-g,e]PPara[-h,f]T[-d,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4533,7 +4528,23 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][TDS3[-d,-g,-h,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-(**)
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+SurfaceBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
+printer={};
+PlaceholderBracketActivate={};
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Surface bracket..."];
 Temp=PoissonBracket[Psi,-V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n]),"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4562,7 +4573,23 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][QDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-(**)
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+MeasureBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
+printer={};
+PlaceholderBracketActivate={};
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Measure bracket..."];
 Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4591,6 +4618,23 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+LapseBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
+printer={};
+PlaceholderBracketActivate={};
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Lapse bracket..."];
 Temp=PoissonBracket[Psi,Lapse[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4619,14 +4663,23 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-(**)
-(**)
-Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
-For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
-FreeConstraint=Phis[[ii]];
-PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
-PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
-If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+ConstraintBracket[PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
+printer={};
+PlaceholderBracketActivate={};
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Constraint bracket..."];
 printer=printer~Append~PrintTemporary[FreeConstraint];
 Temp=PoissonBracket[Psi,FreeConstraint,"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4656,8 +4709,78 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][PhiDS3"<>ToString[SectorNames[[ii]]]<>"["<>ToString[PhiFreeIndexListString]<>"-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+NotebookDelete[printer];
+PlaceholderBracketActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+Options[Velocity]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True,"Parallel"->False};
+(*
+Velocity[Psi_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Module[{},
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+(*Evaluate the Poisson bracket*)
+Velocity[Psi,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]
+];
+*)
+Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer,Jobs},
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** Velocity of ",Psi," with options ",Options[Velocity],"..."];
+(*
+(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&;
+*)
+KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
+(*We fix EH0 legacy*)
+Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,EH0=0,1,EH0=1];
+
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Stripping indices..."];
+PsiFreeIndices=FindFreeIndices[Psi];
+PsiFreeIndexList=Developer`ToList[Delete[Map[ToString[#]&,PsiFreeIndices],0]];
+PsiFreeIndexListLength=Length[PsiFreeIndexList];
+PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+PlaceholderBracketRules={};
+For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[ii]]->StringReplace[DeltaList[[ii]],{"-k"->PsiFreeIndexList[[ii]]}]]];
+
+PlaceholderBracketActivate={};
+
+If[OptionValue["Parallel"],
+DistributeDefinitions@PlaceholderBracketRules;
+DistributeDefinitions@EH0;
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~;
+Jobs={ParallelSubmit@RiemannBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@TorsionBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@SurfaceBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@MeasureBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@LapseBracket[PlaceholderBracketRules,EH0,True]};
+Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
+For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+FreeConstraint=Phis[[ii]];
+PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+DistributeDefinitions@FreeConstraint;
+DistributeDefinitions@PhiFreeIndexListString;
+If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
+Jobs=Jobs~Join~ParallelSubmit@ConstraintBracket[PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString,True];
 }]];
-(**)
+WaitAll[Jobs];
+PlaceholderBracketActivate=Flatten@Jobs;,
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~MeasureBracket[PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~LapseBracket[PlaceholderBracketRules,EH0];
+Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
+For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+FreeConstraint=Phis[[ii]];
+PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
+}]];
+];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Imposing commutator replacement rules..."];
 return=Evaluate@OptionValue["InertVelocity"];
 return=return/.PlaceholderBracketActivate;

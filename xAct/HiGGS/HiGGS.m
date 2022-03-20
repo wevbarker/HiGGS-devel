@@ -79,6 +79,10 @@ BeginPackage["xAct`HiGGS`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`","xAct`xT
 
 
 (* ::Input::Initialization:: *)
+ParallelNeeds["xAct`HiGGS`"];
+
+
+(* ::Input::Initialization:: *)
 SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 
 

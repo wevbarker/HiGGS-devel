@@ -34,29 +34,16 @@ TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[E
 
 (*Build the HiGGS environment*)
 BuildHiGGS[];
-(*
-DefTheory[{Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0},"Export"->"MyTheory"];
-*)
 (**)
-DefTheory["Import"->"MyTheory"];
+DefTheory[{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0},"Export"->"MyTheory"];
+(**)
 (*
-PoissonBracket[PhiB0p[],PhiB2p[-i,-j]];
+DefTheory["Import"->"MyTheory"];
 *)
-
-(*Make sure all other Mathematica kernels are dead*)
-(*CloseKernels[];*)
-(*Specify to load HiGGS in all new kernels*)
-ParallelNeeds["xAct`HiGGS`"];
-(*Off we go...*)
-(*LaunchKernels[];*)
-(*Submit to the queue*)
+(*
 Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
-(*{ParallelSubmit@BatchJob["firstjob"],ParallelSubmit@BatchJob["secondjob"],ParallelSubmit@BatchJob["thirdjob"]};*)
-(*Do the work*)
-WaitAll[Jobs];
-(*Make sure all kernerls are dead again*)
-(*CloseKernels[];*)
-(*what are the kernels*)
+*)
+Velocity[PhiB0p[],"Parallel"->False];
 Print@Kernels[];
 (*kill this kernel too*)
 Quit[];
