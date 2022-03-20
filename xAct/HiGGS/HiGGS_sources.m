@@ -4880,7 +4880,9 @@ PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
 Print["PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];"];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
 Print["DistributeDefinitions@FreeConstraint;"];
+(*
 DistributeDefinitions@FreeConstraint;
+*)
 Print["DistributeDefinitions@PhiFreeIndexListString;"];
 DistributeDefinitions@PhiFreeIndexListString;
 Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
