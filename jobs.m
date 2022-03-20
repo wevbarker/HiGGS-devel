@@ -43,7 +43,11 @@ DefTheory["Import"->"MyTheory"];
 (*
 Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
 *)
-Velocity[PhiB0p[],"Parallel"->False];
+(*Start timing*)
+StartTime=AbsoluteTime[];
+Velocity[PhiB0p[],"Parallel"->True];
+EndTime=AbsoluteTime[];
+TotTime=EndTime-StartTime;
 Print@Kernels[];
 (*kill this kernel too*)
 Quit[];
