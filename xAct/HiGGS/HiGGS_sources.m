@@ -4446,6 +4446,7 @@ PlaceholderBracketActivate={};
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
+];
 
 Print["1"];
 DistributeDefinitions[RiemannBracket];
