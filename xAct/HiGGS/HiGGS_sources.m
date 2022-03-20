@@ -4750,22 +4750,35 @@ For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholderBracketRules=Append[Placeho
 PlaceholderBracketActivate={};
 
 If[OptionValue["Parallel"],
-Print["trying parallel"];
+Print["DistributeDefinitions@PlaceholderBracketRules;"];
 DistributeDefinitions@PlaceholderBracketRules;
+Print["DistributeDefinitions@EH0;"];
 DistributeDefinitions@EH0;
+Print["DistributeDefinitions@Psi;"];
 DistributeDefinitions@Psi;
+Print["Jobs={Pa"];
 Jobs={ParallelSubmit@RiemannBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@TorsionBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@SurfaceBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@MeasureBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@LapseBracket[Psi,PlaceholderBracketRules,EH0,True]};
+Print["Phis={Ph"];
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+Print["FreeConstraint=Phis[[ii]];"];
 FreeConstraint=Phis[[ii]];
+Print["PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];"];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
+Print["PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];"];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+Print["DistributeDefinitions@FreeConstraint;"];
 DistributeDefinitions@FreeConstraint;
+Print["DistributeDefinitions@PhiFreeIndexListString;"];
 DistributeDefinitions@PhiFreeIndexListString;
+Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
+Print["Jobs=Jobs~Join~Par"];
 Jobs=Jobs~Join~ParallelSubmit@ConstraintBracket[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString,True];
 }]];
+Print["WaitAll[Jobs];"];
 WaitAll[Jobs];
+Print["done within If[]"];;
 PlaceholderBracketActivate=Flatten@Jobs;,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
