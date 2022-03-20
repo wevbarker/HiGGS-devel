@@ -4482,6 +4482,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@RiemannBracket;
 ClearBuild[];
 
 
@@ -4531,6 +4532,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@TorsionBracket;
 ClearBuild[];
 
 
@@ -4576,6 +4578,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@SurfaceBracket;
 ClearBuild[];
 
 
@@ -4621,6 +4624,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@MeasureBracket;
 ClearBuild[];
 
 
@@ -4666,6 +4670,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@LapseBracket;
 ClearBuild[];
 
 
@@ -4712,6 +4717,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
+DistributeDefinitions@ConstraintBracket;
 ClearBuild[];
 
 
