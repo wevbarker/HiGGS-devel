@@ -4483,7 +4483,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 NotebookDelete[printer];
 PlaceholderBracketActivate];
 Print["1"];
-DistributeDefinitions@RiemannBracket;
+DistributeDefinitions[RiemannBracket];
 ClearBuild[];
 Print["1"];
 
