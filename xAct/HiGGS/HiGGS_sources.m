@@ -4484,6 +4484,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@RiemannBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
@@ -4534,6 +4535,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@TorsionBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
@@ -4580,6 +4582,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@SurfaceBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
@@ -4626,6 +4629,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@MeasureBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
@@ -4672,6 +4676,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@LapseBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
@@ -4719,6 +4724,7 @@ NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@ConstraintBracket;
 ClearBuild[];
+Print["1"];
 
 
 (* ::Input::Initialization:: *)
