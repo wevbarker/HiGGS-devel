@@ -4448,8 +4448,8 @@ printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,ToExpression@"PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f]","ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
 (*
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[Delta](x-Subscript[x, 2]):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RDS1[-g,-h,-i,-j,-x1,-y1,-z1,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RDS1[-g,-h,-i,-j,-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
