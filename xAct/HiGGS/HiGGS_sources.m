@@ -4876,11 +4876,11 @@ DistributeDefinitions@PhiFreeIndexListString;
 Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
 Print["Jobs=Jobs~Join~Par"];
-Jobs=Jobs~Join~ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
-}]];
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
+}}]];
 Print["WaitAll[Jobs];"];
 WaitAll[Jobs];
-Print["done within If[]"];;
+Print["done within If[]"];
 PlaceholderBracketActivate=Flatten@Jobs;,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
