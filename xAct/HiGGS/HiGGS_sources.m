@@ -4512,6 +4512,7 @@ NotebookDelete[printer];
 
 
 (* ::Input::Initialization:: *)
+Quit[];
 TorsionBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
