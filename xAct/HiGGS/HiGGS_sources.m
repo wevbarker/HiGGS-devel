@@ -4825,7 +4825,7 @@ DefTheory["Import"->$TheoryName];
 Velocity[Psi,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]
 ];
 *)
-Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer,Jobs},
+Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer,Jobs,RuleResults},
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** Velocity of ",Psi," with options ",Options[Velocity],"..."];
@@ -4879,9 +4879,9 @@ Print["Jobs=Jobs~Join~Par"];
 Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
 }}]];
 Print["WaitAll[Jobs];"];
-WaitAll[Jobs];
+RuleResults=WaitAll[Jobs];
 Print["done within If[]"];
-PlaceholderBracketActivate=Flatten@Jobs;,
+PlaceholderBracketActivate=Flatten@RuleResults;,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[Psi,PlaceholderBracketRules,EH0];
