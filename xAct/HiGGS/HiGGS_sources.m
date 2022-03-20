@@ -4434,7 +4434,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-RiemannBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+RiemannBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4486,7 +4486,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-TorsionBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+TorsionBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4535,7 +4535,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SurfaceBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+SurfaceBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4580,7 +4580,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-MeasureBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+MeasureBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4625,7 +4625,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-LapseBracket[PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+LapseBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4670,7 +4670,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-ConstraintBracket[PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
+ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4752,7 +4752,8 @@ PlaceholderBracketActivate={};
 If[OptionValue["Parallel"],
 DistributeDefinitions@PlaceholderBracketRules;
 DistributeDefinitions@EH0;
-Jobs={ParallelSubmit@RiemannBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@TorsionBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@SurfaceBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@MeasureBracket[PlaceholderBracketRules,EH0,True],ParallelSubmit@LapseBracket[PlaceholderBracketRules,EH0,True]};
+DistributeDefinitions@Psi;
+Jobs={ParallelSubmit@RiemannBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@TorsionBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@SurfaceBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@MeasureBracket[Psi,PlaceholderBracketRules,EH0,True],ParallelSubmit@LapseBracket[Psi,PlaceholderBracketRules,EH0,True]};
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
 FreeConstraint=Phis[[ii]];
@@ -4761,22 +4762,22 @@ PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("Inde
 DistributeDefinitions@FreeConstraint;
 DistributeDefinitions@PhiFreeIndexListString;
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
-Jobs=Jobs~Join~ParallelSubmit@ConstraintBracket[PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString,True];
+Jobs=Jobs~Join~ParallelSubmit@ConstraintBracket[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString,True];
 }]];
 WaitAll[Jobs];
 PlaceholderBracketActivate=Flatten@Jobs;,
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[PlaceholderBracketRules,EH0];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[PlaceholderBracketRules,EH0];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[PlaceholderBracketRules,EH0];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~MeasureBracket[PlaceholderBracketRules,EH0];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~LapseBracket[PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[Psi,PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~MeasureBracket[Psi,PlaceholderBracketRules,EH0];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~LapseBracket[Psi,PlaceholderBracketRules,EH0];
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
 FreeConstraint=Phis[[ii]];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
 }]];
 ];
 
