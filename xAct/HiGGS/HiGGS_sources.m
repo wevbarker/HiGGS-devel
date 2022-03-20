@@ -4881,7 +4881,9 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketR
 Print["WaitAll[Jobs];"];
 RuleResults=WaitAll[Jobs];
 Print["done within If[]"];
-PlaceholderBracketActivate=Flatten@RuleResults;,
+PlaceholderBracketActivate=Flatten@RuleResults;
+Print[PlaceholderBracketActivate];
+Quit[];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[Psi,PlaceholderBracketRules,EH0];
