@@ -4435,7 +4435,12 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 RiemannBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
-
+If[Parallel,
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+];
 PlaceholderBracketActivate];
 Print["1"];
 DistributeDefinitions[RiemannBracket];
