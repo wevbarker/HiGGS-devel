@@ -4434,6 +4434,10 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+InertMakeRule[Replacement_List,Options___]:=MakeRule[Replacement,Options];
+
+
+(* ::Input::Initialization:: *)
 RiemannBracket[Psi_,PlaceholderBracketRules_,EH0_,Parallel_:False]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 If[Parallel,
 (*Build the HiGGS environment*)
@@ -4448,7 +4452,7 @@ printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,ToExpression@"PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f]","ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,InertMakeRule[{Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
 (*
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[Delta](x-Subscript[x, 2]):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RDS1[-g,-h,-i,-j,-x1,-y1,-z1,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
