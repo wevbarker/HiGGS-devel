@@ -4760,7 +4760,7 @@ Print["1"];
 
 
 (* ::Input::Initialization:: *)
-ConstraintBracketParallel[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraintString_,PhiFreeIndexList_,ii_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListInert,iiInert},
+ConstraintBracketParallel[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert},
 Print["ConstraintBracketParallel was called"];
 (*Build the HiGGS environment*)
 BuildHiGGS[];
@@ -4775,17 +4775,16 @@ Print["1"];
 EH0Inert=ToString@EH0;
 Print["1"];
 Print["1"];
-PhiFreeIndexListInert=ToString@PhiFreeIndexList;
+PhiFreeIndexListNormalInert=ToString@PhiFreeIndexListNormal;
 iiInert=ToString@ii;
 Print["try to expr"];
-Print["ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>",Evaluate@PhiFreeIndexListInert]"];
-ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListInert<>","<>iiInert<>"]")];
+ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>"]")];
 
-ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexList_,ii_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString},
+ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString},
 printer={};
 PlaceholderBracketActivate={};
 
-PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Constraint bracket..."];
 printer=printer~Append~PrintTemporary[FreeConstraint];
@@ -4836,7 +4835,7 @@ DefTheory["Import"->$TheoryName];
 Velocity[Psi,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]
 ];
 *)
-Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,FreeConstraintString,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer,Jobs,RuleResults},
+Velocity[Psi_,OptionsPattern[]]:=Catch@Block[{Temp,GradTemp,PsiFreeIndices,PsiFreeIndexList,PhiFreeIndexList,PsiFreeIndexListLength,PhiFreeIndexListString,PhiFreeIndexListNormal,PlaceholderVectors,DeltaList,PlaceholderBracketRules,return,FreeConstraint,FreeConstraintString,PlaceholderBracketActivate,ii,KeepOnlyObviousZeros,EH0,Phis,printer,Jobs,RuleResults},
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** Velocity of ",Psi," with options ",Options[Velocity],"..."];
@@ -4884,6 +4883,7 @@ Print["PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];"];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
 Print["PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];"];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+PhiFreeIndexListNormal=ToExpression@("{"<>StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "]<>"}");
 Print["DistributeDefinitions@FreeConstraint;"];
 FreeConstraintString=ToString@FreeConstraint;
 DistributeDefinitions@FreeConstraintString;
@@ -4894,7 +4894,7 @@ DistributeDefinitions@ii;
 Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
 Print["Jobs=Jobs~Join~Par"];
-Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraintString,PhiFreeIndexList,ii]}}]];
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii]}}]];
 (**)
 Print["WaitAll[Jobs];"];
 Print[Jobs];
