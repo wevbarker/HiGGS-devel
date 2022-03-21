@@ -4761,6 +4761,7 @@ Print["1"];
 
 (* ::Input::Initialization:: *)
 ConstraintBracketParallel[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListStringInert},
+Print["ConstraintBracketParallel was called"];
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4886,6 +4887,7 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketR
 }}]];
 (**)
 Print["WaitAll[Jobs];"];
+Print[Jobs];
 RuleResults=WaitAll[Jobs];
 Print["done within If[]"];
 Quit[];
