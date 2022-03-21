@@ -4778,6 +4778,7 @@ FreeConstraintInert=ToString@FreeConstraint;
 Print["1"];
 PhiFreeIndexListStringInert=ToString@PhiFreeIndexListString;
 Print["try to expr"];
+Print["ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintInert<>","<>PhiFreeIndexListStringInert<>"]"];
 ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintInert<>","<>PhiFreeIndexListStringInert<>"]")];
 
 ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
