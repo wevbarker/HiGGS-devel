@@ -4883,8 +4883,7 @@ DistributeDefinitions@PhiFreeIndexListString;
 Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
 Print["Jobs=Jobs~Join~Par"];
-Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString];
-}}]];
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListString]}}]];
 (**)
 Print["WaitAll[Jobs];"];
 Print[Jobs];
