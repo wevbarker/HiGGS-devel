@@ -4889,7 +4889,7 @@ FreeConstraintString=ToString@FreeConstraint;
 DistributeDefinitions@FreeConstraintString;
 Print["DistributeDefinitions@PhiFreeIndexListString;"];
 DistributeDefinitions@PhiFreeIndexListString;
-DistributeDefinitions@PhiFreeIndexList;
+DistributeDefinitions@PhiFreeIndexListNormal;
 DistributeDefinitions@ii;
 Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
 If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
