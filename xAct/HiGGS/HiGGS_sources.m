@@ -4867,9 +4867,9 @@ Print["DistributeDefinitions@Psi;"];
 DistributeDefinitions@Psi;
 *)
 Print["Jobs={Pa"];
-(*
+(**)
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@TorsionBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@SurfaceBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@MeasureBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@LapseBracketParallel[Psi,PlaceholderBracketRules,EH0]};
-*)
+(**)
 Jobs={};
 (*Jobs={ParallelSubmit@SurfaceBracketParallel[Psi,PlaceholderBracketRules,EH0]};*)
 Print["Phis={Ph"];
@@ -4900,7 +4900,6 @@ Print["WaitAll[Jobs];"];
 Print[Jobs];
 RuleResults=WaitAll[Jobs];
 Print["done within If[]"];
-Quit[];
 PlaceholderBracketActivate=Flatten@RuleResults;
 Print[PlaceholderBracketActivate];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
