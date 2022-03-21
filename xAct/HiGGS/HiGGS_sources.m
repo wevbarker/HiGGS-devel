@@ -4778,8 +4778,8 @@ Print["1"];
 PhiFreeIndexListStringInert=ToString@PhiFreeIndexListString;
 iiInert=ToString@ii;
 Print["try to expr"];
-Print["ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>",PhiFreeIndexListStringInert]"];
-Print@ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>",PhiFreeIndexListStringInert,"<>iiInert<>"]")];
+Print["ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>",Evaluate@PhiFreeIndexListStringInert]"];
+ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>",Evaluate@PhiFreeIndexListStringInert,"<>iiInert<>"]")];
 
 ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_,ii_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 printer={};
