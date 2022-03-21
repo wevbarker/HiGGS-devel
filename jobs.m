@@ -45,7 +45,7 @@ Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
 *)
 (*Start timing*)
 StartTime=AbsoluteTime[];
-Velocity[PhiB0p[],"Parallel"->True];
+Velocity[PhiB0p[],"Parallel"->False];
 EndTime=AbsoluteTime[];
 TotTime=EndTime-StartTime;
 Print@Kernels[];

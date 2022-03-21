@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     35941,        793]
-NotebookOptionsPosition[     35268,        772]
-NotebookOutlinePosition[     35744,        790]
-CellTagsIndexPosition[     35701,        787]
+NotebookDataLength[     35990,        793]
+NotebookOptionsPosition[     35317,        772]
+NotebookOutlinePosition[     35793,        790]
+CellTagsIndexPosition[     35750,        787]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -324,7 +324,7 @@ Cell[BoxData[
     RowBox[{"Velocity", "[", 
      RowBox[{
       RowBox[{"PhiB0p", "[", "]"}], ",", 
-      RowBox[{"\"\<Parallel\>\"", "->", "True"}]}], "]"}], ";"}], 
+      RowBox[{"\"\<Parallel\>\"", "->", "False"}]}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"EndTime", "=", 
@@ -765,8 +765,8 @@ Cell[BoxData[
    3.856717459302205*^9}, {3.856717558228253*^9, 3.856717577490952*^9}, {
    3.856766079861846*^9, 3.856766199328062*^9}, {3.856768657046853*^9, 
    3.856768658811205*^9}, {3.856768689609551*^9, 3.8567687186879473`*^9}, {
-   3.856847824059163*^9, 
-   3.856847829756719*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.856847824059163*^9, 3.856847829756719*^9}, {3.856885056781955*^9, 
+   3.8568850572425117`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -792,7 +792,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 34269, 737, 2212, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 34318, 737, 2212, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }

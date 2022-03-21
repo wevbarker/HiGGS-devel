@@ -4784,7 +4784,8 @@ ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeInde
 printer={};
 PlaceholderBracketActivate={};
 
-PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "]<>",";
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "];
+If[Length[PhiFreeIndexListNormal]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Constraint bracket..."];
 printer=printer~Append~PrintTemporary[FreeConstraint];
@@ -4858,47 +4859,22 @@ For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholderBracketRules=Append[Placeho
 PlaceholderBracketActivate={};
 
 If[OptionValue["Parallel"],
-Print["DistributeDefinitions@PlaceholderBracketRules;"];
 DistributeDefinitions@PlaceholderBracketRules;
-Print["DistributeDefinitions@EH0;"];
 DistributeDefinitions@EH0;
-Print["DistributeDefinitions@Psi;"];
-(*
-DistributeDefinitions@Psi;
-*)
-Print["Jobs={Pa"];
-(**)
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@TorsionBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@SurfaceBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@MeasureBracketParallel[Psi,PlaceholderBracketRules,EH0],ParallelSubmit@LapseBracketParallel[Psi,PlaceholderBracketRules,EH0]};
-(**)
-(*Jobs={ParallelSubmit@SurfaceBracketParallel[Psi,PlaceholderBracketRules,EH0]};*)
-Print["Phis={Ph"];
-(**)
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
-Print["FreeConstraint=Phis[[ii]];"];
-Print[Phis[[ii]]];
 FreeConstraint=Phis[[ii]];
-Print["PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];"];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
-Print["PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];"];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
 PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
-Print[PhiFreeIndexListNormal];
 FreeConstraintString=ToString@FreeConstraint;
 DistributeDefinitions@FreeConstraintString;
 DistributeDefinitions@PhiFreeIndexListString;
-Print["DistributeDefinitions@PhiFreeIndexListNormal;"];
 DistributeDefinitions@PhiFreeIndexListNormal;
 DistributeDefinitions@ii;
-Print["If[Length[PhiFreeIndexList]\[NotEqual]0,PhiFreeIndexListString=PhiFreeIndexListString<>","];"];
-If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
-Print["Jobs=Jobs~Join~Par"];
 Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,PlaceholderBracketRules,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii]}}]];
-(**)
-Print["WaitAll[Jobs];"];
-Print[Jobs];
 RuleResults=WaitAll[Jobs];
-Print["done within If[]"];
 PlaceholderBracketActivate=Flatten@RuleResults;
 Print[PlaceholderBracketActivate];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
@@ -4911,8 +4887,8 @@ For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[
 FreeConstraint=Phis[[ii]];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
-If[Length[PhiFreeIndexList]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
-PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexList,ii];
+PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
+PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[Psi,PlaceholderBracketRules,EH0,FreeConstraint,PhiFreeIndexListNormal,ii];
 }]];
 ];
 
