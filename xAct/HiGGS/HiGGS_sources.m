@@ -4784,7 +4784,7 @@ ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeInde
 printer={};
 PlaceholderBracketActivate={};
 
-PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "];
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "]<>",";
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Constraint bracket..."];
 printer=printer~Append~PrintTemporary[FreeConstraint];
