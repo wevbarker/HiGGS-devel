@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     35990,        793]
-NotebookOptionsPosition[     35317,        772]
-NotebookOutlinePosition[     35793,        790]
-CellTagsIndexPosition[     35750,        787]
+NotebookDataLength[     36022,        794]
+NotebookOptionsPosition[     35349,        773]
+NotebookOutlinePosition[     35825,        791]
+CellTagsIndexPosition[     35782,        788]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -271,37 +271,37 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"BuildHiGGS", "[", "]"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"DefTheory", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp5", "==", "0"}], ",", 
-         RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
-         RowBox[{"Bet1", "==", "0"}], ",", 
-         RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp1", "==", "0"}], ",", 
-         RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], ",", 
-       RowBox[{"\"\<Export\>\"", "->", "\"\<MyTheory\>\""}]}], "]"}], ";"}], 
-    "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"DefTheory", "[", 
-     RowBox[{"\"\<Import\>\"", "->", "\"\<MyTheory\>\""}], "]"}], ";"}], 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+        RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+        RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+        RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+        RowBox[{"Alp5", "==", "0"}], ",", 
+        RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+        RowBox[{"Bet1", "==", "0"}], ",", 
+        RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+        RowBox[{"cAlp1", "==", "0"}], ",", 
+        RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+        RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+        RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+        RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+        RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+        RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+        RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+        RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], ",", 
+      RowBox[{"\"\<Export\>\"", "->", "\"\<MyTheory\>\""}]}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"DefTheory", "[", 
+      RowBox[{"\"\<Import\>\"", "->", "\"\<MyTheory\>\""}], "]"}], ";"}], 
+    "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
    RowBox[{"(*", "\[IndentingNewLine]", 
     RowBox[{"Jobs", "=", 
      RowBox[{"{", 
@@ -766,7 +766,8 @@ Cell[BoxData[
    3.856766079861846*^9, 3.856766199328062*^9}, {3.856768657046853*^9, 
    3.856768658811205*^9}, {3.856768689609551*^9, 3.8567687186879473`*^9}, {
    3.856847824059163*^9, 3.856847829756719*^9}, {3.856885056781955*^9, 
-   3.8568850572425117`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.8568850572425117`*^9}, {3.8568875962693453`*^9, 
+   3.856887605235325*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -792,7 +793,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 34318, 737, 2212, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 34350, 738, 2232, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
