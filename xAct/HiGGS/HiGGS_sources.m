@@ -4867,6 +4867,7 @@ Print["Phis={Ph"];
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 For[ii=1,ii<11,ii++,If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
 Print["FreeConstraint=Phis[[ii]];"];
+Print[Phis[[ii]]];
 FreeConstraint=Phis[[ii]];
 Print["PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];"];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
