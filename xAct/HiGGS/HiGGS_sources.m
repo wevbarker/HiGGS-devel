@@ -4780,11 +4780,10 @@ Print["try to expr"];
 Print["ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListStringInert<>"]"];
 ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintInert<>","<>PhiFreeIndexListStringInert<>"]")];
 
-ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraintString_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,FreeConstraint},
+ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
 printer={};
 PlaceholderBracketActivate={};
 
-FreeConstraint=ToExpression@FreeConstraintString;
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Constraint bracket..."];
 printer=printer~Append~PrintTemporary[FreeConstraint];
 Temp=PoissonBracket[Psi,FreeConstraint,"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
