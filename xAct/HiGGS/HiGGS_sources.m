@@ -4700,7 +4700,7 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-
+Print[PlaceholderBracketActivate];
 NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@MeasureBracketParallel;
@@ -4887,8 +4887,7 @@ Print["WaitAll[Jobs];"];
 RuleResults=WaitAll[Jobs];
 Print["done within If[]"];
 PlaceholderBracketActivate=Flatten@RuleResults;
-Print[PlaceholderBracketActivate];
-Quit[];,
+Print[PlaceholderBracketActivate];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,PlaceholderBracketRules,EH0];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[Psi,PlaceholderBracketRules,EH0];
