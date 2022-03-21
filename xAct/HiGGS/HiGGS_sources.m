@@ -4765,12 +4765,19 @@ Print["ConstraintBracketParallel was called"];
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
+Print["0"];
 DefTheory["Import"->$TheoryName];
+Print["1"];
 PsiInert=ToString@Psi;
+Print["1"];
 PlaceholderBracketRulesInert=ToString@PlaceholderBracketRules;
+Print["1"];
 EH0Inert=ToString@EH0;
+Print["1"];
 FreeConstraintInert=ToString@FreeConstraint;
+Print["1"];
 PhiFreeIndexListStringInert=ToString@PhiFreeIndexListString;
+Print["try to expr"];
 ToExpression@("ConstraintBracket["<>PsiInert<>","<>PlaceholderBracketRulesInert<>","<>EH0Inert<>","<>FreeConstraintInert<>","<>PhiFreeIndexListStringInert<>"]")];
 
 ConstraintBracket[Psi_,PlaceholderBracketRules_,EH0_,FreeConstraint_,PhiFreeIndexListString_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer},
