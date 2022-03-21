@@ -3427,7 +3427,9 @@ If[OptionValue["GToFoliG"],res=res/.GToFoliG];
 res=res//ToNewCanonical;
 res=res/.CollapseJ;
 (*Adding this*)
+(*
 res=res/.JiToJ;
+*)
 res=ToOrderCanonical[res,OptionValue["Order"]];
 (*res=res//ToNewCanonical;*)
 NotebookDelete[printer];
