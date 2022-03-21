@@ -4883,7 +4883,7 @@ Print["PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];"];
 PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
 Print["PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];"];
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
-PhiFreeIndexListNormal=ToExpression@("{"<>PhiFreeIndexListString<>"}");
+PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
 Print[PhiFreeIndexListNormal];
 FreeConstraintString=ToString@FreeConstraint;
 DistributeDefinitions@FreeConstraintString;
