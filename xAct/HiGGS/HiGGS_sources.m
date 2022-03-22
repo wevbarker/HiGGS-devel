@@ -98,8 +98,10 @@ printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
 temp=x;
 (*temp=temp//ToCanonical;*)
-
+(*
 $HiGGSTimingNow=AbsoluteTime[]-$HiGGSBuildTime;
+*)
+$HiGGSTimingNow=AbsoluteTime[];
 res=AbsoluteTiming@ToCanonical@temp;
 temp=Evaluate@res[[2]];
 $HiGGSTimingDuration=Evaluate@res[[1]];
