@@ -85,12 +85,16 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 (*Probably a better place to put this at the top*)
 Put[AbsoluteTime[],FileNameJoin@{$WorkingDirectory,"record"}];
-ToNewCanonical[x_]:=Module[{temp,printer},
+ToNewCanonical[x_]:=Module[{temp,lst,time,duration,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
-PutAppend[AbsoluteTime[],FileNameJoin@{$WorkingDirectory,"record"}];
 temp=x;
-temp=temp//ToCanonical;
+(*temp=temp//ToCanonical;*)
+time=AbsoluteTime[];
+lst=AbsoluteTiming[ToCanonical@temp];
+temp=lst[[2]];
+duration=lst[[1]];
+PutAppend[{time,duration},FileNameJoin@{$WorkingDirectory,$KernelID,"record"}];
 temp=temp//ContractMetric;
 temp=temp//ScreenDollarIndices;
 NotebookDelete[printer];
