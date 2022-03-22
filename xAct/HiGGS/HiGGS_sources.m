@@ -84,9 +84,9 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*purge all the run statistics*)
-(*
+(**)
 RunProcess["rm -rf /bin/stats*"];
-*)
+(**)
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
 $HiGGSTimingLine={0.,0.};

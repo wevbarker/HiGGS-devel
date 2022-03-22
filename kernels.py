@@ -38,42 +38,45 @@ kernel4 = np.full(size,4)
 kernel5 = np.full(size,5)
 kernel6 = np.full(size,6)
 
-total_time = df0[-1,8]
+start_time = df0[0,1]
+end_time = df0[-1,1]
+total_time=end_time-start_time
+
 print(total_time)
 
 for row in df0:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[0])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core0[t1 : t2] = 1
 
 for row in df1:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[4])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core1[t1 : t2] = 1
 
 for row in df2:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[6])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core2[t1 : t2] = 1
 
 for row in df3:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[8])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core3[t1 : t2] = 1
 
 for row in df4:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[3])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core4[t1 : t2] = 1
 
 for row in df5:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[5])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core5[t1 : t2] = 1
 
 for row in df6:
-    t1=int(np.floor(size*row[8]/total_time))
-    t2=int(np.floor(size*(row[8]+row[7])/total_time))+1
+    t1=int(np.floor(size*(row[1]-start_time)/total_time))
+    t2=int(np.floor(size*(row[1]+row[0]-start_time)/total_time))+1
     core5[t1 : t2] = 1
 
 plt.scatter(time,kernel0,c=cm.OrRd((1/2)*core0+1/2),marker='|')
