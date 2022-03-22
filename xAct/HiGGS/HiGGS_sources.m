@@ -84,23 +84,31 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*purge all the run statistics*)
+(*
 RunProcess["rm -rf /bin/stats*"];
+*)
+$HiGGSBuildTime=AbsoluteTime[];
+$HiGGSTimingData={};
+$HiGGSTimingLine={0.,0.,0.,0.,0.,0.,0.,0.,0.};
+$HiGGSTimingFile=FileNameJoin@{NotebookDirectory[],"bin/","stats"<>ToString@$KernelID<>".csv"};
 
 (*Probably a better place to put this at the top*)
-ToNewCanonical[x_]:=Module[{temp,lst,time,duration,filename,printer},
+ToNewCanonical[x_]:=Module[{temp,res,time,duration,filename,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
 temp=x;
 (*temp=temp//ToCanonical;*)
-time=AbsoluteTime[];
-lst=AbsoluteTiming[ToCanonical@temp];
-temp=lst[[2]];
-duration=lst[[1]];
-filename=FileNameJoin@{$WorkingDirectory,"bin","stats"<>$KernelID};
-Print[filename];
-Print[FileExistsQ@filename];
-If[FileExistsQ@filename,CreateFile@filename];
-PutAppend[{time,duration},filename];
+
+$HiGGSTimingNow=AbsoluteTime[]-$HiGGSBuildTime;
+res=AbsoluteTiming@ToCanonical@temp;
+temp=Evaluate@res[[2]];
+$HiGGSTimingDuration=Evaluate@res[[1]];
+
+$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(($KernelID+1)->$HiGGSTimingDuration);
+$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(9->$HiGGSTimingNow);
+$HiGGSTimingData~AppendTo~$HiGGSTimingLine;
+$HiGGSTimingFile~Export~$HiGGSTimingData;
+
 temp=temp//ContractMetric;
 temp=temp//ScreenDollarIndices;
 NotebookDelete[printer];
