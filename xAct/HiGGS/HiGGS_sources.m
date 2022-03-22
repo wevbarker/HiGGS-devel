@@ -89,7 +89,7 @@ RunProcess["rm -rf /bin/stats*"];
 *)
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
-$HiGGSTimingLine={0.,0.,0.,0.,0.,0.,0.,0.,0.};
+$HiGGSTimingLine={0.,0.};
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/","stats"<>ToString@$KernelID<>".csv"};
 
 (*Probably a better place to put this at the top*)
@@ -106,8 +106,8 @@ res=AbsoluteTiming@ToCanonical@temp;
 temp=Evaluate@res[[2]];
 $HiGGSTimingDuration=Evaluate@res[[1]];
 
-$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(($KernelID+1)->$HiGGSTimingDuration);
-$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(9->$HiGGSTimingNow);
+$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(1->$HiGGSTimingDuration);
+$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(2->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 $HiGGSTimingFile~Export~$HiGGSTimingData;
 
