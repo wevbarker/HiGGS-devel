@@ -83,9 +83,11 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+(*purge all the run statistics*)
+RunProcess["rm -rf /bin/stats*"];
+
 (*Probably a better place to put this at the top*)
-Put[AbsoluteTime[],FileNameJoin@{$WorkingDirectory,"record"}];
-ToNewCanonical[x_]:=Module[{temp,lst,time,duration,printer},
+ToNewCanonical[x_]:=Module[{temp,lst,time,duration,filename,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
 temp=x;
@@ -94,7 +96,9 @@ time=AbsoluteTime[];
 lst=AbsoluteTiming[ToCanonical@temp];
 temp=lst[[2]];
 duration=lst[[1]];
-PutAppend[{time,duration},FileNameJoin@{$WorkingDirectory,$KernelID,"record"}];
+filename=FileNameJoin@{$WorkingDirectory,"bin","stats"<>$KernelID};
+If[FileExistsQ@filename,CreateFile@filename];
+PutAppend[{time,duration},filename];
 temp=temp//ContractMetric;
 temp=temp//ScreenDollarIndices;
 NotebookDelete[printer];
