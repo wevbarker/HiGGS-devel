@@ -3427,9 +3427,9 @@ If[OptionValue["GToFoliG"],res=res/.GToFoliG];
 res=res//ToNewCanonical;
 res=res/.CollapseJ;
 (*Adding this*)
-(*
+(**)
 res=res/.JiToJ;
-*)
+(**)
 res=ToOrderCanonical[res,OptionValue["Order"]];
 (*res=res//ToNewCanonical;*)
 NotebookDelete[printer];
@@ -4956,7 +4956,7 @@ If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Export";
 DistributeDefinitions@$TheoryName;
-(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity};
+(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
 ClearBuild[];
