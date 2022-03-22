@@ -90,7 +90,7 @@ RunProcess["rm -rf /bin/stats*"];
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
 $HiGGSTimingLine={0.,0.,0.,0.,0.,0.,0.,0.,0.};
-$HiGGSTimingFile=FileNameJoin@{NotebookDirectory[],"bin/","stats"<>ToString@$KernelID<>".csv"};
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/","stats"<>ToString@$KernelID<>".csv"};
 
 (*Probably a better place to put this at the top*)
 ToNewCanonical[x_]:=Module[{temp,res,time,duration,filename,printer},
