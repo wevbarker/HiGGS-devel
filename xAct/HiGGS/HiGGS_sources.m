@@ -97,6 +97,8 @@ lst=AbsoluteTiming[ToCanonical@temp];
 temp=lst[[2]];
 duration=lst[[1]];
 filename=FileNameJoin@{$WorkingDirectory,"bin","stats"<>$KernelID};
+Print[filename];
+Print[FileExistsQ@filename];
 If[FileExistsQ@filename,CreateFile@filename];
 PutAppend[{time,duration},filename];
 temp=temp//ContractMetric;
