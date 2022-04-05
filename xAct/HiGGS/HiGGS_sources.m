@@ -88,17 +88,7 @@ ToNewCanonical[x_]:="ToNewCanonical"~TimeWrapper~Module[{temp,res,time,duration,
 printer=PrintTemporary[" ** ToNewCanonical..."];
 (*Beep[];*)
 temp=x;
-
-$HiGGSTimingNow=AbsoluteTime[];
-res=AbsoluteTiming@ToCanonical@temp;
-temp=Evaluate@res[[2]];
-$HiGGSTimingDuration=Evaluate@res[[1]];
-
-$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(1->$HiGGSTimingDuration);
-$HiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(2->$HiGGSTimingNow);
-$HiGGSTimingData~AppendTo~$HiGGSTimingLine;
-$HiGGSTimingFile~Export~$HiGGSTimingData;
-
+temp=ToCanonical@temp;
 temp=temp//ContractMetric;
 temp=temp//ScreenDollarIndices;
 NotebookDelete[printer];
