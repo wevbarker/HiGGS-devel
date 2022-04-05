@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import matplotlib as mpl
 from matplotlib import cm
 import os
 from os.path import exists
@@ -10,8 +11,16 @@ from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
 
 #   tex params
-plt.rcParams["figure.figsize"] = [7.50, 3.50]
-plt.rcParams["figure.autolayout"] = True
+#plt.rcParams["figure.figsize"] = [7.50, 3.50]
+#plt.rcParams["figure.autolayout"] = True
+
+plt.rc('text',usetex = True)
+#SMALL_SIZE=6
+#plt.rc('font',size=SMALL_SIZE)
+
+plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage{etoolbox}\usepackage{bm} \newrobustcmd{\Planck}{{M_{\text{Pl}}}}')
+
+mpl.rcParams['font.family'] = 'serif'
 
 size=500   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
@@ -74,19 +83,21 @@ for kernel in range(0,number_of_kernels):
 
                 # Create a continuous norm to map from data points to colors
                 norm = plt.Normalize(0., 1.)
-                lc = LineCollection(segments, cmap='Purples', norm=norm)
+                lc = LineCollection(segments, cmap='YlGn', norm=norm)
                 # Set the values used for colormapping
                 lc.set_array(function_data)
                 lc.set_linewidth(10)
                 line = axs.add_collection(lc)
                 #axs[0].set_xlim(0., 10.)
                 axs.set_xlim(0., total_time)
-                axs.set_ylim(-1., number_of_kernels)
+                axs.set_ylim(-0.5, number_of_kernels-0.5)
                 plt.draw()
 
-axs.set_ylabel("Kernel")
-axs.set_xlabel("Time")
+axs.set_ylabel(r"\texttt{\${}KernelID}")
+axs.set_xlabel(r"Time/s")
+axs.set_title(r"HiGGS for HPC monitor")
 
-plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
+#plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
+plt.savefig('kernels-2.pdf')
 
 sys.exit()

@@ -22,16 +22,6 @@
 (* ::Input::Initialization:: *)
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
-(*A list of jobs defined according to a theory and a name of that theory*)
-(*
-TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_1-",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_2-",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_0-2-_a",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
-{"simple_spin_0-2-_b",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
-*)
-(*
-TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_1-",{Alp1==0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_2-",{Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_0-2-_a",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
-{"simple_spin_0-2-_b",{Alp2\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
-*)
-
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*
@@ -43,6 +33,25 @@ DefTheory["Import"->"MyTheory"];
 (*
 Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
 *)
+(*List of constraints with fresh indices for PBs*)
+IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+(*Evaluate lots of Poisson brackets*)
+PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+(*Set up a PPM of jobs*)
+Jobs=(ParallelSubmit@PoissonBracket[#[[1]],#[[2]]])&/@PrimaryPoissonMatrix;
+(*Do the work*)
+Results=WaitAll[Jobs];
+
+Print[Results]
+DumpSave[FileNameJoin@{Directory[],"bin","PPM.mx"},{Results}];
+(*kill this kernel too*)
+Quit[];
+
+
+(*New indices again*)
+IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+
+
 (*Start timing*)
 StartTime=AbsoluteTime[];
 Velocity[PhiB0p[],"Parallel"->True];
@@ -51,6 +60,16 @@ TotTime=EndTime-StartTime;
 Print@Kernels[];
 (*kill this kernel too*)
 Quit[];
+
+(*A list of jobs defined according to a theory and a name of that theory*)
+(*
+TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_1-",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_2-",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_0-2-_a",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
+{"simple_spin_0-2-_b",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
+*)
+(*
+TheoryList={{"simple_spin_1+",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_1-",{Alp1==0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_2-",{Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},{"simple_spin_0-2-_a",{Alp1\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
+{"simple_spin_0-2-_b",{Alp2\[Equal]0,Alp4\[Equal]0,Alp5\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,Bet3\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
+*)
 
 TheoryList={{"simple_spin_2-",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},{"simple_spin_0-2-_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
 {"simple_spin_0-2-_b",{Alp2==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}};
