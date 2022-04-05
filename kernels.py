@@ -25,10 +25,17 @@ mpl.rcParams['font.family'] = 'serif'
 size=500   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
 
+ticklabels=[]
 kernel_files = os.listdir("bin/stats")
 for filename in kernel_files:
     print(filename)
     print(np.shape(pd.read_csv('bin/stats/'+filename).to_numpy()))
+    for m in filename:
+        if m.isdigit():
+            ticklabels.append(m)
+
+print(ticklabels)
+sys.exit()
 
 def make_np(filename):
     return pd.read_csv('bin/stats/'+filename).to_numpy()
@@ -99,5 +106,6 @@ axs.set_title(r"HiGGS for HPC monitor")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('kernels-2.pdf')
+
 
 sys.exit()

@@ -36,6 +36,8 @@ DefTheory["Import"->"MyTheory"];
 (*
 Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
 *)
+Velocity[PhiB0p[],"Parallel"->True];
+Quit[];
 (*List of constraints with fresh indices for PBs*)
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
