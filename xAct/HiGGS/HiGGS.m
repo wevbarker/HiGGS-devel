@@ -121,7 +121,7 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 (* ::Input::Initialization:: *)
 (*purge all the run statistics*)
-RunProcess["rm -rf /bin/stats*"];
+Run["rm -rf "<>$WorkingDirectory<>"/bin/stats*"];
 Quit[];
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
