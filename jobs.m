@@ -20,6 +20,9 @@
 
 
 (* ::Input::Initialization:: *)
+(*purge all the run statistics*)
+Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
+Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)

@@ -121,8 +121,10 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 (* ::Input::Initialization:: *)
 (*purge all the run statistics*)
+(*
 Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
 Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
+*)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
@@ -168,7 +170,7 @@ $Theory::usage="The gauge theory as defined by a system of equations which const
 Begin["xAct`HiGGS`Private`"];
 (*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
 $HiGGSBuilt=False;
-HiGGS::built="The HiGGS environment has already been built.";
+BuildHiGGS::built="The HiGGS environment has already been built.";
 BuildHiGGS[]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
 (*A message*)
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
