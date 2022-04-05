@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     35466,        837]
-NotebookOptionsPosition[     31879,        764]
-NotebookOutlinePosition[     32355,        782]
-CellTagsIndexPosition[     32312,        779]
+NotebookDataLength[     42032,        992]
+NotebookOptionsPosition[     38281,        917]
+NotebookOutlinePosition[     38703,        934]
+CellTagsIndexPosition[     38660,        931]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -522,6 +522,155 @@ Cell[BoxData[{
    3.8563710789195642`*^9}},ExpressionUUID->"ba635768-7f14-4841-8aec-\
 bf8ba09709eb"],
 
+Cell["Timing tools", "Text",
+ CellChangeTimes->{{3.858149523235133*^9, 
+  3.858149524538969*^9}},ExpressionUUID->"8f6533a0-96f6-49df-91d4-\
+d63452a12dec"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"purge", " ", "all", " ", "the", " ", "run", " ", "statistics"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RunProcess", "[", "\"\<rm -rf /bin/stats*\>\"", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "time", " ", "when", " ", "the", " ", "package", " ", "is", " ", 
+     "called"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"$HiGGSBuildTime", "=", 
+     RowBox[{"AbsoluteTime", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"$HiGGSTimingData", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "remember", " ", "to", " ", "modify", " ", "this", " ", "if", " ", "you", 
+     " ", "want", " ", "to", " ", "time", " ", "another", " ", "function", 
+     " ", "in", " ", 
+     RowBox[{"HiGGS_sources", ".", "nb"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"$TimedFunctionList", "=", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<BuildHiGGS\>\"", ",", "\"\<DefTheory\>\"", ",", 
+      "\"\<PoissonBracket\>\"", ",", "\"\<Velocity\>\"", ",", 
+      "\"\<ToNewCanonical\>\""}], "}"}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"initial", " ", "zeroes"}], ",", " ", 
+     RowBox[{
+      RowBox[{"i", ".", "e", ".", " ", "the"}], " ", "default", " ", 
+      "line"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"$HiGGSTimingLine", "=", 
+    RowBox[{"0.", "~", "ConstantArray", "~", 
+     RowBox[{"(", 
+      RowBox[{"2", 
+       RowBox[{"Length", "@", "$TimedFunctionList"}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"which", " ", "kernel", " ", "are", " ", "we", " ", 
+     RowBox[{"in", "?", " ", "This"}], " ", "sets", " ", "the", " ", "file", 
+     " ", "in", " ", "which", " ", "we", " ", "record", " ", "stats"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"$HiGGSTimingFile", "=", 
+    RowBox[{"FileNameJoin", "@", 
+     RowBox[{"{", 
+      RowBox[{"$WorkingDirectory", ",", "\"\<bin/\>\"", ",", 
+       RowBox[{"\"\<stats\>\"", "<>", 
+        RowBox[{"ToString", "@", "$KernelID"}], "<>", "\"\<.csv\>\""}]}], 
+      "}"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"headers", " ", "for", " ", "the", " ", "timing", " ", "file"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"$HiGGSTimingData", "~", "AppendTo", "~", 
+    RowBox[{"Flatten", "@", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"{", 
+          RowBox[{"#", ",", "#"}], "}"}], ")"}], "&"}], "/@", 
+       "$TimedFunctionList"}], ")"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"don", "'"}], "t", " ", "try", " ", "timing", " ", "until", " ", 
+     "we", " ", "call", " ", "the", " ", "function", " ", "in", " ", "expr"}],
+     "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{"TimeWrapper", ",", "HoldAll"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"the", " ", "actual", " ", "timing", " ", "function"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"TimeWrapper", "[", 
+      RowBox[{"Label_String", ",", "expr_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "res", ",", "temp", ",", "TimingNowPosition", ",", 
+         "TimingDurationPosition", ",", "$HiGGSTimingNow", ",", 
+         "$HiGGSTimingDuration", ",", "NewHiGGSTimingLine"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"$HiGGSTimingNow", "=", 
+         RowBox[{"AbsoluteTime", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"res", "=", 
+         RowBox[{"AbsoluteTiming", "@", "expr"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"temp", "=", 
+         RowBox[{"Evaluate", "@", 
+          RowBox[{"res", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"$HiGGSTimingDuration", "=", 
+         RowBox[{"Evaluate", "@", 
+          RowBox[{"res", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"TimingDurationPosition", "=", 
+         RowBox[{"2", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"(", 
+              RowBox[{"$TimedFunctionList", "~", "Position", "~", "Label"}], 
+              ")"}]}], ")"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"TimingNowPosition", "=", 
+         RowBox[{"TimingDurationPosition", "-", "1"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"NewHiGGSTimingLine", "=", 
+         RowBox[{"$HiGGSTimingLine", "~", "ReplacePart", "~", 
+          RowBox[{"(", 
+           RowBox[{"TimingDurationPosition", "->", "$HiGGSTimingDuration"}], 
+           ")"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"NewHiGGSTimingLine", "=", 
+         RowBox[{"NewHiGGSTimingLine", "~", "ReplacePart", "~", 
+          RowBox[{"(", 
+           RowBox[{"TimingNowPosition", "->", "$HiGGSTimingNow"}], ")"}]}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{
+        "$HiGGSTimingData", "~", "AppendTo", "~", "NewHiGGSTimingLine"}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"$HiGGSTimingFile", "~", "Export", "~", "$HiGGSTimingData"}], 
+        ";", "\[IndentingNewLine]", "temp"}]}], "]"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.8581495361641493`*^9, 3.85814963295829*^9}, {
+  3.8581534311411953`*^9, 3.85815343774407*^9}, {3.858153542925229*^9, 
+  3.858153611253434*^9}, {3.858153825187867*^9, 3.858153836155039*^9}, {
+  3.8581538853154907`*^9, 3.858153894555316*^9}, {3.858153927587212*^9, 
+  3.858154057898465*^9}, {3.858154622614393*^9, 
+  3.858154624648046*^9}},ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-\
+fc616935e0dc"],
+
 Cell["Define the package functions:", "Text",
  CellChangeTimes->{{3.853171109713401*^9, 
   3.853171143304892*^9}},ExpressionUUID->"05a65b29-23c7-42a7-b701-\
@@ -620,142 +769,146 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{
     RowBox[{"BuildHiGGS", "[", "]"}], ":=", 
-    RowBox[{"Catch", "@", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"PriorMemory", ",", "UsedMemory"}], "}"}], ",", 
-       "\[IndentingNewLine]", 
-       RowBox[{"(*", 
-        RowBox[{"A", " ", "message"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"\"\<BuildHiGGS\>\"", "~", "TimeWrapper", "~", 
+     RowBox[{"Catch", "@", 
+      RowBox[{"Module", "[", 
        RowBox[{
-        RowBox[{"xAct`xTensor`Private`MakeDefInfo", "[", 
-         RowBox[{"BuildHiGGS", ",", "$KernelID", ",", 
-          RowBox[{"{", 
-           RowBox[{"\"\<HiGGS environment for kernel\>\"", ",", "\"\<\>\""}], 
-           "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"Check", " ", "for", " ", "pre"}], "-", 
-          RowBox[{"existing", " ", "build"}]}], "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"If", "[", 
-         RowBox[{"$HiGGSBuilt", ",", 
-          RowBox[{"Throw", "@", 
-           RowBox[{"Message", "[", 
-            RowBox[{"BuildHiGGS", "::", "built"}], "]"}]}]}], "]"}], ";", 
+        RowBox[{"{", 
+         RowBox[{"PriorMemory", ",", "UsedMemory"}], "}"}], ",", 
         "\[IndentingNewLine]", 
         RowBox[{"(*", 
-         RowBox[{
-         "List", " ", "of", " ", "all", " ", "print", " ", "cells", " ", "in",
-           " ", "front", " ", "end", " ", "before", " ", "this", " ", 
-          "notebook", " ", "starts", " ", "to", " ", "run"}], "*)"}], 
-        "\[IndentingNewLine]", 
-        RowBox[{"$PrintCellsBeforeStartBuildHiGGS", "=", 
-         RowBox[{"Flatten", "@", 
-          RowBox[{"Cells", "[", 
-           RowBox[{
-            RowBox[{"SelectedNotebook", "[", "]"}], ",", 
-            RowBox[{"CellStyle", "\[Rule]", 
-             RowBox[{"{", "\"\<Print\>\"", "}"}]}]}], "]"}]}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"PriorMemory", "=", 
-         RowBox[{"MemoryInUse", "[", "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{
-         "\"\< ** BuildHiGGS: RAM used by kernel \>\"", ",", "$KernelID", 
-          ",", "\"\< is \>\"", ",", 
-          RowBox[{"Dynamic", "[", 
-           RowBox[{"Refresh", "[", 
+         RowBox[{"A", " ", "message"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"xAct`xTensor`Private`MakeDefInfo", "[", 
+          RowBox[{"BuildHiGGS", ",", "$KernelID", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<HiGGS environment for kernel\>\"", ",", "\"\<\>\""}],
+             "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Check", " ", "for", " ", "pre"}], "-", 
+           RowBox[{"existing", " ", "build"}]}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{"$HiGGSBuilt", ",", 
+           RowBox[{"Throw", "@", 
+            RowBox[{"Message", "[", 
+             RowBox[{"BuildHiGGS", "::", "built"}], "]"}]}]}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+          "List", " ", "of", " ", "all", " ", "print", " ", "cells", " ", 
+           "in", " ", "front", " ", "end", " ", "before", " ", "this", " ", 
+           "notebook", " ", "starts", " ", "to", " ", "run"}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"$PrintCellsBeforeStartBuildHiGGS", "=", 
+          RowBox[{"Flatten", "@", 
+           RowBox[{"Cells", "[", 
             RowBox[{
-             RowBox[{"MemoryInUse", "[", "]"}], ",", 
-             RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}], "]"}], ",", 
-          "\"\< bytes.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{"\"\< ** BuildHiGGS: Building session from \>\"", ",", 
+             RowBox[{"SelectedNotebook", "[", "]"}], ",", 
+             RowBox[{"CellStyle", "\[Rule]", 
+              RowBox[{"{", "\"\<Print\>\"", "}"}]}]}], "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"PriorMemory", "=", 
+          RowBox[{"MemoryInUse", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+          "\"\< ** BuildHiGGS: RAM used by kernel \>\"", ",", "$KernelID", 
+           ",", "\"\< is \>\"", ",", 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"Refresh", "[", 
+             RowBox[{
+              RowBox[{"MemoryInUse", "[", "]"}], ",", 
+              RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}], "]"}], 
+           ",", "\"\< bytes.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\< ** BuildHiGGS: Building session from \>\"", ",", 
+           RowBox[{"FileNameJoin", "@", 
+            RowBox[{"{", 
+             RowBox[{
+             "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
+             "}"}]}], ",", "\"\< with active CellTags \>\"", ",", 
+           "ActiveCellTags", ",", "\"\<.\>\""}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"NotebookEvaluate", "[", 
+            RowBox[{
+             RowBox[{"FileNameJoin", "@", 
+              RowBox[{"{", 
+               RowBox[{
+               "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
+               "}"}]}], ",", 
+             RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"NotebookEvaluate", "[", 
+            RowBox[{
+             RowBox[{"FileNameJoin", "@", 
+              RowBox[{"{", 
+               RowBox[{
+               "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
+               "}"}]}], ",", 
+             RowBox[{"EvaluationElements", "\[Rule]", 
+              RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}], ",", 
+             RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Get", "[", 
           RowBox[{"FileNameJoin", "@", 
            RowBox[{"{", 
             RowBox[{
-            "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-            "}"}]}], ",", "\"\< with active CellTags \>\"", ",", 
-          "ActiveCellTags", ",", "\"\<.\>\""}], "]"}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"NotebookEvaluate", "[", 
-           RowBox[{
-            RowBox[{"FileNameJoin", "@", 
-             RowBox[{"{", 
-              RowBox[{
-              "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-              "}"}]}], ",", 
-            RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
-         "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"NotebookEvaluate", "[", 
-           RowBox[{
-            RowBox[{"FileNameJoin", "@", 
-             RowBox[{"{", 
-              RowBox[{
-              "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-              "}"}]}], ",", 
-            RowBox[{"EvaluationElements", "\[Rule]", 
-             RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}], ",", 
-            RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
-         "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"Get", "[", 
-         RowBox[{"FileNameJoin", "@", 
-          RowBox[{"{", 
-           RowBox[{"$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.m\>\""}],
+            "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.m\>\""}], 
             "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{
-         "\"\< ** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",", 
-          "$Context", ",", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-         "Purge", " ", "all", " ", "cells", " ", "created", " ", "during", 
-          " ", "build", " ", "process"}], "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"Pause", "[", "2", "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"UsedMemory", "=", 
-         RowBox[{
-          RowBox[{"MemoryInUse", "[", "]"}], "-", "PriorMemory"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"NotebookDelete", "@", 
-         RowBox[{"(", 
+         RowBox[{"Print", "[", 
           RowBox[{
-           RowBox[{"Flatten", "@", 
-            RowBox[{"Cells", "[", 
-             RowBox[{
-              RowBox[{"SelectedNotebook", "[", "]"}], ",", 
-              RowBox[{"CellStyle", "\[Rule]", 
-               RowBox[{"{", "\"\<Print\>\"", "}"}]}]}], "]"}]}], "~", 
-           "Complement", "~", "$PrintCellsBeforeStartBuildHiGGS"}], ")"}]}], 
-        ";", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{
-         "\"\< ** BuildHiGGS: The HiGGS environment is now ready to use and \
-is occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}],
+          "\"\< ** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",", 
+           "$Context", ",", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+         
+         RowBox[{"(*", 
+          RowBox[{
+          "Purge", " ", "all", " ", "cells", " ", "created", " ", "during", 
+           " ", "build", " ", "process"}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Pause", "[", "2", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"UsedMemory", "=", 
+          RowBox[{
+           RowBox[{"MemoryInUse", "[", "]"}], "-", "PriorMemory"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"NotebookDelete", "@", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Flatten", "@", 
+             RowBox[{"Cells", "[", 
+              RowBox[{
+               RowBox[{"SelectedNotebook", "[", "]"}], ",", 
+               RowBox[{"CellStyle", "\[Rule]", 
+                RowBox[{"{", "\"\<Print\>\"", "}"}]}]}], "]"}]}], "~", 
+            "Complement", "~", "$PrintCellsBeforeStartBuildHiGGS"}], ")"}]}], 
          ";", "\[IndentingNewLine]", 
-        RowBox[{"$HiGGSBuilt", "=", "True"}], ";"}]}], "\[IndentingNewLine]", 
-      "]"}]}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+          "\"\< ** BuildHiGGS: The HiGGS environment is now ready to use and \
+is occupying \>\"", ",", "UsedMemory", ",", "\"\< bytes in RAM.\>\""}], "]"}],
+          ";", "\[IndentingNewLine]", 
+         RowBox[{"$HiGGSBuilt", "=", "True"}], ";"}]}], "\[IndentingNewLine]",
+        "]"}]}]}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"End", "[", "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJwd0FtIk3EABfApQigKM/YgzstsZurEHgoVvLBPmeSHs2HaZCLOUtPwjmze
-r1/BbKEPk4S8pI4IGmE652UyYihECEoImUjo9MHLBwqmiM7L//wfDr+n83BO
-2Ivq7BJPgUBwnwQ6SryOTqw8UzqZfgIHE0S76dM8o32fRdUomgYyiGeuDmrK
-r6C7LDGzP5e6mujIURPZuKU8GHh4XAjjxEsvYSnnbIHfdkNaYZ5WHaqw8cy/
-JIkEbq51eT4hxpwK78BHAVJ/6DuuofropfegMFhBXY7Y+ZBFDLdnD8DmT6px
-KGuo/AJ7hIoZyOoLFuHEgwTpU2LxSjLVr608Cm75VsjgeT87XEXUXV+ZoZFl
-LFCmjJ+Ctg25E7Kqup9w/q//NnRUKS9grMx2A7lInaCaqA33CYZJIpME7hhT
-651zZCen0cPfua5O2BM70gUvuR/ys3meGVs1MPB5s+kt7Ph4Sf0uf93rZye9
-NBd1LIfPLyO+etdQCBdVemUNsdh7XQWjP8d31xLNU93UNXWGAa7/mTXCTKvZ
-AvcarVT3s2mxeIH85LEfBN1FIhP0MLSMQu764Vf4WNNngbqhrQlYtvDGDv+3
-35xC+UGlG94COdA43w==
+1:eJwd0VtIk3EYBvApgSgKU3YRTW05UWthF4kKauxTJvrhdJg2mYgrD5l4RjbL
+s34Gs4leTBQ85GFI0AjTucrJiOFEIkhCaIWITS/UPlAwRXQe/s//4uV39Vw8
+z3vnWW1uma9AIIgiBx1lNw6OrDxTPpd+BEcTRTvpCzyj7cumahSvhjOJJ54O
+6qNvoSEsMWswn7qW5MhTE9l4VwG89e+wGMaLXSWwnHO2wA874a2wQKu+rbDx
+zGayRAI31rt8M4j3j4V+8OFNaTAMnNZQA/TSCCgMU1C/R20PZRMj7bnDsHlC
+NQ1lTdXvYK9Q8Qmy+qJlOBudKM0hlv5IoQa1vbgLtwKrZPB0kB2vIeouL8zQ
+yDIWKFMmzEPbH7kTsqqGVbj4O/gvdNQoz2CszHYFuRidoJaojQwIg8kikwRu
+G1MbnV9IT06jhz/zPZ2wN/ZtFzznvspPFnlmas3AwCfNptewY+Sc+lFe2R9k
+J7k0D3Uqjy+sID5/01QMl1V6ZR2x1N+tgvdmErrrieb5buq6OtMA3b8+G2GW
+1WyBuy+tVO/jBbF4iezksxcKvU9FJuhjaJmE3OWD9zBOM2CBurGtWVix1GOH
+/9uvjqF8v9oLZ1YyWt0O8qc5Vxu8BiJ3Q1g=
   
   "],ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"]
 }, Open  ]]
@@ -763,12 +916,11 @@ AvcarVT3s2mxeIH85LEfBN1FIhP0MLSMQu764Vf4WNNngbqhrQlYtvDGDv+3
 }, Open  ]]
 },
 AutoGeneratedPackage->Automatic,
-WindowSize->{1440., 770.25},
-WindowMargins->{{0, Automatic}, {Automatic, -790.5}},
-TaggingRules-><|"TryRealOnly" -> False|>,
-FrontEndVersion->"13.0 for Linux x86 (64-bit) (December 2, 2021)",
-StyleDefinitions->"Default.nb",
-ExpressionUUID->"4509d8af-0a15-43d7-a404-426abcd89f34"
+WindowSize->{1920, 1147},
+WindowMargins->{{Automatic, 1080}, {Automatic, 53}},
+TaggingRules->Association["TryRealOnly" -> False],
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
 
@@ -782,52 +934,55 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 1155, 30, 98, "Title",ExpressionUUID->"d8a56790-5e4a-47d2-ba21-37e6557827a2"],
-Cell[1580, 47, 182, 3, 53, "Subtitle",ExpressionUUID->"9b0b547d-1dff-4b3f-bd58-8417dde06386"],
-Cell[1765, 52, 388, 10, 45, "Input",ExpressionUUID->"10dfdcec-1ff8-4045-b9e1-7e3d9dccc215",
+Cell[422, 15, 1155, 30, 99, "Title",ExpressionUUID->"d8a56790-5e4a-47d2-ba21-37e6557827a2"],
+Cell[1580, 47, 182, 3, 54, "Subtitle",ExpressionUUID->"9b0b547d-1dff-4b3f-bd58-8417dde06386"],
+Cell[1765, 52, 388, 10, 47, "Input",ExpressionUUID->"10dfdcec-1ff8-4045-b9e1-7e3d9dccc215",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[2178, 66, 164, 3, 54, "Subsection",ExpressionUUID->"a1470f91-8827-4be2-99fe-88764a8e956a"],
+Cell[2178, 66, 164, 3, 55, "Subsection",ExpressionUUID->"a1470f91-8827-4be2-99fe-88764a8e956a"],
 Cell[CellGroupData[{
-Cell[2367, 73, 154, 3, 45, "Subsubsection",ExpressionUUID->"a8ffc361-72b6-42aa-b6dd-61cb34e1a946"],
-Cell[2524, 78, 3268, 68, 417, "Input",ExpressionUUID->"0ae9969f-57d8-4f01-b570-ec08f6dd60c2",
+Cell[2367, 73, 154, 3, 46, "Subsubsection",ExpressionUUID->"a8ffc361-72b6-42aa-b6dd-61cb34e1a946"],
+Cell[2524, 78, 3268, 68, 462, "Input",ExpressionUUID->"0ae9969f-57d8-4f01-b570-ec08f6dd60c2",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5829, 151, 223, 4, 45, "Subsubsection",ExpressionUUID->"1089a2e0-a024-4bc1-aab5-e55cbfa034ec"],
-Cell[6055, 157, 689, 32, 496, "Input",ExpressionUUID->"a6b814a1-b722-4bc4-bba9-24ee9c6fd016",
+Cell[5829, 151, 223, 4, 46, "Subsubsection",ExpressionUUID->"1089a2e0-a024-4bc1-aab5-e55cbfa034ec"],
+Cell[6055, 157, 689, 32, 522, "Input",ExpressionUUID->"a6b814a1-b722-4bc4-bba9-24ee9c6fd016",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6781, 194, 211, 4, 45, "Subsubsection",ExpressionUUID->"badbfcd7-848f-47b1-98c0-534445fd2823"],
-Cell[6995, 200, 183, 3, 35, "Text",ExpressionUUID->"b86168c7-e89b-492b-9bee-4b120e0b7444"],
-Cell[7181, 205, 582, 13, 45, "Input",ExpressionUUID->"77c25d27-2ce0-41ba-b462-edbc7571188f",
+Cell[6781, 194, 211, 4, 46, "Subsubsection",ExpressionUUID->"badbfcd7-848f-47b1-98c0-534445fd2823"],
+Cell[6995, 200, 183, 3, 36, "Text",ExpressionUUID->"b86168c7-e89b-492b-9bee-4b120e0b7444"],
+Cell[7181, 205, 582, 13, 50, "Input",ExpressionUUID->"77c25d27-2ce0-41ba-b462-edbc7571188f",
  InitializationCell->True],
-Cell[7766, 220, 184, 3, 35, "Text",ExpressionUUID->"5e4b109c-aedd-47b1-a33b-ce23827d4aee"],
-Cell[7953, 225, 189, 5, 45, "Input",ExpressionUUID->"0a7e9ca2-3a38-435a-9645-8426fa170800",
+Cell[7766, 220, 184, 3, 36, "Text",ExpressionUUID->"5e4b109c-aedd-47b1-a33b-ce23827d4aee"],
+Cell[7953, 225, 189, 5, 50, "Input",ExpressionUUID->"0a7e9ca2-3a38-435a-9645-8426fa170800",
  InitializationCell->True],
-Cell[8145, 232, 196, 3, 35, "Text",ExpressionUUID->"5a88bace-e271-41bb-9dea-df6a94f9a89c"],
-Cell[8344, 237, 312, 8, 45, "Input",ExpressionUUID->"a91a3a17-0644-45a1-9dfe-a4b7dee47013",
+Cell[8145, 232, 196, 3, 36, "Text",ExpressionUUID->"5a88bace-e271-41bb-9dea-df6a94f9a89c"],
+Cell[8344, 237, 312, 8, 47, "Input",ExpressionUUID->"a91a3a17-0644-45a1-9dfe-a4b7dee47013",
  InitializationCell->True],
-Cell[8659, 247, 158, 3, 35, "Text",ExpressionUUID->"bab4f562-c219-41ad-b8ee-40683d357449"],
-Cell[8820, 252, 1788, 40, 149, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
+Cell[8659, 247, 158, 3, 36, "Text",ExpressionUUID->"bab4f562-c219-41ad-b8ee-40683d357449"],
+Cell[8820, 252, 1788, 40, 169, "Input",ExpressionUUID->"9f88ee64-37e0-4c86-aaf2-377d8040b286",
  InitializationCell->True],
-Cell[10611, 294, 173, 3, 35, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
-Cell[10787, 299, 3604, 90, 273, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
+Cell[10611, 294, 173, 3, 36, "Text",ExpressionUUID->"3066e085-60fe-46a4-b1eb-230ba01a30d9"],
+Cell[10787, 299, 3604, 90, 303, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e-7b9223ad8d0c",
  InitializationCell->True],
-Cell[14394, 391, 258, 4, 35, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
-Cell[14655, 397, 7449, 125, 170, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
+Cell[14394, 391, 258, 4, 36, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
+Cell[14655, 397, 7449, 125, 186, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
  InitializationCell->True],
-Cell[22107, 524, 171, 3, 35, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
-Cell[22281, 529, 1823, 41, 149, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[22107, 524, 154, 3, 36, "Text",ExpressionUUID->"8f6533a0-96f6-49df-91d4-d63452a12dec"],
+Cell[22264, 529, 6013, 142, 692, "Input",ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-fc616935e0dc",
  InitializationCell->True],
-Cell[24107, 572, 159, 3, 35, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
-Cell[24269, 577, 320, 8, 45, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
+Cell[28280, 673, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
+Cell[28454, 678, 1823, 41, 163, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+ InitializationCell->True],
+Cell[30280, 721, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[30442, 726, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24626, 590, 209, 4, 45, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[24838, 596, 7001, 163, 603, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[30799, 739, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[31011, 745, 7230, 167, 675, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]

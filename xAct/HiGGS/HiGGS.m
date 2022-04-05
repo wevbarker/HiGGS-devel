@@ -120,6 +120,38 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
+(*purge all the run statistics*)
+RunProcess["rm -rf /bin/stats*"];
+Quit[];
+(*time when the package is called*)
+$HiGGSBuildTime=AbsoluteTime[];
+$HiGGSTimingData={};
+(*remember to modify this if you want to time another function in HiGGS_sources.nb *)
+$TimedFunctionList={"BuildHiGGS","DefTheory","PoissonBracket","Velocity","ToNewCanonical"}
+(*initial zeroes, i.e. the default line*)
+$HiGGSTimingLine=0.~ConstantArray~(2Length@$TimedFunctionList)
+(*which kernel are we in? This sets the file in which we record stats*)
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/","stats"<>ToString@$KernelID<>".csv"}
+(*headers for the timing file*)
+$HiGGSTimingData~AppendTo~Flatten@(({#,#})&/@$TimedFunctionList)
+(*don't try timing until we call the function in expr*)
+SetAttributes[TimeWrapper,HoldAll];
+(*the actual timing function*)
+TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine},
+$HiGGSTimingNow=AbsoluteTime[];
+res=AbsoluteTiming@expr;
+temp=Evaluate@res[[2]];
+$HiGGSTimingDuration=Evaluate@res[[1]];
+TimingDurationPosition=2(Flatten@($TimedFunctionList~Position~Label))[[1]];
+TimingNowPosition=TimingDurationPosition-1;
+NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGSTimingDuration);
+NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
+$HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
+$HiGGSTimingFile~Export~$HiGGSTimingData;
+temp];
+
+
+(* ::Input::Initialization:: *)
 BuildHiGGS::usage="Rebuild the HiGGS session";
 ToNesterForm::usage="Express quantity in terms of human-readable irreps";
 ToBasicForm::usage="Express quantity in terms of basic gauge fields";
@@ -137,7 +169,7 @@ Begin["xAct`HiGGS`Private`"];
 (*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
 $HiGGSBuilt=False;
 HiGGS::built="The HiGGS environment has already been built.";
-BuildHiGGS[]:=Catch@Module[{PriorMemory,UsedMemory},
+BuildHiGGS[]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
 (*A message*)
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
 (*Check for pre-existing build*)
