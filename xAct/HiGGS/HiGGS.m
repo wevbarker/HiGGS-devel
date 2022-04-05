@@ -121,16 +121,17 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 (* ::Input::Initialization:: *)
 (*purge all the run statistics*)
-Run["rm -rf "<>$WorkingDirectory<>"/bin/stats*"];
+Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
+Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
-$TimedFunctionList={"BuildHiGGS","DefTheory","PoissonBracket","Velocity","ToNewCanonical"}
+$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","VarAction","ToNewCanonical"}
 (*initial zeroes, i.e. the default line*)
 $HiGGSTimingLine=0.~ConstantArray~(2Length@$TimedFunctionList)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/","stats"<>ToString@$KernelID<>".csv"}
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"}
 (*headers for the timing file*)
 $HiGGSTimingData~AppendTo~Flatten@(({#,#})&/@$TimedFunctionList)
 (*don't try timing until we call the function in expr*)

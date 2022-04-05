@@ -95,7 +95,7 @@ NotebookDelete[printer];
 temp];
 
 (*To suppress the error message from VarD when CyrilPitrou's VarAction runs on indexed tensors*)
-NewVarAction[x_,y_]:=Quiet[VarAction[x,y],{VarD::nouse}];
+NewVarAction[x_,y_]:="VarAction"~TimeWrapper~Quiet[VarAction[x,y],{VarD::nouse}];
 ClearBuild[];
 
 
@@ -105,7 +105,7 @@ DefConstantSymbol[Prt,PrintAs->"\[Epsilon]"];
 $ToNormalOrderRules={};
 $ToEHOrderRules={};
 Options[DeclareOrder]={"IsUnityWithEHTerm"->False,"approximation"->False};
-DeclareOrder[tensor_,order_,OptionsPattern[]]:=Module[{tmp},
+DeclareOrder[tensor_,order_,OptionsPattern[]]:="DeclareOrder"~TimeWrapper~Module[{tmp},
 If[OptionValue["approximation"]==False,
 tmp=MakeRule[{tensor,Evaluate[Prt^order tensor]},MetricOn->All,ContractMetrics->True];,
 tmp=MakeRule[{tensor,Evaluate[Prt^order Evaluate[OptionValue["approximation"]]]},MetricOn->All,ContractMetrics->True];,
