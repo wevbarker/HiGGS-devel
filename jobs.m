@@ -51,6 +51,7 @@ Jobs=Map[(PB[#[[1]],#[[2]],"Parallel"\[Rule]True])&,PrimaryPoissonMatrix,{2}]/.P
 (*
 Jobs={ParallelSubmit@Pause[10],ParallelSubmit@Pause[10],ParallelSubmit@Pause[10]}
 *)
+DistributeDefinitions[PoissonBracket];
 Jobs={ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1m[-l],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA2p[-l,-m],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1p[-l,-m],"Parallel"->True]}
 (*Do the work*)
 
