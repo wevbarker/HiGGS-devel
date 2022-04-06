@@ -45,7 +45,10 @@ IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#)
 (*Evaluate lots of Poisson brackets*)
 PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
 (*Set up a PPM of jobs*)
-Jobs=Map[(PB[#[[1]],#[[2]],"Parallel"->True])&,PrimaryPoissonMatrix,{2}]/.PB->ParallelSubmit@PoissonBracket
+(*
+Jobs=Map[(PB[#[[1]],#[[2]],"Parallel"\[Rule]True])&,PrimaryPoissonMatrix,{2}]/.PB\[Rule]ParallelSubmit@PoissonBracket
+*)
+Jobs={PoissonBracket[PhiA0m[],PhiA1m[-l],"Parallel"->True],PoissonBracket[PhiA0m[],PhiA2p[-l,-m],"Parallel"->True],PoissonBracket[PhiA0m[],PhiA1p[-l,-m],"Parallel"->True]}
 (*Do the work*)
 Results=WaitAll[Jobs];
 
