@@ -22,7 +22,7 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
-size=500   #   how many slices
+size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
 
 ticklabels=[]
@@ -74,43 +74,34 @@ for kernel in range(0,number_of_kernels):
     for function_number in range(1,number_of_functions+1):
         print("     plotting data for function ",function_number)
         function_times = kernel_data[1::,(2*function_number-2):(2*function_number):]
-        print(kernel_data[0,(2*function_number-2):(2*function_number):])
         for row in function_times:
             if row[0]>0:
                 t1=int(np.floor(size*(row[0]-start_time)/total_time))
                 t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
                 function_data[t1 : t2] = ((function_number)/(number_of_functions))
 
-                ##   original method using scatter
-                #plt.scatter(time_array,kernel_array,c=cm.OrRd((1/2)*np.tanh(function_data)+1/2),marker='|')
+    ##   superior method using collections
+    points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
-                ##   basic method using plot line
-                #plt.plot(function_data)
-
-                ##   superior method using collections
-                points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
-                segments = np.concatenate([points[:-1], points[1:]], axis=1)
-
-                # Create a continuous norm to map from data points to colors
-                norm = plt.Normalize(0., 1.)
-                lc = LineCollection(segments, cmap='YlGn', norm=norm)
-                # Set the values used for colormapping
-                lc.set_array(function_data)
-                lc.set_linewidth(10)
-                line = axs.add_collection(lc)
-                #axs[0].set_xlim(0., 10.)
-                axs.set_xlim(0., total_time)
-                axs.set_yticks(list(range(0,number_of_kernels)),labels = ticklabels)
-                axs.set_ylim(-0.5, number_of_kernels-0.5)
-                #axs.set_yticklabels()
-                plt.draw()
+    # Create a continuous norm to map from data points to colors
+    norm = plt.Normalize(0., 1.)
+    lc = LineCollection(segments, cmap='YlGn', norm=norm)
+    # Set the values used for colormapping
+    lc.set_array(function_data)
+    lc.set_linewidth(10)
+    line = axs.add_collection(lc)
+    axs.set_xlim(0., total_time)
+    axs.set_yticks(list(range(0,number_of_kernels)),labels = ticklabels)
+    axs.set_ylim(-0.5, number_of_kernels-0.5)
+    plt.draw()
 
 axs.set_ylabel(r"\texttt{\${}KernelID}")
 axs.set_xlabel(r"Time/s")
 axs.set_title(r"HiGGS for HPC monitor")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('kernels-2.pdf')
+plt.savefig('kernels-2.png')
 print(range(0,number_of_kernels+1))
 print(ticklabels)
 

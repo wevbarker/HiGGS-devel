@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     43634,        981]
-NotebookOptionsPosition[     43015,        961]
-NotebookOutlinePosition[     43437,        978]
-CellTagsIndexPosition[     43394,        975]
+NotebookDataLength[     42338,        940]
+NotebookOptionsPosition[     41719,        920]
+NotebookOutlinePosition[     42141,        937]
+CellTagsIndexPosition[     42098,        934]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -151,78 +151,28 @@ Cell[BoxData[
          RowBox[{"Length", "@", "$IfConstraints"}]}], "}"}]}], "]"}]}], ";"}],
     "\[IndentingNewLine]", 
    RowBox[{"(*", 
-    RowBox[{"Set", " ", "up", " ", "a", " ", "PPM", " ", "of", " ", "jobs"}], 
-    "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "\[IndentingNewLine]", 
-    RowBox[{"Jobs", "=", 
-     RowBox[{
-      RowBox[{"Map", "[", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{"PB", "[", 
-           RowBox[{
-            RowBox[{"#", "[", 
-             RowBox[{"[", "1", "]"}], "]"}], ",", 
-            RowBox[{"#", "[", 
-             RowBox[{"[", "2", "]"}], "]"}], ",", 
-            RowBox[{"\"\<Parallel\>\"", "\[Rule]", "True"}]}], "]"}], ")"}], 
-         "&"}], ",", "PrimaryPoissonMatrix", ",", 
-        RowBox[{"{", "2", "}"}]}], "]"}], "/.", 
-      RowBox[{"PB", "\[Rule]", 
-       RowBox[{"ParallelSubmit", "@", "PoissonBracket"}]}]}]}], 
-    "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", "\[IndentingNewLine]", 
-    RowBox[{"Jobs", "=", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"ParallelSubmit", "@", 
-        RowBox[{"Pause", "[", "10", "]"}]}], ",", 
-       RowBox[{"ParallelSubmit", "@", 
-        RowBox[{"Pause", "[", "10", "]"}]}], ",", 
-       RowBox[{"ParallelSubmit", "@", 
-        RowBox[{"Pause", "[", "10", "]"}]}]}], "}"}]}], "\[IndentingNewLine]",
-     "*)"}], "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"DistributeDefinitions", "[", "PoissonBracket", "]"}], ";"}], 
-   "\[IndentingNewLine]", 
+    RowBox[{"set", " ", "up", " ", "jobs"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{"Jobs", "=", 
-    RowBox[{"{", 
+    RowBox[{"Map", "[", 
      RowBox[{
-      RowBox[{"ParallelSubmit", "@", 
-       RowBox[{"PoissonBracket", "[", 
-        RowBox[{
-         RowBox[{"PhiA0m", "[", "]"}], ",", 
-         RowBox[{"PhiA1m", "[", 
-          RowBox[{"-", "l"}], "]"}], ",", 
-         RowBox[{"\"\<Parallel\>\"", "\[Rule]", "True"}]}], "]"}]}], ",", 
-      RowBox[{"ParallelSubmit", "@", 
-       RowBox[{"PoissonBracket", "[", 
-        RowBox[{
-         RowBox[{"PhiA0m", "[", "]"}], ",", 
-         RowBox[{"PhiA2p", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"ParallelSubmit", "@", 
+         RowBox[{"PoissonBracketParallel", "[", 
           RowBox[{
-           RowBox[{"-", "l"}], ",", 
-           RowBox[{"-", "m"}]}], "]"}], ",", 
-         RowBox[{"\"\<Parallel\>\"", "\[Rule]", "True"}]}], "]"}]}], ",", 
-      RowBox[{"ParallelSubmit", "@", 
-       RowBox[{"PoissonBracket", "[", 
-        RowBox[{
-         RowBox[{"PhiA0m", "[", "]"}], ",", 
-         RowBox[{"PhiA1p", "[", 
-          RowBox[{
-           RowBox[{"-", "l"}], ",", 
-           RowBox[{"-", "m"}]}], "]"}], ",", 
-         RowBox[{"\"\<Parallel\>\"", "\[Rule]", "True"}]}], "]"}]}]}], 
-     "}"}]}], "\[IndentingNewLine]", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ")"}], "&"}], ",", 
+      "PrimaryPoissonMatrix", ",", 
+      RowBox[{"{", "2", "}"}]}], "]"}]}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"Do", " ", "the", " ", "work"}], "*)"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Results", "=", 
      RowBox[{"WaitAll", "[", "Jobs", "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
-   RowBox[{"Print", "[", "Results", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "Results", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"DumpSave", "[", 
      RowBox[{
@@ -955,7 +905,16 @@ Cell[BoxData[
    3.8582297318074417`*^9}, {3.8582301400178213`*^9, 
    3.8582301519399233`*^9}, {3.8582307301490602`*^9, 3.858230772531424*^9}, {
    3.858231510513658*^9, 3.858231523827112*^9}, {3.858233464638513*^9, 
-   3.8582334712864532`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.8582334712864532`*^9}, {3.8582336759973717`*^9, 
+   3.8582336788817043`*^9}, {3.8582343296727877`*^9, 3.858234401096449*^9}, 
+   3.858234510434876*^9, {3.858235066237193*^9, 3.8582350738367023`*^9}, {
+   3.858235202140679*^9, 3.858235220235373*^9}, {3.858235454699109*^9, 
+   3.858235467892789*^9}, {3.858236200960024*^9, 3.858236217929487*^9}, {
+   3.858236832559057*^9, 3.858236840867004*^9}, {3.858238575009941*^9, 
+   3.85823861822012*^9}, {3.8582393686107492`*^9, 3.8582393946451683`*^9}, {
+   3.858239531711216*^9, 3.858239538715068*^9}, {3.8582397821401167`*^9, 
+   3.858239782385582*^9}, {3.858243501836114*^9, 
+   3.858243533066533*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -980,7 +939,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 42016, 926, 3134, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 40720, 885, 2904, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }

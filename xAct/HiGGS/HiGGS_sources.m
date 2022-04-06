@@ -3813,7 +3813,6 @@ res];
 
 
 (* ::Input::Initialization:: *)
-Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
 (*
 PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Catch@Module[{},
 (*Build the HiGGS environment*)
@@ -3825,10 +3824,19 @@ Print["fin"];
 (*Evaluate the Poisson bracket*)
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
 *)
-PoissonBracket[f1x_,f2x_,OptionsPattern[]]:=Module[{},Print["I'm here at kernel ",$KernelID];
-Pause[5];
-$KernelID];
-(*
+
+PoissonBracketParallel[f1x_,f2x_,options___]:=Module[{},
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+(*Export to the usual PB function*)
+PoissonBracket[f1x,f2x,options]];
+
+DistributeDefinitions[PoissonBracketParallel];
+
+Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
+
 PoissonBracket[f1x_,f2x_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@Module[{sur,sur1,sur2,res,ris,f1,f2,f1a,f2a,f1b,f2b,nf1,nf2,NonVanishing,final,failtrue,BracketForm,BracketAnsatzFull,BracketAnsatz,BracketSolution,AnsatzSolutions,difference,ret,test,Variationalf1B,Variationalf2B,Variationalf1A,Variationalf2A,Variationalf1BPi,Variationalf2BPi,Variationalf1APi,Variationalf2APi,Partialf1B,Partialf2B,Partialf1A,Partialf2A,Partialf1BPi,Partialf2BPi,Partialf1APi,Partialf2APi,Partialf1DBz,Partialf2DBz,Partialf1DAz,Partialf2DAz,Partialf1DBPiz,Partialf2DBPiz,Partialf1DAPiz,Partialf2DAPiz,Partialf1DBv,Partialf2DBv,Partialf1DAv,Partialf2DAv,Partialf1DBPiv,Partialf2DBPiv,Partialf1DAPiv,Partialf2DAPiv,BarPartialf1B,BarPartialf2B,BarPartialf1A,BarPartialf2A,BarPartialf1BPi,BarPartialf2BPi,BarPartialf1APi,BarPartialf2APi,BarVariationalf1B,BarVariationalf2B,BarVariationalf1A,BarVariationalf2A,BarVariationalf1BPi,BarVariationalf2BPi,BarVariationalf1APi,BarVariationalf2APi,DeltaDelta,DDeltaDelta,DeltaDDelta,DDeltaDDelta,return,fieldversion,momentafail,ras,D0Term,D1Term,D2Term,D0TermPrimitive,SecondIndices,printer,printer2,printer3},
 (*distributed defs seem not to be working for split def*)
 If[OptionValue["Parallel"],
@@ -3842,10 +3850,10 @@ Print["fin"];
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** PoissonBracket ",{f1x,f2x}," with options ",Options[PoissonBracket],"..."];
-f1=ToBasicForm[f1x,"Hard"\[Rule]True];
+f1=ToBasicForm[f1x,"Hard"->True];
 f1=f1//NoScalar;
 If[OptionValue["PreTruncate"],f1=ToOrderCanonical[f1,1]];
-f2=ToBasicForm[f2x,"Hard"\[Rule]True];
+f2=ToBasicForm[f2x,"Hard"->True];
 f2=f2//NoScalar;
 If[OptionValue["PreTruncate"],f2=ToOrderCanonical[f2,1]];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: BasicForm to be evaluated is:"];
@@ -3896,14 +3904,14 @@ Partialf2DAPiv=NewVarAction[f2b,KKXP[-v,-q,-r,s]];
 If[OptionValue["Surficial"],{
 printer2={};
 printer2=printer2~Append~PrintTemporary[" ** PoissonBracket: Finding barred derivatives..."];
-BarPartialf1B=Partialf1B-ReplaceIndex[Evaluate[Partialf1DBz],-q\[Rule]-w] A[w,-q,-z];
-BarPartialf2B=Partialf2B-ReplaceIndex[Evaluate[Partialf2DBz],-q\[Rule]-w] A[w,-q,-z];
-BarPartialf1A=Partialf1A-ReplaceIndex[Evaluate[Partialf1DAz],-q\[Rule]-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf1DAz],-r\[Rule]-w] A[w,-r,-z];
-BarPartialf2A=Partialf2A-ReplaceIndex[Evaluate[Partialf2DAz],-q\[Rule]-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf2DAz],-r\[Rule]-w] A[w,-r,-z];
-BarPartialf1BPi=Partialf1BPi+ReplaceIndex[Evaluate[Partialf1DBPiz],q\[Rule]w] A[q,-w,-z];
-BarPartialf2BPi=Partialf2BPi+ReplaceIndex[Evaluate[Partialf2DBPiz],q\[Rule]w] A[q,-w,-z];
-BarPartialf1APi=Partialf1APi+ReplaceIndex[Evaluate[Partialf1DAPiz],q\[Rule]w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf1DAPiz],r\[Rule]w] A[r,-w,-z];
-BarPartialf2APi=Partialf2APi+ReplaceIndex[Evaluate[Partialf2DAPiz],q\[Rule]w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf2DAPiz],r\[Rule]w] A[r,-w,-z];
+BarPartialf1B=Partialf1B-ReplaceIndex[Evaluate[Partialf1DBz],-q->-w] A[w,-q,-z];
+BarPartialf2B=Partialf2B-ReplaceIndex[Evaluate[Partialf2DBz],-q->-w] A[w,-q,-z];
+BarPartialf1A=Partialf1A-ReplaceIndex[Evaluate[Partialf1DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf1DAz],-r->-w] A[w,-r,-z];
+BarPartialf2A=Partialf2A-ReplaceIndex[Evaluate[Partialf2DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf2DAz],-r->-w] A[w,-r,-z];
+BarPartialf1BPi=Partialf1BPi+ReplaceIndex[Evaluate[Partialf1DBPiz],q->w] A[q,-w,-z];
+BarPartialf2BPi=Partialf2BPi+ReplaceIndex[Evaluate[Partialf2DBPiz],q->w] A[q,-w,-z];
+BarPartialf1APi=Partialf1APi+ReplaceIndex[Evaluate[Partialf1DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf1DAPiz],r->w] A[r,-w,-z];
+BarPartialf2APi=Partialf2APi+ReplaceIndex[Evaluate[Partialf2DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf2DAPiz],r->w] A[r,-w,-z];
 BarVariationalf1B=BarPartialf1B-ManualCovariantDerivative[-z,Partialf1DBz,IndexList[z,r],w];
 BarVariationalf2B=BarPartialf2B-ManualCovariantDerivative[-z,Partialf2DBz,IndexList[z,r],w];
 BarVariationalf1A=BarPartialf1A-ManualCovariantDerivative[-z,Partialf1DAz,IndexList[z,s],w];
@@ -3917,10 +3925,10 @@ D0Term=BarPartialf1B BarVariationalf2BPi+
 2BarPartialf1A BarVariationalf2APi-
 BarPartialf1BPi BarVariationalf2B-
 2BarPartialf1APi BarVariationalf2A+
-ReplaceIndex[Evaluate[Partialf1DBz],z\[Rule]t] ManualCovariantDerivative[-t,BarVariationalf2BPi,IndexList[-r],u]+
-2ReplaceIndex[Evaluate[Partialf1DAz],z\[Rule]t]ManualCovariantDerivative[-t,BarVariationalf2APi,IndexList[-s],u]-
-ReplaceIndex[Evaluate[Partialf1DBPiz],z\[Rule]t] ManualCovariantDerivative[-t,BarVariationalf2B,IndexList[r],u]-
-2ReplaceIndex[Evaluate[Partialf1DAPiz],z\[Rule]t] ManualCovariantDerivative[-t,BarVariationalf2A,IndexList[s],u];
+ReplaceIndex[Evaluate[Partialf1DBz],z->t] ManualCovariantDerivative[-t,BarVariationalf2BPi,IndexList[-r],u]+
+2ReplaceIndex[Evaluate[Partialf1DAz],z->t]ManualCovariantDerivative[-t,BarVariationalf2APi,IndexList[-s],u]-
+ReplaceIndex[Evaluate[Partialf1DBPiz],z->t] ManualCovariantDerivative[-t,BarVariationalf2B,IndexList[r],u]-
+2ReplaceIndex[Evaluate[Partialf1DAPiz],z->t] ManualCovariantDerivative[-t,BarVariationalf2A,IndexList[s],u];
 D1Term=(Partialf1DBPiz BarVariationalf2B+
 2Partialf1DAPiz BarVariationalf2A-
 Partialf1DBz BarVariationalf2BPi-
@@ -3929,19 +3937,19 @@ BarPartialf1BPi Partialf2DBz+
 2BarPartialf1APi Partialf2DAz-
 BarPartialf1B Partialf2DBPiz-
 2BarPartialf1A Partialf2DAPiz+
-ReplaceIndex[Evaluate[Partialf1DBPiz],z\[Rule]w] ManualCovariantDerivative[-w,Partialf2DBz,IndexList[z,r],u]+
-2ReplaceIndex[Evaluate[Partialf1DAPiz],z\[Rule]w] ManualCovariantDerivative[-w,Partialf2DAz,IndexList[z,s],u]-
-ReplaceIndex[Evaluate[Partialf1DBz],z\[Rule]w] ManualCovariantDerivative[-w,Partialf2DBPiz,IndexList[z,-r],u]-
-2ReplaceIndex[Evaluate[Partialf1DAz],z\[Rule]w] ManualCovariantDerivative[-w,Partialf2DAPiz,IndexList[z,-s],u])CD[-z][HComp[]];
-D2Term=Partialf1DBz ReplaceIndex[Evaluate[Partialf2DBPiz],z\[Rule]w]+
-2Partialf1DAz ReplaceIndex[Evaluate[Partialf2DAPiz],z\[Rule]w]-
-Partialf1DBPiz ReplaceIndex[Evaluate[Partialf2DBz],z\[Rule]w]-
-2Partialf1DAPiz ReplaceIndex[Evaluate[Partialf2DAz],z\[Rule]w];
+ReplaceIndex[Evaluate[Partialf1DBPiz],z->w] ManualCovariantDerivative[-w,Partialf2DBz,IndexList[z,r],u]+
+2ReplaceIndex[Evaluate[Partialf1DAPiz],z->w] ManualCovariantDerivative[-w,Partialf2DAz,IndexList[z,s],u]-
+ReplaceIndex[Evaluate[Partialf1DBz],z->w] ManualCovariantDerivative[-w,Partialf2DBPiz,IndexList[z,-r],u]-
+2ReplaceIndex[Evaluate[Partialf1DAz],z->w] ManualCovariantDerivative[-w,Partialf2DAPiz,IndexList[z,-s],u])CD[-z][HComp[]];
+D2Term=Partialf1DBz ReplaceIndex[Evaluate[Partialf2DBPiz],z->w]+
+2Partialf1DAz ReplaceIndex[Evaluate[Partialf2DAPiz],z->w]-
+Partialf1DBPiz ReplaceIndex[Evaluate[Partialf2DBz],z->w]-
+2Partialf1DAPiz ReplaceIndex[Evaluate[Partialf2DAz],z->w];
 res={D0Term,D1Term,D2Term};
 res=res/.InertDerRev;
 res=res/.Derivative3;
 NotebookDelete[printer2];
-res=ToNesterForm[#,"ToShell"\[Rule]OptionValue["ToShell"],"Hard"\[Rule]OptionValue["Hard"],"Order"\[Rule]OptionValue["Order"],"GToFoliG"\[Rule]OptionValue["GToFoliG"]]&/@res;
+res=ToNesterForm[#,"ToShell"->OptionValue["ToShell"],"Hard"->OptionValue["Hard"],"Order"->OptionValue["Order"],"GToFoliG"->OptionValue["GToFoliG"]]&/@res;
 res=CollectTensors/@res;
 },{
 printer3={};
@@ -3955,9 +3963,9 @@ res=res/.InertDerRev;
 res=res/.Derivative3;
 NotebookDelete[printer3];
 If[OptionValue["NesterForm"],{
-res=ToNesterForm[#,"ToShell"\[Rule]OptionValue["ToShell"],"Hard"\[Rule]OptionValue["Hard"],"Order"\[Rule]OptionValue["Order"],"GToFoliG"\[Rule]OptionValue["GToFoliG"]]&/@res;
+res=ToNesterForm[#,"ToShell"->OptionValue["ToShell"],"Hard"->OptionValue["Hard"],"Order"->OptionValue["Order"],"GToFoliG"->OptionValue["GToFoliG"]]&/@res;
 },{
-res=ToBasicForm[res,"Hard"->OptionValue["Hard"],"Order"\[Rule]OptionValue["Order"]];
+res=ToBasicForm[res,"Hard"->OptionValue["Hard"],"Order"->OptionValue["Order"]];
 }];
 res=CollectTensors/@res;
 }];
@@ -3969,8 +3977,6 @@ Print[{f1x,f2x}," = ",res];
 ];
 ];
 res];
-*)
-DistributeDefinitions[PoissonBracket];
 ClearBuild[];
 
 

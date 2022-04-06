@@ -44,20 +44,11 @@ Quit[];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
-(*Set up a PPM of jobs*)
-(*
-Jobs=Map[(PB[#[[1]],#[[2]],"Parallel"\[Rule]True])&,PrimaryPoissonMatrix,{2}]/.PB\[Rule]ParallelSubmit@PoissonBracket
-*)
-(*
-Jobs={ParallelSubmit@Pause[10],ParallelSubmit@Pause[10],ParallelSubmit@Pause[10]}
-*)
-DistributeDefinitions[PoissonBracket];
-Jobs={ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1m[-l],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA2p[-l,-m],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1p[-l,-m],"Parallel"->True]}
+(*set up jobs*)
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PrimaryPoissonMatrix,{2}]
 (*Do the work*)
-
 Results=WaitAll[Jobs];
-
-Print[Results]
+Print[Results];
 DumpSave[FileNameJoin@{Directory[],"bin","PPM.mx"},{Results}];
 (*kill this kernel too*)
 Quit[];
