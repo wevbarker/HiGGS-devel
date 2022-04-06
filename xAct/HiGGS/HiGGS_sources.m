@@ -3814,7 +3814,7 @@ res];
 
 (* ::Input::Initialization:: *)
 Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
-
+(*
 PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Catch@Module[{},
 (*Build the HiGGS environment*)
 Print["we got there"];
@@ -3824,8 +3824,17 @@ DefTheory["Import"->$TheoryName];
 Print["fin"];
 (*Evaluate the Poisson bracket*)
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
-
+*)
 PoissonBracket[f1x_,f2x_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@Module[{sur,sur1,sur2,res,ris,f1,f2,f1a,f2a,f1b,f2b,nf1,nf2,NonVanishing,final,failtrue,BracketForm,BracketAnsatzFull,BracketAnsatz,BracketSolution,AnsatzSolutions,difference,ret,test,Variationalf1B,Variationalf2B,Variationalf1A,Variationalf2A,Variationalf1BPi,Variationalf2BPi,Variationalf1APi,Variationalf2APi,Partialf1B,Partialf2B,Partialf1A,Partialf2A,Partialf1BPi,Partialf2BPi,Partialf1APi,Partialf2APi,Partialf1DBz,Partialf2DBz,Partialf1DAz,Partialf2DAz,Partialf1DBPiz,Partialf2DBPiz,Partialf1DAPiz,Partialf2DAPiz,Partialf1DBv,Partialf2DBv,Partialf1DAv,Partialf2DAv,Partialf1DBPiv,Partialf2DBPiv,Partialf1DAPiv,Partialf2DAPiv,BarPartialf1B,BarPartialf2B,BarPartialf1A,BarPartialf2A,BarPartialf1BPi,BarPartialf2BPi,BarPartialf1APi,BarPartialf2APi,BarVariationalf1B,BarVariationalf2B,BarVariationalf1A,BarVariationalf2A,BarVariationalf1BPi,BarVariationalf2BPi,BarVariationalf1APi,BarVariationalf2APi,DeltaDelta,DDeltaDelta,DeltaDDelta,DDeltaDDelta,return,fieldversion,momentafail,ras,D0Term,D1Term,D2Term,D0TermPrimitive,SecondIndices,printer,printer2,printer3},
+(*distributed defs seem not to be working for split def*)
+If[OptionValue["Parallel"],
+(*Build the HiGGS environment*)
+Print["we got there"];
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory["Import"->$TheoryName];
+Print["fin"];
+];
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** PoissonBracket ",{f1x,f2x}," with options ",Options[PoissonBracket],"..."];

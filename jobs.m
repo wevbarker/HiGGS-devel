@@ -48,11 +48,12 @@ PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Len
 (*
 Jobs=Map[(PB[#[[1]],#[[2]],"Parallel"\[Rule]True])&,PrimaryPoissonMatrix,{2}]/.PB\[Rule]ParallelSubmit@PoissonBracket
 *)
-Jobs={ParallelSubmit@Pause[10],ParallelSubmit@Pause[10],ParallelSubmit@Pause[10]}
 (*
-Jobs={ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1m[-l],"Parallel"\[Rule]True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA2p[-l,-m],"Parallel"\[Rule]True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1p[-l,-m],"Parallel"\[Rule]True]}
-(*Do the work*)
+Jobs={ParallelSubmit@Pause[10],ParallelSubmit@Pause[10],ParallelSubmit@Pause[10]}
 *)
+Jobs={ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1m[-l],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA2p[-l,-m],"Parallel"->True],ParallelSubmit@PoissonBracket[PhiA0m[],PhiA1p[-l,-m],"Parallel"->True]}
+(*Do the work*)
+
 Results=WaitAll[Jobs];
 
 Print[Results]
