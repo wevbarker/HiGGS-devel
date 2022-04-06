@@ -3,6 +3,3 @@
 FILE=$1
 
 while inotifywait -e close_write $FILE; do yes | cp $FILE zathurax_$FILE; done
-
-# Will: by the way, for problems with "no file thesis.nls" you need to run this:
-# makeindex -s nomencl.ist -t thesis.nlg -o thesis.nls thesis.nlo
