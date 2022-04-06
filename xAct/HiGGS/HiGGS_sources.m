@@ -3822,7 +3822,6 @@ BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 Print["fin"];
-Quit[];
 (*Evaluate the Poisson bracket*)
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
 
