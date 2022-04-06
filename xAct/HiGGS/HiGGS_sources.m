@@ -4482,12 +4482,18 @@ RiemannBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4546,12 +4552,18 @@ TorsionBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Torsion bracket..."];
 Temp=PoissonBracket[Psi,PPara[-g,e]PPara[-h,f]T[-d,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4607,12 +4619,18 @@ SurfaceBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Surface bracket..."];
 Temp=PoissonBracket[Psi,-V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n]),"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4664,12 +4682,18 @@ MeasureBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Measure bracket..."];
 Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4699,7 +4723,7 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-Print[PlaceholderBracketActivate];
+
 NotebookDelete[printer];
 PlaceholderBracketActivate];
 DistributeDefinitions@MeasureBracketParallel;
@@ -4721,12 +4745,18 @@ LapseBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placehold
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Lapse bracket..."];
 Temp=PoissonBracket[Psi,Lapse[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4780,12 +4810,18 @@ ConstraintBracket[Psi_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_,PsiFreeI
 printer={};
 PlaceholderBracketActivate={};
 
-PsiFreeIndexListD=Map[ToString[#]&,ToExpression@PsiFreeIndexListNormal];
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
+Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
+Print[DeltaList];
 PlaceholderBracketRules={};
+Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+Print[PlaceholderBracketRules];
 
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "];
 If[Length[ToExpression@PhiFreeIndexListNormal]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
@@ -4845,6 +4881,7 @@ printer=printer~Append~PrintTemporary[" ** PoissonBracket: Stripping indices..."
 PsiFreeIndexList=FindFreeIndices[Psi];
 PsiFreeIndexListString=StringDelete[StringTrim[ToString[PsiFreeIndexList],("IndexList["|"]")]," "];
 PsiFreeIndexListNormal="{"<>PsiFreeIndexListString<>"}";
+DistributeDefinitions@PsiFreeIndexListNormal;
 
 PsiFreeIndices=FindFreeIndices[Psi];
 PsiFreeIndexListD=Developer`ToList[Delete[Map[ToString[#]&,PsiFreeIndices],0]];
@@ -4873,6 +4910,7 @@ DistributeDefinitions@PhiFreeIndexListNormal;
 DistributeDefinitions@ii;
 Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii,PsiFreeIndexListNormal]}}]];
 RuleResults=WaitAll[Jobs];
+(*Quit[];*)
 PlaceholderBracketActivate=Flatten@RuleResults;
 Print[PlaceholderBracketActivate];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,EH0,PsiFreeIndexListNormal];
@@ -4974,12 +5012,12 @@ $PPM=WaitAll[Jobs];
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
-(**)
-$Velocities=(#~Velocity~("Parallel"->True))&/@IndIfConstraints2;
-(**)
 (*
-$Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
+$Velocities=(#~Velocity~("Parallel"\[Rule]True))&/@IndIfConstraints2;
 *)
+(**)
+$Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"->True);
+(**)
 (FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
 ];
 ClearBuild[];

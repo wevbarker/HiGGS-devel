@@ -62,9 +62,13 @@ time_array = np.linspace(0,total_time,size)    #   plotting space
 number_of_functions = int(list(np.shape(all_kernel_data[1]))[1]/2)
 number_of_kernels = len(all_kernel_data)
 
+width = 4.
+height = 1.*number_of_kernels
 
-fig, axs = plt.subplots(sharex=True, sharey=True)
+fig, axs = plt.subplots(sharex=True, sharey=True, figsize = (width,height))
 plt.draw()
+
+#point_hei = height*72/30
 
 for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
@@ -89,11 +93,12 @@ for kernel in range(0,number_of_kernels):
     lc = LineCollection(segments, cmap='YlGn', norm=norm)
     # Set the values used for colormapping
     lc.set_array(function_data)
-    lc.set_linewidth(10)
+    lc.set_linewidth(30)
     line = axs.add_collection(lc)
     axs.set_xlim(0., total_time)
     axs.set_yticks(list(range(0,number_of_kernels)),labels = ticklabels)
     axs.set_ylim(-0.5, number_of_kernels-0.5)
+    axs.margins(y = 10.)
     plt.draw()
 
 axs.set_ylabel(r"\texttt{\${}KernelID}")
