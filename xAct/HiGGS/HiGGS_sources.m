@@ -4926,10 +4926,12 @@ StudyTheory[InputSystem___:Null]:=Catch@Module[{IndIfConstraints,IndIfConstraint
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+(*
 (*set up PPM jobs*)
 Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2}];
 (*do the PPM jobs*)
 $PPM=WaitAll[Jobs];
+*)
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
