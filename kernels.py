@@ -34,8 +34,11 @@ for filename in kernel_files:
         if m.isdigit():
             ticklabels.append(m)
 
+kernel_files = [x for _,x in sorted(zip(list(map(int,ticklabels)),kernel_files))]
+ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
+ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
 print(ticklabels)
-sys.exit()
+print(kernel_files)
 
 def make_np(filename):
     return pd.read_csv('bin/stats/'+filename).to_numpy()
@@ -97,7 +100,9 @@ for kernel in range(0,number_of_kernels):
                 line = axs.add_collection(lc)
                 #axs[0].set_xlim(0., 10.)
                 axs.set_xlim(0., total_time)
+                axs.set_yticks(list(range(0,number_of_kernels)),labels = ticklabels)
                 axs.set_ylim(-0.5, number_of_kernels-0.5)
+                #axs.set_yticklabels()
                 plt.draw()
 
 axs.set_ylabel(r"\texttt{\${}KernelID}")
@@ -106,6 +111,7 @@ axs.set_title(r"HiGGS for HPC monitor")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('kernels-2.pdf')
-
+print(range(0,number_of_kernels+1))
+print(ticklabels)
 
 sys.exit()

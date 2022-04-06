@@ -3811,13 +3811,18 @@ Scan[(res=res+A[#,-dummy,ind]ReplaceIndex[Evaluate[expr],#->dummy])&,UpperInds];
 res=res//ToNewCanonical;
 res];
 
+
+(* ::Input::Initialization:: *)
 Options[PoissonBracket]={"ToShell"->True,"Hard"->False,"Surficial"->False,"Order"->Infinity,"GToFoliG"->True,"PreTruncate"->False,"NesterForm"->True,"PrintAnswer"->True,"Parallel"->False};
 
 PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Catch@Module[{},
 (*Build the HiGGS environment*)
+Print["we got there"];
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
+Print["fin"];
+Quit[];
 (*Evaluate the Poisson bracket*)
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
 
