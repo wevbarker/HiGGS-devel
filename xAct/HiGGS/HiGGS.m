@@ -150,7 +150,7 @@ NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGST
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 $HiGGSTimingFile~Export~$HiGGSTimingData;
-temp];
+temp];DistributeDefinitions[TimeWrapper];
 
 
 (* ::Input::Initialization:: *)
