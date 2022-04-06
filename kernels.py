@@ -18,7 +18,7 @@ plt.rc('text',usetex = True)
 #SMALL_SIZE=6
 #plt.rc('font',size=SMALL_SIZE)
 
-plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage{etoolbox}\usepackage{bm} \newrobustcmd{\Planck}{{M_{\text{Pl}}}}')
+plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage{etoolbox}\usepackage{bm}')
 
 mpl.rcParams['font.family'] = 'serif'
 
@@ -98,11 +98,9 @@ for kernel in range(0,number_of_kernels):
 
 axs.set_ylabel(r"\texttt{\${}KernelID}")
 axs.set_xlabel(r"Time/s")
-axs.set_title(r"HiGGS for HPC monitor")
+axs.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('kernels-2.png')
-print(range(0,number_of_kernels+1))
-print(ticklabels)
+plt.savefig('kernels-2.png',dpi = 300)
 
 sys.exit()

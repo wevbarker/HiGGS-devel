@@ -159,6 +159,7 @@ ToNesterForm::usage="Express quantity in terms of human-readable irreps";
 ToBasicForm::usage="Express quantity in terms of basic gauge fields";
 PoissonBracket::usage="Calculate a Poisson bracket between two quantities";
 DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
+StudyTheory::usage="Calculate the links in the constraint chain down do a certain level";
 Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
 
 

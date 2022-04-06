@@ -4920,6 +4920,26 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+(*very likely this will be absorbed into DefTheory as soon as we can show that it works*)
+StudyTheory[InputSystem___:Null]:=Catch@Module[{IndIfConstraints,IndIfConstraints2,PPMArguments,Velocities,Jobs},
+(*List of constraints with fresh indices for PBs*)
+IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+(*Evaluate lots of Poisson brackets*)
+PPMArguments=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+(*set up PPM jobs*)
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2}];
+(*do the PPM jobs*)
+$PPM=WaitAll[Jobs];
+(*New indices again*)
+IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+(*eval velocities*)
+$Velocities=(#~Velocity~("Parallel"->True))&/@IndIfConstraints2;
+(FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
+];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
 IfBuild["documentation",
 FrontEndExecute@{FrontEndToken[InputNotebook[],"SelectAll"],FrontEndToken[InputNotebook[],"SelectionOpenAllGroups"]};
 Export[NotebookDirectory[]<>"Documentation/HiGGS_sources.pdf",EvaluationNotebook[]];

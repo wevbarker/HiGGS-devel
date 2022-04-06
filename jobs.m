@@ -33,26 +33,11 @@ DefTheory[{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp5==0,Alp6\
 (**)
 DefTheory["Import"->"MyTheory"];
 (**)
-(*
-Jobs={ParallelSubmit@PoissonBracket[PhiB0p[],PhiB2p[-i,-j],"Parallel"->True]}
-*)
-(*
-Velocity[PhiB0p[],"Parallel"->True];
-Quit[];
-*)
-(*List of constraints with fresh indices for PBs*)
-IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-(*Evaluate lots of Poisson brackets*)
-PrimaryPoissonMatrix=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
-(*set up jobs*)
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PrimaryPoissonMatrix,{2}]
-(*Do the work*)
-Results=WaitAll[Jobs];
-Print[Results];
-DumpSave[FileNameJoin@{Directory[],"bin","PPM.mx"},{Results}];
-(*kill this kernel too*)
+StudyTheory[];
 Quit[];
 
+
+(* ::Input::Initialization:: *)
 
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
