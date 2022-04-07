@@ -1,11 +1,16 @@
 #!/bin/bash
 #	this file prepares a kernel report and sends it to the tower by ssh 
 
-#watch -n 10 ./plot_cores.py > jobs.log
-
+#	flush the stats directory
+rm -rf ./bin/stats
+#	make a new stats directory
+mkdir ./bin/stats
+#	wait five seconds for the first kernel logs to come through
+sleep 5
+#	plot loop
 while sleep 1; do
   echo "replotting"
-  ./plot_cores.py
+  ./plot_cores.py > /dev/null
   scp ./jobs.png tower:/home/williamb/Documents/physics/projects/HiGGS_development/jobs.png
 done
 
