@@ -69,7 +69,6 @@ height = 1.*number_of_kernels+2.
 
 propunit = (height*total_time/width)/number_of_kernels
 
-print("hi")
 
 fig = plt.figure(1,figsize = (width,height))
 sp = fig.add_subplot(111)
@@ -81,6 +80,8 @@ xrange = x2-x1
 yrange = y2-y1
 bar = barwidth*xrange/number_of_kernels
 line_width = (bar*(point_hei/yrange))*0.8
+
+print("hi")
 
 #plt.draw()
 #'''
