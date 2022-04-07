@@ -117,6 +117,7 @@ sp.set_xlabel(r"Time/s")
 sp.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
+print("hi");
 plt.savefig('jobs.png',dpi = 300)
 
 sys.exit()
