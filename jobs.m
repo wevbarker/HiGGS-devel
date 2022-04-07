@@ -23,7 +23,7 @@
 (*
 AppendTo[$Path,NotebookDirectory[]](*NOTEBOOK*)
 *)
-Run["./monitor_remote &"];
+Run["./monitor_remote.sh &"];
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
@@ -38,4 +38,5 @@ $WorkingDirectory=NotebookDirectory[];(*NOTEBOOK*)
 DefTheory["Import"->"MyTheory"];
 (**)
 StudyTheory[];
+Run["pkill -9 monitor_remote"];
 Quit[];

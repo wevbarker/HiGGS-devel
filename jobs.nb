@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12005,        226]
-NotebookOptionsPosition[     11387,        206]
-NotebookOutlinePosition[     11809,        223]
-CellTagsIndexPosition[     11766,        220]
+NotebookDataLength[     12169,        229]
+NotebookOptionsPosition[     11551,        209]
+NotebookOutlinePosition[     11973,        226]
+CellTagsIndexPosition[     11930,        223]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,7 +40,7 @@ Cell[BoxData[
   "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
-    RowBox[{"Run", "[", "\"\<./monitor_remote &\>\"", "]"}], ";"}], 
+    RowBox[{"Run", "[", "\"\<./monitor_remote.sh &\>\"", "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"Load", " ", "HiGGS"}], "*)"}], "\[IndentingNewLine]", 
@@ -91,6 +91,9 @@ Cell[BoxData[
    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"StudyTheory", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Run", "[", "\"\<pkill -9 monitor_remote\>\"", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Quit", "[", "]"}], ";"}]}]}]], "Input",
  InitializationCell->True,
@@ -199,8 +202,8 @@ Cell[BoxData[
    3.858262651990097*^9}, {3.858263093996423*^9, 3.858263107363203*^9}, {
    3.858269621613408*^9, 3.8582696456949043`*^9}, {3.858270163378757*^9, 
    3.858270173825705*^9}, {3.8582710242137823`*^9, 3.858271030036566*^9}, {
-   3.858339575377823*^9, 
-   3.858339606721662*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.858339575377823*^9, 3.858339606721662*^9}, {3.858342927878196*^9, 
+   3.8583429658853207`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -225,7 +228,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 10388, 171, 464, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 10552, 174, 487, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
