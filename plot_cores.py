@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -25,6 +24,7 @@ mpl.rcParams['font.family'] = 'serif'
 barwidth = 0.9
 size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
+
 
 ticklabels=[]
 kernel_files = os.listdir("bin/stats")
@@ -67,6 +67,8 @@ width = 8.
 height = 1.*number_of_kernels+2.
 
 propunit = (height*total_time/width)/number_of_kernels
+
+print("hi")
 
 fig = plt.figure(1,figsize = (width,height))
 sp = fig.add_subplot(111)
