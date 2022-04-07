@@ -1,6 +1,7 @@
 #!/bin/bash
 #	this file prepares a kernel report and sends it to the tower by ssh 
-
+#	if python is not loaded, load it
+module load anaconda/python3
 #	flush the stats directory
 rm -rf ./bin/stats
 #	make a new stats directory
