@@ -114,7 +114,8 @@ for kernel in range(0,number_of_kernels):
     lc.set_linewidth(line_width)
     line = sp.add_collection(lc)
     sp.set_xlim(0., total_time)
-    sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))),labels = ticklabels)
+    sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
+    sp.set_yticklabels(ticklabels)
     sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
     plt.draw()
 #'''
