@@ -10,7 +10,7 @@ sleep 5
 #	plot loop
 while sleep 1; do
   echo "replotting"
-  ./plot_cores.py > /dev/null
+  ./plot_cores.py 2> /dev/null
   scp ./jobs.png tower:/home/williamb/Documents/physics/projects/HiGGS_development/jobs.png
 done
 
