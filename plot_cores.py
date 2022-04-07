@@ -74,6 +74,7 @@ fig = plt.figure(1,figsize = (width,height))
 sp = fig.add_subplot(111)
 #plt.axes().set_aspect('equal')
 
+print("hi")
 point_hei = height*72
 x1,x2,y1,y2=plt.axis()
 xrange = x2-x1
@@ -81,7 +82,6 @@ yrange = y2-y1
 bar = barwidth*xrange/number_of_kernels
 line_width = (bar*(point_hei/yrange))*0.8
 
-print("hi")
 
 #plt.draw()
 #'''
