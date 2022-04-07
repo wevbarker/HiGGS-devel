@@ -20,14 +20,10 @@
 
 
 (* ::Input::Initialization:: *)
-(*purge all the run statistics*)
-(*
-Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
-Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
-*)
 (*
 AppendTo[$Path,NotebookDirectory[]](*NOTEBOOK*)
 *)
+Run["./monitor_remote &"];
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
