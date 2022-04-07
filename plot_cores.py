@@ -70,14 +70,10 @@ height = 1.*number_of_kernels+2.
 
 propunit = (height*total_time/width)/number_of_kernels
 
-print("hi1")
-
 fig = plt.figure(1,figsize = (width,height))
-print("hi2")
 sp = fig.add_subplot(111)
 #plt.axes().set_aspect('equal')
 
-print("hi3")
 point_hei = height*72
 x1,x2,y1,y2=plt.axis()
 xrange = x2-x1
@@ -125,7 +121,6 @@ sp.set_xlabel(r"Time/s")
 sp.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-print("hi");
 plt.savefig('jobs.png',dpi = 300)
 
 sys.exit()
