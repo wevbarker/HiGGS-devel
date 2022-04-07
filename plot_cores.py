@@ -9,6 +9,7 @@ import os
 from os.path import exists
 from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
+mpl.use('Agg')
 
 #   tex params
 #plt.rcParams["figure.figsize"] = [7.50, 3.50]
