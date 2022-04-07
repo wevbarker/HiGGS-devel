@@ -4949,6 +4949,93 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+SetupVelocitySegments[Psi_,EH0_]:=Module[{printer,PsiFreeIndexList,PsiFreeIndexListString,PsiFreeIndexListNormal,FreeConstraint,FreeConstraintString,PhiFreeIndexList,PhiFreeIndexListString,PhiFreeIndexListNormal,Jobs,ii,Phis},
+
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** SetupVelocitySegments of ",Psi,"..."];
+
+PsiFreeIndexList=FindFreeIndices[Psi];
+PsiFreeIndexListString=StringDelete[StringTrim[ToString[PsiFreeIndexList],("IndexList["|"]")]," "];
+PsiFreeIndexListNormal="{"<>PsiFreeIndexListString<>"}";
+DistributeDefinitions@PsiFreeIndexListNormal;
+
+Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
+
+Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@LapseBracketParallel[Psi,EH0,PsiFreeIndexListNormal]};
+
+For[ii=1,ii<11,ii++,
+If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+DistributeDefinitions@ii;
+
+FreeConstraint=Phis[[ii]];
+FreeConstraintString=ToString@FreeConstraint;
+DistributeDefinitions@FreeConstraintString;
+
+PhiFreeIndexList=FindFreeIndices[Evaluate[FreeConstraint]];
+PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("IndexList["|"]")]," "];
+PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
+DistributeDefinitions@PhiFreeIndexListNormal;
+
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii,PsiFreeIndexListNormal]}
+}
+];
+];
+NotebookDelete[printer];
+Jobs];
+
+ImposeCommutatorReplacementRules[PlaceholderBracketActivate_]:=Module[{return,printer},
+
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** ImposeCommutatorReplacementRules"];
+
+(*simplification process*)
+return=$InertVelocity;
+return=return/.PlaceholderBracketActivate;
+return=ToOrderCanonical[return,1];
+printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Imposing Nester form..."];
+return=ToNesterForm[return,"ToShell"->True,"Hard"->True,"Order"->1];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Re-expanding \!\(\*OverscriptBox[\(\[Eta]\), \(^\)]\) because answer is a product of Nester forms..."];
+return=return/.FoliGToG;
+return=return//ToNewCanonical;
+return=return/.GToFoliG;
+return=return//ToNewCanonical;
+
+
+NotebookDelete[printer];
+Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];
+return];
+
+Options[VelocityParallel]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True};
+VelocityParallel[Psis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,EH0,printer,Jobs,PlaceholderBracketsActivate,Velocities},
+
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** VelocityParallel of ",Psis," with options ",Options[VelocityParallel],"..."];
+
+(*We fix EH0 legacy*)
+KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
+Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,EH0=0,1,EH0=1];
+DistributeDefinitions@EH0;
+
+(*Large batch of jobs for segments of all velocities*)
+Jobs=SetupVelocitySegments[#,EH0]&/@Psis;
+PlaceholderBracketsActivate=WaitAll[Jobs];
+PlaceholderBracketsActivate=Flatten/@PlaceholderBracketsActivate;
+DistributeDefinitions@PlaceholderBracketsActivate;
+
+(*Smaller, riskier batch for rule imposition and simplification*)
+Jobs=(ParallelSubmit@ImposeCommutatorReplacementRules[#])&/@PlaceholderBracketsActivate;
+Velocities=WaitAll[Jobs];
+
+NotebookDelete[printer];
+Velocities];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
 TheoryQ[x_]:=Module[{res},
 res=ListQ[x];
 If[res,
@@ -5013,7 +5100,7 @@ $PPM=WaitAll[Jobs];
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
 (**)
-$Velocities=(#~Velocity~("Parallel"->True))&/@IndIfConstraints2;
+$Velocities=VelocityParallel@(IndIfConstraints2~Drop~-1);
 (**)
 (*
 $Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);

@@ -7,7 +7,7 @@ rm -rf ./bin/stats
 #	make a new stats directory
 mkdir ./bin/stats
 #	wait five seconds for the first kernel logs to come through
-sleep 5
+sleep 30
 #	plot loop
 while sleep 5; do
   echo "replotting"
