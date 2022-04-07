@@ -7,12 +7,12 @@ rm -rf ./bin/stats
 #	make a new stats directory
 mkdir ./bin/stats
 #	wait five seconds for the first kernel logs to come through
-sleep 30
+sleep 5
 #	plot loop
 while sleep 5; do
-  echo "replotting"
-  ./plot_cores.py
-  #./plot_cores.py > /dev/null 2>&1
+  echo "			(...replotting...)"
+  #./plot_cores.py
+  ./plot_cores.py > /dev/null 2>&1
   scp ./jobs.png tower:/home/williamb/Documents/physics/projects/HiGGS_development/jobs.png
 done
 
