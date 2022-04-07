@@ -5012,12 +5012,12 @@ $PPM=WaitAll[Jobs];
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
+(**)
+$Velocities=(#~Velocity~("Parallel"->True))&/@IndIfConstraints2;
+(**)
 (*
-$Velocities=(#~Velocity~("Parallel"\[Rule]True))&/@IndIfConstraints2;
+$Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
 *)
-(**)
-$Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"->True);
-(**)
 (FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
 ];
 ClearBuild[];

@@ -22,6 +22,7 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
+barwidth = 0.9
 size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
 
@@ -63,16 +64,27 @@ number_of_functions = int(list(np.shape(all_kernel_data[1]))[1]/2)
 number_of_kernels = len(all_kernel_data)
 
 width = 8.
-height = 1.*number_of_kernels+2
+height = 1.*number_of_kernels+2.
 
-fig, axs = plt.subplots(sharex=True, sharey=True, figsize = (width,height))
-plt.draw()
-line_width = height*72/number_of_kernels
+propunit = (height*total_time/width)/number_of_kernels
 
+fig = plt.figure(1,figsize = (width,height))
+sp = fig.add_subplot(111)
+#plt.axes().set_aspect('equal')
+
+point_hei = height*72
+x1,x2,y1,y2=plt.axis()
+xrange = x2-x1
+yrange = y2-y1
+bar = barwidth*xrange/number_of_kernels
+line_width = (bar*(point_hei/yrange))*0.8
+
+#plt.draw()
+#'''
 for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
     kernel_data = all_kernel_data[kernel]
-    kernel_array = np.full(size,kernel)
+    kernel_array = np.full(size,kernel*propunit)
     function_data = np.zeros(size)
     for function_number in range(1,number_of_functions+1):
         print("     plotting data for function ",function_number)
@@ -93,15 +105,16 @@ for kernel in range(0,number_of_kernels):
     # Set the values used for colormapping
     lc.set_array(function_data)
     lc.set_linewidth(line_width)
-    line = axs.add_collection(lc)
-    axs.set_xlim(0., total_time)
-    axs.set_yticks(list(range(0,number_of_kernels)),labels = ticklabels)
-    axs.set_ylim(-0.5, number_of_kernels-0.5)
+    line = sp.add_collection(lc)
+    sp.set_xlim(0., total_time)
+    sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))),labels = ticklabels)
+    sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
     plt.draw()
+#'''
 
-axs.set_ylabel(r"\texttt{\${}KernelID}")
-axs.set_xlabel(r"Time/s")
-axs.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
+sp.set_ylabel(r"\texttt{\${}KernelID}")
+sp.set_xlabel(r"Time/s")
+sp.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('kernels-2.png',dpi = 300)
