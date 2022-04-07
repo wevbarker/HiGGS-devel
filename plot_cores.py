@@ -62,7 +62,7 @@ total_time=stop_time-start_time
 
 time_array = np.linspace(0,total_time,size)    #   plotting space
 
-number_of_functions = int(list(np.shape(all_kernel_data[0]))[0]/2)
+number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/2)
 number_of_kernels = len(all_kernel_data)
 
 width = 8.
