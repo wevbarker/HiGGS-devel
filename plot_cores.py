@@ -29,7 +29,7 @@ time_array = np.linspace(0,1,size)    #   plotting space
 
 
 ticklabels=[]
-kernel_files = os.listdir("bin/stats")
+kernel_files = [ filename for filename in os.listdir("bin/stats") if sum(1 for line in open('bin/stats/'+filename)) > 3 ]
 for filename in kernel_files:
     print(filename)
     print(np.shape(pd.read_csv('bin/stats/'+filename).to_numpy()))
