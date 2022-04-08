@@ -120,24 +120,6 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
-BuildHiGGS::usage="Rebuild the HiGGS session";
-ToNesterForm::usage="Express quantity in terms of human-readable irreps";
-ToBasicForm::usage="Express quantity in terms of basic gauge fields";
-PoissonBracket::usage="Calculate a Poisson bracket between two quantities";
-DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
-StudyTheory::usage="Calculate the links in the constraint chain down do a certain level";
-Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
-
-
-(* ::Input::Initialization:: *)
-$Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
-
-
-(* ::Input::Initialization:: *)
-Begin["xAct`HiGGS`Private`"];
-
-
-(* ::Input::Initialization:: *)
 (*purge all the run statistics*)
 (*
 Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
@@ -169,6 +151,24 @@ NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimi
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 $HiGGSTimingFile~Export~$HiGGSTimingData;
 temp];DistributeDefinitions[TimeWrapper];
+
+
+(* ::Input::Initialization:: *)
+BuildHiGGS::usage="Rebuild the HiGGS session";
+ToNesterForm::usage="Express quantity in terms of human-readable irreps";
+ToBasicForm::usage="Express quantity in terms of basic gauge fields";
+PoissonBracket::usage="Calculate a Poisson bracket between two quantities";
+DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
+StudyTheory::usage="Calculate the links in the constraint chain down do a certain level";
+Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
+
+
+(* ::Input::Initialization:: *)
+$Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
+
+
+(* ::Input::Initialization:: *)
+Begin["xAct`HiGGS`Private`"];
 
 
 (* ::Input::Initialization:: *)

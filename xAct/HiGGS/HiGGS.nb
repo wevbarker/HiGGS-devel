@@ -522,92 +522,6 @@ Cell[BoxData[{
    3.8563710789195642`*^9}},ExpressionUUID->"ba635768-7f14-4841-8aec-\
 bf8ba09709eb"],
 
-Cell["Define the package functions:", "Text",
- CellChangeTimes->{{3.853171109713401*^9, 
-  3.853171143304892*^9}},ExpressionUUID->"05a65b29-23c7-42a7-b701-\
-163d162fa58d"],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"BuildHiGGS", "::", "usage"}], "=", 
-   "\"\<Rebuild the HiGGS session\>\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"ToNesterForm", "::", "usage"}], "=", 
-   "\"\<Express quantity in terms of human-readable irreps\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"ToBasicForm", "::", "usage"}], "=", 
-   "\"\<Express quantity in terms of basic gauge fields\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"PoissonBracket", "::", "usage"}], "=", 
-   "\"\<Calculate a Poisson bracket between two quantities\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"DefTheory", "::", "usage"}], "=", 
-   "\"\<Define a theory using a system of equations to constrain the coupling \
-coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"StudyTheory", "::", "usage"}], "=", 
-   "\"\<Calculate the links in the constraint chain down do a certain level\>\
-\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Velocity", "::", "usage"}], "=", 
-   "\"\<Calculate the velocity of a quantity with respect to the Hamiltonian \
-indicated by DefTheory\>\""}], ";"}]}], "Input",
- InitializationCell->True,
- CellChangeTimes->{{3.853171149996469*^9, 3.8531711706735353`*^9}, {
-   3.853171250440598*^9, 3.853171258064022*^9}, {3.853582318943416*^9, 
-   3.8535824033001537`*^9}, 3.8535825635709143`*^9, {3.8535826681305237`*^9, 
-   3.8535827243300323`*^9}, {3.8535867584016333`*^9, 3.853586834327335*^9}, {
-   3.855576540725806*^9, 3.8555765503642597`*^9}, {3.855576679268778*^9, 
-   3.8555767171792192`*^9}, {3.855576756634934*^9, 3.8555767631149397`*^9}, {
-   3.855576864482386*^9, 3.855576911825713*^9}, {3.8555769440992613`*^9, 
-   3.855576945193932*^9}, {3.855577015338291*^9, 3.8555770617776203`*^9}, {
-   3.855577194209269*^9, 3.855577205488092*^9}, {3.858236227288478*^9, 
-   3.85823623140666*^9}, {3.858236937747398*^9, 3.858236940131283*^9}, {
-   3.858237784822605*^9, 3.858237786894226*^9}, {3.8582512333280897`*^9, 
-   3.858251301855855*^9}},ExpressionUUID->"eb42d413-bde6-4045-8550-\
-27ab8196f2da"],
-
-Cell["Global variables:", "Text",
- CellChangeTimes->{{3.855576953025096*^9, 
-  3.855576956753236*^9}},ExpressionUUID->"c2ed4da8-3421-43c6-ba96-\
-3d57eb8054a1"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"$Theory", "::", "usage"}], "=", 
-   "\"\<The gauge theory as defined by a system of equations which constrains \
-the coupling coefficients\>\""}], ";"}]], "Input",
- InitializationCell->True,
- CellLabel->
-  "In[106]:=",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Private", "Subsubsection",
- CellChangeTimes->{{3.852967758409596*^9, 3.852967779017097*^9}, {
-  3.8529688112797728`*^9, 
-  3.852968812215609*^9}},ExpressionUUID->"6225deb7-2b53-408d-b1b9-\
-6009d43132fd"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Begin", "[", "\"\<xAct`HiGGS`Private`\>\"", "]"}], ";"}]], "Input",\
-
- InitializationCell->
-  True,ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405"],
-
 Cell["Timing tools", "Text",
  CellChangeTimes->{{3.858149523235133*^9, 
   3.858149524538969*^9}},ExpressionUUID->"8f6533a0-96f6-49df-91d4-\
@@ -771,6 +685,92 @@ Cell[BoxData[
   3.858231983855651*^9}, {3.858407148057188*^9, 
   3.8584071537938833`*^9}},ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-\
 fc616935e0dc"],
+
+Cell["Define the package functions:", "Text",
+ CellChangeTimes->{{3.853171109713401*^9, 
+  3.853171143304892*^9}},ExpressionUUID->"05a65b29-23c7-42a7-b701-\
+163d162fa58d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"BuildHiGGS", "::", "usage"}], "=", 
+   "\"\<Rebuild the HiGGS session\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToNesterForm", "::", "usage"}], "=", 
+   "\"\<Express quantity in terms of human-readable irreps\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToBasicForm", "::", "usage"}], "=", 
+   "\"\<Express quantity in terms of basic gauge fields\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PoissonBracket", "::", "usage"}], "=", 
+   "\"\<Calculate a Poisson bracket between two quantities\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"DefTheory", "::", "usage"}], "=", 
+   "\"\<Define a theory using a system of equations to constrain the coupling \
+coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StudyTheory", "::", "usage"}], "=", 
+   "\"\<Calculate the links in the constraint chain down do a certain level\>\
+\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Velocity", "::", "usage"}], "=", 
+   "\"\<Calculate the velocity of a quantity with respect to the Hamiltonian \
+indicated by DefTheory\>\""}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.853171149996469*^9, 3.8531711706735353`*^9}, {
+   3.853171250440598*^9, 3.853171258064022*^9}, {3.853582318943416*^9, 
+   3.8535824033001537`*^9}, 3.8535825635709143`*^9, {3.8535826681305237`*^9, 
+   3.8535827243300323`*^9}, {3.8535867584016333`*^9, 3.853586834327335*^9}, {
+   3.855576540725806*^9, 3.8555765503642597`*^9}, {3.855576679268778*^9, 
+   3.8555767171792192`*^9}, {3.855576756634934*^9, 3.8555767631149397`*^9}, {
+   3.855576864482386*^9, 3.855576911825713*^9}, {3.8555769440992613`*^9, 
+   3.855576945193932*^9}, {3.855577015338291*^9, 3.8555770617776203`*^9}, {
+   3.855577194209269*^9, 3.855577205488092*^9}, {3.858236227288478*^9, 
+   3.85823623140666*^9}, {3.858236937747398*^9, 3.858236940131283*^9}, {
+   3.858237784822605*^9, 3.858237786894226*^9}, {3.8582512333280897`*^9, 
+   3.858251301855855*^9}},ExpressionUUID->"eb42d413-bde6-4045-8550-\
+27ab8196f2da"],
+
+Cell["Global variables:", "Text",
+ CellChangeTimes->{{3.855576953025096*^9, 
+  3.855576956753236*^9}},ExpressionUUID->"c2ed4da8-3421-43c6-ba96-\
+3d57eb8054a1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Theory", "::", "usage"}], "=", 
+   "\"\<The gauge theory as defined by a system of equations which constrains \
+the coupling coefficients\>\""}], ";"}]], "Input",
+ InitializationCell->True,
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Private", "Subsubsection",
+ CellChangeTimes->{{3.852967758409596*^9, 3.852967779017097*^9}, {
+  3.8529688112797728`*^9, 
+  3.852968812215609*^9}},ExpressionUUID->"6225deb7-2b53-408d-b1b9-\
+6009d43132fd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<xAct`HiGGS`Private`\>\"", "]"}], ";"}]], "Input",\
+
+ InitializationCell->
+  True,ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405"],
 
 Cell["Build the HiGGS session, which contains all the physics", "Text",
  CellChangeTimes->{{3.858419500032529*^9, 
@@ -1006,19 +1006,19 @@ Cell[10787, 299, 3604, 90, 303, "Input",ExpressionUUID->"e8759fa5-a487-477b-8e5e
 Cell[14394, 391, 258, 4, 36, "Text",ExpressionUUID->"221c257c-349c-4202-aae7-88d5d2325a48"],
 Cell[14655, 397, 7449, 125, 186, "Input",ExpressionUUID->"ba635768-7f14-4841-8aec-bf8ba09709eb",
  InitializationCell->True],
-Cell[22107, 524, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
-Cell[22281, 529, 2181, 48, 186, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[22107, 524, 154, 3, 36, "Text",ExpressionUUID->"8f6533a0-96f6-49df-91d4-d63452a12dec"],
+Cell[22264, 529, 6854, 157, 761, "Input",ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-fc616935e0dc",
  InitializationCell->True],
-Cell[24465, 579, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
-Cell[24627, 584, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
+Cell[29121, 688, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
+Cell[29295, 693, 2181, 48, 186, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+ InitializationCell->True],
+Cell[31479, 743, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[31641, 748, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24984, 597, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[25196, 603, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
- InitializationCell->True],
-Cell[25388, 610, 154, 3, 36, "Text",ExpressionUUID->"8f6533a0-96f6-49df-91d4-d63452a12dec"],
-Cell[25545, 615, 6854, 157, 761, "Input",ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-fc616935e0dc",
+Cell[31998, 761, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[32210, 767, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
  InitializationCell->True],
 Cell[32402, 774, 197, 3, 36, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
 Cell[32602, 779, 7138, 161, 581, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
