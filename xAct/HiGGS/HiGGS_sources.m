@@ -4366,10 +4366,11 @@ $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
-
-DumpSave[BinaryLocation[],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
+Print[$BinaryLocation];
+DumpSave[$BinaryLocation,{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
 ClearBuild[];
 ];
+Quit[];
 
 
 (* ::Input::Initialization:: *)
@@ -4491,8 +4492,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 (*Now we calculate the commutator replacement rule part*)
 
 VelocitySegments=$InertVelocity[[{12,14}]];
-
-ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,kk_];
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
