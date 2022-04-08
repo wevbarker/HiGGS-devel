@@ -5004,8 +5004,12 @@ printer=printer~Append~PrintTemporary[" ** ImposeCommutatorReplacementRules"];
 (*simplification process*)
 return=Evaluate@InertVelocityPart;
 Print[PlaceholderBracketActivate];
-Pause[80000];
+
 return=return/.PlaceholderBracketActivate;
+
+Print[return];
+
+Pause[80000];
 return=ToOrderCanonical[return,1];
 printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Imposing Nester form..."];
