@@ -5053,7 +5053,7 @@ DistributeDefinitions@EH0;
 (*Large batch of jobs for segments of all velocities*)
 Jobs=SetupVelocitySegments[#,EH0]&/@Psis;
 Print[Jobs];
-Quit[];
+
 SplitVelocities=WaitAll[Jobs];
 Velocities=SecondaryVelocitySimplification/@SplitVelocities;
 
