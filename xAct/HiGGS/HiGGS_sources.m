@@ -3050,11 +3050,13 @@ printer=PrintTemporary[" ** ToOrderCanonical: order ",order,"..."];
 res=expr;
 Switch[order,0,{
 res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
+(*res=CollectConstants[res,Prt];*)
+res=Expand@res;
 res=res/.{Prt->0};
 },1,{
 res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
+(*res=CollectConstants[res,Prt];*)
+res=Expand@res;
 res=res/.{Prt^2->0,Prt^3->0,Prt^4->0,Prt^5->0,Prt^6->0,Prt^7->0,Prt^8->0,Prt^9->0,Prt^10->0,Prt^11->0,Prt^12->0,Prt^13->0,Prt^14->0};
 res=res/.{Prt->1};
 },Infinity,{}];
@@ -3350,69 +3352,51 @@ res];
 CDBToDJDV[x_]:=Module[{res,printer},
 printer=PrintTemporary[" ** CDBToDJDV..."];
 res=x;
-res=res/.G3HCDBToDJ;
-res=res//ToNewCanonical;
-res=res/.G3VCDBToG3DV;
-res=res//ToNewCanonical;
-res=res/.CDBCommute;
-res=res//ToNewCanonical;
-res=res/.G3HCDBToDJ;
-res=res//ToNewCanonical;
-res=res/.G3VCDBToG3DV;
-res=res//ToNewCanonical;
-res=res/.HExpand;
-res=res//ToNewCanonical;
-res=res/.G3HCDBToDJ;
-res=res//ToNewCanonical;
-res=res/.G3VCDBToG3DV;
-res=res//ToNewCanonical;
-res=res/.CDBCommute;
-res=res//ToNewCanonical;
-res=res/.G3HCDBToDJ;
-res=res//ToNewCanonical;
-res=res/.G3VCDBToG3DV;
-res=res//ToNewCanonical;
+res~ToTryCanonical~(res=res/.G3HCDBToDJ);
+res~ToTryCanonical~(res=res/.G3VCDBToG3DV);
+res~ToTryCanonical~(res=res/.CDBCommute);
+res~ToTryCanonical~(res=res/.G3HCDBToDJ);
+res~ToTryCanonical~(res=res/.G3VCDBToG3DV);
+res~ToTryCanonical~(res=res/.HExpand);
+res~ToTryCanonical~(res=res/.G3HCDBToDJ);
+res~ToTryCanonical~(res=res/.G3VCDBToG3DV);
+res~ToTryCanonical~(res=res/.CDBCommute);
+res~ToTryCanonical~(res=res/.G3HCDBToDJ);
+res~ToTryCanonical~(res=res/.G3VCDBToG3DV);
 NotebookDelete[printer];
 res];
 
 CDToD[x_]:=Module[{res,printer},
 printer=PrintTemporary[" ** CDToD..."];
 res=x;
+res~ToTryCanonical~(
 res=res/.DGrandActivate;
 res=res/.DpGrandActivate;
-res=res/.DpVExpand;(*this is new!*)
-res=res//ToNewCanonical;
+res=res/.DpVExpand;);
+res~ToTryCanonical~(
 res=res/.epsilonGVToEps;
-res=res/.epsilonGToEpsV;
-res=res//ToNewCanonical;
+res=res/.epsilonGToEpsV;);
 NotebookDelete[printer];
 res];
 
 CollapseA[x_]:=Module[{res,printer},
 printer=PrintTemporary[" ** CollapseA..."];
 res=x;
+res~ToTryCanonical~(
 res=res/.CDAToCDAInert;
 res=res/.AExpand;
-res=res/.G3HExpand;
-res=res//ToNewCanonical;
-res=res/.HG3VCDAToHVCDA;
-res=res//ToNewCanonical;
-res=res/.HG3VAToHVA;
-res=res//ToNewCanonical;
-res=res/.G3HExpand;
-res=res//ToNewCanonical;
-res=res/.HExpand;
-res=res//ToNewCanonical;
-res=res/.CDAInertToCDA;
-res=res//ToNewCanonical;
+res=res/.G3HExpand;);
+res~ToTryCanonical~(res=res/.HG3VCDAToHVCDA);
+res~ToTryCanonical~(res=res/.HG3VAToHVA);
+res~ToTryCanonical~(res=res/.G3HExpand);
+res~ToTryCanonical~(res=res/.HExpand);
+res~ToTryCanonical~(res=res/.CDAInertToCDA);
+res~ToTryCanonical~(
 res=res/.HG3BExpand;(*to deal with the strange combination of A epsilon which cancels*)
 res=res/.G3HExpand;
-res=res/.HEpsToHG3Eps;
-res=res//ToNewCanonical;
-res=res/.AHEpsExpand;
-res=res//ToNewCanonical;
-res=res/.EpsEpsExpand;
-res=res//ToNewCanonical;(*finished dealing with this combination*)
+res=res/.HEpsToHG3Eps;);
+res~ToTryCanonical~(res=res/.AHEpsExpand);
+res~ToTryCanonical~(res=res/.EpsEpsExpand);(*finished dealing with this combination*)
 NotebookDelete[printer];
 res];
 
@@ -3421,11 +3405,10 @@ PreSimplify[x_,OptionsPattern[]]:=Module[{res,printer},
 printer=PrintTemporary[" ** TotalToO3 with Hard ",OptionValue["Hard"]," and Order ",OptionValue["Order"],"..."];
 res=x;
 (*res=res//ToNewCanonical;*)(*should re-test after implementing this*)
+res~ToTryCanonical~(
 res=ToOrderCanonical[res,OptionValue["Order"]];
-If[OptionValue["Hard"],res=res/.HExpand];
-res=res//ToNewCanonical;
-res=res/.HG3BExpandLazy;
-res=res//ToNewCanonical;
+If[OptionValue["Hard"],res=res/.HExpand];);
+res~ToTryCanonical~(res=res/.HG3BExpandLazy);
 res=res/.G3HExpand;
 res=ToOrderCanonical[res,OptionValue["Order"]];
 (*res=res//ToNewCanonical;*)
@@ -4521,18 +4504,27 @@ Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
+
+
+
+
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RD[-g,-h,-i,-j,-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]}]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RDS1[-g,-h,-i,-j,-x1,-y1,-z1,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RDS1[-g,-h,-i,-j,-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn->All,ContractMetrics->True]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RDS2[-g,-h,-i,-j,-x1,-y1,-z1,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RDS2[-g,-h,-i,-j,-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[3]]]},MetricOn->All,ContractMetrics->True]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[4]]]},MetricOn->All,ContractMetrics->True]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["CD[-u][RDS1[-g,-h,-i,-j,-x1,-y1,-z1,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 GradTemp=CD[-u][Evaluate[Temp[[2]]]];
@@ -4540,6 +4532,7 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][RDS1[-g,-h,-i,-j,-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["CD[-u][RDS2[-g,-h,-i,-j,-x1,-y1,-z1,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 GradTemp=CD[-u][Evaluate[Temp[[3]]]];
@@ -4547,6 +4540,7 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][RDS2[-g,-h,-i,-j,-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 printer=printer~Append~PrintTemporary[Evaluate[ToExpression[StringReplace["CD[-u][RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]]];
 GradTemp=CD[-u][Evaluate[Temp[[4]]]];
