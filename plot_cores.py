@@ -46,9 +46,7 @@ for filename in new_files:
     shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
 
 for filename in rep_files:
-    if 
     shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
-
 
 kernel_files = os.listdir("bin/stats/samples")
 
