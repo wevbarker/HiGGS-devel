@@ -4366,11 +4366,10 @@ $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
-Print[BinaryLocation["VelocityToggle"]];
+
 DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
 ClearBuild[];
 ];
-Quit[];
 
 
 (* ::Input::Initialization:: *)
@@ -4490,7 +4489,6 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 (*Now we calculate the commutator replacement rule part*)
-
 VelocitySegments=$InertVelocity[[{12,14}]];
 VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
 
@@ -4560,6 +4558,10 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][TDS3[-d,-g,-h,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+(*Now we calculate the commutator replacement rule part*)
+VelocitySegments=$InertVelocity[[{11,13}]];
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
