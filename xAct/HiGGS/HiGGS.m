@@ -111,7 +111,7 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-ActiveCellTags={"build"};
+ActiveCellTags={"build","VelocityToggle"};
 UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle","documentation"};
 PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
 BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle","GeneralComplementsToggle","CDPiPToCDPiPO3","NesterFormIfConstraints","VelocityToggle"};

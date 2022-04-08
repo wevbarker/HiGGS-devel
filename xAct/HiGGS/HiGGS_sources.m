@@ -4094,49 +4094,69 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 IfBuild["VelocityToggle",
 (*PBs on constraint functions*)
-ConstraintHamiltonianBilinear=2(1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
+$ConstraintHamiltonianBilinearB0p=2(1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB0p[]PhiDS1B0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB0p[]]PhiDS2B0p[-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiB0p[]]PhiDS3B0p[-x,-y,-z,v,w]])+
-cPerpB1p BetPerpPerp1p ShellOrigB1p ( Lapse[]J[]PhiB1p[-a,-b]PhiDB1p[a,b,-x,-y,-z]-
+ CD[-w][CD[-v][Lapse[]J[]PhiB0p[]]PhiDS3B0p[-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearB1p=2(1/16)(cPerpB1p BetPerpPerp1p ShellOrigB1p ( Lapse[]J[]PhiB1p[-a,-b]PhiDB1p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB1p[-a,-b]PhiDS1B1p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB1p[-a,-b]]PhiDS2B1p[a,b,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiB1p[-a,-b]]PhiDS3B1p[a,b,-x,-y,-z,v,w]])+
-cPerpB1m BetPerpPerp1m ShellOrigB1m ( Lapse[]J[]PhiB1m[-a]PhiDB1m[a,-x,-y,-z]-
+ CD[-w][CD[-v][Lapse[]J[]PhiB1p[-a,-b]]PhiDS3B1p[a,b,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearB1m=2(1/16)(cPerpB1m BetPerpPerp1m ShellOrigB1m ( Lapse[]J[]PhiB1m[-a]PhiDB1m[a,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB1m[-a]PhiDS1B1m[a,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB1m[-a]]PhiDS2B1m[a,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiB1m[-a]]PhiDS3B1m[a,-x,-y,-z,v,w]])+
-cPerpB2p BetPerpPerp2p ShellOrigB2p ( Lapse[]J[]PhiB2p[-a,-b]PhiDB2p[a,b,-x,-y,-z]-
+ CD[-w][CD[-v][Lapse[]J[]PhiB1m[-a]]PhiDS3B1m[a,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearB2p=2(1/16)(cPerpB2p BetPerpPerp2p ShellOrigB2p ( Lapse[]J[]PhiB2p[-a,-b]PhiDB2p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB2p[-a,-b]PhiDS1B2p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS2B2p[a,b,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS3B2p[a,b,-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS3B2p[a,b,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA0p=2(1/16)(
 (1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p ( Lapse[]J[]PhiA0p[]PhiDA0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0p[]PhiDS1A0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0p[]]PhiDS2A0p[-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiA0p[]]PhiDS3A0p[-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiA0p[]]PhiDS3A0p[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA0m=2(1/16)(
+(1/4)(
 cPerpA0m AlpPerpPerp0m ShellOrigA0m ( Lapse[]J[]PhiA0m[]PhiDA0m[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0m[]PhiDS1A0m[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0m[]]PhiDS2A0m[-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiA0m[]]PhiDS3A0m[-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiA0m[]]PhiDS3A0m[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA1p=2(1/16)(
+(1/4)(
 cPerpA1p AlpPerpPerp1p ShellOrigA1p ( Lapse[]J[]PhiA1p[-a,-b]PhiDA1p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]PhiDS1A1p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS2A1p[a,b,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS3A1p[a,b,-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS3A1p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA1m=2(1/16)(
+(1/4)(
 cPerpA1m AlpPerpPerp1m ShellOrigA1m ( Lapse[]J[]PhiA1m[-a]PhiDA1m[a,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1m[-a]PhiDS1A1m[a,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS2A1m[a,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS3A1m[a,-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS3A1m[a,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA2p=2(1/16)(
+(1/4)(
 cPerpA2p AlpPerpPerp2p ShellOrigA2p ( Lapse[]J[]PhiA2p[-a,-b]PhiDA2p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]PhiDS1A2p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS2A2p[a,b,-x,-y,-z,v]-
- CD[-w][CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS3A2p[a,b,-x,-y,-z,v,w]])+
+ CD[-w][CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS3A2p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
+
+$ConstraintHamiltonianBilinearA2m=2(1/16)(
+(1/4)(
 cPerpA2m AlpPerpPerp2m ShellOrigA2m ( Lapse[]J[]PhiA2m[-a,-b,-c]PhiDA2m[a,b,c,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]PhiDS1A2m[a,b,c,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS2A2m[a,b,c,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS3A2m[a,b,c,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
 (*PBs for field strength tensors and ADM projectors, remember PBs vanish on main field strength projectors as only functions of G*)
-LagrangianHamiltonianBilinear=-2( Lapse[]J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
+$LagrangianHamiltonianBilinearT=-2( Lapse[]J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])TD[-a,-c,-d,-x,-y,-z]-
  CD[-v][Lapse[]J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
@@ -4147,7 +4167,10 @@ Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])]TDS2[-a,-c,-d,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
-Bet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]]+
+Bet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
+
+(*PBs for field strength tensors and ADM projectors, remember PBs vanish on main field strength projectors as only functions of G*)
+$LagrangianHamiltonianBilinearR=-2( 
  Lapse[]J[](R[i,j,-m,-n]PPara[m,g]PPara[n,h](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+
 Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+
 Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+
@@ -4173,7 +4196,7 @@ Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 Alp6 PR6[-i,-j,-g,-h,a,b,c,d])-(1/4)Alp0 PPara[a,c]PPara[b,d])]RDS3[-a,-b,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
-LagrangianHamiltonianBilinearMultiplier=-( Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
+$LagrangianHamiltonianBilinearMultiplierT=-( Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
 cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])TD[-a,-c,-d,-x,-y,-z]-
  CD[-v][Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
@@ -4184,7 +4207,9 @@ cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])]TDS2[-a,-c,-d,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
 cBet2 PT2[-i,-g,-h,a,c,d]+
-cBet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]]+
+cBet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
+
+$LagrangianHamiltonianBilinearMultiplierR=-( 
  Lapse[]J[]RLambda[i,j,-m,-n]PPara[m,g]PPara[n,h](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+
 cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+
 cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+
@@ -4211,7 +4236,7 @@ cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])]RDS3[-a,-b,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
 (*PB on the measure factor in front of constraint and Lagrangian parts*)
-ConstraintLagrangianMeasure1=((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
+$ConstraintLagrangianMeasure1=((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
 cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
 cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
@@ -4240,7 +4265,7 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))JD[-x,-y,-z];
 
-ConstraintLagrangianMeasure2=- CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
+$ConstraintLagrangianMeasure2=- CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
 cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
 cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
@@ -4269,7 +4294,7 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))JDS1[-x,-y,-z,v]];
 
-ConstraintLagrangianMeasure3= CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
+$ConstraintLagrangianMeasure3= CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
 cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
 cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
@@ -4298,7 +4323,7 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))]JDS2[-x,-y,-z,v];
 
-ConstraintLagrangianMeasure4=- CD[-w][CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
+$ConstraintLagrangianMeasure4=- CD[-w][CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
 cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
 cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
@@ -4328,7 +4353,7 @@ cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))]JDS3[-x,-y,-z,v,w]];
 
 (*PB on final surface term*)
-SurfaceHamiltonian= Lapse[]QD[-x,-y,-z]-
+$SurfaceHamiltonian= Lapse[]QD[-x,-y,-z]-
  CD[-v][Lapse[]QDS1[-x,-y,-z,v]]+
  CD[-v][Lapse[]]QDS2[-x,-y,-z,v]-
  CD[-j][CD[-v][Lapse[]]QDS3[-x,-y,-z,v,j]]-
@@ -4337,12 +4362,12 @@ CD[-v][V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n])LapseDS1[-x,-y,-z,v]]+
 CD[-v][V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n])]LapseDS2[-x,-y,-z,v]-
 CD[-j][CD[-v][V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n])]LapseDS3[-x,-y,-z,v,j]]);
 
-SurfaceHamiltonian=SurfaceHamiltonian//ToNewCanonical;
-SurfaceHamiltonian=SurfaceHamiltonian//ToNewCanonical;
-SurfaceHamiltonian=SurfaceHamiltonian/.PActivate//ToNewCanonical;
-SurfaceHamiltonian=SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
+$SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
+$SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
+$SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
+$SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
 
-DumpSave[BinaryLocation[],{ConstraintHamiltonianBilinear,LagrangianHamiltonianBilinear,LagrangianHamiltonianBilinearMultiplier,ConstraintLagrangianMeasure1,ConstraintLagrangianMeasure2,ConstraintLagrangianMeasure3,ConstraintLagrangianMeasure4,SurfaceHamiltonian}];
+DumpSave[BinaryLocation[],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
 ClearBuild[];
 ];
 
@@ -4352,114 +4377,42 @@ OpenLastCache[];
 
 
 (* ::Input::Initialization:: *)
-DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{tmp,res,printer},
+VelSimplifier[xx_]:=Module[{res,printer},
+(*a message*)
+xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** DefInertVelocity: "<>ToString@Symbol@res];
+
+res=xx;
+res=res//ToNewCanonical;
+res=res/.TocPerp;
+res=res/.ToAlp;
+res=res/.ToBet;
+res=res/.$ToTheory;
+res=res/.$ToShellFreedoms;
+res=res//ToNewCanonical;
+res=res/.PActivate//ToNewCanonical;
+res=res/.PADMActivate//ToNewCanonical;
+res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
+res=res S1[x] S2[y]S3[z]//ToNewCanonical;
+NotebookDelete[printer];
+res];
+
+DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 printer={};
 
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear//ToNewCanonical;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.TocPerp;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.ToAlp;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.ToBet;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.$ToTheory;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.$ToShellFreedoms;
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintHamiltonianBilinear"];
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintHamiltonianBilinear"];
-ConstraintHamiltonianBilinear=ConstraintHamiltonianBilinear/.PADMActivate//ToNewCanonical;
+SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
 
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear//ToNewCanonical;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.TocPerp;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.ToAlp;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.ToBet;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.$ToTheory;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.$ToShellFreedoms;
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: LagrangianHamiltonianBilinear"];
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: LagrangianHamiltonianBilinear"];
-LagrangianHamiltonianBilinear=LagrangianHamiltonianBilinear/.PADMActivate//ToNewCanonical;
+(*Large batch of jobs for segments of all velocities*)
+Jobs=ParallelSubmit@VelSimplifier/@SegmentList;
+$InertVelocity=WaitAll[Jobs];
+DistributeDefinitions@$InertVelocity;
 
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier//ToNewCanonical;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.TocPerp;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.ToAlp;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.ToBet;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.$ToTheory;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.$ToShellFreedoms;
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: LagrangianHamiltonianBilinearMultiplier"];
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: LagrangianHamiltonianBilinearMultiplier"];
-LagrangianHamiltonianBilinearMultiplier=LagrangianHamiltonianBilinearMultiplier/.PADMActivate//ToNewCanonical;
-
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1//ToCanonical//CollectTensors;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1//ToNewCanonical;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.TocPerp;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.ToAlp;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.ToBet;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.$ToTheory;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.$ToShellFreedoms;
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure1"];
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure1"];
-ConstraintLagrangianMeasure1=ConstraintLagrangianMeasure1/.PADMActivate//ToNewCanonical;
-
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2//ToCanonical//CollectTensors;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2//ToNewCanonical;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.TocPerp;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.ToAlp;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.ToBet;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.$ToTheory;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.$ToShellFreedoms;
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure2"];
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure2"];
-ConstraintLagrangianMeasure2=ConstraintLagrangianMeasure2/.PADMActivate//ToNewCanonical;
-
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3//ToCanonical//CollectTensors;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3//ToNewCanonical;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.TocPerp;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.ToAlp;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.ToBet;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.$ToTheory;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.$ToShellFreedoms;
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure3"];
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure3"];
-ConstraintLagrangianMeasure3=ConstraintLagrangianMeasure3/.PADMActivate//ToNewCanonical;
-
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4//ToCanonical//CollectTensors;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.TocPerp;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.ToAlp;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.ToBet;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.$ToTheory;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.$ToShellFreedoms;
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4//ToNewCanonical;
-ConstraintLagrangianMeasure4=ToOrderCanonical[ConstraintLagrangianMeasure4,1];
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure4"];
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.PActivate//ToNewCanonical;
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: ConstraintLagrangianMeasure4"];
-ConstraintLagrangianMeasure4=ConstraintLagrangianMeasure4/.PADMActivate//ToNewCanonical;
-
-tmp=
-ConstraintHamiltonianBilinear+
-LagrangianHamiltonianBilinear+
-LagrangianHamiltonianBilinearMultiplier+
-ConstraintLagrangianMeasure1+
-ConstraintLagrangianMeasure2+
-ConstraintLagrangianMeasure3+
-ConstraintLagrangianMeasure4+
-SurfaceHamiltonian//ToNewCanonical;
-tmp=ReplaceDummies[tmp,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
-tmp=tmp S1[x] S2[y]S3[z]//ToNewCanonical;
-$InertVelocity=tmp;
 NotebookDelete[printer];
-];
+$InertVelocity];
 ClearBuild[];
 
 
