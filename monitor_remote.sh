@@ -3,9 +3,9 @@
 #	if python is not loaded, load it
 module load anaconda/python3
 #	flush the stats directory
-#rm -rf ./bin/stats
+rm -rf ./bin/stats
 #	make a new stats directory
-#mkdir ./bin/stats
+mkdir ./bin/stats
 #	wait five seconds for the first kernel logs to come through
 sleep 5
 #	plot loop
