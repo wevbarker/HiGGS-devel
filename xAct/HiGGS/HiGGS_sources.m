@@ -4399,6 +4399,7 @@ res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
 res=res S1[x] S2[y]S3[z]//ToNewCanonical;
 NotebookDelete[printer];
 res];
+DistributeDefinitions@VelSimplifier;
 
 DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
@@ -4406,10 +4407,12 @@ xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theo
 printer={};
 
 SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
-
+(*
 (*Large batch of jobs for segments of all velocities*)
 Jobs=ParallelSubmit@VelSimplifier/@SegmentList;
 $InertVelocity=WaitAll[Jobs];
+*)
+$InertVelocity=VelSimplifier/@SegmentList;
 DistributeDefinitions@$InertVelocity;
 
 NotebookDelete[printer];
@@ -4432,7 +4435,7 @@ EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("RiemannBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-RiemannBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+RiemannBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4484,6 +4487,12 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->EH0];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][RDS3[-g,-h,-i,-j,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+(*Now we calculate the commutator replacement rule part*)
+
+VelocitySegments=$InertVelocity[[{12,14}]];
+
+ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,kk_];
 
 NotebookDelete[printer];
 PlaceholderBracketActivate];
@@ -4938,14 +4947,14 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintS
 NotebookDelete[printer];
 Jobs];
 
-ImposeCommutatorReplacementRules[PlaceholderBracketActivate_]:=Module[{return,printer},
+ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,kk_]:=Module[{return,printer},
 
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** ImposeCommutatorReplacementRules"];
 
 (*simplification process*)
-return=$InertVelocity;
+return=Evaluate@$InertVelocity[[kk]];
 return=return/.PlaceholderBracketActivate;
 return=ToOrderCanonical[return,1];
 printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
@@ -4956,7 +4965,6 @@ return=return/.FoliGToG;
 return=return//ToNewCanonical;
 return=return/.GToFoliG;
 return=return//ToNewCanonical;
-
 
 NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];

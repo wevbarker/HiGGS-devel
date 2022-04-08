@@ -13,7 +13,7 @@ mkdir ./bin/samples
 #	wait five seconds for the first kernel logs to come through
 sleep 5
 #	plot loop
-while sleep 5; do
+while sleep 30; do
   echo "			(...replotting...)"
   #./plot_cores.py
   ./plot_cores.py > /dev/null 2>&1
