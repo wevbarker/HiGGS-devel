@@ -35,25 +35,25 @@ time_array = np.linspace(0,1,size)    #   plotting space
 #=============== files =================================
 
 output_files = os.listdir("bin/stats")
-sample_files = os.listdir("bin/stats/samples")
+sample_files = os.listdir("bin/samples")
 filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 ]
 
 new_files = list(set(filled_files)-set(sample_files))
 old_files = list(set(filled_files)-set(new_files))
-rep_files = [ filename for filename in old_files if sum(1 for line in open('bin/stats/'+filename)) > sum(1 for line in open('bin/stats/samples'+filename)) ]
+rep_files = [ filename for filename in old_files if sum(1 for line in open('bin/stats/'+filename)) > sum(1 for line in open('bin/samples/'+filename)) ]
 
 for filename in new_files:
-    shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
+    shutil.copyfile('bin/stats/'+filename,'bin/samples/'+filename)
 
 for filename in rep_files:
-    shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
+    shutil.copyfile('bin/stats/'+filename,'bin/samples/'+filename)
 
-kernel_files = os.listdir("bin/stats/samples")
+kernel_files = os.listdir("bin/samples/")
 
 ticklabels=[]
 for filename in kernel_files:
     print(filename)
-    print(np.shape(pd.read_csv('bin/stats/samples'+filename).to_numpy()))
+    print(np.shape(pd.read_csv('bin/samples/'+filename).to_numpy()))
     for m in filename:
         if m.isdigit():
             ticklabels.append(m)
@@ -65,7 +65,7 @@ print(ticklabels)
 print(kernel_files)
 
 def make_np(filename):
-    return pd.read_csv('bin/stats/samples'+filename).to_numpy()
+    return pd.read_csv('bin/samples/'+filename).to_numpy()
 
 all_kernel_data = list(map(make_np,kernel_files))
 print(len(kernel_files))

@@ -4,10 +4,10 @@
 module load anaconda/python3
 #	flush the stats directory
 rm -rf ./bin/stats
+rm -rf ./bin/samples
 #	make a new stats directory
 mkdir ./bin/stats
-#	make a new stats directory for plotting
-mkdir ./bin/stats/samples
+mkdir ./bin/samples
 
 
 #	wait five seconds for the first kernel logs to come through
