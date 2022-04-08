@@ -129,7 +129,7 @@ Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
-$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","VarAction","ToNewCanonical"}
+$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"}
 (*initial zeroes, i.e. the default line*)
 $HiGGSTimingLine=0.~ConstantArray~(2Length@$TimedFunctionList)
 (*which kernel are we in? This sets the file in which we record stats*)

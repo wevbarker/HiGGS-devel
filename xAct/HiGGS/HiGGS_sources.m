@@ -3023,7 +3023,7 @@ AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellSing"<>ToString[BSectorNam
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]]}]}]]];
 ];
 
-ToOrderCanonical[expr_,order_]:=Module[{res,printer},
+ToOrderCanonical[expr_,order_]:="ToOrderCanonical"~TimeWrapper~Module[{res,printer},
 printer=PrintTemporary[" ** ToOrderCanonical: order ",order,"..."];
 res=expr;
 Switch[order,0,{
