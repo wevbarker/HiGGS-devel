@@ -5,12 +5,15 @@ import matplotlib.pyplot as plt
 import sys
 import matplotlib as mpl
 from matplotlib import cm
-import os
-from os.path import exists
 from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
-mpl.use('Agg')
+import os
+from os.path import exists
+import shutil
 
+#================ params and setup ======================
+
+mpl.use('Agg')
 #   tex params
 #plt.rcParams["figure.figsize"] = [7.50, 3.50]
 #plt.rcParams["figure.autolayout"] = True
@@ -23,16 +26,36 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
+#=============== tuning params ==========================
+
 barwidth = 0.9
 size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
 
+#=============== files =================================
+
+output_files = os.listdir("bin/stats")
+sample_files = os.listdir("bin/stats/samples")
+filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 ]
+
+new_files = list(set(filled_files)-set(sample_files))
+old_files = list(set(filled_files)-set(new_files))
+rep_files = [ filename for filename in old_files if sum(1 for line in open('bin/stats/'+filename)) > sum(1 for line in open('bin/stats/samples'+filename)) ]
+
+for filename in new_files:
+    shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
+
+for filename in rep_files:
+    if 
+    shutil.copyfile('bin/stats/'+filename,'bin/stats/samples'+filename)
+
+
+kernel_files = os.listdir("bin/stats/samples")
 
 ticklabels=[]
-kernel_files = [ filename for filename in os.listdir("bin/stats") if sum(1 for line in open('bin/stats/'+filename)) > 3 ]
 for filename in kernel_files:
     print(filename)
-    print(np.shape(pd.read_csv('bin/stats/'+filename).to_numpy()))
+    print(np.shape(pd.read_csv('bin/stats/samples'+filename).to_numpy()))
     for m in filename:
         if m.isdigit():
             ticklabels.append(m)
@@ -44,7 +67,7 @@ print(ticklabels)
 print(kernel_files)
 
 def make_np(filename):
-    return pd.read_csv('bin/stats/'+filename).to_numpy()
+    return pd.read_csv('bin/stats/samples'+filename).to_numpy()
 
 all_kernel_data = list(map(make_np,kernel_files))
 print(len(kernel_files))
@@ -65,6 +88,8 @@ time_array = np.linspace(0,total_time,size)    #   plotting space
 number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/2)
 number_of_kernels = len(all_kernel_data)
 
+#====================== bar width and chart geometry ==============
+
 width = 8.
 height = 1.*number_of_kernels+2.
 
@@ -81,9 +106,8 @@ yrange = y2-y1
 bar = barwidth*xrange/number_of_kernels
 line_width = (bar*(point_hei/yrange))*0.8
 
+#==================== construct the data ===========================
 
-#plt.draw()
-#'''
 for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
     kernel_data = all_kernel_data[kernel]
@@ -114,7 +138,8 @@ for kernel in range(0,number_of_kernels):
     sp.set_yticklabels(ticklabels)
     sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
     plt.draw()
-#'''
+
+#=================== end admin to label the plot ======================
 
 sp.set_ylabel(r"\texttt{\${}KernelID}")
 sp.set_xlabel(r"Time/s")

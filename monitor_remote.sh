@@ -6,6 +6,10 @@ module load anaconda/python3
 rm -rf ./bin/stats
 #	make a new stats directory
 mkdir ./bin/stats
+#	make a new stats directory for plotting
+mkdir ./bin/stats/samples
+
+
 #	wait five seconds for the first kernel logs to come through
 sleep 5
 #	plot loop
