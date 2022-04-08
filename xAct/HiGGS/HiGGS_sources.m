@@ -4490,7 +4490,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments=$InertVelocity[[{12,14}]];
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4561,7 +4561,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments=$InertVelocity[[{11,13}]];
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4585,18 +4585,13 @@ printer={};
 PlaceholderBracketActivate={};
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
 PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
 
+(*this is the `hard' segment: the surface quantity that actually gives most of the velocities*)
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Surface bracket..."];
 Temp=PoissonBracket[Psi,-V[k]G3[m,-n](CD[-m][BPi[-k,n]]-A[w,-k,-m]BPi[-w,n]),"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
@@ -4625,6 +4620,40 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][QDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+(*this is the `easier' segment: we look at the Lapse function*)
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Lapse bracket..."];
+Temp=PoissonBracket[Psi,Lapse[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseD[-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS1[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS2[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[3]]]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS3[-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[4]]]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+GradTemp=CD[-u][Evaluate[Temp[[2]]]];
+GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+printer=printer~Append~PrintTemporary[GradTemp];
+(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS1[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+GradTemp=CD[-u][Evaluate[Temp[[3]]]];
+GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+printer=printer~Append~PrintTemporary[GradTemp];
+(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS2[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+GradTemp=CD[-u][Evaluate[Temp[[4]]]];
+GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+printer=printer~Append~PrintTemporary[GradTemp];
+(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+(*Now we calculate the commutator replacement rule part*)
+VelocitySegments={$InertVelocity[[19]]};
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4688,6 +4717,10 @@ GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+
+(*Now we calculate the commutator replacement rule part*)
+VelocitySegments=$InertVelocity[[{15,16,17,18}]];
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4821,6 +4854,10 @@ printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]EH0,"GToFoliG"\[Rule]False];*)
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][PhiDS3"<>ToString[SectorNames[[ii]]]<>"["<>ToString[PhiFreeIndexListString]<>"-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
+(*Now we calculate the commutator replacement rule part*)
+VelocitySegments={$InertVelocity[[ii]]};
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@ConstraintBracketParallel;
@@ -4927,7 +4964,8 @@ DistributeDefinitions@PsiFreeIndexListNormal;
 
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 
-Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@LapseBracketParallel[Psi,EH0,PsiFreeIndexListNormal]};
+Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal]};
+(*lapse removed from above*)
 
 For[ii=1,ii<11,ii++,
 If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
@@ -4949,14 +4987,14 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintS
 NotebookDelete[printer];
 Jobs];
 
-ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,kk_]:=Module[{return,printer},
+ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,InertVelocityPart_]:=Module[{return,printer},
 
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** ImposeCommutatorReplacementRules"];
 
 (*simplification process*)
-return=Evaluate@$InertVelocity[[kk]];
+return=Evaluate@InertVelocityPart;
 return=return/.PlaceholderBracketActivate;
 return=ToOrderCanonical[return,1];
 printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
@@ -4969,11 +5007,31 @@ return=return/.GToFoliG;
 return=return//ToNewCanonical;
 
 NotebookDelete[printer];
-Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];
+Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
+return];
+
+SecondaryVelocitySimplification[VelocitySegments_List]:=Module[{return,printer},
+
+(*a message*)
+printer={};
+printer=printer~Append~PrintTemporary[" ** SecondaryVelocitySimplification"];
+
+return=Flatten@VelocitySegments;
+return=Total@return;
+
+(*simplification process*)
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Re-expanding \!\(\*OverscriptBox[\(\[Eta]\), \(^\)]\) because answer is a product of Nester forms..."];
+return=return/.FoliGToG;
+return=return//ToNewCanonical;
+return=return/.GToFoliG;
+return=return//ToNewCanonical;
+
+NotebookDelete[printer];
+Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
 
 Options[VelocityParallel]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True};
-VelocityParallel[Psis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,EH0,printer,Jobs,PlaceholderBracketsActivate,Velocities},
+VelocityParallel[Psis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,EH0,printer,Jobs,SplitVelocities,Velocities},
 
 (*a message*)
 printer={};
@@ -4986,13 +5044,8 @@ DistributeDefinitions@EH0;
 
 (*Large batch of jobs for segments of all velocities*)
 Jobs=SetupVelocitySegments[#,EH0]&/@Psis;
-PlaceholderBracketsActivate=WaitAll[Jobs];
-PlaceholderBracketsActivate=Flatten/@PlaceholderBracketsActivate;
-DistributeDefinitions@PlaceholderBracketsActivate;
-
-(*Smaller, riskier batch for rule imposition and simplification*)
-Jobs=(ParallelSubmit@ImposeCommutatorReplacementRules[#])&/@PlaceholderBracketsActivate;
-Velocities=WaitAll[Jobs];
+SplitVelocities=WaitAll[Jobs];
+Velocities=SecondaryVelocitySimplification/@SplitVelocities;
 
 NotebookDelete[printer];
 Velocities];
@@ -5064,7 +5117,7 @@ $PPM=WaitAll[Jobs];
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
 (**)
-$Velocities=VelocityParallel@(IndIfConstraints2~Drop~(Length@IndIfConstraints2-2));
+$Velocities=VelocityParallel@(IndIfConstraints2~Drop~(2-Length@IndIfConstraints2));
 (**)
 (*
 $Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
