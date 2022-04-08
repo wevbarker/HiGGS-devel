@@ -4366,8 +4366,8 @@ $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
-Print[$BinaryLocation];
-DumpSave[$BinaryLocation,{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
+Print[BinaryLocation["VelocityToggle"]];
+DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
 ClearBuild[];
 ];
 Quit[];
@@ -4495,7 +4495,7 @@ VelocitySegments=$InertVelocity[[{12,14}]];
 VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,#]&/@VelocitySegments;
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@RiemannBracketParallel;
 ClearBuild[];
 
@@ -4511,7 +4511,7 @@ EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("TorsionBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-TorsionBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+TorsionBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4562,7 +4562,7 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][TDS3[-d,-g,-h,-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@TorsionBracketParallel;
 ClearBuild[];
 
@@ -4578,7 +4578,7 @@ EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("SurfaceBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-SurfaceBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+SurfaceBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4625,7 +4625,7 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][QDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@SurfaceBracketParallel;
 ClearBuild[];
 
@@ -4641,7 +4641,7 @@ EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("MeasureBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-MeasureBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+MeasureBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4688,7 +4688,7 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@MeasureBracketParallel;
 ClearBuild[];
 
@@ -4704,7 +4704,7 @@ EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("LapseBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-LapseBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+LapseBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4751,7 +4751,7 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@LapseBracketParallel;
 ClearBuild[];
 
@@ -4769,7 +4769,7 @@ iiInert=ToString@ii;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("ConstraintBracket["<>PsiInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>","<>PsiFreeIndexListNormalInert<>"]")];
 
-ConstraintBracket[Psi_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules},
+ConstraintBracket[Psi_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
@@ -4820,7 +4820,7 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][PhiDS3"<>ToString[SectorNames[[ii]]]<>"["<>ToString[PhiFreeIndexListString]<>"-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 NotebookDelete[printer];
-PlaceholderBracketActivate];
+VelocitySegments];
 DistributeDefinitions@ConstraintBracketParallel;
 ClearBuild[];
 
