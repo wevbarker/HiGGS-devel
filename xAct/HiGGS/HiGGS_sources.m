@@ -5100,7 +5100,7 @@ $PPM=WaitAll[Jobs];
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
 (**)
-$Velocities=VelocityParallel@(IndIfConstraints2~Drop~-1);
+$Velocities=VelocityParallel@(IndIfConstraints2~Drop~(Length@IndIfConstraints2-2));
 (**)
 (*
 $Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
