@@ -4384,7 +4384,7 @@ res=xx;
 
 (*a message*)
 printer={};
-printer=printer~Append~PrintTemporary[" ** DefInertVelocity: "<>ToString@Symbol@res];
+printer=printer~Append~PrintTemporary[" ** DefInertVelocity..."];
 
 res=res//ToNewCanonical;
 res=res/.TocPerp;
