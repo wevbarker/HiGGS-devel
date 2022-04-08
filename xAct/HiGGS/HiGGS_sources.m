@@ -4371,7 +4371,6 @@ DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$Co
 ClearBuild[];
 ];
 Print["donehere"];
-Quit[];
 
 
 (* ::Input::Initialization:: *)
@@ -4401,7 +4400,7 @@ res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
 res=res S1[x] S2[y]S3[z]//ToNewCanonical;
 NotebookDelete[printer];
 res];
-
+Print["donehere"];
 DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
@@ -4418,6 +4417,7 @@ DistributeDefinitions@$InertVelocity;
 
 NotebookDelete[printer];
 $InertVelocity];
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4496,6 +4496,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@RiemannBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4567,6 +4568,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@TorsionBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4659,6 +4661,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@SurfaceBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4726,6 +4729,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@MeasureBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4789,6 +4793,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@LapseBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4862,6 +4867,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@ConstraintBracketParallel;
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4948,6 +4954,7 @@ printer=printer~Append~PrintTemporary[" ** PoissonBracket: Final form of linear 
 NotebookDelete[printer];
 If[OptionValue["PrintAnswer"],Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];];
 return];
+Print["donehere"];
 ClearBuild[];
 
 
@@ -4987,7 +4994,7 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintS
 ];
 NotebookDelete[printer];
 Jobs];
-
+Print["donehere"];
 ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,InertVelocityPart_]:=Module[{return,printer},
 
 (*a message*)
@@ -5010,7 +5017,7 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
-
+Print["donehere"];
 SecondaryVelocitySimplification[VelocitySegments_List]:=Module[{return,printer},
 
 (*a message*)
@@ -5030,7 +5037,7 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
-
+Print["donehere"];
 Options[VelocityParallel]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True};
 VelocityParallel[Psis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,EH0,printer,Jobs,SplitVelocities,Velocities},
 
@@ -5052,6 +5059,7 @@ Velocities=SecondaryVelocitySimplification/@SplitVelocities;
 
 NotebookDelete[printer];
 Velocities];
+Print["donehere"];
 ClearBuild[];
 
 
@@ -5100,6 +5108,7 @@ DistributeDefinitions@$TheoryName;
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
+Print["donehere"];
 ClearBuild[];
 
 
@@ -5127,6 +5136,8 @@ $Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
 *)
 (FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
 ];
+Print["donehere"];
+Print["fdone"]
 ClearBuild[];
 
 
