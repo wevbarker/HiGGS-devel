@@ -4399,7 +4399,6 @@ res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
 res=res S1[x] S2[y]S3[z]//ToNewCanonical;
 NotebookDelete[printer];
 res];
-DistributeDefinitions@VelSimplifier;
 
 DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
@@ -5044,6 +5043,8 @@ DistributeDefinitions@EH0;
 
 (*Large batch of jobs for segments of all velocities*)
 Jobs=SetupVelocitySegments[#,EH0]&/@Psis;
+Print[Jobs];
+Quit[];
 SplitVelocities=WaitAll[Jobs];
 Velocities=SecondaryVelocitySimplification/@SplitVelocities;
 
