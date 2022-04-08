@@ -4380,11 +4380,12 @@ OpenLastCache[];
 VelSimplifier[xx_]:=Module[{res,printer},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
+res=xx;
+
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** DefInertVelocity: "<>ToString@Symbol@res];
 
-res=xx;
 res=res//ToNewCanonical;
 res=res/.TocPerp;
 res=res/.ToAlp;
