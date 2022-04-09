@@ -97,21 +97,17 @@ Print[xAct`xCore`Private`bars];
 
 (* ::Input::Initialization:: *)
 (*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
-$WorkingDirectory=Directory[];
+(*was Needs called on the HiGGS package from a notebook?*)
+If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
 Print["The working directory is "<>$WorkingDirectory];
 $Path~AppendTo~$WorkingDirectory;
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
 Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
-(*This needed for developer version*)
-(*$HiGGSInstallDirectory=FileNameJoin@{Directory[],"xAct/HiGGS"};*)
-(*$HiGGSInstallDirectory=FileNameJoin@{"/home/wb263/HiGGS_development/","xAct/HiGGS"};*)
-(*$HiGGSInstallDirectory=FileNameJoin@{"/home/williamb/Documents/HiGGS_development/","xAct/HiGGS"};*)
-(*$HiGGSInstallDirectory=FileNameJoin@{NotebookDirectory[],"xAct/HiGGS"};*)
 Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-ActiveCellTags={"build"};
+ActiveCellTags={"build","VelocityToggle"};
 UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle","documentation"};
 PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
 BinaryNames={"O13ProjectionsToggle","CompleteO3ProjectionsToggle","ProjectionNormalisationsToggle","CanonicalPhiToggle","NonCanonicalPhiToggle","ChiPerpToggle","ChiSingToggle","GeneralComplementsToggle","CDPiPToCDPiPO3","NesterFormIfConstraints","VelocityToggle"};

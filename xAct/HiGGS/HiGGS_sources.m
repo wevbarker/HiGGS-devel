@@ -4093,8 +4093,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 IfBuild["VelocityToggle",
-(*PBs on constraint functions*)
-$ConstraintHamiltonianBilinearB0p=2(1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
+{$ConstraintHamiltonianBilinearB0p=2(1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB0p[]PhiDS1B0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB0p[]]PhiDS2B0p[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB0p[]]PhiDS3B0p[-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
@@ -4114,43 +4113,32 @@ $ConstraintHamiltonianBilinearB2p=2(1/16)(cPerpB2p BetPerpPerp2p ShellOrigB2p ( 
  CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS2B2p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS3B2p[a,b,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA0p=2(1/16)(
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p ( Lapse[]J[]PhiA0p[]PhiDA0p[-x,-y,-z]-
+$ConstraintHamiltonianBilinearA0p=2(1/16)((1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p ( Lapse[]J[]PhiA0p[]PhiDA0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0p[]PhiDS1A0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0p[]]PhiDS2A0p[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA0p[]]PhiDS3A0p[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA0m=2(1/16)(
-(1/4)(
-cPerpA0m AlpPerpPerp0m ShellOrigA0m ( Lapse[]J[]PhiA0m[]PhiDA0m[-x,-y,-z]-
+$ConstraintHamiltonianBilinearA0m=2(1/16)((1/4)(cPerpA0m AlpPerpPerp0m ShellOrigA0m ( Lapse[]J[]PhiA0m[]PhiDA0m[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0m[]PhiDS1A0m[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0m[]]PhiDS2A0m[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA0m[]]PhiDS3A0m[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA1p=2(1/16)(
-(1/4)(
-cPerpA1p AlpPerpPerp1p ShellOrigA1p ( Lapse[]J[]PhiA1p[-a,-b]PhiDA1p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA1p=2(1/16)((1/4)(cPerpA1p AlpPerpPerp1p ShellOrigA1p ( Lapse[]J[]PhiA1p[-a,-b]PhiDA1p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]PhiDS1A1p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS2A1p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS3A1p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA1m=2(1/16)(
-(1/4)(
-cPerpA1m AlpPerpPerp1m ShellOrigA1m ( Lapse[]J[]PhiA1m[-a]PhiDA1m[a,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA1m=2(1/16)((1/4)(cPerpA1m AlpPerpPerp1m ShellOrigA1m ( Lapse[]J[]PhiA1m[-a]PhiDA1m[a,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1m[-a]PhiDS1A1m[a,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS2A1m[a,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS3A1m[a,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA2p=2(1/16)(
-(1/4)(
-cPerpA2p AlpPerpPerp2p ShellOrigA2p ( Lapse[]J[]PhiA2p[-a,-b]PhiDA2p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA2p=2(1/16)((1/4)(cPerpA2p AlpPerpPerp2p ShellOrigA2p ( Lapse[]J[]PhiA2p[-a,-b]PhiDA2p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]PhiDS1A2p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS2A2p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS3A2p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA2m=2(1/16)(
-(1/4)(
-cPerpA2m AlpPerpPerp2m ShellOrigA2m ( Lapse[]J[]PhiA2m[-a,-b,-c]PhiDA2m[a,b,c,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA2m=2(1/16)((1/4)(cPerpA2m AlpPerpPerp2m ShellOrigA2m ( Lapse[]J[]PhiA2m[-a,-b,-c]PhiDA2m[a,b,c,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]PhiDS1A2m[a,b,c,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS2A2m[a,b,c,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS3A2m[a,b,c,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
@@ -4170,8 +4158,7 @@ Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
 (*PBs for field strength tensors and ADM projectors, remember PBs vanish on main field strength projectors as only functions of G*)
-$LagrangianHamiltonianBilinearR=-2( 
- Lapse[]J[](R[i,j,-m,-n]PPara[m,g]PPara[n,h](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+
+$LagrangianHamiltonianBilinearR=-2(  Lapse[]J[](R[i,j,-m,-n]PPara[m,g]PPara[n,h](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+
 Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+
 Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+
 Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+
@@ -4209,8 +4196,7 @@ cBet3 PT3[-i,-g,-h,a,c,d])]TDS2[-a,-c,-d,-x,-y,-z,v]-
 cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])]TDS3[-a,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
-$LagrangianHamiltonianBilinearMultiplierR=-( 
- Lapse[]J[]RLambda[i,j,-m,-n]PPara[m,g]PPara[n,h](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+
+$LagrangianHamiltonianBilinearMultiplierR=-(  Lapse[]J[]RLambda[i,j,-m,-n]PPara[m,g]PPara[n,h](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+
 cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+
 cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+
 cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
@@ -4368,7 +4354,7 @@ $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
 
 DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
-ClearBuild[];
+ClearBuild[];}
 ];
 Print["donehere"];
 
@@ -4379,13 +4365,12 @@ OpenLastCache[];
 
 (* ::Input::Initialization:: *)
 VelSimplifier[xx_]:=Module[{res,printer},
-(*a message*)
-xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 res=xx;
 
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** DefInertVelocity..."];
+Print["velsimp"];
 
 res=res//ToNewCanonical;
 res=res/.TocPerp;
@@ -4398,9 +4383,11 @@ res=res/.PActivate//ToNewCanonical;
 res=res/.PADMActivate//ToNewCanonical;
 res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
 res=res S1[x] S2[y]S3[z]//ToNewCanonical;
+Print[res];
 NotebookDelete[printer];
 res];
 Print["donehere"];
+$InertVelocity={};
 DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
@@ -4413,8 +4400,7 @@ Jobs=ParallelSubmit@VelSimplifier/@SegmentList;
 $InertVelocity=WaitAll[Jobs];
 *)
 $InertVelocity=VelSimplifier/@SegmentList;
-DistributeDefinitions@$InertVelocity;
-
+Print["done with map"];
 NotebookDelete[printer];
 $InertVelocity];
 Print["donehere"];
@@ -5106,6 +5092,7 @@ DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
+Print["done with definertvel"];
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
@@ -5131,8 +5118,6 @@ Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2
 (*do the PPM jobs*)
 $PPM=WaitAll[Jobs];
 *)
-Print[$InertVelocity];
-Quit[];
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
