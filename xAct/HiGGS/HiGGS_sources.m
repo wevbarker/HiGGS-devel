@@ -5131,6 +5131,8 @@ Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2
 (*do the PPM jobs*)
 $PPM=WaitAll[Jobs];
 *)
+Print[$InertVelocity];
+Quit[];
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
