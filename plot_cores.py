@@ -140,8 +140,8 @@ for kernel in range(0,number_of_kernels):
 #=================== end admin to label the plot ======================
 
 sp.set_ylabel(r"\texttt{\${}KernelID}")
-sp.set_xlabel(r"Time/s")
-sp.set_title(r"HiGGS for HPC -- task monitor \texttt{appcg}")
+sp.set_xlabel(r"Walltime/s")
+sp.set_title(r"HiGGS for HPC -- developer task monitor \texttt{appcg}")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('jobs.png',dpi = 300)
