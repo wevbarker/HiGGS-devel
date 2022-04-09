@@ -21,9 +21,9 @@
 
 (* ::Input::Initialization:: *)
 $Path~AppendTo~NotebookDirectory[];
-(*
+(**)
 Run["./monitor_remote.sh &"];
-*)
+(**)
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
