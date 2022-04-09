@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23170,        454]
-NotebookOptionsPosition[     22552,        434]
-NotebookOutlinePosition[     22974,        451]
-CellTagsIndexPosition[     22931,        448]
+NotebookDataLength[     23336,        458]
+NotebookOptionsPosition[     22718,        438]
+NotebookOutlinePosition[     23140,        455]
+CellTagsIndexPosition[     23097,        452]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -82,6 +82,8 @@ Cell[BoxData[
      RowBox[{"DefTheory", "[", 
       RowBox[{"\"\<Import\>\"", "->", "\"\<MyTheory\>\""}], "]"}], ";"}], 
     "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<2\>\"", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"JobsBatch", "=", 
      RowBox[{"{", 
@@ -193,9 +195,10 @@ Cell[BoxData[
            RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
            RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}]}], "}"}]}], 
     ";"}], "\[IndentingNewLine]", 
-   RowBox[{"StudyTheory", "@", "JobsBatch"}], "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"StudyTheory", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<2\>\"", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"StudyTheory", "@", "JobsBatch"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", "\[IndentingNewLine]", 
@@ -428,7 +431,8 @@ Cell[BoxData[
    3.858499119271175*^9, 3.8584991240866756`*^9}, {3.858510475487196*^9, 
    3.8585104773659773`*^9}, {3.858510663777513*^9, 3.8585107203833313`*^9}, {
    3.858510766166922*^9, 3.858510819231451*^9}, {3.858514732542738*^9, 
-   3.858514775339328*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.858514775339328*^9}, {3.858524787588656*^9, 
+   3.858524805815624*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -453,7 +457,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 21553, 399, 763, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 21719, 403, 786, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
