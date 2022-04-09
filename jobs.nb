@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12474,        232]
-NotebookOptionsPosition[     11856,        212]
-NotebookOutlinePosition[     12278,        229]
-CellTagsIndexPosition[     12235,        226]
+NotebookDataLength[     12629,        233]
+NotebookOptionsPosition[     12011,        213]
+NotebookOutlinePosition[     12433,        230]
+CellTagsIndexPosition[     12390,        227]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -30,67 +30,67 @@ Cell["This notebook generates jobs.m, which we run remotely", "Text",
  CellChangeTimes->{{3.85659205646922*^9, 
   3.8565920652907*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"$Path", "~", "AppendTo", "~", 
-    RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"$Path", "~", "AppendTo", "~", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Run", "[", "\"\<./monitor_remote.sh &\>\"", "]"}], ";"}], 
    "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
-   RowBox[{"Load", " ", "HiGGS"}], "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
+   RowBox[{"Load", " ", "HiGGS"}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"Needs", "[", "\"\<xAct`HiGGS`\>\"", "]"}], ";"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"Build", " ", "the", " ", "HiGGS", " ", "environment"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"BuildHiGGS", "[", "]"}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Needs", "[", "\"\<xAct`HiGGS`\>\"", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Build", " ", "the", " ", "HiGGS", " ", "environment"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"BuildHiGGS", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"DefTheory", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+         RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+         RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+         RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+         RowBox[{"Alp5", "==", "0"}], ",", 
+         RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+         RowBox[{"Bet1", "==", "0"}], ",", 
+         RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp1", "==", "0"}], ",", 
+         RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+         RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+         RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+         RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], ",", 
+       RowBox[{"\"\<Export\>\"", "->", "\"\<MyTheory\>\""}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Run", "[", "\"\<pkill -9 monitor_remote\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"DefTheory", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
-        RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
-        RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
-        RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
-        RowBox[{"Alp5", "==", "0"}], ",", 
-        RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
-        RowBox[{"Bet1", "==", "0"}], ",", 
-        RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
-        RowBox[{"cAlp1", "==", "0"}], ",", 
-        RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-        RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-        RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
-        RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-        RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-        RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-        RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
-        RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}], ",", 
-      RowBox[{"\"\<Export\>\"", "->", "\"\<MyTheory\>\""}]}], "]"}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"Run", "[", "\"\<pkill -9 monitor_remote\>\"", "]"}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"DefTheory", "[", 
-    RowBox[{"\"\<Import\>\"", "->", "\"\<MyTheory\>\""}], "]"}], ";"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"StudyTheory", "[", "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Quit", "[", "]"}], ";"}]}], "Input",
+     RowBox[{"\"\<Import\>\"", "->", "\"\<MyTheory\>\""}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"StudyTheory", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quit", "[", "]"}], ";"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.8561134940016623`*^9, 3.856113563953445*^9}, {
    3.856113864152964*^9, 3.856113866735909*^9}, {3.856114686146227*^9, 
@@ -205,8 +205,9 @@ Cell[BoxData[{
    3.858490081194944*^9}, {3.8584935454650297`*^9, 3.858493546463683*^9}, {
    3.858493586904846*^9, 3.8584936478150787`*^9}, {3.858495601141667*^9, 
    3.858495607299471*^9}, {3.858496325240609*^9, 3.858496327438936*^9}, 
-   3.858497286249983*^9, {3.858498767025363*^9, 
-   3.858498795672372*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.858497286249983*^9, {3.858498767025363*^9, 3.858498795672372*^9}, {
+   3.858499119271175*^9, 
+   3.8584991240866756`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -231,7 +232,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 10857, 177, 441, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 11012, 178, 487, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }

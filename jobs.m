@@ -20,7 +20,9 @@
 
 
 (* ::Input::Initialization:: *)
+(*
 $Path~AppendTo~NotebookDirectory[];
+*)
 (*
 Run["./monitor_remote.sh &"];
 *)
