@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12544,        236]
-NotebookOptionsPosition[     11926,        216]
-NotebookOutlinePosition[     12348,        233]
-CellTagsIndexPosition[     12305,        230]
+NotebookDataLength[     12474,        232]
+NotebookOptionsPosition[     11856,        212]
+NotebookOutlinePosition[     12278,        229]
+CellTagsIndexPosition[     12235,        226]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -35,12 +35,10 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"$Path", "~", "AppendTo", "~", 
     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Run", "[", "\"\<./monitor_remote.sh &\>\"", "]"}], ";"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Run", "[", "\"\<./monitor_remote.sh &\>\"", "]"}], ";"}], 
+   "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"Load", " ", "HiGGS"}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
@@ -91,9 +89,6 @@ Cell[BoxData[{
   RowBox[{"(*", "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"StudyTheory", "[", "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Run", "[", "\"\<pkill -9 monitor_remote\>\"", "]"}], 
-  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Quit", "[", "]"}], ";"}]}], "Input",
  InitializationCell->True,
@@ -209,8 +204,9 @@ Cell[BoxData[{
    3.858489530903399*^9, 3.858489533822534*^9}, {3.858490078702059*^9, 
    3.858490081194944*^9}, {3.8584935454650297`*^9, 3.858493546463683*^9}, {
    3.858493586904846*^9, 3.8584936478150787`*^9}, {3.858495601141667*^9, 
-   3.858495607299471*^9}, {3.858496325240609*^9, 
-   3.858496327438936*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.858495607299471*^9}, {3.858496325240609*^9, 3.858496327438936*^9}, 
+   3.858497286249983*^9, {3.858498767025363*^9, 
+   3.858498795672372*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"]
 }, Open  ]]
 },
@@ -235,7 +231,7 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 10927, 181, 464, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 10857, 177, 441, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True]
 }, Open  ]]
 }
