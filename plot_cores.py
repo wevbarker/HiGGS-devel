@@ -10,6 +10,8 @@ from matplotlib.colors import ListedColormap, BoundaryNorm
 import os
 from os.path import exists
 import shutil
+import subprocess
+import socket 
 
 #================ params and setup ======================
 
@@ -86,6 +88,7 @@ time_array = np.linspace(0,total_time,size)    #   plotting space
 number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/2)
 number_of_kernels = len(all_kernel_data)
 
+
 #====================== bar width and chart geometry ==============
 
 width = 8.
@@ -139,9 +142,13 @@ for kernel in range(0,number_of_kernels):
 
 #=================== end admin to label the plot ======================
 
+title_string = r"This report was generated on \texttt{"+socket.gethostname()+"}"
+print(title_string)
+
 sp.set_ylabel(r"\texttt{\${}KernelID}")
 sp.set_xlabel(r"Walltime/s")
-sp.set_title(r"HiGGS for HPC -- developer task monitor \texttt{appcg}")
+sp.set_title(title_string)
+plt.suptitle(r"\texttt{HiGGS} for HPC")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('jobs.png',dpi = 300)

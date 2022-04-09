@@ -4407,7 +4407,7 @@ InertMakeRule[Replacement_List]:=MakeRule[Replacement,MetricOn->All,ContractMetr
 
 
 (* ::Input::Initialization:: *)
-RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4481,7 +4481,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4552,7 +4552,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4644,7 +4644,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4774,7 +4774,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert},
+ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4933,7 +4933,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SetupVelocitySegments[Psi_,EH0_]:=Module[{printer,PsiFreeIndexList,PsiFreeIndexListString,PsiFreeIndexListNormal,FreeConstraint,FreeConstraintString,PhiFreeIndexList,PhiFreeIndexListString,PhiFreeIndexListNormal,Jobs,ii,Phis},
+SetupVelocitySegments[Psi_,EH0_,$TheoryName_:$TheoryName]:=Module[{printer,PsiFreeIndexList,PsiFreeIndexListString,PsiFreeIndexListNormal,FreeConstraint,FreeConstraintString,PhiFreeIndexList,PhiFreeIndexListString,PhiFreeIndexListNormal,Jobs,ii,Phis},
 
 (*a message*)
 printer={};
@@ -4946,7 +4946,7 @@ DistributeDefinitions@PsiFreeIndexListNormal;
 
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
 
-Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal]};
+Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
 (*lapse removed from above*)
 
 For[ii=1,ii<11,ii++,
@@ -4962,7 +4962,7 @@ PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("Inde
 PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
 DistributeDefinitions@PhiFreeIndexListNormal;
 
-Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii,PsiFreeIndexListNormal]}
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii,PsiFreeIndexListNormal,$TheoryName]}
 }
 ];
 ];
@@ -5037,6 +5037,16 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+Options[DefTheoryParallel]={"Export"->False,"Import"->False};
+DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
+(*Build the HiGGS environment*)
+BuildHiGGS[];
+(*Define the theory*)
+DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
+];
+
+
+(* ::Input::Initialization:: *)
 TheoryQ[x_]:=Module[{res},
 res=ListQ[x];
 If[res,
@@ -5046,7 +5056,10 @@ res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 Options[DefTheory]={"Export"->False,"Import"->False};
+UndefTheory[]:=(#=.)&/@{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},
+(*Firstly we remove all definitions which might be associated with a theory already*)
+UndefTheory[];
 If[StringQ@OptionValue@"Import",
 Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Import";
@@ -5086,8 +5099,12 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-(*very likely this will be absorbed into DefTheory as soon as we can show that it works*)
-StudyTheory[InputSystem___:Null]:=Catch@Module[{IndIfConstraints,IndIfConstraints2,PPMArguments,Velocities,Jobs},
+Options[StudyTheory]={"Export"->False,"Import"->False};
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{IndIfConstraints,IndIfConstraints2,PPMArguments,Velocities,Jobs},
+(*We now want to change this module into something which studies batches of theories*)
+(*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
+Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
+(*
 (*List of constraints with fresh indices for PBs*)
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
@@ -5111,6 +5128,7 @@ $Velocities=VelocityParallel@IndIfConstraints2;
 $Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
 *)
 (FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
+*)
 ];
 ClearBuild[];
 

@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     43299,       1014]
-NotebookOptionsPosition[     39213,        934]
-NotebookOutlinePosition[     39635,        951]
-CellTagsIndexPosition[     39592,        948]
+NotebookDataLength[     43553,       1020]
+NotebookOptionsPosition[     39467,        940]
+NotebookOutlinePosition[     39889,        957]
+CellTagsIndexPosition[     39846,        954]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -699,6 +699,11 @@ Cell[BoxData[{
 coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
+   RowBox[{"UndefTheory", "::", "usage"}], "=", 
+   "\"\<Undefine a theory using a system of equations to constrain the \
+coupling coefficients\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{"StudyTheory", "::", "usage"}], "=", 
    "\"\<Calculate the links in the constraint chain down do a certain level\>\
 \""}], ";"}], "\[IndentingNewLine]", 
@@ -719,7 +724,8 @@ indicated by DefTheory\>\""}], ";"}]}], "Input",
    3.855577194209269*^9, 3.855577205488092*^9}, {3.858236227288478*^9, 
    3.85823623140666*^9}, {3.858236937747398*^9, 3.858236940131283*^9}, {
    3.858237784822605*^9, 3.858237786894226*^9}, {3.8582512333280897`*^9, 
-   3.858251301855855*^9}},ExpressionUUID->"eb42d413-bde6-4045-8550-\
+   3.858251301855855*^9}, {3.858513807546979*^9, 
+   3.858513822331077*^9}},ExpressionUUID->"eb42d413-bde6-4045-8550-\
 27ab8196f2da"],
 
 Cell["Global variables:", "Text",
@@ -991,20 +997,20 @@ Cell[21304, 505, 154, 3, 36, "Text",ExpressionUUID->"8f6533a0-96f6-49df-91d4-d63
 Cell[21461, 510, 6854, 157, 761, "Input",ExpressionUUID->"9fe0af6e-31ee-49e9-9cb8-fc616935e0dc",
  InitializationCell->True],
 Cell[28318, 669, 171, 3, 36, "Text",ExpressionUUID->"05a65b29-23c7-42a7-b701-163d162fa58d"],
-Cell[28492, 674, 2181, 48, 186, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[28492, 674, 2435, 54, 209, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
  InitializationCell->True],
-Cell[30676, 724, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
-Cell[30838, 729, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
+Cell[30930, 730, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[31092, 735, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31195, 742, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[31407, 748, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
+Cell[31449, 748, 209, 4, 46, "Subsubsection",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[31661, 754, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
  InitializationCell->True],
-Cell[31599, 755, 197, 3, 36, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
-Cell[31799, 760, 7138, 161, 581, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[31853, 761, 197, 3, 36, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
+Cell[32053, 766, 7138, 161, 581, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True],
-Cell[38940, 923, 233, 6, 71, "Input",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
+Cell[39194, 929, 233, 6, 71, "Input",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]
