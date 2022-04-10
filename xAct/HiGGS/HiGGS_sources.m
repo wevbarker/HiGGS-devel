@@ -5101,7 +5101,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM,PPMs},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 If[!OptionValue@"Import",
@@ -5119,9 +5119,12 @@ PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
 (*set up PPM jobs*)
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Jobs=Map[({#[[1]],ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]]})&,Jobs,{3}];
 Print@Jobs;
-$PPM=WaitAll[Jobs];
+(*
+PPMs=WaitAll[Jobs];
+SavePPM[]
+*)
 (*
 (*
 
