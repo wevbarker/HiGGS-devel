@@ -5119,14 +5119,14 @@ PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
 (*set up PPM jobs*)
-Jobs=Map[(fomefunk[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
 Print@Jobs;
-Print@Jobs[[1]][[1]][[1]];
+$PPM=WaitAll[Jobs];
 (*
 (*
 
 *)
-ParallelSubmit@PoissonBracketParallel
+
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*eval velocities*)
