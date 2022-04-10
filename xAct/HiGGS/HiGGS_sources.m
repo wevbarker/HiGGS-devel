@@ -5104,12 +5104,13 @@ Options[StudyTheory]={"Export"->False,"Import"->False};
 StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints,IndIfConstraints2,PPMArguments,Velocities,Jobs},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
-Print["1"];
+Print["distribute"];
 DistributeDefinitions@InputBatch;
-Print["1"];
+Print["submit"];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
-Print["1"];
+Print["examine"];
 Print[Jobs];
+Print["wait"];
 DefinedTheories=WaitAll[Jobs];
 Print["1"];
 (*
