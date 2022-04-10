@@ -5139,7 +5139,7 @@ SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $PPM=PPM;
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
-(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
+(FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
