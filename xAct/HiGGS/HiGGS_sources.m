@@ -5114,17 +5114,16 @@ PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints}
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
-PPMArguments=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
-res={theory,PPMArguments};
-res];
+PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
+Print@Jobs;
+(*set up PPM jobs*)
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 (*
 (*
-(*set up PPM jobs*)
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2}];
-(*do the PPM jobs*)
-$PPM=WaitAll[Jobs];
+
 *)
 (*New indices again*)
 IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
