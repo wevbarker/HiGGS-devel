@@ -5109,7 +5109,7 @@ Print[$PPM];
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM,PPMs,TheoryNames},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM,PPMs,TheoryNames,SavePPM},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 If[!OptionValue@"Import",
@@ -5138,7 +5138,8 @@ PPMs=Riffle[TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $PPM=PPM;
-Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
+Print["$PPM value is ",$PPM];
+Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
 Print[PPMs];
