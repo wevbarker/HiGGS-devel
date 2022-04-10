@@ -5100,7 +5100,11 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-d
+ViewTheory[theory_String]:=Module[{},
+DefTheory["Import"->theory];
+Print[$IfConstraints];
+Print[$PPM];
+];
 
 
 (* ::Input::Initialization:: *)
