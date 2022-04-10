@@ -5120,6 +5120,7 @@ Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
 (*set up PPM jobs*)
 Jobs=Map[(fomefunk[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Print@Jobs;
 Print@Jobs[[1]][[1]][[1]];
 (*
 (*
