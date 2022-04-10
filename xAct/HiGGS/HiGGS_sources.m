@@ -5101,25 +5101,25 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints,IndIfConstraints2,PPMArguments,Velocities,Jobs},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
-Print["distribute"];
-(*
-DistributeDefinitions@InputBatch;
-*)
-Print["submit"];
+If[!OptionValue@"Import",
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
-Print["examine"];
 Print[Jobs];
-Print["wait"];
 DefinedTheories=WaitAll[Jobs];
-Print["1"];
-(*
+];
 (*List of constraints with fresh indices for PBs*)
+PreparePPM[theory_String]:=Module[{res,PPMArguments,IndIfConstraints},
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
+res={theory,PPMArguments};
+res];
+Jobs=(PreparePPM@#)&/@InputBatch;
+Print@Jobs;
+(*
 (*
 (*set up PPM jobs*)
 Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[1]],#[[2]]])&,PPMArguments,{2}];
