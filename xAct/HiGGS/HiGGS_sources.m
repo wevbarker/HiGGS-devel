@@ -5123,8 +5123,15 @@ Jobs=Map[({#[[1]],cccc[#[[2]],#[[3]],"Import"->#[[1]]]})&,Jobs,{3}];
 Print@Jobs;
 (*
 PPMs=WaitAll[Jobs];
-SavePPM[]
 *)
+PPMs=Jobs;
+SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
+DefTheory["Import"->theory];
+$PPM=PPM;
+Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
+];
+SavePPM[#1,#2]&@@@PPMs;
 (*
 (*
 
