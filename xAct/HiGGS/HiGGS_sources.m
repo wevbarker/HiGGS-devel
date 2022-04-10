@@ -5117,7 +5117,7 @@ IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#)
 PPMArguments=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
 res={theory,PPMArguments};
 res];
-Jobs=(#1~PreparePPM~#2)&/@InputBatch;
+Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
 (*
 (*
