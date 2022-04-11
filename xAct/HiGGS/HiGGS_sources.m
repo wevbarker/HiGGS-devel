@@ -5083,11 +5083,12 @@ DefFieldStrengthShell[$ToShellFreedoms,$Theory];
 DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
+(*
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-Print["done with definertvel"];
+*)
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
