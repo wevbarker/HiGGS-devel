@@ -5085,12 +5085,10 @@ DefFieldStrengthShell[$ToShellFreedoms,$Theory];
 DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-(*
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-*)
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
@@ -5120,28 +5118,23 @@ Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
+(*
 (*List of constraints with fresh indices for PBs*)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-(*set up PPM jobs*)
-Jobs=Map[(cccc[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"\[Rule]#[[1]]])&,Jobs,{3}];
 Print@Jobs;
-(**)
 PPMs=WaitAll[Jobs];
-(**)
-(*
-PPMs=Jobs;
-*)
 TheoryNames=(#[[1]])&/@InputBatch;
 PPMs=Riffle[TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 Print["$PPM value is ",$PPM];
 Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5149,6 +5142,7 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
+*)
 (*
 (*
 
