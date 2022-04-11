@@ -5113,6 +5113,7 @@ $TheoryName=OptionValue@"Export";
 (*
 DistributeDefinitions@$TheoryName;
 *)
+Print@$IfConstraints;
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
