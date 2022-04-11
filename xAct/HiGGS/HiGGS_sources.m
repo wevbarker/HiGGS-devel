@@ -2927,7 +2927,6 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-$ToOrderRules={};
 (*Here are the generalised freedom coefficients*)
 DefNiceConstantSymbol[ShellPara,ToExpression[#]]&/@ASectorNames;
 DefNiceConstantSymbol[ShellOrig,ToExpression[#]]&/@ASectorNames;
@@ -2948,6 +2947,7 @@ xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$ToShellFreedoms for the th
 KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
 
 (*We fix $ToOrderRules according to whether there is an Einstein--Hilbert term, recalling that this can change the order of certain constraints*)
+$ToOrderRules={};
 Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,$ToOrderRules=$ToNormalOrderRules,1,$ToOrderRules=$ToEHOrderRules];
 
 (*We impose the theory on the coefficients*)
@@ -3632,7 +3632,6 @@ OpenLastCache[];
 
 
 (* ::Input::Initialization:: *)
-$IfConstraintToTheoryNesterForm={};
 ImposeTheory[IfConstraint_,$ToTheory_]:=Module[{TensorName,tmp,OnShellValue},
 TensorName=ToString@Head@x;(*Not actually needing this yet*)
 tmp=IfConstraint/.PhiToNesterFormPhi;
@@ -3644,13 +3643,14 @@ tmp=tmp//ToNewCanonical;
 tmp=tmp//CollectTensors;
 OnShellValue=tmp;
 tmp=MakeRule[{Evaluate@IfConstraint,Evaluate@OnShellValue},MetricOn->All,ContractMetrics->True];
+$IfConstraintToTheoryNesterForm={};
 $IfConstraintToTheoryNesterForm=$IfConstraintToTheoryNesterForm~Join~tmp;
 OnShellValue];
 
-$IfConstraints={};
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{Phis,ChiPerps,ChiParas,ChiSings},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$IfConstraintToTheoryNesterForm for the theory",""}];
+$IfConstraints={};
 Phis=DeleteCases[Evaluate[{(1-ShellOrigB0p)PhiB0p[],(1-ShellOrigB1p)PhiB1p[-i,-j],(1-ShellOrigB1m)PhiB1m[-i],(1-ShellOrigB2p)PhiB2p[-i,-j],(1-ShellOrigA0p)PhiA0p[],(1-ShellOrigA0m)PhiA0m[],(1-ShellOrigA1p)PhiA1p[-i,-j],(1-ShellOrigA1m)PhiA1m[-i],(1-ShellOrigA2p)PhiA2p[-i,-j],(1-ShellOrigA2m)PhiA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 $IfConstraints=$IfConstraints~Join~Phis;
 Phis=({#,ImposeTheory[#,$ToTheory]})&/@Phis;
@@ -4384,11 +4384,13 @@ res=res S1[x] S2[y]S3[z]//ToNewCanonical;
 Print[res];
 NotebookDelete[printer];
 res];
-$InertVelocity={};
+
 DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,SegmentList},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 printer={};
+
+$InertVelocity={};
 
 SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
 (*
@@ -5057,7 +5059,7 @@ res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 Options[DefTheory]={"Export"->False,"Import"->False};
-UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPN"};
+UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM"};
 DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
