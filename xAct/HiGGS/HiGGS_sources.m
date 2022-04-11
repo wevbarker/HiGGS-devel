@@ -5049,13 +5049,15 @@ DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
+(**)
+DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
+(**)
 (*
-DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"\[Rule]OptionValue["Import"]];
-*)
 Print["call to deftheorypara"];
 Print[InputSystem];
 Print[OptionValue["Export"]];
 Print[OptionValue["Import"]];
+*)
 ];
 DistributeDefinitions@DefTheoryParallel;
 
@@ -5101,7 +5103,9 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
+(*
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
+*)
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
