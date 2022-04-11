@@ -4935,7 +4935,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SetupVelocitySegments[Psi_,EH0_,$TheoryName_:$TheoryName]:=Module[{printer,PsiFreeIndexList,PsiFreeIndexListString,PsiFreeIndexListNormal,FreeConstraint,FreeConstraintString,PhiFreeIndexList,PhiFreeIndexListString,PhiFreeIndexListNormal,Jobs,ii,Phis},
+SetupVelocitySegments[Psi_,EH0_,$TheoryName_:$TheoryName]:=Module[{printer,PsiFreeIndexList,PsiFreeIndexListString,PsiFreeIndexListNormal,FreeConstraint,PhiFreeIndexList,PhiFreeIndexListString,Jobs,ii,Phis,SetupConstraintSegment},
 
 (*a message*)
 printer={};
@@ -4951,11 +4951,11 @@ Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
 (*lapse removed from above*)
 
-For[ii=1,ii<11,ii++,
-If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
-DistributeDefinitions@ii;
+SetupConstraintSegment[ii_]:=Module[{jj,FreeConstraintString,PhiFreeIndexListNormal},
+jj=ii;
+DistributeDefinitions@jj;
 
-FreeConstraint=Phis[[ii]];
+FreeConstraint=Phis[[jj]];
 FreeConstraintString=ToString@FreeConstraint;
 DistributeDefinitions@FreeConstraintString;
 
@@ -4964,7 +4964,12 @@ PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexList],("Inde
 PhiFreeIndexListNormal="{"<>PhiFreeIndexListString<>"}";
 DistributeDefinitions@PhiFreeIndexListNormal;
 
-Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,ii,PsiFreeIndexListNormal,$TheoryName]}
+Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintString,PhiFreeIndexListNormal,jj,PsiFreeIndexListNormal,$TheoryName]}
+];
+
+For[ii=1,ii<11,ii++,
+If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+SetupConstraintSegment[ii];
 }
 ];
 ];
@@ -5044,7 +5049,13 @@ DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
-DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
+(*
+DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"\[Rule]OptionValue["Import"]];
+*)
+Print["call to deftheorypara"];
+Print[InputSystem];
+Print[OptionValue["Export"]];
+Print[OptionValue["Import"]];
 ];
 DistributeDefinitions@DefTheoryParallel;
 
@@ -5066,7 +5077,9 @@ UndefTheory[];
 If[StringQ@OptionValue@"Import",
 Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Import";
+(*
 DistributeDefinitions@$TheoryName;
+*)
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
@@ -5093,7 +5106,9 @@ DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Export";
+(*
 DistributeDefinitions@$TheoryName;
+*)
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
@@ -5118,23 +5133,23 @@ Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
-(**)
+(*
 (*List of constraints with fresh indices for PBs*)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"\[Rule]#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
 TheoryNames=(#[[1]])&/@InputBatch;
 PPMs=Riffle[TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 Print["$PPM value is ",$PPM];
 Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheoryPPM.mx"}];
@@ -5142,7 +5157,7 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-(**)
+*)
 (*
 (*
 
