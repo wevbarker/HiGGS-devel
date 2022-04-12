@@ -5085,7 +5085,7 @@ DistributeDefinitions@$TheoryName;
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
-];
+];,
 (*check if a real theory was provided*)
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 (*define the theory constant in Global`*)
@@ -5123,12 +5123,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 ViewTheory[theory_String]:=Module[{},
 DefTheory["Import"->theory];
-Print[$TheoryName];
-Print[$Theory];
-Print[$ToTheory];
-Print[$ToShellFreedoms];
-Print[Evaluate@$IfConstraints];
-Print[$PPM];
+Print/@{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 
 
