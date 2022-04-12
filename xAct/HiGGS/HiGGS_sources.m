@@ -5085,7 +5085,7 @@ DistributeDefinitions@$TheoryName;
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
-];,
+];
 (*check if a real theory was provided*)
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 (*define the theory constant in Global`*)
@@ -5103,9 +5103,7 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-(*
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-*)
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
@@ -5124,7 +5122,10 @@ ClearBuild[];
 ViewTheory[theory_String]:=Module[{},
 DefTheory["Import"->theory];
 Print[$TheoryName];
-Print[$IfConstraints];
+Print[$Theory];
+Print[$ToTheory];
+Print[$ToShellFreedoms];
+Print[Evaluate@$IfConstraints];
 Print[$PPM];
 ];
 
