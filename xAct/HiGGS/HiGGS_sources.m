@@ -5147,7 +5147,7 @@ PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Leng
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
+Jobs=Map[(cccc[#[[2]],#[[3]],"Import"->#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
 TheoryNames=(#[[1]])&/@InputBatch;
@@ -5164,7 +5164,7 @@ SavePPM[#1,#2]&@@@PPMs;
 (**)
 (*
 (*
-
+ParallelSubmit@PoissonBracketParallel
 *)
 ParallelSubmit@PoissonBracketParallel
 (*New indices again*)
