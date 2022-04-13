@@ -5126,6 +5126,7 @@ DefTheory["Import"->theory];
 Print/@{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 *)
 Print@$PPM;
+Print@$Velocities;
 ];
 
 
@@ -5166,6 +5167,7 @@ SavePPM[#1,#2]&@@@PPMs;
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+IndIfConstraints=IndIfConstraints~Take~1;
 (*Evaluate lots of Velocities*)
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
