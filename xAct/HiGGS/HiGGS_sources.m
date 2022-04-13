@@ -5019,24 +5019,31 @@ NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
 
-Options[VelocityParallel]={"InertVelocity"->$InertVelocity,"Order"->Infinity,"PrintAnswer"->True};
-VelocityParallel[Psis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,EH0,printer,Jobs,SplitVelocities,Velocities},
+Options[VelocityParallel]={"Order"->Infinity,"PrintAnswer"->True};
+VelocityParallel[BatchPsis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,printer,Jobs,SplitVelocities,Velocities,PrepareVelocitySegments},
 
 (*a message*)
 printer={};
-printer=printer~Append~PrintTemporary[" ** VelocityParallel of ",Psis," with options ",Options[VelocityParallel],"..."];
+printer=printer~Append~PrintTemporary[" ** VelocityParallel of ",BatchPsis," with options ",Options[VelocityParallel],"..."];
 
 (*We fix EH0 legacy*)
 KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
+
+PrepareVelocitySegments[theory_String,Psis_List]:=Module[{res,EH0},
+DefTheory["Import"->theory];
 Switch[KeepOnlyObviousZeros@(Alp0/.$ToTheory),0,EH0=0,1,EH0=1];
 DistributeDefinitions@EH0;
 
 (*Large batch of jobs for segments of all velocities*)
-Jobs=SetupVelocitySegments[#,EH0]&/@Psis;
+res=SetupVelocitySegments[#,EH0,theory]&/@Psis;
+res];
+
+Jobs=(#1~PrepareVelocitySegments~#2)&@@@BatchPsis;
+
 Print[Jobs];
 
 SplitVelocities=WaitAll[Jobs];
-Velocities=SecondaryVelocitySimplification/@SplitVelocities;
+Velocities=(SecondaryVelocitySimplification/@#)&/@SplitVelocities;
 
 NotebookDelete[printer];
 Velocities];
@@ -5132,7 +5139,7 @@ Print@$PPM;
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM,PPMs,TheoryNames,SavePPM},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Velocities,Jobs,PreparePPM,PPMs,TheoryNames,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 If[!OptionValue@"Import",
@@ -5140,10 +5147,10 @@ Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
-(**)
-(*List of constraints with fresh indices for PBs*)
+TheoryNames=(#[[1]])&/@InputBatch;
+(*
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
@@ -5153,10 +5160,9 @@ Print@Jobs;
 Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
-TheoryNames=(#[[1]])&/@InputBatch;
 PPMs=Riffle[TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 Print["$PPM value is ",$PPM];
 Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheoryPPM.mx"}];
@@ -5164,26 +5170,25 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-(**)
-(*
-(*
-ParallelSubmit@PoissonBracketParallel
 *)
-ParallelSubmit@PoissonBracketParallel
-(*New indices again*)
-IndIfConstraints2=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-(*eval velocities*)
-(*
-$Velocities=VelocityParallel@(IndIfConstraints2~Drop~(2-Length@IndIfConstraints2));
-*)
-(**)
-$Velocities=VelocityParallel@IndIfConstraints2;
-(**)
-(*
-$Velocities=IndIfConstraints2[[2]]~Velocity~("Parallel"\[Rule]True);
-*)
-(FileNameJoin@{$WorkingDirectory,"bin",$TheoryName<>"StudyTheory.mx"})~DumpSave~{$PPM,$Velocities};
-*)
+PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
+DefTheory["Import"->theory];
+IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+(*Evaluate lots of Velocities*)
+{theory,IndIfConstraints}];
+Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
+Velocities=VelocityParallel@Jobs;
+Velocities=Riffle[TheoryNames,Velocities]~Partition~2;
+SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
+DefTheory["Import"->theory];
+$Velocities=Velocity;
+Print["$Velocities value is ",$Velocities];
+Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheoryPPM.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
+];
+Print[Velocities];
+SaveVelocity[#1,#2]&@@@Velocities;
+
 ];
 ClearBuild[];
 
