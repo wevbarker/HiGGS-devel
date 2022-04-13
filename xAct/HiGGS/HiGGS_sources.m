@@ -5079,7 +5079,7 @@ res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 Options[DefTheory]={"Export"->False,"Import"->False};
-UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM"};
+UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
 DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
@@ -5167,7 +5167,7 @@ SavePPM[#1,#2]&@@@PPMs;
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-IndIfConstraints=IndIfConstraints~Take~1;
+IndIfConstraints=IndIfConstraints~Take~2;
 (*Evaluate lots of Velocities*)
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
