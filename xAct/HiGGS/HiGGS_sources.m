@@ -5158,7 +5158,7 @@ SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 Print["$PPM value is ",$PPM];
-Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheoryPPM.mx"}];
+Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
 Print[PPMs];
@@ -5177,7 +5177,7 @@ SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints
 DefTheory["Import"->theory];
 $Velocities=Velocity;
 Print["$Velocities value is ",$Velocities];
-Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheoryPPM.mx"}];
+Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
 ];
 Print[Velocities];
