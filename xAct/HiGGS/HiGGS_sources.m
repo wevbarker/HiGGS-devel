@@ -5086,9 +5086,6 @@ UndefTheory[];
 If[StringQ@OptionValue@"Import",
 Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Import";
-(*
-DistributeDefinitions@$TheoryName;
-*)
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
 Quit[];
@@ -5110,16 +5107,11 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-(**)
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-(**)
 ];
 If[StringQ@OptionValue@"Export",
 Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Export";
-(*
-DistributeDefinitions@$TheoryName;
-*)
 Print@$IfConstraints;
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
@@ -5171,7 +5163,6 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 *)
-
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
