@@ -5167,7 +5167,7 @@ SavePPM[#1,#2]&@@@PPMs;
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-IndIfConstraints=IndIfConstraints~Take~2;
+(*IndIfConstraints=IndIfConstraints~Take~2;*)
 (*Evaluate lots of Velocities*)
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
