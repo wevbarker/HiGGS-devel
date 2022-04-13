@@ -5171,6 +5171,7 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 *)
+
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
