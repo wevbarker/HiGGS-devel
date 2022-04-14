@@ -5126,6 +5126,7 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
+
 (**)
 (*
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},

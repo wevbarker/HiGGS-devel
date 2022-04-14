@@ -138,12 +138,15 @@ $HiGGSTimingNow=AbsoluteTime[];
 res=AbsoluteTiming@expr;
 temp=Evaluate@res[[2]];
 $HiGGSTimingDuration=Evaluate@res[[1]];
+
+(*
 Print["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"];
 Print@$TheoryName;
 Print@((2Length@$TimedFunctionList)(ToExpression@(ToString@Hash@$TheoryName~StringTake~1)));
 Print["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbBBB"];
 Print@StringQ@$TheoryName;
 Print@TimingDurationPosition;
+*)
 If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(ToExpression@(ToString@Hash@$TheoryName~StringTake~1))+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
