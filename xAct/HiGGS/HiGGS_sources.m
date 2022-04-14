@@ -5104,8 +5104,7 @@ Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
 $TheoryNames=(#[[1]])&/@InputBatch;
-Print[Context@$TheoryNames];
-Quit[];
+Print[$TheoryNames];
 DistributeDefinitions@$TheoryNames;(*this is important, we'll need it for the timing function*)
 (*
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
