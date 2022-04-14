@@ -4418,23 +4418,20 @@ PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("RiemannBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 RiemannBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
 PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Riemann bracket..."];
 Temp=PoissonBracket[Psi,PPara[-i,e]PPara[-j,f]R[-g,-h,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4474,7 +4471,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments=$InertVelocity[[{12,14}]];
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4492,7 +4489,10 @@ PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("TorsionBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 TorsionBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
@@ -4545,7 +4545,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments=$InertVelocity[[{11,13}]];
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4563,7 +4563,10 @@ PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("SurfaceBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 SurfaceBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
@@ -4637,7 +4640,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments={$InertVelocity[[19]]};
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4655,7 +4658,10 @@ PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("MeasureBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 MeasureBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
@@ -4704,74 +4710,11 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments=$InertVelocity[[{15,16,17,18}]];
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@MeasureBracketParallel;
-ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-LapseBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
-(*Build the HiGGS environment*)
-BuildHiGGS[];
-(*Define the theory*)
-DefTheory["Import"->$TheoryName];
-PsiInert=ToString@Psi;
-EH0Inert=ToString@EH0;
-PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("LapseBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
-
-LapseBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
-printer={};
-PlaceholderBracketActivate={};
-
-PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
-PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
-PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
-DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
-PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
-For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
-
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Lapse bracket..."];
-Temp=PoissonBracket[Psi,Lapse[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseD[-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS1[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS2[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[3]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["LapseDS3[-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[4]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-GradTemp=CD[-u][Evaluate[Temp[[2]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
-printer=printer~Append~PrintTemporary[GradTemp];
-(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS1[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-GradTemp=CD[-u][Evaluate[Temp[[3]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
-printer=printer~Append~PrintTemporary[GradTemp];
-(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS2[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-GradTemp=CD[-u][Evaluate[Temp[[4]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
-printer=printer~Append~PrintTemporary[GradTemp];
-(*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][LapseDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-
-NotebookDelete[printer];
-VelocitySegments];
-DistributeDefinitions@LapseBracketParallel;
 ClearBuild[];
 
 
@@ -4787,7 +4730,10 @@ PhiFreeIndexListNormalInert=ToString@PhiFreeIndexListNormal;
 iiInert=ToString@ii;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 ToExpression@("ConstraintBracket["<>PsiInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>","<>PsiFreeIndexListNormalInert<>"]")];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 ConstraintBracket[Psi_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
@@ -4840,7 +4786,7 @@ PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[To
 
 (*Now we calculate the commutator replacement rule part*)
 VelocitySegments={$InertVelocity[[ii]]};
-VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#]&/@VelocitySegments;
+VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
 VelocitySegments];
@@ -4975,15 +4921,26 @@ SetupConstraintSegment[ii];
 ];
 NotebookDelete[printer];
 Jobs];
+ClearBuild[];
 
-ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,InertVelocityPart_]:=Module[{return,printer},
+
+(* ::Input::Initialization:: *)
+ImposeCommutatorReplacementRules[PlaceholderBracketActivate_,InertVelocityPart_,PsiFreeIndexListNormal_]:=Module[{return,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,VectorsToDiff,zz},
 
 (*a message*)
 printer={};
 printer=printer~Append~PrintTemporary[" ** ImposeCommutatorReplacementRules"];
 
+(*routine to strip the sigma vectors*)
+PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
+PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
+PlaceholderVectors={"S1[-k]","S2[-k]","S3[-k]"};
+VectorsToDiff={};
+For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,VectorsToDiff=Append[VectorsToDiff,ToExpression@StringReplace[PlaceholderVectors[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
+
 (*simplification process*)
 return=Evaluate@InertVelocityPart;
+For[zz=1,zz<Length@VectorsToDiff+1,zz++,return=return~NewVarAction~VectorsToDiff[[zz]]];
 return=return/.PlaceholderBracketActivate;
 return=ToOrderCanonical[return,1];
 printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
@@ -4998,7 +4955,10 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 SecondaryVelocitySimplification[VelocitySegments_List]:=Module[{return,printer},
 
 (*a message*)
@@ -5018,7 +4978,10 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 Options[VelocityParallel]={"Order"->Infinity,"PrintAnswer"->True};
 VelocityParallel[BatchPsis_List,OptionsPattern[]]:="Velocity"~TimeWrapper~Catch@Block[{KeepOnlyObviousZeros,printer,Jobs,SplitVelocities,Velocities,PrepareVelocitySegments},
 
@@ -5167,7 +5130,7 @@ SavePPM[#1,#2]&@@@PPMs;
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-(*IndIfConstraints=IndIfConstraints~Take~2;*)
+IndIfConstraints=IndIfConstraints~Take~2;
 (*Evaluate lots of Velocities*)
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
