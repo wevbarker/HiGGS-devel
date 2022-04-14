@@ -5104,9 +5104,9 @@ Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
 $TheoryNames=(#[[1]])&/@InputBatch;
-(*
+(**)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
@@ -5118,7 +5118,7 @@ Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 $PPM=PPM;
 Print["$PPM value is ",$PPM];
 Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5126,10 +5126,10 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-*)
 (**)
+(*
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 IndIfConstraints={IndIfConstraints[[6]]};
@@ -5139,7 +5139,7 @@ Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
 Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $Velocities=Velocity;
 Print["$Velocities value is ",$Velocities];
 Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5147,7 +5147,7 @@ Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirecto
 ];
 Print[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
-(**)
+*)
 ];
 ClearBuild[];
 
