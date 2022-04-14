@@ -3314,6 +3314,7 @@ res=x;
 (**)res=res/.CDPiToCDPiPHard;(**)(*this and the non-Hard line above are new, I'm not sure why I didn't need these before?*)
 res=res//NoScalar/.PiToPiP;(*not clear how necessary this is!*)
 res=res/.PiToPiP;
+res=res/.PiToPiPHard;(*new in 14/04*)
 res=ToOrderCanonical[res,OptionValue["Order"]];
 If[OptionValue["ToShell"],res=res/.$TheoryCDPiPToCDPiPO3,res=res/.$CDPiPToCDPiPO3];
 res=res//ToNewCanonical;
