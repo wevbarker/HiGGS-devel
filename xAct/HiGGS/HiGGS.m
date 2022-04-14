@@ -127,7 +127,6 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList)
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"}
 (*headers for the timing file*)
 $HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)
-Quit[];
 (*don't try timing until we call the function in expr*)
 TimeWrapper~SetAttributes~HoldAll;
 (*initially this isn't defined*)
