@@ -116,37 +116,39 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
-(*purge all the run statistics*)
-(*
-Run["rm -rf "<>$WorkingDirectory<>"/bin/stats"];
-Run["mkdir "<>$WorkingDirectory<>"/bin/stats"];
-*)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 $HiGGSTimingData={};
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
 $TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"}
 (*initial zeroes, i.e. the default line*)
-$HiGGSTimingLine=0.~ConstantArray~(2Length@$TimedFunctionList)
+$HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList)
 (*which kernel are we in? This sets the file in which we record stats*)
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"}
 (*headers for the timing file*)
-$HiGGSTimingData~AppendTo~Flatten@(({#,#})&/@$TimedFunctionList)
+$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)
+Quit[];
 (*don't try timing until we call the function in expr*)
-SetAttributes[TimeWrapper,HoldAll];
+TimeWrapper~SetAttributes~HoldAll;
+(*initially this isn't defined*)
+$TheoryNames={};
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine},
 $HiGGSTimingNow=AbsoluteTime[];
+(*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
 res=AbsoluteTiming@expr;
 temp=Evaluate@res[[2]];
 $HiGGSTimingDuration=Evaluate@res[[1]];
-TimingDurationPosition=2(Flatten@($TimedFunctionList~Position~Label))[[1]];
+If[$TheoryNames~MemberQ~$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)((Flatten@($TheoryNames~Position~$TheoryName))[[1]])+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
+TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
+TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
 TimingNowPosition=TimingDurationPosition-1;
 NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGSTimingDuration);
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 $HiGGSTimingFile~Export~$HiGGSTimingData;
-temp];DistributeDefinitions[TimeWrapper];
+temp];
+DistributeDefinitions@TimeWrapper;
 
 
 (* ::Input::Initialization:: *)

@@ -754,6 +754,7 @@ DefTensor[X[k],M4];
 AutomaticRules[X,MakeRule[{X[-a]V[a],1},MetricOn->All,ContractMetrics->True]];
 HG3BExpandLazy=MakeRule[{B[d,-b]G3[b,-a]H[-e,a],Evaluate[G[d,-e]-V[-e]X[d]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 UnprocessedX=MakeRule[{X[d],Evaluate[V[d]+PPara[d,-c]B[c,-b]G3[b,-e]H[-f,e]V[f]/.PADMActivate]},MetricOn->All,ContractMetrics->True];(*seems I never used this below, and I'd like to know why X didn't cause problems with previous velocities, since it commonly cropps up in brackets with the Lapse (but not always)*)
+(*this still seems a problem -- must check!*)
 XToV=MakeRule[{X[d],Evaluate[V[d]]},MetricOn->All,ContractMetrics->True];
 HExpandedDefinition=G3[-k,j]H[-i,k]+V[-i]V[k]H[-k,j]-V[-i]G3[-k,j]V[l]H[-l,k];(*there was a sign error here, since corrected*)
 HExpand=MakeRule[{H[-i,j],Evaluate[HExpandedDefinition]},MetricOn->All,ContractMetrics->True];
@@ -5094,7 +5095,7 @@ Print/@$Velocities;
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,TheoryNames,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 If[!OptionValue@"Import",
@@ -5102,7 +5103,8 @@ Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
-TheoryNames=(#[[1]])&/@InputBatch;
+$TheoryNames=(#[[1]])&/@InputBatch;
+DistributeDefinitions@$TheoryNames;(*this is important, we'll need it for the timing function*)
 (*
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"\[Rule]theory];
@@ -5115,7 +5117,7 @@ Print@Jobs;
 Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
-PPMs=Riffle[TheoryNames,PPMs]~Partition~2;
+PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
@@ -5135,7 +5137,7 @@ IndIfConstraints={IndIfConstraints[[6]]};
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
-Velocities=Riffle[TheoryNames,Velocities]~Partition~2;
+Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $Velocities=Velocity;
