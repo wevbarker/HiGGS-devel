@@ -129,8 +129,8 @@ $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToStrin
 $HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)
 (*don't try timing until we call the function in expr*)
 TimeWrapper~SetAttributes~HoldAll;
-(*initially this isn't defined*)
-$TheoryNames={};
+(*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine},
 $HiGGSTimingNow=AbsoluteTime[];
@@ -141,12 +141,10 @@ $HiGGSTimingDuration=Evaluate@res[[1]];
 
 (**)
 Print["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"];
+Print@$TheoryNames;
 Print@$TheoryName;
-Print["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbBBB"];
-Print@Global`SomeVar;
-Print@xAct`HiGGS`SomeVar;
 (**)
-If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(ToExpression@(ToString@Hash@$TheoryName~StringTake~1))+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
+If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(($TheoryNames~Position~$TheoryName)[[1]][[1]])+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
 TimingNowPosition=TimingDurationPosition-1;

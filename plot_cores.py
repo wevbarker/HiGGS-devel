@@ -58,6 +58,8 @@ time_array = np.linspace(0,1,size)    #   plotting space
 maxtheory = 10 #    how many total theory columns did we allow?
 acttheory = 5   #   how many theories did we actually run?
 
+rough_number_of_functions = 7
+
 
 #=============== files =================================
 
@@ -140,6 +142,7 @@ for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
     kernel_data = all_kernel_data[kernel]
     kernel_array = np.full(size,kernel*propunit)    #   this is for the horizontal line position
+
     function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
     for theory in range(0,acttheory+1):
         for function_number in range(1,number_of_functions+1):
@@ -151,6 +154,17 @@ for kernel in range(0,number_of_kernels):
                     t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
                     function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
 
+    rough_function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
+    for theory in range(0,acttheory+1):
+        for function_number in range(1,rough_number_of_functions+1):
+            print("     plotting data for function ",function_number)
+            function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
+            for row in function_times:
+                if row[0]>0:
+                    t1=int(np.floor(size*(row[0]-start_time)/total_time))
+                    t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
+                    rough_function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
+
     ##   superior method using collections
     points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
@@ -158,10 +172,26 @@ for kernel in range(0,number_of_kernels):
     # Create a continuous norm to map from data points to colors
     norm = plt.Normalize(0., 1.)
     lc = LineCollection(segments, cmap=silly, norm=norm)
+
     # Set the values used for colormapping
-    lc.set_array(function_data)
+    lc.set_array(rough_function_data)
     lc.set_linewidth(line_width)
     line = sp.add_collection(lc)
+    plt.draw()
+    
+    ##   superior method using collections
+    points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+
+    # Create a continuous norm to map from data points to colors
+    norm = plt.Normalize(0., 1.)
+    lc = LineCollection(segments, cmap=silly, norm=norm)
+
+    lc.set_array(function_data)
+    lc.set_linewidth(0.5*line_width)
+    line = sp.add_collection(lc)
+    plt.draw()
+    
     sp.set_xlim(0., total_time)
     sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
     sp.set_yticklabels(ticklabels)

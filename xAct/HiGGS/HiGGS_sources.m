@@ -5103,10 +5103,9 @@ Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 Print[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
+(*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
 $TheoryNames=(#[[1]])&/@InputBatch;
-Print@$TheoryNames;
-SomeVar=$TheoryNames;
-DistributeDefinitions@SomeVar;
+(FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"})~DumpSave~{$TheoryNames};
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
