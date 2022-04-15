@@ -143,7 +143,8 @@ $HiGGSTimingDuration=Evaluate@res[[1]];
 Print["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"];
 Print@$TheoryName;
 Print["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbBBB"];
-Print@SomeVar;
+Print@Global`SomeVar;
+Print@xAct`HiGGS`SomeVar;
 (**)
 If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(ToExpression@(ToString@Hash@$TheoryName~StringTake~1))+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,

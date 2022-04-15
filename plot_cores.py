@@ -15,7 +15,7 @@ import socket
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
-#================ params and setup ======================
+#================ plot params and setup ======================
 
 mpl.use('Agg')
 #   tex params
