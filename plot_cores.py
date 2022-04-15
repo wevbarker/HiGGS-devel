@@ -12,6 +12,8 @@ from os.path import exists
 import shutil
 import subprocess
 import socket 
+from matplotlib import cm
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 #================ params and setup ======================
 
@@ -28,11 +30,34 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
+#=============== colourmap =============================
+
+greys = cm.get_cmap('Greys', 12)
+blues = cm.get_cmap('Blues', 12)
+greens = cm.get_cmap('Greens', 12)
+oranges = cm.get_cmap('Oranges', 12)
+rdpu = cm.get_cmap('RdPu', 12)
+gnbu = cm.get_cmap('GnBu', 12)
+
+newcolors = greys(np.linspace(0, 1, 256))
+newcolors = np.append(newcolors,blues(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,greens(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,oranges(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,rdpu(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,gnbu(np.linspace(0, 1, 256)),axis=0)
+silly = ListedColormap(newcolors,name='silly')
+
+print(np.shape(newcolors))
+
 #=============== tuning params ==========================
 
 barwidth = 0.9
 size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
+
+maxtheory = 10 #    how many total theory columns did we allow?
+acttheory = 5   #   how many theories did we actually run?
+
 
 #=============== files =================================
 
@@ -69,13 +94,16 @@ print(kernel_files)
 def make_np(filename):
     return pd.read_csv('bin/samples/'+filename).to_numpy()
 
+#   a list, not np, of np arrays containing all data with headers
 all_kernel_data = list(map(make_np,kernel_files))
 print(len(kernel_files))
 print(len(all_kernel_data))
 
+#   all numerical columns, no headers, with the start times
 def start_cols(array):
     return array[1:,::2]
 
+#   to find the start and end of the whole survey
 start_times = np.concatenate(list(map(start_cols,all_kernel_data)))
 start_times = start_times.astype('float')
 start_times[start_times == 0.] = 'nan'
@@ -85,9 +113,8 @@ total_time=stop_time-start_time
 
 time_array = np.linspace(0,total_time,size)    #   plotting space
 
-number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/2)
+number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/(2*maxtheory))
 number_of_kernels = len(all_kernel_data)
-
 
 #====================== bar width and chart geometry ==============
 
@@ -112,16 +139,17 @@ line_width = (bar*(point_hei/yrange))*0.8
 for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
     kernel_data = all_kernel_data[kernel]
-    kernel_array = np.full(size,kernel*propunit)
-    function_data = np.zeros(size)
-    for function_number in range(1,number_of_functions+1):
-        print("     plotting data for function ",function_number)
-        function_times = kernel_data[1::,(2*function_number-2):(2*function_number):]
-        for row in function_times:
-            if row[0]>0:
-                t1=int(np.floor(size*(row[0]-start_time)/total_time))
-                t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
-                function_data[t1 : t2] = ((function_number)/(number_of_functions))
+    kernel_array = np.full(size,kernel*propunit)    #   this is for the horizontal line position
+    function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
+    for theory in range(0,acttheory+1):
+        for function_number in range(1,number_of_functions+1):
+            print("     plotting data for function ",function_number)
+            function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
+            for row in function_times:
+                if row[0]>0:
+                    t1=int(np.floor(size*(row[0]-start_time)/total_time))
+                    t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
+                    function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
 
     ##   superior method using collections
     points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
@@ -129,7 +157,7 @@ for kernel in range(0,number_of_kernels):
 
     # Create a continuous norm to map from data points to colors
     norm = plt.Normalize(0., 1.)
-    lc = LineCollection(segments, cmap='YlGn', norm=norm)
+    lc = LineCollection(segments, cmap=silly, norm=norm)
     # Set the values used for colormapping
     lc.set_array(function_data)
     lc.set_linewidth(line_width)
