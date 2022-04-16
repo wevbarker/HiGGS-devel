@@ -5128,7 +5128,7 @@ PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Leng
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]],"Surficial"->True])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]]])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;

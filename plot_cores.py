@@ -135,7 +135,7 @@ print(np.shape(newcolors))
 
 #====================== bar width and chart geometry ==============
 
-width = 8.
+width = 4.
 height = (1.*number_of_kernels+2.)*0.5
 
 propunit = (height*total_time/width)/number_of_kernels
