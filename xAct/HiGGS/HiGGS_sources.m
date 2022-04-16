@@ -5085,10 +5085,24 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-ViewTheory[theory_String]:=Module[{},
+ViewTheory[theory_String]:=Module[{IndIfConstraints,ii,jj},
 DefTheory["Import"->theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-Print@$PPM;
+(*
+Print@MatrixForm@$PPM;
+*)
+IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
+$PPMlabels=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
+$PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
+PrintBracket[x_,y_]:=Module[{nontrivial},
+nontrivial=!(x=={0,0,0,0}||y==0);
+If[nontrivial,
+Print[y," \[TildeTilde] ",x],,
+Print[y," \[TildeTilde] ",x]];
+];
+Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
+MapThread[PrintBracket,{$PPM,$PPMlabels},2];
+
 Print/@$Velocities;
 ];
 
@@ -5114,7 +5128,7 @@ PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Leng
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]]])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]],"Surficial"->True])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;

@@ -30,25 +30,6 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
-#=============== colourmap =============================
-
-greys = cm.get_cmap('Greys', 12)
-blues = cm.get_cmap('Blues', 12)
-greens = cm.get_cmap('Greens', 12)
-oranges = cm.get_cmap('Oranges', 12)
-rdpu = cm.get_cmap('RdPu', 12)
-gnbu = cm.get_cmap('GnBu', 12)
-
-newcolors = greys(np.linspace(0, 1, 256))
-newcolors = np.append(newcolors,blues(np.linspace(0, 1, 256)),axis=0)
-newcolors = np.append(newcolors,greens(np.linspace(0, 1, 256)),axis=0)
-newcolors = np.append(newcolors,oranges(np.linspace(0, 1, 256)),axis=0)
-newcolors = np.append(newcolors,rdpu(np.linspace(0, 1, 256)),axis=0)
-newcolors = np.append(newcolors,gnbu(np.linspace(0, 1, 256)),axis=0)
-silly = ListedColormap(newcolors,name='silly')
-
-print(np.shape(newcolors))
-
 #=============== tuning params ==========================
 
 barwidth = 0.9
@@ -56,9 +37,9 @@ size=10000   #   how many slices
 time_array = np.linspace(0,1,size)    #   plotting space
 
 maxtheory = 10 #    how many total theory columns did we allow?
-acttheory = 5   #   how many theories did we actually run?
 
-rough_number_of_functions = 7
+rough_number_of_functions = 6
+rougher_number_of_functions = 5
 
 
 #=============== files =================================
@@ -108,6 +89,7 @@ def start_cols(array):
 #   to find the start and end of the whole survey
 start_times = np.concatenate(list(map(start_cols,all_kernel_data)))
 start_times = start_times.astype('float')
+s_times = np.copy(start_times)
 start_times[start_times == 0.] = 'nan'
 start_time = np.nanmin(start_times)
 stop_time = np.nanmax(start_times)
@@ -118,10 +100,43 @@ time_array = np.linspace(0,total_time,size)    #   plotting space
 number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/(2*maxtheory))
 number_of_kernels = len(all_kernel_data)
 
+acttheory = np.floor(np.max(np.nonzero(np.sum(s_times,axis=0)))/number_of_functions).astype(int)
+
+#=============== colourmap =============================
+
+greys = cm.get_cmap('Greys', 120)
+blues = cm.get_cmap('Blues', 120)
+greens = cm.get_cmap('Greens', 120)
+oranges = cm.get_cmap('Oranges', 120)
+rdpu = cm.get_cmap('RdPu', 120)
+gnbu = cm.get_cmap('GnBu', 120)
+pnbugn = cm.get_cmap('PuBuGn', 120)
+purd = cm.get_cmap('PuRd', 120)
+orrd = cm.get_cmap('OrRd', 120)
+purples = cm.get_cmap('Purples', 120)
+ylgn = cm.get_cmap('YlGn', 120)
+
+newcolors = greys(np.linspace(0, 1, 256))
+newcolors = np.append(newcolors,blues(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,greens(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,oranges(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,rdpu(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,gnbu(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,pnbugn(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,ylgn(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,orrd(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,purples(np.linspace(0, 1, 256)),axis=0)
+newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
+
+endpt = 256*(1+acttheory)
+silly = ListedColormap(newcolors[0:endpt:,:],name='silly')
+
+print(np.shape(newcolors))
+
 #====================== bar width and chart geometry ==============
 
 width = 8.
-height = 1.*number_of_kernels+2.
+height = (1.*number_of_kernels+2.)*0.5
 
 propunit = (height*total_time/width)/number_of_kernels
 
@@ -141,11 +156,11 @@ line_width = (bar*(point_hei/yrange))*0.8
 for kernel in range(0,number_of_kernels):
     print("plotting data from kernel ",kernel)
     kernel_data = all_kernel_data[kernel]
-    kernel_array = np.full(size,kernel*propunit)    #   this is for the horizontal line position
 
+    kernel_array = np.full(size,kernel*propunit)    #   this is for the horizontal line position
     function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
     for theory in range(0,acttheory+1):
-        for function_number in range(1,number_of_functions+1):
+        for function_number in range(1,rougher_number_of_functions+1):
             print("     plotting data for function ",function_number)
             function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
             for row in function_times:
@@ -153,17 +168,6 @@ for kernel in range(0,number_of_kernels):
                     t1=int(np.floor(size*(row[0]-start_time)/total_time))
                     t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
                     function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
-
-    rough_function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
-    for theory in range(0,acttheory+1):
-        for function_number in range(1,rough_number_of_functions+1):
-            print("     plotting data for function ",function_number)
-            function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
-            for row in function_times:
-                if row[0]>0:
-                    t1=int(np.floor(size*(row[0]-start_time)/total_time))
-                    t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
-                    rough_function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
 
     ##   superior method using collections
     points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
@@ -174,11 +178,49 @@ for kernel in range(0,number_of_kernels):
     lc = LineCollection(segments, cmap=silly, norm=norm)
 
     # Set the values used for colormapping
-    lc.set_array(rough_function_data)
+    lc.set_array(function_data)
     lc.set_linewidth(line_width)
     line = sp.add_collection(lc)
     plt.draw()
-    
+
+    kernel_array = np.full(size,(kernel-0.5*(1-0.75))*propunit)    #   this is for the horizontal line position
+    function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
+    for theory in range(0,acttheory+1):
+        for function_number in range(1,rough_number_of_functions+1):
+            print("     plotting data for function ",function_number)
+            function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
+            for row in function_times:
+                if row[0]>0:
+                    t1=int(np.floor(size*(row[0]-start_time)/total_time))
+                    t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
+                    function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
+
+    ##   superior method using collections
+    points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+
+    # Create a continuous norm to map from data points to colors
+    norm = plt.Normalize(0., 1.)
+    lc = LineCollection(segments, cmap=silly, norm=norm)
+
+    # Set the values used for colormapping
+    lc.set_array(function_data)
+    lc.set_linewidth(0.75*line_width)
+    line = sp.add_collection(lc)
+    plt.draw()
+
+    kernel_array = np.full(size,(kernel-0.5*(1-0.5))*propunit)    #   this is for the horizontal line position
+    function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
+    for theory in range(0,acttheory+1):
+        for function_number in range(1,number_of_functions+1):
+            print("     plotting data for function ",function_number)
+            function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
+            for row in function_times:
+                if row[0]>0:
+                    t1=int(np.floor(size*(row[0]-start_time)/total_time))
+                    t2=int(np.floor(size*(row[0]+row[1]-start_time)/total_time))+1
+                    function_data[t1 : t2] = ((theory*2*number_of_functions+2*function_number-2)/((acttheory+1)*2*number_of_functions))
+ 
     ##   superior method using collections
     points = np.array([time_array, kernel_array]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
