@@ -4969,11 +4969,14 @@ PsiFreeIndexList=FindFreeIndices[Psi];
 PsiFreeIndexListString=StringDelete[StringTrim[ToString[PsiFreeIndexList],("IndexList["|"]")]," "];
 PsiFreeIndexListNormal="{"<>PsiFreeIndexListString<>"}";
 DistributeDefinitions@PsiFreeIndexListNormal;
-
+(*
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
-
+*)
+Phis={};
+(*
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
-(*lapse removed from above*)
+*)
+Jobs={ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
 
 SetupConstraintSegment[ii_]:=Module[{jj,FreeConstraintString,PhiFreeIndexListNormal},
 jj=ii;
