@@ -4759,33 +4759,33 @@ Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Measure bracket..."];
 Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->True];
-Quit[];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JD[-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS1[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS2[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[3]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS3[-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[4]]]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+(*
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-Subscript[x, 1])\[Delta](x-Subscript[x, 2]):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JD[-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[Delta](x-Subscript[x, 2]):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS1[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[2]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-Subscript[x, 1])\[PartialD]\[Delta](x-Subscript[x, 2]):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS2[-x1,-y1,-z1,v]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[3]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[PartialD]\[Delta](x-Subscript[x, 2]):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JDS3[-x1,-y1,-z1,v,z]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[4]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[Delta](x-Subscript[x, 2]):"];
 GradTemp=CD[-u][Evaluate[Temp[[2]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+GradTemp=ToBasicForm[GradTemp,"Hard"\[Rule]True,"Order"\[Rule]1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS1[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS1[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[Delta](x-Subscript[x, 1])\[PartialD]\[Delta](x-Subscript[x, 2]):"];
 GradTemp=CD[-u][Evaluate[Temp[[3]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+GradTemp=ToBasicForm[GradTemp,"Hard"\[Rule]True,"Order"\[Rule]1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS2[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
-printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS2[-x1,-y1,-z1,v]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
+printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for \[PartialD] coefficient of \[PartialD]\[Delta](x-Subscript[x, 1])\[PartialD]\[Delta](x-Subscript[x, 2]):"];
 GradTemp=CD[-u][Evaluate[Temp[[4]]]];
-GradTemp=ToBasicForm[GradTemp,"Hard"->True,"Order"->1];
+GradTemp=ToBasicForm[GradTemp,"Hard"\[Rule]True,"Order"\[Rule]1];
 printer=printer~Append~PrintTemporary[GradTemp];
 (*GradTemp=ToNesterForm[GradTemp,"ToShell"\[Rule]True,"Hard"\[Rule]True,"Order"\[Rule]1,"GToFoliG"\[Rule]False];*)
-PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
+PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
 
 (*Now we calculate the commutator replacement rule part*)
 (*
@@ -4793,7 +4793,7 @@ VelocitySegments=$InertVelocity[[{15,16,17,18}]];
 *)
 VelocitySegments=$InertVelocity[[{15}]];
 VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
-
+*)
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@MeasureBracketParallel;
