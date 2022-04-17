@@ -744,7 +744,8 @@ DJDBDefinition=J[]PPara[-c,e]H[-e,d]/.PADMActivate//ToCanonical;
 AutomaticRules[DJDB,MakeRule[{DJDB[-c,d],Evaluate[DJDBDefinition]},MetricOn->All,ContractMetrics->True]];
 DJiDBDefinition=-Ji[]PPara[-c,e]H[-e,d]/.PADMActivate//ToCanonical;
 AutomaticRules[DJiDB,MakeRule[{DJiDB[-c,d],Evaluate[DJiDBDefinition]},MetricOn->All,ContractMetrics->True]];
-DLapseDBDefinition=Lapse[]PPerp[-c,e]H[-e,d]/.PADMActivate//ToCanonical;
+(*DLapseDBDefinition=Lapse[]PPerp[-c,e]H[-e,d]/.PADMActivate//ToCanonical;*)(*this fixed, could have led to catastrophic errors: I even wrote it correctly in the paper but in HiGGS it was clearly copied from J rule and never edited..! Finally noticed because when I tried to explore theories with Einstein--Hilbert term, I would occasionally get non-ADM "X" tensor in the velocities.*)
+DLapseDBDefinition=Lapse[]V[-c]V[e]H[-e,d]/.PADMActivate//ToCanonical;(*this ought to be correct*)
 AutomaticRules[DLapseDB,MakeRule[{DLapseDB[-c,d],Evaluate[DLapseDBDefinition]},MetricOn->All,ContractMetrics->True]];
 
 AutomaticRules[V,MakeRule[{CD[-a][V[-j]],Evaluate[-V[-i]PPara[-j,k]H[-k,m]CD[-a][B[i,-m]]/.PADMActivate]},MetricOn->All,ContractMetrics->True]];
