@@ -4758,7 +4758,8 @@ For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[Placeh
 Print[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Measure bracket..."];
-Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
+Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->True];
+Quit[];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["JD[-x1,-y1,-z1]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[Temp[[1]]]},MetricOn->All,ContractMetrics->True]];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Rule for coefficient of \[PartialD]\[Delta](x-\!\(\*SubscriptBox[\(x\), \(1\)]\))\[Delta](x-\!\(\*SubscriptBox[\(x\), \(2\)]\)):"];
