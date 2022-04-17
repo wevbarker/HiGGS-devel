@@ -4787,7 +4787,10 @@ printer=printer~Append~PrintTemporary[GradTemp];
 PlaceholderBracketActivate=Join[PlaceholderBracketActivate,MakeRule[{Evaluate[ToExpression[StringReplace["CD[-u][JDS3[-x1,-y1,-z1,v,z]]S1[x1]S2[y1]S3[z1]",PlaceholderBracketRules]]],Evaluate[GradTemp]},MetricOn->All,ContractMetrics->True]];
 
 (*Now we calculate the commutator replacement rule part*)
+(*
 VelocitySegments=$InertVelocity[[{15,16,17,18}]];
+*)
+VelocitySegments=$InertVelocity[[{15}]];
 VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,PsiFreeIndexListNormal]&/@VelocitySegments;
 
 NotebookDelete[printer];
