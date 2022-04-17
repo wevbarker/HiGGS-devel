@@ -124,7 +124,6 @@ ClearBuild[];
 (*it is better that coupling constants format in colour*)
 $Coupling=RGBColor[1,0,0];
 Colour[x_String,ColorKey_]:=ColorString[x,ColorKey];
-
 (*a more systematic way to format tensors*)
 $TensorColour=RGBColor[0,0,0];
 $IrrepColour=RGBColor[0,0,1];
@@ -134,10 +133,21 @@ Spin1p="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(1\), \(+\)]]\)";
 Spin1m="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(1\), \(-\)]]\)";
 Spin2p="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(2\), \(+\)]]\)";
 Spin2m="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(2\), \(-\)]]\)";
-SymbolBuild[TensorSymbol_,IrrepSymbol_ :""]:=Module[{res},
+
+
+(* ::Input::Initialization:: *)
+Options[SymbolBuild]={"Derivative"->0}
+SymbolBuild[TensorSymbol_,IrrepSymbol_ :"",OptionsPattern[]]:=Module[{res},
 If[PossibleZeroQ@StringLength@IrrepSymbol,
 res=ColorString[TensorSymbol,$TensorColour];,
 res=ColorString[IrrepSymbol,$IrrepColour]~StringJoin~ColorString[TensorSymbol,$TensorColour];
+];
+If[OptionValue@"Derivative"==1,
+res="D"~StringJoin~res;
+];
+If[OptionValue@"Derivative"==2,
+res="(\[ScriptCapitalD]"~StringJoin~res;
+res=res~StringJoin~"\!\(\*SuperscriptBox[\()\), \(\[DoubleVerticalBar]\)]\)";
 ];
 res];
 ClearBuild[];
@@ -2600,6 +2610,72 @@ DpPiPA1mDeactivate=MakeRule[{DpPiPA1m[-w,-a],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]
 DpPiPA2pDeactivate=MakeRule[{DpPiPA2p[-w,-a,-b],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DPiPA2p[-z,-a,-b]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]-PPara[-a,i]PPara[-b,j])G3[-y,z]DPiPA2p[-z,-i,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpPiPA2mDeactivate=MakeRule[{DpPiPA2m[-w,-a,-b,-c],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DPiPA2m[-z,-a,-b,-c]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]G[-c,k]-PPara[-a,i]PPara[-b,j]PPara[-c,k])G3[-y,z]DPiPA2m[-z,-i,-j,-k]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpPiPDeactivate=Join[DpPiPB0pDeactivate,DpPiPB1pDeactivate,DpPiPB1mDeactivate,DpPiPB2pDeactivate,DpPiPA0pDeactivate,DpPiPA0mDeactivate,DpPiPA1pDeactivate,DpPiPA1mDeactivate,DpPiPA2pDeactivate,DpPiPA2mDeactivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DUB0p[-z],M4,PrintAs->SymbolBuild[UBSymb,Spin0p,"Derivative"->1]];
+DeclareOrder[DUB0p[-z],1];
+DefTensor[DUB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UBSymb,Spin1p,"Derivative"->1]];
+DeclareOrder[DUB1p[-z,-a,-b],1];
+DefTensor[DUB1m[-z,-a],M4,PrintAs->SymbolBuild[UBSymb,Spin1m,"Derivative"->1]];
+DeclareOrder[DUB1m[-z,-a],1];
+DefTensor[DUB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[UBSymb,Spin2p,"Derivative"->1]];
+DeclareOrder[DUB2p[-z,-a,-b],1];
+AutomaticRules[DUB2p,MakeRule[{DUB2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
+DefTensor[DUA0p[-z],M4,PrintAs->SymbolBuild[UASymb,Spin0p,"Derivative"->1]];
+DeclareOrder[DUA0p[-z],1];
+DefTensor[DUA0m[-z],M4,PrintAs->SymbolBuild[UASymb,Spin0m,"Derivative"->1]];
+DeclareOrder[DUA0m[-z],1];
+DefTensor[DUA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin1p,"Derivative"->1]];
+DeclareOrder[DUA1p[-z,-a,-b],1];
+DefTensor[DUA1m[-z,-a],M4,PrintAs->SymbolBuild[UASymb,Spin1m,"Derivative"->1]];
+DeclareOrder[DUA1m[-z,-a],1];
+DefTensor[DUA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin2p,"Derivative"->1]];
+DeclareOrder[DUA2p[-z,-a,-b],1];
+DefTensor[DUA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin2m,"Derivative"->1]];
+DeclareOrder[DUA2m[-z,-a,-b,-c],1];
+AutomaticRules[DUA2m,MakeRule[{DUA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[DUA2m,MakeRule[{epsilonG[a,b,c,d]DUA2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[DUA2p,MakeRule[{DUA2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DpUB0p[-z],M4,PrintAs->SymbolBuild[UBSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
+DeclareOrder[DpUB0p[-z],1];
+DeclareOrder[DUB0p[-z],1,"approximation"->B[w,-z]DpUB0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DUB0p[-w]];
+DefTensor[DpUB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UBSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
+DeclareOrder[DpUB1p[-z,-a,-b],1];
+DeclareOrder[DUB1p[-z,-a,-b],1,"approximation"->B[w,-z]DpUB1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DUB1p[-w,-a,-b]];
+DefTensor[DpUB1m[-z,-a],M4,PrintAs->SymbolBuild[UBSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
+DeclareOrder[DpUB1m[-z,-a],1];
+DeclareOrder[DUB1m[-z,-a],1,"approximation"->B[w,-z]DpUB1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DUB1m[-w,-a]];
+DefTensor[DpUB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[UBSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
+DeclareOrder[DpUB2p[-z,-a,-b],1];
+DeclareOrder[DUB2p[-z,-a,-b],1,"approximation"->B[w,-z]DpUB2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DUB2p[-w,-a,-b]];
+AutomaticRules[DpUB2p,MakeRule[{DpUB2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
+DefTensor[DpUA0p[-z],M4,PrintAs->SymbolBuild[UASymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
+DeclareOrder[DpUA0p[-z],1];
+DeclareOrder[DUA0p[-z],1,"approximation"->B[w,-z]DpUA0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DUA0p[-w]];
+DefTensor[DpUA0m[-z],M4,PrintAs->SymbolBuild[UASymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
+DeclareOrder[DpUA0m[-z],1];
+DeclareOrder[DUA0m[-z],1,"approximation"->B[w,-z]DpUA0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DUA0m[-w]];
+DefTensor[DpUA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
+DeclareOrder[DpUA1p[-z,-a,-b],1];
+DeclareOrder[DUA1p[-z,-a,-b],1,"approximation"->B[w,-z]DpUA1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DUA1p[-w,-a,-b]];
+DefTensor[DpUA1m[-z,-a],M4,PrintAs->SymbolBuild[UASymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
+DeclareOrder[DpUA1m[-z,-a],1];
+DeclareOrder[DUA1m[-z,-a],1,"approximation"->B[w,-z]DpUA1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DUA1m[-w,-a]];
+DefTensor[DpUA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
+DeclareOrder[DpUA2p[-z,-a,-b],1];
+DeclareOrder[DUA2p[-z,-a,-b],1,"approximation"->B[w,-z]DpUA2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DUA2p[-w,-a,-b]];
+DefTensor[DpUA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[UASymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DeclareOrder[DpUA2m[-z,-a,-b,-c],1];
+DeclareOrder[DUA2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpUA2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DUA2m[-w,-a,-b,-c]];
+AutomaticRules[DpUA2m,MakeRule[{DpUA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[DpUA2m,MakeRule[{epsilonG[a,b,c,d]DpUA2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[DpUA2p,MakeRule[{DpUA2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
 ClearBuild[];
 
 
@@ -5095,7 +5171,7 @@ IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#)
 $PPMlabels=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
-nontrivial=!(x=={0,0,0,0}||y==0);
+nontrivial=!(x=={0,0,0}||y==0);
 If[nontrivial,
 Print[y," \[TildeTilde] ",x],,
 Print[y," \[TildeTilde] ",x]];
