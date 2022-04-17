@@ -4969,15 +4969,14 @@ PsiFreeIndexList=FindFreeIndices[Psi];
 PsiFreeIndexListString=StringDelete[StringTrim[ToString[PsiFreeIndexList],("IndexList["|"]")]," "];
 PsiFreeIndexListNormal="{"<>PsiFreeIndexListString<>"}";
 DistributeDefinitions@PsiFreeIndexListNormal;
-(*
+
 Phis={PhiB0p[],PhiB1p[-i,-j],PhiB1m[-i],PhiB2p[-i,-j],PhiA0p[],PhiA0m[],PhiA1p[-i,-j],PhiA1m[-i],PhiA2p[-i,-j],PhiA2m[-i,-j,-k]};
-*)
-Phis={};
+
 (*
 Jobs={ParallelSubmit@RiemannBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@TorsionBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName],ParallelSubmit@MeasureBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
 *)
 Jobs={ParallelSubmit@SurfaceBracketParallel[Psi,EH0,PsiFreeIndexListNormal,$TheoryName]};
-
+(*
 SetupConstraintSegment[ii_]:=Module[{jj,FreeConstraintString,PhiFreeIndexListNormal},
 jj=ii;
 DistributeDefinitions@jj;
@@ -4995,11 +4994,12 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintS
 ];
 
 For[ii=1,ii<11,ii++,
-If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]==1,{
+If[Evaluate[ToExpression["ShellOrig"<>ToString[SectorNames[[ii]]]]/.$ToShellFreedoms]\[Equal]1,{
 SetupConstraintSegment[ii];
 }
 ];
 ];
+*)
 NotebookDelete[printer];
 Jobs];
 ClearBuild[];
