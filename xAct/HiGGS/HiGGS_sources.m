@@ -83,6 +83,34 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});
+$OldLine=$Line;
+$SubLine=1;
+$PaperPrint=False;
+HiGGSPrint[expr__]:=Block[{res,$ListingsFile},
+res=expr;
+Print@res;
+If[$PaperPrint,
+If[$Line==$OldLine,
+$SubLine=$SubLine+1,
+$SubLine=1;
+$OldLine=$Line;
+];
+$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput},PageWidth->Infinity];
+If[{res}~AllTrue~StringQ,
+WriteString[$ListingsFile,"\\vspace{-10pt}\n|\n"<>"      "<>StringJoin@{res}<>"\n|"<>"\n"];,
+res=Panel[Row@{"      ",res},ImageSize->300,Background->RGBColor[0.95,1.,0.8]];
+Print@res;
+FileNameJoin@{$WorkingDirectory,"figures",ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
+WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];
+];
+Close[$ListingsFile];
+];
+];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
 (*Probably a better place to put this at the top*)
 ToNewCanonical[x_]:="ToNewCanonical"~TimeWrapper~Module[{temp,res,time,duration,filename,printer},
 printer=PrintTemporary[" ** ToNewCanonical..."];
@@ -133,14 +161,37 @@ Spin1p="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(1\), \(+\)]]\)";
 Spin1m="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(1\), \(-\)]]\)";
 Spin2p="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(2\), \(+\)]]\)";
 Spin2m="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(2\), \(-\)]]\)";
+SO0="\!\(\*OverscriptBox[\(.\), \(0\)]\)";
+SO1="\!\(\*OverscriptBox[\(.\), \(1\)]\)";
+SO2="\!\(\*OverscriptBox[\(.\), \(2\)]\)";
+SO3="\!\(\*OverscriptBox[\(.\), \(3\)]\)";
+SO4="\!\(\*OverscriptBox[\(.\), \(4\)]\)";
+SO5="\!\(\*OverscriptBox[\(.\), \(5\)]\)";
+SO6="\!\(\*OverscriptBox[\(.\), \(6\)]\)";
+dSpin0p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(0\), \(+\)]]\)";
+dSpin0m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(0\), \(-\)]]\)";
+dSpin1p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(1\), \(+\)]]\)";
+dSpin1m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(1\), \(-\)]]\)";
+dSpin2p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(2\), \(+\)]]\)";
+dSpin2m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(2\), \(-\)]]\)";
+dSO0="\!\(\*UnderscriptBox[\(\[Application]\), \(0\)]\)";
+dSO1="\!\(\*UnderscriptBox[\(\[Application]\), \(1\)]\)";
+dSO2="\!\(\*UnderscriptBox[\(\[Application]\), \(2\)]\)";
+dSO3="\!\(\*UnderscriptBox[\(\[Application]\), \(3\)]\)";
+dSO4="\!\(\*UnderscriptBox[\(\[Application]\), \(4\)]\)";
+dSO5="\!\(\*UnderscriptBox[\(\[Application]\), \(5\)]\)";
+dSO6="\!\(\*UnderscriptBox[\(\[Application]\), \(6\)]\)";
 
 
 (* ::Input::Initialization:: *)
-Options[SymbolBuild]={"Derivative"->0}
-SymbolBuild[TensorSymbol_,IrrepSymbol_ :"",OptionsPattern[]]:=Module[{res},
+Options[SymbolBuild]={"Derivative"->0,"Constant"->False};
+SymbolBuild[TensorSymbol_,IrrepSymbol:_?StringQ :"",OptionsPattern[]]:=Module[{res},
 If[PossibleZeroQ@StringLength@IrrepSymbol,
 res=ColorString[TensorSymbol,$TensorColour];,
+If[OptionValue@"Constant",
+res=ColorString[TensorSymbol,$Coupling]~StringJoin~ColorString[IrrepSymbol,$IrrepColour];,
 res=ColorString[IrrepSymbol,$IrrepColour]~StringJoin~ColorString[TensorSymbol,$TensorColour];
+];
 ];
 If[OptionValue@"Derivative"==1,
 res="D"~StringJoin~res;
@@ -157,15 +208,20 @@ ClearBuild[];
 SectorNames = {"B0p", "B1p", "B1m", "B2p", "A0p", "A0m", "A1p", "A1m", "A2p", "A2m"}; 
 ASectorNames = {"A0p", "A0m", "A1p", "A1m", "A2p", "A2m"}; 
 BSectorNames = {"B0p", "B0m", "B1p", "B1m", "B2p", "B2m"}; 
-DefTensor[R[a, b, -d, -e], M4, {Antisymmetric[{a, b}], Antisymmetric[{-d, -e}]}]; 
+RSymb="\[ScriptCapitalR]";
+DefTensor[R[a, b, -d, -e], M4, {Antisymmetric[{a, b}], Antisymmetric[{-d, -e}]},PrintAs->SymbolBuild[RSymb]]; 
 DeclareOrder[R[a, b, -d, -e], 1]; 
-DefTensor[T[a, -b, -c], M4, Antisymmetric[{-b, -c}]]; 
+TSymb="\[ScriptCapitalT]";
+DefTensor[T[a, -b, -c], M4, Antisymmetric[{-b, -c}],PrintAs->SymbolBuild[TSymb]]; 
 DeclareOrder[T[a, -b, -c], 1]; 
-DefTensor[W[a, b, -d, -e], M4]; 
+WSymb="\[ScriptCapitalW]";
+DefTensor[W[a, b, -d, -e], M4,PrintAs->SymbolBuild[WSymb]]; 
 DeclareOrder[W[a, b, -d, -e], 1]; 
-DefTensor[RLambda[a, b, -d, -e], M4, {Antisymmetric[{a, b}], Antisymmetric[{-d, -e}]}, PrintAs -> "\[Lambda]"]; 
+RLambdaSymb="\!\(\*SubscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\)]\)"
+DefTensor[RLambda[a, b, -d, -e], M4, {Antisymmetric[{a, b}], Antisymmetric[{-d, -e}]},PrintAs->SymbolBuild[RLambdaSymb]]; 
 DeclareOrder[RLambda[a, b, -d, -e], 1]; 
-DefTensor[TLambda[a, -d, -e], M4, Antisymmetric[{-d, -e}], PrintAs -> "\[Lambda]"]; 
+TLambdaSymb="\!\(\*SubscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\)]\)";
+DefTensor[TLambda[a, -d, -e], M4, Antisymmetric[{-d, -e}],PrintAs->SymbolBuild[TLambdaSymb]]; 
 DeclareOrder[TLambda[a, -d, -e], 1];
 ClearBuild[];
 
@@ -173,25 +229,26 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 (*
 (*This is where we get the notation for generating sets of permutations from, not the documentation!*)
-Print[RiemannSymmetry[{-i,-j,-m,-n}]];
+HiGGSPrint[RiemannSymmetry[{-i,-j,-m,-n}]];
 *)
-DefTensor[R1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs -> "\!\(\*OverscriptBox[\(R\), \((1)\)]\)"]; 
+PrintAs->SymbolBuild[UBSymb,Spin1p]
+DefTensor[R1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,SO1]]; 
 DeclareOrder[R1[-i,-j,-m,-n], 1]; 
-DefTensor[R2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> "\!\(\*OverscriptBox[\(R\), \((2)\)]\)"]; 
+DefTensor[R2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RSymb,SO2]]; 
 DeclareOrder[R2[-i,-j,-m,-n], 1]; 
-DefTensor[R3[-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> "\!\(\*OverscriptBox[\(R\), \((3)\)]\)"]; 
+DefTensor[R3[-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> SymbolBuild[RSymb,SO3]]; 
 DeclareOrder[R3[-i,-j,-m,-n], 1]; 
-DefTensor[R4[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(R\), \((4)\)]\)"]; 
+DefTensor[R4[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO4]]; 
 DeclareOrder[R4[-i,-j], 1]; 
-DefTensor[R5[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(R\), \((5)\)]\)"]; 
+DefTensor[R5[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO5]]; 
 DeclareOrder[R5[-i,-j], 1]; 
-DefTensor[R6[], M4, PrintAs -> "\!\(\*OverscriptBox[\(R\), \((6)\)]\)"]; 
+DefTensor[R6[], M4, PrintAs ->SymbolBuild[RSymb,SO6]]; 
 DeclareOrder[R6[], 1]; 
-DefTensor[T1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(T\), \((1)\)]\)"]; 
+DefTensor[T1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TSymb,SO1]]; 
 DeclareOrder[T1[-i,-j,-k], 1]; 
-DefTensor[T2[-i], M4, PrintAs -> "\!\(\*OverscriptBox[\(T\), \((2)\)]\)"]; 
+DefTensor[T2[-i], M4, PrintAs -> SymbolBuild[TSymb,SO2]]; 
 DeclareOrder[T2[-i], 1]; 
-DefTensor[T3[-i], M4, PrintAs -> "\!\(\*OverscriptBox[\(T\), \((3)\)]\)"]; 
+DefTensor[T3[-i], M4, PrintAs ->SymbolBuild[TSymb,SO3]]; 
 DeclareOrder[T3[-i], 1]; 
 AutomaticRules[R1,MakeRule[{R1[a,a1,b,-b],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[R1,MakeRule[{R1[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
@@ -225,23 +282,23 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[RLambda1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((1)\)]\)"]; 
+DefTensor[RLambda1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs ->SymbolBuild[RLambdaSymb,SO1]]; 
 DeclareOrder[RLambda1[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((2)\)]\)"]; 
+DefTensor[RLambda2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RLambdaSymb,SO2]]; 
 DeclareOrder[RLambda2[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda3[-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((3)\)]\)"]; 
+DefTensor[RLambda3[-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> SymbolBuild[RLambdaSymb,SO3]]; 
 DeclareOrder[RLambda3[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda4[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((4)\)]\)"]; 
+DefTensor[RLambda4[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[RLambdaSymb,SO4]]; 
 DeclareOrder[RLambda4[-i,-j], 1]; 
-DefTensor[RLambda5[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((5)\)]\)"]; 
+DefTensor[RLambda5[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[RLambdaSymb,SO5]]; 
 DeclareOrder[RLambda5[-i,-j], 1]; 
-DefTensor[RLambda6[], M4, PrintAs -> "\!\(\*OverscriptBox[\(R\[Lambda]\), \((6)\)]\)"]; 
+DefTensor[RLambda6[], M4, PrintAs -> SymbolBuild[RLambdaSymb,SO6]]; 
 DeclareOrder[RLambda6[], 1]; 
-DefTensor[TLambda1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(T\[Lambda]\), \((1)\)]\)"]; 
+DefTensor[TLambda1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TLambdaSymb,SO1]]; 
 DeclareOrder[TLambda1[-i,-j,-k], 1]; 
-DefTensor[TLambda2[-i], M4, PrintAs -> "\!\(\*OverscriptBox[\(T\[Lambda]\), \((2)\)]\)"]; 
+DefTensor[TLambda2[-i], M4, PrintAs -> SymbolBuild[TLambdaSymb,SO2]]; 
 DeclareOrder[TLambda2[-i], 1]; 
-DefTensor[TLambda3[-i], M4, PrintAs -> "\!\(\*OverscriptBox[\(T\[Lambda]\), \((3)\)]\)"]; 
+DefTensor[TLambda3[-i], M4, PrintAs -> SymbolBuild[TLambdaSymb,SO3]]; 
 DeclareOrder[TLambda3[-i], 1]; 
 AutomaticRules[RLambda1,MakeRule[{RLambda1[a,a1,b,-b],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RLambda1,MakeRule[{RLambda1[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
@@ -297,12 +354,13 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[PR1[-a,-b,-c,-d,e,f,g,h],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R1\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PR2[-a,-b,-c,-d,e,f,g,h],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R2\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PR3[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R3\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PR4[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R4\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PR5[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R5\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PR6[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(R6\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
+PpRSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[ScriptCapitalR]\)]\)";
+DefTensor[PR1[-a,-b,-c,-d,e,f,g,h],M4,PrintAs->SymbolBuild[PpRSymb,SO1]];
+DefTensor[PR2[-a,-b,-c,-d,e,f,g,h],M4,PrintAs->SymbolBuild[PpRSymb,SO2]];
+DefTensor[PR3[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->SymbolBuild[PpRSymb,SO3]];
+DefTensor[PR4[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->SymbolBuild[PpRSymb,SO4]];
+DefTensor[PR5[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->SymbolBuild[PpRSymb,SO5]];
+DefTensor[PR6[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->SymbolBuild[PpRSymb,SO6]];
 
 ToCanonicalTotal[x_]:=ToCanonical[Total[x]];
 ToCanonicalParallel[x_]:=Module[{Monomials,Ret},
@@ -316,10 +374,12 @@ AutomaticRules[PR3,MakeRule[{CD[-x][PR3[-a,-b,-c,-d,e,f,g,h]],0},MetricOn->All,C
 AutomaticRules[PR4,MakeRule[{CD[-x][PR4[-a,-b,-c,-d,e,f,g,h]],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PR5,MakeRule[{CD[-x][PR5[-a,-b,-c,-d,e,f,g,h]],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PR6,MakeRule[{CD[-x][PR6[-a,-b,-c,-d,e,f,g,h]],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[PW[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(W\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PT1[-a,-b,-c,e,f,g],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(T1\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PT2[-a,-b,-c,e,f,g],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(T2\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
-DefTensor[PT3[-a,-b,-c,e,f,g],M4,PrintAs->"\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \(T3\)]\)\!\(\*OverscriptBox[\(\[ScriptCapitalP]\), \(^\)]\)"];
+PWSymb="\!\(\*SubscriptBox[\(\[ScriptCapitalP]\), \(\[ScriptCapitalW]\)]\)";
+DefTensor[PW[-i,-k,-l,-m,a,b,c,d],M4,PrintAs->SymbolBuild[PWSymb]];
+PpTSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[ScriptCapitalT]\)]\)";
+DefTensor[PT1[-a,-b,-c,e,f,g],M4,PrintAs->SymbolBuild[PpTSymb,SO1]];
+DefTensor[PT2[-a,-b,-c,e,f,g],M4,PrintAs->SymbolBuild[PpTSymb,SO2]];
+DefTensor[PT3[-a,-b,-c,e,f,g],M4,PrintAs->SymbolBuild[PpTSymb,SO3]];
 AutomaticRules[PT1,MakeRule[{CD[-x][PT1[-a,-b,-c,e,f,g]],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PT2,MakeRule[{CD[-x][PT2[-a,-b,-c,e,f,g]],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PT3,MakeRule[{CD[-x][PT3[-a,-b,-c,e,f,g]],0},MetricOn->All,ContractMetrics->True]];
@@ -370,42 +430,42 @@ OpenLastCache[];
 
 (* ::Input::Initialization:: *)
 IfBuild["CheckOrthogonalityToggle",
-Print[ActiveCellTags];
-Print[Style["checking orthogonality",Blue,16]];
-For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,Print[ToExpression["PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]];
-For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,Print[ToExpression["PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
+HiGGSPrint[ActiveCellTags];
+HiGGSPrint[Style["checking orthogonality",Blue,16]];
+For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]];
+For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
 
-Print[Style["checking inverse orthogonality",Blue,16]];
+HiGGSPrint[Style["checking inverse orthogonality",Blue,16]];
 
-For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,Print[ToExpression["PR"<>ToString[ii]<>"[a,b,c,d,i,j,k,l]R[-i,-j,-k,-l]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]]
-For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,Print[ToExpression["PT"<>ToString[ii]<>"[a,b,c,i,j,k]T[-i,-j,-k]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
+For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[a,b,c,d,i,j,k,l]R[-i,-j,-k,-l]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]]
+For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[a,b,c,i,j,k]T[-i,-j,-k]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
 
-Print[Style["checking idempotency",Blue,16]];
+HiGGSPrint[Style["checking idempotency",Blue,16]];
 
-For[ii=1,ii<7,ii++,Print[ToExpression["(PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[ii]<>"[-a,-b,-c,-d,e,f,g,h]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]]
-For[ii=1,ii<4,ii++,Print[ToExpression["(PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[ii]<>"[-a,-b,-c,e,f,g]-PT"<>ToString[ii]<>"[-i,-j,-k,e,f,g])T[-e,-f,-g]"]/.PActivate//ToCanonical//FullSimplify]];
+For[ii=1,ii<7,ii++,HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[ii]<>"[-a,-b,-c,-d,e,f,g,h]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]]
+For[ii=1,ii<4,ii++,HiGGSPrint[ToExpression["(PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[ii]<>"[-a,-b,-c,e,f,g]-PT"<>ToString[ii]<>"[-i,-j,-k,e,f,g])T[-e,-f,-g]"]/.PActivate//ToCanonical//FullSimplify]];
 
-Print[Style["checking completeness",Blue,16]];
+HiGGSPrint[Style["checking completeness",Blue,16]];
 
 (PR1[-i,-k,-l,-m,a,b,c,d]+PR2[-i,-k,-l,-m,a,b,c,d]+PR3[-i,-k,-l,-m,a,b,c,d]+PR4[-i,-k,-l,-m,a,b,c,d]+PR5[-i,-k,-l,-m,a,b,c,d]+PR6[-i,-k,-l,-m,a,b,c,d])R[-a,-b,-c,-d]/.PActivate//ToCanonical//Simplify
 (PT1[-i,-k,-l,a,b,c]+PT2[-i,-k,-l,a,b,c]+PT3[-i,-k,-l,a,b,c])T[-a,-b,-c]/.PActivate//ToCanonical//Simplify;
 
-Print[Style["checking invertability",Blue,16]];
+HiGGSPrint[Style["checking invertability",Blue,16]];
 
-For[ii=1,ii<7,ii++,Print[ToExpression["(PR"<>ToString[ii]<>"[e,f,g,h,-i,-k,-l,-m]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]];
+For[ii=1,ii<7,ii++,HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[e,f,g,h,-i,-k,-l,-m]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]];
 ClearBuild[];
 ];
 
 
 (* ::Input::Initialization:: *)
 (*Define the Ricci \mathcal{R}^a_{\ b}*)
-DefTensor[Rc[a,-b],M4,PrintAs->"R"];
+DefTensor[Rc[a,-b],M4,PrintAs->SymbolBuild[RSymb]];
 DeclareOrder[Rc[a,-b],1];
 (*Define the Ricci scalar \mathcal{R}*)
-DefTensor[Rs[],M4,PrintAs->"R"];
+DefTensor[Rs[],M4,PrintAs->SymbolBuild[RSymb]];
 DeclareOrder[Rs[],1];
 (*Define the torsion contraction \mathcal{T}^a*)
-DefTensor[Tc[-a],M4,PrintAs->"T"];
+DefTensor[Tc[-a],M4,PrintAs->SymbolBuild[TSymb]];
 DeclareOrder[Tc[-a],1];
 (*Rule to expand Ricci*)
 ExpandRicci=MakeRule[{Rc[a,-b],R[c,a,-c,-b]},MetricOn->All,ContractMetrics->True];
@@ -434,217 +494,232 @@ AutomaticRules[R,MakeRule[{R[c,a,-c,-b],Rc[a,-b]},MetricOn->All,ContractMetrics-
 AutomaticRules[Rc,MakeRule[{Rc[c,-c],Rs[]},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[T,MakeRule[{T[c,-a,-c],Tc[-a]},MetricOn->All,ContractMetrics->True]];
 PR1[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PR2[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PR3[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PR4[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PR5[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PR6[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PT1[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PT2[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 PT3[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate//ToCanonical//ContractMetric;
-Print[%];
+HiGGSPrint[%];
 
 tmp=PR1[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR2[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR3[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR4[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR5[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR6[-i,-j,-k,-l,a,b,c,d]R[-a,-b,-c,-d]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT1[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT2[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT3[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 
 tmp=PR1[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR2[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR3[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR4[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR5[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PR6[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT1[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT2[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 tmp=PT3[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 ClearBuild[];
 ];
 
 
 (* ::Input::Initialization:: *)
 (*My couplings for irrep Lorentz constraints*)
-DefConstantSymbol[cAlp1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[cAlp2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[cAlp3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[cAlp4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[cAlp5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[cAlp6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(6\)]\)",$Coupling]];
+cAlpSymb="\!\(\*OverscriptBox[\(\[Alpha]\), \(_\)]\)";
+DefConstantSymbol[cAlp1,PrintAs->SymbolBuild[cAlpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cAlp2,PrintAs->SymbolBuild[cAlpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cAlp3,PrintAs->SymbolBuild[cAlpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cAlp4,PrintAs->SymbolBuild[cAlpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cAlp5,PrintAs->SymbolBuild[cAlpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cAlp6,PrintAs->SymbolBuild[cAlpSymb,dSO6,"Constant"->True]];
 
 cAlp={cAlp1,cAlp2,cAlp3,cAlp4,cAlp5,cAlp6};
 
 (*My couplings for irrep Lorentz constraints*)
-DefConstantSymbol[gAlp1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[gAlp2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[gAlp3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[gAlp4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[gAlp5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[gAlp6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \('\)], \(6\)]\)",$Coupling]];
+gAlpSymb="\!\(\*OverscriptBox[\(\[Alpha]\), \('\)]\)";
+DefConstantSymbol[gAlp1,PrintAs->SymbolBuild[gAlpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[gAlp2,PrintAs->SymbolBuild[gAlpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[gAlp3,PrintAs->SymbolBuild[gAlpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[gAlp4,PrintAs->SymbolBuild[gAlpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[gAlp5,PrintAs->SymbolBuild[gAlpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[gAlp6,PrintAs->SymbolBuild[gAlpSymb,dSO6,"Constant"->True]];
 
 gAlp={gAlp1,gAlp2,gAlp3,gAlp4,gAlp5,gAlp6};
 
-DefConstantSymbol[cAlpParaPara0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPara0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPara1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPara1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPara2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPara2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cAlpParaParaSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefConstantSymbol[cAlpParaPara0p,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cAlpParaPara0m,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cAlpParaPara1p,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cAlpParaPara1m,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cAlpParaPara2p,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cAlpParaPara2m,PrintAs->SymbolBuild[cAlpParaParaSymb,dSO6,"Constant"->True]];
 
 cAlpParaPara={cAlpParaPara0p,cAlpParaPara0m,cAlpParaPara1p,cAlpParaPara1m,cAlpParaPara2p,cAlpParaPara2m};
 
-DefConstantSymbol[cAlpPerpPerp0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPerp0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPerp1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPerp1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPerp2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPerp2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cAlpPerpPerpSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)]\)";
+DefConstantSymbol[cAlpPerpPerp0p,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPerp0m,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPerp1p,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPerp1m,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPerp2p,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPerp2m,PrintAs->SymbolBuild[cAlpPerpPerpSymb,dSO6,"Constant"->True]];
 
 cAlpPerpPerp={cAlpPerpPerp0p,cAlpPerpPerp0m,cAlpPerpPerp1p,cAlpPerpPerp1m,cAlpPerpPerp2p,cAlpPerpPerp2m};
 
-DefConstantSymbol[cAlpPerpPara0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPara0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPara1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPara1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPara2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpPerpPara2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cAlpPerpParaSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefConstantSymbol[cAlpPerpPara0p,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPara0m,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPara1p,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPara1m,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPara2p,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cAlpPerpPara2m,PrintAs->SymbolBuild[cAlpPerpParaSymb,dSO6,"Constant"->True]];
 
 cAlpPerpPara={cAlpPerpPara0p,cAlpPerpPara0m,cAlpPerpPara1p,cAlpPerpPara1m,cAlpPerpPara2p,cAlpPerpPara2m};
 
-DefConstantSymbol[cAlpParaPerp0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPerp0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPerp1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPerp1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPerp2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cAlpParaPerp2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cAlpParaPerpSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[Alpha]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)]\)";
+DefConstantSymbol[cAlpParaPerp0p,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cAlpParaPerp0m,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cAlpParaPerp1p,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cAlpParaPerp1m,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cAlpParaPerp2p,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cAlpParaPerp2m,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO6,"Constant"->True]];
 
 cAlpParaPerp={cAlpParaPerp0p,cAlpParaPerp0m,cAlpParaPerp1p,cAlpParaPerp1m,cAlpParaPerp2p,cAlpParaPerp2m};
 
-DefConstantSymbol[cBet1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[cBet2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[cBet3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[cBet4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[cBet5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[cBet6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(6\)]\)",$Coupling]];
+cBetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \(_\)]\)";
+DefConstantSymbol[cBet1,PrintAs->SymbolBuild[cBetSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[cBet2,PrintAs->SymbolBuild[cBetSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[cBet3,PrintAs->SymbolBuild[cBetSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[cBet4,PrintAs->SymbolBuild[cBetSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[cBet5,PrintAs->SymbolBuild[cBetSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[cBet6,PrintAs->SymbolBuild[cBetSymb,dSO6,"Constant"->True]];
 
 cBet={cBet1,cBet2,cBet3};
 
-DefConstantSymbol[gBet1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[gBet2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[gBet3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[gBet4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[gBet5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[gBet6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \('\)], \(6\)]\)",$Coupling]];
+gBetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \('\)]\)";
+DefConstantSymbol[gBet1,PrintAs->SymbolBuild[gBetSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[gBet2,PrintAs->SymbolBuild[gBetSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[gBet3,PrintAs->SymbolBuild[gBetSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[gBet4,PrintAs->SymbolBuild[gBetSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[gBet5,PrintAs->SymbolBuild[gBetSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[gBet6,PrintAs->SymbolBuild[gBetSymb,dSO6,"Constant"->True]];
 
 gBet={gBet1,gBet2,gBet3};
 
-DefConstantSymbol[cBetParaPara0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPara0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPara1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPara1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPara2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPara2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cBetParaPara="\!\(\*SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefConstantSymbol[cBetParaPara0p,PrintAs->SymbolBuild[cBetParaPara,dSO1,"Constant"->True]];
+DefConstantSymbol[cBetParaPara0m,PrintAs->SymbolBuild[cBetParaPara,dSO2,"Constant"->True]];
+DefConstantSymbol[cBetParaPara1p,PrintAs->SymbolBuild[cBetParaPara,dSO3,"Constant"->True]];
+DefConstantSymbol[cBetParaPara1m,PrintAs->SymbolBuild[cBetParaPara,dSO4,"Constant"->True]];
+DefConstantSymbol[cBetParaPara2p,PrintAs->SymbolBuild[cBetParaPara,dSO5,"Constant"->True]];
+DefConstantSymbol[cBetParaPara2m,PrintAs->SymbolBuild[cBetParaPara,dSO6,"Constant"->True]];
 
 cBetParaPara={cBetParaPara0p,cBetParaPara0m,cBetParaPara1p,cBetParaPara1m,cBetParaPara2p,cBetParaPara2m};
 
-DefConstantSymbol[cBetPerpPerp0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPerp0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPerp1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPerp1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPerp2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPerp2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cBetPerpPerp="\!\(\*SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[UpTee]\)\)]\)";
+DefConstantSymbol[cBetPerpPerp0p,PrintAs->SymbolBuild[cBetPerpPerp,dSO1,"Constant"->True]];
+DefConstantSymbol[cBetPerpPerp0m,PrintAs->SymbolBuild[cBetPerpPerp,dSO2,"Constant"->True]];
+DefConstantSymbol[cBetPerpPerp1p,PrintAs->SymbolBuild[cBetPerpPerp,dSO3,"Constant"->True]];
+DefConstantSymbol[cBetPerpPerp1m,PrintAs->SymbolBuild[cBetPerpPerp,dSO4,"Constant"->True]];
+DefConstantSymbol[cBetPerpPerp2p,PrintAs->SymbolBuild[cBetPerpPerp,dSO5,"Constant"->True]];
+DefConstantSymbol[cBetPerpPerp2m,PrintAs->SymbolBuild[cBetPerpPerp,dSO6,"Constant"->True]];
 
 cBetPerpPerp={cBetPerpPerp0p,cBetPerpPerp0m,cBetPerpPerp1p,cBetPerpPerp1m,cBetPerpPerp2p,cBetPerpPerp2m};
 
-DefConstantSymbol[cBetPerpPara0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPara0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPara1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPara1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPara2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetPerpPara2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cBetPerpPara="\!\(\*SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefConstantSymbol[cBetPerpPara0p,PrintAs->SymbolBuild[cBetPerpPara,dSO1,"Constant"->True]];
+DefConstantSymbol[cBetPerpPara0m,PrintAs->SymbolBuild[cBetPerpPara,dSO2,"Constant"->True]];
+DefConstantSymbol[cBetPerpPara1p,PrintAs->SymbolBuild[cBetPerpPara,dSO3,"Constant"->True]];
+DefConstantSymbol[cBetPerpPara1m,PrintAs->SymbolBuild[cBetPerpPara,dSO4,"Constant"->True]];
+DefConstantSymbol[cBetPerpPara2p,PrintAs->SymbolBuild[cBetPerpPara,dSO5,"Constant"->True]];
+DefConstantSymbol[cBetPerpPara2m,PrintAs->SymbolBuild[cBetPerpPara,dSO6,"Constant"->True]];
 
 cBetPerpPara={cBetPerpPara0p,cBetPerpPara0m,cBetPerpPara1p,cBetPerpPara1m,cBetPerpPara2p,cBetPerpPara2m};
 
-DefConstantSymbol[cBetParaPerp0p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPerp0m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(0\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPerp1p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPerp1m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(1\), \(-\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPerp2p,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(+\)]]\)",$Coupling]];
-DefConstantSymbol[cBetParaPerp2m,PrintAs->Colour["\!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)], SuperscriptBox[\(2\), \(-\)]]\)",$Coupling]];
+cBetParaPerp="\!\(\*SuperscriptBox[OverscriptBox[\(\[Beta]\), \(_\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)]\)";
+DefConstantSymbol[cBetParaPerp0p,PrintAs->SymbolBuild[cBetParaPerp,dSO1,"Constant"->True]];
+DefConstantSymbol[cBetParaPerp0m,PrintAs->SymbolBuild[cBetParaPerp,dSO2,"Constant"->True]];
+DefConstantSymbol[cBetParaPerp1p,PrintAs->SymbolBuild[cBetParaPerp,dSO3,"Constant"->True]];
+DefConstantSymbol[cBetParaPerp1m,PrintAs->SymbolBuild[cBetParaPerp,dSO4,"Constant"->True]];
+DefConstantSymbol[cBetParaPerp2p,PrintAs->SymbolBuild[cBetParaPerp,dSO5,"Constant"->True]];
+DefConstantSymbol[cBetParaPerp2m,PrintAs->SymbolBuild[cBetParaPerp,dSO6,"Constant"->True]];
 
 cBetParaPerp={cBetParaPerp0p,cBetParaPerp0m,cBetParaPerp1p,cBetParaPerp1m,cBetParaPerp2p,cBetParaPerp2m};
 ClearBuild[];
 
 
-
 (* ::Input::Initialization:: *)
 (*Mike's couplings for irrep Lorentz constraints*)
-DefConstantSymbol[mAlp0,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(0\)]\)",$Coupling]];
-DefConstantSymbol[mAlp1,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(1\)]\)",$Coupling]];
-DefConstantSymbol[mAlp2,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(2\)]\)",$Coupling]];
-DefConstantSymbol[mAlp3,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(3\)]\)",$Coupling]];
-DefConstantSymbol[mAlp4,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(4\)]\)",$Coupling]];
-DefConstantSymbol[mAlp5,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(5\)]\)",$Coupling]];
-DefConstantSymbol[mAlp6,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Alpha]\), \(6\)]\)",$Coupling]];
+mAlpSymb="\[Alpha]";
+DefConstantSymbol[mAlp0,PrintAs->SymbolBuild[mAlpSymb,dSO0,"Constant"->True]];
+DefConstantSymbol[mAlp1,PrintAs->SymbolBuild[mAlpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[mAlp2,PrintAs->SymbolBuild[mAlpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[mAlp3,PrintAs->SymbolBuild[mAlpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[mAlp4,PrintAs->SymbolBuild[mAlpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[mAlp5,PrintAs->SymbolBuild[mAlpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[mAlp6,PrintAs->SymbolBuild[mAlpSymb,dSO6,"Constant"->True]];
 
 mAlp={mAlp1,mAlp2,mAlp3,mAlp4,mAlp5,mAlp6};
 
 (*My couplings for irrep Lorentz constraints*)
-DefConstantSymbol[Alp0,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(0\)]\)",$Coupling]];
-DefConstantSymbol[Alp1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[Alp2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[Alp3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[Alp4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[Alp5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[Alp6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], \(6\)]\)",$Coupling]];
+AlpSymb="\!\(\*OverscriptBox[\(\[Alpha]\), \(^\)]\)";
+DefConstantSymbol[Alp0,PrintAs->SymbolBuild[AlpSymb,dSO0,"Constant"->True]];
+DefConstantSymbol[Alp1,PrintAs->SymbolBuild[AlpSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[Alp2,PrintAs->SymbolBuild[AlpSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[Alp3,PrintAs->SymbolBuild[AlpSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[Alp4,PrintAs->SymbolBuild[AlpSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[Alp5,PrintAs->SymbolBuild[AlpSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[Alp6,PrintAs->SymbolBuild[AlpSymb,dSO6,"Constant"->True]];
 
 Alp={Alp1,Alp2,Alp3,Alp4,Alp5,Alp6};
 
-DefConstantSymbol[mBet1,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(1\)]\)",$Coupling]];
-DefConstantSymbol[mBet2,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(2\)]\)",$Coupling]];
-DefConstantSymbol[mBet3,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(3\)]\)",$Coupling]];
-DefConstantSymbol[mBet4,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(4\)]\)",$Coupling]];
-DefConstantSymbol[mBet5,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(5\)]\)",$Coupling]];
-DefConstantSymbol[mBet6,PrintAs->Colour["\!\(\*SubscriptBox[\(\[Beta]\), \(6\)]\)",$Coupling]];
+mBetSymb="\[Beta]";
+DefConstantSymbol[mBet1,PrintAs->SymbolBuild[mBetSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[mBet2,PrintAs->SymbolBuild[mBetSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[mBet3,PrintAs->SymbolBuild[mBetSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[mBet4,PrintAs->SymbolBuild[mBetSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[mBet5,PrintAs->SymbolBuild[mBetSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[mBet6,PrintAs->SymbolBuild[mBetSymb,dSO6,"Constant"->True]];
 
 mBet={mBet1,mBet2,mBet3};
 
-DefConstantSymbol[Bet1,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(1\)]\)",$Coupling]];
-DefConstantSymbol[Bet2,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(2\)]\)",$Coupling]];
-DefConstantSymbol[Bet3,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(3\)]\)",$Coupling]];
-DefConstantSymbol[Bet4,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(4\)]\)",$Coupling]];
-DefConstantSymbol[Bet5,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(5\)]\)",$Coupling]];
-DefConstantSymbol[Bet6,PrintAs->Colour["\!\(\*SubscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], \(6\)]\)",$Coupling]];
+BetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \(^\)]\)";
+DefConstantSymbol[Bet1,PrintAs->SymbolBuild[BetSymb,dSO1,"Constant"->True]];
+DefConstantSymbol[Bet2,PrintAs->SymbolBuild[BetSymb,dSO2,"Constant"->True]];
+DefConstantSymbol[Bet3,PrintAs->SymbolBuild[BetSymb,dSO3,"Constant"->True]];
+DefConstantSymbol[Bet4,PrintAs->SymbolBuild[BetSymb,dSO4,"Constant"->True]];
+DefConstantSymbol[Bet5,PrintAs->SymbolBuild[BetSymb,dSO5,"Constant"->True]];
+DefConstantSymbol[Bet6,PrintAs->SymbolBuild[BetSymb,dSO6,"Constant"->True]];
 
 Bet={Bet1,Bet2,Bet3};
 ClearBuild[];
@@ -717,8 +792,10 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[PPerp[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*SubscriptBox[\(\[ScriptCapitalP]\), \(\[UpTee]\)]\)"];
-DefTensor[PPara[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*SubscriptBox[\(\[ScriptCapitalP]\), \(\[DoubleVerticalBar]\)]\)"];
+PPerpSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[UpTee]\)]\)";
+DefTensor[PPerp[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PPerpSymb]];
+PParaSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[DoubleVerticalBar]\)]\)";
+DefTensor[PPara[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PParaSymb]];
 PPerpDefinition=V[-a]V[b];
 PPerpActivate=MakeRule[{PPerp[-a,b],Evaluate[PPerpDefinition]},MetricOn->All,ContractMetrics->True];
 PParaDefinition=G[-a,b]-V[-a]V[b];
@@ -780,36 +857,44 @@ ToStrengths=Join[ToTorsion,ToRiemannCartan];
 (*would be good to put parallel momenta up here also*)
 
 (*Defining parallel field strengths, i.e. the canonical parts*)
-DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->"\!\(\*OverscriptBox[\(T\), \(^\)]\)",OrthogonalTo->{V[b],V[c]}];
+TPpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
+DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
 DeclareOrder[TP[-a,-b,-c],1];
-DefTensor[RP[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},PrintAs->"\!\(\*OverscriptBox[\(R\), \(^\)]\)",OrthogonalTo->{V[c],V[d]}];
+RPpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
+DefTensor[RP[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},PrintAs->SymbolBuild[RPpSymb],OrthogonalTo->{V[c],V[d]}];
 DeclareOrder[RP[-a,-b,-c,-d],1];
 TPToT=MakeRule[{TP[-a,-b,-c],PPara[-b,e]PPara[-c,f]T[-a,-e,-f]},MetricOn->All,ContractMetrics->True];
 RPToR=MakeRule[{RP[-a,-b,-c,-d],PPara[-c,e]PPara[-d,f]R[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
 StrengthPToStrength=Join[TPToT,RPToR];
 
 (*Defining parallel field strength multipliers*)
-DefTensor[RLambdaP[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},PrintAs->"\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)",OrthogonalTo->{V[c],V[d]}];
+RLambdaPpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
+DefTensor[RLambdaP[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},PrintAs->SymbolBuild[RLambdaPpSymb],OrthogonalTo->{V[c],V[d]}];
 DeclareOrder[RLambdaP[-a,-b,-c,-d],1];
-DefTensor[TLambdaP[-a,-c,-d],M4,Antisymmetric[{-c,-d}],PrintAs->"\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)",OrthogonalTo->{V[c],V[d]}];
+TLambdaPpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
+DefTensor[TLambdaP[-a,-c,-d],M4,Antisymmetric[{-c,-d}],PrintAs->SymbolBuild[TLambdaPpSymb],OrthogonalTo->{V[c],V[d]}];
 DeclareOrder[TLambdaP[-a,-c,-d],1];
 TLambdaPToTLambda=MakeRule[{TLambdaP[-a,-b,-c],PPara[-b,e]PPara[-c,f]TLambda[-a,-e,-f]},MetricOn->All,ContractMetrics->True];
 RLambdaPToRLambda=MakeRule[{RLambdaP[-a,-b,-c,-d],PPara[-c,e]PPara[-d,f]RLambda[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
 StrengthLambdaPToStrengthLambda=Join[RLambdaPToRLambda,TLambdaPToTLambda];
 
 (*Defining perpendicular field strengths, i.e. the non-canonical parts*)
-DefTensor[TPerp[-a,-b],M4,PrintAs->"\!\(\*OverscriptBox[\(T\), \(*\)]\)",OrthogonalTo->{V[b]}];
+TPerppSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
+DefTensor[TPerp[-a,-b],M4,PrintAs->SymbolBuild[TPerppSymb],OrthogonalTo->{V[b]}];
 DeclareOrder[TPerp[-a,-b],1];
-DefTensor[RPerp[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(R\), \(*\)]\)",OrthogonalTo->{V[c]}];
+RPerppSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
+DefTensor[RPerp[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RPerppSymb],OrthogonalTo->{V[c]}];
 DeclareOrder[RPerp[-a,-b,-c],1];
 TPerpToT=MakeRule[{TPerp[-a,-b],PPara[-b,f]V[g]T[-a,-f,-g]},MetricOn->All,ContractMetrics->True];
 RPerpToR=MakeRule[{RPerp[-a,-b,-c],PPara[-c,e]V[f]R[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
 StrengthPerpToStrength=Join[TPerpToT,RPerpToR];
 
 (*Defining perpendicular field strength multipliers*)
-DefTensor[TLambdaPerp[-a,-b],M4,PrintAs->"\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)",OrthogonalTo->{V[b]}];
+TLambdaPerppSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
+DefTensor[TLambdaPerp[-a,-b],M4,PrintAs->SymbolBuild[TLambdaPerppSymb],OrthogonalTo->{V[b]}];
 DeclareOrder[TLambdaPerp[-a,-b],1];
-DefTensor[RLambdaPerp[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)",OrthogonalTo->{V[c]}];
+RLambdaPerppSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
+DefTensor[RLambdaPerp[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerppSymb],OrthogonalTo->{V[c]}];
 DeclareOrder[RLambdaPerp[-a,-b,-c],1];
 TLambdaPerpToTLambda=MakeRule[{TLambdaPerp[-a,-b],PPara[-b,f]V[g]TLambda[-a,-f,-g]},MetricOn->All,ContractMetrics->True];
 RLambdaPerpToRLambda=MakeRule[{RLambdaPerp[-a,-b,-c],PPara[-c,e]V[f]RLambda[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
@@ -835,9 +920,9 @@ StrengthPToStrength=Join[TPToT,RPToR];
 
 CDBCommute=MakeRule[{CD[-s][B[a,-r]],Evaluate[CD[-r][B[a,-s]]-2Antisymmetrize[A[a,-k,-s]B[k,-r],{-s,-r}]+B[b,-s]B[c,-r]T[a,-b,-c]]},MetricOn->All,ContractMetrics->True];(*Might want to write an equivalent version for Riemann Cartan curvature*)
 
-DefTensor[DV[-a,-j],M4,OrthogonalTo->{V[j]},PrintAs->"\[CapitalDifferentialD]n"];
+DefTensor[DV[-a,-j],M4,OrthogonalTo->{V[j]},PrintAs->SymbolBuild[VSymb,"Derivative"->1]];
 (*DeclareOrder[DV[-a,-j],1];*)
-DefTensor[DJ[-a],M4,PrintAs->"\[CapitalDifferentialD]J"];
+DefTensor[DJ[-a],M4,PrintAs->SymbolBuild[JSymb,"Derivative"->1]];
 (*DeclareOrder[DJ[-a],1];*)
 
 G3VCDBToG3DV=MakeRule[{G3[-l,n]V[-k]CD[-m][B[k,-n]],-G3[-l,n]B[j,-n]A[k,-j,-m]V[-k]-G3[-l,n]B[j,-n]DV[-m,-j]},MetricOn->All,ContractMetrics->True];
@@ -861,11 +946,11 @@ DRP2mDeactivate=MakeRule[{DRP2m[-z,-a,-b,-c],CD[-z][RP2m[-a,-b,-c]]-A[i,-a,-z]RP
 DRPDeactivate=Join[DTP0mDeactivate,DTP1pDeactivate,DTP1mDeactivate,DTP2mDeactivate,DRP0pDeactivate,DRP0mDeactivate,DRP1pDeactivate,DRP1mDeactivate,DRP2pDeactivate,DRP2mDeactivate];
 *)
 
-DefTensor[DpJ[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)J",OrthogonalTo->{V[z]}];
+DefTensor[DpJ[-z],M4,PrintAs->SymbolBuild[JSymb,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpJ[-z],1];
 DeclareOrder[DJ[-z],1,"approximation"->B[w,-z]DpJ[-w]+V[-v]B[v,-z]V[u]H[-u,w]DJ[-w]];
 DpJActivate=MakeRule[{G3[-y,z]DJ[-z],G3[-y,z]B[x,-z]DpJ[-x]},MetricOn->All,ContractMetrics->True];
-DefTensor[DpV[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)n",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpV[-z,-a],M4,PrintAs->SymbolBuild[VSymb,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpV[-z,-a],1];
 DeclareOrder[DV[-z,-a],1,"approximation"->B[w,-z]DpV[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DV[-w,-a]];
 DpVActivate=MakeRule[{G3[-y,z]DV[-z,-a],Evaluate[G3[-y,z]B[x,-z]DpV[-x,-a]+(G[-a,i]-PPara[-a,i])G3[-y,z]DV[-z,-i]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
@@ -942,45 +1027,45 @@ ManRemoveG3=MakeRule[{G3[-b,c],G[-b,c]},MetricOn\[Rule]All,ContractMetrics\[Rule
 
 GaugeShift[x_]:=Module[{exp},
 exp=x;
-Print[Style["Manually removing G3",Blue,10]];
+HiGGSPrint[Style["Manually removing G3",Blue,10]];
 exp=exp/.ManRemoveG3;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["Converting to inert",Blue,10]];
+HiGGSPrint[Style["Converting to inert",Blue,10]];
 exp=exp/.ToCDInert;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["transforming gauge",Blue,10]];
+HiGGSPrint[Style["transforming gauge",Blue,10]];
 exp=exp/.GaugeMe;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["transforming CD gauge",Blue,10]];
+HiGGSPrint[Style["transforming CD gauge",Blue,10]];
 exp=exp/.GaugeMeInert;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["transforming to coordinate Hessian",Blue,10]];
+HiGGSPrint[Style["transforming to coordinate Hessian",Blue,10]];
 exp=exp/.ToCCoord;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["removing scalar",Blue,10]];
+HiGGSPrint[Style["removing scalar",Blue,10]];
 exp=exp//NoScalar;
-Print[Style["commuting Lorentz gradients",Blue,10]];
+HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
 exp=exp/.SwitchMe;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["removing scalar",Blue,10]];
+HiGGSPrint[Style["removing scalar",Blue,10]];
 exp=exp//NoScalar;
-Print[Style["commuting Lorentz gradients",Blue,10]];
+HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
 exp=exp/.CommuteMe;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["removing scalar",Blue,10]];
+HiGGSPrint[Style["removing scalar",Blue,10]];
 exp=exp//NoScalar;
-Print[Style["commuting Lorentz gradients",Blue,10]];
+HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
 exp=exp/.SwitchMe;
-Print[Style["simplifying",Blue,10]];
+HiGGSPrint[Style["simplifying",Blue,10]];
 exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-Print[Style["raising flags",Blue,10]];
+HiGGSPrint[Style["raising flags",Blue,10]];
 exp=exp/.FlagBroken;
 exp];
 *)
@@ -1121,10 +1206,10 @@ PA2mTActivate=MakeRule[{PA2mT[-n,-m,-o,a,b,c],Evaluate[PA2mTDefinition]},MetricO
 NewPO3TActivate=Join[PB0pTActivate,PB1pTActivate,PB2pTActivate,PB1mTActivate,PA0pTActivate,PA1pTActivate,PA2pTActivate,PA0mTActivate,PA1mTActivate,PA2mTActivate];
 
 tmp=(PA0pT[-n,-m,-o,a,b,c]+PA1pT[-n,-m,-o,a,b,c]+PA2pT[-n,-m,-o,a,b,c]+PA0mT[-n,-m,-o,a,b,c]+PA1mT[-n,-m,-o,a,b,c]+PA2mT[-n,-m,-o,a,b,c])APi[-a,-b,-e]G3[e,-f]B[-c,f]/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 
 tmp=(PB0pT[-n,-m,a,c]+PB1pT[-n,-m,a,c]+PB2pT[-n,-m,a,c]+PB1mT[-n,-m,a,c])BPi[-a,-e]G3[e,-f]B[-c,f]/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical;
-Print[tmp];
+HiGGSPrint[tmp];
 
 DumpSave[BinaryLocation["CompleteO3ProjectionsToggle"],{NewPO3TActivate}];
 ClearBuild["CompleteO3ProjectionsToggle"];
@@ -1188,36 +1273,36 @@ OpenLastCache[];
 
 (* ::Input::Initialization:: *)
 IfBuild["ProjectionNormalisationsCheckToggle",
-Print[Style["B0p",Blue,20]];
+HiGGSPrint[Style["B0p",Blue,20]];
 tmp=PB0p[g,h]PBPara[-g,-h,-n,-m]PB0p[e,f]PBPara[-e,-f,n,m]-(1/cPerpB0p)/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["B1p",Blue,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["B1p",Blue,20]];
 tmp= PB1p[-x,-y,g,h]PBPara[-g,-h,-n,-m]PB1p[u,v,e,f]PBPara[-e,-f,n,m]-(1/cPerpB1p) Antisymmetrize[Antisymmetrize[PPara[-x,u]PPara[-y,v],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["B1m",Blue,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["B1m",Blue,20]];
 tmp= PB1m[-x,h]PBPerp[-h,-n,-m]PB1m[u,f]PBPerp[-f,n,m]-(1/cPerpB1m) PPara[-x,u]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["B2p",Blue,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["B2p",Blue,20]];
 tmp= PB2p[-x,-y,g,h]PBPara[-g,-h,-n,-m]PB2p[u,v,e,f]PBPara[-e,-f,n,m]-(1/cPerpB2p) Symmetrize[Symmetrize[PPara[-x,u]PPara[-y,v],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A0p",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A0p",Red,20]];
 tmp= Antisymmetrize[ PA0p[g,h]PAPerp[-g,-h,-n,-m,-o],{-n,-m}]PA0p[e,f]PAPerp[-e,-f,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA0p)/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A0m",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A0m",Red,20]];
 tmp= Antisymmetrize[PA0m[g,h,i]PAPara[-g,-h,-i,-n,-m,-o],{-n,-m}]PA0m[e,f,j]PAPara[-e,-f,-j,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA0m)/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A1p",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A1p",Red,20]];
 tmp= Antisymmetrize[PA1p[-x,-y,g,h]PAPerp[-g,-h,-n,-m,-o],{-n,-m}]PA1p[u,v,e,f]PAPerp[-e,-f,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA1p) Antisymmetrize[Antisymmetrize[PPara[-x,u]PPara[-y,v],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A1m",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A1m",Red,20]];
 tmp= Antisymmetrize[PA1m[-x,g,h,i]PAPara[-g,-h,-i,-n,-m,-o],{-n,-m}]PA1m[u,e,f,j]PAPara[-e,-f,-j,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA1m) PPara[-x,u]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A2p",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A2p",Red,20]];
 tmp= Antisymmetrize[PA2p[-x,-y,g,h]PAPerp[-g,-h,-n,-m,-o],{-n,-m}]PA2p[u,v,e,f]PAPerp[-e,-f,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA2p) Symmetrize[Symmetrize[PPara[-x,u]PPara[-y,v],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
-Print[Style["A2m",Red,20]];
+HiGGSPrint[tmp];
+HiGGSPrint[Style["A2m",Red,20]];
 tmp= Antisymmetrize[ PA2m[-x,-y,-z,g,h,i]PAPara[-g,-h,-i,-n,-m,-o],{-n,-m}]PA2m[u,v,w,e,f,j]PAPara[-e,-f,-j,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA2m) Antisymmetrize[Antisymmetrize[PPara[-x,u]PPara[-y,v]PPara[-z,w],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
-Print[tmp];
+HiGGSPrint[tmp];
 ClearBuild[];
 ];
 
@@ -2026,7 +2111,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*O(3) decomposition of the canonical parts of field strengths*)
-TPSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalT]\), \(^\)]\)";
+TPSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[TP0m[],M4,PrintAs->SymbolBuild[TPSymb,Spin0m]];
 DeclareOrder[TP0m[],1];
 DefTensor[TP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
@@ -2035,7 +2120,7 @@ DefTensor[TP1m[-a],M4,PrintAs->SymbolBuild[TPSymb,Spin1m],OrthogonalTo->{V[a]}];
 DeclareOrder[TP1m[-a],1];
 DefTensor[TP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
 DeclareOrder[TP2m[-a,-b,-c],1];
-RPSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalR]\), \(^\)]\)";
+RPSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[RP0p[],M4,PrintAs->SymbolBuild[RPSymb,Spin0p]];
 DeclareOrder[RP0p[],1];
 DefTensor[RP0m[],M4,PrintAs->SymbolBuild[RPSymb,Spin0m]];
@@ -2076,7 +2161,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*O(3) decomposition of the canonical parts of Riemann-Cartan multiplier*)
-TLambdaPSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[Lambda]\), \(^\)], \(\[ScriptCapitalT]\)]\)";
+TLambdaPSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[TLambdaP0m[],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin0m]];
 DeclareOrder[TLambdaP0m[],1];
 DefTensor[TLambdaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
@@ -2085,7 +2170,7 @@ DefTensor[TLambdaP1m[-a],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin1m],Orthogonal
 DeclareOrder[TLambdaP1m[-a],1];
 DefTensor[TLambdaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
 DeclareOrder[TLambdaP2m[-a,-b,-c],1];
-RLambdaPSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[Lambda]\), \(^\)], \(\[ScriptCapitalR]\)]\)";
+RLambdaPSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[RLambdaP0p[],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0p]];
 DeclareOrder[RLambdaP0p[],1];
 DefTensor[RLambdaP0m[],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0m]];
@@ -2108,7 +2193,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 (*O(3) decomposition of the non-canonical parts of field strengths*)
-TPerpSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalT]\), \(*\)]\)";
+TPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
 DefTensor[TPerp0p[],M4,PrintAs->SymbolBuild[TPerpSymb,Spin0p]];
 DeclareOrder[TPerp0p[],1];
 DefTensor[TPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
@@ -2117,7 +2202,7 @@ DefTensor[TPerp1m[-a],M4,PrintAs->SymbolBuild[TPerpSymb,Spin1m],OrthogonalTo->{V
 DeclareOrder[TPerp1m[-a],1];
 DefTensor[TPerp2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TPerpSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
 DeclareOrder[TPerp2p[-a,-b],1];
-RPerpSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalR]\), \(*\)]\)";
+RPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
 DefTensor[RPerp0p[],M4,PrintAs->SymbolBuild[RPerpSymb,Spin0p]];
 DeclareOrder[RPerp0p[],1];
 DefTensor[RPerp0m[],M4,PrintAs->SymbolBuild[RPerpSymb,Spin0m]];
@@ -2138,7 +2223,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-TLambdaPerpSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[Lambda]\), \(*\)], \(\[ScriptCapitalT]\)]\)";
+TLambdaPerpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
 DefTensor[TLambdaPerp0p[],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin0p]];
 DeclareOrder[TLambdaPerp0p[],1];
 DefTensor[TLambdaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
@@ -2147,7 +2232,7 @@ DefTensor[TLambdaPerp1m[-a],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1m],Orth
 DeclareOrder[TLambdaPerp1m[-a],1];
 DefTensor[TLambdaPerp2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
 DeclareOrder[TLambdaPerp2p[-a,-b],1];
-RLambdaPerpSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[Lambda]\), \(*\)], \(\[ScriptCapitalR]\)]\)";
+RLambdaPerpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
 DefTensor[RLambdaPerp0p[],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0p]];
 DeclareOrder[RLambdaPerp0p[],1];
 DefTensor[RLambdaPerp0m[],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0m]];
@@ -2218,17 +2303,13 @@ RPParaPerpActivate=Join[RPParaActivate,RPPerpActivate];
 RPDefinition= RPPara[-a,-b,-c,-d]+2Antisymmetrize[V[-a]RPPerp[-b,-c,-d],{-a,-b}]/.RPParaPerpActivate/.PO3RActivate/.PADMActivate//ToCanonical;
 
 TPDefinition=TPDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-TPDefinition=TPDefinition/.TPO3Activate//CollectTensors//ScreenDollarIndices//CollectTensors;
+(*TPDefinition=TPDefinition/.TPO3Activate//CollectTensors//ScreenDollarIndices//CollectTensors;*)(*removed 19/04*)
 RPDefinition=RPDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
 
 TPActivate=MakeRule[{TP[-a,-b,-c],Evaluate[TPDefinition]},MetricOn->All,ContractMetrics->True];
 RPActivate=MakeRule[{RP[-a,-b,-c,-d],Evaluate[RPDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthPToStrengthPO3=Join[TPActivate,RPActivate];
 ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-UB1p[-a,-b]
 
 
 (* ::Input::Initialization:: *)
@@ -2344,14 +2425,14 @@ RPerpDefinition= RPerpPara[-a,-b,-c]+2Antisymmetrize[V[-a]RPerpPerp[-b,-c],{-a,-
 TPerpDefinition=TPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
 (*
 TPerpDefinition=TPerpDefinition/.TPerpO3Activate//NoScalar//ToNewCanonical;
-Print[TPerpDefinition];
+HiGGSPrint[TPerpDefinition];
 *)
 RPerpDefinition=RPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
 (*
 RPerpDefinition=RPerpDefinition/.RPerpO3Activate//NoScalar;
 RPerpDefinition=RPerpDefinition//ToNewCanonical;
 RPerpDefinition=RPerpDefinition//ToCanonical;
-Print[RPerpDefinition];
+HiGGSPrint[RPerpDefinition];
 *)
 
 TPerpActivate=MakeRule[{TPerp[-a,-b],Evaluate[TPerpDefinition]},MetricOn->All,ContractMetrics->True];
@@ -2417,7 +2498,7 @@ RLambdaPerpDefinition=RLambdaPerpDefinition//CollectTensors//ScreenDollarIndices
 RPerpDefinition=RPerpDefinition/.RPerpO3Activate//NoScalar;
 RPerpDefinition=RPerpDefinition//ToNewCanonical;
 RPerpDefinition=RPerpDefinition//ToCanonical;
-Print[RPerpDefinition];
+HiGGSPrint[RPerpDefinition];
 *)
 
 TLambdaPerpActivate=MakeRule[{TLambdaPerp[-a,-b],Evaluate[TLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
@@ -2501,26 +2582,26 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DPiPB0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b0\), \(+\)]\)"];
+DefTensor[DPiPB0p[-z],M4,PrintAs->SymbolBuild[PiPBSymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DPiPB0p[-z],1];*)
-DefTensor[DPiPB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b1\), \(+\)]\)"];
+DefTensor[DPiPB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPBSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DPiPB1p[-z,-a,-b],1];*)
-DefTensor[DPiPB1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b1\), \(-\)]\)"];
+DefTensor[DPiPB1m[-z,-a],M4,PrintAs->SymbolBuild[PiPBSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DPiPB1m[-z,-a],1];*)
-DefTensor[DPiPB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b2\), \(+\)]\)"];
+DefTensor[DPiPB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PiPBSymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DPiPB2p[-z,-a,-b],1];*)
 AutomaticRules[DPiPB2p,MakeRule[{DPiPB2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DPiPA0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A0\), \(+\)]\)"];
+DefTensor[DPiPA0p[-z],M4,PrintAs->SymbolBuild[PiPASymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DPiPA0p[-z],1];*)
-DefTensor[DPiPA0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A0\), \(-\)]\)"];
+DefTensor[DPiPA0m[-z],M4,PrintAs->SymbolBuild[PiPASymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DPiPA0m[-z],1];*)
-DefTensor[DPiPA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A1\), \(+\)]\)"];
+DefTensor[DPiPA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DPiPA1p[-z,-a,-b],1];*)
-DefTensor[DPiPA1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A1\), \(-\)]\)"];
+DefTensor[DPiPA1m[-z,-a],M4,PrintAs->SymbolBuild[PiPASymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DPiPA1m[-z,-a],1];*)
-DefTensor[DPiPA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A2\), \(+\)]\)"];
+DefTensor[DPiPA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DPiPA2p[-z,-a,-b],1];*)
-DefTensor[DPiPA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A2\), \(-\)]\)"];
+DefTensor[DPiPA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DPiPA2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DPiPA2m,MakeRule[{DPiPA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DPiPA2m,MakeRule[{epsilonG[a,b,c,d]DPiPA2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
@@ -2553,35 +2634,35 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DpPiPB0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpPiPB0p[-z],M4,PrintAs->SymbolBuild[PiPBSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpPiPB0p[-z],1];
 DeclareOrder[DPiPB0p[-z],1,"approximation"->B[w,-z]DpPiPB0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DPiPB0p[-w]];
-DefTensor[DpPiPB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpPiPB1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPBSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpPiPB1p[-z,-a,-b],1];
 DeclareOrder[DPiPB1p[-z,-a,-b],1,"approximation"->B[w,-z]DpPiPB1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DPiPB1p[-w,-a,-b]];
-DefTensor[DpPiPB1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpPiPB1m[-z,-a],M4,PrintAs->SymbolBuild[PiPBSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpPiPB1m[-z,-a],1];
 DeclareOrder[DPiPB1m[-z,-a],1,"approximation"->B[w,-z]DpPiPB1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DPiPB1m[-w,-a]];
-DefTensor[DpPiPB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(b2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpPiPB2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PiPBSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpPiPB2p[-z,-a,-b],1];
 DeclareOrder[DPiPB2p[-z,-a,-b],1,"approximation"->B[w,-z]DpPiPB2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DPiPB2p[-w,-a,-b]];
 AutomaticRules[DpPiPB2p,MakeRule[{DpPiPB2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DpPiPA0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpPiPA0p[-z],M4,PrintAs->SymbolBuild[PiPASymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpPiPA0p[-z],1];
 DeclareOrder[DPiPA0p[-z],1,"approximation"->B[w,-z]DpPiPA0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA0p[-w]];
-DefTensor[DpPiPA0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpPiPA0m[-z],M4,PrintAs->SymbolBuild[PiPASymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpPiPA0m[-z],1];
 DeclareOrder[DPiPA0m[-z],1,"approximation"->B[w,-z]DpPiPA0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA0m[-w]];
-DefTensor[DpPiPA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpPiPA1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpPiPA1p[-z,-a,-b],1];
 DeclareOrder[DPiPA1p[-z,-a,-b],1,"approximation"->B[w,-z]DpPiPA1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA1p[-w,-a,-b]];
-DefTensor[DpPiPA1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpPiPA1m[-z,-a],M4,PrintAs->SymbolBuild[PiPASymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpPiPA1m[-z,-a],1];
 DeclareOrder[DPiPA1m[-z,-a],1,"approximation"->B[w,-z]DpPiPA1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA1m[-w,-a]];
-DefTensor[DpPiPA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpPiPA2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpPiPA2p[-z,-a,-b],1];
 DeclareOrder[DPiPA2p[-z,-a,-b],1,"approximation"->B[w,-z]DpPiPA2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA2p[-w,-a,-b]];
-DefTensor[DpPiPA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Pi]\), \(^\)]\)\!\(\*SuperscriptBox[\(A2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpPiPA2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[PiPASymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpPiPA2m[-z,-a,-b,-c],1];
 DeclareOrder[DPiPA2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpPiPA2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DPiPA2m[-w,-a,-b,-c]];
 AutomaticRules[DpPiPA2m,MakeRule[{DpPiPA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -2681,27 +2762,27 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DTP0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)"];
+DefTensor[DTP0m[-z],M4,PrintAs->SymbolBuild[TPSymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DTP0m[-z],1];*)
-DefTensor[DTP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DTP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DTP1p[-z,-a,-b],1];*)
-DefTensor[DTP1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DTP1m[-z,-a],M4,PrintAs->SymbolBuild[TPSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DTP1m[-z,-a],1];*)
-DefTensor[DTP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)"];
+DefTensor[DTP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DTP2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DTP2m,MakeRule[{DTP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DTP2m,MakeRule[{epsilonG[a,b,c,d]DTP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DRP0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)"];
+DefTensor[DRP0p[-z],M4,PrintAs->SymbolBuild[RPSymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DRP0p[-z],1];*)
-DefTensor[DRP0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)"];
+DefTensor[DRP0m[-z],M4,PrintAs->SymbolBuild[RPSymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DRP0m[-z],1];*)
-DefTensor[DRP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DRP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DRP1p[-z,-a,-b],1];*)
-DefTensor[DRP1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DRP1m[-z,-a],M4,PrintAs->SymbolBuild[RPSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DRP1m[-z,-a],1];*)
-DefTensor[DRP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)"];
+DefTensor[DRP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DRP2p[-z,-a,-b],1];*)
-DefTensor[DRP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)"];
+DefTensor[DRP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DRP2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DRP2m,MakeRule[{DRP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DRP2m,MakeRule[{epsilonG[a,b,c,d]DRP2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
@@ -2734,27 +2815,27 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DTLambdaP0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)"];
+DefTensor[DTLambdaP0m[-z],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DTLambdaP0m[-z],1];*)
-DefTensor[DTLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DTLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DTLambdaP1p[-z,-a,-b],1];*)
-DefTensor[DTLambdaP1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DTLambdaP1m[-z,-a],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DTLambdaP1m[-z,-a],1];*)
-DefTensor[DTLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)"];
+DefTensor[DTLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DTLambdaP2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DTLambdaP2m,MakeRule[{DTLambdaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DTLambdaP2m,MakeRule[{epsilonG[a,b,c,d]DTLambdaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DRLambdaP0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)"];
+DefTensor[DRLambdaP0p[-z],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP0p[-z],1];*)
-DefTensor[DRLambdaP0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)"];
+DefTensor[DRLambdaP0m[-z],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP0m[-z],1];*)
-DefTensor[DRLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DRLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP1p[-z,-a,-b],1];*)
-DefTensor[DRLambdaP1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DRLambdaP1m[-z,-a],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP1m[-z,-a],1];*)
-DefTensor[DRLambdaP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)"];
+DefTensor[DRLambdaP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP2p[-z,-a,-b],1];*)
-DefTensor[DRLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)"];
+DefTensor[DRLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaP2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DRLambdaP2m,MakeRule[{DRLambdaP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DRLambdaP2m,MakeRule[{epsilonG[a,b,c,d]DRLambdaP2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
@@ -2774,26 +2855,26 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DTLambdaPerp0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)"];
+DefTensor[DTLambdaPerp0p[-z],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DTLambdaPerp0p[-z],1];*)
-DefTensor[DTLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DTLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DTLambdaPerp1p[-z,-a,-b],1];*)
-DefTensor[DTLambdaPerp1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DTLambdaPerp1m[-z,-a],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DTLambdaPerp1m[-z,-a],1];*)
-DefTensor[DTLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)"];
+DefTensor[DTLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DTLambdaPerp2p[-z,-a,-b],1];*)
 AutomaticRules[DTLambdaPerp2p,MakeRule[{DTLambdaPerp2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DRLambdaPerp0p[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)"];
+DefTensor[DRLambdaPerp0p[-z],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp0p[-z],1];*)
-DefTensor[DRLambdaPerp0m[-z],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)"];
+DefTensor[DRLambdaPerp0m[-z],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp0m[-z],1];*)
-DefTensor[DRLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)"];
+DefTensor[DRLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin1p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp1p[-z,-a,-b],1];*)
-DefTensor[DRLambdaPerp1m[-z,-a],M4,PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)"];
+DefTensor[DRLambdaPerp1m[-z,-a],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin1m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp1m[-z,-a],1];*)
-DefTensor[DRLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)"];
+DefTensor[DRLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin2p,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp2p[-z,-a,-b],1];*)
-DefTensor[DRLambdaPerp2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\[CapitalDifferentialD]\!\(\*OverscriptBox[\(R\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)"];
+DefTensor[DRLambdaPerp2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin2m,"Derivative"->1]];
 (*DeclareOrder[DRLambdaPerp2m[-z,-a,-b,-c],1];*)
 AutomaticRules[DRLambdaPerp2m,MakeRule[{DRLambdaPerp2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DRLambdaPerp2m,MakeRule[{epsilonG[a,b,c,d]DRLambdaPerp2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
@@ -2819,36 +2900,36 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DpTP0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpTP0m[-z],M4,PrintAs->SymbolBuild[TPSymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpTP0m[-z],1];
 DeclareOrder[DTP0m[-z],1,"approximation"->B[w,-z]DpTP0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DTP0m[-w]];
-DefTensor[DpTP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpTP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpTP1p[-z,-a,-b],1];
 DeclareOrder[DTP1p[-z,-a,-b],1,"approximation"->B[w,-z]DpTP1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DTP1p[-w,-a,-b]];
-DefTensor[DpTP1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpTP1m[-z,-a],M4,PrintAs->SymbolBuild[TPSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpTP1m[-z,-a],1];
 DeclareOrder[DTP1m[-z,-a],1,"approximation"->B[w,-z]DpTP1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DTP1m[-w,-a]];
-DefTensor[DpTP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpTP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TPSymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpTP2m[-z,-a,-b,-c],1];
 DeclareOrder[DTP2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpTP2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DTP2m[-w,-a,-b,-c]];
 AutomaticRules[DpTP2m,MakeRule[{DpTP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DpTP2m,MakeRule[{epsilonG[a,b,c,d]DpTP2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DpRP0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRP0p[-z],M4,PrintAs->SymbolBuild[RPSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRP0p[-z],1];
 DeclareOrder[DRP0p[-z],1,"approximation"->B[w,-z]DpRP0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRP0p[-w]];
-DefTensor[DpRP0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRP0m[-z],M4,PrintAs->SymbolBuild[RPSymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRP0m[-z],1];
 DeclareOrder[DRP0m[-z],1,"approximation"->B[w,-z]DpRP0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRP0m[-w]];
-DefTensor[DpRP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRP1p[-z,-a,-b],1];
 DeclareOrder[DRP1p[-z,-a,-b],1,"approximation"->B[w,-z]DpRP1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRP1p[-w,-a,-b]];
-DefTensor[DpRP1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpRP1m[-z,-a],M4,PrintAs->SymbolBuild[RPSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpRP1m[-z,-a],1];
 DeclareOrder[DRP1m[-z,-a],1,"approximation"->B[w,-z]DpRP1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DRP1m[-w,-a]];
-DefTensor[DpRP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRP2p[-z,-a,-b],1];
 DeclareOrder[DRP2p[-z,-a,-b],1,"approximation"->B[w,-z]DpRP2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRP2p[-w,-a,-b]];
-DefTensor[DpRP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpRP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RPSymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpRP2m[-z,-a,-b,-c],1];
 DeclareOrder[DRP2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpRP2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DRP2m[-w,-a,-b,-c]];
 AutomaticRules[DpRP2m,MakeRule[{DpRP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -2882,36 +2963,36 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DpTLambdaP0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpTLambdaP0m[-z],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpTLambdaP0m[-z],1];
 DeclareOrder[DTLambdaP0m[-z],1,"approximation"->B[w,-z]DpTLambdaP0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaP0m[-w]];
-DefTensor[DpTLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpTLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpTLambdaP1p[-z,-a,-b],1];
 DeclareOrder[DTLambdaP1p[-z,-a,-b],1,"approximation"->B[w,-z]DpTLambdaP1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaP1p[-w,-a,-b]];
-DefTensor[DpTLambdaP1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpTLambdaP1m[-z,-a],M4,PrintAs->SymbolBuild[TLambdaPSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpTLambdaP1m[-z,-a],1];
 DeclareOrder[DTLambdaP1m[-z,-a],1,"approximation"->B[w,-z]DpTLambdaP1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaP1m[-w,-a]];
-DefTensor[DpTLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpTLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPSymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpTLambdaP2m[-z,-a,-b,-c],1];
 DeclareOrder[DTLambdaP2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpTLambdaP2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaP2m[-w,-a,-b,-c]];
 AutomaticRules[DpTLambdaP2m,MakeRule[{DpTLambdaP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DpTLambdaP2m,MakeRule[{epsilonG[a,b,c,d]DpTLambdaP2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DpRLambdaP0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRLambdaP0p[-z],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRLambdaP0p[-z],1];
 DeclareOrder[DRLambdaP0p[-z],1,"approximation"->B[w,-z]DpRLambdaP0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP0p[-w]];
-DefTensor[DpRLambdaP0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRLambdaP0m[-z],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRLambdaP0m[-z],1];
 DeclareOrder[DRLambdaP0m[-z],1,"approximation"->B[w,-z]DpRLambdaP0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP0m[-w]];
-DefTensor[DpRLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRLambdaP1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRLambdaP1p[-z,-a,-b],1];
 DeclareOrder[DRLambdaP1p[-z,-a,-b],1,"approximation"->B[w,-z]DpRLambdaP1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP1p[-w,-a,-b]];
-DefTensor[DpRLambdaP1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpRLambdaP1m[-z,-a],M4,PrintAs->SymbolBuild[RLambdaPSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpRLambdaP1m[-z,-a],1];
 DeclareOrder[DRLambdaP1m[-z,-a],1,"approximation"->B[w,-z]DpRLambdaP1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP1m[-w,-a]];
-DefTensor[DpRLambdaP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRLambdaP2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRLambdaP2p[-z,-a,-b],1];
 DeclareOrder[DRLambdaP2p[-z,-a,-b],1,"approximation"->B[w,-z]DpRLambdaP2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP2p[-w,-a,-b]];
-DefTensor[DpRLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(R\[Lambda]\), \(^\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpRLambdaP2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPSymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpRLambdaP2m[-z,-a,-b,-c],1];
 DeclareOrder[DRLambdaP2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpRLambdaP2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaP2m[-w,-a,-b,-c]];
 AutomaticRules[DpRLambdaP2m,MakeRule[{DpRLambdaP2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -2932,35 +3013,35 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DpTLambdaPerp0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpTLambdaPerp0p[-z],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpTLambdaPerp0p[-z],1];
 DeclareOrder[DTLambdaPerp0p[-z],1,"approximation"->B[w,-z]DpTLambdaPerp0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaPerp0p[-w]];
-DefTensor[DpTLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpTLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpTLambdaPerp1p[-z,-a,-b],1];
 DeclareOrder[DTLambdaPerp1p[-z,-a,-b],1,"approximation"->B[w,-z]DpTLambdaPerp1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaPerp1p[-w,-a,-b]];
-DefTensor[DpTLambdaPerp1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpTLambdaPerp1m[-z,-a],M4,PrintAs->SymbolBuild[TLambdaPerpSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpTLambdaPerp1m[-z,-a],1];
 DeclareOrder[DTLambdaPerp1m[-z,-a],1,"approximation"->B[w,-z]DpTLambdaPerp1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaPerp1m[-w,-a]];
-DefTensor[DpTLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(T\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpTLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TLambdaPerpSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpTLambdaPerp2p[-z,-a,-b],1];
 DeclareOrder[DTLambdaPerp2p[-z,-a,-b],1,"approximation"->B[w,-z]DpTLambdaPerp2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DTLambdaPerp2p[-w,-a,-b]];
 AutomaticRules[DpTLambdaPerp2p,MakeRule[{DpTLambdaPerp2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-DefTensor[DpRLambdaPerp0p[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(+\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRLambdaPerp0p[-z],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0p,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRLambdaPerp0p[-z],1];
 DeclareOrder[DRLambdaPerp0p[-z],1,"approximation"->B[w,-z]DpRLambdaPerp0p[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp0p[-w]];
-DefTensor[DpRLambdaPerp0m[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(0\), \(-\)]\)",OrthogonalTo->{V[z]}];
+DefTensor[DpRLambdaPerp0m[-z],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin0m,"Derivative"->2],OrthogonalTo->{V[z]}];
 DeclareOrder[DpRLambdaPerp0m[-z],1];
 DeclareOrder[DRLambdaPerp0m[-z],1,"approximation"->B[w,-z]DpRLambdaPerp0m[-w]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp0m[-w]];
-DefTensor[DpRLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRLambdaPerp1p[-z,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin1p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRLambdaPerp1p[-z,-a,-b],1];
 DeclareOrder[DRLambdaPerp1p[-z,-a,-b],1,"approximation"->B[w,-z]DpRLambdaPerp1p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp1p[-w,-a,-b]];
-DefTensor[DpRLambdaPerp1m[-z,-a],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(1\), \(-\)]\)",OrthogonalTo->{V[z],V[a]}];
+DefTensor[DpRLambdaPerp1m[-z,-a],M4,PrintAs->SymbolBuild[RLambdaPerpSymb,Spin1m,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
 DeclareOrder[DpRLambdaPerp1m[-z,-a],1];
 DeclareOrder[DRLambdaPerp1m[-z,-a],1,"approximation"->B[w,-z]DpRLambdaPerp1m[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp1m[-w,-a]];
-DefTensor[DpRLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(+\)]\)",OrthogonalTo->{V[z],V[a],V[b]}];
+DefTensor[DpRLambdaPerp2p[-z,-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin2p,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b]}];
 DeclareOrder[DpRLambdaPerp2p[-z,-a,-b],1];
 DeclareOrder[DRLambdaPerp2p[-z,-a,-b],1,"approximation"->B[w,-z]DpRLambdaPerp2p[-w,-a,-b]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp2p[-w,-a,-b]];
-DefTensor[DpRLambdaPerp2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)\!\(\*OverscriptBox[\(\[Lambda]\), \(*\)]\)\!\(\*SuperscriptBox[\(2\), \(-\)]\)",OrthogonalTo->{V[z],V[a],V[b],V[c]}];
+DefTensor[DpRLambdaPerp2m[-z,-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RLambdaPerpSymb,Spin2m,"Derivative"->2],OrthogonalTo->{V[z],V[a],V[b],V[c]}];
 DeclareOrder[DpRLambdaPerp2m[-z,-a,-b,-c],1];
 DeclareOrder[DRLambdaPerp2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpRLambdaPerp2m[-w,-a,-b,-c]+V[-v]B[v,-z]V[u]H[-u,w]DRLambdaPerp2m[-w,-a,-b,-c]];
 AutomaticRules[DpRLambdaPerp2m,MakeRule[{DpRLambdaPerp2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -3166,22 +3247,22 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 IfBuild["GeneralComplementsToggle",
-Print["OrigBComplementDefinition..."];
+HiGGSPrint["OrigBComplementDefinition..."];
 OrigBComplementDefinition=Evaluate[J[]4 V[g]B[-k,-o]G3[o,-z]H[h,z](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,x]PPara[-d,y]T[-a,-x,-y]+2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])PPara[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+
 2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])(PPerp[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+PPara[-c,m]PPerp[-d,n]TLambda[-a,-m,-n])/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
-Print["PerpBComplementDefinition..."];
+HiGGSPrint["PerpBComplementDefinition..."];
 PerpBComplementDefinition=Evaluate[2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])PPara[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+
 2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])(PPerp[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+PPara[-c,m]PPerp[-d,n]TLambda[-a,-m,-n])/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
-Print["SingBComplementDefinition..."];
+HiGGSPrint["SingBComplementDefinition..."];
 SingBComplementDefinition=Evaluate[-J[]4 V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])PPara[-c,x]PPara[-d,y]T[-a,-x,-y]/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
-Print["OrigAComplementDefinition..."];
+HiGGSPrint["OrigAComplementDefinition..."];
 OrigAComplementDefinition=Evaluate[-2Alp0 J[]Antisymmetrize[V[-i]PPara[-j,-k],{-i,-j}]+
 J[] 8V[g]B[-k,-o]G3[o,-z]H[h,z](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,x]PPara[-d,y]R[-a,-b,-x,-y]+4J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+
 4J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])(PPerp[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+PPara[-c,m]PPerp[-d,n]RLambda[-a,-b,-m,-n])/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
-Print["PerpAComplementDefinition..."];
+HiGGSPrint["PerpAComplementDefinition..."];
 PerpAComplementDefinition=Evaluate[4J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+
 4J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])(PPerp[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+PPara[-c,m]PPerp[-d,n]RLambda[-a,-b,-m,-n])/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
-Print["SingAComplementDefinition..."];
+HiGGSPrint["SingAComplementDefinition..."];
 SingAComplementDefinition=Evaluate[-J[] 8V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,x]PPara[-d,y]R[-a,-b,-x,-y]/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
 
 PerpBComplementDefinition=PerpBComplementDefinition/.HG3BExpandLazy//ToNewCanonical//CollectTensors;
@@ -3576,127 +3657,127 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 IfBuild["NesterFormIfConstraints",
 NesterFormPhiB0pDefinition=ToNesterForm[PhiB0p[],"ToShell"->False];
-Print[NesterFormPhiB0pDefinition];
+HiGGSPrint[NesterFormPhiB0pDefinition];
 ToNesterFormPhiB0p=MakeRule[{PhiB0p[],Evaluate[NesterFormPhiB0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiB1pDefinition=ToNesterForm[PhiB1p[-i,-j],"ToShell"->False];
-Print[NesterFormPhiB1pDefinition];
+HiGGSPrint[NesterFormPhiB1pDefinition];
 ToNesterFormPhiB1p=MakeRule[{PhiB1p[-i,-j],Evaluate[NesterFormPhiB1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiB1mDefinition=ToNesterForm[PhiB1m[-i],"ToShell"->False];
-Print[NesterFormPhiB1mDefinition];
+HiGGSPrint[NesterFormPhiB1mDefinition];
 ToNesterFormPhiB1m=MakeRule[{PhiB1m[-i],Evaluate[NesterFormPhiB1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiB2pDefinition=ToNesterForm[PhiB2p[-i,-j],"ToShell"->False];
-Print[NesterFormPhiB2pDefinition];
+HiGGSPrint[NesterFormPhiB2pDefinition];
 ToNesterFormPhiB2p=MakeRule[{PhiB2p[-i,-j],Evaluate[NesterFormPhiB2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA0pDefinition=ToNesterForm[PhiA0p[],"ToShell"->False];
-Print[NesterFormPhiA0pDefinition];
+HiGGSPrint[NesterFormPhiA0pDefinition];
 ToNesterFormPhiA0p=MakeRule[{PhiA0p[],Evaluate[NesterFormPhiA0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA0mDefinition=ToNesterForm[PhiA0m[],"ToShell"->False];
-Print[NesterFormPhiA0mDefinition];
+HiGGSPrint[NesterFormPhiA0mDefinition];
 ToNesterFormPhiA0m=MakeRule[{PhiA0m[],Evaluate[NesterFormPhiA0mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA1pDefinition=ToNesterForm[PhiA1p[-i,-j],"ToShell"->False];
-Print[NesterFormPhiA1pDefinition];
+HiGGSPrint[NesterFormPhiA1pDefinition];
 ToNesterFormPhiA1p=MakeRule[{PhiA1p[-i,-j],Evaluate[NesterFormPhiA1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA1mDefinition=ToNesterForm[PhiA1m[-i],"ToShell"->False];
-Print[NesterFormPhiA1mDefinition];
+HiGGSPrint[NesterFormPhiA1mDefinition];
 ToNesterFormPhiA1m=MakeRule[{PhiA1m[-i],Evaluate[NesterFormPhiA1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA2pDefinition=ToNesterForm[PhiA2p[-i,-j],"ToShell"->False];
-Print[NesterFormPhiA2pDefinition];
+HiGGSPrint[NesterFormPhiA2pDefinition];
 ToNesterFormPhiA2p=MakeRule[{PhiA2p[-i,-j],Evaluate[NesterFormPhiA2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormPhiA2mDefinition=ToNesterForm[PhiA2m[-i,-j,-k],"ToShell"->False];
-Print[NesterFormPhiA2mDefinition];
+HiGGSPrint[NesterFormPhiA2mDefinition];
 ToNesterFormPhiA2m=MakeRule[{PhiA2m[-i,-j,-k],Evaluate[NesterFormPhiA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 PhiToNesterFormPhi=Join[ToNesterFormPhiB0p,ToNesterFormPhiB1p,ToNesterFormPhiB1m,ToNesterFormPhiB2p,ToNesterFormPhiA0p,ToNesterFormPhiA0m,ToNesterFormPhiA1p,ToNesterFormPhiA1m,ToNesterFormPhiA2p,ToNesterFormPhiA2m];
 
 NesterFormChiPerpB0pDefinition=ToNesterForm[ChiPerpB0p[],"ToShell"->False];
-Print[NesterFormChiPerpB0pDefinition];
+HiGGSPrint[NesterFormChiPerpB0pDefinition];
 ToNesterFormChiPerpB0p=MakeRule[{ChiPerpB0p[],Evaluate[NesterFormChiPerpB0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpB1pDefinition=ToNesterForm[ChiPerpB1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiPerpB1pDefinition];
+HiGGSPrint[NesterFormChiPerpB1pDefinition];
 ToNesterFormChiPerpB1p=MakeRule[{ChiPerpB1p[-i,-j],Evaluate[NesterFormChiPerpB1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpB1mDefinition=ToNesterForm[ChiPerpB1m[-i],"ToShell"->False];
-Print[NesterFormChiPerpB1mDefinition];
+HiGGSPrint[NesterFormChiPerpB1mDefinition];
 ToNesterFormChiPerpB1m=MakeRule[{ChiPerpB1m[-i],Evaluate[NesterFormChiPerpB1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpB2pDefinition=ToNesterForm[ChiPerpB2p[-i,-j],"ToShell"->False];
-Print[NesterFormChiPerpB2pDefinition];
+HiGGSPrint[NesterFormChiPerpB2pDefinition];
 ToNesterFormChiPerpB2p=MakeRule[{ChiPerpB2p[-i,-j],Evaluate[NesterFormChiPerpB2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA0pDefinition=ToNesterForm[ChiPerpA0p[],"ToShell"->False];
-Print[NesterFormChiPerpA0pDefinition];
+HiGGSPrint[NesterFormChiPerpA0pDefinition];
 ToNesterFormChiPerpA0p=MakeRule[{ChiPerpA0p[],Evaluate[NesterFormChiPerpA0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA0mDefinition=ToNesterForm[ChiPerpA0m[],"ToShell"->False];
-Print[NesterFormChiPerpA0mDefinition];
+HiGGSPrint[NesterFormChiPerpA0mDefinition];
 ToNesterFormChiPerpA0m=MakeRule[{ChiPerpA0m[],Evaluate[NesterFormChiPerpA0mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA1pDefinition=ToNesterForm[ChiPerpA1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiPerpA1pDefinition];
+HiGGSPrint[NesterFormChiPerpA1pDefinition];
 ToNesterFormChiPerpA1p=MakeRule[{ChiPerpA1p[-i,-j],Evaluate[NesterFormChiPerpA1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA1mDefinition=ToNesterForm[ChiPerpA1m[-i],"ToShell"->False];
-Print[NesterFormChiPerpA1mDefinition];
+HiGGSPrint[NesterFormChiPerpA1mDefinition];
 ToNesterFormChiPerpA1m=MakeRule[{ChiPerpA1m[-i],Evaluate[NesterFormChiPerpA1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA2pDefinition=ToNesterForm[ChiPerpA2p[-i,-j],"ToShell"->False];
-Print[NesterFormChiPerpA2pDefinition];
+HiGGSPrint[NesterFormChiPerpA2pDefinition];
 ToNesterFormChiPerpA2p=MakeRule[{ChiPerpA2p[-i,-j],Evaluate[NesterFormChiPerpA2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiPerpA2mDefinition=ToNesterForm[ChiPerpA2m[-i,-j,-k],"ToShell"->False];
-Print[NesterFormChiPerpA2mDefinition];
+HiGGSPrint[NesterFormChiPerpA2mDefinition];
 ToNesterFormChiPerpA2m=MakeRule[{ChiPerpA2m[-i,-j,-k],Evaluate[NesterFormChiPerpA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 ChiPerpToNesterFormChiPerp=Join[ToNesterFormChiPerpB0p,ToNesterFormChiPerpB1p,ToNesterFormChiPerpB1m,ToNesterFormChiPerpB2p,ToNesterFormChiPerpA0p,ToNesterFormChiPerpA0m,ToNesterFormChiPerpA1p,ToNesterFormChiPerpA1m,ToNesterFormChiPerpA2p,ToNesterFormChiPerpA2m];
 
 NesterFormChiParaB0mDefinition=ToNesterForm[ChiParaB0m[],"ToShell"->False];
-Print[NesterFormChiParaB0mDefinition];
+HiGGSPrint[NesterFormChiParaB0mDefinition];
 ToNesterFormChiParaB0m=MakeRule[{ChiParaB0m[],Evaluate[NesterFormChiParaB0mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaB1pDefinition=ToNesterForm[ChiParaB1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiParaB1pDefinition];
+HiGGSPrint[NesterFormChiParaB1pDefinition];
 ToNesterFormChiParaB1p=MakeRule[{ChiParaB1p[-i,-j],Evaluate[NesterFormChiParaB1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaB1mDefinition=ToNesterForm[ChiParaB1m[-i],"ToShell"->False];
-Print[NesterFormChiParaB1mDefinition];
+HiGGSPrint[NesterFormChiParaB1mDefinition];
 ToNesterFormChiParaB1m=MakeRule[{ChiParaB1m[-i],Evaluate[NesterFormChiParaB1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaB2mDefinition=ToNesterForm[ChiParaB2m[-i,-j,-k],"ToShell"->False];
-Print[NesterFormChiParaB2mDefinition];
+HiGGSPrint[NesterFormChiParaB2mDefinition];
 ToNesterFormChiParaB2m=MakeRule[{ChiParaB2m[-i,-j,-k],Evaluate[NesterFormChiParaB2mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA0pDefinition=ToNesterForm[ChiParaA0p[],"ToShell"->False];
-Print[NesterFormChiParaA0pDefinition];
+HiGGSPrint[NesterFormChiParaA0pDefinition];
 ToNesterFormChiParaA0p=MakeRule[{ChiParaA0p[],Evaluate[NesterFormChiParaA0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA0mDefinition=ToNesterForm[ChiParaA0m[],"ToShell"->False];
-Print[NesterFormChiParaA0mDefinition];
+HiGGSPrint[NesterFormChiParaA0mDefinition];
 ToNesterFormChiParaA0m=MakeRule[{ChiParaA0m[],Evaluate[NesterFormChiParaA0mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA1pDefinition=ToNesterForm[ChiParaA1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiParaA1pDefinition];
+HiGGSPrint[NesterFormChiParaA1pDefinition];
 ToNesterFormChiParaA1p=MakeRule[{ChiParaA1p[-i,-j],Evaluate[NesterFormChiParaA1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA1mDefinition=ToNesterForm[ChiParaA1m[-i],"ToShell"->False];
-Print[NesterFormChiParaA1mDefinition];
+HiGGSPrint[NesterFormChiParaA1mDefinition];
 ToNesterFormChiParaA1m=MakeRule[{ChiParaA1m[-i],Evaluate[NesterFormChiParaA1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA2pDefinition=ToNesterForm[ChiParaA2p[-i,-j],"ToShell"->False];
-Print[NesterFormChiParaA2pDefinition];
+HiGGSPrint[NesterFormChiParaA2pDefinition];
 ToNesterFormChiParaA2p=MakeRule[{ChiParaA2p[-i,-j],Evaluate[NesterFormChiParaA2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiParaA2mDefinition=ToNesterForm[ChiParaA2m[-i,-j,-k],"ToShell"->False];
-Print[NesterFormChiParaA2mDefinition];
+HiGGSPrint[NesterFormChiParaA2mDefinition];
 ToNesterFormChiParaA2m=MakeRule[{ChiParaA2m[-i,-j,-k],Evaluate[NesterFormChiParaA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 ChiParaToNesterFormChiPara=Join[ToNesterFormChiParaB0m,ToNesterFormChiParaB1p,ToNesterFormChiParaB1m,ToNesterFormChiParaB2m,ToNesterFormChiParaA0p,ToNesterFormChiParaA0m,ToNesterFormChiParaA1p,ToNesterFormChiParaA1m,ToNesterFormChiParaA2p,ToNesterFormChiParaA2m];
 
 NesterFormChiSingB1pDefinition=ToNesterForm[ChiSingB1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiSingB1pDefinition];
+HiGGSPrint[NesterFormChiSingB1pDefinition];
 ToNesterFormChiSingB1p=MakeRule[{ChiSingB1p[-i,-j],Evaluate[NesterFormChiSingB1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingB1mDefinition=ToNesterForm[ChiSingB1m[-i],"ToShell"->False];
-Print[NesterFormChiSingB1mDefinition];
+HiGGSPrint[NesterFormChiSingB1mDefinition];
 ToNesterFormChiSingB1m=MakeRule[{ChiSingB1m[-i],Evaluate[NesterFormChiSingB1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA0pDefinition=ToNesterForm[ChiSingA0p[],"ToShell"->False];
-Print[NesterFormChiSingA0pDefinition];
+HiGGSPrint[NesterFormChiSingA0pDefinition];
 ToNesterFormChiSingA0p=MakeRule[{ChiSingA0p[],Evaluate[NesterFormChiSingA0pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA0mDefinition=ToNesterForm[ChiSingA0m[],"ToShell"->False];
-Print[NesterFormChiSingA0mDefinition];
+HiGGSPrint[NesterFormChiSingA0mDefinition];
 ToNesterFormChiSingA0m=MakeRule[{ChiSingA0m[],Evaluate[NesterFormChiSingA0mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA1pDefinition=ToNesterForm[ChiSingA1p[-i,-j],"ToShell"->False];
-Print[NesterFormChiSingA1pDefinition];
+HiGGSPrint[NesterFormChiSingA1pDefinition];
 ToNesterFormChiSingA1p=MakeRule[{ChiSingA1p[-i,-j],Evaluate[NesterFormChiSingA1pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA1mDefinition=ToNesterForm[ChiSingA1m[-i],"ToShell"->False];
-Print[NesterFormChiSingA1mDefinition];
+HiGGSPrint[NesterFormChiSingA1mDefinition];
 ToNesterFormChiSingA1m=MakeRule[{ChiSingA1m[-i],Evaluate[NesterFormChiSingA1mDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA2pDefinition=ToNesterForm[ChiSingA2p[-i,-j],"ToShell"->False];
-Print[NesterFormChiSingA2pDefinition];
+HiGGSPrint[NesterFormChiSingA2pDefinition];
 ToNesterFormChiSingA2p=MakeRule[{ChiSingA2p[-i,-j],Evaluate[NesterFormChiSingA2pDefinition]},MetricOn->All,ContractMetrics->True];
 NesterFormChiSingA2mDefinition=ToNesterForm[ChiSingA2m[-i,-j,-k],"ToShell"->False];
-Print[NesterFormChiSingA2mDefinition];
+HiGGSPrint[NesterFormChiSingA2mDefinition];
 ToNesterFormChiSingA2m=MakeRule[{ChiSingA2m[-i,-j,-k],Evaluate[NesterFormChiSingA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 ChiSingToNesterFormChiSing=Join[ToNesterFormChiSingB1p,ToNesterFormChiSingB1m,ToNesterFormChiSingA0p,ToNesterFormChiSingA0m,ToNesterFormChiSingA1p,ToNesterFormChiSingA1m,ToNesterFormChiSingA2p,ToNesterFormChiSingA2m];
@@ -3733,25 +3814,25 @@ $IfConstraints={};
 Phis=DeleteCases[Evaluate[{(1-ShellOrigB0p)PhiB0p[],(1-ShellOrigB1p)PhiB1p[-i,-j],(1-ShellOrigB1m)PhiB1m[-i],(1-ShellOrigB2p)PhiB2p[-i,-j],(1-ShellOrigA0p)PhiA0p[],(1-ShellOrigA0m)PhiA0m[],(1-ShellOrigA1p)PhiA1p[-i,-j],(1-ShellOrigA1m)PhiA1m[-i],(1-ShellOrigA2p)PhiA2p[-i,-j],(1-ShellOrigA2m)PhiA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 $IfConstraints=$IfConstraints~Join~Phis;
 Phis=({#,ImposeTheory[#,$ToTheory]})&/@Phis;
-Print["** DefTheory: Found the following primary if-constraints:"];
-(Print[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@Phis;
+HiGGSPrint["** DefTheory: Found the following primary if-constraints:"];
+(HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@Phis;
 Phis=DeleteCases[Evaluate[{(ShellOrigB0p)PhiB0p[],(ShellOrigB1p)PhiB1p[-i,-j],(ShellOrigB1m)PhiB1m[-i],(ShellOrigB2p)PhiB2p[-i,-j],(ShellOrigA0p)PhiA0p[],(ShellOrigA0m)PhiA0m[],(ShellOrigA1p)PhiA1p[-i,-j],(ShellOrigA1m)PhiA1m[-i],(ShellOrigA2p)PhiA2p[-i,-j],(ShellOrigA2m)PhiA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 Phis=({#,ImposeTheory[#,$ToTheory]})&/@Phis;
 ChiPerps=DeleteCases[Evaluate[{(1-ShellPerpB0p)ChiPerpB0p[],(1-ShellPerpB1p)ChiPerpB1p[-i,-j],(1-ShellPerpB1m)ChiPerpB1m[-i],(1-ShellPerpB2p)ChiPerpB2p[-i,-j],(1-ShellPerpA0p)ChiPerpA0p[],(1-ShellPerpA0m)ChiPerpA0m[],(1-ShellPerpA1p)ChiPerpA1p[-i,-j],(1-ShellPerpA1m)ChiPerpA1m[-i],(1-ShellPerpA2p)ChiPerpA2p[-i,-j],(1-ShellPerpA2m)ChiPerpA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 $IfConstraints=$IfConstraints~Join~ChiPerps;
 ChiPerps=({#,ImposeTheory[#,$ToTheory]})&/@ChiPerps;
-Print["** DefTheory: Found the following secondary perpendicular if-constraints:"];
-(Print[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiPerps;
+HiGGSPrint["** DefTheory: Found the following secondary perpendicular if-constraints:"];
+(HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiPerps;
 ChiParas=DeleteCases[Evaluate[{(1-ShellParaB0m)ChiParaB0m[],(1-ShellParaB1p)ChiParaB1p[-i,-j],(1-ShellParaB1m)ChiParaB1m[-i],(1-ShellParaB2m)ChiParaB2m[-i,-j,-k],(1-ShellParaA0p)ChiParaA0p[],(1-ShellParaA0m)ChiParaA0m[],(1-ShellParaA1p)ChiParaA1p[-i,-j],(1-ShellParaA1m)ChiParaA1m[-i],(1-ShellParaA2p)ChiParaA2p[-i,-j],(1-ShellParaA2m)ChiParaA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 $IfConstraints=$IfConstraints~Join~ChiParas;
 ChiParas=({#,ImposeTheory[#,$ToTheory]})&/@ChiParas;
-Print["** DefTheory: Found the following secondary parallel if-constraints:"];
-(Print[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiParas;
+HiGGSPrint["** DefTheory: Found the following secondary parallel if-constraints:"];
+(HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiParas;
 ChiSings=DeleteCases[Evaluate[{(1-ShellSingB1p)ChiSingB1p[-i,-j],(1-ShellSingB1m)ChiSingB1m[-i],(1-ShellSingA0p)ChiSingA0p[],(1-ShellSingA0m)ChiSingA0m[],(1-ShellSingA1p)ChiSingA1p[-i,-j],(1-ShellSingA1m)ChiSingA1m[-i],(1-ShellSingA2p)ChiSingA2p[-i,-j],(1-ShellSingA2m)ChiSingA2m[-i,-j,-k]}/.$ToShellFreedoms],0,Infinity];
 $IfConstraints=$IfConstraints~Join~ChiSings;
 ChiSings=({#,ImposeTheory[#,$ToTheory]})&/@ChiSings;
-Print["** DefTheory: Found the following secondary singular if-constraints:"];
-(Print[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiSings;
+HiGGSPrint["** DefTheory: Found the following secondary singular if-constraints:"];
+(HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiSings;
 ];
 ClearBuild[];
 
@@ -3799,8 +3880,8 @@ GradPart=GradPart/.PADMActivate;
 GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->1];
 GradPart=MainPart+GradPart//ToNewCanonical;
 GradPart=GradPart//CollectTensors;
-Print["** DefTheory: The super-Hamiltonian is:"];
-Print[SuperHamiltonian0p[]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
+HiGGSPrint["** DefTheory: The super-Hamiltonian is:"];
+HiGGSPrint[SuperHamiltonian0p[]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];
 
@@ -3816,8 +3897,8 @@ MainPart=MainPart/.PADMActivate;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-Print["** DefTheory: The linear super-momentum is:"];
-Print[LinearSuperMomentum1m[-l]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
+HiGGSPrint["** DefTheory: The linear super-momentum is:"];
+HiGGSPrint[LinearSuperMomentum1m[-l]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];
 
@@ -3833,8 +3914,8 @@ MainPart=MainPart/.PADMActivate;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-Print["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(-\)]\) part of the angular super-momentum is:"];
-Print[RotationalSuperMomentum1m[-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
+HiGGSPrint["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(-\)]\) part of the angular super-momentum is:"];
+HiGGSPrint[RotationalSuperMomentum1m[-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
 MainPart=2PPara[-n,k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}]+
 PPara[-n,k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+
 PPara[-n,k]PPara[-m,l]G3[-b,p](-2Antisymmetrize[A[i,-k,-p]APiP[-i,-l,j] PPara[-j,z]H[-z,b],{-k,-l}]);
@@ -3842,8 +3923,8 @@ MainPart=MainPart/.PADMActivate;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-Print["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(+\)]\) part of the angular super-momentum is:"];
-Print[RotationalSuperMomentum1m[-n,-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
+HiGGSPrint["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(+\)]\) part of the angular super-momentum is:"];
+HiGGSPrint[RotationalSuperMomentum1m[-n,-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];
 
@@ -3895,11 +3976,11 @@ res];
 (*
 PoissonBracket[f1x_,f2x_,options__?((OptionQ@#&&({#}~MemberQ~("Parallel"->True)))&)]:=Catch@Module[{},
 (*Build the HiGGS environment*)
-Print["we got there"];
+HiGGSPrint["we got there"];
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-Print["fin"];
+HiGGSPrint["fin"];
 (*Evaluate the Poisson bracket*)
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
 *)
@@ -3920,11 +4001,11 @@ PoissonBracket[f1x_,f2x_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@M
 (*distributed defs seem not to be working for split def*)
 If[OptionValue["Parallel"],
 (*Build the HiGGS environment*)
-Print["we got there"];
+HiGGSPrint["we got there"];
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-Print["fin"];
+HiGGSPrint["fin"];
 ];
 (*a message*)
 printer={};
@@ -4051,8 +4132,8 @@ res=CollectTensors/@res;
 NotebookDelete[printer];
 If[OptionValue["PrintAnswer"],
 If[OptionValue["ToShell"],
-Print[{f1x,f2x}," \[TildeTilde] ",res];,
-Print[{f1x,f2x}," = ",res];
+HiGGSPrint[{f1x,f2x}," \[TildeTilde] ",res];,
+HiGGSPrint[{f1x,f2x}," = ",res];
 ];
 ];
 res];
@@ -4161,11 +4242,11 @@ PsiFreeIndexListLength=Length[PsiFreeIndexList];
 PlaceholderVectors={"S1[-k]","S2[-k]","S3[-k]"};
 PlaceholdersToDifferentiate={};
 For[ii=1,ii<PsiFreeIndexListLength+1,ii++,PlaceholdersToDifferentiate=Append[PlaceholdersToDifferentiate,ToExpression[StringReplace[PlaceholderVectors[[ii]],{"-k"->PsiFreeIndexList[[ii]]}]]]];
-Print[PlaceholdersToDifferentiate];
+HiGGSPrint[PlaceholdersToDifferentiate];
 Temp=expr;
 For[ii=1,ii<PsiFreeIndexListLength+1,ii++,Temp=NewVarAction[Temp,PlaceholdersToDifferentiate[[ii]]]];
 Temp=Temp//ToNewCanonical;
-Print[Temp];
+HiGGSPrint[Temp];
 Temp];
 ClearBuild[];
 
@@ -4460,7 +4541,7 @@ res=res/.PActivate//ToNewCanonical;
 res=res/.PADMActivate//ToNewCanonical;
 res=ReplaceDummies[res,IndexList[l,n,m,p,q,r,s,t,u,v,w]];
 res=res S1[x] S2[y]S3[z]//ToNewCanonical;
-Print[res];
+HiGGSPrint[res];
 NotebookDelete[printer];
 res];
 
@@ -4577,17 +4658,17 @@ printer={};
 PlaceholderBracketActivate={};
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
+HiGGSPrint[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
+HiGGSPrint[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
+HiGGSPrint[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
+HiGGSPrint[DeltaList];
 PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Torsion bracket..."];
 Temp=PoissonBracket[Psi,PPara[-g,e]PPara[-h,f]T[-d,-e,-f],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->EH0,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4746,17 +4827,17 @@ printer={};
 PlaceholderBracketActivate={};
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
+HiGGSPrint[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
+HiGGSPrint[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
+HiGGSPrint[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
+HiGGSPrint[DeltaList];
 PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Measure bracket..."];
 Temp=PoissonBracket[Psi,Lapse[]J[],"ToShell"->True,"Hard"->True,"Surficial"->False,"Order"->1,"GToFoliG"->False,"NesterForm"->False,"PrintAnswer"->False];
@@ -4819,17 +4900,17 @@ printer={};
 PlaceholderBracketActivate={};
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
-Print[PsiFreeIndexListD];
+HiGGSPrint[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
-Print[PsiFreeIndexListDLength];
+HiGGSPrint[PsiFreeIndexListDLength];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
-Print[PlaceholderVectors];
+HiGGSPrint[PlaceholderVectors];
 DeltaList={"G[x1,-k]","G[y1,-k]","G[z1,-k]"};
-Print[DeltaList];
+HiGGSPrint[DeltaList];
 PlaceholderBracketRules={};
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 For[zz=1,zz<PsiFreeIndexListDLength+1,zz++,PlaceholderBracketRules=Append[PlaceholderBracketRules,PlaceholderVectors[[zz]]->StringReplace[DeltaList[[zz]],{"-k"->PsiFreeIndexListD[[zz]]}]]];
-Print[PlaceholderBracketRules];
+HiGGSPrint[PlaceholderBracketRules];
 
 PhiFreeIndexListString=StringDelete[StringTrim[ToString[PhiFreeIndexListNormal],("{"|"}")]," "];
 If[Length[ToExpression@PhiFreeIndexListNormal]!=0,PhiFreeIndexListString=PhiFreeIndexListString<>","];
@@ -4924,7 +5005,7 @@ Jobs=Jobs~Join~{ParallelSubmit@ConstraintBracketParallel[Psi,EH0,FreeConstraintS
 RuleResults=WaitAll[Jobs];
 (*Quit[];*)
 PlaceholderBracketActivate=Flatten@RuleResults;
-Print[PlaceholderBracketActivate];,
+HiGGSPrint[PlaceholderBracketActivate];,
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~RiemannBracket[Psi,EH0,PsiFreeIndexListNormal];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~TorsionBracket[Psi,EH0,PsiFreeIndexListNormal];
 PlaceholderBracketActivate=PlaceholderBracketActivate~Join~SurfaceBracket[Psi,EH0,PsiFreeIndexListNormal];
@@ -4943,7 +5024,7 @@ PlaceholderBracketActivate=PlaceholderBracketActivate~Join~ConstraintBracket[Psi
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Imposing commutator replacement rules..."];
 return=Evaluate@OptionValue["InertVelocity"];
 return=return/.PlaceholderBracketActivate;
-(*Print[return];*)
+(*HiGGSPrint[return];*)
 return=ToOrderCanonical[return,1];
 printer=printer~Append~PrintTemporary[ToBasicForm[return,"Hard"->True,"Order"->1]];
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Imposing Nester form..."];
@@ -4955,7 +5036,7 @@ return=return/.GToFoliG;
 return=return//ToNewCanonical;
 printer=printer~Append~PrintTemporary[" ** PoissonBracket: Final form of linear velocity:"];
 NotebookDelete[printer];
-If[OptionValue["PrintAnswer"],Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];];
+If[OptionValue["PrintAnswer"],HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];];
 return];
 ClearBuild[];
 
@@ -5042,7 +5123,7 @@ return=return/.GToFoliG;
 return=return//ToNewCanonical;
 
 NotebookDelete[printer];
-Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
+HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
 ClearBuild[];
 
@@ -5065,7 +5146,7 @@ return=return/.GToFoliG;
 return=return//ToNewCanonical;
 
 NotebookDelete[printer];
-Print["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
+HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
 ClearBuild[];
 
@@ -5092,7 +5173,7 @@ res];
 
 Jobs=(#1~PrepareVelocitySegments~#2)&@@@BatchPsis;
 
-Print[Jobs];
+HiGGSPrint[Jobs];
 
 SplitVelocities=WaitAll[Jobs];
 Velocities=(SecondaryVelocitySimplification/@#)&/@SplitVelocities;
@@ -5112,10 +5193,10 @@ BuildHiGGS[];
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
 (**)
 (*
-Print["call to deftheorypara"];
-Print[InputSystem];
-Print[OptionValue["Export"]];
-Print[OptionValue["Import"]];
+HiGGSPrint["call to deftheorypara"];
+HiGGSPrint[InputSystem];
+HiGGSPrint[OptionValue["Export"]];
+HiGGSPrint[OptionValue["Import"]];
 *)
 ];
 DistributeDefinitions@DefTheoryParallel;
@@ -5136,7 +5217,7 @@ DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@M
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
 If[StringQ@OptionValue@"Import",
-Print[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
+HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Import";
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
@@ -5146,10 +5227,15 @@ Quit[];
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 (*define the theory constant in Global`*)
 $Theory=InputSystem;
+$Theory=$Theory~Join~{dummy->1};
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$ToTheory for the theory",""}];
 (*these are rules we can always use to impose the theory*)
+If[$Theory=={dummy->1},
+$ToTheory={dummy->1};,
 $ToTheory=Quiet[Solve[InputSystem,Join[cAlp,cBet,{Alp0},Alp,Bet]][[1]]];
+];
+(*append a dummy replacement rule so that an empty *)
 (*these functions do all the hard work*)
 ComputeShellFreedoms[$ToTheory,$Theory];
 DefFieldStrengthShell[$ToShellFreedoms,$Theory];
@@ -5159,15 +5245,20 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
+(*
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
+*)
 ];
 If[StringQ@OptionValue@"Export",
-Print[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
+HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
 $TheoryName=OptionValue@"Export";
 Print@$IfConstraints;
 (FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
+(*so that a replacement rule exists, even if no theory is defined*)
+DefConstantSymbol@dummy;
+$ToTheory={dummy->1};
 ClearBuild[];
 
 
@@ -5184,8 +5275,8 @@ $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
 nontrivial=!(x=={0,0,0}||y==0);
 If[nontrivial,
-Print[y," \[TildeTilde] ",x],,
-Print[y," \[TildeTilde] ",x]];
+HiGGSPrint[y," \[TildeTilde] ",x],,
+HiGGSPrint[y," \[TildeTilde] ",x]];
 ];
 Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
 MapThread[PrintBracket,{$PPM,$PPMlabels},2];
@@ -5201,7 +5292,7 @@ StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 If[!OptionValue@"Import",
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
-Print[Jobs];
+HiGGSPrint[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
 (*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
@@ -5222,11 +5313,11 @@ PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $PPM=PPM;
-Print["$PPM value is ",$PPM];
-Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
+HiGGSPrint["$PPM value is ",$PPM];
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
-Print[PPMs];
+HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 
 (**)
@@ -5244,11 +5335,11 @@ Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"\[Rule]theory];
 $Velocities=Velocity;
-Print["$Velocities value is ",$Velocities];
-Print[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
+HiGGSPrint["$Velocities value is ",$Velocities];
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
 (FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
 ];
-Print[Velocities];
+HiGGSPrint[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
 *)
 ];

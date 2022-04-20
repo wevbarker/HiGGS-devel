@@ -29,8 +29,6 @@ Needs["xAct`HiGGS`"];
 BuildHiGGS[];
 
 DefTheory["Import"->"simple_spin_1p"];
-look=VelocityParallel[{{"simple_spin_1p",{PhiB1m[-q1]}}}]
-(FileNameJoin@{$WorkingDirectory,"bin","look.mx"})~DumpSave~{look};
 (*
 JobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
 {"spin_0m",{Alp1==0,Alp2==0,Alp4==0,Alp5==0,Alp6==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}},
