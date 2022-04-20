@@ -297,14 +297,16 @@ HiGGSPrint@%
 (* ::Input::Initialization:: *)
 $ListingsOutput="poissonbracket_3";
 Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-PoissonBracket[PiPB2p[-a,-b],TP1m[-c],"ToShell"->False,"Surficial"->True];
+PoissonBracket[PiPB2p[-i,-j],TP1m[-l],"ToShell"->False,"Surficial"->True];
 (*Don't need HiGGSPrint*)
 
 
 (* ::Input::Initialization:: *)
+(*
 $ListingsOutput="viewtheory";
 DefTheory["Import"->"spin_0p"]
 ViewTheory["spin_0p"]
+*)
 
 
 (* ::Input::Initialization:: *)
