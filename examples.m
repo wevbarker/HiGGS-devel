@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 (*For notebooks, we need to modify the path*)
-$Path~AppendTo~NotebookDirectory[];
+(*$Path~AppendTo~NotebookDirectory[];*)
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
