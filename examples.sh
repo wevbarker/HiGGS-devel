@@ -5,6 +5,9 @@ pkill -9 "Mathematica"
 pkill -9 "Wolfram"
 pkill -9 "xperm"
 
+#	make the figures directory again
+mkdir figures
+
 #	run the job	
 math -run < examples.m
 
