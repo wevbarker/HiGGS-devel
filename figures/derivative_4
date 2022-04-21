@@ -1,0 +1,24 @@
+
+In[]:= quantity = ScreenDollarIndices[ContractMetric[ToCanonical[(G3[-y, z]*#1 & ) /@ quantity[[{1, 3}]]]]]
+Out[]= |
+\vspace{-10pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/122-1fig.pdf}
+\end{flushleft}
+|
+
+In[]:= quantity = ScreenDollarIndices[ContractMetric[ToCanonical[quantity /. DpRPActivate /. DpPiPActivate]]]
+Out[]= |
+\vspace{-10pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/125-1fig.pdf}
+\end{flushleft}
+|
+
+In[]:= quantity = ScreenDollarIndices[ContractMetric[ToCanonical[quantity /. DpRPDeactivate /. DpPiPDeactivate]]]
+Out[]= |
+\vspace{-10pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/128-1fig.pdf}
+\end{flushleft}
+|

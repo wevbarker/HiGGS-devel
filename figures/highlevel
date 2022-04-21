@@ -1,0 +1,8 @@
+
+In[]:= quantity = ToBasicForm[{T[i, -j, -k], PiPB0p[], PiPA1p[-i, -j]}]
+Out[]= |
+\vspace{-10pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/133-1fig.pdf}
+\end{flushleft}
+|
