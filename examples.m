@@ -31,249 +31,194 @@ $PaperPrint=True;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="basic_identities";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={H[-a,b],B[a,-b],A[a,b,-c],V[a],V[a]V[-a],A[a,-a,-c],A[a,b,-c]+A[b,a,-c],H[-a,i]B[a,-j],H[-a,i]B[c,-i],G3[-a,-b]G3[b,-d],G3[-a,a],B[a,-b]G3[b,-c]V[-a],CD[-a][G3[-c,b]]}
-HiGGSPrint@%*)
+HiGGSOutput@"basic_identities";
+HiGGSEcho@(quantity={H[-a,b],B[a,-b],A[a,b,-c],V[a],V[a]V[-a],A[a,-a,-c],A[a,b,-c]+A[b,a,-c],H[-a,i]B[a,-j],H[-a,i]B[c,-i],G3[-a,-b]G3[b,-d],G3[-a,a],B[a,-b]G3[b,-c]V[-a],CD[-a][G3[-c,b]]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="to_canon";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-ToCanonical@quantity
-HiGGSPrint@%*)
+HiGGSEcho@(ToCanonical@quantity);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="deriv_identities";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={J[],Lapse[],CD[-a][V[-j]],CD[-a][H[-j,n]],CD[-a][J[]],CD[-a][Lapse[]]}//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"deriv_identities";
+HiGGSEcho@(quantity={J[],Lapse[],CD[-a][V[-j]],CD[-a][H[-j,n]],CD[-a][J[]],CD[-a][Lapse[]]}//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="momenta_identities";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={BPi[-a,b],APi[-a,-b,c],BPiP[-a,-b],APiP[-a,-b,-c],BPiP[-a,-b]V[b],APiP[-a,-b,-c]V[c]}
-HiGGSPrint@%*)
+HiGGSOutput@"momenta_identities";
+HiGGSEcho@(quantity={BPi[-a,b],APi[-a,-b,c],BPiP[-a,-b],APiP[-a,-b,-c],BPiP[-a,-b]V[b],APiP[-a,-b,-c]V[c]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="canon_momenta";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity/.PiPToPi//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity/.PiPToPi//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="pperp_ppara";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={PPerp[-a,b],PPara[-a,b]}
-HiGGSPrint@%*)
+HiGGSOutput@"pperp_ppara";
+HiGGSEcho@(quantity={PPerp[-a,b],PPara[-a,b]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="pperp_ppara_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity/.PADMActivate//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity/.PADMActivate//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="fieldstrengths";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={R[-a,-b,-c,-d],R[a,-a,-c,-d],R[-a,-b,-c,c],T[a,-b,-c],T[a,-b,b]}
-HiGGSPrint@%*)
+HiGGSOutput@"fieldstrengths";
+HiGGSEcho@(quantity={R[-a,-b,-c,-d],R[a,-a,-c,-d],R[-a,-b,-c,c],T[a,-b,-c],T[a,-b,b]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="fieldstrengths_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity/.ExpandStrengths//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity/.ExpandStrengths//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="multipliers";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={RLambda[-a,-b,-c,-d],RLambda[a,-a,-c,-d],RLambda[-a,-b,-c,c],TLambda[a,-b,-c],TLambda[a,-b,b]}
-HiGGSPrint@%*)
+HiGGSOutput@"multipliers";
+HiGGSEcho@(quantity={RLambda[-a,-b,-c,-d],RLambda[a,-a,-c,-d],RLambda[-a,-b,-c,c],TLambda[a,-b,-c],TLambda[a,-b,b]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="multipliers_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="soonethree";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-R[-a,-b,-c,-d]/.StrengthSO13Activate//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"soonethree";
+HiGGSEcho@(R[-a,-b,-c,-d]/.StrengthSO13Activate//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="soonethree_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-TLambda[-a,-b,-c]/.StrengthLambdaSO13Activate//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(TLambda[-a,-b,-c]/.StrengthLambdaSO13Activate//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="soonethree_3";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=(Alp1 PR1[-i,-k,-l,-m,a,b,c,d]+Alp2 PR2[-i,-k,-l,-m,a,b,c,d]+Alp3 PR3[-i,-k,-l,-m,a,b,c,d]+Alp4 PR4[-i,-k,-l,-m,a,b,c,d]+Alp5 PR5[-i,-k,-l,-m,a,b,c,d]+Alp6 PR6[-i,-k,-l,-m,a,b,c,d])R[-a,-b,-c,-d]
-HiGGSPrint@%*)
+HiGGSOutput@"soonethree_3";
+HiGGSEcho@(quantity=(Alp1 PR1[-i,-k,-l,-m,a,b,c,d]+Alp2 PR2[-i,-k,-l,-m,a,b,c,d]+Alp3 PR3[-i,-k,-l,-m,a,b,c,d]+Alp4 PR4[-i,-k,-l,-m,a,b,c,d]+Alp5 PR5[-i,-k,-l,-m,a,b,c,d]+Alp6 PR6[-i,-k,-l,-m,a,b,c,d])R[-a,-b,-c,-d]);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="soonethree_4";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.PActivate/.{Alp1->1,Alp2->1,Alp3->1,Alp4->1,Alp5->1,Alp6->1}//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.PActivate/.{Alp1->1,Alp2->1,Alp3->1,Alp4->1,Alp5->1,Alp6->1}//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="soonethree_5";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-T[i,k,l](Bet1 PT1[-i,-k,-l,a,b,c])T[-a,-b,-c]+cAlp6 R[i,k,l,m] PR6[-i,-k,-l,-m,a,b,c,d]R[-a,-b,-c,-d]+T[i,k,l](cBet2 PT2[-i,-k,-l,a,b,c]+cBet3 PT3[-i,-k,-l,a,b,c])TLambda[-a,-b,-c]/.PActivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(T[i,k,l](Bet1 PT1[-i,-k,-l,a,b,c])T[-a,-b,-c]+cAlp6 R[i,k,l,m] PR6[-i,-k,-l,-m,a,b,c,d]R[-a,-b,-c,-d]+T[i,k,l](cBet2 PT2[-i,-k,-l,a,b,c]+cBet3 PT3[-i,-k,-l,a,b,c])TLambda[-a,-b,-c]/.PActivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-{APiP[-a,-b,-c],BPiP[-a,-b]}/.PiPToPiPO3//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"othree";
+HiGGSEcho@({APiP[-a,-b,-c],BPiP[-a,-b]}/.PiPToPiPO3//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={R[-a,-b,-c,-d],RLambda[-a,-b,-c,-d],T[-a,-b,-c],TLambda[-a,-b,-c]}/.StrengthDecompose/.StrengthLambdaDecompose//ToCanonical//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"othree_2";
+$Widetext=True;
+HiGGSEcho@(quantity={R[-a,-b,-c,-d],RLambda[-a,-b,-c,-d],T[-a,-b,-c],TLambda[-a,-b,-c]}/.StrengthDecompose/.StrengthLambdaDecompose//ToCanonical//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree_3";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity[[1]]/.StrengthPToStrengthPO3//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify
-HiGGSPrint@%*)
+HiGGSEcho@(quantity[[1]]/.StrengthPToStrengthPO3//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree_4";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity[[4]]/.StrengthLambdaPToStrengthLambdaPO3/.StrengthLambdaPerpToStrengthLambdaPerpO3//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify
-HiGGSPrint@%*)
+HiGGSEcho@(quantity[[4]]/.StrengthLambdaPToStrengthLambdaPO3/.StrengthLambdaPerpToStrengthLambdaPerpO3//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify);
+HiGGSPrint@%;
+$Widetext=False;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree_5";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={PB0p[e,f]PBPara[-e,-f,a,c]BPiP[-a,-c],PB1m[-n,f]PBPerp[-f,a,c]BPiP[-a,-c],PA2p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]APiP[-a,-b,-c],PR0p[e,f,g,h]RP[-e,-f,-g,-h],PR0m[e,f,g]RPerp[-e,-f,-g],PR1p[-n,-m,e,f,g,h]RLambdaP[-e,-f,-g,-h],PT1p[-a,-b,c,d]TPerp[-c,-d],PT2m[-a,-b,-c,d,e,f]TP[-d,-e,-f]}/.PADMPiActivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"othree_5";
+HiGGSEcho@(quantity={PB0p[e,f]PBPara[-e,-f,a,c]BPiP[-a,-c],PB1m[-n,f]PBPerp[-f,a,c]BPiP[-a,-c],PA2p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]APiP[-a,-b,-c],PR0p[e,f,g,h]RP[-e,-f,-g,-h],PR0m[e,f,g]RPerp[-e,-f,-g],PR1p[-n,-m,e,f,g,h]RLambdaP[-e,-f,-g,-h],PT1p[-a,-b,c,d]TPerp[-c,-d],PT2m[-a,-b,-c,d,e,f]TP[-d,-e,-f]}/.PADMPiActivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="othree_6";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.PO3PiActivate/.PO3TActivate/.PO3RActivate/.PiPToPiPO3/.StrengthPToStrengthPO3/.StrengthPerpToStrengthPerpO3/.StrengthLambdaPToStrengthLambdaPO3/.StrengthLambdaPerpToStrengthLambdaPerpO3;
-quantity=quantity//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify
-quantity=quantity//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.PO3PiActivate/.PO3TActivate/.PO3RActivate/.PiPToPiPO3/.StrengthPToStrengthPO3/.StrengthPerpToStrengthPerpO3/.StrengthLambdaPToStrengthLambdaPO3/.StrengthLambdaPerpToStrengthLambdaPerpO3;);
+HiGGSEcho@(quantity=quantity//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify);
+HiGGSEcho@(quantity=quantity//ToCanonical//ContractMetric//ScreenDollarIndices//Simplify);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={DPiPA2m[-z,-a,-b,-c],CD[-z][PiPA2m[-a,-b,-c]],DRP2p[-z,-a,-b],CD[-z][RP2p[-a,-b]]}
-HiGGSPrint@%*)
+HiGGSOutput@"derivative";
+HiGGSEcho@(quantity={DPiPA2m[-z,-a,-b,-c],CD[-z][PiPA2m[-a,-b,-c]],DRP2p[-z,-a,-b],CD[-z][RP2p[-a,-b]]});
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.DRPDeactivate/.DPiPDeactivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.DRPDeactivate/.DPiPDeactivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative_3";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.DRPActivate/.DPiPActivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.DRPActivate/.DPiPActivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative_4";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=G3[-y,z]#&/@quantity[[{1,3}]]//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSOutput@"derivative_4";
+$Widetext=True;
+HiGGSEcho@(quantity=G3[-y,z]#&/@quantity[[{1,3}]]//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative_5";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.DpRPActivate/.DpPiPActivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.DpRPActivate/.DpPiPActivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*$ListingsOutput="derivative_6";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=quantity/.DpRPDeactivate/.DpPiPDeactivate//ToCanonical//ContractMetric//ScreenDollarIndices
-HiGGSPrint@%*)
+HiGGSEcho@(quantity=quantity/.DpRPDeactivate/.DpPiPDeactivate//ToCanonical//ContractMetric//ScreenDollarIndices);
+HiGGSPrint@%;
+$Widetext=False;
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="highlevel";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity={T[i,-j,-k],PiPB0p[],PiPA1p[-i,-j]}//ToBasicForm
-HiGGSPrint@%*)
+HiGGSOutput@"highlevel";
+HiGGSEcho@(quantity={T[i,-j,-k],PiPB0p[],PiPA1p[-i,-j]}//ToBasicForm);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="highlevel_1";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-{DpPiPB1m[-k,-i]}//ToBasicForm
-HiGGSPrint@%*)
+HiGGSOutput@"highlevel_1";
+HiGGSEcho@({DpPiPB1m[-k,-i]}//ToBasicForm);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="highlevel_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-quantity=ToNesterForm[quantity,"ToShell"->False]
-HiGGSPrint@%*)
+HiGGSOutput@"highlevel_2";
+HiGGSEcho@(quantity=ToNesterForm[quantity,"ToShell"->False]);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="highlevel_3";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-ToNesterForm[CD[-i][B[-a,-b]],"ToShell"->False]
-HiGGSPrint@%
-*)
+HiGGSOutput@"highlevel_3";
+$Widetext=True;
+HiGGSEcho@(ToNesterForm[CD[-i][B[-a,-b]],"ToShell"->False]);
+HiGGSPrint@%;
+$Widetext=False;
 
 
 (* ::Input::Initialization:: *)
-(*
-ToBasicForm[{DpV[]},"ToShell"->False]
-*)
-
-
-(* ::Input::Initialization:: *)
-(*
-$ListingsOutput="highlevel_4";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-ToNesterForm[PPara[-y,v]H[-v,w]G3[-w,m]PPara[-q,b1]H[-b1,a1]G3[-a1,l](G3[-l,n]V[-k]CD[-m][B[k,-n]]+G3[-l,n]B[j,-n]A[k,-j,-m]V[-k])/.PADMActivate,"ToShell"->False]
-HiGGSPrint@%
-*)
+HiGGSOutput@"highlevel_4";
+HiGGSEcho@(ToNesterForm[PPara[-y,v]H[-v,w]G3[-w,m]PPara[-q,b1]H[-b1,a1]G3[-a1,l](G3[-l,n]V[-k]CD[-m][B[k,-n]]+G3[-l,n]B[j,-n]A[k,-j,-m]V[-k])/.PADMActivate,"ToShell"->False]);
+HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
@@ -295,10 +240,13 @@ HiGGSPrint@%
 
 
 (* ::Input::Initialization:: *)
-$ListingsOutput="poissonbracket_3";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-PoissonBracket[PiPB2p[-i,-j],TP1m[-l],"ToShell"->False,"Surficial"->True];
+(*
+HiGGSOutput@"poissonbracket_3";
+HiGGSEcho@(R[-a,-b,-c,-d]//ToBasicForm)
+(*HiGGSEcho@(PoissonBracket[PiPB2p[-i,-j],TP1m[-l],"ToShell"->False,"Surficial"->True];);*)
+%~HiGGSPrint~("Widetext"->True);
 (*Don't need HiGGSPrint*)
+*)
 
 
 (* ::Input::Initialization:: *)
