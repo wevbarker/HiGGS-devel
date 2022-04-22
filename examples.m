@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 (*For notebooks, we need to modify the path*)
-(*$Path~AppendTo~NotebookDirectory[];*)
+(**)$Path~AppendTo~NotebookDirectory[];(**)
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
@@ -197,8 +197,10 @@ HiGGSPrint@%;
 
 (* ::Input::Initialization:: *)
 HiGGSOutput@"highlevel_1";
-HiGGSEcho@({DpPiPB1m[-k,-i]}//ToBasicForm);
+$Widetext=True;
+HiGGSEcho@(DpPiPB1m[-k,-i]//ToBasicForm);
 HiGGSPrint@%;
+$Widetext=False;
 
 
 (* ::Input::Initialization:: *)
@@ -222,31 +224,25 @@ HiGGSPrint@%;
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="poissonbracket";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-PoissonBracket[PiPB2p[-a,-b],TP1p[-c,-d],"ToShell"->False];
-HiGGSPrint@%
-*)
+(*HiGGSOutput@"poissonbracket";
+HiGGSEcho@(PoissonBracket[PiPB2p[-a,-b],TP1p[-c,-d],"ToShell"->False];);*)
 
 
 (* ::Input::Initialization:: *)
-(*
-$ListingsOutput="poissonbracket_2";
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
-PoissonBracket[PiPB2p[-a,-b],TP1m[-c],"ToShell"->False];
-HiGGSPrint@%
-*)
+HiGGSOutput@"poissonbracket_2";
+$Widetext=True;
+HiGGSEcho@(PoissonBracket[PiPB2p[-a,-b],TP1m[-c],"ToShell"->False];);
+$Widetext=False;
 
 
 (* ::Input::Initialization:: *)
-(*
-HiGGSOutput@"poissonbracket_3";
-HiGGSEcho@(R[-a,-b,-c,-d]//ToBasicForm)
-(*HiGGSEcho@(PoissonBracket[PiPB2p[-i,-j],TP1m[-l],"ToShell"->False,"Surficial"->True];);*)
-%~HiGGSPrint~("Widetext"->True);
-(*Don't need HiGGSPrint*)
-*)
+(*HiGGSOutput@"poissonbracket_3";
+HiGGSEcho@(PoissonBracket[PiPB2p[-i,-j],TP1m[-l],"ToShell"->False,"Surficial"->True];);*)
+
+
+(* ::Input::Initialization:: *)
+HiGGSOutput@"deftheory";
+HiGGSEcho@(DefTheory[{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0},"Export"->"EinsteinCartan"];);
 
 
 (* ::Input::Initialization:: *)

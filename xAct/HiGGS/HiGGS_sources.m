@@ -97,7 +97,7 @@ SetAttributes[HiGGSEcho,HoldAll]
 HiGGSEcho[x_]:=Block[{str,res,$ListingsFile},
 str=ToString[Unevaluated[x]~ToString~InputForm];
 $ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput},PageWidth->Infinity];
-WriteString[$ListingsFile,"\nIn[]:= "<>str<>"\nOut[]= "];
+WriteString[$ListingsFile,"In[]:= "<>str<>"\nOut[]= "];
 (*WriteString[$ListingsFile,"|\nIn[]:= "<>str<>"\n|\n"];*)
 Close@$ListingsFile;
 res=Evaluate@x;
@@ -121,10 +121,10 @@ $ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutp
 If[{res}~AllTrue~StringQ,
 WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n|\n"<>"      "<>StringJoin@{res}<>"\n|"<>"\n"];,*)
-res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8]];
+res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->False,Alignment->Right];
 Print@res;
-FileNameJoin@{$WorkingDirectory,"figures",ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
-WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n|\n"];
+FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
+WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
 ];
 Close@$ListingsFile;
@@ -790,17 +790,17 @@ ASymb="\[ScriptCapitalA]";
 DefTensor[A[a,c,-d],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[ASymb]];
 DeclareOrder[A[a,c,-d],1];
 
-G3Symb="\!\(\*OverscriptBox[\(\[Gamma]\), \(^\)]\)";
+G3Symb="\!\(\*SuperscriptBox[\(\[Gamma]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[G3[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[G3Symb]];
 AutomaticRules[G3,MakeRule[{G3[-a,-b]G3[b,-d],G3[-a,-d]},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[G3,MakeRule[{G3[-a,a],3},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[G3,MakeRule[{B[a,-b]G3[b,-c]V[-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[G3,MakeRule[{CD[-a][G3[-c,b]],0},MetricOn->All,ContractMetrics->True]];
 
-EpsSymb="\!\(\*OverscriptBox[\(\[Epsilon]\), \(^\)]\)";
+EpsSymb="\!\(\*SuperscriptBox[\(\[Epsilon]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[Eps[-a,-b,-c],M4,Antisymmetric[{-a,-b,-c}],OrthogonalTo->{V[a],V[b],V[c]},PrintAs->SymbolBuild[EpsSymb]];
 DeclareOrder[CD[-z][Eps[-a,-b,-c]],1];
-FoliGSymb="\!\(\*OverscriptBox[\(\[Eta]\), \(^\)]\)";
+FoliGSymb="\!\(\*SuperscriptBox[\(\[Eta]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[FoliG[-a,-b],M4,Symmetric[{-a,-b}],OrthogonalTo->{V[a],V[b]},PrintAs->SymbolBuild[FoliGSymb]];
 DeclareOrder[CD[-z][FoliG[-a,-b]],1];
 epsilonGVToEps=MakeRule[{V[d]epsilonG[-a,-b,-c,-d],Eps[-a,-b,-c]},MetricOn->All,ContractMetrics->True];
@@ -3937,7 +3937,7 @@ MainPart=MainPart/.PADMActivate;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-HiGGSPrint["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(-\)]\) part of the angular super-momentum is:"];
+HiGGSPrint["** DefTheory: The 1- part of the angular super-momentum is:"];
 HiGGSPrint[RotationalSuperMomentum1m[-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
 MainPart=2PPara[-n,k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}]+
 PPara[-n,k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+
@@ -3946,7 +3946,7 @@ MainPart=MainPart/.PADMActivate;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-HiGGSPrint["** DefTheory: The \!\(\*SuperscriptBox[\(1\), \(+\)]\) part of the angular super-momentum is:"];
+HiGGSPrint["** DefTheory: The 1+ part of the angular super-momentum is:"];
 HiGGSPrint[RotationalSuperMomentum1m[-n,-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];

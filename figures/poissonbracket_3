@@ -1,8 +1,0 @@
-
-In[]:= ToBasicForm[R[-a, -b, -c, -d]]
-Out[]= |
-\vspace{-10pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/7-1fig.pdf}
-\end{flushleft}
-|
