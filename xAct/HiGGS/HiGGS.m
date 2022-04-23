@@ -131,8 +131,18 @@ $HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~Consta
 TimeWrapper~SetAttributes~HoldAll;
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
+(*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
+$PauseSeconds=6;
+$LastMultiple=0;
+TryTiming[]:=Module[{PrintDamper},
+PrintDamper=AbsoluteTime[];
+If[(Ceiling@PrintDamper~Divisible~$PauseSeconds)&&!(Ceiling@PrintDamper/$PauseSeconds==$LastMultiple),
+$HiGGSTimingFile~Export~$HiGGSTimingData;
+$LastMultiple=Ceiling@PrintDamper/$PauseSeconds;
+];
+];
 (*the actual timing function*)
-TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine},
+TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
 $HiGGSTimingNow=AbsoluteTime[];
 (*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
 res=AbsoluteTiming@expr;
@@ -145,8 +155,10 @@ TimingNowPosition=TimingDurationPosition-1;
 NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGSTimingDuration);
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
-$HiGGSTimingFile~Export~$HiGGSTimingData;
+(*need to be careful not to spend all our time printing *)
+TryTiming[];
 temp];
+ForceTiming[]:=Module[{},$HiGGSTimingFile~Export~$HiGGSTimingData;];
 DistributeDefinitions@TimeWrapper;
 
 

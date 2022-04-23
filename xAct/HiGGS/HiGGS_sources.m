@@ -4008,13 +4008,15 @@ HiGGSPrint["fin"];
 PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequence}]];
 *)
 
-PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{},
+PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
 DefTheory["Import"->theory];
 (*Export to the usual PB function*)
-PoissonBracket[f1x,f2x,options]];
+result=PoissonBracket[f1x,f2x,options];
+ForceTiming[];
+result];
 
 DistributeDefinitions[PoissonBracketParallel];
 
@@ -4592,7 +4594,7 @@ InertMakeRule[Replacement_List]:=MakeRule[Replacement,MetricOn->All,ContractMetr
 
 
 (* ::Input::Initialization:: *)
-RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4600,7 +4602,9 @@ DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("RiemannBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+result=ToExpression@("RiemannBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
+ForceTiming[];
+result];
 ClearBuild[];
 
 
@@ -4663,7 +4667,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4671,7 +4675,9 @@ DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("TorsionBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+result=ToExpression@("TorsionBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
+ForceTiming[];
+result];
 ClearBuild[];
 
 
@@ -4737,7 +4743,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4745,7 +4751,9 @@ DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("SurfaceBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+result=ToExpression@("SurfaceBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
+ForceTiming[];
+result];
 ClearBuild[];
 
 
@@ -4832,7 +4840,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert},
+MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4840,7 +4848,9 @@ DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
 EH0Inert=ToString@EH0;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("MeasureBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]")];
+result=ToExpression@("MeasureBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
+ForceTiming[];
+result];
 ClearBuild[];
 
 
@@ -4903,7 +4913,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert},
+ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
 (*Define the theory*)
@@ -4913,7 +4923,9 @@ EH0Inert=ToString@EH0;
 PhiFreeIndexListNormalInert=ToString@PhiFreeIndexListNormal;
 iiInert=ToString@ii;
 PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
-ToExpression@("ConstraintBracket["<>PsiInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>","<>PsiFreeIndexListNormalInert<>"]")];
+result=ToExpression@("ConstraintBracket["<>PsiInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>","<>PsiFreeIndexListNormalInert<>"]");
+ForceTiming[];
+result];
 ClearBuild[];
 
 
@@ -5221,6 +5233,7 @@ HiGGSPrint[InputSystem];
 HiGGSPrint[OptionValue["Export"]];
 HiGGSPrint[OptionValue["Import"]];
 *)
+ForceTiming[];
 ];
 DistributeDefinitions@DefTheoryParallel;
 
@@ -5309,6 +5322,7 @@ Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:"
 MapThread[PrintBracket,{$PPM,$PPMlabels},2];
 Print/@$Velocities;
 ];
+If[OptionValue["Velocities"],Print["vels"]];
 ];
 
 
@@ -5326,21 +5340,21 @@ DefinedTheories=WaitAll[Jobs];
 $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"})~DumpSave~{$TheoryNames};
 
-(*
+(**)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
 PPMArguments];
 Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
 Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]]])&,Jobs,{3}];
+Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]],"Surficial"->True])&,Jobs,{3}];
 Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5348,7 +5362,7 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-*)
+(**)
 (**)
 (**)
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
