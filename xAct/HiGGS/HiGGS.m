@@ -156,7 +156,8 @@ NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGST
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (*need to be careful not to spend all our time printing *)
-TryTiming[];
+(*TryTiming[];*)
+$HiGGSTimingFile~Export~$HiGGSTimingData;
 temp];
 ForceTiming[]:=Module[{},$HiGGSTimingFile~Export~$HiGGSTimingData;];
 DistributeDefinitions@TimeWrapper;
