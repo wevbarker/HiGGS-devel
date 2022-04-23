@@ -5300,7 +5300,7 @@ IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#)
 $PPMlabels=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
-nontrivial=!(x=={0,0,0}||y==0);
+nontrivial=!(x=={0,0,0}||x=={0,0,0,0}||y==0);
 If[nontrivial,
 HiGGSPrint[y," \[TildeTilde] ",x],,
 HiGGSPrint[y," \[TildeTilde] ",x]];
@@ -5355,7 +5355,7 @@ PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
-IndIfConstraints={IndIfConstraints[[6]]};
+(*IndIfConstraints={IndIfConstraints[[6]]};*)
 (*Evaluate lots of Velocities*)
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
