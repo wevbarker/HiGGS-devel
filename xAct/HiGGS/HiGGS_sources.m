@@ -5286,12 +5286,16 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-ViewTheory[theory_String]:=Module[{IndIfConstraints,ii,jj},
+Options[ViewTheory]={"Literature"->True,"PPM"->True,"Velocities"->True};
+ViewTheory[theory_String,OptionsPattern[]]:=Module[{IndIfConstraints,ii,jj},
 DefTheory["Import"->theory];
+If[OptionValue["Literature"],
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
+];
 (*
 Print@MatrixForm@$PPM;
 *)
+If[OptionValue["PPM"],
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 $PPMlabels=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
@@ -5303,8 +5307,8 @@ HiGGSPrint[y," \[TildeTilde] ",x]];
 ];
 Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
 MapThread[PrintBracket,{$PPM,$PPMlabels},2];
-
 Print/@$Velocities;
+];
 ];
 
 
@@ -5321,8 +5325,10 @@ DefinedTheories=WaitAll[Jobs];
 (*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
 $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"})~DumpSave~{$TheoryNames};
+
+(*
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
@@ -5334,7 +5340,7 @@ Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5342,11 +5348,11 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-
+*)
 (**)
-(*
+(**)
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 IndIfConstraints={IndIfConstraints[[6]]};
@@ -5356,7 +5362,7 @@ Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
 Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 $Velocities=Velocity;
 HiGGSPrint["$Velocities value is ",$Velocities];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5364,7 +5370,7 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
-*)
+(**)
 ];
 ClearBuild[];
 
