@@ -53,7 +53,7 @@ rougher_number_of_functions = 5
 
 output_files = os.listdir("bin/stats")
 sample_files = os.listdir("bin/samples")
-filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 ]
+filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 and 'kernel' in filename]
 
 new_files = list(set(filled_files)-set(sample_files))
 old_files = list(set(filled_files)-set(new_files))
@@ -72,8 +72,10 @@ for filename in kernel_files:
     print(filename)
     print(np.shape(pd.read_csv('bin/samples/'+filename).to_numpy()))
     for m in filename:
-        if m.isdigit():
+        if m.isdigit() and 'kernel' in filename:
             ticklabels.append(m)
+
+print(ticklabels)
 
 kernel_files = [x for _,x in sorted(zip(list(map(int,ticklabels)),kernel_files))]
 ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
