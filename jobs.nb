@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28488,        577]
-NotebookOptionsPosition[     27720,        555]
-NotebookOutlinePosition[     28194,        573]
-CellTagsIndexPosition[     28151,        570]
+NotebookDataLength[     28539,        578]
+NotebookOptionsPosition[     27771,        556]
+NotebookOutlinePosition[     28245,        574]
+CellTagsIndexPosition[     28202,        571]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -242,7 +242,7 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"JobsBatch", "~", "StudyTheory", "~", 
      RowBox[{"(", 
-      RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ")"}]}], ";"}], 
+      RowBox[{"\"\<Import\>\"", "\[Rule]", "True"}], ")"}]}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -384,7 +384,8 @@ Cell[BoxData[
    3.8592159531931887`*^9, 3.859215953986575*^9}, {3.859617013949033*^9, 
    3.8596170867982264`*^9}, {3.85970281276968*^9, 3.85970281470197*^9}, {
    3.859742016589634*^9, 3.8597420216673613`*^9}, {3.8597835044637527`*^9, 
-   3.8597835199839087`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.8597835199839087`*^9}, {3.8597911002859983`*^9, 
+   3.859791100724319*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
 Cell[BoxData[
@@ -575,9 +576,9 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 98, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 35, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 19684, 355, 665, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 19735, 356, 665, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[20670, 389, 7034, 163, 154, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
+Cell[20721, 390, 7034, 163, 154, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
 }, Open  ]]
 }
 ]
