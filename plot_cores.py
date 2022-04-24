@@ -253,7 +253,7 @@ title_string = r"This report was generated on \texttt{"+socket.gethostname()+"}"
 print(title_string)
 
 sp.set_ylabel(r"\texttt{\${}KernelID}")
-sp.set_xlabel(r"Walltime/s")
+sp.set_xlabel(r"Wallclock time/s")
 sp.set_title(title_string)
 plt.suptitle(r"\texttt{HiGGS} for HPC")
 
