@@ -15,7 +15,7 @@ import socket
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
-#================ plot params and setup ======================
+#================ plot params and TeX setup ======================
 
 mpl.use('Agg')
 #   tex params
@@ -30,17 +30,24 @@ plt.rc('text.latex', preamble=r'\usepackage{stix}\usepackage{amsmath}\usepackage
 
 mpl.rcParams['font.family'] = 'serif'
 
+
+# we want the width always to be a single or double column, we can get this from revtex using
+# \uselengthunit{in}\printlength{\linewidth} ---> 3.40457
+# \uselengthunit{in}\printlength{\textwidth} ---> 7.05826
+# mpl like to use inches
+
+onecol = 3.40457
+twocol = 7.05826
+
 #=============== tuning params ==========================
 
-barwidth = 0.9
-size=10000   #   how many slices
-time_array = np.linspace(0,1,size)    #   plotting space
-
-maxtheory = 10 #    how many total theory columns did we allow?
-
+cols = twocol                           #   onecol or twocol
+barwidth = 0.9                          #   main thickness of bar
+size = 10000                            #   how many slices
+time_array = np.linspace(0,1,size)      #   plotting space
+maxtheory = 10                          #    how many total theory columns did we allow?
 rough_number_of_functions = 6
 rougher_number_of_functions = 5
-
 
 #=============== files =================================
 
@@ -135,7 +142,7 @@ print(np.shape(newcolors))
 
 #====================== bar width and chart geometry ==============
 
-width = 4.
+width = cols
 height = (1.*number_of_kernels+2.)*0.5
 
 propunit = (height*total_time/width)/number_of_kernels
