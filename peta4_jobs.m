@@ -20,9 +20,9 @@
 
 
 (* ::Input::Initialization:: *)
-(*
-$Path~AppendTo~NotebookDirectory[];
-*)
+(*Remove artificial single-core machine problem*)
+Unprotect[$ProcessorCount];
+$ProcessorCount=10;
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
