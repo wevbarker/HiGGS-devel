@@ -204,6 +204,18 @@ $Widetext=False;
 
 
 (* ::Input::Initialization:: *)
+HiGGSOutput@"bianchi";
+HiGGSEcho@(quantity=epsilonG[r,m,l,n](CD[-l][B[k,-m]B[q,-n]R[i,j,-k,-q]]+A[i,-x,-l]B[k,-m]B[q,-n]R[x,j,-k,-q]+A[j,-x,-l]B[k,-m]B[q,-n]R[i,x,-k,-q])//ToBasicForm;);
+HiGGSPrint@%;
+
+
+(* ::Input::Initialization:: *)
+HiGGSOutput@"bianchi_1";
+HiGGSEcho@(quantity=((1/2)(#+CommuteCovDs[#,CD,{l,m}])//ToCanonical)&@quantity;);
+HiGGSPrint@%;
+
+
+(* ::Input::Initialization:: *)
 HiGGSOutput@"highlevel_2";
 HiGGSEcho@(quantity=ToNesterForm[quantity,"ToShell"->False]);
 HiGGSPrint@%;
@@ -220,6 +232,22 @@ $Widetext=False;
 (* ::Input::Initialization:: *)
 HiGGSOutput@"highlevel_4";
 HiGGSEcho@(ToNesterForm[PPara[-y,v]H[-v,w]G3[-w,m]PPara[-q,b1]H[-b1,a1]G3[-a1,l](G3[-l,n]V[-k]CD[-m][B[k,-n]]+G3[-l,n]B[j,-n]A[k,-j,-m]V[-k])/.PADMActivate,"ToShell"->False]);
+HiGGSPrint@%;
+
+
+(* ::Input::Initialization:: *)
+HiGGSOutput@"bianchi_2";
+HiGGSEcho@(quantity=Eps[u,v,w]H[-u,m]H[-v,l]H[-w,n](CD[-m][B[i,-l]B[j,-n]T[s,-i,-j]]+A[s,-x,-m]B[i,-l]B[j,-n]T[x,-i,-j])/.PADMActivate//ToBasicForm;);
+HiGGSPrint@%;
+
+
+(* ::Input::Initialization:: *)
+HiGGSEcho@(quantity=(V[-r](1/2)(#+CommuteCovDs[#,CD,{j,l}])//ToCanonical)&@quantity;);
+HiGGSPrint@%;
+
+
+(* ::Input::Initialization:: *)
+HiGGSEcho@(quantity=ToNesterForm[quantity,"ToShell"->False];);
 HiGGSPrint@%;
 
 

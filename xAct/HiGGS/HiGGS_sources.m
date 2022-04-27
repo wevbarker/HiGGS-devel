@@ -78,7 +78,8 @@ ClearBuild[];
 dimension=4;                                  (* dimension of space-time manifold *)
 DefManifold[M4,dimension,IndexRange[{a,z}]];
 AddIndices[TangentM4,{a1,b1,c1,d1,e1,f1,g1,h1,i1,j1,k1,l1,n1,m1,o1,p1,q1,r1,s1,t1,u1,v1,w1,x1,y1,z1}];
-Quiet[DefMetric[-1,G[-a,-c],CD,{",","\[PartialD]"},PrintAs->"\[Gamma]",FlatMetric->True,SymCovDQ->True]];
+Quiet@DefMetric[-1,G[-a,-c],CD,{",","\[PartialD]"},PrintAs->"\[Gamma]",FlatMetric->True,SymCovDQ->True];
+(*DefMetric[-1,G[-a,-c],CD,{",","\[PartialD]"},PrintAs\[Rule]"\[Gamma]",SymCovDQ\[Rule]True,FlatMetric\[Rule]True];*)
 ClearBuild[];
 
 
@@ -121,7 +122,7 @@ $ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutp
 If[{res}~AllTrue~StringQ,
 WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n|\n"<>"      "<>StringJoin@{res}<>"\n|"<>"\n"];,*)
-res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->False,Alignment->Right];
+res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->True,Alignment->Right];
 Print@res;
 FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
 WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];

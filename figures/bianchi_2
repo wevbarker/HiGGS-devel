@@ -1,0 +1,16 @@
+In[]:= quantity = ToBasicForm[Eps[u, v, w]*H[-u, m]*H[-v, l]*H[-w, n]*(CD[-m][B[i, -l]*B[j, -n]*T[s, -i, -j]] + A[s, -x, -m]*B[i, -l]*B[j, -n]*T[x, -i, -j]) /. PADMActivate]; 
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/bianchi_227-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= quantity = ToNesterForm[quantity, "ToShell" -> False]; 
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/bianchi_229-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
