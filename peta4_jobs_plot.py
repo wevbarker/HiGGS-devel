@@ -45,7 +45,7 @@ twocol = 7.05826
 
 #=============== tuning params ==========================
 
-cols = twocol                           #   onecol or twocol
+cols = onecol                           #   onecol or twocol
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space
@@ -270,6 +270,6 @@ sp.set_title(title_string)
 plt.suptitle(r"\texttt{HiGGS} for HPC")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4_jobs_trace.png',dpi = 300)
+plt.savefig('peta4_jobs_trace.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
 
 sys.exit()
