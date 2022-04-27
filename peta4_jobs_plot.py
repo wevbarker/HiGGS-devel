@@ -11,7 +11,8 @@ import os
 from os.path import exists
 import shutil
 import subprocess
-import socket 
+import socket
+import re   #   for extracting kernel numbers from strings
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
@@ -74,9 +75,13 @@ ticklabels=[]
 for filename in kernel_files:
     print(filename)
     print(np.shape(pd.read_csv('bin/samples/'+filename).to_numpy()))
-    for m in filename:
-        if m.isdigit() and 'kernel' in filename:
-            ticklabels.append(m)
+    if 'kernel' in filename:
+        list_digits = re.findall(r'\d+', filename)
+        ticklabels.append(list_digits[0])
+
+#    for m in filename:
+#        if m.isdigit() and 'kernel' in filename:
+#            ticklabels.append(m)
 
 print(ticklabels)
 
@@ -100,6 +105,8 @@ def start_cols(array):
 
 #   to find the start and end of the whole survey
 start_times = np.concatenate(list(map(start_cols,all_kernel_data)))
+print(start_times)
+print(str in start_times)
 start_times = start_times.astype('float')
 s_times = np.copy(start_times)
 start_times[start_times == 0.] = 'nan'
