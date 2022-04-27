@@ -1473,7 +1473,7 @@ tmp=BetPerpPara1p PT1p[-n,-m,e,f]PTPerp[-e,-f,a,v,w]- PB1p[-q,-r,x,z]PBPara[-x,-
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1p][[1]]];
 tmp=BetPerpPara1m  PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB1m[-q,z]PBPerp[-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1m][[1]]];
-tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate . PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
+tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara2p][[1]]];
 tmp=AlpPerpPara0p PR0p[e,f,g,h]Antisymmetrize[PRPara[-e,-f,-g,-h,a,b,v,w],{a,b}]- PA0p[x,z]PAPerp[-x,-z,i,j,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],AlpPerpPara0p][[1]]];
@@ -5365,9 +5365,9 @@ HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 (**)
 (**)
-(**)
+(*
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 (*IndIfConstraints={IndIfConstraints[[6]]};*)
@@ -5377,7 +5377,7 @@ Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
 Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $Velocities=Velocity;
 HiGGSPrint["$Velocities value is ",$Velocities];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
@@ -5385,7 +5385,7 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
-(**)
+*)
 ];
 ClearBuild[];
 
