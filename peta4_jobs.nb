@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     22963,        457]
-NotebookOptionsPosition[     22247,        436]
-NotebookOutlinePosition[     22669,        453]
-CellTagsIndexPosition[     22626,        450]
+NotebookDataLength[     23008,        457]
+NotebookOptionsPosition[     22292,        436]
+NotebookOutlinePosition[     22714,        453]
+CellTagsIndexPosition[     22671,        450]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -42,7 +42,7 @@ Cell[BoxData[
     RowBox[{"Unprotect", "[", "$ProcessorCount", "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"$ProcessorCount", "=", "20"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"$ProcessorCount", "=", "30"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"Load", " ", "HiGGS"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -262,8 +262,8 @@ Cell[BoxData[
    3.8597835199839087`*^9}, {3.8597911002859983`*^9, 3.859791100724319*^9}, 
    3.860040870391541*^9, 3.860044767183367*^9, {3.8600501884979267`*^9, 
    3.860050190728992*^9}, {3.860050222695786*^9, 3.860050240304451*^9}, {
-   3.860051976431161*^9, 
-   3.860051976698119*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.860051976431161*^9, 3.860051976698119*^9}, {3.86007842241339*^9, 
+   3.860078422741357*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
 Cell[BoxData[
@@ -455,9 +455,9 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 14012, 234, 418, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 14057, 234, 418, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[14998, 268, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
+Cell[15043, 268, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
 }, Open  ]]
 }
 ]

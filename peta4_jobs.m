@@ -22,7 +22,7 @@
 (* ::Input::Initialization:: *)
 (*Remove artificial single-core machine problem*)
 Unprotect[$ProcessorCount];
-$ProcessorCount=20;
+$ProcessorCount=30;
 (*Load HiGGS*)
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
