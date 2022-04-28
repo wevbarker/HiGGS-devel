@@ -132,7 +132,7 @@ TimeWrapper~SetAttributes~HoldAll;
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
 (*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
-$PauseSeconds=1;
+$PauseSeconds=6;
 $LastMultiple=0;
 TryTiming[]:=Module[{PrintDamper},
 PrintDamper=AbsoluteTime[];
@@ -160,7 +160,8 @@ $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (**)TryTiming[];(**)
 (*$HiGGSTimingFile~Export~$HiGGSTimingData;*)
 temp];
-ForceTiming[]:=Module[{},$HiGGSTimingFile~Export~$HiGGSTimingData;];
+(*ForceTiming[]:=Module[{},$HiGGSTimingFile~Export~$HiGGSTimingData;];*)
+ForceTiming[]:=Module[{},1+1;];
 DistributeDefinitions@TimeWrapper;
 
 
