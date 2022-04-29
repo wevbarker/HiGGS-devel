@@ -1,14 +1,14 @@
 Changed directory to /home/wb263/HiGGS_development.
 
-JobID: 59782192
+JobID: 59785037
 ======
-Time: Fri 29 Apr 17:38:54 BST 2022
-Running on master node: cpu-e-800
+Time: Fri 29 Apr 18:17:26 BST 2022
+Running on master node: cpu-e-812
 Current directory: /home/wb263/HiGGS_development
 
 Nodes allocated:
 ================
-cpu-e-800
+cpu-e-812
 
 numtasks=, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=30)
 
@@ -84,6 +84,7 @@ Package xAct`xCoba`  version 0.8.6, {2021, 2, 28}
 CopyRight (C) 2005-2021, David Yllanes and Jose M. Martin-Garcia, under the\
  
 >   General Public License.
+			(...replotting...)
 ------------------------------------------------------------
 Package xAct`SymManipulator`  version 0.9.5, {2021, 9, 14}
 CopyRight (C) 2011-2021, Thomas Bäckdahl, under the General Public License.
@@ -92,7 +93,6 @@ Package xAct`xTras`  version 1.4.2, {2014, 10, 30}
 CopyRight (C) 2012-2014, Teake Nutma, under the General Public License.
 ** Variable $CovDFormat changed from Postfix to Prefix
 ** Option CurvatureRelations of DefCovD changed from False to True
-			(...replotting...)
 ------------------------------------------------------------
 These packages come with ABSOLUTELY NO WARRANTY; for details type\
  
@@ -437,7 +437,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor DpJ[-z]. 
 ** DefTensor: Defining tensor DpV[-z, -a]. 
 ** DefTensor: Defining tensor Q[-a, -b]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor CDAInert[-a, -b, -c, -d]. 
 ** DefTensor: Defining tensor PThreePara[-a, -b, -c, d, e, f]. 
 ** DefTensor: Defining tensor PThreePerp[-a, -b, -c, d, e, f]. 
@@ -513,6 +512,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PR1m[-n, e, f, g]. 
 ** DefTensor: Defining tensor PR2p[-n, -m, e, f, g, h]. 
 ** DefTensor: Defining tensor PR2m[-n, -m, -o, e, f, g]. 
+			(...replotting...)
 ** DefConstantSymbol: Defining constant symbol cParaA0p. 
 ** DefConstantSymbol: Defining constant symbol cParaA0m. 
 ** DefConstantSymbol: Defining constant symbol cParaA1p. 
@@ -581,7 +581,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PPerpR2p[-n, -m, e, f]. 
 ** DefTensor: Defining tensor PPerpR2m[-n, -m, -o, e, f, g]. 
 ** DefTensor: Defining tensor PhiB0p[]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor PhiB1p[-a, -b]. 
 ** DefTensor: Defining tensor PhiB1m[-a]. 
 ** DefTensor: Defining tensor PhiB2p[-a, -b]. 
@@ -618,6 +617,7 @@ Syntax::sntufn: Unknown unicode longname Application.
  
 >    have been declared as UpValues for ChiA2m.
 ** DefTensor: Defining tensor ChiPerpB0p[]. 
+ ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor ChiPerpB1p[-a, -b]. 
 ** DefTensor: Defining tensor ChiPerpB1m[-a]. 
 ** DefTensor: Defining tensor ChiPerpB2p[-a, -b]. 
@@ -662,7 +662,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor UA0p[]. 
 ** DefTensor: Defining tensor UA0m[]. 
 ** DefTensor: Defining tensor UA1p[-a, -b]. 
-			(...replotting...)
 ** DefTensor: Defining tensor UA1m[-a]. 
 ** DefTensor: Defining tensor UA2p[-a, -b]. 
 ** DefTensor: Defining tensor UA2m[-a, -b, -c]. 
@@ -673,7 +672,6 @@ Syntax::sntufn: Unknown unicode longname Application.
    Rules {1, 2} have been declared as DownValues for UB2p.
    Rules {1, 2} have been declared as DownValues for UA2p.
 ** DefTensor: Defining tensor PiPB0p[]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor PiPB1p[-a, -b]. 
 ** DefTensor: Defining tensor PiPB1m[-a]. 
 ** DefTensor: Defining tensor PiPB2p[-a, -b]. 
@@ -684,6 +682,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PiPA2p[-a, -b]. 
 ** DefTensor: Defining tensor PiPA2m[-a, -b, -c]. 
    Rules {1, 2, 3, 4} have been declared as DownValues for PiPA2m.
+			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for PiPA2m.
@@ -726,17 +725,16 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor RLambdaP2p[-a, -b]. 
 ** DefTensor: Defining tensor RLambdaP2m[-a, -b, -c]. 
    Rules {1, 2, 3, 4} have been declared as DownValues for RLambdaP2m.
-			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for RLambdaP2m.
    Rules {1, 2} have been declared as DownValues for RLambdaP2p.
    Rules {1, 2, 3, 4} have been declared as DownValues for TLambdaP2m.
+			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for TLambdaP2m.
 ** DefTensor: Defining tensor TPerp0p[]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor TPerp1p[-a, -b]. 
 ** DefTensor: Defining tensor TPerp1m[-a]. 
 ** DefTensor: Defining tensor TPerp2p[-a, -b]. 
@@ -772,3 +770,144 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor RPPerp[-a, -b, -c]. 
 ** DefTensor: Defining tensor RLambdaPPara[-a, -b, -c, -d]. 
 ** DefTensor: Defining tensor RLambdaPPerp[-a, -b, -c]. 
+** DefTensor: Defining tensor RPerpPerp[-a, -b]. 
+** DefTensor: Defining tensor RPerpPara[-a, -b, -c]. 
+** DefTensor: Defining tensor RLambdaPerpPerp[-a, -b]. 
+** DefTensor: Defining tensor RLambdaPerpPara[-a, -b, -c]. 
+ ** ToNewCanonical...
+ ** ToNewCanonical...
+** DefTensor: Defining tensor ChiParaB0m[]. 
+** DefTensor: Defining tensor ChiParaB1p[-a, -b]. 
+** DefTensor: Defining tensor ChiParaB1m[-a]. 
+** DefTensor: Defining tensor ChiParaB2m[-a, -b, -c]. 
+** DefTensor: Defining tensor ChiParaA0p[]. 
+** DefTensor: Defining tensor ChiParaA0m[]. 
+** DefTensor: Defining tensor ChiParaA1p[-a, -b]. 
+** DefTensor: Defining tensor ChiParaA1m[-a]. 
+** DefTensor: Defining tensor ChiParaA2p[-a, -b]. 
+** DefTensor: Defining tensor ChiParaA2m[-a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for ChiParaB2m.
+			(...replotting...)
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for ChiParaB2m.
+   Rules {1, 2, 3, 4} have been declared as DownValues for ChiParaA2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for ChiParaA2m.
+** DefTensor: Defining tensor DPiPB0p[-z]. 
+** DefTensor: Defining tensor DPiPB1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DPiPB1m[-z, -a]. 
+** DefTensor: Defining tensor DPiPB2p[-z, -a, -b]. 
+   Rules {1, 2} have been declared as DownValues for DPiPB2p.
+** DefTensor: Defining tensor DPiPA0p[-z]. 
+** DefTensor: Defining tensor DPiPA0m[-z]. 
+** DefTensor: Defining tensor DPiPA1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DPiPA1m[-z, -a]. 
+** DefTensor: Defining tensor DPiPA2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DPiPA2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DPiPA2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DPiPA2m.
+   Rules {1, 2} have been declared as DownValues for DPiPA2p.
+** DefTensor: Defining tensor DpPiPB0p[-z]. 
+** DefTensor: Defining tensor DpPiPB1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpPiPB1m[-z, -a]. 
+** DefTensor: Defining tensor DpPiPB2p[-z, -a, -b]. 
+   Rules {1, 2} have been declared as DownValues for DpPiPB2p.
+** DefTensor: Defining tensor DpPiPA0p[-z]. 
+** DefTensor: Defining tensor DpPiPA0m[-z]. 
+** DefTensor: Defining tensor DpPiPA1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpPiPA1m[-z, -a]. 
+** DefTensor: Defining tensor DpPiPA2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpPiPA2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DpPiPA2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DpPiPA2m.
+   Rules {1, 2} have been declared as DownValues for DpPiPA2p.
+** DefTensor: Defining tensor DUB0p[-z]. 
+** DefTensor: Defining tensor DUB1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DUB1m[-z, -a]. 
+** DefTensor: Defining tensor DUB2p[-z, -a, -b]. 
+   Rules {1, 2} have been declared as DownValues for DUB2p.
+** DefTensor: Defining tensor DUA0p[-z]. 
+** DefTensor: Defining tensor DUA0m[-z]. 
+** DefTensor: Defining tensor DUA1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DUA1m[-z, -a]. 
+** DefTensor: Defining tensor DUA2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DUA2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DUA2m.
+			(...replotting...)
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DUA2m.
+   Rules {1, 2} have been declared as DownValues for DUA2p.
+** DefTensor: Defining tensor DpUB0p[-z]. 
+** DefTensor: Defining tensor DpUB1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpUB1m[-z, -a]. 
+** DefTensor: Defining tensor DpUB2p[-z, -a, -b]. 
+   Rules {1, 2} have been declared as DownValues for DpUB2p.
+** DefTensor: Defining tensor DpUA0p[-z]. 
+** DefTensor: Defining tensor DpUA0m[-z]. 
+** DefTensor: Defining tensor DpUA1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpUA1m[-z, -a]. 
+** DefTensor: Defining tensor DpUA2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DpUA2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DpUA2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DpUA2m.
+   Rules {1, 2} have been declared as DownValues for DpUA2p.
+** DefTensor: Defining tensor DTP0m[-z]. 
+** DefTensor: Defining tensor DTP1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DTP1m[-z, -a]. 
+** DefTensor: Defining tensor DTP2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DTP2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DTP2m.
+** DefTensor: Defining tensor DRP0p[-z]. 
+** DefTensor: Defining tensor DRP0m[-z]. 
+** DefTensor: Defining tensor DRP1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRP1m[-z, -a]. 
+** DefTensor: Defining tensor DRP2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRP2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DRP2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DRP2m.
+   Rules {1, 2} have been declared as DownValues for DRP2p.
+** DefTensor: Defining tensor DTLambdaP0m[-z]. 
+** DefTensor: Defining tensor DTLambdaP1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DTLambdaP1m[-z, -a]. 
+** DefTensor: Defining tensor DTLambdaP2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DTLambdaP2m.
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DTLambdaP2m.
+** DefTensor: Defining tensor DRLambdaP0p[-z]. 
+** DefTensor: Defining tensor DRLambdaP0m[-z]. 
+** DefTensor: Defining tensor DRLambdaP1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRLambdaP1m[-z, -a]. 
+** DefTensor: Defining tensor DRLambdaP2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRLambdaP2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DRLambdaP2m.
+			(...replotting...)
+   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
+ 
+>    have been declared as UpValues for DRLambdaP2m.
+   Rules {1, 2} have been declared as DownValues for DRLambdaP2p.
+** DefTensor: Defining tensor DTLambdaPerp0p[-z]. 
+** DefTensor: Defining tensor DTLambdaPerp1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DTLambdaPerp1m[-z, -a]. 
+** DefTensor: Defining tensor DTLambdaPerp2p[-z, -a, -b]. 
+   Rules {1, 2} have been declared as DownValues for DTLambdaPerp2p.
+** DefTensor: Defining tensor DRLambdaPerp0p[-z]. 
+** DefTensor: Defining tensor DRLambdaPerp0m[-z]. 
+** DefTensor: Defining tensor DRLambdaPerp1p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRLambdaPerp1m[-z, -a]. 
+** DefTensor: Defining tensor DRLambdaPerp2p[-z, -a, -b]. 
+** DefTensor: Defining tensor DRLambdaPerp2m[-z, -a, -b, -c]. 
+   Rules {1, 2, 3, 4} have been declared as DownValues for DRLambdaPerp2m.
