@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    259305,       6379]
-NotebookOptionsPosition[    250524,       6243]
-NotebookOutlinePosition[    250862,       6258]
-CellTagsIndexPosition[    250819,       6255]
+NotebookDataLength[    266095,       6494]
+NotebookOptionsPosition[    257017,       6355]
+NotebookOutlinePosition[    257355,       6370]
+CellTagsIndexPosition[    257312,       6367]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -49,31 +49,173 @@ Cell[BoxData[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<tfile.csv\>\""}], 
     "}"}]}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Put", "[", 
-   RowBox[{"\"\<f\>\"", ",", "FileN"}], "]"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"$WorkingDirectory", "=", 
+   RowBox[{"NotebookDirectory", "[", "]"}]}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"PutAppend", "[", 
-   RowBox[{
+  RowBox[{"$StartTimeFilename", "=", 
+   RowBox[{"FileNameJoin", "@", 
     RowBox[{"{", 
-     RowBox[{"1", ",", "3.2", ",", "5"}], "}"}], ",", "FileN"}], "]"}], 
+     RowBox[{
+     "$WorkingDirectory", ",", "\"\<bin/stats/\>\"", ",", 
+      "\"\<job_start_time.mx\>\""}], "}"}]}]}], 
   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$HiGGSStartTime", "=", 
+   RowBox[{"AbsoluteTime", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"!", 
+     RowBox[{"FileExistsQ", "@", "$StartTimeFilename"}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"$StartTimeFilename", "~", "DumpSave", "~", 
+     RowBox[{"{", "$HiGGSStartTime", "}"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ToExpression", "@", 
+      RowBox[{"(", 
+       RowBox[{"\"\<<<\>\"", "<>", "$StartTimeFilename", "<>", "\"\<;\>\""}], 
+       ")"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"HiGGSAbsoluteTime", "[", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{"AbsoluteTime", "[", "]"}], "-", "$HiGGSStartTime"}]}], 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"str", "=", 
+   RowBox[{"OpenAppend", "[", "FileN", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"WriteString", "[", 
+     RowBox[{"str", ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"ToString", "[", 
+          RowBox[{"#", ",", "OutputForm"}], "]"}], "~", "StringTake", "~", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", 
+           RowBox[{"-", "2"}]}], "}"}]}], ")"}], "<>", "\"\<\\n\>\""}]}], 
+     "]"}], "&"}], "/@", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"HiGGSAbsoluteTime", "[", "]"}], ",", "2.5", ",", "2"}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"HiGGSAbsoluteTime", "[", "]"}], ",", "290", ",", "273"}], 
+      "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"str", ",", "\"\<\\n\>\""}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Close", "[", "str", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "@", 
+  RowBox[{"(", 
+   RowBox[{"ToString", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2.5", ",", "2"}], "}"}], ",", "InputForm"}], "]"}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{"StringTake", "[", 
+  RowBox[{
+   RowBox[{"ToString", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2.5", ",", "2"}], "}"}], ",", "InputForm"}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Quit", "[", "]"}], ";"}]}], "Input",
  CellChangeTimes->{{3.8600906033749237`*^9, 3.860090660712973*^9}, {
-  3.860090744792363*^9, 3.860090756671748*^9}, {3.860091050215344*^9, 
-  3.860091061853032*^9}, {3.86009109232661*^9, 3.8600911042846127`*^9}, {
-  3.860091160462442*^9, 
-  3.8600912321633368`*^9}},ExpressionUUID->"4bb729ec-242c-4b1f-9042-\
+   3.860090744792363*^9, 3.860090756671748*^9}, {3.860091050215344*^9, 
+   3.860091061853032*^9}, {3.86009109232661*^9, 3.8600911042846127`*^9}, {
+   3.860091160462442*^9, 3.8600912321633368`*^9}, {3.860091498841626*^9, 
+   3.860091506376622*^9}, {3.860091539084999*^9, 3.860091567039356*^9}, {
+   3.860091620594602*^9, 3.8600916794946947`*^9}, {3.860091717856305*^9, 
+   3.860091720190854*^9}, {3.860091967236974*^9, 3.8600919847800493`*^9}, {
+   3.860092016138474*^9, 3.860092029315112*^9}, {3.860092063838706*^9, 
+   3.86009211335439*^9}, {3.8600921507516212`*^9, 3.8600921638784323`*^9}, {
+   3.860092207715259*^9, 3.8600922281374807`*^9}, {3.860092303331098*^9, 
+   3.860092363071847*^9}, {3.860092420159957*^9, 3.860092466527053*^9}, {
+   3.86009265539168*^9, 3.860092657508946*^9}, {3.860219552932272*^9, 
+   3.860219553033037*^9}, 3.860219704921074*^9, {3.860219790136531*^9, 
+   3.8602197902872543`*^9}, {3.8602198418865128`*^9, 
+   3.8602198456970577`*^9}, {3.8602198835899878`*^9, 3.86021988977452*^9}, {
+   3.860220589559414*^9, 3.860220648845934*^9}, {3.860220698597761*^9, 
+   3.860220748181394*^9}, {3.860220937339583*^9, 3.860220940539577*^9}, {
+   3.860220986250499*^9, 3.860221172707797*^9}, {3.860221227977612*^9, 
+   3.8602212631522703`*^9}, {3.860223807688506*^9, 3.86022383155862*^9}, 
+   3.860223912258575*^9, {3.860224714048292*^9, 3.8602247235253773`*^9}, {
+   3.8602247823570147`*^9, 3.8602247960051193`*^9}, {3.860225340954452*^9, 
+   3.860225348103841*^9}},ExpressionUUID->"4bb729ec-242c-4b1f-9042-\
 78542ed51d1a"],
 
 Cell[BoxData["\<\"/home/williamb/Documents/physics/projects/HiGGS_development/\
-tfile\"\>"], "Output",
+tfile.csv\"\>"], "Output",
  CellChangeTimes->{
   3.8600907595335693`*^9, 3.860090815197456*^9, 3.8600910220024643`*^9, {
    3.860091054229809*^9, 3.860091064784892*^9}, {3.86009109563017*^9, 
-   3.860091108114933*^9}, {3.860091164911537*^9, 3.860091194083543*^9}, 
-   3.860091224876072*^9},
- CellLabel->"Out[1]=",ExpressionUUID->"62cf79db-9375-4628-8591-239d1fa9aa59"]
+   3.860091108114933*^9}, {3.860091164911537*^9, 3.860091194083543*^9}, {
+   3.860091224876072*^9, 3.860091237902637*^9}, 3.860091570897711*^9, 
+   3.860091683314145*^9, 3.860091990844537*^9, 3.860092031885638*^9, {
+   3.860092073326552*^9, 3.8600921160148087`*^9}, {3.860092154018577*^9, 
+   3.8600921665833817`*^9}, {3.860092217902842*^9, 3.860092230861145*^9}, {
+   3.860092321757379*^9, 3.860092349872958*^9}, {3.8600924411493263`*^9, 
+   3.860092469354475*^9}, 3.860092660138349*^9, 3.860219480260064*^9, 
+   3.860219555827647*^9, {3.860221109574151*^9, 3.860221181455357*^9}, 
+   3.860221265775461*^9, 3.860223836229603*^9, 3.8602252807554398`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"0334ff00-67c1-4b5b-b789-0c13a82300ad"],
+
+Cell[BoxData["\<\"/home/williamb/Documents/physics/projects/HiGGS_development/\
+\"\>"], "Output",
+ CellChangeTimes->{
+  3.8600907595335693`*^9, 3.860090815197456*^9, 3.8600910220024643`*^9, {
+   3.860091054229809*^9, 3.860091064784892*^9}, {3.86009109563017*^9, 
+   3.860091108114933*^9}, {3.860091164911537*^9, 3.860091194083543*^9}, {
+   3.860091224876072*^9, 3.860091237902637*^9}, 3.860091570897711*^9, 
+   3.860091683314145*^9, 3.860091990844537*^9, 3.860092031885638*^9, {
+   3.860092073326552*^9, 3.8600921160148087`*^9}, {3.860092154018577*^9, 
+   3.8600921665833817`*^9}, {3.860092217902842*^9, 3.860092230861145*^9}, {
+   3.860092321757379*^9, 3.860092349872958*^9}, {3.8600924411493263`*^9, 
+   3.860092469354475*^9}, 3.860092660138349*^9, 3.860219480260064*^9, 
+   3.860219555827647*^9, {3.860221109574151*^9, 3.860221181455357*^9}, 
+   3.860221265775461*^9, 3.860223836229603*^9, 3.860225280787698*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"ab8df5b6-a107-477c-9b8f-66ea8eee1f02"],
+
+Cell[BoxData["\<\"{1, 2.5, 2}\"\>"], "Print",
+ CellChangeTimes->{{3.8602211751809072`*^9, 3.860221181484231*^9}, 
+   3.8602212658666277`*^9, 3.86022383628732*^9, 3.860225280817204*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"74629e6b-d165-4073-beb7-4329d9a314e6"],
+
+Cell[BoxData["\<\"1, 2.5, 2\"\>"], "Output",
+ CellChangeTimes->{
+  3.8600907595335693`*^9, 3.860090815197456*^9, 3.8600910220024643`*^9, {
+   3.860091054229809*^9, 3.860091064784892*^9}, {3.86009109563017*^9, 
+   3.860091108114933*^9}, {3.860091164911537*^9, 3.860091194083543*^9}, {
+   3.860091224876072*^9, 3.860091237902637*^9}, 3.860091570897711*^9, 
+   3.860091683314145*^9, 3.860091990844537*^9, 3.860092031885638*^9, {
+   3.860092073326552*^9, 3.8600921160148087`*^9}, {3.860092154018577*^9, 
+   3.8600921665833817`*^9}, {3.860092217902842*^9, 3.860092230861145*^9}, {
+   3.860092321757379*^9, 3.860092349872958*^9}, {3.8600924411493263`*^9, 
+   3.860092469354475*^9}, 3.860092660138349*^9, 3.860219480260064*^9, 
+   3.860219555827647*^9, {3.860221109574151*^9, 3.860221181455357*^9}, 
+   3.860221265775461*^9, 3.860223836229603*^9, 3.860225280818461*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"356215a3-8883-4901-85ab-b7be4b9eac09"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4302,8 +4444,8 @@ Cell[BoxData[
    3.858227363513349*^9}, 3.85822744515954*^9, {3.858227513329217*^9, 
    3.858227518745653*^9}, 3.858227588855846*^9, 3.858228116783711*^9, 
    3.858228164207839*^9, 3.858228244600911*^9, 3.8582282750275*^9, 
-   3.85823950642251*^9, 3.858412507426421*^9},
- CellLabel->"Out[1]=",ExpressionUUID->"528b7256-9984-4fc5-be0f-fe31db083d0b"],
+   3.85823950642251*^9, 3.858412507426421*^9, 3.860091682800939*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"c4932ca0-bc2f-4d78-b0fa-84193d1f5eff"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4314,8 +4456,8 @@ Cell[BoxData[
    3.858227363513349*^9}, 3.85822744515954*^9, {3.858227513329217*^9, 
    3.858227518745653*^9}, 3.858227588855846*^9, 3.858228116783711*^9, 
    3.858228164207839*^9, 3.858228244600911*^9, 3.8582282750275*^9, 
-   3.85823950642251*^9, 3.8584125074281397`*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"6cec5782-6ccd-4ff7-bed8-82c9ec37e95e"],
+   3.85823950642251*^9, 3.858412507426421*^9, 3.860091682802251*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"3a2fd444-ac0c-4627-a4a1-f39c4867475f"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4365,8 +4507,8 @@ Cell[BoxData[
    3.858227363513349*^9}, 3.85822744515954*^9, {3.858227513329217*^9, 
    3.858227518745653*^9}, 3.858227588855846*^9, 3.858228116783711*^9, 
    3.858228164207839*^9, 3.858228244600911*^9, 3.8582282750275*^9, 
-   3.85823950642251*^9, 3.858412507429542*^9},
- CellLabel->"Out[3]=",ExpressionUUID->"d59a6a5b-f230-4c51-8cb3-79e425a0e5c6"],
+   3.85823950642251*^9, 3.858412507426421*^9, 3.860091682803583*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"81aa593b-2cde-490a-aeaf-72fbe0ded3b2"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4375,8 +4517,7 @@ Cell[BoxData[
     RowBox[{
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4385,10 +4526,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{1, 1}, 1], 
                 Part[{1, 1}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2345]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1237]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4415,7 +4555,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{1, 1}, 1], 
                     Part[{1, 1}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2345]], {
+                   Parallel`Concurrency`Private`state$1237]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4445,7 +4585,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{1, 1}, 1], 
               Part[{1, 1}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2345]], 
+             Parallel`Concurrency`Private`state$1237]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4455,11 +4595,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{1, 1}, 1], 
         Part[{1, 1}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2345]], ",", 
+       Parallel`Concurrency`Private`state$1237]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4468,10 +4607,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{1, 4}, 1], 
                 Part[{1, 4}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2346]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1238]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4498,7 +4636,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{1, 4}, 1], 
                     Part[{1, 4}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2346]], {
+                   Parallel`Concurrency`Private`state$1238]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4528,7 +4666,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{1, 4}, 1], 
               Part[{1, 4}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2346]], 
+             Parallel`Concurrency`Private`state$1238]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4538,11 +4676,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{1, 4}, 1], 
         Part[{1, 4}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2346]], ",", 
+       Parallel`Concurrency`Private`state$1238]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4551,10 +4688,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{1, 9}, 1], 
                 Part[{1, 9}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2347]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1239]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4581,7 +4717,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{1, 9}, 1], 
                     Part[{1, 9}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2347]], {
+                   Parallel`Concurrency`Private`state$1239]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4611,7 +4747,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{1, 9}, 1], 
               Part[{1, 9}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2347]], 
+             Parallel`Concurrency`Private`state$1239]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4621,11 +4757,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{1, 9}, 1], 
         Part[{1, 9}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2347]], ",", 
+       Parallel`Concurrency`Private`state$1239]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4634,10 +4769,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{1, 16}, 1], 
                 Part[{1, 16}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2348]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1240]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4664,7 +4798,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{1, 16}, 1], 
                     Part[{1, 16}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2348]], {
+                   Parallel`Concurrency`Private`state$1240]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4694,7 +4828,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{1, 16}, 1], 
               Part[{1, 16}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2348]], 
+             Parallel`Concurrency`Private`state$1240]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4704,11 +4838,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{1, 16}, 1], 
         Part[{1, 16}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2348]], ",", 
+       Parallel`Concurrency`Private`state$1240]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4717,10 +4850,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{1, 25}, 1], 
                 Part[{1, 25}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2349]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1241]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4747,7 +4879,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{1, 25}, 1], 
                     Part[{1, 25}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2349]], {
+                   Parallel`Concurrency`Private`state$1241]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4777,7 +4909,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{1, 25}, 1], 
               Part[{1, 25}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2349]], 
+             Parallel`Concurrency`Private`state$1241]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4787,13 +4919,12 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{1, 25}, 1], 
         Part[{1, 25}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2349]]}], "}"}], ",", 
+       Parallel`Concurrency`Private`state$1241]]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4802,10 +4933,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{2, 4}, 1], 
                 Part[{2, 4}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2350]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1242]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4832,7 +4962,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{2, 4}, 1], 
                     Part[{2, 4}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2350]], {
+                   Parallel`Concurrency`Private`state$1242]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4862,7 +4992,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{2, 4}, 1], 
               Part[{2, 4}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2350]], 
+             Parallel`Concurrency`Private`state$1242]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4872,11 +5002,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{2, 4}, 1], 
         Part[{2, 4}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2350]], ",", 
+       Parallel`Concurrency`Private`state$1242]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4885,10 +5014,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{2, 9}, 1], 
                 Part[{2, 9}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2351]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1243]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4915,7 +5043,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{2, 9}, 1], 
                     Part[{2, 9}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2351]], {
+                   Parallel`Concurrency`Private`state$1243]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -4945,7 +5073,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{2, 9}, 1], 
               Part[{2, 9}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2351]], 
+             Parallel`Concurrency`Private`state$1243]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -4955,11 +5083,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{2, 9}, 1], 
         Part[{2, 9}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2351]], ",", 
+       Parallel`Concurrency`Private`state$1243]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -4968,10 +5095,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{2, 16}, 1], 
                 Part[{2, 16}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2352]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1244]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -4998,7 +5124,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{2, 16}, 1], 
                     Part[{2, 16}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2352]], {
+                   Parallel`Concurrency`Private`state$1244]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5028,7 +5154,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{2, 16}, 1], 
               Part[{2, 16}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2352]], 
+             Parallel`Concurrency`Private`state$1244]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5038,11 +5164,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{2, 16}, 1], 
         Part[{2, 16}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2352]], ",", 
+       Parallel`Concurrency`Private`state$1244]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5051,10 +5176,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{2, 25}, 1], 
                 Part[{2, 25}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2353]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1245]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5081,7 +5205,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{2, 25}, 1], 
                     Part[{2, 25}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2353]], {
+                   Parallel`Concurrency`Private`state$1245]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5111,7 +5235,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{2, 25}, 1], 
               Part[{2, 25}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2353]], 
+             Parallel`Concurrency`Private`state$1245]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5121,13 +5245,12 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{2, 25}, 1], 
         Part[{2, 25}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2353]]}], "}"}], ",", 
+       Parallel`Concurrency`Private`state$1245]]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5136,10 +5259,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{3, 9}, 1], 
                 Part[{3, 9}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2354]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1246]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5166,7 +5288,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{3, 9}, 1], 
                     Part[{3, 9}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2354]], {
+                   Parallel`Concurrency`Private`state$1246]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5196,7 +5318,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{3, 9}, 1], 
               Part[{3, 9}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2354]], 
+             Parallel`Concurrency`Private`state$1246]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5206,11 +5328,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{3, 9}, 1], 
         Part[{3, 9}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2354]], ",", 
+       Parallel`Concurrency`Private`state$1246]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5219,10 +5340,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{3, 16}, 1], 
                 Part[{3, 16}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2355]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1247]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5249,7 +5369,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{3, 16}, 1], 
                     Part[{3, 16}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2355]], {
+                   Parallel`Concurrency`Private`state$1247]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5279,7 +5399,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{3, 16}, 1], 
               Part[{3, 16}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2355]], 
+             Parallel`Concurrency`Private`state$1247]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5289,11 +5409,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{3, 16}, 1], 
         Part[{3, 16}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2355]], ",", 
+       Parallel`Concurrency`Private`state$1247]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5302,10 +5421,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{3, 25}, 1], 
                 Part[{3, 25}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2356]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1248]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5332,7 +5450,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{3, 25}, 1], 
                     Part[{3, 25}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2356]], {
+                   Parallel`Concurrency`Private`state$1248]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5362,7 +5480,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{3, 25}, 1], 
               Part[{3, 25}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2356]], 
+             Parallel`Concurrency`Private`state$1248]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5372,13 +5490,12 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{3, 25}, 1], 
         Part[{3, 25}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2356]]}], "}"}], ",", 
+       Parallel`Concurrency`Private`state$1248]]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5387,10 +5504,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{4, 16}, 1], 
                 Part[{4, 16}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2357]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1249]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5417,7 +5533,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{4, 16}, 1], 
                     Part[{4, 16}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2357]], {
+                   Parallel`Concurrency`Private`state$1249]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5447,7 +5563,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{4, 16}, 1], 
               Part[{4, 16}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2357]], 
+             Parallel`Concurrency`Private`state$1249]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5457,11 +5573,10 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{4, 16}, 1], 
         Part[{4, 16}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2357]], ",", 
+       Parallel`Concurrency`Private`state$1249]], ",", 
      InterpretationBox[
       FrameBox[
-       TemplateBox[{
-         DynamicBox[
+       TemplateBox[{DynamicBox[
           ToBoxes[
            Parallel`Concurrency`Private`evalIcon[
             ReplaceAll[
@@ -5470,10 +5585,9 @@ Cell[BoxData[
                $CellContext`PoissonBracketParallel[
                 Part[{4, 25}, 1], 
                 Part[{4, 25}, 2], "Parallel" -> True], Null, 
-               Parallel`Concurrency`Private`state$2358]], 
-             Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-         TemplateBox[{6}, "Spacer1"], 
-         TagBox[
+               Parallel`Concurrency`Private`state$1250]], 
+             Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+         TemplateBox[{6}, "Spacer1"],TagBox[
           GridBox[{{
              PaneBox[
               StyleBox[
@@ -5500,7 +5614,7 @@ Cell[BoxData[
                    $CellContext`PoissonBracketParallel[
                     Part[{4, 25}, 1], 
                     Part[{4, 25}, 2], "Parallel" -> True], Null, 
-                   Parallel`Concurrency`Private`state$2358]], {
+                   Parallel`Concurrency`Private`state$1250]], {
                  Parallel`Developer`created -> "new", 
                   Parallel`Developer`queued -> "ready for processing", 
                   Parallel`Developer`running[
@@ -5530,7 +5644,7 @@ Cell[BoxData[
              $CellContext`PoissonBracketParallel[
               Part[{4, 25}, 1], 
               Part[{4, 25}, 2], "Parallel" -> True], Null, 
-             Parallel`Concurrency`Private`state$2358]], 
+             Parallel`Concurrency`Private`state$1250]], 
            Parallel`Concurrency`Private`stateTrans]]],
        FrameMargins->5,
        FrameStyle->GrayLevel[0.5],
@@ -5540,12 +5654,11 @@ Cell[BoxData[
        $CellContext`PoissonBracketParallel[
         Part[{4, 25}, 1], 
         Part[{4, 25}, 2], "Parallel" -> True], Null, 
-       Parallel`Concurrency`Private`state$2358]]}], "}"}], ",", 
+       Parallel`Concurrency`Private`state$1250]]}], "}"}], ",", 
    RowBox[{"{", 
     InterpretationBox[
      FrameBox[
-      TemplateBox[{
-        DynamicBox[
+      TemplateBox[{DynamicBox[
          ToBoxes[
           Parallel`Concurrency`Private`evalIcon[
            ReplaceAll[
@@ -5554,10 +5667,9 @@ Cell[BoxData[
               $CellContext`PoissonBracketParallel[
                Part[{5, 25}, 1], 
                Part[{5, 25}, 2], "Parallel" -> True], Null, 
-              Parallel`Concurrency`Private`state$2359]], 
-            Parallel`Concurrency`Private`stateTrans]], StandardForm]], 
-        TemplateBox[{6}, "Spacer1"], 
-        TagBox[
+              Parallel`Concurrency`Private`state$1251]], 
+            Parallel`Concurrency`Private`stateTrans]], StandardForm]],
+        TemplateBox[{6}, "Spacer1"],TagBox[
          GridBox[{{
             PaneBox[
              StyleBox[
@@ -5584,7 +5696,7 @@ Cell[BoxData[
                   $CellContext`PoissonBracketParallel[
                    Part[{5, 25}, 1], 
                    Part[{5, 25}, 2], "Parallel" -> True], Null, 
-                  Parallel`Concurrency`Private`state$2359]], {
+                  Parallel`Concurrency`Private`state$1251]], {
                 Parallel`Developer`created -> "new", 
                  Parallel`Developer`queued -> "ready for processing", 
                  Parallel`Developer`running[
@@ -5614,7 +5726,7 @@ Cell[BoxData[
             $CellContext`PoissonBracketParallel[
              Part[{5, 25}, 1], 
              Part[{5, 25}, 2], "Parallel" -> True], Null, 
-            Parallel`Concurrency`Private`state$2359]], 
+            Parallel`Concurrency`Private`state$1251]], 
           Parallel`Concurrency`Private`stateTrans]]],
       FrameMargins->5,
       FrameStyle->GrayLevel[0.5],
@@ -5624,15 +5736,15 @@ Cell[BoxData[
       $CellContext`PoissonBracketParallel[
        Part[{5, 25}, 1], 
        Part[{5, 25}, 2], "Parallel" -> True], Null, 
-      Parallel`Concurrency`Private`state$2359]], "}"}]}], "}"}]], "Output",
+      Parallel`Concurrency`Private`state$1251]], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{{3.8581824966534653`*^9, 3.8581825037516117`*^9}, {
    3.858182558457671*^9, 3.858182578074346*^9}, {3.8581826586053*^9, 
    3.858182712988881*^9}, 3.858227271480508*^9, {3.858227344658575*^9, 
    3.858227363513349*^9}, 3.85822744515954*^9, {3.858227513329217*^9, 
    3.858227518745653*^9}, 3.858227588855846*^9, 3.858228116783711*^9, 
    3.858228164207839*^9, 3.858228244600911*^9, 3.8582282750275*^9, 
-   3.85823950642251*^9, 3.85841250751388*^9},
- CellLabel->"Out[4]=",ExpressionUUID->"f3c10a41-0ed5-43a5-887f-b34c455dda90"]
+   3.85823950642251*^9, 3.858412507426421*^9, 3.860091683100115*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"67799a31-1f95-4ec8-8a7c-c5d246274041"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6263,122 +6375,125 @@ Cell[733, 27, 226, 5, 36, "Text",ExpressionUUID->"ec71a572-a366-4a9c-8516-d6f2dd
 Cell[CellGroupData[{
 Cell[984, 36, 154, 3, 68, "Section",ExpressionUUID->"3eaa174f-4b88-4841-847d-eab15b3563a2"],
 Cell[CellGroupData[{
-Cell[1163, 43, 882, 23, 101, "Input",ExpressionUUID->"4bb729ec-242c-4b1f-9042-78542ed51d1a"],
-Cell[2048, 68, 444, 7, 35, "Output",ExpressionUUID->"62cf79db-9375-4628-8591-239d1fa9aa59"]
+Cell[1163, 43, 4825, 120, 492, "Input",ExpressionUUID->"4bb729ec-242c-4b1f-9042-78542ed51d1a"],
+Cell[5991, 165, 1004, 14, 35, "Output",ExpressionUUID->"0334ff00-67c1-4b5b-b789-0c13a82300ad"],
+Cell[6998, 181, 993, 14, 35, "Output",ExpressionUUID->"ab8df5b6-a107-477c-9b8f-66ea8eee1f02"],
+Cell[7994, 197, 288, 5, 25, "Print",ExpressionUUID->"74629e6b-d165-4073-beb7-4329d9a314e6"],
+Cell[8285, 204, 941, 13, 35, "Output",ExpressionUUID->"356215a3-8883-4901-85ab-b7be4b9eac09"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2529, 80, 4046, 99, 285, "Input",ExpressionUUID->"2e46a1ea-2f63-4298-b4a5-a2daf68a4b87"],
-Cell[6578, 181, 1135, 18, 35, "Output",ExpressionUUID->"819c2c5c-79f0-4087-9156-29b4e86e0df8"],
-Cell[7716, 201, 1135, 18, 35, "Output",ExpressionUUID->"b9ec759b-b506-4357-8c25-d9a22a7b7dd9"],
-Cell[8854, 221, 2212, 50, 40, "Output",ExpressionUUID->"539ac943-f5f4-4635-a1e8-f6be0a9e5634"],
-Cell[11069, 273, 2004, 41, 35, "Output",ExpressionUUID->"7c3c308e-12c1-4771-a082-a8eb304d4a4d"]
+Cell[9263, 222, 4046, 99, 285, "Input",ExpressionUUID->"2e46a1ea-2f63-4298-b4a5-a2daf68a4b87"],
+Cell[13312, 323, 1135, 18, 35, "Output",ExpressionUUID->"819c2c5c-79f0-4087-9156-29b4e86e0df8"],
+Cell[14450, 343, 1135, 18, 35, "Output",ExpressionUUID->"b9ec759b-b506-4357-8c25-d9a22a7b7dd9"],
+Cell[15588, 363, 2212, 50, 40, "Output",ExpressionUUID->"539ac943-f5f4-4635-a1e8-f6be0a9e5634"],
+Cell[17803, 415, 2004, 41, 35, "Output",ExpressionUUID->"7c3c308e-12c1-4771-a082-a8eb304d4a4d"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13110, 319, 535, 13, 78, "Input",ExpressionUUID->"61a771c1-787e-411d-936b-203194540287"],
-Cell[13648, 334, 243, 4, 35, "Output",ExpressionUUID->"58962c04-701f-4d78-b637-0e4bcb92999d"],
-Cell[13894, 340, 186, 2, 35, "Output",ExpressionUUID->"f285b59b-738b-49d0-bce9-6b032c02854b"],
-Cell[14083, 344, 173, 2, 35, "Output",ExpressionUUID->"6235a505-c8ad-4b0c-baf3-3dd3cf4902fc"]
+Cell[19844, 461, 535, 13, 78, "Input",ExpressionUUID->"61a771c1-787e-411d-936b-203194540287"],
+Cell[20382, 476, 243, 4, 35, "Output",ExpressionUUID->"58962c04-701f-4d78-b637-0e4bcb92999d"],
+Cell[20628, 482, 186, 2, 35, "Output",ExpressionUUID->"f285b59b-738b-49d0-bce9-6b032c02854b"],
+Cell[20817, 486, 173, 2, 35, "Output",ExpressionUUID->"6235a505-c8ad-4b0c-baf3-3dd3cf4902fc"]
 }, Open  ]],
-Cell[14271, 349, 3460, 96, 546, "Input",ExpressionUUID->"8350dbcf-aaa6-4a0c-8da4-f0a16f55ce99"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[17768, 450, 151, 3, 68, "Section",ExpressionUUID->"0bd4bbc6-036d-4780-b248-36d87439134e"],
-Cell[CellGroupData[{
-Cell[17944, 457, 676, 16, 51, "Input",ExpressionUUID->"47b1db8f-53e2-4dd3-a036-1848ba95657f"],
-Cell[18623, 475, 251, 4, 33, "Output",ExpressionUUID->"b7b3d189-626a-46fc-80a3-4cb9998593cb"],
-Cell[18877, 481, 249, 4, 33, "Output",ExpressionUUID->"cc95e25b-278c-4f1c-9549-b2df2046f6f1"]
+Cell[21005, 491, 3460, 96, 546, "Input",ExpressionUUID->"8350dbcf-aaa6-4a0c-8da4-f0a16f55ce99"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19163, 490, 9177, 218, 896, "Input",ExpressionUUID->"39ae84e4-fcff-46a6-893d-4de111b922c9"],
-Cell[28343, 710, 491, 10, 33, "Output",ExpressionUUID->"c8626987-8bd3-4d7e-b587-332f7836b6d7"],
-Cell[28837, 722, 2278, 33, 96, "Output",ExpressionUUID->"5d1e2c5c-e605-42a4-b07b-e2b4aed3d9c7"],
-Cell[31118, 757, 382, 9, 33, "Output",ExpressionUUID->"b4d5453b-0c87-47d1-aaf5-96eb2e3c3086"],
-Cell[31503, 768, 5231, 87, 302, "Output",ExpressionUUID->"be41df0f-caa6-409a-89ad-a71b4f33b842"]
+Cell[24502, 592, 151, 3, 68, "Section",ExpressionUUID->"0bd4bbc6-036d-4780-b248-36d87439134e"],
+Cell[CellGroupData[{
+Cell[24678, 599, 676, 16, 51, "Input",ExpressionUUID->"47b1db8f-53e2-4dd3-a036-1848ba95657f"],
+Cell[25357, 617, 251, 4, 33, "Output",ExpressionUUID->"b7b3d189-626a-46fc-80a3-4cb9998593cb"],
+Cell[25611, 623, 249, 4, 33, "Output",ExpressionUUID->"cc95e25b-278c-4f1c-9549-b2df2046f6f1"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36771, 860, 865, 20, 154, "Input",ExpressionUUID->"e24f7c27-d2c6-4753-b32c-ebebd2dd39fe"],
-Cell[37639, 882, 248, 4, 33, "Output",ExpressionUUID->"1b7363db-d1f5-477d-b626-3b8f64cc18da"],
-Cell[37890, 888, 265, 5, 33, "Output",ExpressionUUID->"5970d578-4c86-4a42-875e-643522ea1130"],
-Cell[38158, 895, 248, 4, 33, "Output",ExpressionUUID->"b7d262e0-c7b1-4d71-b04a-0747924d9cf6"]
+Cell[25897, 632, 9177, 218, 896, "Input",ExpressionUUID->"39ae84e4-fcff-46a6-893d-4de111b922c9"],
+Cell[35077, 852, 491, 10, 33, "Output",ExpressionUUID->"c8626987-8bd3-4d7e-b587-332f7836b6d7"],
+Cell[35571, 864, 2278, 33, 96, "Output",ExpressionUUID->"5d1e2c5c-e605-42a4-b07b-e2b4aed3d9c7"],
+Cell[37852, 899, 382, 9, 33, "Output",ExpressionUUID->"b4d5453b-0c87-47d1-aaf5-96eb2e3c3086"],
+Cell[38237, 910, 5231, 87, 302, "Output",ExpressionUUID->"be41df0f-caa6-409a-89ad-a71b4f33b842"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[38443, 904, 7515, 182, 463, "Input",ExpressionUUID->"17d3562e-6139-4ed8-8c9d-4d13f1efa358"],
-Cell[45961, 1088, 27470, 851, 172, "Output",ExpressionUUID->"d1565a4d-1be1-4726-ac77-827ea609e88e"],
-Cell[73434, 1941, 34848, 978, 88, "Output",ExpressionUUID->"afd8fb09-0d80-42bb-97b6-35d4971d4cfd"],
-Cell[108285, 2921, 711, 18, 33, "Output",ExpressionUUID->"b665bf75-daa0-426d-a536-fd439e9a37be"],
-Cell[108999, 2941, 605, 14, 82, "Output",ExpressionUUID->"498d7d46-c381-4655-8358-52f3886a422c"]
-}, Open  ]],
-Cell[109619, 2958, 1487, 30, 195, "Input",ExpressionUUID->"22387832-209d-4e53-b7b4-01cc16274ad9"],
-Cell[CellGroupData[{
-Cell[111131, 2992, 851, 27, 71, "Input",ExpressionUUID->"abd5d5ed-81e9-44df-afe1-df94d257f74a"],
-Cell[111985, 3021, 504, 16, 33, "Output",ExpressionUUID->"30086ea2-5f0b-4a0a-889e-bc08a4bc4aef"],
-Cell[112492, 3039, 643, 20, 33, "Output",ExpressionUUID->"eb0ab95f-e726-4094-bb2f-841b9b660306"]
+Cell[43505, 1002, 865, 20, 154, "Input",ExpressionUUID->"e24f7c27-d2c6-4753-b32c-ebebd2dd39fe"],
+Cell[44373, 1024, 248, 4, 33, "Output",ExpressionUUID->"1b7363db-d1f5-477d-b626-3b8f64cc18da"],
+Cell[44624, 1030, 265, 5, 33, "Output",ExpressionUUID->"5970d578-4c86-4a42-875e-643522ea1130"],
+Cell[44892, 1037, 248, 4, 33, "Output",ExpressionUUID->"b7d262e0-c7b1-4d71-b04a-0747924d9cf6"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[113172, 3064, 447, 13, 29, "Input",ExpressionUUID->"fbd71f25-31eb-4377-818e-9025d63fac73"],
-Cell[113622, 3079, 328, 8, 33, "Output",ExpressionUUID->"8b7a460b-7fa9-4ee0-a594-4ed14978becb"]
+Cell[45177, 1046, 7515, 182, 463, "Input",ExpressionUUID->"17d3562e-6139-4ed8-8c9d-4d13f1efa358"],
+Cell[52695, 1230, 27470, 851, 172, "Output",ExpressionUUID->"d1565a4d-1be1-4726-ac77-827ea609e88e"],
+Cell[80168, 2083, 34848, 978, 88, "Output",ExpressionUUID->"afd8fb09-0d80-42bb-97b6-35d4971d4cfd"],
+Cell[115019, 3063, 711, 18, 33, "Output",ExpressionUUID->"b665bf75-daa0-426d-a536-fd439e9a37be"],
+Cell[115733, 3083, 605, 14, 82, "Output",ExpressionUUID->"498d7d46-c381-4655-8358-52f3886a422c"]
 }, Open  ]],
-Cell[113965, 3090, 12268, 285, 917, "Input",ExpressionUUID->"d2f8736e-15cd-48ab-b9f3-f0e6d7416196"],
-Cell[126236, 3377, 1444, 35, 193, "Input",ExpressionUUID->"12f543a0-da97-4660-8be5-b0b101fcba44"],
-Cell[127683, 3414, 168, 3, 31, "Input",ExpressionUUID->"c2219d2a-23be-4c80-a7f7-cde6afb66466"],
-Cell[127854, 3419, 1502, 41, 216, "Input",ExpressionUUID->"b95f3f80-a9bc-4536-ad24-b3677571dc90"],
+Cell[116353, 3100, 1487, 30, 195, "Input",ExpressionUUID->"22387832-209d-4e53-b7b4-01cc16274ad9"],
 Cell[CellGroupData[{
-Cell[129381, 3464, 5894, 120, 676, "Input",ExpressionUUID->"e96a43c1-0d2c-4fe4-bc1e-35a1424d6081"],
-Cell[135278, 3586, 828, 11, 35, "Output",ExpressionUUID->"b92a153f-5c48-46b0-b007-140529e3cce3"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[136143, 3602, 603, 15, 78, "Input",ExpressionUUID->"b99e69cc-abf0-4e25-b7a6-37728a65b634"],
-Cell[136749, 3619, 264, 6, 35, "Output",ExpressionUUID->"2850058e-7afe-44c7-b8e9-fc2bed68b898"],
-Cell[137016, 3627, 14332, 325, 68, "Output",ExpressionUUID->"6e9ebd02-4763-43e2-b113-737a19106aeb"]
+Cell[117865, 3134, 851, 27, 71, "Input",ExpressionUUID->"abd5d5ed-81e9-44df-afe1-df94d257f74a"],
+Cell[118719, 3163, 504, 16, 33, "Output",ExpressionUUID->"30086ea2-5f0b-4a0a-889e-bc08a4bc4aef"],
+Cell[119226, 3181, 643, 20, 33, "Output",ExpressionUUID->"eb0ab95f-e726-4094-bb2f-841b9b660306"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[151385, 3957, 689, 20, 78, "Input",ExpressionUUID->"4464427b-9763-4af8-bc18-65ab9ced642b"],
-Cell[152077, 3979, 405, 11, 35, "Output",ExpressionUUID->"81ce6517-76ba-4344-9d59-39de812966f3"]
+Cell[119906, 3206, 447, 13, 29, "Input",ExpressionUUID->"fbd71f25-31eb-4377-818e-9025d63fac73"],
+Cell[120356, 3221, 328, 8, 33, "Output",ExpressionUUID->"8b7a460b-7fa9-4ee0-a594-4ed14978becb"]
+}, Open  ]],
+Cell[120699, 3232, 12268, 285, 917, "Input",ExpressionUUID->"d2f8736e-15cd-48ab-b9f3-f0e6d7416196"],
+Cell[132970, 3519, 1444, 35, 193, "Input",ExpressionUUID->"12f543a0-da97-4660-8be5-b0b101fcba44"],
+Cell[134417, 3556, 168, 3, 31, "Input",ExpressionUUID->"c2219d2a-23be-4c80-a7f7-cde6afb66466"],
+Cell[134588, 3561, 1502, 41, 216, "Input",ExpressionUUID->"b95f3f80-a9bc-4536-ad24-b3677571dc90"],
+Cell[CellGroupData[{
+Cell[136115, 3606, 5894, 120, 676, "Input",ExpressionUUID->"e96a43c1-0d2c-4fe4-bc1e-35a1424d6081"],
+Cell[142012, 3728, 828, 11, 35, "Output",ExpressionUUID->"b92a153f-5c48-46b0-b007-140529e3cce3"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[152519, 3995, 2726, 75, 331, "Input",ExpressionUUID->"3769f49b-c925-4940-91ef-f520f0bc4100"],
-Cell[155248, 4072, 454, 10, 25, "Message",ExpressionUUID->"9137d5a1-1c1a-4951-8599-cee580fc5b30"]
-}, Open  ]],
-Cell[155717, 4085, 129, 3, 31, "Input",ExpressionUUID->"3870b6b9-eef1-43fb-b97a-4a84c7e2c038"],
-Cell[CellGroupData[{
-Cell[155871, 4092, 598, 15, 55, "Input",ExpressionUUID->"0bdeb3a7-8bd2-4994-8c10-3eedf7059aa9"],
-Cell[156472, 4109, 284, 6, 35, "Output",ExpressionUUID->"0dd16c3b-b126-42b1-93f3-d83ddc977f17"],
-Cell[156759, 4117, 1169, 29, 59, "Output",ExpressionUUID->"7cd28941-bffe-449f-8da2-9c4f92d0a50f"]
+Cell[142877, 3744, 603, 15, 78, "Input",ExpressionUUID->"b99e69cc-abf0-4e25-b7a6-37728a65b634"],
+Cell[143483, 3761, 264, 6, 35, "Output",ExpressionUUID->"2850058e-7afe-44c7-b8e9-fc2bed68b898"],
+Cell[143750, 3769, 14332, 325, 68, "Output",ExpressionUUID->"6e9ebd02-4763-43e2-b113-737a19106aeb"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[157965, 4151, 8479, 142, 163, "Input",ExpressionUUID->"346852ba-247c-48d7-8f82-5395a50f0660",
+Cell[158119, 4099, 689, 20, 78, "Input",ExpressionUUID->"4464427b-9763-4af8-bc18-65ab9ced642b"],
+Cell[158811, 4121, 405, 11, 35, "Output",ExpressionUUID->"81ce6517-76ba-4344-9d59-39de812966f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[159253, 4137, 2726, 75, 331, "Input",ExpressionUUID->"3769f49b-c925-4940-91ef-f520f0bc4100"],
+Cell[161982, 4214, 454, 10, 25, "Message",ExpressionUUID->"9137d5a1-1c1a-4951-8599-cee580fc5b30"]
+}, Open  ]],
+Cell[162451, 4227, 129, 3, 31, "Input",ExpressionUUID->"3870b6b9-eef1-43fb-b97a-4a84c7e2c038"],
+Cell[CellGroupData[{
+Cell[162605, 4234, 598, 15, 55, "Input",ExpressionUUID->"0bdeb3a7-8bd2-4994-8c10-3eedf7059aa9"],
+Cell[163206, 4251, 284, 6, 35, "Output",ExpressionUUID->"0dd16c3b-b126-42b1-93f3-d83ddc977f17"],
+Cell[163493, 4259, 1169, 29, 59, "Output",ExpressionUUID->"7cd28941-bffe-449f-8da2-9c4f92d0a50f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[164699, 4293, 8479, 142, 163, "Input",ExpressionUUID->"346852ba-247c-48d7-8f82-5395a50f0660",
  InitializationCell->True],
-Cell[166447, 4295, 651, 10, 35, "Output",ExpressionUUID->"528b7256-9984-4fc5-be0f-fe31db083d0b"],
-Cell[167101, 4307, 655, 10, 35, "Output",ExpressionUUID->"6cec5782-6ccd-4ff7-bed8-82c9ec37e95e"],
-Cell[167759, 4319, 1733, 49, 35, "Output",ExpressionUUID->"d59a6a5b-f230-4c51-8cb3-79e425a0e5c6"],
-Cell[169495, 4370, 56065, 1264, 192, "Output",ExpressionUUID->"f3c10a41-0ed5-43a5-887f-b34c455dda90"]
+Cell[173181, 4437, 673, 10, 35, "Output",ExpressionUUID->"c4932ca0-bc2f-4d78-b0fa-84193d1f5eff"],
+Cell[173857, 4449, 675, 10, 35, "Output",ExpressionUUID->"3a2fd444-ac0c-4627-a4a1-f39c4867475f"],
+Cell[174535, 4461, 1755, 49, 35, "Output",ExpressionUUID->"81aa593b-2cde-490a-aeaf-72fbe0ded3b2"],
+Cell[176293, 4512, 55760, 1234, 192, "Output",ExpressionUUID->"67799a31-1f95-4ec8-8a7c-c5d246274041"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[225597, 5639, 5599, 139, 768, "Input",ExpressionUUID->"d0bb3ab1-d7bd-4366-9a74-8eb9a1841882"],
-Cell[231199, 5780, 414, 6, 35, "Output",ExpressionUUID->"8c8997a2-7fa5-4910-a9c7-2fd411a1de7f"],
-Cell[231616, 5788, 609, 13, 25, "Message",ExpressionUUID->"653a9ce5-33a2-4d63-8892-70b2a4ab2ba5"],
-Cell[232228, 5803, 381, 5, 37, "Output",ExpressionUUID->"add75f82-ba29-44d2-bf67-39d005518487"],
-Cell[232612, 5810, 363, 6, 35, "Output",ExpressionUUID->"ccbe5799-7e21-4089-a951-d8b3444f7e1c"],
-Cell[232978, 5818, 432, 8, 35, "Output",ExpressionUUID->"b5392fe6-9431-4641-a6bd-8bfc46ec0bbb"],
-Cell[233413, 5828, 417, 7, 35, "Output",ExpressionUUID->"f05059c0-a72c-418c-8333-c5792f26669d"],
-Cell[233833, 5837, 427, 6, 35, "Output",ExpressionUUID->"3b1158c4-6db7-4211-b18e-62b1e82825bf"],
-Cell[234263, 5845, 517, 10, 35, "Output",ExpressionUUID->"40b50dc7-493d-4f28-9967-0f5a2c9c90fa"],
-Cell[234783, 5857, 362, 5, 35, "Output",ExpressionUUID->"02fcf672-13dd-4b34-a088-28a247b859db"],
-Cell[235148, 5864, 365, 6, 35, "Output",ExpressionUUID->"de99a413-fa7f-435e-b9a7-d609b70b0e0b"]
+Cell[232090, 5751, 5599, 139, 768, "Input",ExpressionUUID->"d0bb3ab1-d7bd-4366-9a74-8eb9a1841882"],
+Cell[237692, 5892, 414, 6, 35, "Output",ExpressionUUID->"8c8997a2-7fa5-4910-a9c7-2fd411a1de7f"],
+Cell[238109, 5900, 609, 13, 25, "Message",ExpressionUUID->"653a9ce5-33a2-4d63-8892-70b2a4ab2ba5"],
+Cell[238721, 5915, 381, 5, 37, "Output",ExpressionUUID->"add75f82-ba29-44d2-bf67-39d005518487"],
+Cell[239105, 5922, 363, 6, 35, "Output",ExpressionUUID->"ccbe5799-7e21-4089-a951-d8b3444f7e1c"],
+Cell[239471, 5930, 432, 8, 35, "Output",ExpressionUUID->"b5392fe6-9431-4641-a6bd-8bfc46ec0bbb"],
+Cell[239906, 5940, 417, 7, 35, "Output",ExpressionUUID->"f05059c0-a72c-418c-8333-c5792f26669d"],
+Cell[240326, 5949, 427, 6, 35, "Output",ExpressionUUID->"3b1158c4-6db7-4211-b18e-62b1e82825bf"],
+Cell[240756, 5957, 517, 10, 35, "Output",ExpressionUUID->"40b50dc7-493d-4f28-9967-0f5a2c9c90fa"],
+Cell[241276, 5969, 362, 5, 35, "Output",ExpressionUUID->"02fcf672-13dd-4b34-a088-28a247b859db"],
+Cell[241641, 5976, 365, 6, 35, "Output",ExpressionUUID->"de99a413-fa7f-435e-b9a7-d609b70b0e0b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[235550, 5875, 4312, 91, 492, "Input",ExpressionUUID->"2909c569-cebd-4c60-8107-3e3636cc54d2"],
-Cell[239865, 5968, 933, 13, 35, "Output",ExpressionUUID->"70fcebab-8eb8-46fa-89a5-c5d596f3026f"],
-Cell[240801, 5983, 937, 13, 35, "Output",ExpressionUUID->"e3c4f8e4-9475-4aff-94ba-a9d32c0e8c89"]
+Cell[242043, 5987, 4312, 91, 492, "Input",ExpressionUUID->"2909c569-cebd-4c60-8107-3e3636cc54d2"],
+Cell[246358, 6080, 933, 13, 35, "Output",ExpressionUUID->"70fcebab-8eb8-46fa-89a5-c5d596f3026f"],
+Cell[247294, 6095, 937, 13, 35, "Output",ExpressionUUID->"e3c4f8e4-9475-4aff-94ba-a9d32c0e8c89"]
 }, Open  ]],
-Cell[241753, 5999, 154, 3, 31, "Input",ExpressionUUID->"8ab81cb4-b4c5-436c-a866-575b68b5908f"],
+Cell[248246, 6111, 154, 3, 31, "Input",ExpressionUUID->"8ab81cb4-b4c5-436c-a866-575b68b5908f"],
 Cell[CellGroupData[{
-Cell[241932, 6006, 5711, 153, 676, "Input",ExpressionUUID->"cc046b09-268c-4885-b833-f1a4ccccb221"],
-Cell[247646, 6161, 250, 4, 35, "Output",ExpressionUUID->"758152ad-c929-4dd2-864a-f965991c5a3d"]
+Cell[248425, 6118, 5711, 153, 676, "Input",ExpressionUUID->"cc046b09-268c-4885-b833-f1a4ccccb221"],
+Cell[254139, 6273, 250, 4, 35, "Output",ExpressionUUID->"758152ad-c929-4dd2-864a-f965991c5a3d"]
 }, Open  ]],
-Cell[247911, 6168, 255, 5, 31, "Input",ExpressionUUID->"dafd3f2f-06b9-4378-b24c-b8ce3185a3b7"],
-Cell[248169, 6175, 352, 9, 31, "Input",ExpressionUUID->"fc2d8411-1e3d-4105-9991-a6dad21e6e1c"],
-Cell[248524, 6186, 1972, 53, 78, "Input",ExpressionUUID->"d6823222-641b-483b-96da-a007d33de805"]
+Cell[254404, 6280, 255, 5, 31, "Input",ExpressionUUID->"dafd3f2f-06b9-4378-b24c-b8ce3185a3b7"],
+Cell[254662, 6287, 352, 9, 31, "Input",ExpressionUUID->"fc2d8411-1e3d-4105-9991-a6dad21e6e1c"],
+Cell[255017, 6298, 1972, 53, 78, "Input",ExpressionUUID->"d6823222-641b-483b-96da-a007d33de805"]
 }, Open  ]]
 }, Open  ]]
 }

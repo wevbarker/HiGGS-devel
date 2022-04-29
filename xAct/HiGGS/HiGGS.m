@@ -118,30 +118,74 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 (* ::Input::Initialization:: *)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
-$HiGGSTimingData={};
+(*set up a file to record the start time of a job*)
+$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin/stats/","BuildTime.mx"};
+(*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
+If[!FileExistsQ@$BuildTimeFilename,
+$BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
+ToExpression@("<<"<>$BuildTimeFilename<>";");
+];
+(*return time since start time*)
+HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
+
+
+(* ::Input::Initialization:: *)
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
-$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"}
+$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
 (*initial zeroes, i.e. the default line*)
-$HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList)
+$HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
+
+
+(* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"}
+(*a function which writes all current data to the kernel file*)
+WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
+(*open the stream*)
+HiGGSOutputStream=OpenAppend[$HiGGSTimingFile];
+WriteString[HiGGSOutputStream,(ToString[#,OutputForm]~StringTake~{2,-2})<>"\n"]&/@$HiGGSTimingData;
+Close[HiGGSOutputStream];
+(*Zero the data again, so that we don't have always to be carrying it around*)
+$HiGGSTimingData={};
+];
+
+
+(* ::Input::Initialization:: *)
 (*headers for the timing file*)
+$HiGGSTimingData={};
 $HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)
-(*don't try timing until we call the function in expr*)
-TimeWrapper~SetAttributes~HoldAll;
-(*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
+(*open the kernel files and write the function headers*)
+WriteHiGGSTimingData[];
+
+
+(* ::Input::Initialization:: *)
 (*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
 $PauseSeconds=6;
 $LastMultiple=0;
-TryTiming[]:=Module[{PrintDamper},
+TryTiming[]:=Module[{PrintDamper,HiGGSOutputStream,printer},
 PrintDamper=AbsoluteTime[];
 If[(Ceiling@PrintDamper~Divisible~$PauseSeconds)&&!(Ceiling@PrintDamper/$PauseSeconds==$LastMultiple),
-Print@"                     (PRINTING KERNEL STATS)";
+printer=PrintTemporary[" ** TryTiming: recording timing statistics"];
+(*
 $HiGGSTimingFile~Export~$HiGGSTimingData;
+*)
+(*do all the writing here*)
+WriteHiGGSTimingData[];
+(*log the last multiple of seconds on which we were allowed to print*)
 $LastMultiple=Ceiling@PrintDamper/$PauseSeconds;
+NotebookDelete[printer];
 ];
 ];
+
+
+(* ::Input::Initialization:: *)
+(*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
+
+
+(* ::Input::Initialization:: *)
+(*don't try timing until we call the function in expr*)
+TimeWrapper~SetAttributes~HoldAll;
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
 $HiGGSTimingNow=AbsoluteTime[];
@@ -157,12 +201,12 @@ NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGST
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (*need to be careful not to spend all our time printing *)
-(**)TryTiming[];(**)
-(*$HiGGSTimingFile~Export~$HiGGSTimingData;*)
+TryTiming[];
 temp];
-(*ForceTiming[]:=Module[{},$HiGGSTimingFile~Export~$HiGGSTimingData;];*)
-ForceTiming[]:=Module[{},1+1;];
-DistributeDefinitions@TimeWrapper;
+
+
+(* ::Input::Initialization:: *)
+ForceTiming[]:=WriteHiGGSTimingData[];
 
 
 (* ::Input::Initialization:: *)
