@@ -188,7 +188,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"
 TimeWrapper~SetAttributes~HoldAll;
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
-$HiGGSTimingNow=AbsoluteTime[];
+$HiGGSTimingNow=HiGGSAbsoluteTime[];
 (*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
 res=AbsoluteTiming@expr;
 temp=Evaluate@res[[2]];
