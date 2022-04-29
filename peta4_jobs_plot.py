@@ -54,7 +54,7 @@ rough_number_of_functions = 6
 rougher_number_of_functions = 5
 
 #=============== files =================================
-
+'''
 output_files = os.listdir("bin/stats")
 sample_files = os.listdir("bin/samples")
 filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 and 'kernel' in filename]
@@ -68,13 +68,13 @@ for filename in new_files:
 
 for filename in rep_files:
     shutil.copyfile('bin/stats/'+filename,'bin/samples/'+filename)
-
-kernel_files = os.listdir("bin/samples/")
+'''
+kernel_files = os.listdir("bin/stats/")
 
 ticklabels=[]
 for filename in kernel_files:
     print(filename)
-    print(np.shape(pd.read_csv('bin/samples/'+filename).to_numpy()))
+    print(np.shape(pd.read_csv('bin/stats/'+filename,encoding='unicode_escape').to_numpy()))
     if 'kernel' in filename:
         list_digits = re.findall(r'\d+', filename)
         ticklabels.append(list_digits[0])
@@ -92,7 +92,7 @@ print(ticklabels)
 print(kernel_files)
 
 def make_np(filename):
-    return pd.read_csv('bin/samples/'+filename).to_numpy()
+    return pd.read_csv('bin/stats/'+filename).to_numpy()
 
 #   a list, not np, of np arrays containing all data with headers
 all_kernel_data = list(map(make_np,kernel_files))

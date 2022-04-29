@@ -143,7 +143,7 @@ $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToStrin
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
 HiGGSOutputStream=OpenAppend[$HiGGSTimingFile];
-WriteString[HiGGSOutputStream,(ToString[#,OutputForm]~StringTake~{2,-2})<>"\n"]&/@$HiGGSTimingData;
+WriteString[HiGGSOutputStream,ExportString[#,"CSV"]]&@$HiGGSTimingData;
 Close[HiGGSOutputStream];
 (*Zero the data again, so that we don't have always to be carrying it around*)
 $HiGGSTimingData={};
