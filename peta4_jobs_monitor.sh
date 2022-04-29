@@ -6,5 +6,6 @@ module load texlive/2015
 while true; do
   echo "			(...replotting...)"
   ./peta4_jobs_plot.py
-  #./peta4_jobs_plot.py > /dev/null 2>&1
+  scp -J appcs ./peta4_jobs_trace.png tower:~/Documents/physics/projects/HiGGS_development/ 
+  #./peta4_jobs_plot.py > /dev/null 2>&1 	#	 for quiet plotting
 done

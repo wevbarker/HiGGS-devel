@@ -236,13 +236,12 @@ sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
 
 #=================== plt draw ======================
 
-print('plt draw')
+print('drawing plot')
 plt.draw()
 
 #=================== end admin to label the plot ======================
 
 title_string = r"Node: \texttt{"+socket.gethostname()+"}"
-print(title_string)
 
 sp.set_ylabel(r"\texttt{\${}KernelID}")
 sp.set_xlabel(r"Wallclock time/s")
