@@ -10,7 +10,7 @@
 
 #! sbatch directives begin here ###############################
 #! Name of the job:
-#SBATCH -J testjob
+#SBATCH -J HiGGS_modified_gravity_survey
 #! Which project should be charged:
 #SBATCH -A WBARKER-SL3-CPU
 #! How many whole nodes should be allocated?
