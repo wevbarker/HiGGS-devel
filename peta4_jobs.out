@@ -1,8 +1,8 @@
 Changed directory to /home/wb263/HiGGS_development.
 
-JobID: 59770411
+JobID: 59782192
 ======
-Time: Fri 29 Apr 14:59:13 BST 2022
+Time: Fri 29 Apr 17:38:54 BST 2022
 Running on master node: cpu-e-800
 Current directory: /home/wb263/HiGGS_development
 
@@ -92,6 +92,7 @@ Package xAct`xTras`  version 1.4.2, {2014, 10, 30}
 CopyRight (C) 2012-2014, Teake Nutma, under the General Public License.
 ** Variable $CovDFormat changed from Postfix to Prefix
 ** Option CurvatureRelations of DefCovD changed from False to True
+			(...replotting...)
 ------------------------------------------------------------
 These packages come with ABSOLUTELY NO WARRANTY; for details type\
  
@@ -436,6 +437,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor DpJ[-z]. 
 ** DefTensor: Defining tensor DpV[-z, -a]. 
 ** DefTensor: Defining tensor Q[-a, -b]. 
+ ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor CDAInert[-a, -b, -c, -d]. 
 ** DefTensor: Defining tensor PThreePara[-a, -b, -c, d, e, f]. 
 ** DefTensor: Defining tensor PThreePerp[-a, -b, -c, d, e, f]. 
@@ -511,7 +513,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PR1m[-n, e, f, g]. 
 ** DefTensor: Defining tensor PR2p[-n, -m, e, f, g, h]. 
 ** DefTensor: Defining tensor PR2m[-n, -m, -o, e, f, g]. 
-			(...replotting...)
 ** DefConstantSymbol: Defining constant symbol cParaA0p. 
 ** DefConstantSymbol: Defining constant symbol cParaA0m. 
 ** DefConstantSymbol: Defining constant symbol cParaA1p. 
@@ -580,6 +581,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PPerpR2p[-n, -m, e, f]. 
 ** DefTensor: Defining tensor PPerpR2m[-n, -m, -o, e, f, g]. 
 ** DefTensor: Defining tensor PhiB0p[]. 
+ ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor PhiB1p[-a, -b]. 
 ** DefTensor: Defining tensor PhiB1m[-a]. 
 ** DefTensor: Defining tensor PhiB2p[-a, -b]. 
@@ -630,7 +632,6 @@ Syntax::sntufn: Unknown unicode longname Application.
  
 >    have been declared as UpValues for ChiPerpA2m.
 ** DefTensor: Defining tensor BChiPerp[-a, -c]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor AChiPerp[-a, -b, -c]. 
  ** BuildHiGGS: Incorporating the binary at\
  
@@ -661,6 +662,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor UA0p[]. 
 ** DefTensor: Defining tensor UA0m[]. 
 ** DefTensor: Defining tensor UA1p[-a, -b]. 
+			(...replotting...)
 ** DefTensor: Defining tensor UA1m[-a]. 
 ** DefTensor: Defining tensor UA2p[-a, -b]. 
 ** DefTensor: Defining tensor UA2m[-a, -b, -c]. 
@@ -671,6 +673,7 @@ Syntax::sntufn: Unknown unicode longname Application.
    Rules {1, 2} have been declared as DownValues for UB2p.
    Rules {1, 2} have been declared as DownValues for UA2p.
 ** DefTensor: Defining tensor PiPB0p[]. 
+ ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor PiPB1p[-a, -b]. 
 ** DefTensor: Defining tensor PiPB1m[-a]. 
 ** DefTensor: Defining tensor PiPB2p[-a, -b]. 
@@ -681,7 +684,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor PiPA2p[-a, -b]. 
 ** DefTensor: Defining tensor PiPA2m[-a, -b, -c]. 
    Rules {1, 2, 3, 4} have been declared as DownValues for PiPA2m.
-			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for PiPA2m.
@@ -724,6 +726,7 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor RLambdaP2p[-a, -b]. 
 ** DefTensor: Defining tensor RLambdaP2m[-a, -b, -c]. 
    Rules {1, 2, 3, 4} have been declared as DownValues for RLambdaP2m.
+			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for RLambdaP2m.
@@ -733,6 +736,7 @@ Syntax::sntufn: Unknown unicode longname Application.
  
 >    have been declared as UpValues for TLambdaP2m.
 ** DefTensor: Defining tensor TPerp0p[]. 
+ ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor TPerp1p[-a, -b]. 
 ** DefTensor: Defining tensor TPerp1m[-a]. 
 ** DefTensor: Defining tensor TPerp2p[-a, -b]. 
@@ -744,7 +748,6 @@ Syntax::sntufn: Unknown unicode longname Application.
 ** DefTensor: Defining tensor RPerp2m[-a, -b, -c]. 
    Rules {1, 2} have been declared as DownValues for TPerp2p.
    Rules {1, 2, 3, 4} have been declared as DownValues for RPerp2m.
-			(...replotting...)
    Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
  
 >    have been declared as UpValues for RPerp2m.
@@ -766,537 +769,6 @@ Syntax::sntufn: Unknown unicode longname Application.
    Rules {1, 2} have been declared as DownValues for RLambdaPerp2p.
    Rules {1, 2} have been declared as DownValues for TLambdaPerp2p.
 ** DefTensor: Defining tensor RPPara[-a, -b, -c, -d]. 
- ** TryTiming: recording timing statistics
 ** DefTensor: Defining tensor RPPerp[-a, -b, -c]. 
 ** DefTensor: Defining tensor RLambdaPPara[-a, -b, -c, -d]. 
 ** DefTensor: Defining tensor RLambdaPPerp[-a, -b, -c]. 
-** DefTensor: Defining tensor RPerpPerp[-a, -b]. 
-** DefTensor: Defining tensor RPerpPara[-a, -b, -c]. 
-** DefTensor: Defining tensor RLambdaPerpPerp[-a, -b]. 
-** DefTensor: Defining tensor RLambdaPerpPara[-a, -b, -c]. 
- ** ToNewCanonical...
- ** ToNewCanonical...
-** DefTensor: Defining tensor ChiParaB0m[]. 
-** DefTensor: Defining tensor ChiParaB1p[-a, -b]. 
-** DefTensor: Defining tensor ChiParaB1m[-a]. 
-** DefTensor: Defining tensor ChiParaB2m[-a, -b, -c]. 
-** DefTensor: Defining tensor ChiParaA0p[]. 
-** DefTensor: Defining tensor ChiParaA0m[]. 
-** DefTensor: Defining tensor ChiParaA1p[-a, -b]. 
-** DefTensor: Defining tensor ChiParaA1m[-a]. 
-** DefTensor: Defining tensor ChiParaA2p[-a, -b]. 
-** DefTensor: Defining tensor ChiParaA2m[-a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for ChiParaB2m.
-			(...replotting...)
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for ChiParaB2m.
-   Rules {1, 2, 3, 4} have been declared as DownValues for ChiParaA2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for ChiParaA2m.
-** DefTensor: Defining tensor DPiPB0p[-z]. 
-** DefTensor: Defining tensor DPiPB1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DPiPB1m[-z, -a]. 
-** DefTensor: Defining tensor DPiPB2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DPiPB2p.
-** DefTensor: Defining tensor DPiPA0p[-z]. 
-** DefTensor: Defining tensor DPiPA0m[-z]. 
-** DefTensor: Defining tensor DPiPA1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DPiPA1m[-z, -a]. 
-** DefTensor: Defining tensor DPiPA2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DPiPA2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DPiPA2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DPiPA2m.
-   Rules {1, 2} have been declared as DownValues for DPiPA2p.
-** DefTensor: Defining tensor DpPiPB0p[-z]. 
-** DefTensor: Defining tensor DpPiPB1p[-z, -a, -b]. 
- ** TryTiming: recording timing statistics
-** DefTensor: Defining tensor DpPiPB1m[-z, -a]. 
-** DefTensor: Defining tensor DpPiPB2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DpPiPB2p.
-** DefTensor: Defining tensor DpPiPA0p[-z]. 
-** DefTensor: Defining tensor DpPiPA0m[-z]. 
-** DefTensor: Defining tensor DpPiPA1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpPiPA1m[-z, -a]. 
-** DefTensor: Defining tensor DpPiPA2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpPiPA2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpPiPA2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpPiPA2m.
-   Rules {1, 2} have been declared as DownValues for DpPiPA2p.
-** DefTensor: Defining tensor DUB0p[-z]. 
-** DefTensor: Defining tensor DUB1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DUB1m[-z, -a]. 
-** DefTensor: Defining tensor DUB2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DUB2p.
-** DefTensor: Defining tensor DUA0p[-z]. 
-** DefTensor: Defining tensor DUA0m[-z]. 
-** DefTensor: Defining tensor DUA1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DUA1m[-z, -a]. 
-** DefTensor: Defining tensor DUA2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DUA2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DUA2m.
-			(...replotting...)
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DUA2m.
-   Rules {1, 2} have been declared as DownValues for DUA2p.
-** DefTensor: Defining tensor DpUB0p[-z]. 
-** DefTensor: Defining tensor DpUB1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpUB1m[-z, -a]. 
-** DefTensor: Defining tensor DpUB2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DpUB2p.
-** DefTensor: Defining tensor DpUA0p[-z]. 
-** DefTensor: Defining tensor DpUA0m[-z]. 
-** DefTensor: Defining tensor DpUA1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpUA1m[-z, -a]. 
-** DefTensor: Defining tensor DpUA2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpUA2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpUA2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpUA2m.
-   Rules {1, 2} have been declared as DownValues for DpUA2p.
-** DefTensor: Defining tensor DTP0m[-z]. 
-** DefTensor: Defining tensor DTP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DTP1m[-z, -a]. 
-** DefTensor: Defining tensor DTP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DTP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DTP2m.
-** DefTensor: Defining tensor DRP0p[-z]. 
-** DefTensor: Defining tensor DRP0m[-z]. 
-** DefTensor: Defining tensor DRP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRP1m[-z, -a]. 
-** DefTensor: Defining tensor DRP2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DRP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DRP2m.
-   Rules {1, 2} have been declared as DownValues for DRP2p.
-** DefTensor: Defining tensor DTLambdaP0m[-z]. 
-** DefTensor: Defining tensor DTLambdaP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DTLambdaP1m[-z, -a]. 
-** DefTensor: Defining tensor DTLambdaP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DTLambdaP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DTLambdaP2m.
-** DefTensor: Defining tensor DRLambdaP0p[-z]. 
-** DefTensor: Defining tensor DRLambdaP0m[-z]. 
-** DefTensor: Defining tensor DRLambdaP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRLambdaP1m[-z, -a]. 
-** DefTensor: Defining tensor DRLambdaP2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRLambdaP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DRLambdaP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DRLambdaP2m.
-   Rules {1, 2} have been declared as DownValues for DRLambdaP2p.
-** DefTensor: Defining tensor DTLambdaPerp0p[-z]. 
-** DefTensor: Defining tensor DTLambdaPerp1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DTLambdaPerp1m[-z, -a]. 
-** DefTensor: Defining tensor DTLambdaPerp2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DTLambdaPerp2p.
-** DefTensor: Defining tensor DRLambdaPerp0p[-z]. 
-** DefTensor: Defining tensor DRLambdaPerp0m[-z]. 
-** DefTensor: Defining tensor DRLambdaPerp1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRLambdaPerp1m[-z, -a]. 
-** DefTensor: Defining tensor DRLambdaPerp2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DRLambdaPerp2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DRLambdaPerp2m.
-			(...replotting...)
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DRLambdaPerp2m.
-   Rules {1, 2} have been declared as DownValues for DRLambdaPerp2p.
-** DefTensor: Defining tensor DHComp[-z]. 
-** DefTensor: Defining tensor DpTP0m[-z]. 
-** DefTensor: Defining tensor DpTP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpTP1m[-z, -a]. 
-** DefTensor: Defining tensor DpTP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpTP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpTP2m.
-** DefTensor: Defining tensor DpRP0p[-z]. 
-** DefTensor: Defining tensor DpRP0m[-z]. 
-** DefTensor: Defining tensor DpRP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpRP1m[-z, -a]. 
-** DefTensor: Defining tensor DpRP2p[-z, -a, -b]. 
- ** TryTiming: recording timing statistics
-** DefTensor: Defining tensor DpRP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpRP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpRP2m.
-   Rules {1, 2} have been declared as DownValues for DpRP2p.
-** DefTensor: Defining tensor DpTLambdaP0m[-z]. 
-** DefTensor: Defining tensor DpTLambdaP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpTLambdaP1m[-z, -a]. 
-** DefTensor: Defining tensor DpTLambdaP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpTLambdaP2m.
-			(...replotting...)
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpTLambdaP2m.
-** DefTensor: Defining tensor DpRLambdaP0p[-z]. 
-** DefTensor: Defining tensor DpRLambdaP0m[-z]. 
-** DefTensor: Defining tensor DpRLambdaP1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpRLambdaP1m[-z, -a]. 
-** DefTensor: Defining tensor DpRLambdaP2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpRLambdaP2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpRLambdaP2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpRLambdaP2m.
-   Rules {1, 2} have been declared as DownValues for DpRLambdaP2p.
-** DefTensor: Defining tensor DpTLambdaPerp0p[-z]. 
-** DefTensor: Defining tensor DpTLambdaPerp1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpTLambdaPerp1m[-z, -a]. 
-** DefTensor: Defining tensor DpTLambdaPerp2p[-z, -a, -b]. 
-   Rules {1, 2} have been declared as DownValues for DpTLambdaPerp2p.
-** DefTensor: Defining tensor DpRLambdaPerp0p[-z]. 
-** DefTensor: Defining tensor DpRLambdaPerp0m[-z]. 
-** DefTensor: Defining tensor DpRLambdaPerp1p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpRLambdaPerp1m[-z, -a]. 
-** DefTensor: Defining tensor DpRLambdaPerp2p[-z, -a, -b]. 
-** DefTensor: Defining tensor DpRLambdaPerp2m[-z, -a, -b, -c]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for DpRLambdaPerp2m.
-   Rules {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, <<374>>}
- 
->    have been declared as UpValues for DpRLambdaPerp2m.
-   Rules {1, 2} have been declared as DownValues for DpRLambdaPerp2p.
-** DefTensor: Defining tensor DpHComp[-z]. 
-** DefTensor: Defining tensor SuperHamiltonian0p[]. 
-** DefTensor: Defining tensor LinearSuperMomentum1m[-a]. 
-** DefTensor: Defining tensor RotationalSuperMomentum1m[-a]. 
-** DefTensor: Defining tensor RotationalSuperMomentum1p[-a, -b]. 
-** DefTensor: Defining tensor RPShellPara[-a, -b, -c, -d]. 
-** DefTensor: Defining tensor RPShellPerp[-a, -b, -c]. 
-** DefTensor: Defining tensor PerpBComplement[-i, -k]. 
-** DefTensor: Defining tensor OrigBComplement[-i, -k]. 
-** DefTensor: Defining tensor SingBComplement[-i, -k]. 
-** DefTensor: Defining tensor PerpAComplement[-i, -j, -k]. 
-** DefTensor: Defining tensor OrigAComplement[-i, -j, -k]. 
-** DefTensor: Defining tensor SingAComplement[-i, -j, -k]. 
- ** BuildHiGGS: Incorporating the binary at\
- 
->   ./xAct/HiGGS/bin/build/GeneralComplementsToggle.mx...
- ** BuildHiGGS: Incorporating the binary at\
- 
->   ./xAct/HiGGS/bin/build/CDPiPToCDPiPO3.mx...
- ** BuildHiGGS: Incorporating the binary at\
- 
->   ./xAct/HiGGS/bin/build/NesterFormIfConstraints.mx...
-** DefTensor: Defining tensor KX[-a, -b, -c]. 
-** DefTensor: Defining tensor KKX[-a, -b, -c, -d]. 
-** DefTensor: Defining tensor KXP[-a, -b, -c]. 
-** DefTensor: Defining tensor KKXP[-a, -b, -c, -d]. 
-** DefTensor: Defining tensor DummyGradient[-z]. 
-** DefTensor: Defining tensor DummyHessian[-z, -w]. 
-** DefTensor: Defining tensor DummyGradientGreek[-z]. 
-** DefTensor: Defining tensor DummyHessianGreek[-z, -w]. 
-** DefTensor: Defining tensor RD[a, b, -d, -e, -x, -y, -z]. 
-** DefTensor: Defining tensor RDS1[a, b, -d, -e, -x, -y, -z, v]. 
-** DefTensor: Defining tensor RDS2[a, b, -d, -e, -x, -y, -z, v]. 
-** DefTensor: Defining tensor RDS3[a, b, -d, -e, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor TD[a, -b, -c, -x, -y, -z]. 
-** DefTensor: Defining tensor TDS1[a, -b, -c, -x, -y, -z, v]. 
-** DefTensor: Defining tensor TDS2[a, -b, -c, -x, -y, -z, v]. 
-** DefTensor: Defining tensor TDS3[a, -b, -c, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDB0p[-x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1B0p[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2B0p[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3B0p[-x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDB1p[-a, -b, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1B1p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2B1p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3B1p[-a, -b, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDB1m[-a, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1B1m[-a, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2B1m[-a, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3B1m[-a, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDB2p[-a, -b, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1B2p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2B2p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3B2p[-a, -b, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA0p[-x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A0p[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A0p[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A0p[-x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA0m[-x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A0m[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A0m[-x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A0m[-x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA1p[-a, -b, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A1p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A1p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A1p[-a, -b, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA1m[-a, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A1m[-a, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A1m[-a, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A1m[-a, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA2p[-a, -b, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A2p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A2p[-a, -b, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A2p[-a, -b, -x, -y, -z, v, w]. 
-** DefTensor: Defining tensor PhiDA2m[-a, -b, -c, -x, -y, -z]. 
-** DefTensor: Defining tensor PhiDS1A2m[-a, -b, -c, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS2A2m[-a, -b, -c, -x, -y, -z, v]. 
-** DefTensor: Defining tensor PhiDS3A2m[-a, -b, -c, -x, -y, -z, v, w]. 
-   Rules {1, 2, 3, 4} have been declared as DownValues for PhiDA2m.
-   Rules {1, 2, 3, 4} have been declared as DownValues for PhiDS1A2m.
-   Rules {1, 2, 3, 4} have been declared as DownValues for PhiDS2A2m.
-   Rules {1, 2, 3, 4} have been declared as DownValues for PhiDS3A2m.
-** DefTensor: Defining tensor QD[-a, -y, -z]. 
-** DefTensor: Defining tensor QDS1[-a, -y, -z, v]. 
-** DefTensor: Defining tensor QDS2[-a, -y, -z, v]. 
-** DefTensor: Defining tensor QDS3[-a, -y, -z, v, w]. 
-** DefTensor: Defining tensor JD[-a, -y, -z]. 
-** DefTensor: Defining tensor JDS1[-a, -y, -z, v]. 
-** DefTensor: Defining tensor JDS2[-a, -y, -z, v]. 
-** DefTensor: Defining tensor JDS3[-a, -y, -z, v, w]. 
-** DefTensor: Defining tensor LapseD[-a, -y, -z]. 
-** DefTensor: Defining tensor LapseDS1[-a, -y, -z, v]. 
-** DefTensor: Defining tensor LapseDS2[-a, -y, -z, v]. 
-** DefTensor: Defining tensor LapseDS3[-a, -y, -z, v, w]. 
-** DefTensor: Defining tensor S1[-a]. 
-** DefTensor: Defining tensor S2[-a]. 
-** DefTensor: Defining tensor S3[-a]. 
- ** BuildHiGGS: Incorporating the binary at\
- 
->   ./xAct/HiGGS/bin/build/VelocityToggle.mx...
-** DefConstantSymbol: Defining constant symbol dummy. 
-
-Syntax::com: Warning: comma encountered with no adjacent expression. The
-     expression will be treated as Null.  (line 5319 of
-     "./xAct/HiGGS/HiGGS_sources.m").
- ** BuildHiGGS: The unit test labelled documentation has been ignored.
- ** BuildHiGGS: The context on quitting HiGGS.m is Global`.
-			(...replotting...)
- ** BuildHiGGS: The HiGGS environment is now ready to use and is occupying 
- 
->   63123000 bytes in RAM.
-
-In[26]:= In[26]:=                            
-In[27]:= 
-In[28]:= 
-In[29]:= {EvaluationObject[1, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[2, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[3, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[4, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[5, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[6, DefTheoryParallel[<<2>>], <>], 
- 
->   EvaluationObject[7, DefTheoryParallel[<<2>>], <>]}
-Launching kernels...
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
-			(...replotting...)
