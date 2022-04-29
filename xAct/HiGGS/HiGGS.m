@@ -138,7 +138,7 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
 
 (* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"}
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
@@ -153,7 +153,8 @@ $HiGGSTimingData={};
 (* ::Input::Initialization:: *)
 (*headers for the timing file*)
 $HiGGSTimingData={};
-$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)
+(*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
+$HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 (*open the kernel files and write the function headers*)
 WriteHiGGSTimingData[];
 
