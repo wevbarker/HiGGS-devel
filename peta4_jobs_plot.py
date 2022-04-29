@@ -19,13 +19,8 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 #================ plot params and TeX setup ======================
 
 mpl.use('Agg')
-#   tex params
-#plt.rcParams["figure.figsize"] = [7.50, 3.50]
-#plt.rcParams["figure.autolayout"] = True
 
 plt.rc('text',usetex = True)
-#SMALL_SIZE=6
-#plt.rc('font',size=SMALL_SIZE)
 
 plt.rc('text.latex', preamble = 
 r'\usepackage[notextcomp]{stix}'+
@@ -46,6 +41,7 @@ twocol = 7.05826
 #=============== tuning params ==========================
 
 cols = onecol                           #   onecol or twocol
+asp = 1.5                                #   vertical aspect ratio
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space
@@ -73,31 +69,19 @@ kernel_files = os.listdir("bin/stats/")
 
 ticklabels=[]
 for filename in kernel_files:
-    print(filename)
-    print(np.shape(pd.read_csv('bin/stats/'+filename,encoding='unicode_escape').to_numpy()))
     if 'kernel' in filename:
         list_digits = re.findall(r'\d+', filename)
         ticklabels.append(list_digits[0])
 
-#    for m in filename:
-#        if m.isdigit() and 'kernel' in filename:
-#            ticklabels.append(m)
-
-print(ticklabels)
-
 kernel_files = [x for _,x in sorted(zip(list(map(int,ticklabels)),kernel_files))]
 ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
 ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
-print(ticklabels)
-print(kernel_files)
 
 def make_np(filename):
     return pd.read_csv('bin/stats/'+filename).to_numpy()
 
 #   a list, not np, of np arrays containing all data with headers
 all_kernel_data = list(map(make_np,kernel_files))
-print(len(kernel_files))
-print(len(all_kernel_data))
 
 #   all numerical columns, no headers, with the start times
 def start_cols(array):
@@ -105,8 +89,6 @@ def start_cols(array):
 
 #   to find the start and end of the whole survey
 start_times = np.concatenate(list(map(start_cols,all_kernel_data)))
-print(start_times)
-print(str in start_times)
 start_times = start_times.astype('float')
 s_times = np.copy(start_times)
 start_times[start_times == 0.] = 'nan'
@@ -150,18 +132,16 @@ newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
 endpt = 256*(1+acttheory)
 silly = ListedColormap(newcolors[0:endpt:,:],name='silly')
 
-print(np.shape(newcolors))
-
 #====================== bar width and chart geometry ==============
 
 width = cols
-height = (1.*number_of_kernels+2.)*0.5
+height = asp*cols 
+#height = (1.*number_of_kernels+2.)*0.5
 
 propunit = (height*total_time/width)/number_of_kernels
 
 fig = plt.figure(1,figsize = (width,height))
 sp = fig.add_subplot(111)
-#plt.axes().set_aspect('equal')
 
 point_hei = height*72
 x1,x2,y1,y2=plt.axis()
@@ -180,7 +160,6 @@ for kernel in range(0,number_of_kernels):
     function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
     for theory in range(0,acttheory+1):
         for function_number in range(1,rougher_number_of_functions+1):
-            print("     plotting data for function ",function_number)
             function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
             for row in function_times:
                 if row[0]>0:
@@ -200,13 +179,11 @@ for kernel in range(0,number_of_kernels):
     lc.set_array(function_data)
     lc.set_linewidth(line_width)
     line = sp.add_collection(lc)
-    plt.draw()
 
     kernel_array = np.full(size,(kernel-0.5*(1-0.75))*propunit)    #   this is for the horizontal line position
     function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
     for theory in range(0,acttheory+1):
         for function_number in range(1,rough_number_of_functions+1):
-            print("     plotting data for function ",function_number)
             function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
             for row in function_times:
                 if row[0]>0:
@@ -226,13 +203,11 @@ for kernel in range(0,number_of_kernels):
     lc.set_array(function_data)
     lc.set_linewidth(0.75*line_width)
     line = sp.add_collection(lc)
-    plt.draw()
 
     kernel_array = np.full(size,(kernel-0.5*(1-0.5))*propunit)    #   this is for the horizontal line position
     function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
     for theory in range(0,acttheory+1):
         for function_number in range(1,number_of_functions+1):
-            print("     plotting data for function ",function_number)
             function_times = kernel_data[1::,(theory*2*number_of_functions+2*function_number-2):(theory*2*number_of_functions+2*function_number):]    #   just take the two columns that affect that function in that theory
             for row in function_times:
                 if row[0]>0:
@@ -251,23 +226,28 @@ for kernel in range(0,number_of_kernels):
     lc.set_array(function_data)
     lc.set_linewidth(0.5*line_width)
     line = sp.add_collection(lc)
-    plt.draw()
-    
-    sp.set_xlim(0., total_time)
-    sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
-    sp.set_yticklabels(ticklabels)
-    sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
-    plt.draw()
+
+#=================== limits ======================
+
+sp.set_xlim(0., total_time)
+sp.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
+sp.set_yticklabels(ticklabels)
+sp.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
+
+#=================== plt draw ======================
+
+print('plt draw')
+plt.draw()
 
 #=================== end admin to label the plot ======================
 
-title_string = r"This report was generated on \texttt{"+socket.gethostname()+"}"
+title_string = r"Node: \texttt{"+socket.gethostname()+"}"
 print(title_string)
 
 sp.set_ylabel(r"\texttt{\${}KernelID}")
 sp.set_xlabel(r"Wallclock time/s")
 sp.set_title(title_string)
-plt.suptitle(r"\texttt{HiGGS} for HPC")
+#plt.suptitle(r"\texttt{HiGGS} for HPC")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('peta4_jobs_trace.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
