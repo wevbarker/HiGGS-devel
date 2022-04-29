@@ -2,7 +2,15 @@ In[]:= quantity = ToBasicForm[Eps[u, v, w]*H[-u, m]*H[-v, l]*H[-w, n]*(CD[-m][B[
 Out[]= |
 \vspace{-4pt}
 \begin{flushleft}
-\includegraphics[width=\linewidth]{figures/bianchi_227-1fig.pdf}
+\includegraphics[width=\linewidth]{figures/bianchi_213-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= quantity = (ToCanonical[V[-r]*(1/2)*(#1 + CommuteCovDs[#1, CD, {j, l}])] & )[quantity]; 
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/bianchi_215-1fig.pdf}
 \end{flushleft}
 \vspace{-7pt}
 |
@@ -10,7 +18,7 @@ In[]:= quantity = ToNesterForm[quantity, "ToShell" -> False];
 Out[]= |
 \vspace{-4pt}
 \begin{flushleft}
-\includegraphics[width=\linewidth]{figures/bianchi_229-1fig.pdf}
+\includegraphics[width=\linewidth]{figures/bianchi_217-1fig.pdf}
 \end{flushleft}
 \vspace{-7pt}
 |

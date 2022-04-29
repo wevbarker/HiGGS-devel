@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     29170,        589]
-NotebookOptionsPosition[     28454,        568]
-NotebookOutlinePosition[     28876,        585]
-CellTagsIndexPosition[     28833,        582]
+NotebookDataLength[     29220,        590]
+NotebookOptionsPosition[     28504,        569]
+NotebookOutlinePosition[     28926,        586]
+CellTagsIndexPosition[     28883,        583]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -42,7 +42,7 @@ Cell[BoxData[
     RowBox[{"Unprotect", "[", "$ProcessorCount", "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"$ProcessorCount", "=", "30"}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{"$ProcessorCount", "=", "32"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"Load", " ", "HiGGS"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -394,8 +394,9 @@ Cell[BoxData[
    3.860040870391541*^9, 3.860044767183367*^9, {3.8600501884979267`*^9, 
    3.860050190728992*^9}, {3.860050222695786*^9, 3.860050240304451*^9}, {
    3.860051976431161*^9, 3.860051976698119*^9}, {3.86007842241339*^9, 
-   3.860078422741357*^9}, {3.86007958297482*^9, 
-   3.860079589892458*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.860078422741357*^9}, {3.86007958297482*^9, 3.860079589892458*^9}, {
+   3.860254795985964*^9, 
+   3.860254796273282*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
 Cell[BoxData[
@@ -587,9 +588,9 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 20219, 366, 556, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 20269, 367, 556, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[21205, 400, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
+Cell[21255, 401, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
 }, Open  ]]
 }
 ]
