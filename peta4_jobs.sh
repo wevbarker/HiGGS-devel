@@ -18,7 +18,7 @@ rm ./bin/BuildTime.mx
 mkdir ./bin/stats
 
 #	start the plotting script
-./peta4_jobs_monitor.sh &
+#./peta4_jobs_monitor.sh & 	#	try to run this on the login node
 
 #	run the job	
 math -run < peta4_jobs.m
