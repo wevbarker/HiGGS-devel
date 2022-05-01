@@ -8,30 +8,19 @@
 #!#### Modify the options in this section as appropriate ######
 #!#############################################################
 
-#! sbatch directives begin here ###############################
-#! Name of the job:
 #SBATCH -J HiGGS_modified_gravity_survey
-#! Which project should be charged:
 #SBATCH -A WBARKER-SL3-CPU
-#! How many whole nodes should be allocated?
 #SBATCH --nodes=1
-#! How many (MPI) tasks will there be in total? (<= nodes*32)
-#! The skylake/skylake-himem nodes have 32 CPUs (cores) each.
-#! SBATCH --ntasks=1
-#|SBATCH --ntasks-per-node=1
-#! Possible problem with divided kernels
+#! SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=30
-#! How much wallclock time will be required?
+#SBATCH --array=0-2
+
 #SBATCH --time=00:20:00
-#! What types of email messages do you wish to receive?
 #SBATCH --mail-type=ALL
-#! Uncomment this to prevent the job from being requeued (e.g. if
-#! interrupted by node failure or system downtime):
 ##SBATCH --no-requeue
 
-#!	Will:	output and error files
-#SBATCH --output="/home/wb263/HiGGS_development/peta4_jobs.out"
-#SBATCH --error="/home/wb263/HiGGS_development/peta4_jobs.err"
+#SBATCH --output="/home/wb263/HiGGS_development/peta4.hpc.out"
+#SBATCH --error="/home/wb263/HiGGS_development/peta4.hpc.err"
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
 #SBATCH -p skylake
@@ -63,14 +52,13 @@ module load rhel7/default-peta4            # REQUIRED - loads the basic environm
 
 #! Insert additional module load commands after this line if needed:
 module load mathematica		#!	HiGGS is a wolfram package
-module load anaconda/3.2019-10 	#!	for the plotting script
-module load texlive/2015	#! 	for the plotting script 
 
 #! Full path to application executable: 
-application="/home/wb263/HiGGS_development/peta4_jobs.sh"
+application="/home/wb263/HiGGS_development/peta4.job.sh"
 
 #! Run options for the application:
-options=""
+#! options=""
+options=$SLURM_ARRAY_TASK_ID
 
 #! Work directory (i.e. where the job will run):
 workdir="$SLURM_SUBMIT_DIR"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory

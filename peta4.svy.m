@@ -20,27 +20,23 @@
 
 
 (* ::Input::Initialization:: *)
-(*Remove artificial single-core machine problem*)
-Unprotect[$ProcessorCount];
-$ProcessorCount=32;
-(*Load HiGGS*)
-Needs["xAct`HiGGS`"];
-(*Build the HiGGS environment*)
-BuildHiGGS[];
+Run@"rm -rf peta4.nd*.mx"
 
-(*
-JobsBatch={{"EinsteinCartan",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
-JobsBatch~StudyTheory~("Import"\[Rule]False);
-*)
-(**)
-JobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
+
+(* ::Input::Initialization:: *)
+RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
 {"spin_0m",{Alp1==0,Alp2==0,Alp4==0,Alp5==0,Alp6==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
 {"simple_spin_1p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
 {"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},{"simple_spin_0-2m_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},
 {"simple_spin_0-2m_b",{Alp2==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}};
-JobsBatch~StudyTheory~("Import"->False);
-(**)
+
+
+(* ::Input::Initialization:: *)
+For[node=0,node<3,node++,
+JobsBatch=({#[[1]]<>"_node_"<>ToString@node,#[[2]]})&/@RawJobsBatch;
+FileNameJoin@{Directory[],"peta4.nd"<>ToString@node<>".mx"}~DumpSave~{JobsBatch};
+];
+
+
+(* ::Input::Initialization:: *)
 Quit[];
-
-
-
