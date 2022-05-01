@@ -5332,6 +5332,8 @@ Options[StudyTheory]={"Export"->False,"Import"->False};
 StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
+
+(*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
 $TryKernels=True;
 While[$TryKernels,
 TimeConstrained[LaunchKernels[];

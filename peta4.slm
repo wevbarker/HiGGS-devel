@@ -12,6 +12,13 @@
 #SBATCH -A WBARKER-SL3-CPU
 #SBATCH --nodes=1
 #! SBATCH --ntasks-per-node=1
+
+#! if we wanted to automate the array build, we could use something like below. Beware sbatch does not tolerate bash commands run before SBATCH directives, so something sneaky will be needed!
+#! numfiles=$(ls ./peta4.nd* | wc -l)
+#! numfiles=$((numfiles - 1))
+#! numfiles= ls /home/wb263/HiGGS_development/peta4.nd* | wc -l - 1
+#! echo $numfiles
+
 #SBATCH --cpus-per-task=32
 #SBATCH --array=0-2
 

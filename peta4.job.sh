@@ -14,12 +14,14 @@ mkdir ./bin/stats
 #	run the job	
 math -run < peta4.job.m peta4.nd$1.mx
 
-echo "return to sh"
+echo "script peta4.job.m has exited and returned to peta4.job.sh"
 
 pkill -9 "Mathematica"
 pkill -9 "Wolfram"
 pkill -9 "xPert"
 pkill -9 "xperm"
+
+echo "the following processes are still running on this node:"
 
 ps -u wb263
 
