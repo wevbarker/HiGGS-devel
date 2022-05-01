@@ -101,6 +101,7 @@ $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
 ];
+Print@$Node;
 
 
 (* ::Input::Initialization:: *)
