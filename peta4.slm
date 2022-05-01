@@ -10,7 +10,7 @@
 
 #SBATCH -J HiGGS_modified_gravity_survey
 #SBATCH -A WBARKER-SL3-CPU
-#SBATCH --nodes=3
+#SBATCH --nodes=1
 #! SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
 #SBATCH --array=0-2
