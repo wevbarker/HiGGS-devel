@@ -19,6 +19,7 @@ echo "return to sh"
 pkill -9 "Mathematica"
 pkill -9 "Wolfram"
 pkill -9 "xPert"
+pkill -9 "xperm"
 
 ps -u wb263
 
