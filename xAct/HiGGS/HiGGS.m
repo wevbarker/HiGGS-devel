@@ -102,6 +102,7 @@ If[!ValueQ@$Node,
 $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
+DistributeDefinitions@Global`$Node;
 ];
 Print@$Node;
 
