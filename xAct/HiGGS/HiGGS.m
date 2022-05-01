@@ -96,6 +96,8 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
+Print["asking about node"];
+Print@$Node;
 If[!ValueQ@$Node,
 $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
