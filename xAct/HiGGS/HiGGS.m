@@ -96,9 +96,11 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
+If[!ValueQ@$Node,
 $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
+];
 
 
 (* ::Input::Initialization:: *)
