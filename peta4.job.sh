@@ -5,8 +5,9 @@
 cd /home/wb263/HiGGS_development
 
 #	flush the stats directory
-rm -rf ./bin/node-*/stats/*
-rm ./bin/node-*/BuildTime.mx
+rm -rf ./bin/node-$1/stats
+mkdir ./bin/node-$1/stats
+rm ./bin/node-$1/BuildTime.mx
 
 #	run the job	
 math -run < peta4.job.m $1
