@@ -20,4 +20,6 @@ pkill -9 "Mathematica"
 pkill -9 "Wolfram"
 pkill -9 "xPert"
 
+ps -u wb263
+
 exit 0
