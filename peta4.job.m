@@ -52,4 +52,9 @@ JobsBatch~StudyTheory~("Import"->False);
 
 
 (* ::Input::Initialization:: *)
+(*need this to give the right exit code to SLURM*)
+CloseKernels[];
+
+
+(* ::Input::Initialization:: *)
 Quit[];

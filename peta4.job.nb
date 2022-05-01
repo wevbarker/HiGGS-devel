@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     55570,        895]
-NotebookOptionsPosition[     54451,        867]
-NotebookOutlinePosition[     54873,        884]
-CellTagsIndexPosition[     54830,        881]
+NotebookDataLength[     56135,        911]
+NotebookOptionsPosition[     54894,        881]
+NotebookOutlinePosition[     55316,        898]
+CellTagsIndexPosition[     55273,        895]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -714,6 +714,20 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "need", " ", "this", " ", "to", " ", "give", " ", "the", " ", "right", " ",
+     "exit", " ", "code", " ", "to", " ", "SLURM"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"CloseKernels", "[", "]"}], ";"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.860409681587123*^9, 
+  3.86040970536922*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
+c241bc4146a0"],
+
+Cell[BoxData[
+ RowBox[{
   RowBox[{"Quit", "[", "]"}], ";"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.8561134940016623`*^9, 3.856113563953445*^9}, {
@@ -894,7 +908,9 @@ Cell[21671, 399, 11065, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2
  InitializationCell->True],
 Cell[32739, 560, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[43637, 714, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[43637, 714, 440, 12, 71, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+ InitializationCell->True],
+Cell[44080, 728, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }
