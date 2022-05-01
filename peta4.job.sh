@@ -14,4 +14,6 @@ mkdir ./bin/stats
 #	run the job	
 math -run < peta4.job.m peta4.nd$1.mx
 
+echo "return to sh"
+
 exit 0
