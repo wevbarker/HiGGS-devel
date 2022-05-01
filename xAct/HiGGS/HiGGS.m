@@ -96,6 +96,11 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
+$Node=Global`$Node;
+If[!ValueQ@$Node,$Node=""];
+
+
+(* ::Input::Initialization:: *)
 (*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
 (*was Needs called on the HiGGS package from a notebook?*)
 If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
@@ -116,14 +121,10 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
-If[!ValueQ@$Node,$Node=""];
-
-
-(* ::Input::Initialization:: *)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
-$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin","BuildTime.mx"};
+$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"BuildTime.mx"};
 (*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
 If[!FileExistsQ@$BuildTimeFilename,
 $BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
@@ -142,7 +143,7 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
 
 (* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin/stats/","kernel-"<>ToString@$KernelID<>".csv"};
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
@@ -185,7 +186,7 @@ NotebookDelete[printer];
 
 (* ::Input::Initialization:: *)
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 
 
 (* ::Input::Initialization:: *)
