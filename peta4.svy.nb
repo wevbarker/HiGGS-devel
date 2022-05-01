@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     43436,        719]
-NotebookOptionsPosition[     42448,        693]
-NotebookOutlinePosition[     42870,        710]
-CellTagsIndexPosition[     42827,        707]
+NotebookDataLength[     44085,        732]
+NotebookOptionsPosition[     43097,        706]
+NotebookOutlinePosition[     43519,        723]
+CellTagsIndexPosition[     43476,        720]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,10 +31,11 @@ Cell["This notebook generates jobs.m, which we run remotely", "Text",
   3.8565920652907*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
 
 Cell[BoxData[
- RowBox[{"Run", "@", "\"\<rm -rf peta4.nd*.mx\>\""}]], "Input",
+ RowBox[{"Run", "@", "\"\<rm -rf ./bin/node-*\>\""}]], "Input",
  InitializationCell->True,
- CellChangeTimes->{{3.860399987586609*^9, 
-  3.860400012970598*^9}},ExpressionUUID->"68ab92ad-3c68-4108-8669-\
+ CellChangeTimes->{{3.860399987586609*^9, 3.860400012970598*^9}, {
+  3.860429185749961*^9, 3.860429188165661*^9}, {3.860429233165124*^9, 
+  3.860429246557065*^9}},ExpressionUUID->"68ab92ad-3c68-4108-8669-\
 f32b9f7a052f"],
 
 Cell[BoxData[
@@ -370,14 +371,24 @@ Cell[BoxData[
            RowBox[{"#", "[", 
             RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ")"}], "&"}], "/@", 
        "RawJobsBatch"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Run", "@", 
+      RowBox[{"(", 
+       RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+        RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Run", "@", 
+      RowBox[{"(", 
+       RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+        RowBox[{"ToString", "@", "node"}], "<>", "\"\</stats\>\""}], ")"}]}], 
+     ";", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"FileNameJoin", "@", 
        RowBox[{"{", 
         RowBox[{
          RowBox[{"Directory", "[", "]"}], ",", 
-         RowBox[{"\"\<peta4.nd\>\"", "<>", 
-          RowBox[{"ToString", "@", "node"}], "<>", "\"\<.mx\>\""}]}], "}"}]}],
-       "~", "DumpSave", "~", 
+         RowBox[{"\"\<bin/node-\>\"", "<>", 
+          RowBox[{"ToString", "@", "node"}]}], ",", "\"\<JobsBatch.mx\>\""}], 
+        "}"}]}], "~", "DumpSave", "~", 
       RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
    "]"}], ";"}]], "Input",
  InitializationCell->True,
@@ -532,7 +543,9 @@ Cell[BoxData[
    3.8603964035194473`*^9, 3.860396405031681*^9}, {3.860396570285593*^9, 
    3.86039657164571*^9}, {3.860400020803294*^9, 3.860400022686831*^9}, {
    3.860400090330511*^9, 3.8604000906263*^9}, {3.860428030633562*^9, 
-   3.860428040081575*^9}},ExpressionUUID->"e7328ef6-6ef5-448b-ac02-\
+   3.860428040081575*^9}, {3.86042930620494*^9, 3.860429413995893*^9}, {
+   3.8604294618116207`*^9, 3.860429462650731*^9}, {3.860431503167091*^9, 
+   3.860431515558955*^9}},ExpressionUUID->"e7328ef6-6ef5-448b-ac02-\
 9556f9c7556d"],
 
 Cell[BoxData[
@@ -712,13 +725,13 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 230, 5, 47, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f",
+Cell[983, 32, 325, 6, 47, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f",
  InitializationCell->True],
-Cell[1216, 39, 17889, 310, 186, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[1311, 40, 17889, 310, 186, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[19108, 351, 12278, 184, 117, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
+Cell[19203, 352, 12832, 196, 163, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
  InitializationCell->True],
-Cell[31389, 537, 11043, 153, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
+Cell[32038, 550, 11043, 153, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
  InitializationCell->True]
 }, Open  ]]
 }

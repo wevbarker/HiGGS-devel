@@ -116,6 +116,10 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
+If[!ValueQ@$Node,$Node=""];
+
+
+(* ::Input::Initialization:: *)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)

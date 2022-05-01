@@ -20,7 +20,7 @@
 
 
 (* ::Input::Initialization:: *)
-Run@"rm -rf peta4.nd*.mx"
+Run@"rm -rf ./bin/node-*"
 
 
 (* ::Input::Initialization:: *)
@@ -34,7 +34,9 @@ RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,
 (* ::Input::Initialization:: *)
 For[node=0,node<10,node++,
 JobsBatch=({#[[1]]<>"_node_"<>ToString@node,#[[2]]})&/@RawJobsBatch;
-FileNameJoin@{Directory[],"peta4.nd"<>ToString@node<>".mx"}~DumpSave~{JobsBatch};
+Run@("mkdir ./bin/node-"<>ToString@node);
+Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
+FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
 
 

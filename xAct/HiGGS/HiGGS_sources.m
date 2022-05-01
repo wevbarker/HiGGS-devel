@@ -5351,8 +5351,7 @@ DefinedTheories=WaitAll[Jobs];
 (*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
 Print@InputBatch;
 $TheoryNames=(#[[1]])&/@InputBatch;
-(FileNameJoin@{$WorkingDirectory,"bin","$TheoryNames.mx"})~DumpSave~{$TheoryNames};
-
+(FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"})~DumpSave~{$TheoryNames};
 (*
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"\[Rule]theory];

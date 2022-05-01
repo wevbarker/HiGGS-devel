@@ -26,8 +26,8 @@
 #SBATCH --mail-type=ALL
 ##SBATCH --no-requeue
 
-#SBATCH --output="/home/wb263/HiGGS_development/peta4.hpc.nd%a.out"
-#SBATCH --error="/home/wb263/HiGGS_development/peta4.hpc.nd%a.err"
+#SBATCH --output="/home/wb263/HiGGS_development/bin/node-%a/peta4.hpc.out"
+#SBATCH --error="/home/wb263/HiGGS_development/bin/node-%a/peta4.hpc.err"
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
 #SBATCH -p skylake

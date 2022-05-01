@@ -5,14 +5,11 @@
 cd /home/wb263/HiGGS_development
 
 #	flush the stats directory
-rm -rf ./bin/stats
-rm ./bin/BuildTime.mx
-
-#	make a new stats directory
-mkdir ./bin/stats
+rm -rf ./bin/node-*/stats/*
+rm ./bin/node-*/BuildTime.mx
 
 #	run the job	
-math -run < peta4.job.m peta4.nd$1.mx
+math -run < peta4.job.m $1
 
 echo "script peta4.job.m has exited and returned to peta4.job.sh"
 
