@@ -49,6 +49,9 @@ maxtheory = 10                          #    how many total theory columns did w
 rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
+xmx = 2
+ymx = 5
+
 #=============== cols params ==========================
 
 greys = cm.get_cmap('Greys', 120)
@@ -88,9 +91,9 @@ fig, axs = plt.subplots(5,2,sharex = True, sharey = True, gridspec_kw = {'wspace
 
 #=============== node loop =================================
 
-for x in range(2):
-    for y in range(5):
-        node = (x+1)*(y+1)-1
+for x in range(xmx):
+    for y in range(ymx):
+        node = y*xmx+x+1
 
         #=============== files =================================
 
