@@ -35,11 +35,14 @@ fig, axs = plt.subplots(2,5)
 
 for x in range(5):
     for y in range(2):
-        axs[y,x].imshow(mpimg.imread('bin/node-' + str((x+1)*(y+1)-1) +'/peta4.plt.png'))
-        print("new")
-        print(x)
-        print(y)
         print((x+1)*(y+1)-1)
+        axs[y,x].imshow(mpimg.imread('bin/node-' + str((x+1)*(y+1)-1) +'/peta4.plt.png'))
+        axs[y,x].tick_params(left = False, bottom = False)
+        axs[y,x].set_xticks([])
+        axs[y,x].set_yticks([])
+        for pos in ['right', 'top', 'bottom', 'left']:
+            axs[y,x].spines[pos].set_visible(False)
+
 
 
 plt.savefig('t.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
@@ -48,12 +51,11 @@ sys.exit()
 
 for ax in axs:
     #ax.imshow(img1)
-    ax.tick_params(left = False, bottom = False)
+    #ax.tick_params(left = False, bottom = False)
     ax.set_xticks([])
     ax.set_yticks([])
     for pos in ['right', 'top', 'bottom', 'left']:
         ax.spines[pos].set_visible(False)
-
 
 # we want the width always to be a single or double column, we can get this from revtex using
 # \uselengthunit{in}\printlength{\linewidth} ---> 3.40457

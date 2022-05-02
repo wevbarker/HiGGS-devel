@@ -206,6 +206,8 @@ $HiGGSTimingNow=HiGGSAbsoluteTime[];
 res=AbsoluteTiming@expr;
 temp=Evaluate@res[[2]];
 $HiGGSTimingDuration=Evaluate@res[[1]];
+Print@$TheoryNames;
+Print@$TheoryName;
 If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(($TheoryNames~Position~$TheoryName)[[1]][[1]])+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
 TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
