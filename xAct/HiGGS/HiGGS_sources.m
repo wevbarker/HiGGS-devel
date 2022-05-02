@@ -4014,6 +4014,9 @@ PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequenc
 PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->theory];
 (*Export to the usual PB function*)
@@ -4029,11 +4032,12 @@ PoissonBracket[f1x_,f2x_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@M
 (*distributed defs seem not to be working for split def*)
 If[OptionValue["Parallel"],
 (*Build the HiGGS environment*)
-HiGGSPrint["we got there"];
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
-HiGGSPrint["fin"];
 ];
 (*a message*)
 printer={};
@@ -4600,6 +4604,9 @@ InertMakeRule[Replacement_List]:=MakeRule[Replacement,MetricOn->All,ContractMetr
 RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4673,6 +4680,9 @@ ClearBuild[];
 TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4749,6 +4759,9 @@ ClearBuild[];
 SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4846,6 +4859,9 @@ ClearBuild[];
 MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4919,6 +4935,9 @@ ClearBuild[];
 ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -5226,16 +5245,12 @@ Options[DefTheoryParallel]={"Export"->False,"Import"->False};
 DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+(*import theory names*)
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
-(**)
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
-(**)
-(*
-HiGGSPrint["call to deftheorypara"];
-HiGGSPrint[InputSystem];
-HiGGSPrint[OptionValue["Export"]];
-HiGGSPrint[OptionValue["Import"]];
-*)
+
 ForceTiming[];
 ];
 DistributeDefinitions@DefTheoryParallel;
