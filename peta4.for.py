@@ -93,7 +93,7 @@ fig, axs = plt.subplots(5,2,sharex = True, sharey = True, gridspec_kw = {'wspace
 
 for x in range(xmx):
     for y in range(ymx):
-        node = y*xmx+x+1
+        node = y*xmx+x
 
         #=============== files =================================
 
