@@ -5353,7 +5353,8 @@ StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,
 (*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
 $TryKernels=True;
 While[$TryKernels,
-TimeConstrained[LaunchKernels[];
+HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
+TimeConstrained[LaunchKernels[32];
 $TryKernels=False;,
 5,
 HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
