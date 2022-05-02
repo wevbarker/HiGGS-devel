@@ -31,7 +31,7 @@ r'\usepackage{bm}')
 
 mpl.rcParams['font.family'] = 'serif'
 
-fig, axs = plt.subplots(2,5)
+fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 
 for x in range(5):
     for y in range(2):
@@ -43,9 +43,11 @@ for x in range(5):
         for pos in ['right', 'top', 'bottom', 'left']:
             axs[y,x].spines[pos].set_visible(False)
 
+#plt.subplots_adjust(wspace = 0, hspace = 0)
 
-
-plt.savefig('t.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
+#plt.savefig('t.png',dpi = 300)
+#plt.tight_layout()
+plt.savefig('t.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
 
 sys.exit()
 

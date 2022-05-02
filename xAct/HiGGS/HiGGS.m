@@ -214,6 +214,9 @@ TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
 TimingNowPosition=TimingDurationPosition-1;
 NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGSTimingDuration);
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
+Print@TimingDurationPosition;
+Print@TimingNowPosition;
+Print@NewHiGGSTimingLine;
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (*need to be careful not to spend all our time printing *)
 TryTiming[];
