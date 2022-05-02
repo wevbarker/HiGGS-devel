@@ -5357,7 +5357,7 @@ HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
 CloseKernels[];
 TimeConstrained[LaunchKernels[32];
 $TryKernels=False;,
-5,
+10,
 CloseKernels[];
 HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];
