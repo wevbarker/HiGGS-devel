@@ -5346,7 +5346,7 @@ If[OptionValue["Velocities"],Print["vels"]];
 
 (* ::Input::Initialization:: *)
 Options[StudyTheory]={"Export"->False,"Import"->False};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Catch@Module[{DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
+StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 

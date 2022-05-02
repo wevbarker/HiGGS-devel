@@ -40,7 +40,7 @@ twocol = 7.05826
 
 #=============== tuning params ==========================
 
-cols = onecol                           #   onecol or twocol
+cols = twocol                           #   onecol or twocol
 asp = 1.5                                #   vertical aspect ratio
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
@@ -82,14 +82,14 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(1,2,sharex = True, sharey = True, figsize = (width,height))
+fig, axs = plt.subplots(5,2,sharex = True, sharey = True, figsize = (width,height))
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
 
 #=============== node loop =================================
 
-for x in range(5):
-    for y in range(2):
+for x in range(2):
+    for y in range(5):
         node = (x+1)*(y+1)-1
 
         #=============== files =================================
@@ -175,7 +175,7 @@ for x in range(5):
             # Set the values used for colormapping
             lc.set_array(function_data)
             lc.set_linewidth(line_width)
-            line = axs[node].add_collection(lc)
+            line = axs[y,x].add_collection(lc)
 
             kernel_array = np.full(size,(kernel-0.5*(1-0.75))*propunit)    #   this is for the horizontal line position
             function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
@@ -199,7 +199,7 @@ for x in range(5):
             # Set the values used for colormapping
             lc.set_array(function_data)
             lc.set_linewidth(0.75*line_width)
-            line = axs[node].add_collection(lc)
+            line = axs[y,x].add_collection(lc)
 
             kernel_array = np.full(size,(kernel-0.5*(1-0.5))*propunit)    #   this is for the horizontal line position
             function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
@@ -222,19 +222,19 @@ for x in range(5):
 
             lc.set_array(function_data)
             lc.set_linewidth(0.5*line_width)
-            line = axs[node].add_collection(lc)
+            line = axs[y,x].add_collection(lc)
 
         #=================== limits ======================
 
-        axs[node].set_xlim(0., total_time)
-        axs[node].set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
-        axs[node].set_yticklabels(ticklabels)
-        axs[node].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
+        axs[y,x].set_xlim(0., total_time)
+        axs[y,x].set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
+        axs[y,x].set_yticklabels(ticklabels)
+        axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
 
         #=================== end admin to label the plot ======================
 
         title_string = r"\texttt{node " + str(node) + " }"
-        axs[node].set_title(title_string)
+        axs[y,x].set_title(title_string)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
