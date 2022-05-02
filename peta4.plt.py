@@ -46,26 +46,18 @@ barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space
 maxtheory = 10                          #    how many total theory columns did we allow?
-rough_number_of_functions = 6
-rougher_number_of_functions = 5
+rough_number_of_functions = 6           #   less info, middle sub-bar
+rougher_number_of_functions = 5         #   even less, upper sub-bar
+
+#=============== node =================================
+
+node = str(sys.argv[-1])
+print(node)
+#sys.exit()
 
 #=============== files =================================
-'''
-output_files = os.listdir("bin/stats")
-sample_files = os.listdir("bin/samples")
-filled_files = [ filename for filename in output_files if sum(1 for line in open('bin/stats/'+filename)) > 3 and 'kernel' in filename]
 
-new_files = list(set(filled_files)-set(sample_files))
-old_files = list(set(filled_files)-set(new_files))
-rep_files = [ filename for filename in old_files if sum(1 for line in open('bin/stats/'+filename)) > sum(1 for line in open('bin/samples/'+filename)) ]
-
-for filename in new_files:
-    shutil.copyfile('bin/stats/'+filename,'bin/samples/'+filename)
-
-for filename in rep_files:
-    shutil.copyfile('bin/stats/'+filename,'bin/samples/'+filename)
-'''
-kernel_files = os.listdir("bin/stats/")
+kernel_files = os.listdir("bin/node-" + node + "/stats/")
 
 ticklabels=[]
 for filename in kernel_files:
@@ -78,7 +70,7 @@ ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
 ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
 
 def make_np(filename):
-    return pd.read_csv('bin/stats/'+filename).to_numpy()
+    return pd.read_csv('bin/node-' + node + '/stats/'+filename).to_numpy()
 
 #   a list, not np, of np arrays containing all data with headers
 all_kernel_data = list(map(make_np,kernel_files))
@@ -249,6 +241,6 @@ sp.set_title(title_string)
 #plt.suptitle(r"\texttt{HiGGS} for HPC")
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4_jobs_trace.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
+plt.savefig('bin/node-' + node + '/peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 300)
 
 sys.exit()

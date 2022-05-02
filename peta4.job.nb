@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     56584,        919]
-NotebookOptionsPosition[     55343,        889]
-NotebookOutlinePosition[     55765,        906]
-CellTagsIndexPosition[     55722,        903]
+NotebookDataLength[     56692,        921]
+NotebookOptionsPosition[     55451,        891]
+NotebookOutlinePosition[     55873,        908]
+CellTagsIndexPosition[     55830,        905]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -719,8 +719,10 @@ Cell[BoxData[
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Print", "[", "\"\<return to jobs\>\"", "]"}], 
-  "\[IndentingNewLine]", 
+  RowBox[{
+  "Print", "[", 
+   "\"\<calls to HiGGS functions have finished, reached the end of \
+peta4.job.m\>\"", "]"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
    "need", " ", "this", " ", "to", " ", "give", " ", "the", " ", "right", " ",
@@ -730,8 +732,8 @@ Cell[BoxData[{
   RowBox[{"CloseKernels", "[", "]"}], ";"}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.860409681587123*^9, 3.86040970536922*^9}, {
-  3.860413075335601*^9, 
-  3.860413087071505*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
+  3.860413075335601*^9, 3.860413087071505*^9}, {3.860476773175561*^9, 
+  3.860476794582974*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
 c241bc4146a0"],
 
 Cell[BoxData[
@@ -916,9 +918,9 @@ Cell[21986, 404, 11065, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2
  InitializationCell->True],
 Cell[33054, 565, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[43952, 719, 574, 15, 94, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+Cell[43952, 719, 682, 17, 94, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
  InitializationCell->True],
-Cell[44529, 736, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[44637, 738, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }

@@ -52,7 +52,7 @@ JobsBatch~StudyTheory~("Import"->False);
 
 
 (* ::Input::Initialization:: *)
-Print["return to jobs"]
+Print["calls to HiGGS functions have finished, reached the end of peta4.job.m"]
 (*need this to give the right exit code to SLURM*)
 CloseKernels[];
 
