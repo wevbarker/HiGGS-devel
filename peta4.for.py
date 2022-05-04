@@ -82,9 +82,6 @@ newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
 
 print(np.shape(newcolors))
 
-rcolors = greys(np.linspace(0, 1, 256))
-print(np.shape(rcolors))
-
 def my_rgb(hue,val):
     val = np.asarray(colorsys.hsv_to_rgb(hue,1.,val))
     return val
@@ -183,6 +180,11 @@ for x in range(xmx):
         #=============== colourmap =============================
 
         print("building new colormap ",node)
+
+        rcolors = 0.
+        rcolors = greys(np.linspace(0, 1, 256))
+        print(np.shape(rcolors))
+
         for theory in range(10):
             hue = random.uniform(0,1)
             cma = my_rgb(hue,np.asarray(np.linspace(1, 0, 256)))
