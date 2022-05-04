@@ -51,8 +51,8 @@ maxtheory = 10                          #    how many total theory columns did w
 rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
-xmx = 2     #1
-ymx = 5      #  5
+xmx = 1     #1
+ymx = 2      #  5
 
 #=============== cols params ==========================
 
@@ -96,7 +96,7 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(5,2,sharex = True, sharey = True, gridspec_kw = {'wspace':0.1, 'hspace':0.2}, figsize = (width,height))
+fig, axs = plt.subplots(2,2,sharex = True, sharey = True, gridspec_kw = {'wspace':0.1, 'hspace':0.2}, figsize = (width,height))
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
 
@@ -179,28 +179,26 @@ for x in range(xmx):
         line_width = (bar*(point_hei/yrange))*0.8
         '''
 
+        #=============== colourmap =============================
+
+        print("building new colormap ",kernel)
+        for theory in range(10):
+            hue = random.uniform(0,1)
+            cma = my_rgb(hue,np.asarray(np.linspace(1, 0, 256)))
+            cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
+            cma = np.transpose(cma)
+            print(np.shape(cma))
+            rcolors = np.append(rcolors,cma,axis = 0)
+
+        endpt = 256*(1+acttheory)
+        '''silly = ListedColormap(newcolors[0:endpt:,:],name='silly')'''
+        silly = ListedColormap(rcolors[0:endpt:,:],name='silly'+str(node))
+
         #==================== construct the data ===========================
 
         for kernel in range(0,number_of_kernels):
 
-
-            print("building new colormap ",kernel)
-            for theory in range(10):
-                hue = random.uniform(0,1)
-                cma = my_rgb(hue,np.asarray(np.linspace(0, 1, 256)))
-                cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
-                cma = np.transpose(cma)
-                print(np.shape(cma))
-                rcolors = np.append(rcolors,cma,axis = 0)
-
-
-            #=============== colourmap =============================
-
-            endpt = 256*(1+acttheory)
-            '''silly = ListedColormap(newcolors[0:endpt:,:],name='silly')'''
-            silly = ListedColormap(rcolors[0:endpt:,:],name='silly')
-
-            print("plotting data from kernel ",kernel)
+            print("plotting data from node ",node," and kernel ",kernel)
             kernel_data = all_kernel_data[kernel]
 
             kernel_array = np.full(size,kernel*propunit)    #   this is for the horizontal line position
