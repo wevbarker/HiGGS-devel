@@ -188,7 +188,9 @@ for x in range(xmx):
 
         for theory in range(10):
             hue = random.uniform(0,1)
+            '''
             cma = my_rgb(hue,np.asarray(np.linspace(0, 1, 256)))
+            '''
             cma = np.array([my_rgb(hue,sat) for sat in np.asarray(np.linspace(0, 1, 256))])
             cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
             cma = np.transpose(cma)
