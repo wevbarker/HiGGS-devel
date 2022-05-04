@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     84643,       1762]
-NotebookOptionsPosition[     77844,       1633]
-NotebookOutlinePosition[     78266,       1650]
-CellTagsIndexPosition[     78223,       1647]
+NotebookDataLength[     85316,       1772]
+NotebookOptionsPosition[     78517,       1643]
+NotebookOutlinePosition[     78939,       1660]
+CellTagsIndexPosition[     78896,       1657]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1152,111 +1152,119 @@ Cell[BoxData[
          "$HiGGSTimingDuration", ",", "NewHiGGSTimingLine", ",", 
          "PrintDamper"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"$HiGGSTimingNow", "=", 
-         RowBox[{"HiGGSAbsoluteTime", "[", "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"Label", "=", 
-           RowBox[{"ToString", "@", 
-            RowBox[{"Head", "@", "expr"}]}]}], ";"}], "*)"}], 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"nothing", " ", "wrong", " ", "with", " ", "this"}], ",", 
-          " ", 
-          RowBox[{"but", " ", 
-           RowBox[{"we", "'"}], "ll", " ", "include", " ", "it", " ", 
-           "later"}]}], "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"res", "=", 
-         RowBox[{"AbsoluteTiming", "@", "expr"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"temp", "=", 
-         RowBox[{"Evaluate", "@", 
-          RowBox[{"res", "[", 
-           RowBox[{"[", "2", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"$HiGGSTimingDuration", "=", 
-         RowBox[{"Evaluate", "@", 
-          RowBox[{"res", "[", 
-           RowBox[{"[", "1", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"If", "[", 
-         RowBox[{
-          RowBox[{"StringQ", "@", "$TheoryName"}], ",", 
+         RowBox[{"Global`$Timing", ",", "\[IndentingNewLine]", 
           RowBox[{
-           RowBox[{"TimingDurationPosition", "=", 
+           RowBox[{"$HiGGSTimingNow", "=", 
+            RowBox[{"HiGGSAbsoluteTime", "[", "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"(*", 
             RowBox[{
+             RowBox[{"Label", "=", 
+              RowBox[{"ToString", "@", 
+               RowBox[{"Head", "@", "expr"}]}]}], ";"}], "*)"}], 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"nothing", " ", "wrong", " ", "with", " ", "this"}], ",",
+              " ", 
+             RowBox[{"but", " ", 
+              RowBox[{"we", "'"}], "ll", " ", "include", " ", "it", " ", 
+              "later"}]}], "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"res", "=", 
+            RowBox[{"AbsoluteTiming", "@", "expr"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"temp", "=", 
+            RowBox[{"Evaluate", "@", 
+             RowBox[{"res", "[", 
+              RowBox[{"[", "2", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+           
+           RowBox[{"$HiGGSTimingDuration", "=", 
+            RowBox[{"Evaluate", "@", 
+             RowBox[{"res", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+           
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"StringQ", "@", "$TheoryName"}], ",", 
              RowBox[{
-              RowBox[{"(", 
-               RowBox[{"2", 
-                RowBox[{"Length", "@", "$TimedFunctionList"}]}], ")"}], 
-              RowBox[{"(", 
+              RowBox[{"TimingDurationPosition", "=", 
                RowBox[{
                 RowBox[{
                  RowBox[{"(", 
+                  RowBox[{"2", 
+                   RowBox[{"Length", "@", "$TimedFunctionList"}]}], ")"}], 
+                 RowBox[{"(", 
                   RowBox[{
-                  "$TheoryNames", "~", "Position", "~", "$TheoryName"}], 
-                  ")"}], "[", 
-                 RowBox[{"[", "1", "]"}], "]"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "+", 
-             RowBox[{"2", 
-              RowBox[{"(", 
-               RowBox[{
-                RowBox[{"(", 
-                 RowBox[{"Flatten", "@", 
-                  RowBox[{"(", 
                    RowBox[{
-                   "$TimedFunctionList", "~", "Position", "~", "Label"}], 
-                   ")"}]}], ")"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}]}], ";"}], ",", 
-          "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"TimingDurationPosition", "=", 
-            RowBox[{"2", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"(", 
-                RowBox[{"Flatten", "@", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "$TheoryNames", "~", "Position", "~", "$TheoryName"}], 
+                    ")"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "+", 
+                RowBox[{"2", 
                  RowBox[{"(", 
                   RowBox[{
-                  "$TimedFunctionList", "~", "Position", "~", "Label"}], 
-                  ")"}]}], ")"}], "[", 
-               RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], ";"}], ",", 
-          "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"TimingDurationPosition", "=", 
-            RowBox[{"2", 
+                   RowBox[{"(", 
+                    RowBox[{"Flatten", "@", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "$TimedFunctionList", "~", "Position", "~", "Label"}], 
+                    ")"}]}], ")"}], "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}]}], ";"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"TimingDurationPosition", "=", 
+               RowBox[{"2", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"Flatten", "@", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "$TimedFunctionList", "~", "Position", "~", "Label"}], 
+                    ")"}]}], ")"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], ";"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"TimingDurationPosition", "=", 
+               RowBox[{"2", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"Flatten", "@", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "$TimedFunctionList", "~", "Position", "~", "Label"}], 
+                    ")"}]}], ")"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], ";"}]}], "]"}], 
+           ";", "\[IndentingNewLine]", 
+           RowBox[{"TimingNowPosition", "=", 
+            RowBox[{"TimingDurationPosition", "-", "1"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"NewHiGGSTimingLine", "=", 
+            RowBox[{"$HiGGSTimingLine", "~", "ReplacePart", "~", 
              RowBox[{"(", 
               RowBox[{
-               RowBox[{"(", 
-                RowBox[{"Flatten", "@", 
-                 RowBox[{"(", 
-                  RowBox[{
-                  "$TimedFunctionList", "~", "Position", "~", "Label"}], 
-                  ")"}]}], ")"}], "[", 
-               RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], ";"}]}], "]"}], ";",
-         "\[IndentingNewLine]", 
-        RowBox[{"TimingNowPosition", "=", 
-         RowBox[{"TimingDurationPosition", "-", "1"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"NewHiGGSTimingLine", "=", 
-         RowBox[{"$HiGGSTimingLine", "~", "ReplacePart", "~", 
-          RowBox[{"(", 
-           RowBox[{"TimingDurationPosition", "->", "$HiGGSTimingDuration"}], 
-           ")"}]}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"NewHiGGSTimingLine", "=", 
-         RowBox[{"NewHiGGSTimingLine", "~", "ReplacePart", "~", 
-          RowBox[{"(", 
-           RowBox[{"TimingNowPosition", "->", "$HiGGSTimingNow"}], ")"}]}]}], 
-        ";", "\[IndentingNewLine]", 
-        RowBox[{
-        "$HiGGSTimingData", "~", "AppendTo", "~", "NewHiGGSTimingLine"}], ";",
-         "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-         "need", " ", "to", " ", "be", " ", "careful", " ", "not", " ", "to", 
-          " ", "spend", " ", "all", " ", "our", " ", "time", " ", 
-          "printing"}], " ", "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"TryTiming", "[", "]"}], ";", "\[IndentingNewLine]", 
-        "temp"}]}], "]"}]}], ";"}]}]}]], "Input",
+              "TimingDurationPosition", "->", "$HiGGSTimingDuration"}], 
+              ")"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"NewHiGGSTimingLine", "=", 
+            RowBox[{"NewHiGGSTimingLine", "~", "ReplacePart", "~", 
+             RowBox[{"(", 
+              RowBox[{"TimingNowPosition", "->", "$HiGGSTimingNow"}], 
+              ")"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{
+           "$HiGGSTimingData", "~", "AppendTo", "~", "NewHiGGSTimingLine"}], 
+           ";", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+            "need", " ", "to", " ", "be", " ", "careful", " ", "not", " ", 
+             "to", " ", "spend", " ", "all", " ", "our", " ", "time", " ", 
+             "printing"}], " ", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"TryTiming", "[", "]"}], ";"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"temp", "=", 
+           RowBox[{"Evaluate", "@", "expr"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", "temp"}]}], "]"}]}], ";"}]}]}]], "Input",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.},
  InitializationCell->True,
  CellChangeTimes->{{3.8581495361641493`*^9, 3.85814963295829*^9}, {
@@ -1303,7 +1311,9 @@ Cell[BoxData[
    3.860230210983694*^9, 3.8602302124158773`*^9}, {3.860483990640212*^9, 
    3.860484004952043*^9}, {3.860489112508725*^9, 3.860489120436549*^9}, {
    3.8604891595561533`*^9, 3.860489179515966*^9}, {3.860499776913629*^9, 
-   3.860499779481491*^9}},ExpressionUUID->"b709618a-9183-40e0-8383-\
+   3.860499779481491*^9}, {3.860572568150008*^9, 3.860572639085524*^9}, {
+   3.86057307815324*^9, 
+   3.860573080052745*^9}},ExpressionUUID->"b709618a-9183-40e0-8383-\
 46db619a5fc6"],
 
 Cell[BoxData[
@@ -1730,30 +1740,30 @@ Cell[44780, 947, 5951, 113, 416, "Input",ExpressionUUID->"22d21e49-0389-41be-8c3
 Cell[50734, 1062, 3883, 63, 71, "Input",ExpressionUUID->"98d5cedb-3e83-4104-958a-5f4de202e71e",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.},
  InitializationCell->True],
-Cell[54620, 1127, 8735, 179, 462, "Input",ExpressionUUID->"b709618a-9183-40e0-8383-46db619a5fc6",
+Cell[54620, 1127, 9408, 189, 516, "Input",ExpressionUUID->"b709618a-9183-40e0-8383-46db619a5fc6",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.},
  InitializationCell->True],
-Cell[63358, 1308, 3321, 49, 47, "Input",ExpressionUUID->"c795dc08-9c74-4ce3-9c29-72824d32072e",
+Cell[64031, 1318, 3321, 49, 47, "Input",ExpressionUUID->"c795dc08-9c74-4ce3-9c29-72824d32072e",
  CellGroupingRules->{"GroupTogetherGrouping", 10000.},
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[66716, 1362, 156, 3, 46, "Subsubsection",ExpressionUUID->"3933d2ba-c767-4a8a-b3aa-bc5002788023"],
-Cell[66875, 1367, 2435, 54, 209, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
+Cell[67389, 1372, 156, 3, 46, "Subsubsection",ExpressionUUID->"3933d2ba-c767-4a8a-b3aa-bc5002788023"],
+Cell[67548, 1377, 2435, 54, 209, "Input",ExpressionUUID->"eb42d413-bde6-4045-8550-27ab8196f2da",
  InitializationCell->True],
-Cell[69313, 1423, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
-Cell[69475, 1428, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
+Cell[69986, 1433, 159, 3, 36, "Text",ExpressionUUID->"c2ed4da8-3421-43c6-ba96-3d57eb8054a1"],
+Cell[70148, 1438, 320, 8, 47, "Input",ExpressionUUID->"4933bae9-b733-4fc5-abc6-6c7087173b15",
  InitializationCell->True]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[69844, 1442, 203, 4, 68, "Section",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
-Cell[70050, 1448, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
+Cell[70517, 1452, 203, 4, 68, "Section",ExpressionUUID->"6225deb7-2b53-408d-b1b9-6009d43132fd"],
+Cell[70723, 1458, 189, 5, 50, "Input",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
  InitializationCell->True],
-Cell[70242, 1455, 197, 3, 36, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
-Cell[70442, 1460, 7138, 161, 581, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[70915, 1465, 197, 3, 36, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
+Cell[71115, 1470, 7138, 161, 581, "Input",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True],
-Cell[77583, 1623, 233, 6, 71, "Input",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
+Cell[78256, 1633, 233, 6, 71, "Input",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]

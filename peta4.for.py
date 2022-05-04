@@ -50,7 +50,7 @@ rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
 xmx = 2
-ymx = 5
+ymx = 2      #  5
 
 #=============== cols params ==========================
 
@@ -90,6 +90,12 @@ fig, axs = plt.subplots(5,2,sharex = True, sharey = True, gridspec_kw = {'wspace
 #sp = fig.add_subplot(111)
 
 #=============== node loop =================================
+
+plt.draw()
+
+#plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
+plt.savefig('peta4.for.png',bbox_inches = 'tight',dpi = 300)
+
 
 for x in range(xmx):
     for y in range(ymx):
@@ -236,7 +242,7 @@ for x in range(xmx):
 
         #=================== end admin to label the plot ======================
 
-        title_string = r"\texttt{node " + str(node) + " }"
+        title_string = r"Node " + str(node)
         axs[y,x].set_title(title_string)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
@@ -245,7 +251,7 @@ for x in range(xmx):
 #=================== plt draw ======================
 
 fig.text(0.5, 0.04, r"Wallclock time/s", ha='center')
-fig.text(0.0, 0.5, r"\texttt{\${}KernelID}", va='center', rotation='vertical')
+fig.text(0.0, 0.5, r"Core (\texttt{\${}KernelID})", va='center', rotation='vertical')
 
 print('drawing plot')
 plt.draw()

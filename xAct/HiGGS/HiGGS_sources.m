@@ -194,19 +194,19 @@ SO3="\!\(\*OverscriptBox[\(.\), \(3\)]\)";
 SO4="\!\(\*OverscriptBox[\(.\), \(4\)]\)";
 SO5="\!\(\*OverscriptBox[\(.\), \(5\)]\)";
 SO6="\!\(\*OverscriptBox[\(.\), \(6\)]\)";
-dSpin0p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(0\), \(+\)]]\)";
-dSpin0m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(0\), \(-\)]]\)";
-dSpin1p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(1\), \(+\)]]\)";
-dSpin1m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(1\), \(-\)]]\)";
-dSpin2p="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(2\), \(+\)]]\)";
-dSpin2m="\!\(\*UnderscriptBox[\(\[Application]\), SuperscriptBox[\(2\), \(-\)]]\)";
-dSO0="\!\(\*UnderscriptBox[\(\[Application]\), \(0\)]\)";
-dSO1="\!\(\*UnderscriptBox[\(\[Application]\), \(1\)]\)";
-dSO2="\!\(\*UnderscriptBox[\(\[Application]\), \(2\)]\)";
-dSO3="\!\(\*UnderscriptBox[\(\[Application]\), \(3\)]\)";
-dSO4="\!\(\*UnderscriptBox[\(\[Application]\), \(4\)]\)";
-dSO5="\!\(\*UnderscriptBox[\(\[Application]\), \(5\)]\)";
-dSO6="\!\(\*UnderscriptBox[\(\[Application]\), \(6\)]\)";
+dSpin0p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(+\)]]\)";
+dSpin0m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(-\)]]\)";
+dSpin1p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(1\), \(+\)]]\)";
+dSpin1m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(1\), \(-\)]]\)";
+dSpin2p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(2\), \(+\)]]\)";
+dSpin2m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(2\), \(-\)]]\)";
+dSO0="\!\(\*UnderscriptBox[\(.\), \(0\)]\)";
+dSO1="\!\(\*UnderscriptBox[\(.\), \(1\)]\)";
+dSO2="\!\(\*UnderscriptBox[\(.\), \(2\)]\)";
+dSO3="\!\(\*UnderscriptBox[\(.\), \(3\)]\)";
+dSO4="\!\(\*UnderscriptBox[\(.\), \(4\)]\)";
+dSO5="\!\(\*UnderscriptBox[\(.\), \(5\)]\)";
+dSO6="\!\(\*UnderscriptBox[\(.\), \(6\)]\)";
 
 
 (* ::Input::Initialization:: *)
@@ -257,7 +257,6 @@ ClearBuild[];
 (*This is where we get the notation for generating sets of permutations from, not the documentation!*)
 HiGGSPrint[RiemannSymmetry[{-i,-j,-m,-n}]];
 *)
-PrintAs->SymbolBuild[UBSymb,Spin1p]
 DefTensor[R1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,SO1]]; 
 DeclareOrder[R1[-i,-j,-m,-n], 1]; 
 DefTensor[R2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RSymb,SO2]]; 
@@ -278,8 +277,6 @@ DefTensor[T3[-i], M4, PrintAs ->SymbolBuild[TSymb,SO3]];
 DeclareOrder[T3[-i], 1]; 
 AutomaticRules[R1,MakeRule[{R1[a,a1,b,-b],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[R1,MakeRule[{R1[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
-(*AutomaticRules[R1,MakeRule[{R1[a,-a,a1,-a1],0},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];*)(*redundant*)
-(*AutomaticRules[R1,MakeRule[{R1[a,a1,-a,-a1],0},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];*)(*redundant*)
 AutomaticRules[R2,MakeRule[{R2[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[R4,MakeRule[{R4[a,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[T1,MakeRule[{T1[a,a1,-a1],0},MetricOn->All,ContractMetrics->True]];
@@ -304,6 +301,44 @@ RSO13Activate=MakeRule[{R[-i,-j,-m,-n],Evaluate[RDefinition]},MetricOn->All,Cont
 TSO13Activate=MakeRule[{T[-i,-j,-k],Evaluate[TDefinition]},MetricOn->All,ContractMetrics->True];
 
 StrengthSO13Activate=Join[RSO13Activate,TSO13Activate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+ASymb="\[ScriptCapitalA]";
+DefTensor[A[a,c,-d],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[ASymb]];
+DeclareOrder[A[a,c,-d],1];
+DefTensor[A1[-k,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[ASymb,SO1]]; 
+DeclareOrder[A1[-k,-i,-j], 1]; 
+DefTensor[A2[-i], M4, PrintAs -> SymbolBuild[ASymb,SO2]]; 
+DeclareOrder[A2[-i], 1]; 
+DefTensor[A3[-i], M4, PrintAs ->SymbolBuild[ASymb,SO3]]; 
+DeclareOrder[A3[-i], 1]; 
+AutomaticRules[A1,MakeRule[{A1[a,a1,-a1],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[A1,MakeRule[{A1[a,-a,-k],0},MetricOn->All,ContractMetrics->True]];
+
+ADefinition=(2/3)(A1[-k,-i,-j]-A1[-j,-i,-k])+
+(1/3)(G[-i,-j]A2[-k]-G[-i,-k]A2[-j])+
+epsilonG[-i,-j,-k,-m]A3[m];
+
+ASO13Activate=MakeRule[{A[-j,-k,-i],Evaluate[ADefinition]},MetricOn->All,ContractMetrics->True];
+
+BSymb="\[ScriptB]";
+FSymb="\[ScriptF]";
+DefTensor[F[-i,-j],M4,PrintAs->SymbolBuild[FSymb]];
+DefTensor[F1[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[FSymb,SO1]]; 
+DeclareOrder[F1[-i,-j], 1]; 
+DefTensor[F2[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[FSymb,SO2]]; 
+DeclareOrder[F2[-i,-j], 1]; 
+DefTensor[F3[], M4, PrintAs ->SymbolBuild[FSymb,SO3]]; 
+DeclareOrder[F3[], 1]; 
+AutomaticRules[F2,MakeRule[{F2[a1,-a1],0},MetricOn->All,ContractMetrics->True]];
+
+FDefinition=F1[-i,-j]+F2[-i,-j]+(1/4)G[-i,-j]F3[];
+
+FSO13Activate=MakeRule[{F[-i,-j],Evaluate[FDefinition]},MetricOn->All,ContractMetrics->True];
+
+GaugeSO13Activate=Join[FSO13Activate,ASO13Activate];
 ClearBuild[];
 
 
@@ -783,15 +818,18 @@ DefTensor[BPiP[-a,-c],M4,PrintAs->SymbolBuild[BPiPSymb],OrthogonalTo->{V[c]}];
 DeclareOrder[BPiP[-a,-c],1];
 HSymb="\[ScriptH]";
 DefTensor[H[-a,c],M4,PrintAs->SymbolBuild[HSymb]];
-BSymb="\[ScriptB]";
 DefTensor[B[a,-c],M4,PrintAs->SymbolBuild[BSymb]];
+
+(*this section inserted to allow perturbative expansion of the H and B fields*)
+HToF=MakeRule[{H[-i,-j],G[-i,-j]+F[-i,-j]},MetricOn->All,ContractMetrics->True];
+BToF=MakeRule[{B[-i,-j],G[-i,-j]-F[-i,-j]+F[-i,-m]F[m,-j]},MetricOn->All,ContractMetrics->True];
+ToF=Join[HToF,BToF];
+
 (*Rule to contract Roman indices*)
 AutomaticRules[H,MakeRule[{H[-a,i]B[a,-j],G[i,-j]},MetricOn->All,ContractMetrics->True]];
 (*Rule to contract Greek indices*)
 AutomaticRules[H,MakeRule[{H[-a,i]B[c,-i],G[-a,c]},MetricOn->All,ContractMetrics->True]];
-ASymb="\[ScriptCapitalA]";
-DefTensor[A[a,c,-d],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[ASymb]];
-DeclareOrder[A[a,c,-d],1];
+
 
 G3Symb="\!\(\*SuperscriptBox[\(\[Gamma]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[G3[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[G3Symb]];

@@ -201,6 +201,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$
 TimeWrapper~SetAttributes~HoldAll;
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
+If[Global`$Timing,
 $HiGGSTimingNow=HiGGSAbsoluteTime[];
 (*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
 res=AbsoluteTiming@expr;
@@ -214,7 +215,8 @@ NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGST
 NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (*need to be careful not to spend all our time printing *)
-TryTiming[];
+TryTiming[];,
+temp=Evaluate@expr];
 temp];
 
 
