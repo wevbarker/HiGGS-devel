@@ -82,11 +82,10 @@ newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
 
 print(np.shape(newcolors))
 
-def my_rg(hue,sat):
+def my_rgb(hue,sat):
     val = np.asarray(colorsys.hsv_to_rgb(hue,sat,1.))
     return val
 
-my_rgb = np.vectorize(my_rg)
 
 #=============== misc =================================
 
