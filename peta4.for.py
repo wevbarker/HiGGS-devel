@@ -94,7 +94,7 @@ fig, axs = plt.subplots(2,2,sharex = True, sharey = True, gridspec_kw = {'wspace
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.for.png',bbox_inches = 'tight',dpi = 300)
+plt.savefig('peta4.for.png',bbox_inches = 'tight',dpi = 900)
 
 
 for x in range(xmx):
