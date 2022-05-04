@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import random
 import matplotlib as mpl
 from matplotlib import cm
 from matplotlib.collections import LineCollection
@@ -12,6 +13,7 @@ from os.path import exists
 import shutil
 import subprocess
 import socket
+import colorsys     #   for converting hsl to rgb
 import re   #   for extracting kernel numbers from strings
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
@@ -78,6 +80,15 @@ newcolors = np.append(newcolors,orrd(np.linspace(0, 1, 256)),axis=0)
 newcolors = np.append(newcolors,purples(np.linspace(0, 1, 256)),axis=0)
 newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
 
+print(np.shape(newcolors))
+
+rcolors = greys(np.linspace(0, 1, 256))
+print(np.shape(rcolors))
+
+def my_rgb(hue,val):
+    val = np.asarray(colorsys.hsv_to_rgb(hue,1.,val))
+    return val
+
 #=============== misc =================================
 
 width = cols
@@ -141,10 +152,6 @@ for x in range(xmx):
 
         acttheory = np.floor(np.max(np.nonzero(np.sum(s_times,axis=0)))/number_of_functions).astype(int)
 
-        #=============== colourmap =============================
-
-        endpt = 256*(1+acttheory)
-        silly = ListedColormap(newcolors[0:endpt:,:],name='silly')
 
         #====================== bar width and chart geometry ==============
 
@@ -175,6 +182,24 @@ for x in range(xmx):
         #==================== construct the data ===========================
 
         for kernel in range(0,number_of_kernels):
+
+
+            print("building new colormap ",kernel)
+            for theory in range(10):
+                hue = random.uniform(0,1)
+                cma = my_rgb(hue,np.asarray(np.linspace(0, 1, 256)))
+                cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
+                cma = np.transpose(cma)
+                print(np.shape(cma))
+                rcolors = np.append(rcolors,cma,axis = 0)
+
+
+            #=============== colourmap =============================
+
+            endpt = 256*(1+acttheory)
+            '''silly = ListedColormap(newcolors[0:endpt:,:],name='silly')'''
+            silly = ListedColormap(rcolors[0:endpt:,:],name='silly')
+
             print("plotting data from kernel ",kernel)
             kernel_data = all_kernel_data[kernel]
 
