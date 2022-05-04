@@ -150,7 +150,7 @@ for x in range(xmx):
 
         '''propunit = (height*total_time/width)/number_of_kernels'''
         '''point_hei = height * fig.dpi'''
-        point_hei = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
+        point_hei = axs[y,x].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
         line_width = point_hei/number_of_kernels
         '''
         x1,x2,y1,y2=plt.axis()
