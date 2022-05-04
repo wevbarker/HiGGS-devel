@@ -148,6 +148,8 @@ for x in range(xmx):
 
         #====================== bar width and chart geometry ==============
 
+        propunit = 1.
+
         '''propunit = (height*total_time/width)/number_of_kernels'''
         '''point_hei = height * fig.dpi'''
         point_hei = axs[y,x].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
