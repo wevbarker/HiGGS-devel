@@ -85,7 +85,7 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(2,5,sharex = True, sharey = True, gridspec_kw = {'wspace':0.1, 'hspace':0.2}, figsize = (width,height))
+fig, axs = plt.subplots(5,2,sharex = True, sharey = True, gridspec_kw = {'wspace':0.1, 'hspace':0.2}, figsize = (width,height))
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
 
