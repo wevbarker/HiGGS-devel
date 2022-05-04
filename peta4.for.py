@@ -94,7 +94,7 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(2,2,sharex = True, sharey = True, figsize = (width,height), gridspec_kw = {'wspace':0.1, 'hspace':0.2})
+fig, axs = plt.subplots(2,2,sharex = True, sharey = True, figsize = (width,height), gridspec_kw = {'wspace':0.1, 'hspace':0.1})
 #, gridspec_kw = {'wspace':0.1, 'hspace':0.2}
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
@@ -302,9 +302,9 @@ for x in range(xmx):
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
 
-        if x == 0 or y == ymx-1:
-            axs[y,x].set_title(title_string)
+        if x == 0:
             axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})")
+        if y == ymx-1:
             axs[y,x].set_xlabel(r"Wallclock time/s")
 
 #=================== plt draw ======================
@@ -316,6 +316,6 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.for.png',dpi = 900,pad_inches=0)
+plt.savefig('peta4.for.png',pad_inches=0,dpi = 900)
 
 sys.exit()
