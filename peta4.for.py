@@ -49,7 +49,7 @@ maxtheory = 10                          #    how many total theory columns did w
 rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
-xmx = 2
+xmx = 1     #1
 ymx = 2      #  5
 
 #=============== cols params ==========================
