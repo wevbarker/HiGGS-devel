@@ -83,7 +83,7 @@ newcolors = np.append(newcolors,purd(np.linspace(0, 1, 256)),axis=0)
 print(np.shape(newcolors))
 
 def my_rgb(hue,val):
-    val = np.asarray(colorsys.hsv_to_rgb(hue,1.,val))
+    val = np.asarray(colorsys.hsv_to_rgb(hue,val,1.))
     return val
 
 #=============== misc =================================
@@ -187,7 +187,7 @@ for x in range(xmx):
 
         for theory in range(10):
             hue = random.uniform(0,1)
-            cma = my_rgb(hue,np.asarray(np.linspace(1, 0, 256)))
+            cma = my_rgb(hue,np.asarray(np.linspace(0.2, 1, 256)))
             cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
             cma = np.transpose(cma)
             print(np.shape(cma))
