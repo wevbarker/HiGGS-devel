@@ -148,6 +148,19 @@ for x in range(xmx):
 
         #====================== bar width and chart geometry ==============
 
+        '''propunit = (height*total_time/width)/number_of_kernels'''
+        '''point_hei = height * fig.dpi'''
+        point_hei = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
+        line_width = point_hei/number_of_kernels
+        '''
+        x1,x2,y1,y2=plt.axis()
+        xrange = x2-x1
+        yrange = y2-y1
+        bar = barwidth*xrange/number_of_kernels
+        line_width = (bar*(point_hei/yrange))*0.8
+        '''
+
+        '''
         propunit = (height*total_time/width)/number_of_kernels
         point_hei = height*72
         x1,x2,y1,y2=plt.axis()
@@ -155,6 +168,7 @@ for x in range(xmx):
         yrange = y2-y1
         bar = barwidth*xrange/number_of_kernels
         line_width = (bar*(point_hei/yrange))*0.8
+        '''
 
         #==================== construct the data ===========================
 
