@@ -192,6 +192,8 @@ for x in range(xmx):
             cma = my_rgb(hue,np.asarray(np.linspace(0, 1, 256)))
             '''
             cma = np.array([my_rgb(hue,sat) for sat in np.asarray(np.linspace(0, 1, 256))])
+            print(np.shape(cma))
+            print(np.shape(np.asarray(np.linspace(0, 1, 256))))
             cma = np.append(cma,np.expand_dims(np.asarray(np.full(256,1.)),axis = 0),axis = 0)
             cma = np.transpose(cma)
             print(np.shape(cma))
