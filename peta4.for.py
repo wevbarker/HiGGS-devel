@@ -202,7 +202,7 @@ for x in range(xmx):
             lc.set_linewidth(line_width)
             line = axs[y,x].add_collection(lc)
 
-            kernel_array = np.full(size,(kernel-0.5*(1-0.75))*propunit)    #   this is for the horizontal line position
+            kernel_array = np.full(size,(kernel-0.7*(1-0.75))*propunit)    #   this is for the horizontal line position
             function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
             for theory in range(0,acttheory+1):
                 for function_number in range(1,rough_number_of_functions+1):
@@ -226,7 +226,7 @@ for x in range(xmx):
             lc.set_linewidth(0.75*line_width)
             line = axs[y,x].add_collection(lc)
 
-            kernel_array = np.full(size,(kernel-0.5*(1-0.5))*propunit)    #   this is for the horizontal line position
+            kernel_array = np.full(size,(kernel-0.7*(1-0.5))*propunit)    #   this is for the horizontal line position
             function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
             for theory in range(0,acttheory+1):
                 for function_number in range(1,number_of_functions+1):
