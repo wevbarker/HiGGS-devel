@@ -51,18 +51,23 @@ extraconds=#[[1]]&/@combo;
 extralabel=StringJoin@(#[[2]]&/@combo);
 {conds[[1]]<>extralabel,conds[[2]]~Join~extraconds}];
 C1=Combos[RawJobsBatch[[3]],#]&/@Switches;
+C2={};
+C3={};
+(*
 C2=Combos[RawJobsBatch[[4]],#]&/@Switches;
 C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
+*)
 AllTheories=Join[C1,C2,C3];
 AllTheories=RandomSample@AllTheories;
-AllTheories=AllTheories~Partition~16
+AllTheories=AllTheories~Partition~UpTo[37]
 Length@AllTheories
-For[node=0,node<96,node++,
+For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
 Run@("mkdir ./bin/node-"<>ToString@node);
 Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
+Length@AllTheories
 
 
 (* ::Input::Initialization:: *)
