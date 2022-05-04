@@ -107,6 +107,7 @@ plt.draw()
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
 plt.savefig('peta4.for.png',bbox_inches = 'tight',dpi = 900)
 
+mycmaps = { 'notacmap' : 0 }
 
 for x in range(xmx):
     for y in range(ymx):
@@ -192,7 +193,8 @@ for x in range(xmx):
 
         endpt = 256*(1+acttheory)
         '''silly = ListedColormap(newcolors[0:endpt:,:],name='silly')'''
-        silly = ListedColormap(rcolors[0:endpt:,:],name='silly'+str(node))
+
+        mycmaps['silly'+str(node)] = ListedColormap(rcolors[0:endpt:,:],name='silly'+str(node))
 
         #==================== construct the data ===========================
 
@@ -218,7 +220,7 @@ for x in range(xmx):
 
             # Create a continuous norm to map from data points to colors
             norm = plt.Normalize(0., 1.)
-            lc = LineCollection(segments, cmap=silly, norm=norm)
+            lc = LineCollection(segments, cmap=mycmaps['silly'+str(node)], norm=norm)
 
             # Set the values used for colormapping
             lc.set_array(function_data)
@@ -242,7 +244,7 @@ for x in range(xmx):
 
             # Create a continuous norm to map from data points to colors
             norm = plt.Normalize(0., 1.)
-            lc = LineCollection(segments, cmap=silly, norm=norm)
+            lc = LineCollection(segments, cmap=mycmaps['silly'+str(node)], norm=norm)
 
             # Set the values used for colormapping
             lc.set_array(function_data)
@@ -266,7 +268,7 @@ for x in range(xmx):
 
             # Create a continuous norm to map from data points to colors
             norm = plt.Normalize(0., 1.)
-            lc = LineCollection(segments, cmap=silly, norm=norm)
+            lc = LineCollection(segments, cmap=mycmaps['silly'+str(node)], norm=norm)
 
             lc.set_array(function_data)
             lc.set_linewidth(0.5*line_width)
