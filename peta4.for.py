@@ -293,19 +293,20 @@ for x in range(xmx):
         axs[y,x].set_yticklabels(ticklabels)
         axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
         axs[y,x].tick_params(axis = 'y',labelsize = 6)
+        axs[y,x].tick_params(axis = 'x',labelsize = 10)
 
         #=================== end admin to label the plot ======================
 
         title_string = r"Node " + str(node)
-        axs[y,x].set_title(title_string, fontsize = 8)
+        axs[y,x].set_title(title_string, fontsize = 10)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
 
         if x == 0:
-            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})")
+            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 10)
         if y == ymx-1:
-            axs[y,x].set_xlabel(r"Wallclock time/s")
+            axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 10)
 
 #=================== plt draw ======================
 
