@@ -20,6 +20,10 @@
 
 
 (* ::Input::Initialization:: *)
+$Timing=True;
+
+
+(* ::Input::Initialization:: *)
 If[IntegerQ@ToExpression@$CommandLine[[-1]],
 $Node=$CommandLine[[-1]];
 ToExpression@("<<"<>FileNameJoin@{Directory[],"bin","node-"<>$Node,"JobsBatch.mx"}<>";");
