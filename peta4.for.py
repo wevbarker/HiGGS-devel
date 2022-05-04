@@ -94,12 +94,12 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(2,2,sharex = True, sharey = True, figsize = (width,height))
+fig, axs = plt.subplots(2,2,sharex = True, sharey = True, figsize = (width,height), gridspec_kw = {'wspace':0.1, 'hspace':0.2})
 #, gridspec_kw = {'wspace':0.1, 'hspace':0.2}
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
 
-plt.subplots_adjust(hspace = 0.,wspace = 0.)
+#plt.subplots_adjust(hspace = 0.,wspace = 0.)
 
 #=============== node loop =================================
 
@@ -297,7 +297,7 @@ for x in range(xmx):
         #=================== end admin to label the plot ======================
 
         title_string = r"Node " + str(node)
-        axs[y,x].set_title(title_string)
+        axs[y,x].set_title(title_string, fontsize = 8)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
@@ -316,6 +316,6 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.for.png',dpi = 900)
+plt.savefig('peta4.for.png',dpi = 900,pad_inches=0)
 
 sys.exit()
