@@ -302,10 +302,15 @@ for x in range(xmx):
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
 
+        if x == 0 or y == ymx-1:
+            axs[y,x].set_title(title_string)
+            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})")
+            axs[y,x].set_xlabel(r"Wallclock time/s")
+
 #=================== plt draw ======================
 
-fig.text(0.5, 0.04, r"Wallclock time/s", ha='center')
-fig.text(0.0, 0.5, r"Core (\texttt{\${}KernelID})", va='center', rotation='vertical')
+#fig.text(0.5, 0.04, r"Wallclock time/s", ha='center')
+#fig.text(0.0, 0.5, r"Core (\texttt{\${}KernelID})", va='center', rotation='vertical')
 
 print('drawing plot')
 plt.draw()
