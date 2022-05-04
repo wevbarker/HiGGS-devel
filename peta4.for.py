@@ -181,7 +181,7 @@ for x in range(xmx):
 
         #=============== colourmap =============================
 
-        print("building new colormap ",kernel)
+        print("building new colormap ",node)
         for theory in range(10):
             hue = random.uniform(0,1)
             cma = my_rgb(hue,np.asarray(np.linspace(1, 0, 256)))
