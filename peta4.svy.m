@@ -33,18 +33,19 @@ RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,
 
 (* ::Input::Initialization:: *)
 (*calibratoin survey, Yo&Nester over 10 nodes*)
-(*
+(**)
 For[node=0,node<10,node++,
 JobsBatch=({#[[1]]<>"_node_"<>ToString@node,#[[2]]})&/@RawJobsBatch;
 Run@("mkdir ./bin/node-"<>ToString@node);
 Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
-*)
+(**)
 
 
 (* ::Input::Initialization:: *)
-Switches=Subsets@{{cAlp1==0,"A1"},{cAlp2==0,"A2"},{cAlp3==0,"A3"},{cAlp4==0,"A4"},{cAlp5==0,"A5"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
+(*
+Switches=Subsets@{{cAlp1==0,"A1"},{cAlp2\[Equal]0,"A2"},{cAlp3\[Equal]0,"A3"},{cAlp4\[Equal]0,"A4"},{cAlp5\[Equal]0,"A5"},{cAlp6\[Equal]0,"A6"},{cBet1\[Equal]0,"B1"},{cBet2\[Equal]0,"B2"},{cBet3\[Equal]0,"B3"}};
 AllTheories={};
 Combos[conds_,combo_]:=Module[{extraconds,extralabel},
 extraconds=#[[1]]&/@combo;
@@ -68,6 +69,7 @@ Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
 Length@AllTheories
+*)
 
 
 (* ::Input::Initialization:: *)

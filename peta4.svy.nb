@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     47280,        842]
-NotebookOptionsPosition[     46167,        814]
-NotebookOutlinePosition[     46589,        831]
-CellTagsIndexPosition[     46546,        828]
+NotebookDataLength[     47622,        847]
+NotebookOptionsPosition[     46509,        819]
+NotebookOutlinePosition[     46931,        836]
+CellTagsIndexPosition[     46888,        833]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -296,7 +296,8 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"Yo", "&"}], "Nester", " ", "over", " ", "10", " ", "nodes"}]}], 
    "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
    RowBox[{
     RowBox[{"For", "[", 
      RowBox[{
@@ -336,7 +337,8 @@ Cell[BoxData[
             RowBox[{"ToString", "@", "node"}]}], ",", 
            "\"\<JobsBatch.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
         RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
-     "]"}], ";"}], "\[IndentingNewLine]", "*)"}]}]], "Input",
+     "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "*)"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.8561134940016623`*^9, 3.856113563953445*^9}, {
    3.856113864152964*^9, 3.856113866735909*^9}, {3.856114686146227*^9, 
@@ -491,169 +493,172 @@ Cell[BoxData[
    3.860400090330511*^9, 3.8604000906263*^9}, {3.860428030633562*^9, 
    3.860428040081575*^9}, {3.86042930620494*^9, 3.860429413995893*^9}, {
    3.8604294618116207`*^9, 3.860429462650731*^9}, {3.860431503167091*^9, 
-   3.860431515558955*^9}, {3.860690028999938*^9, 3.860690049247897*^9}},
- CellLabel->"In[3]:=",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d"],
+   3.860431515558955*^9}, {3.860690028999938*^9, 3.860690049247897*^9}, {
+   3.86074418951239*^9, 
+   3.860744191806445*^9}},ExpressionUUID->"e7328ef6-6ef5-448b-ac02-\
+9556f9c7556d"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"Switches", "=", 
-   RowBox[{"Subsets", "@", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp1", "==", "0"}], ",", "\"\<A1\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp2", "\[Equal]", "0"}], ",", "\"\<A2\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp3", "\[Equal]", "0"}], ",", "\"\<A3\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp4", "\[Equal]", "0"}], ",", "\"\<A4\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp5", "\[Equal]", "0"}], ",", "\"\<A5\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cAlp6", "\[Equal]", "0"}], ",", "\"\<A6\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cBet1", "\[Equal]", "0"}], ",", "\"\<B1\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cBet2", "\[Equal]", "0"}], ",", "\"\<B2\>\""}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"cBet3", "\[Equal]", "0"}], ",", "\"\<B3\>\""}], "}"}]}], 
-     "}"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"AllTheories", "=", 
-   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"Combos", "[", 
-    RowBox[{"conds_", ",", "combo_"}], "]"}], ":=", 
-   RowBox[{"Module", "[", 
-    RowBox[{
+   RowBox[{"Switches", "=", 
+    RowBox[{"Subsets", "@", 
      RowBox[{"{", 
-      RowBox[{"extraconds", ",", "extralabel"}], "}"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"extraconds", "=", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"#", "[", 
-          RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", "combo"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"extralabel", "=", 
-       RowBox[{"StringJoin", "@", 
-        RowBox[{"(", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"#", "[", 
-            RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", "combo"}], ")"}]}]}],
-       ";", "\[IndentingNewLine]", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"conds", "[", 
-          RowBox[{"[", "1", "]"}], "]"}], "<>", "extralabel"}], ",", 
-        RowBox[{
-         RowBox[{"conds", "[", 
-          RowBox[{"[", "2", "]"}], "]"}], "~", "Join", "~", "extraconds"}]}], 
-       "}"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"C1", "=", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"Combos", "[", 
       RowBox[{
-       RowBox[{"RawJobsBatch", "[", 
-        RowBox[{"[", "3", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
-    "Switches"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"C2", "=", 
-   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"C3", "=", 
-    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"C2", "=", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"Combos", "[", 
-        RowBox[{
-         RowBox[{"RawJobsBatch", "[", 
-          RowBox[{"[", "4", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
-      "Switches"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"C3", "=", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"Combos", "[", 
-        RowBox[{
-         RowBox[{"RawJobsBatch", "[", 
-          RowBox[{"[", "5", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
-      "Switches"}]}], ";"}], "\[IndentingNewLine]", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"AllTheories", "=", 
-   RowBox[{"Join", "[", 
-    RowBox[{"C1", ",", "C2", ",", "C3"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"AllTheories", "=", 
-   RowBox[{"RandomSample", "@", "AllTheories"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"AllTheories", "=", 
-  RowBox[{"AllTheories", "~", "Partition", "~", 
-   RowBox[{"UpTo", "[", "37", "]"}]}]}], "\[IndentingNewLine]", 
- RowBox[{"Length", "@", "AllTheories"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"For", "[", 
-   RowBox[{
-    RowBox[{"node", "=", "0"}], ",", 
-    RowBox[{"node", "<", 
-     RowBox[{"Length", "@", "AllTheories"}]}], ",", 
-    RowBox[{"node", "++"}], ",", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"JobsBatch", "=", 
-      RowBox[{"AllTheories", "[", 
-       RowBox[{"[", 
-        RowBox[{"node", "+", "1"}], "]"}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Run", "@", 
-      RowBox[{"(", 
-       RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
-        RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Run", "@", 
-      RowBox[{"(", 
-       RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
-        RowBox[{"ToString", "@", "node"}], "<>", "\"\</stats\>\""}], ")"}]}], 
-     ";", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"FileNameJoin", "@", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"Directory", "[", "]"}], ",", 
-         RowBox[{"\"\<bin/node-\>\"", "<>", 
-          RowBox[{"ToString", "@", "node"}]}], ",", "\"\<JobsBatch.mx\>\""}], 
-        "}"}]}], "~", "DumpSave", "~", 
-      RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
-   "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"Length", "@", "AllTheories"}]}], "Input",
+         RowBox[{"cAlp1", "==", "0"}], ",", "\"\<A1\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cAlp2", "\[Equal]", "0"}], ",", "\"\<A2\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cAlp3", "\[Equal]", "0"}], ",", "\"\<A3\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cAlp4", "\[Equal]", "0"}], ",", "\"\<A4\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cAlp5", "\[Equal]", "0"}], ",", "\"\<A5\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cAlp6", "\[Equal]", "0"}], ",", "\"\<A6\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cBet1", "\[Equal]", "0"}], ",", "\"\<B1\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cBet2", "\[Equal]", "0"}], ",", "\"\<B2\>\""}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cBet3", "\[Equal]", "0"}], ",", "\"\<B3\>\""}], "}"}]}], 
+      "}"}]}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"AllTheories", "=", 
+    RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Combos", "[", 
+     RowBox[{"conds_", ",", "combo_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"extraconds", ",", "extralabel"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"extraconds", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "&"}], "/@", "combo"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"extralabel", "=", 
+        RowBox[{"StringJoin", "@", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", "combo"}], 
+          ")"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"conds", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "<>", "extralabel"}], ",", 
+         RowBox[{
+          RowBox[{"conds", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "~", "Join", "~", "extraconds"}]}],
+         "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"C1", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Combos", "[", 
+       RowBox[{
+        RowBox[{"RawJobsBatch", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
+     "Switches"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"C2", "=", 
+    RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"C3", "=", 
+    RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"(*", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"C2", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Combos", "[", 
+         RowBox[{
+          RowBox[{"RawJobsBatch", "[", 
+           RowBox[{"[", "4", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
+       "Switches"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"C3", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Combos", "[", 
+         RowBox[{
+          RowBox[{"RawJobsBatch", "[", 
+           RowBox[{"[", "5", "]"}], "]"}], ",", "#"}], "]"}], "&"}], "/@", 
+       "Switches"}]}], ";"}], "\[IndentingNewLine]", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"AllTheories", "=", 
+    RowBox[{"Join", "[", 
+     RowBox[{"C1", ",", "C2", ",", "C3"}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AllTheories", "=", 
+    RowBox[{"RandomSample", "@", "AllTheories"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AllTheories", "=", 
+    RowBox[{
+     RowBox[{"AllTheories", "~", "Partition", "~", 
+      RowBox[{"UpTo", "[", "37", "]"}]}], "\[IndentingNewLine]", 
+     RowBox[{"Length", "@", "AllTheories"}], "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"node", "=", "0"}], ",", 
+       RowBox[{"node", "<", 
+        RowBox[{"Length", "@", "AllTheories"}]}], ",", 
+       RowBox[{"node", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"JobsBatch", "=", 
+         RowBox[{"AllTheories", "[", 
+          RowBox[{"[", 
+           RowBox[{"node", "+", "1"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Run", "@", 
+         RowBox[{"(", 
+          RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+           RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Run", "@", 
+         RowBox[{"(", 
+          RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+           RowBox[{"ToString", "@", "node"}], "<>", "\"\</stats\>\""}], 
+          ")"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"FileNameJoin", "@", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Directory", "[", "]"}], ",", 
+            RowBox[{"\"\<bin/node-\>\"", "<>", 
+             RowBox[{"ToString", "@", "node"}]}], ",", 
+            "\"\<JobsBatch.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
+         RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
+      "]"}]}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"Length", "@", "AllTheories"}]}], "\[IndentingNewLine]", 
+  "*)"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQBmIQfeLdwrh1h984SoVYJ4LobpPCPBB9aIpZPojO2989
+1:eJxTTMoPSmViYGAQAWIQfeLdwrh1h984SoVYJ4LobpPCPBB9aIpZPojO2989
 EURfXag+DUTP7rOcBaI1VlxZCtb3Z+IlED1rK9sNEH2ijes+iN6SrPYGRBvY
 NXwBy9cofAfRB1MsGdcDaZ3gP7wg+tFJXwkQneEVIwui2WcYKoLoqiANZRB9
 Y4arBohet85ZC0S3c8RYg+gNE4tcQHTLs74YEG01ZVYKiE61yMwC0cZOTsUg
 uif6/RUQrSJ24RqI9pG5ch9EMwU1PgDRE4rKnoPoLR5LwXTHFfWgDUA6LcYw
-GESXVLVEg+gvXH/BNABQD6yl
+GESXVLVEg+gvXH/B9JrSaf9OAOmH7+P+g2gAfIW3+A==
   
   "],ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d"],
 
@@ -837,11 +842,11 @@ Cell[983, 32, 346, 6, 47, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9
  InitializationCell->True],
 Cell[1332, 40, 14835, 248, 163, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[16170, 290, 13276, 204, 232, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
+Cell[16170, 290, 13347, 208, 232, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
  InitializationCell->True],
-Cell[29449, 496, 5639, 161, 577, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
+Cell[29520, 500, 5910, 162, 623, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
  InitializationCell->True],
-Cell[35091, 659, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
+Cell[35433, 664, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
  InitializationCell->True]
 }, Open  ]]
 }
