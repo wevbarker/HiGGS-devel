@@ -52,7 +52,7 @@ rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
 xmx = 2     #1
-ymx = 5      #  5
+ymx = 7      #  5
 
 #=============== cols params ==========================
 
@@ -94,7 +94,7 @@ height = asp*cols
 
 #=============== plot setup =================================
 
-fig, axs = plt.subplots(5,2,sharex = True, sharey = True, figsize = (width,height), gridspec_kw = {'wspace':0.1, 'hspace':0.2})
+fig, axs = plt.subplots(7,2,sharex = True, sharey = True, figsize = (width,height), gridspec_kw = {'wspace':0.1, 'hspace':0.2})
 #, gridspec_kw = {'wspace':0.1, 'hspace':0.2}
 #fig, axs = plt.subplots(2,5, gridspec_kw = {'wspace':0, 'hspace':-0.2})
 #sp = fig.add_subplot(111)
@@ -293,20 +293,20 @@ for x in range(xmx):
         axs[y,x].set_yticklabels(ticklabels)
         axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
         axs[y,x].tick_params(axis = 'y',labelsize = 6)
-        axs[y,x].tick_params(axis = 'x',labelsize = 10)
+        axs[y,x].tick_params(axis = 'x',labelsize = 8)
 
         #=================== end admin to label the plot ======================
 
         title_string = r"Node " + str(node)
-        axs[y,x].set_title(title_string, fontsize = 10)
+        axs[y,x].set_title(title_string, fontsize = 8)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
 
         if x == 0:
-            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 10)
+            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 8)
         if y == ymx-1:
-            axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 10)
+            axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 8)
 
 #=================== plt draw ======================
 
@@ -317,6 +317,6 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.for.png',pad_inches=0,dpi = 900)
+plt.savefig('peta4.for.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
 
 sys.exit()
