@@ -1,18 +1,29 @@
 #!/bin/bash
 #	this file runs the jobs specified in jobs.m 
+echo "welcome to peta4.job.sh"
 
 #	first make sure we are in the correct directory
+echo "moving to HiGGS_development"
 cd /home/wb263/HiGGS_development
 
 #	flush the stats directory
+echo "flushing stats directory and build time"
 rm -rf ./bin/node-$1/stats
 mkdir ./bin/node-$1/stats
 rm ./bin/node-$1/BuildTime.mx
 
-#	run the job	
-math -run < peta4.job.m $1
+echo "commencing run loop"
 
-echo "script peta4.job.m has exited and returned to peta4.job.sh"
+#	run the job	
+while [ $(ls ./bin/node-$1/stats | wc -l) -le 32 ]; do
+  echo "fewer than 32 kernel files were found in the stats directory, running script peta4.job.m"
+  math -run < peta4.job.m $1
+  echo "script peta4.job.m has exited and returned to peta4.job.sh"
+done
+
+echo "exiting run loop because at least 32 kernel files were found in the stats directory, assuming we can kill the job"
+
+echo "killing processes with pkill"
 
 pkill -9 "Mathematica"
 pkill -9 "Wolfram"
@@ -23,4 +34,5 @@ echo "the following processes are still running on this node:"
 
 ps -u wb263
 
+echo "exiting with code 0"
 exit 0
