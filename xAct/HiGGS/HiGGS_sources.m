@@ -4051,9 +4051,9 @@ PoissonBracket[f1x,f2x,({options}~Complement~{"Parallel"->True})/.{List->Sequenc
 
 PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->theory];
@@ -4070,6 +4070,7 @@ PoissonBracket[f1x_,f2x_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@M
 (*distributed defs seem not to be working for split def*)
 If[OptionValue["Parallel"],
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -4641,6 +4642,7 @@ InertMakeRule[Replacement_List]:=MakeRule[Replacement,MetricOn->All,ContractMetr
 (* ::Input::Initialization:: *)
 RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -4717,6 +4719,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -4796,6 +4799,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -4896,6 +4900,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -4972,6 +4977,7 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryName]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiInert,PlaceholderBracketRulesInert,EH0Inert,FreeConstraintInert,PhiFreeIndexListNormalInert,iiInert,PsiFreeIndexListNormalInert,result},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
@@ -5282,6 +5288,7 @@ ClearBuild[];
 Options[DefTheoryParallel]={"Export"->False,"Import"->False};
 DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
+$Timing=True;
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
