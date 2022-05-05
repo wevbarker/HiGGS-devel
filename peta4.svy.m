@@ -61,7 +61,7 @@ C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
 *)
 AllTheories=Join[C1,C2,C3];
 (*AllTheories=RandomSample@AllTheories;*)
-AllTheories=Reverse@(AllTheories~SortBy~Length);
+AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));
 AllTheories=AllTheories~Partition~UpTo[37]
 Length@AllTheories
 For[node=0,node<Length@AllTheories,node++,

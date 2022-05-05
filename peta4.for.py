@@ -43,7 +43,7 @@ twocol = 7.05826
 #=============== tuning params ==========================
 
 cols = twocol                           #   onecol or twocol
-asp = 1.5                                #   vertical aspect ratio
+asp = 1.                                #   vertical aspect ratio
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space
@@ -293,20 +293,20 @@ for x in range(xmx):
         axs[y,x].set_yticklabels(ticklabels)
         axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
         axs[y,x].tick_params(axis = 'y',labelsize = 6)
-        axs[y,x].tick_params(axis = 'x',labelsize = 8)
+        axs[y,x].tick_params(axis = 'x',labelsize = 6)
 
         #=================== end admin to label the plot ======================
 
         title_string = r"Node " + str(node)
-        axs[y,x].set_title(title_string, fontsize = 8)
+        axs[y,x].set_title(title_string, fontsize = 6)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
 
         if x == 0:
-            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 8)
+            axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)
         if y == ymx-1:
-            axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 8)
+            axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
 
 #=================== plt draw ======================
 
