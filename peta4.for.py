@@ -166,6 +166,10 @@ for x in range(xmx):
             number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/(2*maxtheory))
             number_of_kernels = len(all_kernel_data)
 
+            print(range(0,number_of_kernels))
+            print(ticklabels)
+
+
             acttheory = np.floor(np.max(np.nonzero(np.sum(s_times,axis=0)))/number_of_functions).astype(int)
 
 
