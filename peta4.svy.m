@@ -64,16 +64,35 @@ AllTheories=Join[C1,C2,C3];
 (*AllTheories=RandomSample@AllTheories;*)
 AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));
 Print[Length@AllTheories];
-ms=PadRight[Partition[#,UpTo[Ceiling[Length[#]/#2]]],#2,{{}}]&;
-AllTheories=AllTheories~ms~14;
-Length@AllTheories
+st={{},{},{},{},{},{},{},{},{},{},{},{},{},{}};
+For[i=1,i<Length@AllTheories+1,i++,
+index=i~Mod~14+1;
+Print@index;
+Print@st[[index]];
+st[[index]]=st[[index]]~Append~ls[[i]];
+];
+AllTheories=st;
+Print["ih"]
+Print@Length@AllTheories[[1]]
+Print@Length@AllTheories[[2]]
+Print@Length@AllTheories[[3]]
+Print@Length@AllTheories[[4]]
+Print@Length@AllTheories[[5]]
+Print@Length@AllTheories[[6]]
+Print@Length@AllTheories[[7]]
+Print@Length@AllTheories[[8]]
+Print@Length@AllTheories[[9]]
+Print@Length@AllTheories[[10]]
+Print@Length@AllTheories[[11]]
+Print@Length@AllTheories[[12]]
+Print@Length@AllTheories[[13]]
+Print@Length@AllTheories[[14]]
 For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
 Run@("mkdir ./bin/node-"<>ToString@node);
 Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
-Length@AllTheories
 (**)
 
 

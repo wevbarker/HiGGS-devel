@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     50372,        918]
-NotebookOptionsPosition[     49259,        890]
-NotebookOutlinePosition[     49681,        907]
-CellTagsIndexPosition[     49638,        904]
+NotebookDataLength[     53580,       1001]
+NotebookOptionsPosition[     52465,        973]
+NotebookOutlinePosition[     52887,        990]
+CellTagsIndexPosition[     52844,        987]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -664,25 +664,108 @@ Cell[BoxData[
      RowBox[{"Length", "@", "AllTheories"}], "]"}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"ms", "=", 
-     RowBox[{
-      RowBox[{"PadRight", "[", 
-       RowBox[{
-        RowBox[{"Partition", "[", 
-         RowBox[{"#", ",", 
-          RowBox[{"UpTo", "[", 
-           RowBox[{"Ceiling", "[", 
-            RowBox[{
-             RowBox[{"Length", "[", "#", "]"}], "/", "#2"}], "]"}], "]"}]}], 
-         "]"}], ",", "#2", ",", 
-        RowBox[{"{", 
-         RowBox[{"{", "}"}], "}"}]}], "]"}], "&"}]}], ";"}], 
-   "\[IndentingNewLine]", 
+    RowBox[{"st", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"AllTheories", "=", 
-     RowBox[{"AllTheories", "~", "ms", "~", "14"}]}], ";"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"Length", "@", "AllTheories"}], "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<", 
+       RowBox[{
+        RowBox[{"Length", "@", "AllTheories"}], "+", "1"}]}], ",", 
+      RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"index", "=", 
+        RowBox[{
+         RowBox[{"i", "~", "Mod", "~", "14"}], "+", "1"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "@", "index"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "@", 
+        RowBox[{"st", "[", 
+         RowBox[{"[", "index", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"st", "[", 
+         RowBox[{"[", "index", "]"}], "]"}], "=", 
+        RowBox[{
+         RowBox[{"st", "[", 
+          RowBox[{"[", "index", "]"}], "]"}], "~", "Append", "~", 
+         RowBox[{"ls", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}]}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllTheories", "=", "st"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "\"\<ih\>\"", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "3", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "4", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "5", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "6", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "7", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "8", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "9", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "10", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "11", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "12", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "13", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "@", 
+    RowBox[{"Length", "@", 
+     RowBox[{"AllTheories", "[", 
+      RowBox[{"[", "14", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"For", "[", 
      RowBox[{
@@ -716,20 +799,20 @@ Cell[BoxData[
            "\"\<JobsBatch.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
         RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
      "]"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"Length", "@", "AllTheories"}], "\[IndentingNewLine]", 
    RowBox[{"(*", "*)"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJwdy2kog3EAx/GNsgeRF0KOELEkuZKNMEck3jyk2Fpu44VjjhfjBSWUa9Ma
-zQvthZLjQYaScmveOB+MN44cJW17MSnm+P+eF78+L359Qyub6BonHo8XTgZN
-FoOc2XuX+BenVMDBxJZGuKtNaoKNW4MaeGmI1MHJEZEeCmfYaa5zaM6hftXF
-DE19bnfQWBXxDmPTuu3c3xXyCXeqRfxFYnSRwwM+HhX6QUW+LAgKJuJCoYoW
-hkHzRI4QMkxWFOynZClwSaPMhr0vIzIo1uqrYU1yfQNMyMxshUNSKwvDfU6v
-YEEgewed6J57qFZ2vEJj3jTnABtJLxFrZXFFsE3VK4V2tx/O+Xbdr4n4YJX/
-wSSlwfeaGLzwwfmWHuN7Qyzt3wyAj7rneOgqHE2ElJdEBJupuVS48XH8ZSGy
-ZxffsMBTy7MS6cNXPqy7nBLAk7R4ChYfjauhd7Z+EpbklhmgWqPktMtn52Hh
-mIKB5eK1FcgcBBhhx9DvFuxUOG9DwW6GFQ67O36gzfmWbyOu7z9xPmRVUXDW
-vMx56C0RweXOFTH8B9tSUOs=
+1:eJwdzl1IU3EYBvBNwZ2mRReSkkZakStCnY7hmWFOjUIU4jiCdAzzq+nFtGle
+qBcTRANNNxlLJiEThDI7Ka6EEPxIZd6UH0ed3ZhiSTKcuI1A5/T//C9efhcP
+D8+bWFbLVYaJRKI75KDrwKHjv3vUVzWZz2Gn4qUBzlqVtdAw1WmBa44kG+zv
+Zu1Q9l4Yor2gZQXav0S4oatdugWd5bc9MDXL5Kd5S8J/OFPBij8T7xUFL8Kd
+xcJYqM/XXoOSPnkibOJkN6G776EM8nzuXdjBaDPhqMWYB9v+dmuhymqvgJUZ
+1TUwPSenHnaVeAV468rSOiyIF7ZgGNf6G5qNjXvQ+XiI+lpI4kaJVVp5EWxo
+aiuBfukpdeSVLeQibnt1Z1BpdMRsEK9/ClD3HyTHbBKfdUzGwR3bnzR4Qdaj
+gMxlNQvrmI/34bfAj+MDorC8egILLllFXiK3sCeGL9YGJPBnVhoDNYtvzTA6
+z94Pnz4qdkCzxUj164ZHYGGvnoelqq/jkJ+Pc8LGrtAUbNaHT0PJbLYXvokM
+nsLD8F/iQ+LE3C51O7ecgcPuMepCtJqFY83jKrhe5zs7wp8T+1If9uWGf7DF
+p/RQP6hT/EQ26oYCRi3pewPEjJMeKww9MQ1Ak+LdIDwHR7GC6g==
   
   "],ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d"],
 
@@ -915,9 +998,9 @@ Cell[1332, 40, 15223, 255, 163, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444
  InitializationCell->True],
 Cell[16558, 297, 13668, 213, 255, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
  InitializationCell->True],
-Cell[30229, 512, 7951, 221, 715, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
+Cell[30229, 512, 11157, 304, 1152, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
  InitializationCell->True],
-Cell[38183, 735, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
+Cell[41389, 818, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
  InitializationCell->True]
 }, Open  ]]
 }
