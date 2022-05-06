@@ -292,7 +292,10 @@ for x in range(xmx):
             #=================== limits ======================
 
             axs[y,x].set_xlim(0., total_time)
+            '''
             axs[y,x].set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
+            '''
+            axs[y,x].set_yticks(ticksthem)
             axs[y,x].set_yticklabels(ticklabels)
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
