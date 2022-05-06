@@ -115,7 +115,7 @@ for x in range(xmx):
 
         node = y*xmx+x
 
-        if node == 8:
+        try:
 
             #=============== files =================================
 
@@ -170,27 +170,8 @@ for x in range(xmx):
 
             propunit = 1.
 
-            '''propunit = (height*total_time/width)/number_of_kernels'''
-            '''point_hei = height * fig.dpi'''
             point_hei = axs[y,x].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
             line_width = 0.8*point_hei/number_of_kernels
-            '''
-            x1,x2,y1,y2=plt.axis()
-            xrange = x2-x1
-            yrange = y2-y1
-            bar = barwidth*xrange/number_of_kernels
-            line_width = (bar*(point_hei/yrange))*0.8
-            '''
-
-            '''
-            propunit = (height*total_time/width)/number_of_kernels
-            point_hei = height*72
-            x1,x2,y1,y2=plt.axis()
-            xrange = x2-x1
-            yrange = y2-y1
-            bar = barwidth*xrange/number_of_kernels
-            line_width = (bar*(point_hei/yrange))*0.8
-            '''
 
             #=============== colourmap =============================
 
@@ -318,6 +299,9 @@ for x in range(xmx):
                 axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)
             if y == ymx-1:
                 axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
+
+        except:
+            print("there was a problem with plotting node ",node)
 
 #=================== plt draw ======================
 
