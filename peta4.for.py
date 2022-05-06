@@ -127,6 +127,9 @@ for x in range(xmx):
         kernel_files = [x for _,x in sorted(zip(list(map(int,ticklabels)),kernel_files))]
         ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
         ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
+        ticklabels = del ticklabels[1::4]
+        ticklabels = del ticklabels[1::3]
+        ticklabels = del ticklabels[1::2]
 
         def make_np(filename):
             return pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
@@ -298,7 +301,7 @@ for x in range(xmx):
         #=================== end admin to label the plot ======================
 
         title_string = r"Node " + str(node)
-        axs[y,x].set_title(title_string, fontsize = 6)
+        axs[y,x].set_title(title_string, fontsize = 6, pad = 0)
         #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
         #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
         #axs[node].set_xlabel(r"Wallclock time/s")
