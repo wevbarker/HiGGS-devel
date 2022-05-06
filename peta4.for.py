@@ -134,6 +134,8 @@ for x in range(xmx):
         '''
 
         def make_np(filename):
+            pds = pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
+            print(np.shape(pds))
             return pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
 
         #   a list, not np, of np arrays containing all data with headers
