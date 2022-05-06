@@ -127,9 +127,11 @@ for x in range(xmx):
         kernel_files = [x for _,x in sorted(zip(list(map(int,ticklabels)),kernel_files))]
         ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
         ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
+        '''
         del ticklabels[1::4]
         del ticklabels[1::3]
         del ticklabels[1::2]
+        '''
 
         def make_np(filename):
             return pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
