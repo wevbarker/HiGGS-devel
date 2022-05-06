@@ -137,7 +137,7 @@ for x in range(xmx):
             del ticklabels[1::3]
             del ticklabels[1::2]
 
-            print[ticklabels]
+            print(ticklabels)
 
             def make_np(filename):
                 pds = pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
