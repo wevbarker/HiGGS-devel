@@ -167,6 +167,9 @@ for x in range(xmx):
             number_of_kernels = len(all_kernel_data)
 
             ticksthem = list(range(0,number_of_kernels))
+            del ticksthem[1::4]
+            del ticksthem[1::3]
+            del ticksthem[1::2]
             print(ticksthem)
             print(ticklabels)
 
