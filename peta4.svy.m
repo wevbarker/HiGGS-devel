@@ -69,7 +69,7 @@ For[i=1,i<Length@AllTheories+1,i++,
 index=i~Mod~14+1;
 Print@index;
 Print@st[[index]];
-st[[index]]=st[[index]]~Append~ls[[i]];
+st[[index]]=st[[index]]~Append~AllTheories[[i]];
 ];
 AllTheories=st;
 Print["ih"]
