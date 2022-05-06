@@ -114,7 +114,7 @@ for x in range(xmx):
     for y in range(ymx):
 
         node = y*xmx+x
-        if node == 8:
+        if node == node:
             '''
             try:
             '''
