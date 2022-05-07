@@ -98,6 +98,8 @@ Print[xAct`xCore`Private`bars];
 (* ::Input::Initialization:: *)
 If[!ValueQ@$Timing,$Timing=False];
 DistributeDefinitions@$Timing;
+Print["here is timing"]
+Print@$Timing;
 
 
 (* ::Input::Initialization:: *)
@@ -105,6 +107,8 @@ If[$Timing,
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
 ];
+Print["here is node"]
+Print@$Node;
 
 
 (* ::Input::Initialization:: *)
