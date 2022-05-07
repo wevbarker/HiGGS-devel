@@ -96,12 +96,12 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-(*
-If[!ValueQ@Global`$Node,
+(**)
+If[!ValueQ@Global`$Timing,
 Global`$Timing=False;
 Global`$Node="";
 ];
-*)
+(**)
 Print["asking about node"];
 Print@$Node;
 If[!ValueQ@$Node,
