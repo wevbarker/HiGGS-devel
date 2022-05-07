@@ -5,7 +5,7 @@ module load texlive/2015
 #	this file prepares a kernel report and sends it to the tower by ssh 
 while true; do
   echo "			(...replotting...)"
-  ./peta4_jobs_plot.py
-  scp ./peta4_jobs_trace.png tower:~/Documents/physics/projects/HiGGS_development/ 
+  ./peta4.plt.py
+  scp ./peta4.plt.png tower:~/Documents/physics/projects/HiGGS_development/ 
   #./peta4_jobs_plot.py > /dev/null 2>&1 	#	 for quiet plotting
 done
