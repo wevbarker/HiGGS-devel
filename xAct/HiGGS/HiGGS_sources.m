@@ -83,6 +83,8 @@ Print["here is node AGAIN"]
 Print@$Node;
 Print["here is xact higgs node"]
 Print@xAct`HiGGS`$Node;
+Print["here is global node"]
+Print@Global`$Node;
 
 dimension=4;                                  (* dimension of space-time manifold *)
 DefManifold[M4,dimension,IndexRange[{a,z}]];

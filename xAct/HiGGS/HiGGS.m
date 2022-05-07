@@ -104,7 +104,9 @@ Print@$Timing;
 
 (* ::Input::Initialization:: *)
 If[!ValueQ@$Node,$Node=""];
+Global`$Node=$Node;
 DistributeDefinitions@xAct`HiGGS`$Node;
+DistributeDefinitions@Global`$Node;
 Print["here is node"]
 Print@$Node;
 
