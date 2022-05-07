@@ -224,6 +224,7 @@ NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimi
 $HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
 (*need to be careful not to spend all our time printing *)
 TryTiming[];,
+temp=Evaluate@expr,
 temp=Evaluate@expr];
 temp];
 
