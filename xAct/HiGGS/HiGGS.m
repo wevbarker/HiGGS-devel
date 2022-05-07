@@ -130,7 +130,6 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
@@ -142,20 +141,16 @@ ToExpression@("<<"<>$BuildTimeFilename<>";");
 ];
 (*return time since start time*)
 HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
-];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
 $TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
 (*initial zeroes, i.e. the default line*)
 $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
-];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*which kernel are we in? This sets the file in which we record stats*)
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
@@ -167,22 +162,18 @@ Close[HiGGSOutputStream];
 (*Zero the data again, so that we don't have always to be carrying it around*)
 $HiGGSTimingData={};
 ];
-];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*headers for the timing file*)
 $HiGGSTimingData={};
 (*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
 $HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 (*open the kernel files and write the function headers*)
 WriteHiGGSTimingData[];
-];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
 $PauseSeconds=6;
 $LastMultiple=0;
@@ -200,14 +191,11 @@ $LastMultiple=Ceiling@PrintDamper/$PauseSeconds;
 NotebookDelete[printer];
 ];
 ];
-];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
-];
 
 
 (* ::Input::Initialization:: *)
@@ -235,9 +223,7 @@ temp];
 
 
 (* ::Input::Initialization:: *)
-If[Global`$Timing,
 ForceTiming[]:=WriteHiGGSTimingData[];
-];
 
 
 (* ::Input::Initialization:: *)
