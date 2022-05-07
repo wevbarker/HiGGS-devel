@@ -86,7 +86,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});
+If[NotebookDirectory[]==$Failed,,Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});,Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});];
 $OldLine=$Line;
 $SubLine=1;
 $PaperPrint=False;

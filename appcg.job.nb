@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     22596,        448]
-NotebookOptionsPosition[     21880,        427]
-NotebookOutlinePosition[     22302,        444]
-CellTagsIndexPosition[     22259,        441]
+NotebookDataLength[     28889,        582]
+NotebookOptionsPosition[     28173,        561]
+NotebookOutlinePosition[     28595,        578]
+CellTagsIndexPosition[     28552,        575]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,11 +32,11 @@ Cell["This notebook generates jobs.m, which we run remotely", "Text",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"no", " ", "timing"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
-    RowBox[{"$Path", "~", "AppendTo", "~", 
-     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"$Timing", "=", "False"}], ";"}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"Load", " ", "HiGGS"}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{
@@ -83,35 +83,166 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"JobsBatch", "=", 
      RowBox[{"{", 
-      RowBox[{"{", 
-       RowBox[{"\"\<spin_0p\>\"", ",", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"Alp1", "==", "0"}], ",", 
-          RowBox[{"Alp2", "==", "0"}], ",", 
-          RowBox[{"Alp3", "==", "0"}], ",", 
-          RowBox[{"Alp4", "==", "0"}], ",", 
-          RowBox[{"Alp5", "==", "0"}], ",", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<spin_0p\>\"", ",", 
+         RowBox[{"{", 
           RowBox[{
+           RowBox[{"Alp1", "==", "0"}], ",", 
+           RowBox[{"Alp2", "==", "0"}], ",", 
+           RowBox[{"Alp3", "==", "0"}], ",", 
+           RowBox[{"Alp4", "==", "0"}], ",", 
+           RowBox[{"Alp5", "==", "0"}], ",", 
            RowBox[{
-            RowBox[{"2", "Bet1"}], "+", "Bet2"}], "==", "0"}], ",", 
+            RowBox[{
+             RowBox[{"2", "Bet1"}], "+", "Bet2"}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"Bet1", "+", 
+             RowBox[{"2", "Bet3"}]}], "==", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<spin_0m\>\"", ",", 
+         RowBox[{"{", 
           RowBox[{
-           RowBox[{"Bet1", "+", 
-            RowBox[{"2", "Bet3"}]}], "==", "0"}], ",", 
-          RowBox[{"cAlp1", "==", "0"}], ",", 
-          RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-          RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-          RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
-          RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}]}], 
+           RowBox[{"Alp1", "==", "0"}], ",", 
+           RowBox[{"Alp2", "==", "0"}], ",", 
+           RowBox[{"Alp4", "==", "0"}], ",", 
+           RowBox[{"Alp5", "==", "0"}], ",", 
+           RowBox[{"Alp6", "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"2", "Bet1"}], "+", "Bet2"}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"Bet1", "+", 
+             RowBox[{"2", "Bet3"}]}], "==", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<simple_spin_1p\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<simple_spin_1m\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<simple_spin_2m\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<simple_spin_0-2m_a\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<simple_spin_0-2m_b\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}]}], "}"}]}], 
     ";"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"JobsBatch", "~", "StudyTheory", "~", 
      RowBox[{"(", 
-      RowBox[{"\"\<Import\>\"", "\[Rule]", "True"}], ")"}]}], ";"}], 
+      RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ")"}]}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -254,7 +385,10 @@ Cell[BoxData[
    3.8596170867982264`*^9}, {3.85970281276968*^9, 3.85970281470197*^9}, {
    3.859742016589634*^9, 3.8597420216673613`*^9}, {3.8597835044637527`*^9, 
    3.8597835199839087`*^9}, {3.8597911002859983`*^9, 3.859791100724319*^9}, 
-   3.860040870391541*^9},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.860040870391541*^9, {3.860944114979669*^9, 3.860944123421249*^9}, {
+   3.860944933263855*^9, 3.860944945175519*^9}, {3.8609449945269814`*^9, 
+   3.860945023815143*^9}, {3.860946122451845*^9, 
+   3.8609461255880117`*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
 Cell[BoxData[
@@ -446,9 +580,9 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 13645, 225, 395, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[983, 32, 19938, 359, 510, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[14631, 259, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
+Cell[20924, 393, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
 }, Open  ]]
 }
 ]

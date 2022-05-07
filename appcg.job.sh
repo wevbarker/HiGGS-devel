@@ -4,16 +4,16 @@
 pkill -9 "Mathematica"
 pkill -9 "Wolfram"
 pkill -9 "xperm"
-pkill -9 "monitor_remote.py"
-pkill -9 "monitor_remote"
+pkill -9 "appcg.plt.py"
+pkill -9 "appcg.plt.sh"
 
 #	start the plotting script
-./monitor_remote.sh &
+./appcg.plt.sh &
 
 #	run the job	
-math -run < jobs.m
+math -run < appcg.job.m
 
 #	kill the plotting script
-pkill -9 "monitor_remote.py"
-pkill -9 "monitor_remote"
+pkill -9 "appcg.plt.py"
+pkill -9 "appcg.plt.sh"
 exit 0
