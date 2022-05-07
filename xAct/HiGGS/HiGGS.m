@@ -103,10 +103,8 @@ Print@$Timing;
 
 
 (* ::Input::Initialization:: *)
-If[$Timing,
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@xAct`HiGGS`$Node;
-];
 Print["here is node"]
 Print@$Node;
 
