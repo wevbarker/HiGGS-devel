@@ -97,7 +97,7 @@ Print[xAct`xCore`Private`bars];
 
 (* ::Input::Initialization:: *)
 If[!ValueQ@$Timing,$Timing=False];
-DistributeDefinitions@$Timing;
+DistributeDefinitions@xAct`HiGGS`$Timing;
 Print["here is timing"]
 Print@$Timing;
 
@@ -105,7 +105,7 @@ Print@$Timing;
 (* ::Input::Initialization:: *)
 If[$Timing,
 If[!ValueQ@$Node,$Node=""];
-DistributeDefinitions@$Node;
+DistributeDefinitions@xAct`HiGGS`$Node;
 ];
 Print["here is node"]
 Print@$Node;
