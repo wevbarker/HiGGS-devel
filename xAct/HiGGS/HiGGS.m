@@ -96,15 +96,15 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-Print["asking about node"];
-Print@$Node;
-If[!ValueQ@$Node,
-$Node=Global`$Node;
+If[!ValueQ@$Timing,$Timing=False];
+DistributeDefinitions@$Timing;
+
+
+(* ::Input::Initialization:: *)
+If[$Timing,
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
-DistributeDefinitions@Global`$Node;
 ];
-Print@$Node;
 
 
 (* ::Input::Initialization:: *)
@@ -128,6 +128,7 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
@@ -139,16 +140,20 @@ ToExpression@("<<"<>$BuildTimeFilename<>";");
 ];
 (*return time since start time*)
 HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
+];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
 $TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
 (*initial zeroes, i.e. the default line*)
 $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
+];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*which kernel are we in? This sets the file in which we record stats*)
 $HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
@@ -160,18 +165,22 @@ Close[HiGGSOutputStream];
 (*Zero the data again, so that we don't have always to be carrying it around*)
 $HiGGSTimingData={};
 ];
+];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*headers for the timing file*)
 $HiGGSTimingData={};
 (*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
 $HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 (*open the kernel files and write the function headers*)
 WriteHiGGSTimingData[];
+];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
 $PauseSeconds=6;
 $LastMultiple=0;
@@ -189,11 +198,14 @@ $LastMultiple=Ceiling@PrintDamper/$PauseSeconds;
 NotebookDelete[printer];
 ];
 ];
+];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+];
 
 
 (* ::Input::Initialization:: *)
@@ -201,7 +213,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$
 TimeWrapper~SetAttributes~HoldAll;
 (*the actual timing function*)
 TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
-If[Global`$Timing,
+If[$Timing,
 $HiGGSTimingNow=HiGGSAbsoluteTime[];
 (*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
 res=AbsoluteTiming@expr;
@@ -221,7 +233,9 @@ temp];
 
 
 (* ::Input::Initialization:: *)
+If[$Timing,
 ForceTiming[]:=WriteHiGGSTimingData[];
+];
 
 
 (* ::Input::Initialization:: *)

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     57093,        931]
-NotebookOptionsPosition[     55733,        899]
-NotebookOutlinePosition[     56155,        916]
-CellTagsIndexPosition[     56112,        913]
+NotebookDataLength[     59151,        977]
+NotebookOptionsPosition[     57209,        938]
+NotebookOutlinePosition[     57631,        955]
+CellTagsIndexPosition[     57588,        952]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,17 +26,36 @@ Cell["Jobs notebook", "Title",
   3.8565920465891027`*^9}},ExpressionUUID->"77b3805d-060b-4070-8508-\
 41576cdf0004"],
 
-Cell["This notebook generates jobs.m, which we run remotely", "Text",
- CellChangeTimes->{{3.85659205646922*^9, 
-  3.8565920652907*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
+Cell["\<\
+This notebook generates a .m file which is called by SLURM via bash.\
+\>", "Text",
+ CellChangeTimes->{{3.85659205646922*^9, 3.8565920652907*^9}, 
+   3.860921964315236*^9, {3.860922103346085*^9, 
+   3.8609221323774347`*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-\
+f072cdc53b32"],
+
+Cell["For an HPC job, we want to time everything.", "Text",
+ CellChangeTimes->{{3.860922154329218*^9, 
+  3.8609221726732473`*^9}},ExpressionUUID->"4186b46e-c37c-498a-972f-\
+068e744ccb07"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"$Timing", "=", "True"}], ";"}]], "Input",
+  RowBox[{"HiGGS`$Timing", "=", "True"}], ";"}]], "Input",
  InitializationCell->True,
- CellChangeTimes->{{3.860694729913267*^9, 
-  3.8606947345521383`*^9}},ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-\
+ CellChangeTimes->{{3.860694729913267*^9, 3.8606947345521383`*^9}, {
+  3.8609212363068323`*^9, 
+  3.8609212377148657`*^9}},ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-\
 d6000881fded"],
+
+Cell["\<\
+If this script is run from bash and passed a number, then do the allocated \
+part of the survey for that node number -- otherwise do a simple calibration \
+run.\
+\>", "Text",
+ CellChangeTimes->{{3.8609219114916286`*^9, 
+  3.860921959347381*^9}},ExpressionUUID->"8555e1fa-f34a-4959-87cf-\
+308802373076"],
 
 Cell[BoxData[
  RowBox[{
@@ -48,7 +67,7 @@ Cell[BoxData[
        RowBox[{"[", 
         RowBox[{"-", "1"}], "]"}], "]"}]}]}], ",", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"$Node", "=", 
+     RowBox[{"HiGGS`$Node", "=", 
       RowBox[{"$CommandLine", "[", 
        RowBox[{"[", 
         RowBox[{"-", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
@@ -59,12 +78,12 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
            RowBox[{"Directory", "[", "]"}], ",", "\"\<bin\>\"", ",", 
-           RowBox[{"\"\<node-\>\"", "<>", "$Node"}], ",", 
+           RowBox[{"\"\<node-\>\"", "<>", "HiGGS`$Node"}], ",", 
            "\"\<JobsBatch.mx\>\""}], "}"}]}], "<>", "\"\<;\>\""}], ")"}]}], 
      ";", "\[IndentingNewLine]", 
      RowBox[{"Print", "@", "JobsBatch"}], ";"}], ",", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"$Node", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
+     RowBox[{"HiGGS`$Node", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
      RowBox[{"JobsBatch", "=", 
       RowBox[{"{", 
        RowBox[{
@@ -240,9 +259,14 @@ Cell[BoxData[
    3.8603988214708242`*^9}, {3.860403937499442*^9, 3.86040395073501*^9}, {
    3.860406473346457*^9, 3.860406473538062*^9}, {3.8604296855961323`*^9, 
    3.8604297002273407`*^9}, {3.860429737922781*^9, 3.860429785250402*^9}, {
-   3.860429817181283*^9, 
-   3.860429895866373*^9}},ExpressionUUID->"a60e8bc9-0d86-412a-8600-\
+   3.860429817181283*^9, 3.860429895866373*^9}, {3.860921186878571*^9, 
+   3.860921215805945*^9}},ExpressionUUID->"a60e8bc9-0d86-412a-8600-\
 18c7b30e6c81"],
+
+Cell["Need this for Peta4 architecture.", "Text",
+ CellChangeTimes->{{3.860921982547143*^9, 
+  3.860921992283239*^9}},ExpressionUUID->"eb69ad0c-116f-4445-8c23-\
+e2a804a48334"],
 
 Cell[BoxData[
  RowBox[{
@@ -725,24 +749,39 @@ Cell[BoxData[
    3.8604064815304117`*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
 297f506ffb31"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-  "Print", "[", 
-   "\"\<calls to HiGGS functions have finished, reached the end of \
-peta4.job.m\>\"", "]"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-   "need", " ", "this", " ", "to", " ", "give", " ", "the", " ", "right", " ",
-     "exit", " ", "code", " ", "to", " ", "SLURM"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"CloseKernels", "[", "]"}], ";"}]}], "Input",
+Cell[BoxData[
+ RowBox[{"Print", "[", 
+  "\"\<calls to HiGGS functions have finished, reached the end of peta4.job.m\
+\>\"", "]"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.860409681587123*^9, 3.86040970536922*^9}, {
   3.860413075335601*^9, 3.860413087071505*^9}, {3.860476773175561*^9, 
-  3.860476794582974*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
+  3.860476794582974*^9}, {3.860922040730679*^9, 
+  3.8609220423472643`*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
 c241bc4146a0"],
+
+Cell["\<\
+Kill the subkernels, so that SLURM doesn\[CloseCurlyQuote]t hang and gives \
+the right exit code.\
+\>", "Text",
+ CellChangeTimes->{{3.8609220497782307`*^9, 
+  3.860922068170178*^9}},ExpressionUUID->"015a1825-a955-4277-ab70-\
+45c562f3a240"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CloseKernels", "[", "]"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.860409681587123*^9, 3.86040970536922*^9}, {
+  3.860413075335601*^9, 3.860413087071505*^9}, {3.860476773175561*^9, 
+  3.860476794582974*^9}, {3.860922040730679*^9, 
+  3.8609220423472643`*^9}},ExpressionUUID->"7bcbb94b-ab34-45ba-959f-\
+e292fe2532a1"],
+
+Cell["Be sure to kill the master kernel, too!", "Text",
+ CellChangeTimes->{{3.860922029538445*^9, 
+  3.86092203477877*^9}},ExpressionUUID->"2915a482-dc27-4efc-a13a-\
+a9d70afb0656"],
 
 Cell[BoxData[
  RowBox[{
@@ -917,20 +956,27 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 207, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
-Cell[790, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[983, 32, 231, 6, 47, "Input",ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-d6000881fded",
+Cell[790, 28, 290, 6, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
+Cell[1083, 36, 187, 3, 36, "Text",ExpressionUUID->"4186b46e-c37c-498a-972f-068e744ccb07"],
+Cell[1273, 41, 290, 7, 47, "Input",ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-d6000881fded",
  InitializationCell->True],
-Cell[1217, 40, 9714, 204, 324, "Input",ExpressionUUID->"a60e8bc9-0d86-412a-8600-18c7b30e6c81",
+Cell[1566, 50, 312, 7, 36, "Text",ExpressionUUID->"8555e1fa-f34a-4959-87cf-308802373076"],
+Cell[1881, 59, 9778, 204, 330, "Input",ExpressionUUID->"a60e8bc9-0d86-412a-8600-18c7b30e6c81",
  InitializationCell->True],
-Cell[10934, 246, 11283, 164, 117, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[11662, 265, 175, 3, 36, "Text",ExpressionUUID->"eb69ad0c-116f-4445-8c23-e2a804a48334"],
+Cell[11840, 270, 11283, 164, 117, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[22220, 412, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
+Cell[23126, 436, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
  InitializationCell->True],
-Cell[33336, 573, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[34242, 597, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[44234, 727, 682, 17, 94, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+Cell[45140, 751, 438, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
  InitializationCell->True],
-Cell[44919, 746, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[45581, 762, 249, 6, 36, "Text",ExpressionUUID->"015a1825-a955-4277-ab70-45c562f3a240"],
+Cell[45833, 770, 376, 8, 47, "Input",ExpressionUUID->"7bcbb94b-ab34-45ba-959f-e292fe2532a1",
+ InitializationCell->True],
+Cell[46212, 780, 180, 3, 36, "Text",ExpressionUUID->"2915a482-dc27-4efc-a13a-a9d70afb0656"],
+Cell[46395, 785, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }
