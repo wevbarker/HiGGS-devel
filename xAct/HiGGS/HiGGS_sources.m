@@ -75,15 +75,9 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Print["here is timing AGAIN"]
-Print@$Timing;
-Print["here is xact higgs timing"]
-Print@xAct`HiGGS`$Timing;
-Print["here is node AGAIN"]
-Print@$Node;
-Print["here is xact higgs node"]
-Print@xAct`HiGGS`$Node;
-Print["here is global node"]
+Print["here is global timing again"]
+Print@Global`$Timing;
+Print["here is global node again"]
 Print@Global`$Node;
 
 dimension=4;                                  (* dimension of space-time manifold *)
