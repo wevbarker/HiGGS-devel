@@ -96,17 +96,15 @@ Print[xAct`xCore`Private`bars];
 
 
 (* ::Input::Initialization:: *)
-If[!ValueQ@Global`$Timing,Global`$Timing=False];
-DistributeDefinitions@Global`$Timing;
-Print["here is timing"]
-Print@Global`$Timing;
-
-
-(* ::Input::Initialization:: *)
-If[!ValueQ@Global`$Node,Global`$Node=""];
+Print["asking about node"];
+Print@$Node;
+If[!ValueQ@$Node,
+$Node=Global`$Node;
+If[!ValueQ@$Node,$Node=""];
+DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
-Print["here is node"]
-Print@Global`$Node;
+];
+Print@$Node;
 
 
 (* ::Input::Initialization:: *)
@@ -133,7 +131,7 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
-$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"BuildTime.mx"};
+$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"BuildTime.mx"};
 (*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
 If[!FileExistsQ@$BuildTimeFilename,
 $BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
@@ -152,7 +150,7 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
 
 (* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
+$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
@@ -195,7 +193,7 @@ NotebookDelete[printer];
 
 (* ::Input::Initialization:: *)
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 
 
 (* ::Input::Initialization:: *)

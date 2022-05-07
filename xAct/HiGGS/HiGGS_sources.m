@@ -75,11 +75,8 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Print["here is global timing again"]
-Print@Global`$Timing;
-Print["here is global node again"]
-Print@Global`$Node;
-
+Print["asking again about node"];
+Print@$Node;
 dimension=4;                                  (* dimension of space-time manifold *)
 DefManifold[M4,dimension,IndexRange[{a,z}]];
 AddIndices[TangentM4,{a1,b1,c1,d1,e1,f1,g1,h1,i1,j1,k1,l1,n1,m1,o1,p1,q1,r1,s1,t1,u1,v1,w1,x1,y1,z1}];
@@ -4057,7 +4054,7 @@ PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{result},
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->theory];
 (*Export to the usual PB function*)
@@ -4076,7 +4073,8 @@ If[OptionValue["Parallel"],
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 ];
@@ -4647,7 +4645,8 @@ RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4723,7 +4722,8 @@ TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4802,7 +4802,8 @@ SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4902,7 +4903,8 @@ MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4978,7 +4980,8 @@ ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -5288,7 +5291,8 @@ DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 $Timing=True;
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"}<>";"];
+Print["psiloc"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
 (*Define the theory*)
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
 
@@ -5414,7 +5418,7 @@ DefinedTheories=WaitAll[Jobs];
 (*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
 Print@InputBatch;
 $TheoryNames=(#[[1]])&/@InputBatch;
-(FileNameJoin@{$WorkingDirectory,"bin","node-"<>Global`$Node,"$TheoryNames.mx"})~DumpSave~{$TheoryNames};
+(FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"})~DumpSave~{$TheoryNames};
 (**)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
