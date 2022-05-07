@@ -114,10 +114,8 @@ for x in range(xmx):
     for y in range(ymx):
 
         node = y*xmx+x
-        '''
-        if node == node:
-        '''
-        try:
+        if node == 8:
+        #try:
             '''
             try:
             '''
@@ -318,8 +316,8 @@ for x in range(xmx):
             if y == ymx-1:
                 axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
             
-        except:
-            print("there was a problem with plotting node ",node)
+        #except:
+        #    print("there was a problem with plotting node ",node)
 
 #=================== plt draw ======================
 
