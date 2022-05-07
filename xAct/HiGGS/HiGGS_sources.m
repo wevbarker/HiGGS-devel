@@ -5312,7 +5312,9 @@ DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 Options[DefTheory]={"Export"->False,"Import"->False};
 UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
-DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},
+(*removed timing wrapper since it is better to show the internal steps -- these get washed out in the plot*)
+(*DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},*)
+DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
 If[StringQ@OptionValue@"Import",
