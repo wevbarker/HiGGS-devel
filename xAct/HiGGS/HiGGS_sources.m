@@ -75,6 +75,15 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+Print["here is timing AGAIN"]
+Print@$Timing;
+Print["here is xact higgs timing"]
+Print@xAct`HiGGS`$Timing;
+Print["here is node AGAIN"]
+Print@$Node;
+Print["here is xact higgs node"]
+Print@xAct`HiGGS`$Node;
+
 dimension=4;                                  (* dimension of space-time manifold *)
 DefManifold[M4,dimension,IndexRange[{a,z}]];
 AddIndices[TangentM4,{a1,b1,c1,d1,e1,f1,g1,h1,i1,j1,k1,l1,n1,m1,o1,p1,q1,r1,s1,t1,u1,v1,w1,x1,y1,z1}];
