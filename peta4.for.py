@@ -303,7 +303,7 @@ for x in range(xmx):
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
             axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            axs[y,x].set_yscale('log')
+            axs[y,x].set_xscale('log')
 
             #=================== end admin to label the plot ======================
 
