@@ -26,8 +26,8 @@
 #SBATCH --mail-type=ALL
 ##SBATCH --no-requeue
 
-#SBATCH --output="/home/wb263/HiGGS_development/bin/node-%a/peta4.hpc.out"
-#SBATCH --error="/home/wb263/HiGGS_development/bin/node-%a/peta4.hpc.err"
+#SBATCH --output="/home/wb263/HiGGS_development/svy/node-%a/peta4.hpc.out"
+#SBATCH --error="/home/wb263/HiGGS_development/svy/node-%a/peta4.hpc.err"
 
 #! For 6GB per CPU, set "-p skylake"; for 12GB per CPU, set "-p skylake-himem": 
 #SBATCH -p skylake
@@ -119,10 +119,10 @@ echo "Current directory: `pwd`"
 if [ "$SLURM_JOB_NODELIST" ]; then
         #! Create a machine file:
         export NODEFILE=`generate_pbs_nodefile`
-        cat $NODEFILE | uniq > ./bin/node-$SLURM_ARRAY_TASK_ID/peta4.hpc.mch
+        cat $NODEFILE | uniq > ./svy/node-$SLURM_ARRAY_TASK_ID/peta4.hpc.mch
         #! cat $NODEFILE | uniq > machine.file.$JOBID
         echo -e "\nNodes allocated:\n================"
-        echo `cat ./bin/node-$SLURM_ARRAY_TASK_ID/peta4.hpc.mch | sed -e 's/\..*$//g'`
+        echo `cat ./svy/node-$SLURM_ARRAY_TASK_ID/peta4.hpc.mch | sed -e 's/\..*$//g'`
         #! echo `cat machine.file.$JOBID | sed -e 's/\..*$//g'`
 fi
 
