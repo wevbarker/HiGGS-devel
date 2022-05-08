@@ -8,14 +8,14 @@ cd /home/wb263/HiGGS_development
 
 #	flush the stats directory
 echo "flushing stats directory and build time"
-rm -rf ./bin/node-$1/stats
-mkdir ./bin/node-$1/stats
+rm -rf ./bin/node-$1/chr
+mkdir ./bin/node-$1/chr
 rm ./bin/node-$1/BuildTime.mx
 
 echo "commencing run loop"
 
 #	run the job	
-while [ $(ls ./bin/node-$1/stats | wc -l) -le 32 ]; do
+while [ $(ls ./bin/node-$1/chr | wc -l) -le 32 ]; do
   echo "fewer than 32 kernel files were found in the stats directory, running script peta4.job.m"
   math -run < peta4.job.m $1
   echo "script peta4.job.m has exited and returned to peta4.job.sh"

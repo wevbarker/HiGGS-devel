@@ -38,7 +38,7 @@ RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,
 For[node=0,node<10,node++,
 JobsBatch=({#[[1]]<>"_node_"<>ToString@node,#[[2]]})&/@RawJobsBatch;
 Run@("mkdir ./bin/node-"<>ToString@node);
-Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
+Run@("mkdir ./bin/node-"<>ToString@node<>"/chr");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
 *)
@@ -90,7 +90,7 @@ Print@Length@AllTheories[[14]]
 For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
 Run@("mkdir ./bin/node-"<>ToString@node);
-Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
+Run@("mkdir ./bin/node-"<>ToString@node<>"/chr");
 FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"peta4.svy.mx"}~DumpSave~{JobsBatch};
 ];
 (**)

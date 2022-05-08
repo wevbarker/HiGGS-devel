@@ -122,7 +122,7 @@ for x in range(xmx):
 
             #=============== files =================================
 
-            kernel_files = os.listdir("bin/node-" + str(node) + "/stats/")
+            kernel_files = os.listdir("bin/node-" + str(node) + "/chr/")
 
             ticklabels=[]
             for filename in kernel_files:
@@ -141,10 +141,10 @@ for x in range(xmx):
             print(ticklabels)
 
             def make_np(filename):
-                pds = pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
+                pds = pd.read_csv('bin/node-' + str(node) + '/chr/'+filename).to_numpy()
                 print(filename)
                 print(np.shape(pds))
-                return pd.read_csv('bin/node-' + str(node) + '/stats/'+filename).to_numpy()
+                return pd.read_csv('bin/node-' + str(node) + '/chr/'+filename).to_numpy()
 
             #   a list, not np, of np arrays containing all data with headers
             all_kernel_data = list(map(make_np,kernel_files))
