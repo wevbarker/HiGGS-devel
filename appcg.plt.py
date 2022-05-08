@@ -178,11 +178,18 @@ for x in range(xmx):
             acttheory = np.floor(np.max(np.nonzero(np.sum(s_times,axis=0)))/number_of_functions).astype(int)
 
 
+            #====================== use of axs ==============
+
+            if xmx == ymx and xmx == 1:
+                axr = axs
+            else:
+                axr = axs[y,x]
+
             #====================== bar width and chart geometry ==============
 
             propunit = 1.
 
-            point_hei = axs[y,x].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
+            point_hei = axr.get_window_extent().transformed(fig.dpi_scale_trans.inverted()).height*fig.dpi
             line_width = 0.8*point_hei/number_of_kernels
 
             #=============== colourmap =============================
@@ -241,7 +248,7 @@ for x in range(xmx):
                 # Set the values used for colormapping
                 lc.set_array(function_data)
                 lc.set_linewidth(line_width)
-                line = axs[y,x].add_collection(lc)
+                line = axr.add_collection(lc)
 
                 kernel_array = np.full(size,(kernel-0.7*(1-0.75))*propunit)    #   this is for the horizontal line position
                 function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
@@ -265,7 +272,7 @@ for x in range(xmx):
                 # Set the values used for colormapping
                 lc.set_array(function_data)
                 lc.set_linewidth(0.75*line_width)
-                line = axs[y,x].add_collection(lc)
+                line = axr.add_collection(lc)
 
                 kernel_array = np.full(size,(kernel-0.7*(1-0.5))*propunit)    #   this is for the horizontal line position
                 function_data = np.zeros(size)  #   by  default, assume the kernel is idle the whole time
@@ -288,33 +295,33 @@ for x in range(xmx):
 
                 lc.set_array(function_data)
                 lc.set_linewidth(0.5*line_width)
-                line = axs[y,x].add_collection(lc)
+                line = axr.add_collection(lc)
 
             #=================== limits ======================
 
-            axs[y,x].set_xlim(0., total_time)
+            axr.set_xlim(0., total_time)
             '''
-            axs[y,x].set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
+            axr.set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
             '''
-            axs[y,x].set_yticks(ticksthem)
-            axs[y,x].set_yticklabels(ticklabels)
-            axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
-            axs[y,x].tick_params(axis = 'y',labelsize = 6)
-            axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            #axs[y,x].set_xscale('symlog',linthreshx = 500) #   this causes serious delays
+            axr.set_yticks(ticksthem)
+            axr.set_yticklabels(ticklabels)
+            axr.set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
+            axr.tick_params(axis = 'y',labelsize = 6)
+            axr.tick_params(axis = 'x',labelsize = 6)
+            #axr.set_xscale('symlog',linthreshx = 500) #   this causes serious delays
 
             #=================== end admin to label the plot ======================
 
             title_string = r"Node " + str(node)
-            axs[y,x].set_title(title_string, fontsize = 6, pad = 0)
+            axr.set_title(title_string, fontsize = 6, pad = 0)
             #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
             #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
             #axs[node].set_xlabel(r"Wallclock time/s")
 
             if x == 0:
-                axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)
+                axr.set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)
             if y == ymx-1:
-                axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
+                axr.set_xlabel(r"Wallclock time/s", fontsize = 6)
             
         #except:
         #    print("there was a problem with plotting node ",node)
