@@ -10,25 +10,36 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     29088,        584]
-NotebookOptionsPosition[     28371,        563]
-NotebookOutlinePosition[     28793,        580]
-CellTagsIndexPosition[     28750,        577]
+NotebookDataLength[     29486,        598]
+NotebookOptionsPosition[     28769,        577]
+NotebookOutlinePosition[     29191,        594]
+CellTagsIndexPosition[     29148,        591]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["appcg jobs notebook", "Title",
+Cell[TextData[{
+ StyleBox["appcg",
+  FontColor->RGBColor[0.5, 0, 0.5]],
+ " job notebook"
+}], "Title",
  CellChangeTimes->{{3.856165344530184*^9, 3.856165360586437*^9}, {
-  3.856592043342741*^9, 3.8565920465891027`*^9}, {3.860951635120672*^9, 
-  3.860951644840625*^9}},ExpressionUUID->"77b3805d-060b-4070-8508-\
+   3.856592043342741*^9, 3.8565920465891027`*^9}, {3.860951635120672*^9, 
+   3.860951644840625*^9}, 
+   3.860958941586567*^9},ExpressionUUID->"77b3805d-060b-4070-8508-\
 41576cdf0004"],
 
-Cell["This notebook generates jobs.m, which we run remotely", "Text",
- CellChangeTimes->{{3.85659205646922*^9, 
-  3.8565920652907*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
+Cell["\<\
+This notebook generates a Wolfram language file to be run on \
+appcg.ra.phy.cam.ac.uk, a dedicated compute server belonging to the Cavendish \
+Laboratory Astrophysics Group.\
+\>", "Text",
+ CellChangeTimes->{{3.85659205646922*^9, 3.8565920652907*^9}, {
+  3.86095894999116*^9, 
+  3.8609590094947367`*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-\
+f072cdc53b32"],
 
 Cell[BoxData[
  RowBox[{
@@ -48,6 +59,8 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"BuildHiGGS", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quit", "[", "]"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"(*", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"JobsBatch", "=", 
@@ -389,8 +402,9 @@ Cell[BoxData[
    3.860944933263855*^9, 3.860944945175519*^9}, {3.8609449945269814`*^9, 
    3.860945023815143*^9}, {3.860946122451845*^9, 3.8609461255880117`*^9}, {
    3.860951081407662*^9, 3.860951112256353*^9}, {3.860952240732245*^9, 
-   3.860952251988269*^9}, {3.860952330947336*^9, 
-   3.860952331211688*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
+   3.860952251988269*^9}, {3.860952330947336*^9, 3.860952331211688*^9}, {
+   3.860958306928714*^9, 
+   3.860958310488752*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
 Cell[BoxData[
@@ -580,11 +594,11 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 259, 4, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
-Cell[842, 28, 190, 2, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[1035, 32, 20084, 361, 510, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[580, 22, 352, 9, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
+Cell[935, 33, 370, 8, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
+Cell[1308, 43, 20209, 364, 533, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[21122, 395, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
+Cell[21520, 409, 7233, 165, 170, "Input",ExpressionUUID->"9f628707-482e-4668-a8e1-4b556412a15f"]
 }, Open  ]]
 }
 ]

@@ -24,6 +24,7 @@
 $PrintCellsBeforeBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 (*Purge all print cells produced since notebook starts to run*)
 ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
+(**)ClearBuild[]:=Print@"clearb"(**)
 (*This setup works for CellTags*)
 DirectoryEnvironment[]:=Module[{RelevantTag,CurrentCell},
 CurrentCell=EvaluationCell[];
@@ -70,13 +71,10 @@ Quit[];];];
 
 (*Incorporate borrowed scripts from Cyril Pitrou's contributions*)
 Get["xAct/HiGGS/HiGGS_variations.m"];
-
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Print["asking again about node"];
-Print@$Node;
 dimension=4;                                  (* dimension of space-time manifold *)
 DefManifold[M4,dimension,IndexRange[{a,z}]];
 AddIndices[TangentM4,{a1,b1,c1,d1,e1,f1,g1,h1,i1,j1,k1,l1,n1,m1,o1,p1,q1,r1,s1,t1,u1,v1,w1,x1,y1,z1}];
@@ -86,10 +84,16 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-If[NotebookDirectory[]==$Failed,,Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});,Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});];
+If[$PaperPrint,
+If[NotebookDirectory[]==$Failed,
+Print[" ** BuildHiGGS: Purging figures directory at "<>FileNameJoin@{NotebookDirectory[],"figures/*"}<>"..."];,
+Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});,
+Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});];
+];
+
 $OldLine=$Line;
 $SubLine=1;
-$PaperPrint=False;
+(*$PaperPrint=False;*)
 
 HiGGSOutput[x_String]:=Module[{},
 $ListingsOutput=x;
@@ -5380,7 +5384,7 @@ $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
 nontrivial=!(x=={0,0,0}||x=={0,0,0,0}||y==0);
 If[nontrivial,
-HiGGSPrint[y," \[TildeTilde] ",x],,
+HiGGSPrint[y," \[TildeTilde] ",x],Null;,
 HiGGSPrint[y," \[TildeTilde] ",x]];
 ];
 Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";

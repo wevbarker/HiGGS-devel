@@ -26,6 +26,7 @@
 Needs["xAct`HiGGS`"];
 (*Build the HiGGS environment*)
 BuildHiGGS[];
+Quit[];
 (*
 JobsBatch={{"EinsteinCartan",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
 JobsBatch~StudyTheory~("Import"\[Rule]False);

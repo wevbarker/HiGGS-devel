@@ -102,6 +102,7 @@ Global`$Timing=False;
 Global`$Node="";
 ];
 *)
+Quiet[
 DistributeDefinitions@$Timing;
 DistributeDefinitions@Global`$Timing;
 Print["asking about node"];
@@ -112,7 +113,8 @@ If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
 ];
-Print@$Node;
+Print@$Node;];
+(*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
 
 
 (* ::Input::Initialization:: *)
@@ -139,9 +141,9 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
-$BuildTimeFilename=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"BuildTime.mx"};
+$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"BuildTime.mx"};
 (*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
-If[!FileExistsQ@$BuildTimeFilename,
+Quiet@If[!FileExistsQ@$BuildTimeFilename,
 $BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
 ToExpression@("<<"<>$BuildTimeFilename<>";");
 ];
@@ -158,7 +160,7 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
 
 (* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
+$HiGGSTimingFile=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"stats","kernel-"<>ToString@$KernelID<>".csv"};
 (*a function which writes all current data to the kernel file*)
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
@@ -176,7 +178,7 @@ $HiGGSTimingData={};
 (*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
 $HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 (*open the kernel files and write the function headers*)
-WriteHiGGSTimingData[];
+Quiet[WriteHiGGSTimingData[]];
 
 
 (* ::Input::Initialization:: *)
@@ -274,7 +276,7 @@ Print[" ** BuildHiGGS: The context on quitting HiGGS.m is ",$Context,"."];
 Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
 NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
-Print[" ** BuildHiGGS: The HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
+Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 $HiGGSBuilt=True;
 ];
 
