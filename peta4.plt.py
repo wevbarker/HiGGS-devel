@@ -162,6 +162,11 @@ for x in range(xmx):
             stop_time = np.nanmax(start_times)
             total_time=stop_time-start_time
 
+            print("tot stop start AAAAA")
+            print(total_time)
+            print(stop_time)
+            print(start_time)
+
             time_array = np.linspace(0,total_time,size)    #   plotting space
 
             number_of_functions = int(list(np.shape(all_kernel_data[0]))[1]/(2*maxtheory))
