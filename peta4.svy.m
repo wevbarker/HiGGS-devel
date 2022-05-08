@@ -20,7 +20,9 @@
 
 
 (* ::Input::Initialization:: *)
-Run@"rm -rf ./bin/node-*"
+Run@"rm -rf ./svy/node-*"
+Run@"rm -rf ./svy"
+Run@"mkdir ./svy"
 
 
 (* ::Input::Initialization:: *)
@@ -37,9 +39,9 @@ RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,
 (*
 For[node=0,node<10,node++,
 JobsBatch=({#[[1]]<>"_node_"<>ToString@node,#[[2]]})&/@RawJobsBatch;
-Run@("mkdir ./bin/node-"<>ToString@node);
-Run@("mkdir ./bin/node-"<>ToString@node<>"/chr");
-FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
+Run@("mkdir ./svy/node-"<>ToString@node);
+Run@("mkdir ./svy/node-"<>ToString@node<>"/chr");
+FileNameJoin@{Directory[],"svy/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
 ];
 *)
 
@@ -50,7 +52,7 @@ AllTheories={};
 Combos[conds_,combo_]:=Module[{extraconds,extralabel},
 extraconds=#[[1]]&/@combo;
 extralabel=StringJoin@(#[[2]]&/@combo);
-{conds[[1]]<>extralabel,conds[[2]]~Join~extraconds}];
+{conds[[1]]<>"_"<>extralabel,conds[[2]]~Join~extraconds}];
 Switches=Subsets@{{cAlp3==0,"A3"},{cAlp4==0,"A4"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
 C1=Combos[RawJobsBatch[[3]],#]&/@Switches;
 C2={};
@@ -89,9 +91,9 @@ Print@Length@AllTheories[[13]]
 Print@Length@AllTheories[[14]]
 For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
-Run@("mkdir ./bin/node-"<>ToString@node);
-Run@("mkdir ./bin/node-"<>ToString@node<>"/chr");
-FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"peta4.svy.mx"}~DumpSave~{JobsBatch};
+Run@("mkdir ./svy/node-"<>ToString@node);
+Run@("mkdir ./svy/node-"<>ToString@node<>"/chr");
+FileNameJoin@{Directory[],"svy/node-"<>ToString@node,"peta4.svy.mx"}~DumpSave~{JobsBatch};
 ];
 (**)
 

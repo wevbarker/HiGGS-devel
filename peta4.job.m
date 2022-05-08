@@ -26,7 +26,7 @@ $Timing=True;
 (* ::Input::Initialization:: *)
 If[IntegerQ@ToExpression@$CommandLine[[-1]],
 $Node=$CommandLine[[-1]];
-ToExpression@("<<"<>FileNameJoin@{Directory[],"bin","node-"<>$Node,"peta4.svy.mx"}<>";");
+ToExpression@("<<"<>FileNameJoin@{Directory[],"svy","node-"<>$Node,"peta4.svy.mx"}<>";");
 Print@JobsBatch;,
 $Node="";
 JobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet1+2Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},

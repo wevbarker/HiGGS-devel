@@ -141,7 +141,7 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
-$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.chr.mx"};
+$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.chr.mx"};
 (*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
 Quiet@If[!FileExistsQ@$BuildTimeFilename,
 $BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
@@ -160,7 +160,7 @@ $HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
 
 (* ::Input::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"chr","kernel-"<>ToString@$KernelID<>".chr.csv"};
+$HiGGSTimingFile=Quiet@FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"chr","kernel-"<>ToString@$KernelID<>".chr.csv"};
 (*a function which writes all current data to the kernel file*)
 WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
 (*open the stream*)
@@ -203,7 +203,7 @@ NotebookDelete[printer];
 
 (* ::Input::Initialization:: *)
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 
 
 (* ::Input::Initialization:: *)

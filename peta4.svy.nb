@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     55431,       1029]
-NotebookOptionsPosition[     54315,       1001]
-NotebookOutlinePosition[     54737,       1018]
-CellTagsIndexPosition[     54694,       1015]
+NotebookDataLength[     55831,       1036]
+NotebookOptionsPosition[     54714,       1008]
+NotebookOutlinePosition[     55136,       1025]
+CellTagsIndexPosition[     55093,       1022]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,13 +40,17 @@ Commissioning Survey.\
   3.860959119045631*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-\
 f072cdc53b32"],
 
-Cell[BoxData[
- RowBox[{"Run", "@", "\"\<rm -rf ./bin/node-*\>\""}]], "Input",
+Cell[BoxData[{
+ RowBox[{"Run", "@", "\"\<rm -rf ./svy/node-*\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"Run", "@", "\"\<rm -rf ./svy\>\""}], "\[IndentingNewLine]", 
+ RowBox[{"Run", "@", "\"\<mkdir ./svy\>\""}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.860399987586609*^9, 3.860400012970598*^9}, {
   3.860429185749961*^9, 3.860429188165661*^9}, {3.860429233165124*^9, 
-  3.860429246557065*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f"],
+  3.860429246557065*^9}, {3.860963072662879*^9, 3.8609630732779293`*^9}, {
+  3.860963191132722*^9, 
+  3.860963202620644*^9}},ExpressionUUID->"68ab92ad-3c68-4108-8669-\
+f32b9f7a052f"],
 
 Cell[BoxData[
  RowBox[{
@@ -342,12 +346,12 @@ Cell[BoxData[
          "RawJobsBatch"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"Run", "@", 
         RowBox[{"(", 
-         RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
           RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Run", "@", 
         RowBox[{"(", 
-         RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
           RowBox[{"ToString", "@", "node"}], "<>", "\"\</chr\>\""}], ")"}]}], 
        ";", "\[IndentingNewLine]", 
        RowBox[{
@@ -355,7 +359,7 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
            RowBox[{"Directory", "[", "]"}], ",", 
-           RowBox[{"\"\<bin/node-\>\"", "<>", 
+           RowBox[{"\"\<svy/node-\>\"", "<>", 
             RowBox[{"ToString", "@", "node"}]}], ",", 
            "\"\<JobsBatch.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
         RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
@@ -517,8 +521,8 @@ Cell[BoxData[
    3.860431515558955*^9}, {3.860690028999938*^9, 3.860690049247897*^9}, {
    3.86074418951239*^9, 3.860744191806445*^9}, {3.860772922885727*^9, 
    3.8607729257178717`*^9}, {3.860773012884869*^9, 3.86077303389275*^9}, {
-   3.860961614453203*^9, 
-   3.860961615444943*^9}},ExpressionUUID->"e7328ef6-6ef5-448b-ac02-\
+   3.860961614453203*^9, 3.860961615444943*^9}, {3.860963077526119*^9, 
+   3.860963086845869*^9}},ExpressionUUID->"e7328ef6-6ef5-448b-ac02-\
 9556f9c7556d"],
 
 Cell[BoxData[
@@ -556,7 +560,8 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"conds", "[", 
-            RowBox[{"[", "1", "]"}], "]"}], "<>", "extralabel"}], ",", 
+            RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<_\>\"", "<>", 
+           "extralabel"}], ",", 
           RowBox[{
            RowBox[{"conds", "[", 
             RowBox[{"[", "2", "]"}], "]"}], "~", "Join", "~", 
@@ -792,12 +797,12 @@ Cell[BoxData[
        "\[IndentingNewLine]", 
        RowBox[{"Run", "@", 
         RowBox[{"(", 
-         RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
           RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Run", "@", 
         RowBox[{"(", 
-         RowBox[{"\"\<mkdir ./bin/node-\>\"", "<>", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
           RowBox[{"ToString", "@", "node"}], "<>", "\"\</chr\>\""}], ")"}]}], 
        ";", "\[IndentingNewLine]", 
        RowBox[{
@@ -805,7 +810,7 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
            RowBox[{"Directory", "[", "]"}], ",", 
-           RowBox[{"\"\<bin/node-\>\"", "<>", 
+           RowBox[{"\"\<svy/node-\>\"", "<>", 
             RowBox[{"ToString", "@", "node"}]}], ",", 
            "\"\<peta4.svy.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
         RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
@@ -841,7 +846,9 @@ Cell[BoxData[
    3.860832673063992*^9}, {3.8608354752753963`*^9, 3.8608354924994164`*^9}, {
    3.8608355800098867`*^9, 3.8608356049126587`*^9}, 3.860837261069127*^9, {
    3.860961298063203*^9, 3.860961301985118*^9}, {3.860961620894299*^9, 
-   3.860961621268957*^9}},ExpressionUUID->"c01d7981-e125-4af4-abe3-\
+   3.860961621268957*^9}, {3.860962828843652*^9, 3.860962831187469*^9}, {
+   3.860963090023019*^9, 
+   3.860963097886758*^9}},ExpressionUUID->"c01d7981-e125-4af4-abe3-\
 cbc57af5a91d"],
 
 Cell[BoxData[
@@ -1020,15 +1027,15 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 329, 8, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[912, 32, 411, 8, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[1326, 42, 346, 6, 47, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f",
+Cell[1326, 42, 568, 10, 94, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f",
  InitializationCell->True],
-Cell[1675, 50, 15223, 255, 163, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[1897, 54, 15223, 255, 163, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[16901, 307, 13714, 214, 255, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
+Cell[17123, 311, 13760, 214, 255, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
  InitializationCell->True],
-Cell[30618, 523, 12618, 321, 1152, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
+Cell[30886, 527, 12749, 324, 1152, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
  InitializationCell->True],
-Cell[43239, 846, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
+Cell[43638, 853, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
  InitializationCell->True]
 }, Open  ]]
 }
