@@ -203,7 +203,7 @@ NotebookDelete[printer];
 
 (* ::Input::Initialization:: *)
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 
 
 (* ::Input::Initialization:: *)
