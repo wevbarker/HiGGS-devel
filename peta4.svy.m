@@ -91,7 +91,7 @@ For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
 Run@("mkdir ./bin/node-"<>ToString@node);
 Run@("mkdir ./bin/node-"<>ToString@node<>"/stats");
-FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{JobsBatch};
+FileNameJoin@{Directory[],"bin/node-"<>ToString@node,"peta4.svy.mx"}~DumpSave~{JobsBatch};
 ];
 (**)
 
