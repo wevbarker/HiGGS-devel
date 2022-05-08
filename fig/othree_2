@@ -1,0 +1,24 @@
+In[]:= quantity = ScreenDollarIndices[ToCanonical[{R[-a, -b, -c, -d], RLambda[-a, -b, -c, -d], T[-a, -b, -c], TLambda[-a, -b, -c]} /. StrengthDecompose /. StrengthLambdaDecompose]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/othree_251-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= Simplify[ScreenDollarIndices[ContractMetric[ToCanonical[quantity[[1]] /. StrengthPToStrengthPO3]]]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/othree_253-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= Simplify[ScreenDollarIndices[ContractMetric[ToCanonical[quantity[[4]] /. StrengthLambdaPToStrengthLambdaPO3 /. StrengthLambdaPerpToStrengthLambdaPerpO3]]]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/othree_255-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|

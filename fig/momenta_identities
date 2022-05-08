@@ -1,0 +1,16 @@
+In[]:= quantity = {BPi[-a, b], APi[-a, -b, c], BPiP[-a, -b], APiP[-a, -b, -c], BPiP[-a, -b]*V[b], APiP[-a, -b, -c]*V[c]}
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/momenta_identities15-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= ScreenDollarIndices[ToCanonical[quantity /. PiPToPi]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/momenta_identities17-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|

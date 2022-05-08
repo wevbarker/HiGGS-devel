@@ -2,7 +2,7 @@ In[]:= quantity = ToBasicForm[epsilonG[r, m, l, n]*(CD[-l][B[k, -m]*B[q, -n]*R[i
 Out[]= |
 \vspace{-4pt}
 \begin{flushleft}
-\includegraphics[width=\linewidth]{figures/bianchi7-1fig.pdf}
+\includegraphics[width=\linewidth]{fig/bianchi90-1fig.pdf}
 \end{flushleft}
 \vspace{-7pt}
 |

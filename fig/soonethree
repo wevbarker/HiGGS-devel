@@ -1,0 +1,16 @@
+In[]:= ScreenDollarIndices[ToCanonical[R[-a, -b, -c, -d] /. StrengthSO13Activate]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/soonethree35-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= ScreenDollarIndices[ToCanonical[TLambda[-a, -b, -c] /. StrengthLambdaSO13Activate]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/soonethree37-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|

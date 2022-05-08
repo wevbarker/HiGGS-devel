@@ -86,9 +86,9 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 If[$PaperPrint,
 If[NotebookDirectory[]==$Failed,
-Print[" ** BuildHiGGS: Purging figures directory at "<>FileNameJoin@{NotebookDirectory[],"figures/*"}<>"..."];,
-Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});,
-Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"figures/*"});];
+Print[" ** BuildHiGGS: Purging figures directory at "<>FileNameJoin@{NotebookDirectory[],"fig/*"}<>"..."];,
+Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"fig/*"});,
+Run@("rm -rf "<>FileNameJoin@{NotebookDirectory[],"fig/*"});];
 ];
 
 $OldLine=$Line;
@@ -97,13 +97,13 @@ $SubLine=1;
 
 HiGGSOutput[x_String]:=Module[{},
 $ListingsOutput=x;
-Run@("rm "<>FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput});
+Run@("rm "<>FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput});
 ];
 
 SetAttributes[HiGGSEcho,HoldAll]
 HiGGSEcho[x_]:=Block[{str,res,$ListingsFile},
 str=ToString[Unevaluated[x]~ToString~InputForm];
-$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput},PageWidth->Infinity];
+$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput},PageWidth->Infinity];
 WriteString[$ListingsFile,"In[]:= "<>str<>"\nOut[]= "];
 (*WriteString[$ListingsFile,"|\nIn[]:= "<>str<>"\n|\n"];*)
 Close@$ListingsFile;
@@ -124,15 +124,15 @@ $SubLine=$SubLine+1,
 $SubLine=1;
 $OldLine=$Line;
 ];
-$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput},PageWidth->Infinity];
+$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput},PageWidth->Infinity];
 If[{res}~AllTrue~StringQ,
 WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n|\n"<>"      "<>StringJoin@{res}<>"\n|"<>"\n"];,*)
 res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->True,Alignment->Right];
 Print@res;
-FileNameJoin@{$WorkingDirectory,"figures",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
-WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
-(*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
+FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
+WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{fig/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
+(*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{fig/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
 ];
 Close@$ListingsFile;
 ];
@@ -5403,22 +5403,34 @@ StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{LaunchSome,DefinedTheo
 
 (*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
 
-LaunchSome[]:=If[ValueQ@$Cores,
-LaunchKernels[$Cores];,
-LaunchKernels[];];
+
 
 $TryKernels=True;
+If[ValueQ@$Cores,
 While[$TryKernels,
 HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
 CloseKernels[];
 (*launch should be 32*)
-TimeConstrained[Check[LaunchSome[],$TryKernels=False;];
+TimeConstrained[Check[LaunchKernels[$Cores],$TryKernels=False;];
 $TryKernels=False;,
 10,
 CloseKernels[];
 HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];
+];,
+While[$TryKernels,
+HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
+CloseKernels[];
+(*launch should be 32*)
+TimeConstrained[Check[LaunchKernels[],$TryKernels=False;];
+$TryKernels=False;,
+10,
+CloseKernels[];
+HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];
+];];
+
+
 
 If[!OptionValue@"Import",
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;

@@ -1,0 +1,8 @@
+In[]:= ToNesterForm[CD[-i][B[-a, -b]], "ToShell" -> False]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/highlevel_3100-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|

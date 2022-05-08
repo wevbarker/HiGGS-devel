@@ -10,7 +10,8 @@ cd /home/wb263/HiGGS_development
 echo "flushing stats directory and build time"
 rm -rf ./svy/node-$1/chr
 mkdir ./svy/node-$1/chr
-rm ./svy/node-$1/BuildTime.mx
+rm ./svy/node-$1/peta4.chr.mx
+rm ./svy/node-$1/peta4.nom.mx
 
 echo "commencing run loop"
 

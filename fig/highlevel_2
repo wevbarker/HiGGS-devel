@@ -1,0 +1,8 @@
+In[]:= quantity = ToNesterForm[quantity, "ToShell" -> False]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/highlevel_296-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|

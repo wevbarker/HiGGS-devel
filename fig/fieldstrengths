@@ -1,0 +1,16 @@
+In[]:= quantity = {R[-a, -b, -c, -d], R[a, -a, -c, -d], R[-a, -b, -c, c], T[a, -b, -c], T[a, -b, b]}
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/fieldstrengths25-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
+In[]:= ScreenDollarIndices[ToCanonical[quantity /. ExpandStrengths]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{fig/fieldstrengths27-1fig.pdf}
+\end{flushleft}
+\vspace{-7pt}
+|
