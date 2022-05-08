@@ -5406,7 +5406,8 @@ $TryKernels=True;
 While[$TryKernels,
 HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
 CloseKernels[];
-TimeConstrained[Check[LaunchKernels[32],$TryKernels=False;];
+(*launch should be 32*)
+TimeConstrained[Check[LaunchKernels[],$TryKernels=False;];
 $TryKernels=False;,
 10,
 CloseKernels[];

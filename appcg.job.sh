@@ -8,7 +8,8 @@ pkill -9 "appcg.plt.py"
 pkill -9 "appcg.plt.sh"
 
 #	start the plotting script
-./appcg.plt.sh &
+#	better to run independently through appch
+#./appcg.plt.sh &
 
 #	run the job	
 math -run < appcg.job.m

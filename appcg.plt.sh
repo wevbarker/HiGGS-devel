@@ -1,24 +1,11 @@
 #!/bin/bash
 #	this file prepares a kernel report and sends it to the tower by ssh 
-#	if python is not loaded, load it
+#	if this is run as a standalone, then load the modules
 module load anaconda/python3
-#	flush the stats directory
-rm -rf ./bin/stats
-rm -rf ./bin/samples
-#	make a new stats directory
-mkdir ./bin/stats
-mkdir ./bin/samples
-
-
-#	wait five seconds for the first kernel logs to come through
-sleep 5
-#	plot loop
-while sleep 5; do
+#	this file prepares a kernel report and sends it to the tower by ssh 
+while true; do
   echo "			(...replotting...)"
-  #./plot_cores.py
-  ./plot_cores.py > /dev/null 2>&1
-  scp ./jobs.png tower:/home/williamb/Documents/physics/projects/HiGGS_development/jobs.png
+  ./appcs.plt.py > /dev/null 2>&1
+  scp ./appcs.plt.png tower:~/Documents/physics/projects/HiGGS_development/ 
+  #./peta4_jobs_plot.py > /dev/null 2>&1 	#	 for quiet plotting
 done
-
-#FILE=$1
-#while inotifywait -e close_write $FILE; do yes | cp $FILE zathurax_$FILE; done
