@@ -141,7 +141,7 @@ ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
-$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"BuildTime.mx"};
+$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.chr.mx"};
 (*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
 Quiet@If[!FileExistsQ@$BuildTimeFilename,
 $BuildTimeFilename~DumpSave~{$HiGGSBuildTime},

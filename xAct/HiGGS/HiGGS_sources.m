@@ -4058,7 +4058,7 @@ PoissonBracketParallel[f1x_,f2x_,theory_String,options___]:=Module[{result},
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->theory];
 (*Export to the usual PB function*)
@@ -4078,7 +4078,7 @@ If[OptionValue["Parallel"],
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 ];
@@ -4650,7 +4650,7 @@ RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4727,7 +4727,7 @@ TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4807,7 +4807,7 @@ SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4908,7 +4908,7 @@ MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -4985,7 +4985,7 @@ ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
 PsiInert=ToString@Psi;
@@ -5296,7 +5296,7 @@ DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 BuildHiGGS[];
 (*import theory names*)
 Print["psiloc"];
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"}<>";"];
+Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
 
@@ -5322,10 +5322,10 @@ DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
 If[StringQ@OptionValue@"Import",
-HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}];
+HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>".thr.mx"}];
 $TheoryName=OptionValue@"Import";
-Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>"DefTheory.mx"}<>";"],
-Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>"DefTheory.mx"}];
+Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Import"<>".thr.mx"}<>";"],
+Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Import"<>".thr.mx"}];
 Quit[];
 ];,
 (*check if a real theory was provided*)
@@ -5355,10 +5355,10 @@ DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 *)
 ];
 If[StringQ@OptionValue@"Export",
-HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>"DefTheory.mx"}];
+HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",OptionValue@"Export"<>".thr.mx"}];
 $TheoryName=OptionValue@"Export";
 Print@$IfConstraints;
-(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
+(FileNameJoin@{$WorkingDirectory,"bin",ToString@OptionValue@"Export"<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
 ];
 ];
 (*so that a replacement rule exists, even if no theory is defined*)
@@ -5422,7 +5422,7 @@ DefinedTheories=WaitAll[Jobs];
 (*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
 Print@InputBatch;
 $TheoryNames=(#[[1]])&/@InputBatch;
-(FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"$TheoryNames.mx"})~DumpSave~{$TheoryNames};
+(FileNameJoin@{$WorkingDirectory,"bin","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
 (**)
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
@@ -5440,8 +5440,8 @@ SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
-(FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>".thr.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
 HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
@@ -5462,8 +5462,8 @@ SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints
 DefTheory["Import"\[Rule]theory];
 $Velocities=Velocity;
 HiGGSPrint["$Velocities value is ",$Velocities];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"}];
-(FileNameJoin@{$WorkingDirectory,"bin",theory<>"DefTheory.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"bin",theory<>".thr.mx"}];
+(FileNameJoin@{$WorkingDirectory,"bin",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
 ];
 HiGGSPrint[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
