@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     57578,        944]
-NotebookOptionsPosition[     56217,        912]
-NotebookOutlinePosition[     56639,        929]
-CellTagsIndexPosition[     56596,        926]
+NotebookDataLength[     58417,        960]
+NotebookOptionsPosition[     56750,        924]
+NotebookOutlinePosition[     57172,        941]
+CellTagsIndexPosition[     57129,        938]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -256,6 +256,11 @@ Cell[BoxData[
    3.860963114351927*^9, 
    3.8609631149117327`*^9}},ExpressionUUID->"a60e8bc9-0d86-412a-8600-\
 18c7b30e6c81"],
+
+Cell["The Peta4 architecture equates cores to processors.", "Text",
+ CellChangeTimes->{{3.860964186202428*^9, 
+  3.8609642122661858`*^9}},ExpressionUUID->"ee52d6a2-e148-4542-baaa-\
+4943d57775fa"],
 
 Cell[BoxData[
  RowBox[{
@@ -738,24 +743,31 @@ Cell[BoxData[
    3.8604064815304117`*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
 297f506ffb31"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-  "Print", "[", 
-   "\"\<calls to HiGGS functions have finished, reached the end of \
-peta4.job.m\>\"", "]"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-   "need", " ", "this", " ", "to", " ", "give", " ", "the", " ", "right", " ",
-     "exit", " ", "code", " ", "to", " ", "SLURM"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"CloseKernels", "[", "]"}], ";"}]}], "Input",
+Cell[BoxData[
+ RowBox[{"Print", "[", 
+  "\"\<calls to HiGGS functions have finished, reached the end of peta4.job.m\
+\>\"", "]"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.860409681587123*^9, 3.86040970536922*^9}, {
   3.860413075335601*^9, 3.860413087071505*^9}, {3.860476773175561*^9, 
-  3.860476794582974*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
+  3.860476794582974*^9}, {3.860964353697081*^9, 
+  3.86096435471316*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
 c241bc4146a0"],
+
+Cell["Close parallel kernels to give the right exit code to SLURM.", "Text",
+ CellChangeTimes->{{3.860964365538021*^9, 
+  3.860964384568491*^9}},ExpressionUUID->"636218a9-69ad-46db-aff0-\
+325a7f81a551"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CloseKernels", "[", "]"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.860409681587123*^9, 3.86040970536922*^9}, {
+  3.860413075335601*^9, 3.860413087071505*^9}, {3.860476773175561*^9, 
+  3.860476794582974*^9}, {3.860964353697081*^9, 
+  3.860964386856573*^9}},ExpressionUUID->"e4217b10-d107-4106-b268-\
+77b2f1425036"],
 
 Cell[BoxData[
  RowBox[{
@@ -935,15 +947,19 @@ Cell[1342, 43, 280, 7, 47, "Input",ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-d600
  InitializationCell->True],
 Cell[1625, 52, 9790, 205, 324, "Input",ExpressionUUID->"a60e8bc9-0d86-412a-8600-18c7b30e6c81",
  InitializationCell->True],
-Cell[11418, 259, 11283, 164, 117, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[11418, 259, 195, 3, 36, "Text",ExpressionUUID->"ee52d6a2-e148-4542-baaa-4943d57775fa"],
+Cell[11616, 264, 11283, 164, 117, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[22704, 425, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
+Cell[22902, 430, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
  InitializationCell->True],
-Cell[33820, 586, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[34018, 591, 10895, 152, 47, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[44718, 740, 682, 17, 94, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+Cell[44916, 745, 435, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
  InitializationCell->True],
-Cell[45403, 759, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[45354, 756, 202, 3, 36, "Text",ExpressionUUID->"636218a9-69ad-46db-aff0-325a7f81a551"],
+Cell[45559, 761, 374, 8, 47, "Input",ExpressionUUID->"e4217b10-d107-4106-b268-77b2f1425036",
+ InitializationCell->True],
+Cell[45936, 771, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }
