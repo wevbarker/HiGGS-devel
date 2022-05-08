@@ -43,7 +43,7 @@ twocol = 7.05826
 #=============== tuning params ==========================
 
 cols = twocol                           #   onecol or twocol
-asp = 1.                                #   vertical aspect ratio
+asp = 0.5                                #   vertical aspect ratio
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space

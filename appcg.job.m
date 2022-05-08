@@ -24,7 +24,7 @@ $Timing=True;
 
 
 (* ::Input::Initialization:: *)
-$Node="1"
+$Node="0"
 
 
 (* ::Input::Initialization:: *)
