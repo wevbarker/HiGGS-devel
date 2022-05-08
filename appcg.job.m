@@ -31,8 +31,8 @@ $Node="0"
 Run@"rm -rf ./svy/node-*"
 Run@"rm -rf ./svy"
 Run@"mkdir ./svy"
-Run@"mkdir ./svy/node-1"
-Run@"mkdir ./svy/node-1/chr"
+Run@"mkdir ./svy/node-0"
+Run@"mkdir ./svy/node-0/chr"
 
 
 (* ::Input::Initialization:: *)
