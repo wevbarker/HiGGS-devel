@@ -5396,15 +5396,13 @@ If[OptionValue["Velocities"],Print["vels"]];
 
 
 (* ::Input::Initialization:: *)
-Options[StudyTheory]={"Export"->False,"Import"->False};
+Options[StudyTheory]={"Export"->False,"Import"->False,"DefTheory"->True,"Brackets"->True,"Velocity"->True};
 StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{LaunchSome,DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
+
+If[OptionValue@"DefTheory",
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
-
 (*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
-
-
-
 $TryKernels=True;
 If[ValueQ@$Cores,
 While[$TryKernels,
@@ -5430,8 +5428,6 @@ HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];
 ];];
 
-
-
 If[!OptionValue@"Import",
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
 HiGGSPrint[Jobs];
@@ -5441,7 +5437,10 @@ DefinedTheories=WaitAll[Jobs];
 Print@InputBatch;
 $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
-(**)
+];
+
+
+If[OptionValue@"Brackets",
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
@@ -5463,11 +5462,12 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
-(**)
-(**)
-(*
+];
+
+
+If[OptionValue@Velocities,
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 (*IndIfConstraints={IndIfConstraints[[6]]};*)
@@ -5477,7 +5477,7 @@ Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
 Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
 SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 $Velocities=Velocity;
 HiGGSPrint["$Velocities value is ",$Velocities];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"}];
@@ -5485,7 +5485,7 @@ HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDi
 ];
 HiGGSPrint[Velocities];
 SaveVelocity[#1,#2]&@@@Velocities;
-*)
+];
 ];
 ClearBuild[];
 

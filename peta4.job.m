@@ -54,7 +54,7 @@ BuildHiGGS[];
 
 
 (* ::Input::Initialization:: *)
-JobsBatch~StudyTheory~("Import"->False);
+StudyTheory[JobsBatch,"Import"->False,"Velocities"->False];
 
 
 (* ::Input::Initialization:: *)
