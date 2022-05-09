@@ -5436,7 +5436,11 @@ If[OptionValue@"DefTheory",
 If[!OptionValue@"Import",
 Print["here passed optval in deftheory"];
 Print@OptionValue@"Velocities";
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->OptionValue@"Velocities"]&@@@InputBatch;
+If[OptionValue@"Velocities",
+Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
+Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;,
+Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;
+];
 HiGGSPrint[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
