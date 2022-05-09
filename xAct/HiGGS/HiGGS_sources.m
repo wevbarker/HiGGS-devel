@@ -5314,7 +5314,7 @@ res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((Lis
 res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-Options[DefTheory]={"Export"->False,"Import"->False};
+Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False};
 UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
 (*removed timing wrapper since it is better to show the internal steps -- these get washed out in the plot*)
 (*DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},*)
@@ -5350,9 +5350,9 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-(*
+If[OptionValue@"Velocities",
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-*)
+];
 ];
 If[StringQ@OptionValue@"Export",
 HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",OptionValue@"Export"<>".thr.mx"}];
@@ -5429,7 +5429,7 @@ HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];];
 
 If[!OptionValue@"Import",
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1]&@@@InputBatch;
+Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->OptionValue@"Velocities"]&@@@InputBatch;
 HiGGSPrint[Jobs];
 DefinedTheories=WaitAll[Jobs];
 ];
