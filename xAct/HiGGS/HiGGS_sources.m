@@ -5400,7 +5400,6 @@ Options[StudyTheory]={"Export"->False,"Import"->False,"DefTheory"->True,"Bracket
 StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{LaunchSome,DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 
-If[OptionValue@"DefTheory",
 (*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
 (*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
 $TryKernels=True;
@@ -5427,6 +5426,9 @@ CloseKernels[];
 HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 ];
 ];];
+
+
+If[OptionValue@"DefTheory",
 
 If[!OptionValue@"Import",
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->OptionValue@"Velocities"]&@@@InputBatch;
