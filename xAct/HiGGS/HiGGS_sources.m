@@ -5289,7 +5289,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Options[DefTheoryParallel]={"Export"->False,"Import"->False};
+Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->False};
 DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 (*$Timing=True;*)
@@ -5298,7 +5298,7 @@ BuildHiGGS[];
 Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
-DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"]];
+DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities"];
 
 ForceTiming[];
 ];
