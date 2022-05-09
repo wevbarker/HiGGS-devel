@@ -5465,7 +5465,7 @@ SavePPM[#1,#2]&@@@PPMs;
 ];
 
 
-If[OptionValue@Velocities,
+If[OptionValue@"Velocities",
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
 DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
