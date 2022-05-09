@@ -1,8 +1,0 @@
-In[]:= quantity = ToBasicForm[epsilonG[r, m, l, n]*(CD[-l][B[k, -m]*B[q, -n]*R[i, j, -k, -q]] + A[i, -x, -l]*B[k, -m]*B[q, -n]*R[x, j, -k, -q] + A[j, -x, -l]*B[k, -m]*B[q, -n]*R[i, x, -k, -q])]; 
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{fig/bianchi90-1fig.pdf}
-\end{flushleft}
-\vspace{-7pt}
-|

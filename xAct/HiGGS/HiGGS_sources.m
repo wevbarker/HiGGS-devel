@@ -131,8 +131,8 @@ WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"]
 res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->True,Alignment->Right];
 Print@res;
 FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
-WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{fig/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
-(*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{fig/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
+WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
+(*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
 ];
 Close@$ListingsFile;
 ];
@@ -5415,9 +5415,20 @@ HiGGSPrint[y," \[TildeTilde] ",x]];
 ];
 Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
 MapThread[PrintBracket,{$PPM,$PPMlabels},2];
-Print/@$Velocities;
+(*Print/@$Velocities;*)
 ];
-If[OptionValue["Velocities"],Print["vels"]];
+If[OptionValue["Velocities"],
+IndVelocities=(#~ChangeFreeIndices~({-i,-j,-k}~Take~Length@FindFreeIndices@#))&/@$Velocities;
+PrintVelocity[x_,y_]:=Module[{nontrivial},
+nontrivial=!(x==0);
+If[nontrivial,
+HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x],Null;,
+HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x]];
+];
+Print@" ** ViewTheory: encountered the following nonvanishing velocities:";
+MapThread[PrintVelocity,{IndVelocities,$IfConstraints}];
+(*Print/@$Velocities;*)
+];
 ];
 
 
