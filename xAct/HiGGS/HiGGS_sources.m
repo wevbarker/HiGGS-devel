@@ -5289,7 +5289,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->False};
+Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->True};
 DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 (*$Timing=True;*)
@@ -5298,8 +5298,9 @@ BuildHiGGS[];
 Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
+Print["here passed optval in deftheory parallel"];
+Print@OptionValue@"Velocities";
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities"];
-
 ForceTiming[];
 ];
 DistributeDefinitions@DefTheoryParallel;
@@ -5350,7 +5351,10 @@ DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
+Print["here passed optval in deftheory"];
+Print@OptionValue@"Velocities";
 If[OptionValue@"Velocities",
+Print@"am i active";
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 ];
 ];
@@ -5429,8 +5433,9 @@ HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 
 
 If[OptionValue@"DefTheory",
-
 If[!OptionValue@"Import",
+Print["here passed optval in deftheory"];
+Print@OptionValue@"Velocities";
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->OptionValue@"Velocities"]&@@@InputBatch;
 HiGGSPrint[Jobs];
 DefinedTheories=WaitAll[Jobs];
@@ -5441,6 +5446,7 @@ $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
 ];
 
+Quit[];
 
 If[OptionValue@"Brackets",
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
