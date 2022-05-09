@@ -5300,7 +5300,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"p
 (*Define the theory*)
 Print["here passed optval in deftheory parallel"];
 Print@OptionValue@"Velocities";
-Quit[];
+Pause[1000];
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities"];
 ForceTiming[];
 ];
