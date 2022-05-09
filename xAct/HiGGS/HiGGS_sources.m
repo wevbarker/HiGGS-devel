@@ -4636,9 +4636,6 @@ $InertVelocity=WaitAll[Jobs];
 $InertVelocity=VelSimplifier/@SegmentList;
 NotebookDelete[printer];
 Print["made it final"];
-Print@$InertVelocity;
-Print["made it here too"];
-Pause["100000"];
 $InertVelocity];
 ClearBuild[];
 
@@ -5458,11 +5455,11 @@ $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
 ];
 
-Quit[];
+(*
 
 If[OptionValue@"Brackets",
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
@@ -5474,7 +5471,7 @@ Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
+DefTheory["Import"\[Rule]theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"}];
@@ -5484,6 +5481,7 @@ HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 ];
 
+*)
 
 If[OptionValue@"Velocities",
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
@@ -5492,6 +5490,9 @@ IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 (*IndIfConstraints={IndIfConstraints[[6]]};*)
 (*Evaluate lots of Velocities*)
+Print@$InertVelocity;
+Print@"fdf";
+Quit[];
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
