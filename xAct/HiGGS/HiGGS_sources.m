@@ -4668,6 +4668,11 @@ RiemannBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
+Print@$InertVelocity;
+Print@"riem";
+Pause[500];
+
+
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
 PlaceholderVectors={"S1[x1]","S2[y1]","S3[z1]"};
@@ -4744,6 +4749,11 @@ ClearBuild[];
 TorsionBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
+
+Print@$InertVelocity;
+Print@"tors";
+Pause[500];
+
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 HiGGSPrint[PsiFreeIndexListD];
@@ -4824,6 +4834,10 @@ ClearBuild[];
 SurfaceBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
+
+Print@$InertVelocity;
+Print@"surf";
+Pause[500];
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
@@ -4926,6 +4940,10 @@ MeasureBracket[Psi_,EH0_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,Placeho
 printer={};
 PlaceholderBracketActivate={};
 
+Print@$InertVelocity;
+Print@"meas";
+Pause[500];
+
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 HiGGSPrint[PsiFreeIndexListD];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
@@ -5004,6 +5022,10 @@ ClearBuild[];
 ConstraintBracket[Psi_,EH0_,FreeConstraint_,PhiFreeIndexListNormal_,ii_,PsiFreeIndexListNormal_]:=Module[{Temp,GradTemp,PlaceholderBracketActivate,printer,PhiFreeIndexListString,PsiFreeIndexListD,PsiFreeIndexListDLength,PlaceholderVectors,DeltaList,zz,PlaceholderBracketRules,VelocitySegments},
 printer={};
 PlaceholderBracketActivate={};
+
+Print@$InertVelocity;
+Print@"cons";
+Pause[500];
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 HiGGSPrint[PsiFreeIndexListD];
@@ -5490,9 +5512,6 @@ IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices
 (*IndIfConstraints=IndIfConstraints~Take~-1;*)
 (*IndIfConstraints={IndIfConstraints[[6]]};*)
 (*Evaluate lots of Velocities*)
-Print@$InertVelocity;
-Print@"fdf";
-Quit[];
 {theory,IndIfConstraints}];
 Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
 Velocities=VelocityParallel@Jobs;
