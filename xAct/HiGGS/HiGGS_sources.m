@@ -4670,7 +4670,6 @@ PlaceholderBracketActivate={};
 
 Print@$InertVelocity;
 Print@"riem";
-Pause[500];
 
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
@@ -4752,7 +4751,6 @@ PlaceholderBracketActivate={};
 
 Print@$InertVelocity;
 Print@"tors";
-Pause[500];
 
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
@@ -4837,7 +4835,6 @@ PlaceholderBracketActivate={};
 
 Print@$InertVelocity;
 Print@"surf";
-Pause[500];
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 PsiFreeIndexListDLength=Length[PsiFreeIndexListD];
@@ -4942,7 +4939,6 @@ PlaceholderBracketActivate={};
 
 Print@$InertVelocity;
 Print@"meas";
-Pause[500];
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 HiGGSPrint[PsiFreeIndexListD];
@@ -5025,7 +5021,6 @@ PlaceholderBracketActivate={};
 
 Print@$InertVelocity;
 Print@"cons";
-Pause[500];
 
 PsiFreeIndexListD=Map[ToString[#]&,PsiFreeIndexListNormal];
 HiGGSPrint[PsiFreeIndexListD];
@@ -5304,7 +5299,12 @@ Jobs=(#1~PrepareVelocitySegments~#2)&@@@BatchPsis;
 HiGGSPrint[Jobs];
 
 SplitVelocities=WaitAll[Jobs];
+
+Print[SplitVelocities];
+
 Velocities=(SecondaryVelocitySimplification/@#)&/@SplitVelocities;
+
+Print[Velocities];
 
 NotebookDelete[printer];
 Velocities];
