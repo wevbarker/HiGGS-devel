@@ -4639,6 +4639,7 @@ $InertVelocity=WaitAll[Jobs];
 $InertVelocity=VelSimplifier/@SegmentList;
 NotebookDelete[printer];
 Print["made it final"];
+Print@$InertVelocity;
 $InertVelocity];
 ClearBuild[];
 
