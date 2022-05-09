@@ -5300,6 +5300,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"p
 (*Define the theory*)
 Print["here passed optval in deftheory parallel"];
 Print@OptionValue@"Velocities";
+Quit[];
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities"];
 ForceTiming[];
 ];
@@ -5438,7 +5439,6 @@ Print["here passed optval in studytheory"];
 Print@OptionValue@"Velocities";
 If[OptionValue@"Velocities",
 Print["made it"];
-Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
 Print["didnt made it"];
 Quit[];
