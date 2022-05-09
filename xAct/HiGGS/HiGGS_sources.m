@@ -5434,11 +5434,17 @@ HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 
 If[OptionValue@"DefTheory",
 If[!OptionValue@"Import",
-Print["here passed optval in deftheory"];
+Print["here passed optval in studytheory"];
 Print@OptionValue@"Velocities";
 If[OptionValue@"Velocities",
+Print["made it"];
+Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
+Print["didnt made it"];
+Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;,
+Print["didnt made it"];
+Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;
 ];
 HiGGSPrint[Jobs];
