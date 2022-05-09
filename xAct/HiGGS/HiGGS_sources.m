@@ -4625,6 +4625,9 @@ DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,Se
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 printer={};
 
+Print["made it here too"];
+Pause["200"];
+
 $InertVelocity={};
 
 SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
@@ -4635,6 +4638,7 @@ $InertVelocity=WaitAll[Jobs];
 *)
 $InertVelocity=VelSimplifier/@SegmentList;
 NotebookDelete[printer];
+Print["made it final"];
 $InertVelocity];
 ClearBuild[];
 
@@ -5354,8 +5358,6 @@ DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Th
 Print["here passed optval in deftheory"];
 Print@OptionValue@"Velocities";
 If[OptionValue@"Velocities",
-Print@"am i active";
-Pause[1000];
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 ];
 ];
