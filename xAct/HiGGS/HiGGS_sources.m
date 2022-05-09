@@ -5396,7 +5396,7 @@ If[OptionValue["Velocities"],Print["vels"]];
 
 
 (* ::Input::Initialization:: *)
-Options[StudyTheory]={"Export"->False,"Import"->False,"DefTheory"->True,"Brackets"->True,"Velocity"->True};
+Options[StudyTheory]={"Export"->False,"Import"->False,"DefTheory"->True,"Brackets"->True,"Velocities"->True};
 StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{LaunchSome,DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
 (*We now want to change this module into something which studies batches of theories*)
 
