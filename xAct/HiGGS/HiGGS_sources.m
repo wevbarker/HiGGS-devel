@@ -5477,11 +5477,11 @@ $TheoryNames=(#[[1]])&/@InputBatch;
 (FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
 ];
 
-(*
+(**)
 
 If[OptionValue@"Brackets",
 PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
 (*Evaluate lots of Poisson brackets*)
 PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
@@ -5493,7 +5493,7 @@ Print@Jobs;
 PPMs=WaitAll[Jobs];
 PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
 SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"\[Rule]theory];
+DefTheory["Import"->theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
 HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"}];
@@ -5503,7 +5503,7 @@ HiGGSPrint[PPMs];
 SavePPM[#1,#2]&@@@PPMs;
 ];
 
-*)
+(**)
 
 If[OptionValue@"Velocities",
 PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
