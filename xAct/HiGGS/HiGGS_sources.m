@@ -4625,8 +4625,8 @@ DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,Se
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 printer={};
 
-$InertVelocity={};
-
+$InertVelocity={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+(*
 SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
 (*
 (*Large batch of jobs for segments of all velocities*)
@@ -4636,6 +4636,7 @@ $InertVelocity=WaitAll[Jobs];
 $InertVelocity=VelSimplifier/@SegmentList;
 NotebookDelete[printer];
 Print["made it final"];
+*)
 $InertVelocity];
 ClearBuild[];
 
@@ -5467,16 +5468,9 @@ HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
 
 If[OptionValue@"DefTheory",
 If[!OptionValue@"Import",
-Print["here passed optval in studytheory"];
-Print@OptionValue@"Velocities";
 If[OptionValue@"Velocities",
-Print["made it"];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
-Print["didnt made it"];
-Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;,
-Print["didnt made it"];
-Quit[];
 Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;
 ];
 HiGGSPrint[Jobs];
