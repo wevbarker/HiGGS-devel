@@ -333,6 +333,6 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 100)
+plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
 
 sys.exit()
