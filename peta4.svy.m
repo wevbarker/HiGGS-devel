@@ -63,8 +63,8 @@ C2=Combos[RawJobsBatch[[4]],#]&/@Switches;
 C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
 *)
 AllTheories=Join[C1,C2,C3];
-(*AllTheories=RandomSample@AllTheories;*)
-AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));
+(**)AllTheories=RandomSample@AllTheories;(**)
+(*AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));*)
 Print[Length@AllTheories];
 st={{},{},{},{},{},{},{},{},{},{},{},{},{},{}};
 For[i=1,i<Length@AllTheories+1,i++,
