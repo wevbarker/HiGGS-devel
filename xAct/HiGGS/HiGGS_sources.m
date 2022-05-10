@@ -4625,8 +4625,8 @@ DefInertVelocity[$ToShellFreedoms_,$ToTheory_,$Theory_]:=Module[{printer,Jobs,Se
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"inert velocity for the theory",""}];
 printer={};
 
-$InertVelocity={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-(*
+$InertVelocity={};
+(**)
 SegmentList={$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian};
 (*
 (*Large batch of jobs for segments of all velocities*)
@@ -4636,7 +4636,7 @@ $InertVelocity=WaitAll[Jobs];
 $InertVelocity=VelSimplifier/@SegmentList;
 NotebookDelete[printer];
 Print["made it final"];
-*)
+(**)
 $InertVelocity];
 ClearBuild[];
 
