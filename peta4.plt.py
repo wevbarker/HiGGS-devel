@@ -306,7 +306,7 @@ for x in range(xmx):
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
             axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            #axs[y,x].set_xscale('symlog',linthreshx = 500) #   this causes serious delays
+            axs[y,x].set_xscale('symlog',linthreshx = 1000) #   this causes serious delays
 
             #=================== end admin to label the plot ======================
 
@@ -333,6 +333,6 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
+plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 100)
 
 sys.exit()
