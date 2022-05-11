@@ -114,8 +114,8 @@ for x in range(xmx):
     for y in range(ymx):
 
         node = y*xmx+x
-        #if node == 8:
-        try:
+        if node == 10 or node == 12:
+        #try:
             '''
             try:
             '''
@@ -306,7 +306,7 @@ for x in range(xmx):
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
             axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            axs[y,x].set_xscale('symlog',linthreshx = 1000) #   this causes serious delays
+            #axs[y,x].set_xscale('symlog',linthreshx = 1000) #   this causes serious delays
 
             #=================== end admin to label the plot ======================
 
@@ -321,8 +321,8 @@ for x in range(xmx):
             if y == ymx-1:
                 axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
             
-        except:
-            print("there was a problem with plotting node ",node)
+        #except:
+        #    print("there was a problem with plotting node ",node)
 
 #=================== plt draw ======================
 
