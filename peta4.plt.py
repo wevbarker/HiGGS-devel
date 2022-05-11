@@ -311,7 +311,7 @@ for x in range(xmx):
             #=================== end admin to label the plot ======================
 
             title_string = r"Node " + str(node)
-            axs[y,x].set_title(title_string, fontsize = 6, pad = 0)
+            axs[y,x].set_title(title_string, fontsize = 6)
             #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
             #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
             #axs[node].set_xlabel(r"Wallclock time/s")

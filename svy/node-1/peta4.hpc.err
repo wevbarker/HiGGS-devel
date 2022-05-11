@@ -1,0 +1,873 @@
+rm: cannot remove ‘./svy/node-1/peta4.chr.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-1/peta4.nom.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-1/peta4.chr.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-1/peta4.nom.mx’: No such file or directory
+*** Error in `/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel': double free or corruption (fasttop): 0x0000000000fb0340 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x812b9)[0x7f8a29a9a2b9]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fda986)[0x7f8a39219986]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fd845a)[0x7f8a3921745a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x239553)[0x7f8a37478553]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x2041f5)[0x7f8a374431f5]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20b2ba)[0x7f8a3744a2ba]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20cdfe)[0x7f8a3744bdfe]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x926514)[0x7f8a37b65514]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x929907)[0x7f8a37b68907]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x91398c)[0x7f8a37b5298c]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0xf478c2)[0x7f8a381868c2]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ea00e)[0x7f8a3742900e]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ec434)[0x7f8a3742b434]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x18f2cb)[0x7f8a373ce2cb]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(kernel_dll_main+0x1ab)[0x7f8a373ce51a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f2e]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x7f8a29a3b555]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f61]
+======= Memory map: ========
+00400000-00403000 r-xp 00000000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00602000-00603000 r--p 00002000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00603000-00604000 rw-p 00003000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+007eb000-039e8000 rw-p 00000000 00:00 0                                  [heap]
+7f89f3050000-7f89f4000000 rw-p 00000000 00:00 0 
+7f89f4000000-7f89f4021000 rw-p 00000000 00:00 0 
+7f89f4021000-7f89f8000000 ---p 00000000 00:00 0 
+7f89f8000000-7f89f8021000 rw-p 00000000 00:00 0 
+7f89f8021000-7f89fc000000 ---p 00000000 00:00 0 
+7f89fc000000-7f89fc021000 rw-p 00000000 00:00 0 
+7f89fc021000-7f8a00000000 ---p 00000000 00:00 0 
+7f8a00000000-7f8a00021000 rw-p 00000000 00:00 0 
+7f8a00021000-7f8a04000000 ---p 00000000 00:00 0 
+7f8a04000000-7f8a04021000 rw-p 00000000 00:00 0 
+7f8a04021000-7f8a08000000 ---p 00000000 00:00 0 
+7f8a0800a000-7f8a0802a000 rw-p 00000000 00:00 0 
+7f8a0882b000-7f8a0882c000 ---p 00000000 00:00 0 
+7f8a0882c000-7f8a0903c000 rw-p 00000000 00:00 0 
+7f8a0904b000-7f8a0933b000 rw-p 00000000 00:00 0 
+7f8a0936c000-7f8a09ffc000 rw-p 00000000 00:00 0 
+7f8a0b7ff000-7f8a0b800000 ---p 00000000 00:00 0 
+7f8a0b800000-7f8a0c000000 rw-p 00000000 00:00 0 
+7f8a0c000000-7f8a0c021000 rw-p 00000000 00:00 0 
+7f8a0c021000-7f8a10000000 ---p 00000000 00:00 0 
+7f8a10000000-7f8a10021000 rw-p 00000000 00:00 0 
+7f8a10021000-7f8a14000000 ---p 00000000 00:00 0 
+7f8a14000000-7f8a14021000 rw-p 00000000 00:00 0 
+7f8a14021000-7f8a18000000 ---p 00000000 00:00 0 
+7f8a18000000-7f8a18021000 rw-p 00000000 00:00 0 
+7f8a18021000-7f8a1c000000 ---p 00000000 00:00 0 
+7f8a1c009000-7f8a1c309000 rw-p 00000000 00:00 0 
+7f8a1c33a000-7f8a1c33b000 ---p 00000000 00:00 0 
+7f8a1c33b000-7f8a1cb3b000 rw-p 00000000 00:00 0 
+7f8a1cb3b000-7f8a1cb3c000 ---p 00000000 00:00 0 
+7f8a1cb3c000-7f8a1d33c000 rw-p 00000000 00:00 0 
+7f8a1db3d000-7f8a1db3e000 ---p 00000000 00:00 0 
+7f8a1db3e000-7f8a1e55e000 rw-p 00000000 00:00 0 
+7f8a1e55e000-7f8a1edc9000 r--s 00000000 08:01 17925636                   /var/lib/sss/mc/passwd
+7f8a1edc9000-7f8a1edd1000 r-xp 00000000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f8a1edd1000-7f8a1efd0000 ---p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f8a1efd0000-7f8a1efd1000 r--p 00007000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f8a1efd1000-7f8a1efd2000 rw-p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f8a1efd2000-7f8a1efde000 r-xp 00000000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f8a1efde000-7f8a1f1dd000 ---p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f8a1f1dd000-7f8a1f1de000 r--p 0000b000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f8a1f1de000-7f8a1f1df000 rw-p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f8a1f1df000-7f8a1f465000 rw-p 00000000 00:00 0 
+7f8a1fc66000-7f8a1fd86000 rw-p 00000000 00:00 0 
+7f8a1fd86000-7f8a1fd87000 ---p 00000000 00:00 0 
+7f8a1fd87000-7f8a20787000 rw-p 00000000 00:00 0 
+7f8a20787000-7f8a212ed000 r-xp 00000000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f8a212ed000-7f8a214ec000 ---p 00b66000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f8a214ec000-7f8a214ef000 r--p 00b65000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f8a214ef000-7f8a21504000 rw-p 00b68000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f8a21504000-7f8a21505000 rw-p 00000000 00:00 0 
+7f8a21505000-7f8a256b2000 r-xp 00000000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f8a256b2000-7f8a258b1000 ---p 041ad000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f8a258b1000-7f8a258ba000 r--p 041ac000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f8a258ba000-7f8a258c8000 rw-p 041b5000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f8a258c8000-7f8a258ce000 rw-p 00000000 00:00 0 
+7f8a258ce000-7f8a25c8c000 r-xp 00000000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f8a25c8c000-7f8a25e8b000 ---p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f8a25e8b000-7f8a25e8c000 r--p 003bd000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f8a25e8c000-7f8a25e8e000 rw-p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f8a25e8e000-7f8a26c8d000 r-xp 00000000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f8a26c8d000-7f8a26e8c000 ---p 00dff000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f8a26e8c000-7f8a26e8f000 r--p 00dfe000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f8a26e8f000-7f8a26e92000 rw-p 00e01000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f8a26e92000-7f8a28734000 r-xp 00000000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f8a28734000-7f8a28933000 ---p 018a2000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f8a28933000-7f8a2893a000 r--p 018a1000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f8a2893a000-7f8a2894a000 rw-p 018a8000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f8a2894a000-7f8a2894b000 rw-p 00000000 00:00 0 
+7f8a2894b000-7f8a2908f000 r-xp 00000000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f8a2908f000-7f8a2928e000 ---p 00744000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f8a2928e000-7f8a29292000 r--p 00743000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f8a29292000-7f8a2929f000 rw-p 00747000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f8a2929f000-7f8a29815000 r-xp 00000000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f8a29815000-7f8a29a14000 ---p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f8a29a14000-7f8a29a15000 r--p 00575000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f8a29a15000-7f8a29a18000 rw-p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f8a29a18000-7f8a29a19000 rw-p 00000000 00:00 0 
+7f8a29a19000-7f8a29bdd000 r-xp 00000000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f8a29bdd000-7f8a29ddc000 ---p 001c4000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f8a29ddc000-7f8a29de0000 r--p 001c3000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f8a29de0000-7f8a29de2000 rw-p 001c7000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f8a29de2000-7f8a29de7000 rw-p 00000000 00:00 0 
+7f8a29de7000-7f8a29dfc000 r-xp 00000000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f8a29dfc000-7f8a29ffb000 ---p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f8a29ffb000-7f8a29ffc000 r--p 00014000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f8a29ffc000-7f8a29ffd000 rw-p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f8a29ffd000-7f8a2a0fe000 r-xp 00000000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f8a2a0fe000-7f8a2a2fd000 ---p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f8a2a2fd000-7f8a2a2fe000 r--p 00100000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f8a2a2fe000-7f8a2a2ff000 rw-p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f8a2a2ff000-7f8a2a3e8000 r-xp 00000000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f8a2a3e8000-7f8a2a5e8000 ---p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f8a2a5e8000-7f8a2a5f0000 r--p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f8a2a5f0000-7f8a2a5f2000 rw-p 000f1000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f8a2a5f2000-7f8a2a607000 rw-p 00000000 00:00 0 
+7f8a2a607000-7f8a2a609000 r-xp 00000000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f8a2a609000-7f8a2a809000 ---p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f8a2a809000-7f8a2a80a000 r--p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f8a2a80a000-7f8a2a80b000 rw-p 00003000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f8a2a80b000-7f8a2a812000 r-xp 00000000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f8a2a812000-7f8a2aa11000 ---p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f8a2aa11000-7f8a2aa12000 r--p 00006000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f8a2aa12000-7f8a2aa13000 rw-p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f8a2aa13000-7f8a2aa2a000 r-xp 00000000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f8a2aa2a000-7f8a2ac29000 ---p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f8a2ac29000-7f8a2ac2a000 r--p 00016000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f8a2ac2a000-7f8a2ac2b000 rw-p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f8a2ac2b000-7f8a2ac2f000 rw-p 00000000 00:00 0 
+7f8a2ac2f000-7f8a2ae24000 r-xp 00000000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f8a2ae24000-7f8a2b023000 ---p 001f5000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f8a2b023000-7f8a2b029000 r--p 001f4000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f8a2b029000-7f8a2b057000 rw-p 001fa000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f8a2b057000-7f8a2b06c000 r-xp 00000000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f8a2b06c000-7f8a2b26b000 ---p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f8a2b26b000-7f8a2b26c000 r--p 00014000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f8a2b26c000-7f8a2b26d000 rw-p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f8a2b26d000-7f8a2b2fa000 r-xp 00000000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f8a2b2fa000-7f8a2b4fa000 ---p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f8a2b4fa000-7f8a2b4fc000 rw-p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f8a2b4fc000-7f8a2b503000 r-xp 00000000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f8a2b503000-7f8a2b702000 ---p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f8a2b702000-7f8a2b703000 r--p 00006000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f8a2b703000-7f8a2b704000 rw-p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f8a2b704000-7f8a2b718000 r-xp 00000000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f8a2b718000-7f8a2b917000 ---p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f8a2b917000-7f8a2b918000 r--p 00013000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f8a2b918000-7f8a2b91a000 rw-p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f8a2b91a000-7f8a2b91b000 rw-p 00000000 00:00 0 
+7f8a2b91b000-7f8a2b95d000 r-xp 00000000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f8a2b95d000-7f8a2bb5c000 ---p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f8a2bb5c000-7f8a2bb5d000 r--p 00041000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f8a2bb5d000-7f8a2bb63000 rw-p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f8a2bb63000-7f8a2bb66000 rw-p 00000000 00:00 0 
+7f8a2bb66000-7f8a2bc06000 r-xp 00000000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f8a2bc06000-7f8a2be05000 ---p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f8a2be05000-7f8a2be06000 r--p 0009f000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f8a2be06000-7f8a2be14000 rw-p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f8a2be14000-7f8a2be1b000 rw-p 00000000 00:00 0 
+7f8a2be1b000-7f8a2be3e000 r-xp 00000000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f8a2be3e000-7f8a2c03e000 ---p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f8a2c03e000-7f8a2c03f000 r--p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f8a2c03f000-7f8a2c042000 rw-p 00024000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f8a2c042000-7f8a2c043000 rw-p 00000000 00:00 0 
+7f8a2c043000-7f8a2c05b000 r-xp 00000000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f8a2c05b000-7f8a2c25a000 ---p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f8a2c25a000-7f8a2c25b000 r--p 00017000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f8a2c25b000-7f8a2c25d000 rw-p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f8a2c25d000-7f8a2c25e000 rw-p 00000000 00:00 0 
+7f8a2c25e000-7f8a2c40e000 r-xp 00000000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f8a2c40e000-7f8a2c60d000 ---p 001b0000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f8a2c60d000-7f8a2c610000 r--p 001af000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f8a2c610000-7f8a2c61a000 rw-p 001b2000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f8a2c61a000-7f8a2c648000 rw-p 00000000 00:00 0 
+7f8a2c648000-7f8a2e6b1000 r-xp 00000000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f8a2e6b1000-7f8a2e8b1000 ---p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f8a2e8b1000-7f8a2e8b5000 r--p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f8a2e8b5000-7f8a2eb1b000 rw-p 0206d000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f8a2eb1b000-7f8a2eb24000 rw-p 00000000 00:00 0 
+7f8a2eb24000-7f8a32b9e000 r-xp 00000000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f8a32b9e000-7f8a32d9d000 ---p 0407a000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f8a32d9d000-7f8a32da4000 r--p 04079000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f8a32da4000-7f8a32dd2000 rw-p 04080000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f8a32dd2000-7f8a32df9000 rw-p 00000000 00:00 0 
+7f8a32df9000-7f8a336a2000 r-xp 00000000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f8a336a2000-7f8a338a2000 ---p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f8a338a2000-7f8a338a3000 r--p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f8a338a3000-7f8a338b6000 rw-p 008aa000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f8a338b6000-7f8a338bb000 rw-p 00000000 00:00 0 
+7f8a338bb000-7f8a35ed2000 r-xp 00000000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f8a35ed2000-7f8a360d1000 ---p 02617000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f8a360d1000-7f8a360d4000 r--p 02616000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f8a360d4000-7f8a360da000 rw-p 02619000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f8a360da000-7f8a360dc000 rw-p 00000000 00:00 0 
+7f8a360dc000-7f8a3703b000 r-xp 00000000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f8a3703b000-7f8a3723a000 ---p 00f5f000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f8a3723a000-7f8a3723c000 r--p 00f5e000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f8a3723c000-7f8a3723f000 rw-p 00f60000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f8a3723f000-7f8a3afc5000 r-xp 00000000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f8a3afc5000-7f8a3b1c4000 ---p 03d86000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f8a3b1c4000-7f8a3b1e8000 r--p 03d85000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f8a3b1e8000-7f8a3b21e000 rw-p 03da9000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f8a3b21e000-7f8a3c4cc000 rw-p 00000000 00:00 0 
+7f8a3c4cc000-7f8a3c4ee000 r-xp 00000000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f8a3c4fb000-7f8a3c58c000 rw-p 00000000 00:00 0 
+7f8a3c5dc000-7f8a3c6b5000 rw-p 00000000 00:00 0 
+7f8a3c6b5000-7f8a3c6ed000 rw-p 00000000 00:00 0 
+7f8a3c6ed000-7f8a3c6ee000 r--p 00021000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f8a3c6ee000-7f8a3c6ef000 rw-p 00022000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f8a3c6ef000-7f8a3c6f0000 rw-p 00000000 00:00 0 
+7ffe90f39000-7ffe91011000 rw-p 00000000 00:00 0                          [stack]
+7ffe9101c000-7ffe9101e000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+*** Error in `/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel': double free or corruption (fasttop): 0x0000000002cd3c30 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x812b9)[0x7f33663b52b9]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fda986)[0x7f3375b34986]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fd845a)[0x7f3375b3245a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x239553)[0x7f3373d93553]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x2041f5)[0x7f3373d5e1f5]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20b2ba)[0x7f3373d652ba]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20cdfe)[0x7f3373d66dfe]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x926514)[0x7f3374480514]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x929907)[0x7f3374483907]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x91398c)[0x7f337446d98c]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0xf478c2)[0x7f3374aa18c2]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ea00e)[0x7f3373d4400e]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ec434)[0x7f3373d46434]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x18f2cb)[0x7f3373ce92cb]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(kernel_dll_main+0x1ab)[0x7f3373ce951a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f2e]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x7f3366356555]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f61]
+======= Memory map: ========
+00400000-00403000 r-xp 00000000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00602000-00603000 r--p 00002000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00603000-00604000 rw-p 00003000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+02507000-0570c000 rw-p 00000000 00:00 0                                  [heap]
+7f332c000000-7f332c021000 rw-p 00000000 00:00 0 
+7f332c021000-7f3330000000 ---p 00000000 00:00 0 
+7f3333970000-7f3334000000 rw-p 00000000 00:00 0 
+7f3334000000-7f3334021000 rw-p 00000000 00:00 0 
+7f3334021000-7f3338000000 ---p 00000000 00:00 0 
+7f3338000000-7f3338021000 rw-p 00000000 00:00 0 
+7f3338021000-7f333c000000 ---p 00000000 00:00 0 
+7f333c000000-7f333c021000 rw-p 00000000 00:00 0 
+7f333c021000-7f3340000000 ---p 00000000 00:00 0 
+7f3340000000-7f3340021000 rw-p 00000000 00:00 0 
+7f3340021000-7f3344000000 ---p 00000000 00:00 0 
+7f3344000000-7f3344021000 rw-p 00000000 00:00 0 
+7f3344021000-7f3348000000 ---p 00000000 00:00 0 
+7f334800b000-7f334880b000 rw-p 00000000 00:00 0 
+7f334900c000-7f334900d000 ---p 00000000 00:00 0 
+7f334900d000-7f334981d000 rw-p 00000000 00:00 0 
+7f334982c000-7f3349c5c000 rw-p 00000000 00:00 0 
+7f3349c8d000-7f334a7fd000 rw-p 00000000 00:00 0 
+7f334c000000-7f334c021000 rw-p 00000000 00:00 0 
+7f334c021000-7f3350000000 ---p 00000000 00:00 0 
+7f3350000000-7f3350021000 rw-p 00000000 00:00 0 
+7f3350021000-7f3354000000 ---p 00000000 00:00 0 
+7f3354000000-7f3354021000 rw-p 00000000 00:00 0 
+7f3354021000-7f3358000000 ---p 00000000 00:00 0 
+7f3358003000-7f3358423000 rw-p 00000000 00:00 0 
+7f3358454000-7f3358455000 ---p 00000000 00:00 0 
+7f3358455000-7f3358c55000 rw-p 00000000 00:00 0 
+7f3358c55000-7f3358c56000 ---p 00000000 00:00 0 
+7f3358c56000-7f3359456000 rw-p 00000000 00:00 0 
+7f3359456000-7f3359457000 ---p 00000000 00:00 0 
+7f3359457000-7f3359c57000 rw-p 00000000 00:00 0 
+7f335a458000-7f335a459000 ---p 00000000 00:00 0 
+7f335a459000-7f335ae79000 rw-p 00000000 00:00 0 
+7f335ae79000-7f335b6e4000 r--s 00000000 08:01 17925636                   /var/lib/sss/mc/passwd
+7f335b6e4000-7f335b6ec000 r-xp 00000000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f335b6ec000-7f335b8eb000 ---p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f335b8eb000-7f335b8ec000 r--p 00007000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f335b8ec000-7f335b8ed000 rw-p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f335b8ed000-7f335b8f9000 r-xp 00000000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f335b8f9000-7f335baf8000 ---p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f335baf8000-7f335baf9000 r--p 0000b000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f335baf9000-7f335bafa000 rw-p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f335bafa000-7f335bd80000 rw-p 00000000 00:00 0 
+7f335c581000-7f335c6a1000 rw-p 00000000 00:00 0 
+7f335c6a1000-7f335c6a2000 ---p 00000000 00:00 0 
+7f335c6a2000-7f335d0a2000 rw-p 00000000 00:00 0 
+7f335d0a2000-7f335dc08000 r-xp 00000000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f335dc08000-7f335de07000 ---p 00b66000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f335de07000-7f335de0a000 r--p 00b65000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f335de0a000-7f335de1f000 rw-p 00b68000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f335de1f000-7f335de20000 rw-p 00000000 00:00 0 
+7f335de20000-7f3361fcd000 r-xp 00000000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f3361fcd000-7f33621cc000 ---p 041ad000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f33621cc000-7f33621d5000 r--p 041ac000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f33621d5000-7f33621e3000 rw-p 041b5000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f33621e3000-7f33621e9000 rw-p 00000000 00:00 0 
+7f33621e9000-7f33625a7000 r-xp 00000000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f33625a7000-7f33627a6000 ---p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f33627a6000-7f33627a7000 r--p 003bd000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f33627a7000-7f33627a9000 rw-p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f33627a9000-7f33635a8000 r-xp 00000000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f33635a8000-7f33637a7000 ---p 00dff000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f33637a7000-7f33637aa000 r--p 00dfe000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f33637aa000-7f33637ad000 rw-p 00e01000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f33637ad000-7f336504f000 r-xp 00000000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f336504f000-7f336524e000 ---p 018a2000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f336524e000-7f3365255000 r--p 018a1000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f3365255000-7f3365265000 rw-p 018a8000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f3365265000-7f3365266000 rw-p 00000000 00:00 0 
+7f3365266000-7f33659aa000 r-xp 00000000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f33659aa000-7f3365ba9000 ---p 00744000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f3365ba9000-7f3365bad000 r--p 00743000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f3365bad000-7f3365bba000 rw-p 00747000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f3365bba000-7f3366130000 r-xp 00000000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f3366130000-7f336632f000 ---p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f336632f000-7f3366330000 r--p 00575000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f3366330000-7f3366333000 rw-p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f3366333000-7f3366334000 rw-p 00000000 00:00 0 
+7f3366334000-7f33664f8000 r-xp 00000000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f33664f8000-7f33666f7000 ---p 001c4000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f33666f7000-7f33666fb000 r--p 001c3000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f33666fb000-7f33666fd000 rw-p 001c7000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f33666fd000-7f3366702000 rw-p 00000000 00:00 0 
+7f3366702000-7f3366717000 r-xp 00000000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f3366717000-7f3366916000 ---p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f3366916000-7f3366917000 r--p 00014000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f3366917000-7f3366918000 rw-p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f3366918000-7f3366a19000 r-xp 00000000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f3366a19000-7f3366c18000 ---p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f3366c18000-7f3366c19000 r--p 00100000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f3366c19000-7f3366c1a000 rw-p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f3366c1a000-7f3366d03000 r-xp 00000000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f3366d03000-7f3366f03000 ---p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f3366f03000-7f3366f0b000 r--p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f3366f0b000-7f3366f0d000 rw-p 000f1000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f3366f0d000-7f3366f22000 rw-p 00000000 00:00 0 
+7f3366f22000-7f3366f24000 r-xp 00000000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f3366f24000-7f3367124000 ---p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f3367124000-7f3367125000 r--p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f3367125000-7f3367126000 rw-p 00003000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f3367126000-7f336712d000 r-xp 00000000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f336712d000-7f336732c000 ---p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f336732c000-7f336732d000 r--p 00006000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f336732d000-7f336732e000 rw-p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f336732e000-7f3367345000 r-xp 00000000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f3367345000-7f3367544000 ---p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f3367544000-7f3367545000 r--p 00016000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f3367545000-7f3367546000 rw-p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f3367546000-7f336754a000 rw-p 00000000 00:00 0 
+7f336754a000-7f336773f000 r-xp 00000000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f336773f000-7f336793e000 ---p 001f5000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f336793e000-7f3367944000 r--p 001f4000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f3367944000-7f3367972000 rw-p 001fa000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f3367972000-7f3367987000 r-xp 00000000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f3367987000-7f3367b86000 ---p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f3367b86000-7f3367b87000 r--p 00014000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f3367b87000-7f3367b88000 rw-p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f3367b88000-7f3367c15000 r-xp 00000000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f3367c15000-7f3367e15000 ---p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f3367e15000-7f3367e17000 rw-p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f3367e17000-7f3367e1e000 r-xp 00000000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f3367e1e000-7f336801d000 ---p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f336801d000-7f336801e000 r--p 00006000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f336801e000-7f336801f000 rw-p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f336801f000-7f3368033000 r-xp 00000000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f3368033000-7f3368232000 ---p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f3368232000-7f3368233000 r--p 00013000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f3368233000-7f3368235000 rw-p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f3368235000-7f3368236000 rw-p 00000000 00:00 0 
+7f3368236000-7f3368278000 r-xp 00000000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f3368278000-7f3368477000 ---p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f3368477000-7f3368478000 r--p 00041000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f3368478000-7f336847e000 rw-p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f336847e000-7f3368481000 rw-p 00000000 00:00 0 
+7f3368481000-7f3368521000 r-xp 00000000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f3368521000-7f3368720000 ---p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f3368720000-7f3368721000 r--p 0009f000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f3368721000-7f336872f000 rw-p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f336872f000-7f3368736000 rw-p 00000000 00:00 0 
+7f3368736000-7f3368759000 r-xp 00000000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f3368759000-7f3368959000 ---p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f3368959000-7f336895a000 r--p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f336895a000-7f336895d000 rw-p 00024000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f336895d000-7f336895e000 rw-p 00000000 00:00 0 
+7f336895e000-7f3368976000 r-xp 00000000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f3368976000-7f3368b75000 ---p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f3368b75000-7f3368b76000 r--p 00017000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f3368b76000-7f3368b78000 rw-p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f3368b78000-7f3368b79000 rw-p 00000000 00:00 0 
+7f3368b79000-7f3368d29000 r-xp 00000000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f3368d29000-7f3368f28000 ---p 001b0000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f3368f28000-7f3368f2b000 r--p 001af000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f3368f2b000-7f3368f35000 rw-p 001b2000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f3368f35000-7f3368f63000 rw-p 00000000 00:00 0 
+7f3368f63000-7f336afcc000 r-xp 00000000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f336afcc000-7f336b1cc000 ---p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f336b1cc000-7f336b1d0000 r--p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f336b1d0000-7f336b436000 rw-p 0206d000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f336b436000-7f336b43f000 rw-p 00000000 00:00 0 
+7f336b43f000-7f336f4b9000 r-xp 00000000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f336f4b9000-7f336f6b8000 ---p 0407a000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f336f6b8000-7f336f6bf000 r--p 04079000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f336f6bf000-7f336f6ed000 rw-p 04080000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f336f6ed000-7f336f714000 rw-p 00000000 00:00 0 
+7f336f714000-7f336ffbd000 r-xp 00000000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f336ffbd000-7f33701bd000 ---p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f33701bd000-7f33701be000 r--p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f33701be000-7f33701d1000 rw-p 008aa000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f33701d1000-7f33701d6000 rw-p 00000000 00:00 0 
+7f33701d6000-7f33727ed000 r-xp 00000000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f33727ed000-7f33729ec000 ---p 02617000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f33729ec000-7f33729ef000 r--p 02616000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f33729ef000-7f33729f5000 rw-p 02619000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f33729f5000-7f33729f7000 rw-p 00000000 00:00 0 
+7f33729f7000-7f3373956000 r-xp 00000000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f3373956000-7f3373b55000 ---p 00f5f000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f3373b55000-7f3373b57000 r--p 00f5e000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f3373b57000-7f3373b5a000 rw-p 00f60000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f3373b5a000-7f33778e0000 r-xp 00000000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f33778e0000-7f3377adf000 ---p 03d86000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f3377adf000-7f3377b03000 r--p 03d85000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f3377b03000-7f3377b39000 rw-p 03da9000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f3377b39000-7f3378de7000 rw-p 00000000 00:00 0 
+7f3378de7000-7f3378e09000 r-xp 00000000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f3378e16000-7f3378fd0000 rw-p 00000000 00:00 0 
+7f3378fd0000-7f3379008000 rw-p 00000000 00:00 0 
+7f3379008000-7f3379009000 r--p 00021000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f3379009000-7f337900a000 rw-p 00022000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f337900a000-7f337900b000 rw-p 00000000 00:00 0 
+7ffd2547c000-7ffd25554000 rw-p 00000000 00:00 0                          [stack]
+7ffd255e8000-7ffd255ea000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+*** Error in `/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel': double free or corruption (fasttop): 0x0000000002bcf730 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x812b9)[0x7fe410bae2b9]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fda986)[0x7fe42032d986]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fd845a)[0x7fe42032b45a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x239553)[0x7fe41e58c553]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x2041f5)[0x7fe41e5571f5]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20b2ba)[0x7fe41e55e2ba]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20cdfe)[0x7fe41e55fdfe]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x926514)[0x7fe41ec79514]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x929907)[0x7fe41ec7c907]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x91398c)[0x7fe41ec6698c]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0xf478c2)[0x7fe41f29a8c2]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ea00e)[0x7fe41e53d00e]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ec434)[0x7fe41e53f434]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x18f2cb)[0x7fe41e4e22cb]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(kernel_dll_main+0x1ab)[0x7fe41e4e251a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f2e]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x7fe410b4f555]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f61]
+======= Memory map: ========
+00400000-00403000 r-xp 00000000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00602000-00603000 r--p 00002000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00603000-00604000 rw-p 00003000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+02409000-05606000 rw-p 00000000 00:00 0                                  [heap]
+7fe3d4000000-7fe3d4021000 rw-p 00000000 00:00 0 
+7fe3d4021000-7fe3d8000000 ---p 00000000 00:00 0 
+7fe3dc000000-7fe3dc021000 rw-p 00000000 00:00 0 
+7fe3dc021000-7fe3e0000000 ---p 00000000 00:00 0 
+7fe3e0000000-7fe3e0021000 rw-p 00000000 00:00 0 
+7fe3e0021000-7fe3e4000000 ---p 00000000 00:00 0 
+7fe3e616e000-7fe3e6f9e000 rw-p 00000000 00:00 0 
+7fe3e779f000-7fe3e77a0000 ---p 00000000 00:00 0 
+7fe3e77a0000-7fe3e7fc0000 rw-p 00000000 00:00 0 
+7fe3e7fc0000-7fe3e8000000 rw-p 00000000 00:00 0 
+7fe3e8000000-7fe3e8021000 rw-p 00000000 00:00 0 
+7fe3e8021000-7fe3ec000000 ---p 00000000 00:00 0 
+7fe3ec000000-7fe3ec021000 rw-p 00000000 00:00 0 
+7fe3ec021000-7fe3f0000000 ---p 00000000 00:00 0 
+7fe3f0000000-7fe3f0021000 rw-p 00000000 00:00 0 
+7fe3f0021000-7fe3f4000000 ---p 00000000 00:00 0 
+7fe3f4009000-7fe3f4449000 rw-p 00000000 00:00 0 
+7fe3f447a000-7fe3f4ffa000 rw-p 00000000 00:00 0 
+7fe3f67fd000-7fe3f67fe000 ---p 00000000 00:00 0 
+7fe3f67fe000-7fe3f6ffe000 rw-p 00000000 00:00 0 
+7fe3f6ffe000-7fe3f6fff000 ---p 00000000 00:00 0 
+7fe3f6fff000-7fe3f77ff000 rw-p 00000000 00:00 0 
+7fe3f8000000-7fe3f8021000 rw-p 00000000 00:00 0 
+7fe3f8021000-7fe3fc000000 ---p 00000000 00:00 0 
+7fe3fc000000-7fe3fc021000 rw-p 00000000 00:00 0 
+7fe3fc021000-7fe400000000 ---p 00000000 00:00 0 
+7fe400000000-7fe400021000 rw-p 00000000 00:00 0 
+7fe400021000-7fe404000000 ---p 00000000 00:00 0 
+7fe40400f000-7fe40441f000 rw-p 00000000 00:00 0 
+7fe404450000-7fe404451000 ---p 00000000 00:00 0 
+7fe404451000-7fe404c51000 rw-p 00000000 00:00 0 
+7fe404c51000-7fe404c52000 ---p 00000000 00:00 0 
+7fe404c52000-7fe405672000 rw-p 00000000 00:00 0 
+7fe405672000-7fe405edd000 r--s 00000000 08:01 17925636                   /var/lib/sss/mc/passwd
+7fe405edd000-7fe405ee5000 r-xp 00000000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7fe405ee5000-7fe4060e4000 ---p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7fe4060e4000-7fe4060e5000 r--p 00007000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7fe4060e5000-7fe4060e6000 rw-p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7fe4060e6000-7fe4060f2000 r-xp 00000000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7fe4060f2000-7fe4062f1000 ---p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7fe4062f1000-7fe4062f2000 r--p 0000b000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7fe4062f2000-7fe4062f3000 rw-p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7fe4062f3000-7fe406579000 rw-p 00000000 00:00 0 
+7fe406d7a000-7fe406e9a000 rw-p 00000000 00:00 0 
+7fe406e9a000-7fe406e9b000 ---p 00000000 00:00 0 
+7fe406e9b000-7fe40789b000 rw-p 00000000 00:00 0 
+7fe40789b000-7fe408401000 r-xp 00000000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7fe408401000-7fe408600000 ---p 00b66000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7fe408600000-7fe408603000 r--p 00b65000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7fe408603000-7fe408618000 rw-p 00b68000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7fe408618000-7fe408619000 rw-p 00000000 00:00 0 
+7fe408619000-7fe40c7c6000 r-xp 00000000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7fe40c7c6000-7fe40c9c5000 ---p 041ad000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7fe40c9c5000-7fe40c9ce000 r--p 041ac000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7fe40c9ce000-7fe40c9dc000 rw-p 041b5000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7fe40c9dc000-7fe40c9e2000 rw-p 00000000 00:00 0 
+7fe40c9e2000-7fe40cda0000 r-xp 00000000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7fe40cda0000-7fe40cf9f000 ---p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7fe40cf9f000-7fe40cfa0000 r--p 003bd000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7fe40cfa0000-7fe40cfa2000 rw-p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7fe40cfa2000-7fe40dda1000 r-xp 00000000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7fe40dda1000-7fe40dfa0000 ---p 00dff000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7fe40dfa0000-7fe40dfa3000 r--p 00dfe000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7fe40dfa3000-7fe40dfa6000 rw-p 00e01000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7fe40dfa6000-7fe40f848000 r-xp 00000000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7fe40f848000-7fe40fa47000 ---p 018a2000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7fe40fa47000-7fe40fa4e000 r--p 018a1000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7fe40fa4e000-7fe40fa5e000 rw-p 018a8000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7fe40fa5e000-7fe40fa5f000 rw-p 00000000 00:00 0 
+7fe40fa5f000-7fe4101a3000 r-xp 00000000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7fe4101a3000-7fe4103a2000 ---p 00744000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7fe4103a2000-7fe4103a6000 r--p 00743000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7fe4103a6000-7fe4103b3000 rw-p 00747000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7fe4103b3000-7fe410929000 r-xp 00000000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7fe410929000-7fe410b28000 ---p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7fe410b28000-7fe410b29000 r--p 00575000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7fe410b29000-7fe410b2c000 rw-p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7fe410b2c000-7fe410b2d000 rw-p 00000000 00:00 0 
+7fe410b2d000-7fe410cf1000 r-xp 00000000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7fe410cf1000-7fe410ef0000 ---p 001c4000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7fe410ef0000-7fe410ef4000 r--p 001c3000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7fe410ef4000-7fe410ef6000 rw-p 001c7000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7fe410ef6000-7fe410efb000 rw-p 00000000 00:00 0 
+7fe410efb000-7fe410f10000 r-xp 00000000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fe410f10000-7fe41110f000 ---p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fe41110f000-7fe411110000 r--p 00014000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fe411110000-7fe411111000 rw-p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fe411111000-7fe411212000 r-xp 00000000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7fe411212000-7fe411411000 ---p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7fe411411000-7fe411412000 r--p 00100000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7fe411412000-7fe411413000 rw-p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7fe411413000-7fe4114fc000 r-xp 00000000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7fe4114fc000-7fe4116fc000 ---p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7fe4116fc000-7fe411704000 r--p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7fe411704000-7fe411706000 rw-p 000f1000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7fe411706000-7fe41171b000 rw-p 00000000 00:00 0 
+7fe41171b000-7fe41171d000 r-xp 00000000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7fe41171d000-7fe41191d000 ---p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7fe41191d000-7fe41191e000 r--p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7fe41191e000-7fe41191f000 rw-p 00003000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7fe41191f000-7fe411926000 r-xp 00000000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7fe411926000-7fe411b25000 ---p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7fe411b25000-7fe411b26000 r--p 00006000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7fe411b26000-7fe411b27000 rw-p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7fe411b27000-7fe411b3e000 r-xp 00000000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7fe411b3e000-7fe411d3d000 ---p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7fe411d3d000-7fe411d3e000 r--p 00016000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7fe411d3e000-7fe411d3f000 rw-p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7fe411d3f000-7fe411d43000 rw-p 00000000 00:00 0 
+7fe411d43000-7fe411f38000 r-xp 00000000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7fe411f38000-7fe412137000 ---p 001f5000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7fe412137000-7fe41213d000 r--p 001f4000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7fe41213d000-7fe41216b000 rw-p 001fa000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7fe41216b000-7fe412180000 r-xp 00000000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7fe412180000-7fe41237f000 ---p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7fe41237f000-7fe412380000 r--p 00014000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7fe412380000-7fe412381000 rw-p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7fe412381000-7fe41240e000 r-xp 00000000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7fe41240e000-7fe41260e000 ---p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7fe41260e000-7fe412610000 rw-p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7fe412610000-7fe412617000 r-xp 00000000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7fe412617000-7fe412816000 ---p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7fe412816000-7fe412817000 r--p 00006000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7fe412817000-7fe412818000 rw-p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7fe412818000-7fe41282c000 r-xp 00000000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7fe41282c000-7fe412a2b000 ---p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7fe412a2b000-7fe412a2c000 r--p 00013000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7fe412a2c000-7fe412a2e000 rw-p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7fe412a2e000-7fe412a2f000 rw-p 00000000 00:00 0 
+7fe412a2f000-7fe412a71000 r-xp 00000000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7fe412a71000-7fe412c70000 ---p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7fe412c70000-7fe412c71000 r--p 00041000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7fe412c71000-7fe412c77000 rw-p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7fe412c77000-7fe412c7a000 rw-p 00000000 00:00 0 
+7fe412c7a000-7fe412d1a000 r-xp 00000000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7fe412d1a000-7fe412f19000 ---p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7fe412f19000-7fe412f1a000 r--p 0009f000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7fe412f1a000-7fe412f28000 rw-p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7fe412f28000-7fe412f2f000 rw-p 00000000 00:00 0 
+7fe412f2f000-7fe412f52000 r-xp 00000000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7fe412f52000-7fe413152000 ---p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7fe413152000-7fe413153000 r--p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7fe413153000-7fe413156000 rw-p 00024000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7fe413156000-7fe413157000 rw-p 00000000 00:00 0 
+7fe413157000-7fe41316f000 r-xp 00000000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7fe41316f000-7fe41336e000 ---p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7fe41336e000-7fe41336f000 r--p 00017000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7fe41336f000-7fe413371000 rw-p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7fe413371000-7fe413372000 rw-p 00000000 00:00 0 
+7fe413372000-7fe413522000 r-xp 00000000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7fe413522000-7fe413721000 ---p 001b0000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7fe413721000-7fe413724000 r--p 001af000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7fe413724000-7fe41372e000 rw-p 001b2000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7fe41372e000-7fe41375c000 rw-p 00000000 00:00 0 
+7fe41375c000-7fe4157c5000 r-xp 00000000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7fe4157c5000-7fe4159c5000 ---p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7fe4159c5000-7fe4159c9000 r--p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7fe4159c9000-7fe415c2f000 rw-p 0206d000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7fe415c2f000-7fe415c38000 rw-p 00000000 00:00 0 
+7fe415c38000-7fe419cb2000 r-xp 00000000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7fe419cb2000-7fe419eb1000 ---p 0407a000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7fe419eb1000-7fe419eb8000 r--p 04079000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7fe419eb8000-7fe419ee6000 rw-p 04080000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7fe419ee6000-7fe419f0d000 rw-p 00000000 00:00 0 
+7fe419f0d000-7fe41a7b6000 r-xp 00000000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7fe41a7b6000-7fe41a9b6000 ---p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7fe41a9b6000-7fe41a9b7000 r--p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7fe41a9b7000-7fe41a9ca000 rw-p 008aa000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7fe41a9ca000-7fe41a9cf000 rw-p 00000000 00:00 0 
+7fe41a9cf000-7fe41cfe6000 r-xp 00000000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7fe41cfe6000-7fe41d1e5000 ---p 02617000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7fe41d1e5000-7fe41d1e8000 r--p 02616000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7fe41d1e8000-7fe41d1ee000 rw-p 02619000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7fe41d1ee000-7fe41d1f0000 rw-p 00000000 00:00 0 
+7fe41d1f0000-7fe41e14f000 r-xp 00000000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7fe41e14f000-7fe41e34e000 ---p 00f5f000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7fe41e34e000-7fe41e350000 r--p 00f5e000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7fe41e350000-7fe41e353000 rw-p 00f60000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7fe41e353000-7fe4220d9000 r-xp 00000000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7fe4220d9000-7fe4222d8000 ---p 03d86000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7fe4222d8000-7fe4222fc000 r--p 03d85000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7fe4222fc000-7fe422332000 rw-p 03da9000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7fe422332000-7fe4235e0000 rw-p 00000000 00:00 0 
+7fe4235e0000-7fe423602000 r-xp 00000000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7fe42360f000-7fe4237c9000 rw-p 00000000 00:00 0 
+7fe4237c9000-7fe423801000 rw-p 00000000 00:00 0 
+7fe423801000-7fe423802000 r--p 00021000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7fe423802000-7fe423803000 rw-p 00022000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7fe423803000-7fe423804000 rw-p 00000000 00:00 0 
+7ffcc343e000-7ffcc3516000 rw-p 00000000 00:00 0                          [stack]
+7ffcc35f9000-7ffcc35fb000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+*** Error in `/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel': double free or corruption (fasttop): 0x0000000002baa8a0 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x812b9)[0x7f115ab4d2b9]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fda986)[0x7f116a2cc986]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1fd845a)[0x7f116a2ca45a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x239553)[0x7f116852b553]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x2041f5)[0x7f11684f61f5]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20b2ba)[0x7f11684fd2ba]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x20cdfe)[0x7f11684fedfe]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x926514)[0x7f1168c18514]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x929907)[0x7f1168c1b907]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x91398c)[0x7f1168c0598c]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0xf478c2)[0x7f11692398c2]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ea00e)[0x7f11684dc00e]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x1ec434)[0x7f11684de434]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(+0x18f2cb)[0x7f11684812cb]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/../../../Libraries/Linux-x86-64/libWolframEngine.so(kernel_dll_main+0x1ab)[0x7f116848151a]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f2e]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x7f115aaee555]
+/usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel[0x400f61]
+======= Memory map: ========
+00400000-00403000 r-xp 00000000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00602000-00603000 r--p 00002000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00603000-00604000 rw-p 00003000 00:2b 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+023e3000-055e0000 rw-p 00000000 00:00 0                                  [heap]
+7f1124000000-7f1124021000 rw-p 00000000 00:00 0 
+7f1124021000-7f1128000000 ---p 00000000 00:00 0 
+7f1128000000-7f1128021000 rw-p 00000000 00:00 0 
+7f1128021000-7f112c000000 ---p 00000000 00:00 0 
+7f112c000000-7f112c021000 rw-p 00000000 00:00 0 
+7f112c021000-7f1130000000 ---p 00000000 00:00 0 
+7f1130000000-7f1130021000 rw-p 00000000 00:00 0 
+7f1130021000-7f1134000000 ---p 00000000 00:00 0 
+7f113410c000-7f11352fc000 rw-p 00000000 00:00 0 
+7f1135afd000-7f1135afe000 ---p 00000000 00:00 0 
+7f1135afe000-7f113630e000 rw-p 00000000 00:00 0 
+7f113631d000-7f11363ed000 rw-p 00000000 00:00 0 
+7f113641e000-7f1136ffe000 rw-p 00000000 00:00 0 
+7f1138000000-7f1138021000 rw-p 00000000 00:00 0 
+7f1138021000-7f113c000000 ---p 00000000 00:00 0 
+7f113c000000-7f113c021000 rw-p 00000000 00:00 0 
+7f113c021000-7f1140000000 ---p 00000000 00:00 0 
+7f1140000000-7f1140021000 rw-p 00000000 00:00 0 
+7f1140021000-7f1144000000 ---p 00000000 00:00 0 
+7f1144000000-7f1144021000 rw-p 00000000 00:00 0 
+7f1144021000-7f1148000000 ---p 00000000 00:00 0 
+7f1148000000-7f1148021000 rw-p 00000000 00:00 0 
+7f1148021000-7f114c000000 ---p 00000000 00:00 0 
+7f114c00a000-7f114c3ba000 rw-p 00000000 00:00 0 
+7f114cbec000-7f114cbed000 ---p 00000000 00:00 0 
+7f114cbed000-7f114d3ed000 rw-p 00000000 00:00 0 
+7f114d3ed000-7f114d3ee000 ---p 00000000 00:00 0 
+7f114d3ee000-7f114dbee000 rw-p 00000000 00:00 0 
+7f114dbee000-7f114dbef000 ---p 00000000 00:00 0 
+7f114dbef000-7f114e3ef000 rw-p 00000000 00:00 0 
+7f114ebf0000-7f114ebf1000 ---p 00000000 00:00 0 
+7f114ebf1000-7f114f611000 rw-p 00000000 00:00 0 
+7f114f611000-7f114fe7c000 r--s 00000000 08:01 17925636                   /var/lib/sss/mc/passwd
+7f114fe7c000-7f114fe84000 r-xp 00000000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f114fe84000-7f1150083000 ---p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f1150083000-7f1150084000 r--p 00007000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f1150084000-7f1150085000 rw-p 00008000 08:01 76984799                   /usr/lib64/libnss_sss.so.2
+7f1150085000-7f1150091000 r-xp 00000000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f1150091000-7f1150290000 ---p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f1150290000-7f1150291000 r--p 0000b000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f1150291000-7f1150292000 rw-p 0000c000 08:01 77167040                   /usr/lib64/libnss_files-2.17.so
+7f1150292000-7f1150518000 rw-p 00000000 00:00 0 
+7f1150d19000-7f1150e39000 rw-p 00000000 00:00 0 
+7f1150e39000-7f1150e3a000 ---p 00000000 00:00 0 
+7f1150e3a000-7f115183a000 rw-p 00000000 00:00 0 
+7f115183a000-7f11523a0000 r-xp 00000000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f11523a0000-7f115259f000 ---p 00b66000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f115259f000-7f11525a2000 r--p 00b65000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f11525a2000-7f11525b7000 rw-p 00b68000 00:2b 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+7f11525b7000-7f11525b8000 rw-p 00000000 00:00 0 
+7f11525b8000-7f1156765000 r-xp 00000000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f1156765000-7f1156964000 ---p 041ad000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f1156964000-7f115696d000 r--p 041ac000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f115696d000-7f115697b000 rw-p 041b5000 00:2b 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+7f115697b000-7f1156981000 rw-p 00000000 00:00 0 
+7f1156981000-7f1156d3f000 r-xp 00000000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f1156d3f000-7f1156f3e000 ---p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f1156f3e000-7f1156f3f000 r--p 003bd000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f1156f3f000-7f1156f41000 rw-p 003be000 00:2b 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+7f1156f41000-7f1157d40000 r-xp 00000000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f1157d40000-7f1157f3f000 ---p 00dff000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f1157f3f000-7f1157f42000 r--p 00dfe000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f1157f42000-7f1157f45000 rw-p 00e01000 00:2b 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+7f1157f45000-7f11597e7000 r-xp 00000000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f11597e7000-7f11599e6000 ---p 018a2000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f11599e6000-7f11599ed000 r--p 018a1000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f11599ed000-7f11599fd000 rw-p 018a8000 00:2b 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+7f11599fd000-7f11599fe000 rw-p 00000000 00:00 0 
+7f11599fe000-7f115a142000 r-xp 00000000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f115a142000-7f115a341000 ---p 00744000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f115a341000-7f115a345000 r--p 00743000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f115a345000-7f115a352000 rw-p 00747000 00:2b 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+7f115a352000-7f115a8c8000 r-xp 00000000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f115a8c8000-7f115aac7000 ---p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f115aac7000-7f115aac8000 r--p 00575000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f115aac8000-7f115aacb000 rw-p 00576000 00:2b 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+7f115aacb000-7f115aacc000 rw-p 00000000 00:00 0 
+7f115aacc000-7f115ac90000 r-xp 00000000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f115ac90000-7f115ae8f000 ---p 001c4000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f115ae8f000-7f115ae93000 r--p 001c3000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f115ae93000-7f115ae95000 rw-p 001c7000 08:01 77060200                   /usr/lib64/libc-2.17.so
+7f115ae95000-7f115ae9a000 rw-p 00000000 00:00 0 
+7f115ae9a000-7f115aeaf000 r-xp 00000000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f115aeaf000-7f115b0ae000 ---p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f115b0ae000-7f115b0af000 r--p 00014000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f115b0af000-7f115b0b0000 rw-p 00015000 08:01 77060767                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7f115b0b0000-7f115b1b1000 r-xp 00000000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f115b1b1000-7f115b3b0000 ---p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f115b3b0000-7f115b3b1000 r--p 00100000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f115b3b1000-7f115b3b2000 rw-p 00101000 08:01 77164121                   /usr/lib64/libm-2.17.so
+7f115b3b2000-7f115b49b000 r-xp 00000000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f115b49b000-7f115b69b000 ---p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f115b69b000-7f115b6a3000 r--p 000e9000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f115b6a3000-7f115b6a5000 rw-p 000f1000 08:01 77187391                   /usr/lib64/libstdc++.so.6.0.19
+7f115b6a5000-7f115b6ba000 rw-p 00000000 00:00 0 
+7f115b6ba000-7f115b6bc000 r-xp 00000000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f115b6bc000-7f115b8bc000 ---p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f115b8bc000-7f115b8bd000 r--p 00002000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f115b8bd000-7f115b8be000 rw-p 00003000 08:01 77060228                   /usr/lib64/libdl-2.17.so
+7f115b8be000-7f115b8c5000 r-xp 00000000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f115b8c5000-7f115bac4000 ---p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f115bac4000-7f115bac5000 r--p 00006000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f115bac5000-7f115bac6000 rw-p 00007000 08:01 77187355                   /usr/lib64/librt-2.17.so
+7f115bac6000-7f115badd000 r-xp 00000000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f115badd000-7f115bcdc000 ---p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f115bcdc000-7f115bcdd000 r--p 00016000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f115bcdd000-7f115bcde000 rw-p 00017000 08:01 77050248                   /usr/lib64/libpthread-2.17.so
+7f115bcde000-7f115bce2000 rw-p 00000000 00:00 0 
+7f115bce2000-7f115bed7000 r-xp 00000000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f115bed7000-7f115c0d6000 ---p 001f5000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f115c0d6000-7f115c0dc000 r--p 001f4000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f115c0dc000-7f115c10a000 rw-p 001fa000 00:2b 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+7f115c10a000-7f115c11f000 r-xp 00000000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f115c11f000-7f115c31e000 ---p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f115c31e000-7f115c31f000 r--p 00014000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f115c31f000-7f115c320000 rw-p 00015000 08:01 78389458                   /usr/lib64/libz.so.1.2.7
+7f115c320000-7f115c3ad000 r-xp 00000000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f115c3ad000-7f115c5ad000 ---p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f115c5ad000-7f115c5af000 rw-p 0008d000 00:2b 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+7f115c5af000-7f115c5b6000 r-xp 00000000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f115c5b6000-7f115c7b5000 ---p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f115c7b5000-7f115c7b6000 r--p 00006000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f115c7b6000-7f115c7b7000 rw-p 00007000 00:2b 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+7f115c7b7000-7f115c7cb000 r-xp 00000000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f115c7cb000-7f115c9ca000 ---p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f115c9ca000-7f115c9cb000 r--p 00013000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f115c9cb000-7f115c9cd000 rw-p 00014000 00:2b 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+7f115c9cd000-7f115c9ce000 rw-p 00000000 00:00 0 
+7f115c9ce000-7f115ca10000 r-xp 00000000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f115ca10000-7f115cc0f000 ---p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f115cc0f000-7f115cc10000 r--p 00041000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f115cc10000-7f115cc16000 rw-p 00042000 00:2b 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+7f115cc16000-7f115cc19000 rw-p 00000000 00:00 0 
+7f115cc19000-7f115ccb9000 r-xp 00000000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f115ccb9000-7f115ceb8000 ---p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f115ceb8000-7f115ceb9000 r--p 0009f000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f115ceb9000-7f115cec7000 rw-p 000a0000 00:2b 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+7f115cec7000-7f115cece000 rw-p 00000000 00:00 0 
+7f115cece000-7f115cef1000 r-xp 00000000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f115cef1000-7f115d0f1000 ---p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f115d0f1000-7f115d0f2000 r--p 00023000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f115d0f2000-7f115d0f5000 rw-p 00024000 00:2b 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+7f115d0f5000-7f115d0f6000 rw-p 00000000 00:00 0 
+7f115d0f6000-7f115d10e000 r-xp 00000000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f115d10e000-7f115d30d000 ---p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f115d30d000-7f115d30e000 r--p 00017000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f115d30e000-7f115d310000 rw-p 00018000 00:2b 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+7f115d310000-7f115d311000 rw-p 00000000 00:00 0 
+7f115d311000-7f115d4c1000 r-xp 00000000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f115d4c1000-7f115d6c0000 ---p 001b0000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f115d6c0000-7f115d6c3000 r--p 001af000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f115d6c3000-7f115d6cd000 rw-p 001b2000 00:2b 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+7f115d6cd000-7f115d6fb000 rw-p 00000000 00:00 0 
+7f115d6fb000-7f115f764000 r-xp 00000000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f115f764000-7f115f964000 ---p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f115f964000-7f115f968000 r--p 02069000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f115f968000-7f115fbce000 rw-p 0206d000 00:2b 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+7f115fbce000-7f115fbd7000 rw-p 00000000 00:00 0 
+7f115fbd7000-7f1163c51000 r-xp 00000000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f1163c51000-7f1163e50000 ---p 0407a000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f1163e50000-7f1163e57000 r--p 04079000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f1163e57000-7f1163e85000 rw-p 04080000 00:2b 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+7f1163e85000-7f1163eac000 rw-p 00000000 00:00 0 
+7f1163eac000-7f1164755000 r-xp 00000000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f1164755000-7f1164955000 ---p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f1164955000-7f1164956000 r--p 008a9000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f1164956000-7f1164969000 rw-p 008aa000 00:2b 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+7f1164969000-7f116496e000 rw-p 00000000 00:00 0 
+7f116496e000-7f1166f85000 r-xp 00000000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f1166f85000-7f1167184000 ---p 02617000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f1167184000-7f1167187000 r--p 02616000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f1167187000-7f116718d000 rw-p 02619000 00:2b 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+7f116718d000-7f116718f000 rw-p 00000000 00:00 0 
+7f116718f000-7f11680ee000 r-xp 00000000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f11680ee000-7f11682ed000 ---p 00f5f000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f11682ed000-7f11682ef000 r--p 00f5e000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f11682ef000-7f11682f2000 rw-p 00f60000 00:2b 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+7f11682f2000-7f116c078000 r-xp 00000000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f116c078000-7f116c277000 ---p 03d86000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f116c277000-7f116c29b000 r--p 03d85000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f116c29b000-7f116c2d1000 rw-p 03da9000 00:2b 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+7f116c2d1000-7f116d57f000 rw-p 00000000 00:00 0 
+7f116d57f000-7f116d5a1000 r-xp 00000000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f116d5ae000-7f116d63f000 rw-p 00000000 00:00 0 
+7f116d68f000-7f116d768000 rw-p 00000000 00:00 0 
+7f116d768000-7f116d7a0000 rw-p 00000000 00:00 0 
+7f116d7a0000-7f116d7a1000 r--p 00021000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f116d7a1000-7f116d7a2000 rw-p 00022000 08:01 77059926                   /usr/lib64/ld-2.17.so
+7f116d7a2000-7f116d7a3000 rw-p 00000000 00:00 0 
+7ffea8aa1000-7ffea8b7a000 rw-p 00000000 00:00 0                          [stack]
+7ffea8b94000-7ffea8b96000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
