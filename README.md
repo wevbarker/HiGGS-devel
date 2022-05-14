@@ -1,4 +1,4 @@
-# Hamiltonian Gauge Gravity Surveyor
+# Hamiltonian Gauge Gravity Surveyor $\beta$
 
 This is the developer version. Release coming soon.
 
