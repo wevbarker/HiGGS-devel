@@ -1,0 +1,676 @@
+rm: cannot remove ‘./svy/node-7/peta4.chr.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-7/peta4.nom.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-7/peta4.chr.mx’: No such file or directory
+rm: cannot remove ‘./svy/node-7/peta4.nom.mx’: No such file or directory
+*** buffer overflow detected ***: /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel terminated
+======= Backtrace: =========
+/lib64/libc.so.6(__fortify_fail+0x37)[0x2acea0992627]
+/lib64/libc.so.6(+0x1167a2)[0x2acea09907a2]
+/lib64/libc.so.6(+0x118587)[0x2acea0992587]
+/lib64/libpcsclite.so.1(+0x6daf)[0x2acfe08d1daf]
+/lib64/libpcsclite.so.1(+0x6eb6)[0x2acfe08d1eb6]
+/lib64/libpcsclite.so.1(SCardEstablishContext+0x223)[0x2acfe08cfbc3]
+/lib64/libckyapplet.so.1(+0xa244)[0x2acfe06c3244]
+/lib64/libckyapplet.so.1(CKYCardContext_Create+0x51)[0x2acfe06c37f1]
+/lib64/libcoolkeypk11.so(_ZN8SlotListC2EP3Log+0x50)[0x2acfe04a9d90]
+/lib64/libcoolkeypk11.so(C_Initialize+0x142)[0x2acfe04985c2]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(+0x4044f)[0x2acfd18e444f]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(+0x40a5c)[0x2acfd18e4a5c]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(SECMOD_LoadModule+0x127)[0x2acfd18f0b87]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(SECMOD_LoadModule+0x220)[0x2acfd18f0c80]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(+0x1ba92)[0x2acfd18bfa92]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so(NSS_InitContext+0xa1)[0x2acfd18c0251]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x5a0a7)[0x2acfd0fb90a7]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x5a7c8)[0x2acfd0fb97c8]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x5bdc4)[0x2acfd0fbadc4]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x58147)[0x2acfd0fb7147]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x11b02)[0x2acfd0f70b02]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x1337b)[0x2acfd0f7237b]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(+0x30180)[0x2acfd0f8f180]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4(curl_multi_perform+0x7b)[0x2acfd0f9041b]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so(+0x544b)[0x2acfd0d4d44b]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so(+0x5505)[0x2acfd0d4d505]
+/usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so(+0xcd6f)[0x2acfd0d54d6f]
+/lib64/libpthread.so.0(+0x7ea5)[0x2ace9fa39ea5]
+/lib64/libc.so.6(clone+0x6d)[0x2acea097898d]
+======= Memory map: ========
+00400000-00403000 r-xp 00000000 00:2a 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00602000-00603000 r--p 00002000 00:2a 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+00603000-00604000 rw-p 00003000 00:2a 83624372                           /usr/local/software/mathematica/12.1/SystemFiles/Kernel/Binaries/Linux-x86-64/WolframKernel
+01a04000-04a3d000 rw-p 00000000 00:00 0                                  [heap]
+2ace8df71000-2ace8df93000 r-xp 00000000 08:01 77036192                   /usr/lib64/ld-2.17.so
+2ace8df93000-2ace8dfda000 rw-p 00000000 00:00 0 
+2ace8dfda000-2ace8e192000 rw-p 00000000 00:00 0 
+2ace8e192000-2ace8e193000 r--p 00021000 08:01 77036192                   /usr/lib64/ld-2.17.so
+2ace8e193000-2ace8e194000 rw-p 00022000 08:01 77036192                   /usr/lib64/ld-2.17.so
+2ace8e194000-2ace8e195000 rw-p 00000000 00:00 0 
+2ace8e195000-2ace91f1b000 r-xp 00000000 00:2a 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+2ace91f1b000-2ace9211a000 ---p 03d86000 00:2a 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+2ace9211a000-2ace9213e000 r--p 03d85000 00:2a 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+2ace9213e000-2ace92174000 rw-p 03da9000 00:2a 83626005                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframEngine.so
+2ace92174000-2ace93422000 rw-p 00000000 00:00 0 
+2ace93422000-2ace94381000 r-xp 00000000 00:2a 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+2ace94381000-2ace94580000 ---p 00f5f000 00:2a 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+2ace94580000-2ace94582000 r--p 00f5e000 00:2a 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+2ace94582000-2ace94585000 rw-p 00f60000 00:2a 83626008                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libWolframRTL_Kernel.so
+2ace94585000-2ace96b9c000 r-xp 00000000 00:2a 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+2ace96b9c000-2ace96d9b000 ---p 02617000 00:2a 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+2ace96d9b000-2ace96d9e000 r--p 02616000 00:2a 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+2ace96d9e000-2ace96da4000 rw-p 02619000 00:2a 83626087                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_def.so
+2ace96da4000-2ace96da6000 rw-p 00000000 00:00 0 
+2ace96da6000-2ace9764f000 r-xp 00000000 00:2a 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+2ace9764f000-2ace9784f000 ---p 008a9000 00:2a 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+2ace9784f000-2ace97850000 r--p 008a9000 00:2a 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+2ace97850000-2ace97863000 rw-p 008aa000 00:2a 83626094                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_ilp64.so
+2ace97863000-2ace97868000 rw-p 00000000 00:00 0 
+2ace97868000-2ace9b8e2000 r-xp 00000000 00:2a 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+2ace9b8e2000-2ace9bae1000 ---p 0407a000 00:2a 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+2ace9bae1000-2ace9bae8000 r--p 04079000 00:2a 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+2ace9bae8000-2ace9bb16000 rw-p 04080000 00:2a 83626086                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_core.so
+2ace9bb16000-2ace9bb3d000 rw-p 00000000 00:00 0 
+2ace9bb3d000-2ace9dba6000 r-xp 00000000 00:2a 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+2ace9dba6000-2ace9dda6000 ---p 02069000 00:2a 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+2ace9dda6000-2ace9ddaa000 r--p 02069000 00:2a 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+2ace9ddaa000-2ace9e010000 rw-p 0206d000 00:2a 83626095                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_intel_thread.so
+2ace9e010000-2ace9e019000 rw-p 00000000 00:00 0 
+2ace9e019000-2ace9e1c9000 r-xp 00000000 00:2a 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+2ace9e1c9000-2ace9e3c8000 ---p 001b0000 00:2a 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+2ace9e3c8000-2ace9e3cb000 r--p 001af000 00:2a 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+2ace9e3cb000-2ace9e3d5000 rw-p 001b2000 00:2a 83626021                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libiomp5.so
+2ace9e3d5000-2ace9e403000 rw-p 00000000 00:00 0 
+2ace9e403000-2ace9e41b000 r-xp 00000000 00:2a 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+2ace9e41b000-2ace9e61a000 ---p 00018000 00:2a 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+2ace9e61a000-2ace9e61b000 r--p 00017000 00:2a 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+2ace9e61b000-2ace9e61d000 rw-p 00018000 00:2a 83626022                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcc.so
+2ace9e61d000-2ace9e61e000 rw-p 00000000 00:00 0 
+2ace9e61e000-2ace9e641000 r-xp 00000000 00:2a 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+2ace9e641000-2ace9e841000 ---p 00023000 00:2a 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+2ace9e841000-2ace9e842000 r--p 00023000 00:2a 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+2ace9e842000-2ace9e845000 rw-p 00024000 00:2a 83626036                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcv.so
+2ace9e845000-2ace9e846000 rw-p 00000000 00:00 0 
+2ace9e846000-2ace9e8e6000 r-xp 00000000 00:2a 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+2ace9e8e6000-2ace9eae5000 ---p 000a0000 00:2a 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+2ace9eae5000-2ace9eae6000 r--p 0009f000 00:2a 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+2ace9eae6000-2ace9eaf4000 rw-p 000a0000 00:2a 83626046                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippi.so
+2ace9eaf4000-2ace9eafb000 rw-p 00000000 00:00 0 
+2ace9eafb000-2ace9eb3d000 r-xp 00000000 00:2a 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+2ace9eb3d000-2ace9ed3c000 ---p 00042000 00:2a 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+2ace9ed3c000-2ace9ed3d000 r--p 00041000 00:2a 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+2ace9ed3d000-2ace9ed43000 rw-p 00042000 00:2a 83626055                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libipps.so
+2ace9ed43000-2ace9ed46000 rw-p 00000000 00:00 0 
+2ace9ed46000-2ace9ed5a000 r-xp 00000000 00:2a 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+2ace9ed5a000-2ace9ef59000 ---p 00014000 00:2a 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+2ace9ef59000-2ace9ef5a000 r--p 00013000 00:2a 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+2ace9ef5a000-2ace9ef5c000 rw-p 00014000 00:2a 83626070                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvm.so
+2ace9ef5c000-2ace9ef5d000 rw-p 00000000 00:00 0 
+2ace9ef5d000-2ace9ef64000 r-xp 00000000 00:2a 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+2ace9ef64000-2ace9f163000 ---p 00007000 00:2a 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+2ace9f163000-2ace9f164000 r--p 00006000 00:2a 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+2ace9f164000-2ace9f165000 rw-p 00007000 00:2a 83626035                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcore.so
+2ace9f165000-2ace9f1f2000 r-xp 00000000 00:2a 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+2ace9f1f2000-2ace9f3f2000 ---p 0008d000 00:2a 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+2ace9f3f2000-2ace9f3f4000 rw-p 0008d000 00:2a 83626020                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libgmp.so.10
+2ace9f3f4000-2ace9f409000 r-xp 00000000 08:01 78404933                   /usr/lib64/libz.so.1.2.7
+2ace9f409000-2ace9f608000 ---p 00015000 08:01 78404933                   /usr/lib64/libz.so.1.2.7
+2ace9f608000-2ace9f609000 r--p 00014000 08:01 78404933                   /usr/lib64/libz.so.1.2.7
+2ace9f609000-2ace9f60a000 rw-p 00015000 08:01 78404933                   /usr/lib64/libz.so.1.2.7
+2ace9f60a000-2ace9f7ff000 r-xp 00000000 00:2a 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+2ace9f7ff000-2ace9f9fe000 ---p 001f5000 00:2a 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+2ace9f9fe000-2ace9fa04000 r--p 001f4000 00:2a 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+2ace9fa04000-2ace9fa32000 rw-p 001fa000 00:2a 83625994                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libML64i4.so
+2ace9fa32000-2ace9fa49000 r-xp 00000000 08:01 77026980                   /usr/lib64/libpthread-2.17.so
+2ace9fa49000-2ace9fc48000 ---p 00017000 08:01 77026980                   /usr/lib64/libpthread-2.17.so
+2ace9fc48000-2ace9fc49000 r--p 00016000 08:01 77026980                   /usr/lib64/libpthread-2.17.so
+2ace9fc49000-2ace9fc4a000 rw-p 00017000 08:01 77026980                   /usr/lib64/libpthread-2.17.so
+2ace9fc4a000-2ace9fc4e000 rw-p 00000000 00:00 0 
+2ace9fc4e000-2ace9fc55000 r-xp 00000000 08:01 77026987                   /usr/lib64/librt-2.17.so
+2ace9fc55000-2ace9fe54000 ---p 00007000 08:01 77026987                   /usr/lib64/librt-2.17.so
+2ace9fe54000-2ace9fe55000 r--p 00006000 08:01 77026987                   /usr/lib64/librt-2.17.so
+2ace9fe55000-2ace9fe56000 rw-p 00007000 08:01 77026987                   /usr/lib64/librt-2.17.so
+2ace9fe56000-2ace9fe58000 r-xp 00000000 08:01 77301410                   /usr/lib64/libdl-2.17.so
+2ace9fe58000-2acea0058000 ---p 00002000 08:01 77301410                   /usr/lib64/libdl-2.17.so
+2acea0058000-2acea0059000 r--p 00002000 08:01 77301410                   /usr/lib64/libdl-2.17.so
+2acea0059000-2acea005a000 rw-p 00003000 08:01 77301410                   /usr/lib64/libdl-2.17.so
+2acea005a000-2acea0143000 r-xp 00000000 08:01 78001473                   /usr/lib64/libstdc++.so.6.0.19
+2acea0143000-2acea0343000 ---p 000e9000 08:01 78001473                   /usr/lib64/libstdc++.so.6.0.19
+2acea0343000-2acea034b000 r--p 000e9000 08:01 78001473                   /usr/lib64/libstdc++.so.6.0.19
+2acea034b000-2acea034d000 rw-p 000f1000 08:01 78001473                   /usr/lib64/libstdc++.so.6.0.19
+2acea034d000-2acea0362000 rw-p 00000000 00:00 0 
+2acea0362000-2acea0463000 r-xp 00000000 08:01 77026965                   /usr/lib64/libm-2.17.so
+2acea0463000-2acea0662000 ---p 00101000 08:01 77026965                   /usr/lib64/libm-2.17.so
+2acea0662000-2acea0663000 r--p 00100000 08:01 77026965                   /usr/lib64/libm-2.17.so
+2acea0663000-2acea0664000 rw-p 00101000 08:01 77026965                   /usr/lib64/libm-2.17.so
+2acea0664000-2acea0679000 r-xp 00000000 08:01 77301535                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2acea0679000-2acea0878000 ---p 00015000 08:01 77301535                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2acea0878000-2acea0879000 r--p 00014000 08:01 77301535                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2acea0879000-2acea087a000 rw-p 00015000 08:01 77301535                   /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2acea087a000-2acea0a3e000 r-xp 00000000 08:01 77301384                   /usr/lib64/libc-2.17.so
+2acea0a3e000-2acea0c3d000 ---p 001c4000 08:01 77301384                   /usr/lib64/libc-2.17.so
+2acea0c3d000-2acea0c41000 r--p 001c3000 08:01 77301384                   /usr/lib64/libc-2.17.so
+2acea0c41000-2acea0c43000 rw-p 001c7000 08:01 77301384                   /usr/lib64/libc-2.17.so
+2acea0c43000-2acea0c48000 rw-p 00000000 00:00 0 
+2acea0c48000-2acea11be000 r-xp 00000000 00:2a 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+2acea11be000-2acea13bd000 ---p 00576000 00:2a 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+2acea13bd000-2acea13be000 r--p 00575000 00:2a 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+2acea13be000-2acea13c1000 rw-p 00576000 00:2a 83626072                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippvmk0.so
+2acea13c1000-2acea13c2000 rw-p 00000000 00:00 0 
+2acea13c2000-2acea1b06000 r-xp 00000000 00:2a 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+2acea1b06000-2acea1d05000 ---p 00744000 00:2a 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+2acea1d05000-2acea1d09000 r--p 00743000 00:2a 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+2acea1d09000-2acea1d16000 rw-p 00747000 00:2a 83626059                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippsk0.so
+2acea1d16000-2acea35b8000 r-xp 00000000 00:2a 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+2acea35b8000-2acea37b7000 ---p 018a2000 00:2a 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+2acea37b7000-2acea37be000 r--p 018a1000 00:2a 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+2acea37be000-2acea37ce000 rw-p 018a8000 00:2a 83626048                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippik0.so
+2acea37ce000-2acea37cf000 rw-p 00000000 00:00 0 
+2acea37cf000-2acea45ce000 r-xp 00000000 00:2a 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+2acea45ce000-2acea47cd000 ---p 00dff000 00:2a 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+2acea47cd000-2acea47d0000 r--p 00dfe000 00:2a 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+2acea47d0000-2acea47d3000 rw-p 00e01000 00:2a 83626038                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcvk0.so
+2acea47d3000-2acea4b91000 r-xp 00000000 00:2a 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+2acea4b91000-2acea4d90000 ---p 003be000 00:2a 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+2acea4d90000-2acea4d91000 r--p 003bd000 00:2a 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+2acea4d91000-2acea4d93000 rw-p 003be000 00:2a 83626024                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libippcck0.so
+2acea4d93000-2acea4f93000 rw-p 00000000 00:00 0 
+2acea4f93000-2acea9140000 r-xp 00000000 00:2a 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+2acea9140000-2acea933f000 ---p 041ad000 00:2a 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+2acea933f000-2acea9348000 r--p 041ac000 00:2a 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+2acea9348000-2acea9356000 rw-p 041b5000 00:2a 83626082                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_avx512.so
+2acea9356000-2acea935c000 rw-p 00000000 00:00 0 
+2acea935c000-2acea9ec2000 r-xp 00000000 00:2a 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+2acea9ec2000-2aceaa0c1000 ---p 00b66000 00:2a 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+2aceaa0c1000-2aceaa0c4000 r--p 00b65000 00:2a 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+2aceaa0c4000-2aceaa0d9000 rw-p 00b68000 00:2a 83626106                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libmkl_vml_avx512.so
+2aceaa0d9000-2aceaa0da000 rw-p 00000000 00:00 0 
+2aceaa0da000-2aceaa0db000 ---p 00000000 00:00 0 
+2aceaa0db000-2aceaa3eb000 rw-p 00000000 00:00 0 
+2aceaa3eb000-2aceaa3ec000 ---p 00000000 00:00 0 
+2aceaa3ec000-2aceaa86c000 rw-p 00000000 00:00 0 
+2aceaa86c000-2aceaa878000 r-xp 00000000 08:01 77026974                   /usr/lib64/libnss_files-2.17.so
+2aceaa878000-2aceaaa77000 ---p 0000c000 08:01 77026974                   /usr/lib64/libnss_files-2.17.so
+2aceaaa77000-2aceaaa78000 r--p 0000b000 08:01 77026974                   /usr/lib64/libnss_files-2.17.so
+2aceaaa78000-2aceaaa79000 rw-p 0000c000 08:01 77026974                   /usr/lib64/libnss_files-2.17.so
+2aceaaa79000-2aceaaa7f000 rw-p 00000000 00:00 0 
+2aceaaa7f000-2aceaaa87000 r-xp 00000000 08:01 77000388                   /usr/lib64/libnss_sss.so.2
+2aceaaa87000-2aceaac86000 ---p 00008000 08:01 77000388                   /usr/lib64/libnss_sss.so.2
+2aceaac86000-2aceaac87000 r--p 00007000 08:01 77000388                   /usr/lib64/libnss_sss.so.2
+2aceaac87000-2aceaac88000 rw-p 00008000 08:01 77000388                   /usr/lib64/libnss_sss.so.2
+2aceaac88000-2aceab4f3000 r--s 00000000 08:01 17724103                   /var/lib/sss/mc/passwd
+2aceab4f3000-2aceab714000 rw-p 00000000 00:00 0 
+2aceab714000-2aceab715000 ---p 00000000 00:00 0 
+2aceab715000-2aceab915000 rw-p 00000000 00:00 0 
+2aceab915000-2aceab916000 ---p 00000000 00:00 0 
+2aceab916000-2aceabb16000 rw-p 00000000 00:00 0 
+2aceabb16000-2aceabb17000 ---p 00000000 00:00 0 
+2aceabb17000-2aceabd17000 rw-p 00000000 00:00 0 
+2aceabd17000-2aceabd18000 ---p 00000000 00:00 0 
+2aceabd18000-2aceabf1b000 rw-p 00000000 00:00 0 
+2aceabf1c000-2aceabffc000 rw-p 00000000 00:00 0 
+2aceac000000-2aceac021000 rw-p 00000000 00:00 0 
+2aceac021000-2aceb0000000 ---p 00000000 00:00 0 
+2aceb0000000-2aceb0001000 ---p 00000000 00:00 0 
+2aceb0001000-2aceb0b81000 rw-p 00000000 00:00 0 
+2aceb0b83000-2aceb0c93000 rw-p 00000000 00:00 0 
+2aceb0c95000-2aceb1545000 rw-p 00000000 00:00 0 
+2aceb1545000-2aceb1546000 ---p 00000000 00:00 0 
+2aceb1546000-2aceb1746000 rw-p 00000000 00:00 0 
+2aceb1746000-2aceb174f000 r-xp 00000000 00:2a 83630768                   /usr/local/software/mathematica/12.1/SystemFiles/Links/UUID/LibraryResources/Linux-x86-64/uuid-link.so
+2aceb174f000-2aceb194e000 ---p 00009000 00:2a 83630768                   /usr/local/software/mathematica/12.1/SystemFiles/Links/UUID/LibraryResources/Linux-x86-64/uuid-link.so
+2aceb194e000-2aceb194f000 r--p 00008000 00:2a 83630768                   /usr/local/software/mathematica/12.1/SystemFiles/Links/UUID/LibraryResources/Linux-x86-64/uuid-link.so
+2aceb194f000-2aceb1950000 rw-p 00009000 00:2a 83630768                   /usr/local/software/mathematica/12.1/SystemFiles/Links/UUID/LibraryResources/Linux-x86-64/uuid-link.so
+2aceb1952000-2aceb1982000 rw-p 00000000 00:00 0 
+2aceb1982000-2aceb19b3000 rw-s 00000000 00:13 1983651                    /dev/shm/625q2_shm
+2aceb19b3000-2aceb1a63000 rw-p 00000000 00:00 0 
+2aceb1a65000-2aceb1a75000 rw-p 00000000 00:00 0 
+2aceb1a75000-2aceb1a76000 ---p 00000000 00:00 0 
+2aceb1a76000-2aceb1c76000 rw-p 00000000 00:00 0 
+2aceb1c76000-2aceb1c77000 ---p 00000000 00:00 0 
+2aceb1c77000-2aceb2777000 rw-p 00000000 00:00 0 
+2aceb277b000-2aceb390b000 rw-p 00000000 00:00 0 
+2aceb3915000-2aceb3916000 ---p 00000000 00:00 0 
+2aceb3916000-2aceb3ff6000 rw-p 00000000 00:00 0 
+2aceb4000000-2aceb4021000 rw-p 00000000 00:00 0 
+2aceb4021000-2aceb8000000 ---p 00000000 00:00 0 
+2aceb8000000-2aceb8021000 rw-p 00000000 00:00 0 
+2aceb8021000-2acebc000000 ---p 00000000 00:00 0 
+2acebc000000-2acebf6d0000 rw-p 00000000 00:00 0 
+2acebf6d0000-2acebf701000 rw-s 00000000 00:13 1262315                    /dev/shm/h783y_shm
+2acebf701000-2acebf732000 rw-s 00000000 00:13 1983676                    /dev/shm/re4tn_shm
+2acebf732000-2acebf763000 rw-s 00000000 00:13 1983688                    /dev/shm/n77by_shm
+2acebf763000-2acebf794000 rw-s 00000000 00:13 1983700                    /dev/shm/3up6b_shm
+2acebf794000-2acebf7c5000 rw-s 00000000 00:13 1983712                    /dev/shm/xvw7y_shm
+2acebf7c5000-2acebf7f6000 rw-s 00000000 00:13 1983724                    /dev/shm/hekwj_shm
+2acebf7f6000-2acebf827000 rw-s 00000000 00:13 1983736                    /dev/shm/uss36_shm
+2acebf827000-2acebf858000 rw-s 00000000 00:13 1983748                    /dev/shm/sz2rg_shm
+2acebf858000-2acebf889000 rw-s 00000000 00:13 1983760                    /dev/shm/nehqz_shm
+2acebf889000-2acebf8ba000 rw-s 00000000 00:13 1983772                    /dev/shm/eqh2k_shm
+2acebf8ba000-2acebf8eb000 rw-s 00000000 00:13 1983784                    /dev/shm/set9f_shm
+2acebf8eb000-2acebf91c000 rw-s 00000000 00:13 1983796                    /dev/shm/tmayh_shm
+2acebf91c000-2acebf94d000 rw-s 00000000 00:13 1983808                    /dev/shm/qxfet_shm
+2acebf94d000-2acebf97e000 rw-s 00000000 00:13 1983820                    /dev/shm/y69bf_shm
+2acebf97e000-2acebf9af000 rw-s 00000000 00:13 1983832                    /dev/shm/qdejw_shm
+2acebf9af000-2acebf9e0000 rw-s 00000000 00:13 1983844                    /dev/shm/tvjm2_shm
+2acebf9e0000-2acebfa11000 rw-s 00000000 00:13 1983856                    /dev/shm/2zg6k_shm
+2acebfa11000-2acebfa42000 rw-s 00000000 00:13 1983868                    /dev/shm/4t9mj_shm
+2acebfa42000-2acebfa73000 rw-s 00000000 00:13 1983880                    /dev/shm/bdwa5_shm
+2acebfa73000-2acebfaa4000 rw-s 00000000 00:13 1983892                    /dev/shm/a7c2r_shm
+2acebfaa4000-2acebfad5000 rw-s 00000000 00:13 1983904                    /dev/shm/vcbwb_shm (deleted)
+2acebfad5000-2acebfb06000 rw-s 00000000 00:13 1983916                    /dev/shm/38iua_shm
+2acebfb06000-2acebfb37000 rw-s 00000000 00:13 1983928                    /dev/shm/cw8nk_shm
+2acebfb37000-2acebfb68000 rw-s 00000000 00:13 1983940                    /dev/shm/7zxgm_shm
+2acebfb68000-2acebfb99000 rw-s 00000000 00:13 1983952                    /dev/shm/xi286_shm
+2acebfb99000-2acebfbca000 rw-s 00000000 00:13 1983964                    /dev/shm/y7h5f_shm
+2acebfbca000-2acebfbfb000 rw-s 00000000 00:13 1262158                    /dev/shm/ck5c8_shm
+2acebfbfb000-2acebfc2c000 rw-s 00000000 00:13 1262170                    /dev/shm/eviq4_shm
+2acebfc2c000-2acebfc5d000 rw-s 00000000 00:13 1262182                    /dev/shm/yi8rh_shm
+2acebfc5d000-2acebfc8e000 rw-s 00000000 00:13 1262194                    /dev/shm/bteyi_shm
+2acebfc8e000-2acebfcbf000 rw-s 00000000 00:13 1655521                    /dev/shm/6f3qv_shm
+2acebfcbf000-2acebfcf0000 rw-s 00000000 00:13 1655533                    /dev/shm/nv9dz_shm
+2acebfcf0000-2acebfd21000 rw-s 00000000 00:13 1262328                    /dev/shm/w6zci_shm
+2acebfd21000-2acebfd52000 rw-s 00000000 00:13 1262340                    /dev/shm/hqyju_shm (deleted)
+2acebfd52000-2acebfd83000 rw-s 00000000 00:13 1262352                    /dev/shm/mk8g3_shm
+2acebfd83000-2acebfdb4000 rw-s 00000000 00:13 1262364                    /dev/shm/ex3xm_shm
+2acebfdb4000-2acebfde5000 rw-s 00000000 00:13 1262376                    /dev/shm/7cwye_shm
+2acebfde5000-2acebfe16000 rw-s 00000000 00:13 1262388                    /dev/shm/edim4_shm
+2acebfe16000-2acebfe47000 rw-s 00000000 00:13 1262400                    /dev/shm/hb7zm_shm
+2acebfe47000-2acebfe78000 rw-s 00000000 00:13 1262412                    /dev/shm/gb4en_shm
+2acebfe78000-2acebfea9000 rw-s 00000000 00:13 1262424                    /dev/shm/yjzvj_shm
+2acebfea9000-2acebfeda000 rw-s 00000000 00:13 1262436                    /dev/shm/drtwy_shm
+2acebfeda000-2acebff0b000 rw-s 00000000 00:13 1262448                    /dev/shm/xa9wv_shm
+2acebff0b000-2acebff3c000 rw-s 00000000 00:13 1262460                    /dev/shm/n5wae_shm
+2acebff3c000-2acebff6d000 rw-s 00000000 00:13 1262472                    /dev/shm/uquz6_shm
+2acebff6d000-2acebff9e000 rw-s 00000000 00:13 1262484                    /dev/shm/xp5qz_shm
+2acebff9e000-2acebffcf000 rw-s 00000000 00:13 1262496                    /dev/shm/6asyr_shm
+2acebffe6000-2acebfff6000 rw-p 00000000 00:00 0 
+2acec0000000-2acec0024000 rw-p 00000000 00:00 0 
+2acec0024000-2acec4000000 ---p 00000000 00:00 0 
+2acec4000000-2acec4021000 rw-p 00000000 00:00 0 
+2acec4021000-2acec8000000 ---p 00000000 00:00 0 
+2acec8000000-2acec8021000 rw-p 00000000 00:00 0 
+2acec8021000-2acecc000000 ---p 00000000 00:00 0 
+2acecc000000-2acecc021000 rw-p 00000000 00:00 0 
+2acecc021000-2aced0000000 ---p 00000000 00:00 0 
+2aced0000000-2aced0021000 rw-p 00000000 00:00 0 
+2aced0021000-2aced4000000 ---p 00000000 00:00 0 
+2aced4000000-2aced4001000 ---p 00000000 00:00 0 
+2aced4001000-2aced4201000 rw-p 00000000 00:00 0 
+2aced4201000-2aced4202000 ---p 00000000 00:00 0 
+2aced4202000-2aced4402000 rw-p 00000000 00:00 0 
+2aced4402000-2aced4403000 ---p 00000000 00:00 0 
+2aced4403000-2aced4603000 rw-p 00000000 00:00 0 
+2aced4603000-2aced4604000 ---p 00000000 00:00 0 
+2aced4604000-2aced4804000 rw-p 00000000 00:00 0 
+2aced4804000-2aced4805000 ---p 00000000 00:00 0 
+2aced4805000-2aced4a05000 rw-p 00000000 00:00 0 
+2aced4a05000-2aced4a06000 ---p 00000000 00:00 0 
+2aced4a06000-2aced4c06000 rw-p 00000000 00:00 0 
+2aced4c06000-2aced4c07000 ---p 00000000 00:00 0 
+2aced4c07000-2aced4e07000 rw-p 00000000 00:00 0 
+2aced4e07000-2aced4e08000 ---p 00000000 00:00 0 
+2aced4e08000-2aced5008000 rw-p 00000000 00:00 0 
+2aced5008000-2aced5009000 ---p 00000000 00:00 0 
+2aced5009000-2aced5209000 rw-p 00000000 00:00 0 
+2aced5209000-2aced520a000 ---p 00000000 00:00 0 
+2aced520a000-2aced540a000 rw-p 00000000 00:00 0 
+2aced540a000-2aced540b000 ---p 00000000 00:00 0 
+2aced540b000-2aced560b000 rw-p 00000000 00:00 0 
+2aced560b000-2aced560c000 ---p 00000000 00:00 0 
+2aced560c000-2aced580c000 rw-p 00000000 00:00 0 
+2aced580c000-2aced580d000 ---p 00000000 00:00 0 
+2aced580d000-2aced5a0d000 rw-p 00000000 00:00 0 
+2aced5a0d000-2aced5a0e000 ---p 00000000 00:00 0 
+2aced5a0e000-2aced5c0e000 rw-p 00000000 00:00 0 
+2aced5c0e000-2aced5c0f000 ---p 00000000 00:00 0 
+2aced5c0f000-2aced5e0f000 rw-p 00000000 00:00 0 
+2aced5e0f000-2aced5e10000 ---p 00000000 00:00 0 
+2aced5e10000-2aced6010000 rw-p 00000000 00:00 0 
+2aced6010000-2aced6011000 ---p 00000000 00:00 0 
+2aced6011000-2aced6211000 rw-p 00000000 00:00 0 
+2aced6211000-2aced6212000 ---p 00000000 00:00 0 
+2aced6212000-2aced6412000 rw-p 00000000 00:00 0 
+2aced6412000-2aced6413000 ---p 00000000 00:00 0 
+2aced6413000-2aced6613000 rw-p 00000000 00:00 0 
+2aced6613000-2aced6614000 ---p 00000000 00:00 0 
+2aced6614000-2aced6814000 rw-p 00000000 00:00 0 
+2aced6814000-2aced6815000 ---p 00000000 00:00 0 
+2aced6815000-2aced6a15000 rw-p 00000000 00:00 0 
+2aced6a15000-2aced6a16000 ---p 00000000 00:00 0 
+2aced6a16000-2aced6c16000 rw-p 00000000 00:00 0 
+2aced6c16000-2aced6c17000 ---p 00000000 00:00 0 
+2aced6c17000-2aced6e17000 rw-p 00000000 00:00 0 
+2aced6e17000-2aced6e18000 ---p 00000000 00:00 0 
+2aced6e18000-2aced7018000 rw-p 00000000 00:00 0 
+2aced7018000-2aced7019000 ---p 00000000 00:00 0 
+2aced7019000-2aced7219000 rw-p 00000000 00:00 0 
+2aced7219000-2aced721a000 ---p 00000000 00:00 0 
+2aced721a000-2aced741a000 rw-p 00000000 00:00 0 
+2aced741a000-2aced741b000 ---p 00000000 00:00 0 
+2aced741b000-2aced761b000 rw-p 00000000 00:00 0 
+2aced761b000-2aced761c000 ---p 00000000 00:00 0 
+2aced761c000-2aced781c000 rw-p 00000000 00:00 0 
+2aced781c000-2aced781d000 ---p 00000000 00:00 0 
+2aced781d000-2aced7a1d000 rw-p 00000000 00:00 0 
+2aced7a1d000-2aced7a1e000 ---p 00000000 00:00 0 
+2aced7a1e000-2aced7c1e000 rw-p 00000000 00:00 0 
+2aced7c1e000-2aced7c1f000 ---p 00000000 00:00 0 
+2aced7c1f000-2aced7e1f000 rw-p 00000000 00:00 0 
+2aced7e1f000-2aced7e50000 rw-s 00000000 00:13 1262508                    /dev/shm/ksdqm_shm
+2aced7e50000-2aced7e81000 rw-s 00000000 00:13 1262520                    /dev/shm/r22nd_shm
+2aced7e81000-2aced7eb2000 rw-s 00000000 00:13 1262532                    /dev/shm/ezday_shm
+2aced7eb2000-2aced7ee3000 rw-s 00000000 00:13 1262544                    /dev/shm/gb5tq_shm
+2aced7ee3000-2aced7f14000 rw-s 00000000 00:13 1262556                    /dev/shm/irdtm_shm
+2aced7f14000-2aced7f45000 rw-s 00000000 00:13 1262568                    /dev/shm/q3jk4_shm
+2aced7f45000-2aced7f76000 rw-s 00000000 00:13 1262580                    /dev/shm/uwpba_shm
+2aced7f76000-2aced7fa7000 rw-s 00000000 00:13 1262592                    /dev/shm/35rsi_shm
+2aced7fa7000-2aced7fd8000 rw-s 00000000 00:13 1991692                    /dev/shm/hdfr2_shm
+2aced7fd8000-2aced7ff8000 rw-p 00000000 00:00 0 
+2aced8000000-2aced8021000 rw-p 00000000 00:00 0 
+2aced8021000-2acedc000000 ---p 00000000 00:00 0 
+2acedc000000-2acedc021000 rw-p 00000000 00:00 0 
+2acedc021000-2acee0000000 ---p 00000000 00:00 0 
+2acee0000000-2acee0021000 rw-p 00000000 00:00 0 
+2acee0021000-2acee4000000 ---p 00000000 00:00 0 
+2acee4000000-2acee4021000 rw-p 00000000 00:00 0 
+2acee4021000-2acee8000000 ---p 00000000 00:00 0 
+2acee8000000-2acee8021000 rw-p 00000000 00:00 0 
+2acee8021000-2aceec000000 ---p 00000000 00:00 0 
+2aceec000000-2aceec021000 rw-p 00000000 00:00 0 
+2aceec021000-2acef0000000 ---p 00000000 00:00 0 
+2acef0000000-2acef0021000 rw-p 00000000 00:00 0 
+2acef0021000-2acef4000000 ---p 00000000 00:00 0 
+2acef4000000-2acef4021000 rw-p 00000000 00:00 0 
+2acef4021000-2acef8000000 ---p 00000000 00:00 0 
+2acef8000000-2acef8021000 rw-p 00000000 00:00 0 
+2acef8021000-2acefc000000 ---p 00000000 00:00 0 
+2acefc000000-2acefc021000 rw-p 00000000 00:00 0 
+2acefc021000-2acf00000000 ---p 00000000 00:00 0 
+2acf00000000-2acf00021000 rw-p 00000000 00:00 0 
+2acf00021000-2acf04000000 ---p 00000000 00:00 0 
+2acf04000000-2acf04021000 rw-p 00000000 00:00 0 
+2acf04021000-2acf08000000 ---p 00000000 00:00 0 
+2acf08000000-2acf08021000 rw-p 00000000 00:00 0 
+2acf08021000-2acf0c000000 ---p 00000000 00:00 0 
+2acf0c000000-2acf0c021000 rw-p 00000000 00:00 0 
+2acf0c021000-2acf10000000 ---p 00000000 00:00 0 
+2acf10000000-2acf10021000 rw-p 00000000 00:00 0 
+2acf10021000-2acf14000000 ---p 00000000 00:00 0 
+2acf14000000-2acf14021000 rw-p 00000000 00:00 0 
+2acf14021000-2acf18000000 ---p 00000000 00:00 0 
+2acf18000000-2acf18021000 rw-p 00000000 00:00 0 
+2acf18021000-2acf1c000000 ---p 00000000 00:00 0 
+2acf1c000000-2acf1c021000 rw-p 00000000 00:00 0 
+2acf1c021000-2acf20000000 ---p 00000000 00:00 0 
+2acf20000000-2acf20021000 rw-p 00000000 00:00 0 
+2acf20021000-2acf24000000 ---p 00000000 00:00 0 
+2acf24000000-2acf24021000 rw-p 00000000 00:00 0 
+2acf24021000-2acf28000000 ---p 00000000 00:00 0 
+2acf28000000-2acf28021000 rw-p 00000000 00:00 0 
+2acf28021000-2acf2c000000 ---p 00000000 00:00 0 
+2acf2c000000-2acf2c021000 rw-p 00000000 00:00 0 
+2acf2c021000-2acf30000000 ---p 00000000 00:00 0 
+2acf30000000-2acf30021000 rw-p 00000000 00:00 0 
+2acf30021000-2acf34000000 ---p 00000000 00:00 0 
+2acf34000000-2acf34021000 rw-p 00000000 00:00 0 
+2acf34021000-2acf38000000 ---p 00000000 00:00 0 
+2acf38000000-2acf38021000 rw-p 00000000 00:00 0 
+2acf38021000-2acf3c000000 ---p 00000000 00:00 0 
+2acf3c000000-2acf3c021000 rw-p 00000000 00:00 0 
+2acf3c021000-2acf40000000 ---p 00000000 00:00 0 
+2acf40000000-2acf40021000 rw-p 00000000 00:00 0 
+2acf40021000-2acf44000000 ---p 00000000 00:00 0 
+2acf44000000-2acf44021000 rw-p 00000000 00:00 0 
+2acf44021000-2acf48000000 ---p 00000000 00:00 0 
+2acf48000000-2acf48021000 rw-p 00000000 00:00 0 
+2acf48021000-2acf4c000000 ---p 00000000 00:00 0 
+2acf4c000000-2acf4c021000 rw-p 00000000 00:00 0 
+2acf4c021000-2acf50000000 ---p 00000000 00:00 0 
+2acf50000000-2acf50021000 rw-p 00000000 00:00 0 
+2acf50021000-2acf54000000 ---p 00000000 00:00 0 
+2acf54000000-2acf54031000 rw-s 00000000 00:13 1991704                    /dev/shm/sk9fe_shm
+2acf54031000-2acf54062000 rw-s 00000000 00:13 1991716                    /dev/shm/gwbtz_shm
+2acf54062000-2acf54093000 rw-s 00000000 00:13 1991728                    /dev/shm/bx5ed_shm
+2acf54093000-2acf540c4000 rw-s 00000000 00:13 1991740                    /dev/shm/enm2r_shm
+2acf540c4000-2acf540f5000 rw-s 00000000 00:13 1991752                    /dev/shm/dyqxp_shm
+2acf540f5000-2acf54126000 rw-s 00000000 00:13 1991764                    /dev/shm/nh5uy_shm
+2acf54126000-2acf54157000 rw-s 00000000 00:13 1991776                    /dev/shm/kejv5_shm
+2acf54157000-2acf54158000 ---p 00000000 00:00 0 
+2acf54158000-2acf54358000 rw-p 00000000 00:00 0 
+2acf54358000-2acf54359000 ---p 00000000 00:00 0 
+2acf54359000-2acf54559000 rw-p 00000000 00:00 0 
+2acf54559000-2acf5455a000 ---p 00000000 00:00 0 
+2acf5455a000-2acf5475a000 rw-p 00000000 00:00 0 
+2acf5475a000-2acf5475b000 ---p 00000000 00:00 0 
+2acf5475b000-2acf5495b000 rw-p 00000000 00:00 0 
+2acf5495b000-2acf5495c000 ---p 00000000 00:00 0 
+2acf5495c000-2acf54b5c000 rw-p 00000000 00:00 0 
+2acf54b5c000-2acf54b5d000 ---p 00000000 00:00 0 
+2acf54b5d000-2acf54d5d000 rw-p 00000000 00:00 0 
+2acf54d5d000-2acf54d5e000 ---p 00000000 00:00 0 
+2acf54d5e000-2acf54f5e000 rw-p 00000000 00:00 0 
+2acf54f5e000-2acf54f5f000 ---p 00000000 00:00 0 
+2acf54f5f000-2acf5515f000 rw-p 00000000 00:00 0 
+2acf5515f000-2acf55160000 ---p 00000000 00:00 0 
+2acf55160000-2acf55360000 rw-p 00000000 00:00 0 
+2acf55360000-2acf55361000 ---p 00000000 00:00 0 
+2acf55361000-2acf55561000 rw-p 00000000 00:00 0 
+2acf55561000-2acf55562000 ---p 00000000 00:00 0 
+2acf55562000-2acf55762000 rw-p 00000000 00:00 0 
+2acf55762000-2acf55763000 ---p 00000000 00:00 0 
+2acf55763000-2acf55963000 rw-p 00000000 00:00 0 
+2acf55b4d000-2acf55b4e000 ---p 00000000 00:00 0 
+2acf55b4e000-2acf55d4e000 rw-p 00000000 00:00 0 
+2acf55d4e000-2acf55d4f000 ---p 00000000 00:00 0 
+2acf55d4f000-2acf55f4f000 rw-p 00000000 00:00 0 
+2acf55f4f000-2acf55f50000 ---p 00000000 00:00 0 
+2acf55f50000-2acf56150000 rw-p 00000000 00:00 0 
+2acf56150000-2acf56151000 ---p 00000000 00:00 0 
+2acf56151000-2acf56351000 rw-p 00000000 00:00 0 
+2acf56351000-2acf56352000 ---p 00000000 00:00 0 
+2acf56352000-2acf56552000 rw-p 00000000 00:00 0 
+2acf56552000-2acf56553000 ---p 00000000 00:00 0 
+2acf56553000-2acf56753000 rw-p 00000000 00:00 0 
+2acf56753000-2acf56754000 ---p 00000000 00:00 0 
+2acf56754000-2acf56954000 rw-p 00000000 00:00 0 
+2acf56954000-2acf56955000 ---p 00000000 00:00 0 
+2acf56955000-2acf56b55000 rw-p 00000000 00:00 0 
+2acf56b55000-2acf56b56000 ---p 00000000 00:00 0 
+2acf56b56000-2acf56d56000 rw-p 00000000 00:00 0 
+2acf56d56000-2acf56d57000 ---p 00000000 00:00 0 
+2acf56d57000-2acf56f57000 rw-p 00000000 00:00 0 
+2acf56f57000-2acf56f58000 ---p 00000000 00:00 0 
+2acf56f58000-2acf57158000 rw-p 00000000 00:00 0 
+2acf57158000-2acf57159000 ---p 00000000 00:00 0 
+2acf57159000-2acf57359000 rw-p 00000000 00:00 0 
+2acf57359000-2acf5735a000 ---p 00000000 00:00 0 
+2acf5735a000-2acf5755a000 rw-p 00000000 00:00 0 
+2acf5755a000-2acf5755b000 ---p 00000000 00:00 0 
+2acf5755b000-2acf5775b000 rw-p 00000000 00:00 0 
+2acf5775b000-2acf5775c000 ---p 00000000 00:00 0 
+2acf5775c000-2acf5795c000 rw-p 00000000 00:00 0 
+2acf5795c000-2acf5795d000 ---p 00000000 00:00 0 
+2acf5795d000-2acf57b5d000 rw-p 00000000 00:00 0 
+2acf57b5d000-2acf57b5e000 ---p 00000000 00:00 0 
+2acf57b5e000-2acf57d5e000 rw-p 00000000 00:00 0 
+2acf57d5e000-2acf57d5f000 ---p 00000000 00:00 0 
+2acf57d5f000-2acf57fff000 rw-p 00000000 00:00 0 
+2acf58000000-2acf58021000 rw-p 00000000 00:00 0 
+2acf58021000-2acf5c000000 ---p 00000000 00:00 0 
+2acf5c000000-2acf5c021000 rw-p 00000000 00:00 0 
+2acf5c021000-2acf60000000 ---p 00000000 00:00 0 
+2acf60000000-2acf60021000 rw-p 00000000 00:00 0 
+2acf60021000-2acf64000000 ---p 00000000 00:00 0 
+2acf64000000-2acf64021000 rw-p 00000000 00:00 0 
+2acf64021000-2acf68000000 ---p 00000000 00:00 0 
+2acf68000000-2acf68021000 rw-p 00000000 00:00 0 
+2acf68021000-2acf6c000000 ---p 00000000 00:00 0 
+2acf6c000000-2acf6c021000 rw-p 00000000 00:00 0 
+2acf6c021000-2acf70000000 ---p 00000000 00:00 0 
+2acf70000000-2acf70021000 rw-p 00000000 00:00 0 
+2acf70021000-2acf74000000 ---p 00000000 00:00 0 
+2acf74000000-2acf74021000 rw-p 00000000 00:00 0 
+2acf74021000-2acf78000000 ---p 00000000 00:00 0 
+2acf78000000-2acf78021000 rw-p 00000000 00:00 0 
+2acf78021000-2acf7c000000 ---p 00000000 00:00 0 
+2acf7c000000-2acf7c021000 rw-p 00000000 00:00 0 
+2acf7c021000-2acf80000000 ---p 00000000 00:00 0 
+2acf80000000-2acf80021000 rw-p 00000000 00:00 0 
+2acf80021000-2acf84000000 ---p 00000000 00:00 0 
+2acf84000000-2acf84021000 rw-p 00000000 00:00 0 
+2acf84021000-2acf88000000 ---p 00000000 00:00 0 
+2acf88000000-2acf88021000 rw-p 00000000 00:00 0 
+2acf88021000-2acf8c000000 ---p 00000000 00:00 0 
+2acf8c000000-2acf8c021000 rw-p 00000000 00:00 0 
+2acf8c021000-2acf90000000 ---p 00000000 00:00 0 
+2acf90000000-2acf90021000 rw-p 00000000 00:00 0 
+2acf90021000-2acf94000000 ---p 00000000 00:00 0 
+2acf94000000-2acf94021000 rw-p 00000000 00:00 0 
+2acf94021000-2acf98000000 ---p 00000000 00:00 0 
+2acf98000000-2acf98021000 rw-p 00000000 00:00 0 
+2acf98021000-2acf9c000000 ---p 00000000 00:00 0 
+2acf9c000000-2acf9c021000 rw-p 00000000 00:00 0 
+2acf9c021000-2acfa0000000 ---p 00000000 00:00 0 
+2acfa0000000-2acfa0021000 rw-p 00000000 00:00 0 
+2acfa0021000-2acfa4000000 ---p 00000000 00:00 0 
+2acfa4000000-2acfa4021000 rw-p 00000000 00:00 0 
+2acfa4021000-2acfa8000000 ---p 00000000 00:00 0 
+2acfa8000000-2acfa8021000 rw-p 00000000 00:00 0 
+2acfa8021000-2acfac000000 ---p 00000000 00:00 0 
+2acfac000000-2acfac021000 rw-p 00000000 00:00 0 
+2acfac021000-2acfb0000000 ---p 00000000 00:00 0 
+2acfb0000000-2acfb0021000 rw-p 00000000 00:00 0 
+2acfb0021000-2acfb4000000 ---p 00000000 00:00 0 
+2acfb4000000-2acfb4021000 rw-p 00000000 00:00 0 
+2acfb4021000-2acfb8000000 ---p 00000000 00:00 0 
+2acfb8000000-2acfb8021000 rw-p 00000000 00:00 0 
+2acfb8021000-2acfbc000000 ---p 00000000 00:00 0 
+2acfbc000000-2acfbc021000 rw-p 00000000 00:00 0 
+2acfbc021000-2acfc0000000 ---p 00000000 00:00 0 
+2acfc0000000-2acfc0021000 rw-p 00000000 00:00 0 
+2acfc0021000-2acfc4000000 ---p 00000000 00:00 0 
+2acfc4000000-2acfc4021000 rw-p 00000000 00:00 0 
+2acfc4021000-2acfc8000000 ---p 00000000 00:00 0 
+2acfc8000000-2acfc8021000 rw-p 00000000 00:00 0 
+2acfc8021000-2acfcc000000 ---p 00000000 00:00 0 
+2acfcc000000-2acfcc021000 rw-p 00000000 00:00 0 
+2acfcc021000-2acfd0000000 ---p 00000000 00:00 0 
+2acfd0000000-2acfd0001000 ---p 00000000 00:00 0 
+2acfd0001000-2acfd0201000 rw-p 00000000 00:00 0 
+2acfd0201000-2acfd0207000 r-xp 00000000 00:2a 83627347                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CloudObject/LibraryResources/Linux-x86-64/WolframAuthenticate.so
+2acfd0207000-2acfd0406000 ---p 00006000 00:2a 83627347                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CloudObject/LibraryResources/Linux-x86-64/WolframAuthenticate.so
+2acfd0406000-2acfd0407000 r--p 00005000 00:2a 83627347                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CloudObject/LibraryResources/Linux-x86-64/WolframAuthenticate.so
+2acfd0407000-2acfd0408000 rw-p 00006000 00:2a 83627347                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CloudObject/LibraryResources/Linux-x86-64/WolframAuthenticate.so
+2acfd0408000-2acfd0d48000 rw-p 00000000 00:00 0 
+2acfd0d48000-2acfd0d5e000 r-xp 00000000 00:2a 83627244                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so
+2acfd0d5e000-2acfd0f5d000 ---p 00016000 00:2a 83627244                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so
+2acfd0f5d000-2acfd0f5e000 r--p 00015000 00:2a 83627244                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so
+2acfd0f5e000-2acfd0f5f000 rw-p 00016000 00:2a 83627244                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurllink.so
+2acfd0f5f000-2acfd0fda000 r-xp 00000000 00:2a 83627241                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4
+2acfd0fda000-2acfd11d9000 ---p 0007b000 00:2a 83627241                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4
+2acfd11d9000-2acfd11dc000 r--p 0007a000 00:2a 83627241                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4
+2acfd11dc000-2acfd11dd000 rw-p 0007d000 00:2a 83627241                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libcurl.so.4
+2acfd11dd000-2acfd11de000 rw-p 00000000 00:00 0 
+2acfd11de000-2acfd122a000 r-xp 00000000 00:2a 83626119                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssh2.so.1
+2acfd122a000-2acfd142a000 ---p 0004c000 00:2a 83626119                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssh2.so.1
+2acfd142a000-2acfd142c000 rw-p 0004c000 00:2a 83626119                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssh2.so.1
+2acfd142c000-2acfd1473000 r-xp 00000000 00:2a 83627262                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libssl3.so
+2acfd1473000-2acfd1672000 ---p 00047000 00:2a 83627262                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libssl3.so
+2acfd1672000-2acfd1677000 rw-p 00046000 00:2a 83627262                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libssl3.so
+2acfd1677000-2acfd167a000 rw-p 00058000 00:2a 83627262                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libssl3.so
+2acfd167a000-2acfd169e000 r-xp 00000000 00:2a 83627259                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsmime3.so
+2acfd169e000-2acfd189e000 ---p 00024000 00:2a 83627259                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsmime3.so
+2acfd189e000-2acfd18a1000 rw-p 00024000 00:2a 83627259                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsmime3.so
+2acfd18a1000-2acfd18a4000 rw-p 00032000 00:2a 83627259                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsmime3.so
+2acfd18a4000-2acfd19c0000 r-xp 00000000 00:2a 83627249                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so
+2acfd19c0000-2acfd1bbf000 ---p 0011c000 00:2a 83627249                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so
+2acfd1bbf000-2acfd1bc6000 rw-p 0011b000 00:2a 83627249                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so
+2acfd1bc6000-2acfd1bc8000 rw-p 00000000 00:00 0 
+2acfd1bc8000-2acfd1bcf000 rw-p 00152000 00:2a 83627249                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnss3.so
+2acfd1bcf000-2acfd1bf7000 r-xp 00000000 00:2a 83627256                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnssutil3.so
+2acfd1bf7000-2acfd1df7000 ---p 00028000 00:2a 83627256                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnssutil3.so
+2acfd1df7000-2acfd1dfe000 rw-p 00028000 00:2a 83627256                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnssutil3.so
+2acfd1dfe000-2acfd1e00000 rw-p 00038000 00:2a 83627256                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnssutil3.so
+2acfd1e00000-2acfd1e03000 r-xp 00000000 00:2a 83627258                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplds4.so
+2acfd1e03000-2acfd2002000 ---p 00003000 00:2a 83627258                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplds4.so
+2acfd2002000-2acfd2003000 rw-p 00002000 00:2a 83627258                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplds4.so
+2acfd2003000-2acfd2004000 rw-p 00004000 00:2a 83627258                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplds4.so
+2acfd2004000-2acfd2008000 r-xp 00000000 00:2a 83627257                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplc4.so
+2acfd2008000-2acfd2207000 ---p 00004000 00:2a 83627257                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplc4.so
+2acfd2207000-2acfd2208000 rw-p 00003000 00:2a 83627257                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplc4.so
+2acfd2208000-2acfd2209000 rw-p 00006000 00:2a 83627257                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libplc4.so
+2acfd2209000-2acfd2242000 r-xp 00000000 00:2a 83627248                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnspr4.so
+2acfd2242000-2acfd2441000 ---p 00039000 00:2a 83627248                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnspr4.so
+2acfd2441000-2acfd2443000 rw-p 00038000 00:2a 83627248                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnspr4.so
+2acfd2443000-2acfd2446000 rw-p 00000000 00:00 0 
+2acfd2446000-2acfd2449000 rw-p 00046000 00:2a 83627248                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnspr4.so
+2acfd2449000-2acfd24cf000 r-xp 00000000 00:2a 83626120                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssl.so.1.1
+2acfd24cf000-2acfd26cf000 ---p 00086000 00:2a 83626120                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssl.so.1.1
+2acfd26cf000-2acfd26d7000 r--p 00086000 00:2a 83626120                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssl.so.1.1
+2acfd26d7000-2acfd26dc000 rw-p 0008e000 00:2a 83626120                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libssl.so.1.1
+2acfd26dc000-2acfd29a9000 r-xp 00000000 00:2a 83626015                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libcrypto.so.1.1
+2acfd29a9000-2acfd2ba9000 ---p 002cd000 00:2a 83626015                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libcrypto.so.1.1
+2acfd2ba9000-2acfd2bd4000 r--p 002cd000 00:2a 83626015                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libcrypto.so.1.1
+2acfd2bd4000-2acfd2bd6000 rw-p 002f8000 00:2a 83626015                   /usr/local/software/mathematica/12.1/SystemFiles/Libraries/Linux-x86-64/libcrypto.so.1.1
+2acfd2bd6000-2acfd2c6b000 rw-p 00000000 00:00 0 
+2acfd2c6b000-2acfd2c6c000 ---p 00000000 00:00 0 
+2acfd2c6c000-2acfd2e6c000 rw-p 00000000 00:00 0 
+2acfd2e6c000-2acfd2e6d000 ---p 00000000 00:00 0 
+2acfd2e6d000-2acfd306d000 rw-p 00000000 00:00 0 
+2acfd306d000-2acfd306e000 ---p 00000000 00:00 0 
+2acfd306e000-2acfd326e000 rw-p 00000000 00:00 0 
+2acfd326e000-2acfd3271000 r-xp 00000000 08:01 77035299                   /usr/lib64/libnss_mdns4_minimal.so.2
+2acfd3271000-2acfd3470000 ---p 00003000 08:01 77035299                   /usr/lib64/libnss_mdns4_minimal.so.2
+2acfd3470000-2acfd3471000 r--p 00002000 08:01 77035299                   /usr/lib64/libnss_mdns4_minimal.so.2
+2acfd3471000-2acfd3472000 rw-p 00003000 08:01 77035299                   /usr/lib64/libnss_mdns4_minimal.so.2
+2acfd3472000-2acfd3488000 r-xp 00000000 08:01 77026984                   /usr/lib64/libresolv-2.17.so
+2acfd3488000-2acfd3688000 ---p 00016000 08:01 77026984                   /usr/lib64/libresolv-2.17.so
+2acfd3688000-2acfd3689000 r--p 00016000 08:01 77026984                   /usr/lib64/libresolv-2.17.so
+2acfd3689000-2acfd368a000 rw-p 00017000 08:01 77026984                   /usr/lib64/libresolv-2.17.so
+2acfd368a000-2acfd368c000 rw-p 00000000 00:00 0 
+2acfd368c000-2acfd3692000 r-xp 00000000 08:01 77026973                   /usr/lib64/libnss_dns-2.17.so
+2acfd3692000-2acfd3891000 ---p 00006000 08:01 77026973                   /usr/lib64/libnss_dns-2.17.so
+2acfd3891000-2acfd3892000 r--p 00005000 08:01 77026973                   /usr/lib64/libnss_dns-2.17.so
+2acfd3892000-2acfd3893000 rw-p 00006000 08:01 77026973                   /usr/lib64/libnss_dns-2.17.so
+2acfd3893000-2acfd3894000 ---p 00000000 00:00 0 
+2acfd3894000-2acfd3a94000 rw-p 00000000 00:00 0 
+2acfd3a94000-2acfd3acf000 r-xp 00000000 00:2a 83627260                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsoftokn3.so
+2acfd3acf000-2acfd3cce000 ---p 0003b000 00:2a 83627260                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsoftokn3.so
+2acfd3cce000-2acfd3cd0000 rw-p 0003a000 00:2a 83627260                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsoftokn3.so
+2acfd3cd0000-2acfd3cd1000 rw-p 00046000 00:2a 83627260                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsoftokn3.so
+2acfd3cd1000-2acfd3d6c000 r-xp 00000000 00:2a 83627261                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsqlite3.so
+2acfd3d6c000-2acfd3f6c000 ---p 0009b000 00:2a 83627261                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsqlite3.so
+2acfd3f6c000-2acfd3f70000 rw-p 0009b000 00:2a 83627261                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsqlite3.so
+2acfd3f70000-2acfd3f71000 rw-p 00000000 00:00 0 
+2acfd3f71000-2acfd3f73000 rw-p 000ae000 00:2a 83627261                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libsqlite3.so
+2acfd4000000-2acfd4021000 rw-p 00000000 00:00 0 
+2acfd4021000-2acfd8000000 ---p 00000000 00:00 0 
+2acfd8000000-2acfd80b6000 rw-p 00000000 00:00 0 
+2acfd80b6000-2acfdc000000 ---p 00000000 00:00 0 
+2acfdc000000-2acfdc021000 rw-p 00000000 00:00 0 
+2acfdc021000-2acfe0000000 ---p 00000000 00:00 0 
+2acfe0000000-2acfe0002000 r-xp 00000000 00:2a 83627255                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnsssysinit.so
+2acfe0002000-2acfe0201000 ---p 00002000 00:2a 83627255                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnsssysinit.so
+2acfe0201000-2acfe0202000 rw-p 00001000 00:2a 83627255                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnsssysinit.so
+2acfe0202000-2acfe0203000 rw-p 00003000 00:2a 83627255                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libnsssysinit.so
+2acfe0203000-2acfe0282000 r-xp 00000000 00:2a 83627247                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libfreeblpriv3.so
+2acfe0282000-2acfe0482000 ---p 0007f000 00:2a 83627247                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libfreeblpriv3.so
+2acfe0482000-2acfe0484000 rw-p 0007f000 00:2a 83627247                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libfreeblpriv3.so
+2acfe0484000-2acfe0488000 rw-p 00000000 00:00 0 
+2acfe0488000-2acfe0489000 rw-p 0008c000 00:2a 83627247                   /usr/local/software/mathematica/12.1/SystemFiles/Links/CURLLink/LibraryResources/Linux-x86-64/libfreeblpriv3.so
+2acfe0489000-2acfe04b8000 r-xp 00000000 08:01 12131018                   /usr/lib64/pkcs11/libcoolkeypk11.so
+2acfe04b8000-2acfe06b7000 ---p 0002f000 08:01 12131018                   /usr/lib64/pkcs11/libcoolkeypk11.so
+2acfe06b7000-2acfe06b8000 r--p 0002e000 08:01 12131018                   /usr/lib64/pkcs11/libcoolkeypk11.so
+2acfe06b8000-2acfe06b9000 rw-p 0002f000 08:01 12131018                   /usr/lib64/pkcs11/libcoolkeypk11.so
+2acfe06b9000-2acfe06ca000 r-xp 00000000 08:01 78001535                   /usr/lib64/libckyapplet.so.1.0.0
+2acfe06ca000-2acfe08c9000 ---p 00011000 08:01 78001535                   /usr/lib64/libckyapplet.so.1.0.0
+2acfe08c9000-2acfe08ca000 r--p 00010000 08:01 78001535                   /usr/lib64/libckyapplet.so.1.0.0
+2acfe08ca000-2acfe08cb000 rw-p 00011000 08:01 78001535                   /usr/lib64/libckyapplet.so.1.0.0
+2acfe08cb000-2acfe08d5000 r-xp 00000000 08:01 85767426                   /usr/lib64/libpcsclite.so.1.0.0
+2acfe08d5000-2acfe0ad4000 ---p 0000a000 08:01 85767426                   /usr/lib64/libpcsclite.so.1.0.0
+2acfe0ad4000-2acfe0ad5000 r--p 00009000 08:01 85767426                   /usr/lib64/libpcsclite.so.1.0.0
+2acfe0ad5000-2acfe0ad6000 rw-p 0000a000 08:01 85767426                   /usr/lib64/libpcsclite.so.1.0.0
+2acfe0ad6000-2acfe0ad7000 rw-p 00000000 00:00 0 
+7ffe5d0cb000-7ffe5d1a4000 rw-p 00000000 00:00 0                          [stack]
+7ffe5d1c8000-7ffe5d1ca000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/home/wb263/HiGGS_development/peta4.job.sh: line 32: 173647 Aborted                 math -run $1 < peta4.job.m
+rm: cannot remove ‘./svy/node-7/peta4.nom.mx’: No such file or directory

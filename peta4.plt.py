@@ -109,13 +109,17 @@ plt.draw()
 plt.savefig('peta4.plt.png',bbox_inches = 'tight',dpi = 900)
 
 mycmaps = { 'notacmap' : 0 }
+twinxs = { 'notacmap' : 0 }
 
 for x in range(xmx):
     for y in range(ymx):
 
+
+        twinxs['twinx'+str(x)+str(y)] = axs[y,x].twinx()
+
         node = y*xmx+x
-        if node == 10 or node == 12:
-        #try:
+        #if node == 10 or node == 12:
+        try:
             '''
             try:
             '''
@@ -306,12 +310,17 @@ for x in range(xmx):
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
             axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            #axs[y,x].set_xscale('symlog',linthreshx = 1000) #   this causes serious delays
+            axs[y,x].set_xscale('symlog',linthreshx = 600) #   this causes serious delays
 
             #=================== end admin to label the plot ======================
 
             title_string = r"Node " + str(node)
-            axs[y,x].set_title(title_string, fontsize = 6)
+            #axs[y,x].set_title(title_string, fontsize = 6)
+            twinxs['twinx'+str(x)+str(y)].set_ylabel(title_string, fontsize = 6)
+#, rotation = -9
+            twinxs['twinx'+str(x)+str(y)].set_yticks([])
+
+
             #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
             #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
             #axs[node].set_xlabel(r"Wallclock time/s")
@@ -320,9 +329,11 @@ for x in range(xmx):
                 axs[y,x].set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)
             if y == ymx-1:
                 axs[y,x].set_xlabel(r"Wallclock time/s", fontsize = 6)
+
+            axs[y,x].set_rasterization_zorder(3)
             
-        #except:
-        #    print("there was a problem with plotting node ",node)
+        except:
+            print("there was a problem with plotting node ",node)
 
 #=================== plt draw ======================
 
@@ -333,6 +344,7 @@ print('drawing plot')
 plt.draw()
 
 #plt.savefig('kernels-2.pdf',bbox_inches = 'tight',pad_inches=0)
-plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
+#plt.savefig('peta4.plt.png',bbox_inches = 'tight',pad_inches=0,dpi = 900)
+plt.savefig('peta4.plt.pdf',bbox_inches = 'tight',pad_inches=0,dpi = 900)
 
 sys.exit()

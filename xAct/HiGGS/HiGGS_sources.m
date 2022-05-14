@@ -4084,7 +4084,6 @@ If[OptionValue["Parallel"],
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -4661,7 +4660,6 @@ RiemannBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -4742,7 +4740,6 @@ TorsionBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -4826,7 +4823,6 @@ SurfaceBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -4930,7 +4926,6 @@ MeasureBracketParallel[Psi_,EH0_,PsiFreeIndexListNormal_,$TheoryName_:$TheoryNam
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -5010,7 +5005,6 @@ ConstraintBracketParallel[Psi_,EH0_,FreeConstraintString_,PhiFreeIndexListNormal
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
 DefTheory["Import"->$TheoryName];
@@ -5332,11 +5326,8 @@ DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*$Timing=True;*)
 BuildHiGGS[];
 (*import theory names*)
-Print["psiloc"];
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 (*Define the theory*)
-Print["here passed optval in deftheory parallel"];
-Print@OptionValue@"Velocities";
 DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities","Order"->OptionValue@"Order"];
 ForceTiming[];
 ];

@@ -1,6 +1,6 @@
 # Hamiltonian Gauge Gravity Surveyor
 
-This is the developer version.
+This is the developer version. Release coming soon.
 
 ## Install
 
@@ -25,19 +25,25 @@ xAct
     ├── bin
     │   ├── build
     │   │   ├── CanonicalPhiToggle.mx
+    │   │   ├── CDPiPToCDPiPO3.mx
     │   │   ├── ChiPerpToggle.mx
     │   │   ├── ChiSingToggle.mx
     │   │   ├── CompleteO3ProjectionsToggle.mx
+    │   │   ├── GeneralComplementsToggle.mx
+    │   │   ├── NesterFormIfConstraints.mx
     │   │   ├── NonCanonicalPhiToggle.mx
     │   │   ├── O13ProjectionsToggle.mx
-    │   │   └── ProjectionNormalisationsToggle.mx
+    │   │   ├── ProjectionNormalisationsToggle.mx
+    │   │   └── VelocityToggle.mx
     │   └── HiGGS.mx
     ├── Documentation
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
     ├── HiGGS.m
     ├── HiGGS.nb
+    ├── HiGGS_sources.m
     ├── HiGGS_sources.nb
+    ├── HiGGS_variations.m
     └── Kernel
         └── init.wl
 ```

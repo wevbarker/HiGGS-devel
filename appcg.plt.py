@@ -109,9 +109,11 @@ plt.draw()
 plt.savefig('appcg.plt.png',bbox_inches = 'tight',dpi = 900)
 
 mycmaps = { 'notacmap' : 0 }
+twinxs = { 'notacmap' : 0 }
 
 for x in range(xmx):
     for y in range(ymx):
+
 
         node = y*xmx+x
         if node == node:
@@ -134,9 +136,9 @@ for x in range(xmx):
             ticklabels = [x for _,x in sorted(zip(list(map(int,ticklabels)),ticklabels))]
             ticklabels = list(map(lambda x : r"\texttt{"+ x +"}", ticklabels))
 
-            del ticklabels[1::4]
-            del ticklabels[1::3]
-            del ticklabels[1::2]
+            #del ticklabels[1::4]
+            #del ticklabels[1::3]
+            #del ticklabels[1::2]
 
             print(ticklabels)
 
@@ -168,9 +170,9 @@ for x in range(xmx):
             number_of_kernels = len(all_kernel_data)
 
             ticksthem = list(range(0,number_of_kernels))
-            del ticksthem[1::4]
-            del ticksthem[1::3]
-            del ticksthem[1::2]
+            #del ticksthem[1::4]
+            #del ticksthem[1::3]
+            #del ticksthem[1::2]
             print(ticksthem)
             print(ticklabels)
 
@@ -185,6 +187,7 @@ for x in range(xmx):
             else:
                 axr = axs[y,x]
 
+            twinxs['twinx'+str(x)+str(y)] = axr.twinx()
             #====================== bar width and chart geometry ==============
 
             propunit = 1.
@@ -317,6 +320,9 @@ for x in range(xmx):
             #title_string = r"Node: \texttt{"+socket.gethostname()+"}"
             #axs[node].set_ylabel(r"\texttt{\${}KernelID}")
             #axs[node].set_xlabel(r"Wallclock time/s")
+
+            twinxs['twinx'+str(x)+str(y)].set_ylabel(title_string, fontsize = 6)
+            twinxs['twinx'+str(x)+str(y)].set_yticks([])
 
             if x == 0:
                 axr.set_ylabel(r"Core (\texttt{\${}KernelID})", fontsize = 6)

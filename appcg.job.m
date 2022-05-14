@@ -59,7 +59,7 @@ JobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet
 
 
 (* ::Input::Initialization:: *)
-StudyTheory[JobsBatch,"Import"->False];
+StudyTheory[JobsBatch,"Import"->False,"Brackets"->False];
 
 
 (* ::Input::Initialization:: *)
