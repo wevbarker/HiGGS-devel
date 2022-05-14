@@ -4548,6 +4548,7 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))]JDS2[-x,-y,-z,v];
 
+
 $ConstraintLagrangianMeasure4=- CD[-w][CD[-v][((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
 cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+

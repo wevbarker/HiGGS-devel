@@ -103,7 +103,6 @@ Global`$Node="";
 ];
 *)
 Print["Some hard-to-suppress error messages may appear below..."];
-Print[xAct`xCore`Private`bars];
 Quiet[
 DistributeDefinitions@$Timing;
 DistributeDefinitions@Global`$Timing;
@@ -114,7 +113,7 @@ DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
 ];
 ];
-Print["...no further errors should appear below."];
+Print["...and that should be it: no further errors should appear below here."];
 Print[xAct`xCore`Private`bars];
 (*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
 
