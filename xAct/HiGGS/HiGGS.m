@@ -102,18 +102,20 @@ Global`$Timing=False;
 Global`$Node="";
 ];
 *)
+Print["Some hard-to-suppress error messages may appear below..."];
+Print[xAct`xCore`Private`bars];
 Quiet[
 DistributeDefinitions@$Timing;
 DistributeDefinitions@Global`$Timing;
-Print["asking about node"];
-Print@$Node;
 If[!ValueQ@$Node,
 $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
 DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
 ];
-Print@$Node;];
+];
+Print["...no further errors should appear below."];
+Print[xAct`xCore`Private`bars];
 (*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
 
 

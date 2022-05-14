@@ -3906,19 +3906,23 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefSuperHamiltonian[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_]:=Module[{MainPart,GradPart,res},
+Options[DefSuperHamiltonian]={"Order"->1};
+
+
+(* ::Input::Initialization:: *)
+DefSuperHamiltonian[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_,OptionsPattern[]]:=Module[{MainPart,GradPart,res},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"super-Hamiltonian for the theory",""}];
-MainPart=J[]((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
-cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
-cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
-cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p  PhiA0p[]PhiA0p[]+
-cPerpA0m AlpPerpPerp0m ShellOrigA0m  PhiA0m[]PhiA0m[]+
-cPerpA1p AlpPerpPerp1p ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
-cPerpA1m AlpPerpPerp1m ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
-cPerpA2p AlpPerpPerp2p ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
-cPerpA2m AlpPerpPerp2m ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c])))-
+MainPart=J[]((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
+cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
+cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
+cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
+(1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p  PhiA0p[]PhiA0p[]+
+cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m  PhiA0m[]PhiA0m[]+
+cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
+cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
+cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
+cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c])))-
 (J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,e]PPara[-d,f]T[-a,-e,-f]+
@@ -3940,12 +3944,12 @@ MainPart=MainPart//CollectTensors;
 MainPart=MainPart/.$ToShellFreedoms;
 MainPart=MainPart//NoScalar;
 MainPart=MainPart/.$IfConstraintToTheoryNesterForm;
-MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
+MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
 GradPart=-V[k]G3[-b,n](CD[-n][BPiP[-k,j]H[-j,b]]-A[i,-k,-n]BPiP[-i,j]PPara[-j,m]H[-m,b]);
 GradPart=GradPart/.PADMActivate;
-GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->1];
+GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
 GradPart=MainPart+GradPart//ToNewCanonical;
 GradPart=GradPart//CollectTensors;
 HiGGSPrint["** DefTheory: The super-Hamiltonian is:"];
@@ -4328,52 +4332,52 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 IfBuild["VelocityToggle",
-{$ConstraintHamiltonianBilinearB0p=2(1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
+{$ConstraintHamiltonianBilinearB0p=2(1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p ( Lapse[]J[]PhiB0p[]PhiDB0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB0p[]PhiDS1B0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB0p[]]PhiDS2B0p[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB0p[]]PhiDS3B0p[-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearB1p=2(1/16)(cPerpB1p BetPerpPerp1p ShellOrigB1p ( Lapse[]J[]PhiB1p[-a,-b]PhiDB1p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearB1p=2(1/16)(cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p ( Lapse[]J[]PhiB1p[-a,-b]PhiDB1p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB1p[-a,-b]PhiDS1B1p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB1p[-a,-b]]PhiDS2B1p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB1p[-a,-b]]PhiDS3B1p[a,b,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearB1m=2(1/16)(cPerpB1m BetPerpPerp1m ShellOrigB1m ( Lapse[]J[]PhiB1m[-a]PhiDB1m[a,-x,-y,-z]-
+$ConstraintHamiltonianBilinearB1m=2(1/16)(cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m ( Lapse[]J[]PhiB1m[-a]PhiDB1m[a,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB1m[-a]PhiDS1B1m[a,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB1m[-a]]PhiDS2B1m[a,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB1m[-a]]PhiDS3B1m[a,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearB2p=2(1/16)(cPerpB2p BetPerpPerp2p ShellOrigB2p ( Lapse[]J[]PhiB2p[-a,-b]PhiDB2p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearB2p=2(1/16)(cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p ( Lapse[]J[]PhiB2p[-a,-b]PhiDB2p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiB2p[-a,-b]PhiDS1B2p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS2B2p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiB2p[-a,-b]]PhiDS3B2p[a,b,-x,-y,-z,v,w]]))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA0p=2(1/16)((1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p ( Lapse[]J[]PhiA0p[]PhiDA0p[-x,-y,-z]-
+$ConstraintHamiltonianBilinearA0p=2(1/16)((1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p ( Lapse[]J[]PhiA0p[]PhiDA0p[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0p[]PhiDS1A0p[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0p[]]PhiDS2A0p[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA0p[]]PhiDS3A0p[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA0m=2(1/16)((1/4)(cPerpA0m AlpPerpPerp0m ShellOrigA0m ( Lapse[]J[]PhiA0m[]PhiDA0m[-x,-y,-z]-
+$ConstraintHamiltonianBilinearA0m=2(1/16)((1/4)(cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m ( Lapse[]J[]PhiA0m[]PhiDA0m[-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA0m[]PhiDS1A0m[-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA0m[]]PhiDS2A0m[-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA0m[]]PhiDS3A0m[-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA1p=2(1/16)((1/4)(cPerpA1p AlpPerpPerp1p ShellOrigA1p ( Lapse[]J[]PhiA1p[-a,-b]PhiDA1p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA1p=2(1/16)((1/4)(cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p ( Lapse[]J[]PhiA1p[-a,-b]PhiDA1p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]PhiDS1A1p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS2A1p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA1p[-a,-b]]PhiDS3A1p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA1m=2(1/16)((1/4)(cPerpA1m AlpPerpPerp1m ShellOrigA1m ( Lapse[]J[]PhiA1m[-a]PhiDA1m[a,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA1m=2(1/16)((1/4)(cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m ( Lapse[]J[]PhiA1m[-a]PhiDA1m[a,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA1m[-a]PhiDS1A1m[a,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS2A1m[a,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA1m[-a]]PhiDS3A1m[a,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA2p=2(1/16)((1/4)(cPerpA2p AlpPerpPerp2p ShellOrigA2p ( Lapse[]J[]PhiA2p[-a,-b]PhiDA2p[a,b,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA2p=2(1/16)((1/4)(cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p ( Lapse[]J[]PhiA2p[-a,-b]PhiDA2p[a,b,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]PhiDS1A2p[a,b,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS2A2p[a,b,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA2p[-a,-b]]PhiDS3A2p[a,b,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
 
-$ConstraintHamiltonianBilinearA2m=2(1/16)((1/4)(cPerpA2m AlpPerpPerp2m ShellOrigA2m ( Lapse[]J[]PhiA2m[-a,-b,-c]PhiDA2m[a,b,c,-x,-y,-z]-
+$ConstraintHamiltonianBilinearA2m=2(1/16)((1/4)(cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m ( Lapse[]J[]PhiA2m[-a,-b,-c]PhiDA2m[a,b,c,-x,-y,-z]-
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]PhiDS1A2m[a,b,c,-x,-y,-z,v]]+
  CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS2A2m[a,b,c,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]PhiA2m[-a,-b,-c]]PhiDS3A2m[a,b,c,-x,-y,-z,v,w]])))//ToCanonical//CollectTensors;
@@ -4457,16 +4461,16 @@ cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])]RDS3[-a,-b,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
 (*PB on the measure factor in front of constraint and Lagrangian parts*)
-$ConstraintLagrangianMeasure1=((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
-cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
-cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
-cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p  PhiA0p[]PhiA0p[]+
-cPerpA0m AlpPerpPerp0m ShellOrigA0m  PhiA0m[]PhiA0m[]+
-cPerpA1p AlpPerpPerp1p ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
-cPerpA1m AlpPerpPerp1m ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
-cPerpA2p AlpPerpPerp2p ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
-cPerpA2m AlpPerpPerp2m ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
+$ConstraintLagrangianMeasure1=((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
+cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
+cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
+cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
+(1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p  PhiA0p[]PhiA0p[]+
+cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m  PhiA0m[]PhiA0m[]+
+cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
+cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
+cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
+cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
 (T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,p]PPara[-d,q]T[-a,-p,-q]+
@@ -4486,16 +4490,16 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))JD[-x,-y,-z];
 
-$ConstraintLagrangianMeasure2=- CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
-cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
-cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
-cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p  PhiA0p[]PhiA0p[]+
-cPerpA0m AlpPerpPerp0m ShellOrigA0m  PhiA0m[]PhiA0m[]+
-cPerpA1p AlpPerpPerp1p ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
-cPerpA1m AlpPerpPerp1m ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
-cPerpA2p AlpPerpPerp2p ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
-cPerpA2m AlpPerpPerp2m ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
+$ConstraintLagrangianMeasure2=- CD[-v][((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
+cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
+cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
+cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
+(1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p  PhiA0p[]PhiA0p[]+
+cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m  PhiA0m[]PhiA0m[]+
+cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
+cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
+cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
+cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
 (T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,p]PPara[-d,q]T[-a,-p,-q]+
@@ -4515,16 +4519,16 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))JDS1[-x,-y,-z,v]];
 
-$ConstraintLagrangianMeasure3= CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
-cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
-cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
-cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p  PhiA0p[]PhiA0p[]+
-cPerpA0m AlpPerpPerp0m ShellOrigA0m  PhiA0m[]PhiA0m[]+
-cPerpA1p AlpPerpPerp1p ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
-cPerpA1m AlpPerpPerp1m ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
-cPerpA2p AlpPerpPerp2p ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
-cPerpA2m AlpPerpPerp2m ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
+$ConstraintLagrangianMeasure3= CD[-v][((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
+cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
+cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
+cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
+(1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p  PhiA0p[]PhiA0p[]+
+cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m  PhiA0m[]PhiA0m[]+
+cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
+cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
+cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
+cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
 (T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,p]PPara[-d,q]T[-a,-p,-q]+
@@ -4544,16 +4548,16 @@ cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]))]JDS2[-x,-y,-z,v];
 
-$ConstraintLagrangianMeasure4=- CD[-w][CD[-v][((1/16)(cPerpB0p BetPerpPerp0p ShellOrigB0p PhiB0p[]PhiB0p[]+
-cPerpB1p BetPerpPerp1p ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
-cPerpB1m BetPerpPerp1m ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
-cPerpB2p BetPerpPerp2p ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
-(1/4)(cPerpA0p AlpPerpPerp0p ShellOrigA0p  PhiA0p[]PhiA0p[]+
-cPerpA0m AlpPerpPerp0m ShellOrigA0m  PhiA0m[]PhiA0m[]+
-cPerpA1p AlpPerpPerp1p ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
-cPerpA1m AlpPerpPerp1m ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
-cPerpA2p AlpPerpPerp2p ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
-cPerpA2m AlpPerpPerp2m ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
+$ConstraintLagrangianMeasure4=- CD[-w][CD[-v][((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
+cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
+cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
+cPerpB2p (1/BetPerpPerp2p) ShellOrigB2p  PhiB2p[-a,-b]PhiB2p[a,b]+
+(1/4)(cPerpA0p (1/AlpPerpPerp0p) ShellOrigA0p  PhiA0p[]PhiA0p[]+
+cPerpA0m (1/AlpPerpPerp0m) ShellOrigA0m  PhiA0m[]PhiA0m[]+
+cPerpA1p (1/AlpPerpPerp1p) ShellOrigA1p  PhiA1p[-a,-b]PhiA1p[a,b]+
+cPerpA1m (1/AlpPerpPerp1m) ShellOrigA1m  PhiA1m[-a]PhiA1m[a]+
+cPerpA2p (1/AlpPerpPerp2p) ShellOrigA2p  PhiA2p[-a,-b]PhiA2p[a,b]+
+cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c]))-
 (T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,p]PPara[-d,q]T[-a,-p,-q]+
@@ -5313,7 +5317,10 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->True};
+Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->True,"Order"->1};
+
+
+(* ::Input::Initialization:: *)
 DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
 (*Build the HiGGS environment*)
 (*$Timing=True;*)
@@ -5324,7 +5331,7 @@ Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"p
 (*Define the theory*)
 Print["here passed optval in deftheory parallel"];
 Print@OptionValue@"Velocities";
-DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities"];
+DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities","Order"->OptionValue@"Order"];
 ForceTiming[];
 ];
 DistributeDefinitions@DefTheoryParallel;
@@ -5339,8 +5346,11 @@ res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((Lis
 res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False};
+Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False,"Order"->1};
 UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
+
+
+(* ::Input::Initialization:: *)
 (*removed timing wrapper since it is better to show the internal steps -- these get washed out in the plot*)
 (*DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},*)
 DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
@@ -5372,7 +5382,7 @@ DefFieldStrengthShell[$ToShellFreedoms,$Theory];
 DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
+DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order"];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 Print["here passed optval in deftheory"];
