@@ -4,5 +4,12 @@ jobs.png
 *.jpg
 *.eps
 
-svy/
+.nfs*
+.directory_tree
+.server_tests
+sandbox.nb
+handwritten_notes.svgz
+
+svy
+bin
 
