@@ -3938,10 +3938,13 @@ MainPart=MainPart/.ToBet;
 MainPart=MainPart/.PActivate;
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart/.PADMActivate;
+(*Remember to enforce zeros above zeros in advance*)
+MainPart=MainPart/.$ToShellFreedoms;
+MainPart=MainPart//ToNewCanonical;
+MainPart=MainPart//CollectTensors;
 MainPart=MainPart/.$ToTheory;
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
-MainPart=MainPart/.$ToShellFreedoms;
 MainPart=MainPart//NoScalar;
 MainPart=MainPart/.$IfConstraintToTheoryNesterForm;
 MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
@@ -4614,8 +4617,10 @@ res=res//ToNewCanonical;
 res=res/.TocPerp;
 res=res/.ToAlp;
 res=res/.ToBet;
-res=res/.$ToTheory;
+(*The order here will be very important, you must kill off constrained terms with 0 before the mu function on the transfer couplings give you 1/0*)
 res=res/.$ToShellFreedoms;
+res=res//ToNewCanonical;(*if you simplify, you increase chance of killing bad terms...*)
+res=res/.$ToTheory;
 res=res//ToNewCanonical;
 res=res/.PActivate//ToNewCanonical;
 res=res/.PADMActivate//ToNewCanonical;
