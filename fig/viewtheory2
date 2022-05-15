@@ -1,8 +1,0 @@
-In[]:= PoissonBracket[PhiA0m[], TP0m[], "ToShell" -> True]; 
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/viewtheory28-1fig.pdf}
-\end{flushleft}
-\vspace{-7pt}
-|

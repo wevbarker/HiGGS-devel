@@ -1,8 +1,0 @@
-In[]:= PoissonBracket[PhiA2m[-i, -j, -k], TP2m[-l, -m, -n], "ToShell" -> True]; 
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/viewtheory312-1fig.pdf}
-\end{flushleft}
-\vspace{-7pt}
-|
