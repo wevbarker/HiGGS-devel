@@ -5,6 +5,7 @@ jobs.png
 *.eps
 
 .nfs*
+*.nfs*
 .directory_tree
 .server_tests
 sandbox.nb
