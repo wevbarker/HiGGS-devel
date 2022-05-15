@@ -26,7 +26,7 @@ xAct`HiGGS`$Version={"2.2.1",{2022,2,1}};
 (* ::Input::Initialization:: *)
 (* HiGGS, Hamiltonian analysis of Poincare gauge theory *)
 
-(* Copyright (C) 2005-2018 Will E. V. Barker *)
+(* Copyright (C) 2022 Will E. V. Barker *)
 
 (* This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License as
@@ -60,7 +60,7 @@ You should have received a copy of the GNU General Public License
 
 (* :Package Version: 2.2.1 *)
 
-(* :Copyright: Will E. V. Barker (2005-2018) *)
+(* :Copyright: Will E. V. Barker (2022) *)
 
 (* :History: see HiGGS.History *)
 
@@ -88,7 +88,7 @@ SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 
 (* ::Input::Initialization:: *)
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
-Print["CopyRight (C) 2005-2018, Will E. V. Barker, under the General Public License."];
+Print["CopyRight (C) 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["This free version of HiGGS is an open source dependent of the xAct bundle, but NOT an official part thereof."];
 Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
