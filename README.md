@@ -74,5 +74,4 @@ xAct
 
 ## What are peta4 and appcg? 
 
-
-
+The files `peta4.*` and `appcg.*` refer to the jobs which implement various unit tests and the HiGGS Commissioning Survey. The names refer to two computing services: Peta4 is a supercomputer, the CPU component of the heterogeneous CSD3 facility.
