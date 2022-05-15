@@ -12,6 +12,8 @@ Users of HiGGS, including authors of derivative works, must cite the 2022 HiGGS 
 arXiv:
 arXiv:
 
+These conditions apply to all software in this repository, including HPC visualisation tools.
+
 ## About
 
 HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
@@ -74,4 +76,8 @@ xAct
 
 ## What are peta4 and appcg? 
 
-The files `peta4.*` and `appcg.*` refer to the jobs which implement various unit tests and the HiGGS Commissioning Survey. The names refer to two computing services: Peta4 is a supercomputer, the CPU component of the heterogeneous CSD3 facility.
+The files `peta4.*` and `appcg.*` refer to the jobs which implement the HiGGS Commissioning Survey and various unit tests. The names refer to two computing services: 
+1. Peta4 is a supercomputer, the CPU component of Cambridge University's heterogeneous CSD3 facility.
+2. appcg is a small compute server belonging to the Cavendish Laboratory Astrophysics Group.
+
+These sources are included to give inspiration to users who which to perform HPC surveys, though the user's architecture may well differ.
