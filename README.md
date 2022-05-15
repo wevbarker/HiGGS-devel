@@ -35,6 +35,12 @@ A local install might be at:
 
 ## Quickstart 
 
+
+The package loads just like any other part of `xAct`, just open a fresh notebook and run:
+```
+Needs["xAct`HiGGS`"]
+```
+
 ## What's in the box? 
 
 ```
@@ -66,10 +72,7 @@ xAct
         └── init.wl
 ```
 
+## What are peta4 and appcg? 
 
-The package loads just like any other part of `xAct`, just open a fresh notebook and run:
-```
-Needs["xAct`HiGGS`"]
-```
 
 
