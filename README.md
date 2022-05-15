@@ -18,15 +18,13 @@ HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hami
 
 ## Install
 
-Make sure you have installed xAct.
-
-Download HiGGS:
+1. Make sure you have installed xAct.
+2. Download HiGGS:
 ```
 git clone https://github.com/wevbarker/HiGGS
 cd HiGGS
 ```
-
-Place the `xAct/HiGGS` directory relative to your `xAct` install. A global install might be at: 
+3. Place the `xAct/HiGGS` directory relative to your `xAct` install. A global install might be at: 
 ```
 /usr/share/Mathematica/Applications/xAct/HiGGS
 ```
