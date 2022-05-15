@@ -1,13 +1,13 @@
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## License
 
-Copyright © 2022 Will Barker
+Copyright © 2022 Will E. V. Barker
 
 HiGGS is distributed as free software under the GNU General Public License (GPL).
 
 HiGGS is provided without warranty, or the implied warranty of merchantibility or fitness for a particular purpose.
 
-Users of HiGGS, including authors of derivative works, must cite the HiGGS papers in any publications:
+Users of HiGGS, including authors of derivative works, must cite the 2022 HiGGS papers in their resulting publications:
 
 arXiv:
 arXiv:
@@ -19,11 +19,13 @@ HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hami
 ## Install
 
 Make sure you have installed xAct.
+
 Download HiGGS:
 ```
 git clone https://github.com/wevbarker/HiGGS
 cd HiGGS
 ```
+
 Place the `xAct/HiGGS` directory relative to your `xAct` install. A global install might be at: 
 ```
 /usr/share/Mathematica/Applications/xAct/HiGGS
@@ -33,9 +35,9 @@ A local install might be at:
 ~/.Mathematica/Applications/xAct/HiGGS
 ```
 
-## what's in the box? 
+## Quickstart 
 
-## what's in the box? 
+## What's in the box? 
 
 ```
 xAct
