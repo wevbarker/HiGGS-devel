@@ -54,7 +54,7 @@ BuildHiGGS[];
 
 
 (* ::Input::Initialization:: *)
-StudyTheory[{"simple_spin_1p_A3A6B1B2B3_velocities"<>ToString@$Node,{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}},"Import"->False,"Velocities"->True];
+StudyTheory[{{"simple_spin_1p_A3A6B1B2B3_velocities"<>ToString@$Node,{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}},"Import"->False,"Velocities"->True];
 (*StudyTheory[JobsBatch,"Import"\[Rule]False,"Velocities"\[Rule]False];*)
 
 
