@@ -1,4 +1,6 @@
 ![license](https://img.shields.io/github/license/wevbarker/HiGGS)
+[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
+
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## License
