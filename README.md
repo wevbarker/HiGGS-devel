@@ -54,6 +54,7 @@ DefTheory[{Alp1 == 0, Alp2 == 0, Alp3 == 0, Alp4 == 0, Alp5 == 0,
     cAlp3 == 0, cAlp4 == 0, cAlp5 == 0, cAlp6 == 0, cBet1 == 0, 
    cBet2 == 0, cBet3 == 0}, "Export" -> "EinsteinCartan"];
 ```
+More general examples can be found in the notebook `./tutor.nb`.
 
 ## What's in the box? 
 
