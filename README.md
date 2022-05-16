@@ -4,6 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
+## v 1.0.0-beta
 ## License
 
 Copyright © 2022 Will E. V. Barker

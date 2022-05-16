@@ -20,7 +20,7 @@
 
 
 (* ::Input::Initialization:: *)
-xAct`HiGGS`$Version={"2.2.1",{2022,2,1}};
+xAct`HiGGS`$Version={"1.0.0-beta",{2022,2,1}};
 
 
 (* ::Input::Initialization:: *)
@@ -58,7 +58,7 @@ You should have received a copy of the GNU General Public License
   
 (* :Context: xAct`HiGGS` *)
 
-(* :Package Version: 2.2.1 *)
+(* :Package Version: 1.0.0-beta *)
 
 (* :Copyright: Will E. V. Barker (2022) *)
 
@@ -68,7 +68,7 @@ You should have received a copy of the GNU General Public License
 
 (* :Source: HiGGS.nb *)
 
-(* :Mathematica Version: 6.0 and later *)
+(* :Mathematica Version: 11.3 and later *)
 
 (* :Limitations: 
 	- many *)
