@@ -28,7 +28,7 @@ HiGGS is an `unofficial' part of the [xAct bundle](http://www.xact.es/). It prov
 	git clone https://github.com/wevbarker/HiGGS
 	cd HiGGS
 	```
-3. Place the `/xAct/HiGGS` directory relative to your xAct install. A global install might be at: 
+3. Place the `./xAct/HiGGS` directory relative to your xAct install. A global install might have ended up at: 
 	```
 	/usr/share/Mathematica/Applications/xAct/HiGGS
 	```
@@ -37,7 +37,7 @@ HiGGS is an `unofficial' part of the [xAct bundle](http://www.xact.es/). It prov
 
 
 The package loads just like any other part of `xAct`, just open a fresh notebook and run:
-```
+```wolfram
 Needs["xAct`HiGGS`"]
 ```
 
