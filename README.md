@@ -18,7 +18,7 @@ These conditions apply to all software in this repository, including HPC visuali
 
 ## About
 
-HiGGS is an `unofficial' part of the [xAct bundle](http://www.xact.es/). It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
+HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
 
 ## Install
 
@@ -74,7 +74,7 @@ xAct
 ```
 The file `init.wl` is called when the package is invoked, and points to `HiGGS.m`, a small Wolfram language file and main package file sourced by the notebook `HiGGS.nb`. 
 
-When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiGGS_sources.m` - the larger `physics package' sourced by `HiGGS_source.nb`.
+When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiGGS_sources.m` - the larger "physics package" sourced by `HiGGS_source.nb`.
 
 During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are incorporated; these contain some heavy expressions.
 
