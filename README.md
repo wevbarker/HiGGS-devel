@@ -35,12 +35,11 @@ HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It prov
 
 ## Quickstart 
 
-
 The package loads just like any other part of `xAct`, just open a fresh notebook and run:
 ```wolfram
 Needs["xAct`HiGGS`"]
 ```
-This 
+This loads the package, along with its dependencies in the xAct bundle. However it does not 
 
 ## What's in the box? 
 
@@ -78,11 +77,14 @@ When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiG
 
 During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are incorporated; these contain some heavy expressions.
 
+The sub-package `HiGGS_variations.m` incorporates 
+	The current version of \HiGGS{} incorporates elements of Cyril Pitrou's code from the repository at \href{https://github.com/xAct-contrib/examples}{www.github.com/xAct-contrib/examples}.
+
 The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source notebooks.
 
 ## What are peta4 and appcg? 
 
-The files `/peta4.*` and `/appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. The names refer to two computing services: 
+The files `./peta4.*` and `./appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. The names refer to two computing services: 
 1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of the heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility belonging to the [University of Cambridge](https://www.cam.ac.uk/).
 2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group]().
 
