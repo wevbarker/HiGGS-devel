@@ -32,6 +32,7 @@ HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It prov
 	```bash
 	/usr/share/Mathematica/Applications/xAct/HiGGS
 	```
+4. Don't worry about the files `./peta4.*`, `./appcg.*` or `./tutor.*` - these are included as examples and are not part of the package.
 
 ## Quickstart 
 
