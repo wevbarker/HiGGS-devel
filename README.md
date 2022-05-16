@@ -76,7 +76,7 @@ The file `init.wl` is called when the package is invoked, and points to `HiGGS.m
 ## What are peta4 and appcg? 
 
 The files `/peta4.*` and `/appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. The names refer to two computing services: 
-1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of Cambridge University's heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility.
+1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of [Cambridge University](https://www.cam.ac.uk/)'s heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility.
 2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group]().
 
 These sources are included to give inspiration to users who which to perform HPC surveys, though the user's architecture may well differ.
