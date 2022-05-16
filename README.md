@@ -1,7 +1,7 @@
 ![license](https://img.shields.io/github/license/wevbarker/HiGGS)
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/paper-b)
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/paper-c)
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
+[![arXiv](https://img.shields.io/badge/arXiv-paper-b-b31b1b.svg)](https://arxiv.org/abs/paper-b)
+[![arXiv](https://img.shields.io/badge/arXiv-paper-c-b31b1b.svg)](https://arxiv.org/abs/paper-c)
+[![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## License
@@ -27,15 +27,20 @@ HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hami
 
 1. Make sure you have installed xAct.
 2. Download HiGGS:
+
 ```
 git clone https://github.com/wevbarker/HiGGS
 cd HiGGS
 ```
+
 3. Place the `/xAct/HiGGS` directory relative to your xAct install. A global install might be at: 
+
 ```
 /usr/share/Mathematica/Applications/xAct/HiGGS
 ```
+
 A local install might be at:
+
 ```
 ~/.Mathematica/Applications/xAct/HiGGS
 ```
