@@ -77,7 +77,7 @@ When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiG
 
 During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are incorporated; these contain some heavy expressions.
 
-The sub-package `HiGGS_variations.m` incorporates elements of Cyril Pitrou's code from [this repository](https://github.com/xAct-contrib/examples}{www.github.com/xAct-contrib/examples).
+The sub-package `HiGGS_variations.m` incorporates elements of [Cyril Pitrou's](https://github.com/CyrilPitrou) code from [this repository](https://github.com/xAct-contrib/examples}{www.github.com/xAct-contrib/examples).
 
 The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source notebooks.
 
