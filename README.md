@@ -75,7 +75,9 @@ xAct
     │       ├── NonCanonicalPhiToggle.mx
     │       ├── O13ProjectionsToggle.mx
     │       ├── ProjectionNormalisationsToggle.mx
-    │       └── VelocityToggle.mx
+    │       ├── VelocityToggle.mx
+    │       └── VelocityToggletmp.mx
+    ├── COPYING
     ├── Documentation
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
@@ -96,6 +98,8 @@ During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are i
 The sub-package `HiGGS_variations.m` incorporates elements of [Cyril Pitrou's](https://github.com/CyrilPitrou) code from [this repository](https://github.com/xAct-contrib/examples}{www.github.com/xAct-contrib/examples).
 
 The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source notebooks.
+
+The license is in `COPYING`.
 
 ## What are peta4 and appcg? 
 
