@@ -24,7 +24,7 @@ HiGGS is an `unofficial' part of the [xAct bundle](http://www.xact.es/). It prov
 
 1. Make sure you have [installed xAct](http://www.xact.es/download.html).
 2. Download HiGGS:
-	```bash
+	```bash git
 	git clone https://github.com/wevbarker/HiGGS
 	cd HiGGS
 	```
