@@ -37,9 +37,13 @@ HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It prov
 
 The package loads just like any other part of `xAct`, just open a fresh notebook and run:
 ```wolfram
-Needs["xAct`HiGGS`"]
+Needs["xAct`HiGGS`"];
 ```
-This loads the package, along with its dependencies in the xAct bundle. However it does not 
+This loads the package (i.e. the names of the functions provided), along with its dependencies in the xAct bundle. However it does _not_ load the physics. To construct the HiGGS environment, one must run
+```wolfram
+BuildHiGGS[];
+```
+The 
 
 ## What's in the box? 
 
