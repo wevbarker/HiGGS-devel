@@ -18,7 +18,7 @@ These conditions apply to all software in this repository, including HPC visuali
 
 ## About
 
-HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
+HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It provides tools for the Hamiltonian constraint analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion. HiGGS can be used on a desktop PC, but it is parallelised for theory surveys on clusters and supercomputers.
 
 ## Install
 
