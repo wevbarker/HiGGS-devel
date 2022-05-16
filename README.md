@@ -21,11 +21,11 @@ These conditions apply to all software in this repository, including HPC visuali
 
 ## About
 
-HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
+HiGGS is an `unofficial' part of the [xAct](http://www.xact.es/) bundle. It provides tools for the Hamiltonian analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion.
 
 ## Install
 
-1. Make sure you have installed xAct.
+1. Make sure you have [installed xAct](http://www.xact.es/download.html).
 2. Download HiGGS:
 	```
 	git clone https://github.com/wevbarker/HiGGS
@@ -78,8 +78,8 @@ The file `init.wl` is called when
 
 ## What are peta4 and appcg? 
 
-The files `/peta4.*` and `/appcg.*` refer to the jobs which implement the HiGGS Commissioning Survey and various unit tests. The names refer to two computing services: 
-1. Peta4 is a supercomputer, the CPU component of Cambridge University's heterogeneous CSD3 facility.
-2. appcg is a small, private compute server belonging to the Cavendish Laboratory Astrophysics Group.
+The files `/peta4.*` and `/appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. The names refer to two computing services: 
+1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of Cambridge University's heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility.
+2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group](https://www.astro.phy.cam.ac.uk/).
 
 These sources are included to give inspiration to users who which to perform HPC surveys, though the user's architecture may well differ.
