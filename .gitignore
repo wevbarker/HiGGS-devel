@@ -11,7 +11,7 @@ jobs.png
 sandbox.nb
 handwritten_notes.svgz
 
-tutor.*
+#	tutor.*
 
 
 README.dir.sh
