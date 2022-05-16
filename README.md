@@ -1,3 +1,5 @@
+https://img.shields.io/github/license/wevbarker/HiGGS
+
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## License
 
@@ -73,6 +75,7 @@ xAct
     └── Kernel
         └── init.wl
 ```
+The file `init.wl` is called when 
 
 ## What are peta4 and appcg? 
 
