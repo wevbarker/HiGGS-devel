@@ -43,7 +43,10 @@ This loads the package (i.e. the names of the functions provided), along with it
 ```wolfram
 BuildHiGGS[];
 ```
-The 
+The build process may take about a minute or so. When it has concluded, you should be able to proceed to science. For example, try evaluating the Poisson bracket between the 0^+
+```wolfram
+PoissonBracket[PiPB2p[-a, -b], TP1m[-c], "ToShell" -> False];
+```
 
 ## What's in the box? 
 
