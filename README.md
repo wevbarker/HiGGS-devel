@@ -24,12 +24,12 @@ HiGGS is an `unofficial' part of the [xAct bundle](http://www.xact.es/). It prov
 
 1. Make sure you have [installed xAct](http://www.xact.es/download.html).
 2. Download HiGGS:
-	```
+	```bash
 	git clone https://github.com/wevbarker/HiGGS
 	cd HiGGS
 	```
 3. Place the `./xAct/HiGGS` directory relative to your xAct install. A global install might have ended up at: 
-	```
+	```bash
 	/usr/share/Mathematica/Applications/xAct/HiGGS
 	```
 
