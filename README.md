@@ -90,7 +90,7 @@ The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source not
 
 ## What are peta4 and appcg? 
 
-The files `./peta4.*` and `./appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. The names refer to two computing services: 
+The files `./peta4.*` and `./appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. HiGGS does _not_ need these files to function. The names refer to two computing services: 
 1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of the heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility belonging to the [University of Cambridge](https://www.cam.ac.uk/).
 2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group]().
 
