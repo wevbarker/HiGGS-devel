@@ -8,7 +8,7 @@
 
 Copyright © 2022 Will E. V. Barker
 
-HiGGS is distributed as free software under the GNU General Public License (GPL).
+HiGGS is distributed as free software under the [GNU General Public License (GPL)](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 HiGGS is provided without warranty, or the implied warranty of merchantibility or fitness for a particular purpose.
 
