@@ -20,7 +20,8 @@
 #! echo $numfiles
 
 #SBATCH --cpus-per-task=32
-#SBATCH --array=0-13
+#SBATCH --array=0-1
+#! #SBATCH --array=0-13
 
 #SBATCH --time=02:00:00
 #SBATCH --mail-type=ALL

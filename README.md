@@ -26,7 +26,7 @@ HiGGS is an `unofficial' part of the xAct bundle. It provides tools for the Hami
 git clone https://github.com/wevbarker/HiGGS
 cd HiGGS
 ```
-3. Place the `xAct/HiGGS` directory relative to your `xAct` install. A global install might be at: 
+3. Place the `/xAct/HiGGS` directory relative to your xAct install. A global install might be at: 
 ```
 /usr/share/Mathematica/Applications/xAct/HiGGS
 ```
@@ -45,23 +45,23 @@ Needs["xAct`HiGGS`"]
 
 ## What's in the box? 
 
+The HiGGS package has the following structure:
 ```
 xAct
 └── HiGGS
     ├── bin
-    │   ├── build
-    │   │   ├── CanonicalPhiToggle.mx
-    │   │   ├── CDPiPToCDPiPO3.mx
-    │   │   ├── ChiPerpToggle.mx
-    │   │   ├── ChiSingToggle.mx
-    │   │   ├── CompleteO3ProjectionsToggle.mx
-    │   │   ├── GeneralComplementsToggle.mx
-    │   │   ├── NesterFormIfConstraints.mx
-    │   │   ├── NonCanonicalPhiToggle.mx
-    │   │   ├── O13ProjectionsToggle.mx
-    │   │   ├── ProjectionNormalisationsToggle.mx
-    │   │   └── VelocityToggle.mx
-    │   └── HiGGS.mx
+    │   └── build
+    │       ├── CanonicalPhiToggle.mx
+    │       ├── CDPiPToCDPiPO3.mx
+    │       ├── ChiPerpToggle.mx
+    │       ├── ChiSingToggle.mx
+    │       ├── CompleteO3ProjectionsToggle.mx
+    │       ├── GeneralComplementsToggle.mx
+    │       ├── NesterFormIfConstraints.mx
+    │       ├── NonCanonicalPhiToggle.mx
+    │       ├── O13ProjectionsToggle.mx
+    │       ├── ProjectionNormalisationsToggle.mx
+    │       └── VelocityToggle.mx
     ├── Documentation
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
@@ -76,8 +76,8 @@ xAct
 
 ## What are peta4 and appcg? 
 
-The files `peta4.*` and `appcg.*` refer to the jobs which implement the HiGGS Commissioning Survey and various unit tests. The names refer to two computing services: 
+The files `/peta4.*` and `/appcg.*` refer to the jobs which implement the HiGGS Commissioning Survey and various unit tests. The names refer to two computing services: 
 1. Peta4 is a supercomputer, the CPU component of Cambridge University's heterogeneous CSD3 facility.
-2. appcg is a small compute server belonging to the Cavendish Laboratory Astrophysics Group.
+2. appcg is a small, private compute server belonging to the Cavendish Laboratory Astrophysics Group.
 
 These sources are included to give inspiration to users who which to perform HPC surveys, though the user's architecture may well differ.
