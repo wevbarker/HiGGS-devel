@@ -40,6 +40,7 @@ The package loads just like any other part of `xAct`, just open a fresh notebook
 ```wolfram
 Needs["xAct`HiGGS`"]
 ```
+This 
 
 ## What's in the box? 
 
@@ -71,7 +72,13 @@ xAct
     └── Kernel
         └── init.wl
 ```
-The file `init.wl` is called when the package is invoked, and points to `HiGGS.m`, a Wolfram language file and main package file sourced by the notebook `HiGGS.nb`. 
+The file `init.wl` is called when the package is invoked, and points to `HiGGS.m`, a small Wolfram language file and main package file sourced by the notebook `HiGGS.nb`. 
+
+When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiGGS_sources.m` - the larger `physics package' sourced by `HiGGS_source.nb`.
+
+During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are incorporated; these contain some heavy expressions.
+
+The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source notebooks.
 
 ## What are peta4 and appcg? 
 
