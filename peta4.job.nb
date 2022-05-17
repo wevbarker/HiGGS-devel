@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     60495,       1007]
-NotebookOptionsPosition[     58827,        971]
-NotebookOutlinePosition[     59249,        988]
-CellTagsIndexPosition[     59206,        985]
+NotebookDataLength[     61898,       1037]
+NotebookOptionsPosition[     60230,       1001]
+NotebookOutlinePosition[     60652,       1018]
+CellTagsIndexPosition[     60609,       1015]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -602,33 +602,63 @@ Cell[BoxData[
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"StudyTheory", "[", 
-   RowBox[{
-    RowBox[{"{", 
+  RowBox[{
+   RowBox[{"StudyTheory", "[", 
+    RowBox[{
      RowBox[{"{", 
-      RowBox[{
-       RowBox[{"\"\<simple_spin_1p_A3A6B1B2B3_velocities\>\"", "<>", 
-        RowBox[{"ToString", "@", "$Node"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<simple_spin_1p_A3A4A6B1B3_velocities\>\"", "<>", 
+         RowBox[{"ToString", "@", "$Node"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+          RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+          RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+          RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+          RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+          RowBox[{"Bet1", "==", "0"}], ",", 
+          RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+          RowBox[{"cAlp1", "==", "0"}], ",", 
+          RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+          RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+          RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+          RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+          RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+          RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+          RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}], ",", 
+     RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
+     RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"StudyTheory", "[", 
+     RowBox[{
+      RowBox[{"{", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
-         RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
-         RowBox[{"Bet1", "==", "0"}], ",", 
-         RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp1", "==", "0"}], ",", 
-         RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
-         RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}], ",", 
-    RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
-    RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+         RowBox[{"\"\<simple_spin_1p_A3A6B1B2B3_velocities\>\"", "<>", 
+          RowBox[{"ToString", "@", "$Node"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"Bet1", "==", "0"}], ",", 
+           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp1", "==", "0"}], ",", 
+           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}], ",", 
+      RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
+      RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"(*", 
    RowBox[{
@@ -786,8 +816,8 @@ Cell[BoxData[{
    3.8610769880049667`*^9}, {3.861684268542276*^9, 3.861684299185758*^9}, {
    3.8616844026187353`*^9, 3.86168441029397*^9}, {3.86168444939684*^9, 
    3.861684503511599*^9}, {3.861684621835538*^9, 3.861684631306999*^9}, {
-   3.8616855043251534`*^9, 
-   3.8616855080554247`*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
+   3.8616855043251534`*^9, 3.8616855080554247`*^9}, {3.861796606893694*^9, 
+   3.861796643653099*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
 297f506ffb31"],
 
 Cell[BoxData[
@@ -999,14 +1029,14 @@ Cell[11664, 264, 11710, 175, 163, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae
  InitializationCell->True],
 Cell[23377, 441, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
  InitializationCell->True],
-Cell[34493, 602, 12497, 188, 117, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[34493, 602, 13900, 218, 209, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[46993, 792, 435, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+Cell[48396, 822, 435, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
  InitializationCell->True],
-Cell[47431, 803, 202, 3, 36, "Text",ExpressionUUID->"636218a9-69ad-46db-aff0-325a7f81a551"],
-Cell[47636, 808, 374, 8, 47, "Input",ExpressionUUID->"e4217b10-d107-4106-b268-77b2f1425036",
+Cell[48834, 833, 202, 3, 36, "Text",ExpressionUUID->"636218a9-69ad-46db-aff0-325a7f81a551"],
+Cell[49039, 838, 374, 8, 47, "Input",ExpressionUUID->"e4217b10-d107-4106-b268-77b2f1425036",
  InitializationCell->True],
-Cell[48013, 818, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[49416, 848, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }
