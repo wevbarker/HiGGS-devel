@@ -3906,7 +3906,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-Options[DefSuperHamiltonian]={"Order"->1};
+Options[DefSuperHamiltonian]={"Order"->1,"ProtectSurface"->False};
 
 
 (* ::Input::Initialization:: *)
@@ -3952,7 +3952,9 @@ MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
 GradPart=-V[k]G3[-b,n](CD[-n][BPiP[-k,j]H[-j,b]]-A[i,-k,-n]BPiP[-i,j]PPara[-j,m]H[-m,b]);
 GradPart=GradPart/.PADMActivate;
+If[!OptionValue@"ProtectSurface",
 GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
+];
 GradPart=MainPart+GradPart//ToNewCanonical;
 GradPart=GradPart//CollectTensors;
 HiGGSPrint["** DefTheory: The super-Hamiltonian is:"];
@@ -5344,7 +5346,7 @@ res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((Lis
 res];
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False,"Order"->1};
+Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False,"Order"->1,"ProtectSurface"->False};
 UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
 
 
@@ -5380,7 +5382,7 @@ DefFieldStrengthShell[$ToShellFreedoms,$Theory];
 DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order"];
+DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
 DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
 If[OptionValue@"Velocities",
