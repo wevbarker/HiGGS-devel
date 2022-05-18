@@ -22,8 +22,14 @@ These conditions apply to all software in this repository, including HPC visuali
 
 HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It provides tools for the Hamiltonian constraint analysis (canoncical analysis or Dirac-Bergmann algorithm) of gravity with spacetime curvature and torsion. HiGGS can be used on a desktop PC, but it is parallelised for theory surveys on clusters and supercomputers.
 
-## Install
+## Installation
 
+#### Requirements 
+HiGGS has been tested in the following environment:
+- Linux x86 (64-bit)
+- Mathematica v 11.3.0.0
+- xAct v 1.2.0
+#### Install 
 1. Make sure you have [installed xAct](http://www.xact.es/download.html).
 2. Download HiGGS:
 	```bash, git
@@ -34,15 +40,6 @@ HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It prov
 	```bash
 	/usr/share/Mathematica/Applications/xAct/HiGGS
 	```
-4. Don't worry about the files `./peta4.*`, `./appcg.*` or `./tutor.*` - these are included as examples and are not part of the package.
-
-#### Requirements 
-
-HiGGS has been tested in the following environment:
-- Linux x86 (64-bit)
-- Mathematica v 11.3.0.0
-- xAct v 1.2.0
-
 ## Quickstart 
 
 The package loads just like any other part of `xAct`, just open a fresh notebook and run:
