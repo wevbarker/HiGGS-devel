@@ -61,7 +61,7 @@ DefTheory[{Alp1 == 0, Alp2 == 0, Alp3 == 0, Alp4 == 0, Alp5 == 0,
     cAlp3 == 0, cAlp4 == 0, cAlp5 == 0, cAlp6 == 0, cBet1 == 0, 
    cBet2 == 0, cBet3 == 0}, "Export" -> "EinsteinCartan"];
 ```
-More general examples can be found in the notebook `./tutor.nb`.
+More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`.
 
 ## What's in the box? 
 
@@ -114,6 +114,9 @@ xAct
     └── Kernel
         └── init.wl
 ```
+
+The license is in `COPYING`.
+
 The file `init.wl` is called when the package is invoked, and points to `HiGGS.m`, a small Wolfram language file and main package file sourced by the notebook `HiGGS.nb`. 
 
 When the HiGGS environment is actually built, `HiGGS.m` is actually running `HiGGS_sources.m` - the larger "physics package" sourced by `HiGGS_source.nb`.
@@ -122,13 +125,13 @@ During the course of the build, the binaries `./xAct/HiGGS/bin/build/*.mx` are i
 
 The sub-package `HiGGS_variations.m` incorporates elements of [Cyril Pitrou's](https://github.com/CyrilPitrou) code from [this repository](https://github.com/xAct-contrib/examples).
 
-The files `./xAct/HiGGS/Documentation/*.pdf` are carbon copies of the source notebooks.
+The files `HiGGS.pdf` and `HiGGS_sources.pdf` are carbon copies of the source notebooks.
 
-The license is in `COPYING`.
+The notebook `tutor.nb` contains some more basic examples.
 
 #### What are peta4 and appcg? 
 
-The files `./peta4.*` and `./appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. HiGGS does _not_ need these files to function. The names refer to two computing services: 
+The files `./xAct/HiGGS/Documentation/Examples/peta4.*` and `./xAct/HiGGS/Documentation/Examples/appcg.*` refer to the jobs which implement the [HiGGS Commissioning Survey](https://wevbarker.com/higgs.html) and various unit tests. HiGGS does _not_ need these files to function. The names refer to two computing services: 
 1. [Peta-4](https://www.hpc.cam.ac.uk/systems/peta-4) is a supercomputer, the CPU component of the heterogeneous [CSD3](https://www.hpc.cam.ac.uk/high-performance-computing) facility belonging to the [University of Cambridge](https://www.cam.ac.uk/).
 2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group]().
 
