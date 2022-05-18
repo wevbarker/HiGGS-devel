@@ -88,6 +88,25 @@ xAct
     │       └── VelocityToggletmp.mx
     ├── COPYING
     ├── Documentation
+    │   ├── Examples
+    │   │   ├── appcg.job.m
+    │   │   ├── appcg.job.nb
+    │   │   ├── appcg.job.sh
+    │   │   ├── appcg.plt.png
+    │   │   ├── appcg.plt.py
+    │   │   ├── appcg.plt.sh
+    │   │   ├── peta4.job.m
+    │   │   ├── peta4.job.nb
+    │   │   ├── peta4.job.sh
+    │   │   ├── peta4.job.slm
+    │   │   ├── peta4.plt.pdf
+    │   │   ├── peta4.plt.png
+    │   │   ├── peta4.plt.py
+    │   │   ├── peta4.plt.sh
+    │   │   ├── peta4.svy.m
+    │   │   ├── peta4.svy.nb
+    │   │   ├── tutor.m
+    │   │   └── tutor.nb
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
     ├── HiGGS.m
