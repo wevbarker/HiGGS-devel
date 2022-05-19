@@ -4147,22 +4147,22 @@ Partialf2DAPiv=NewVarAction[f2b,KKXP[-v,-q,-r,s]];
 If[OptionValue["Surficial"],{
 printer2={};
 printer2=printer2~Append~PrintTemporary[" ** PoissonBracket: Finding barred derivatives..."];
-BarPartialf1B=Partialf1B-ReplaceIndex[Evaluate[Partialf1DBz],-q->-w] A[w,-q,-z];
-BarPartialf2B=Partialf2B-ReplaceIndex[Evaluate[Partialf2DBz],-q->-w] A[w,-q,-z];
-BarPartialf1A=Partialf1A-ReplaceIndex[Evaluate[Partialf1DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf1DAz],-r->-w] A[w,-r,-z];
-BarPartialf2A=Partialf2A-ReplaceIndex[Evaluate[Partialf2DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf2DAz],-r->-w] A[w,-r,-z];
-BarPartialf1BPi=Partialf1BPi+ReplaceIndex[Evaluate[Partialf1DBPiz],q->w] A[q,-w,-z];
-BarPartialf2BPi=Partialf2BPi+ReplaceIndex[Evaluate[Partialf2DBPiz],q->w] A[q,-w,-z];
-BarPartialf1APi=Partialf1APi+ReplaceIndex[Evaluate[Partialf1DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf1DAPiz],r->w] A[r,-w,-z];
-BarPartialf2APi=Partialf2APi+ReplaceIndex[Evaluate[Partialf2DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf2DAPiz],r->w] A[r,-w,-z];
-BarVariationalf1B=BarPartialf1B-ManualCovariantDerivative[-z,Partialf1DBz,IndexList[z,r],w];
-BarVariationalf2B=BarPartialf2B-ManualCovariantDerivative[-z,Partialf2DBz,IndexList[z,r],w];
-BarVariationalf1A=BarPartialf1A-ManualCovariantDerivative[-z,Partialf1DAz,IndexList[z,s],w];
-BarVariationalf2A=BarPartialf2A-ManualCovariantDerivative[-z,Partialf2DAz,IndexList[z,s],w];
-BarVariationalf1BPi=BarPartialf1BPi-ManualCovariantDerivative[-z,Partialf1DBPiz,IndexList[z,-r],w];
-BarVariationalf2BPi=BarPartialf2BPi-ManualCovariantDerivative[-z,Partialf2DBPiz,IndexList[z,-r],w];
-BarVariationalf1APi=BarPartialf1APi-ManualCovariantDerivative[-z,Partialf1DAPiz,IndexList[z,-s],w];
-BarVariationalf2APi=BarPartialf2APi-ManualCovariantDerivative[-z,Partialf2DAPiz,IndexList[z,-s],w];
+BarPartialf1B=ReplaceDummies@(Partialf1B-ReplaceIndex[Evaluate[Partialf1DBz],-q->-w] A[w,-q,-z]);
+BarPartialf2B=ReplaceDummies@(Partialf2B-ReplaceIndex[Evaluate[Partialf2DBz],-q->-w] A[w,-q,-z]);
+BarPartialf1A=ReplaceDummies@(Partialf1A-ReplaceIndex[Evaluate[Partialf1DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf1DAz],-r->-w] A[w,-r,-z]);
+BarPartialf2A=ReplaceDummies@(Partialf2A-ReplaceIndex[Evaluate[Partialf2DAz],-q->-w] A[w,-q,-z]-ReplaceIndex[Evaluate[Partialf2DAz],-r->-w] A[w,-r,-z]);
+BarPartialf1BPi=ReplaceDummies@(Partialf1BPi+ReplaceIndex[Evaluate[Partialf1DBPiz],q->w] A[q,-w,-z]);
+BarPartialf2BPi=ReplaceDummies@(Partialf2BPi+ReplaceIndex[Evaluate[Partialf2DBPiz],q->w] A[q,-w,-z]);
+BarPartialf1APi=ReplaceDummies@(Partialf1APi+ReplaceIndex[Evaluate[Partialf1DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf1DAPiz],r->w] A[r,-w,-z]);
+BarPartialf2APi=ReplaceDummies@(Partialf2APi+ReplaceIndex[Evaluate[Partialf2DAPiz],q->w] A[q,-w,-z]+ReplaceIndex[Evaluate[Partialf2DAPiz],r->w] A[r,-w,-z]);
+BarVariationalf1B=ReplaceDummies@(BarPartialf1B-ManualCovariantDerivative[-z,Partialf1DBz,IndexList[z,r],w]);
+BarVariationalf2B=ReplaceDummies@(BarPartialf2B-ManualCovariantDerivative[-z,Partialf2DBz,IndexList[z,r],w]);
+BarVariationalf1A=ReplaceDummies@(BarPartialf1A-ManualCovariantDerivative[-z,Partialf1DAz,IndexList[z,s],w]);
+BarVariationalf2A=ReplaceDummies@(BarPartialf2A-ManualCovariantDerivative[-z,Partialf2DAz,IndexList[z,s],w]);
+BarVariationalf1BPi=ReplaceDummies@(BarPartialf1BPi-ManualCovariantDerivative[-z,Partialf1DBPiz,IndexList[z,-r],w]);
+BarVariationalf2BPi=ReplaceDummies@(BarPartialf2BPi-ManualCovariantDerivative[-z,Partialf2DBPiz,IndexList[z,-r],w]);
+BarVariationalf1APi=ReplaceDummies@(BarPartialf1APi-ManualCovariantDerivative[-z,Partialf1DAPiz,IndexList[z,-s],w]);
+BarVariationalf2APi=ReplaceDummies@(BarPartialf2APi-ManualCovariantDerivative[-z,Partialf2DAPiz,IndexList[z,-s],w]);
 printer2=printer2~Append~PrintTemporary[" ** PoissonBracket: Finding kernel coefficients..."];
 D0Term=BarPartialf1B BarVariationalf2BPi+
 2BarPartialf1A BarVariationalf2APi-
@@ -5367,12 +5367,12 @@ Quit[];
 If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 (*define the theory constant in Global`*)
 $Theory=InputSystem;
-$Theory=$Theory~Join~{dummy->1};
+$Theory=$Theory~Join~{dummy->0};
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$ToTheory for the theory",""}];
 (*these are rules we can always use to impose the theory*)
-If[$Theory=={dummy->1},
-$ToTheory={dummy->1};,
+If[$Theory=={dummy->0},
+$ToTheory={dummy->0};,
 $ToTheory=Quiet[Solve[InputSystem,Join[cAlp,cBet,{Alp0},Alp,Bet]][[1]]];
 ];
 (*append a dummy replacement rule so that an empty *)
@@ -5397,8 +5397,9 @@ Print@$IfConstraints;
 ];
 ];
 (*so that a replacement rule exists, even if no theory is defined*)
-DefConstantSymbol@dummy;
-$ToTheory={dummy->1};
+dummySymb="\!\(\*SubscriptBox[\(\[ScriptCapitalL]\), \(matter\)]\)";
+DefConstantSymbol[dummy,PrintAs->SymbolBuild[dummySymb]];
+$ToTheory={dummy->0};
 ClearBuild[];
 
 
