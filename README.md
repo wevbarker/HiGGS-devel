@@ -4,6 +4,8 @@
 [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/paper-c)
 [![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
 
+[wb263@cam.ac.uk](wb263@cam.ac.uk)
+
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## v 1.0.0-beta
 ## License
@@ -14,7 +16,7 @@ HiGGS is distributed as free software under the [GNU General Public License (GPL
 
 HiGGS is provided without warranty, or the implied warranty of merchantibility or fitness for a particular purpose.
 
-Users of HiGGS, including authors of derivative works, must cite the 2022 HiGGS papers in their resulting publications.
+Users of HiGGS, including authors of derivative works as defined by the GPL, must cite the 2022 HiGGS papers in their resulting publications.
 
 These conditions apply to all software in this repository, including HPC visualisation tools.
 
@@ -136,3 +138,7 @@ The files `./xAct/HiGGS/Documentation/Examples/peta4.*` and `./xAct/HiGGS/Docume
 2. [appcg](https://www.astro.phy.cam.ac.uk/local/computing) is a small, private compute server belonging to the [Cavendish Laboratory Astrophysics Group]().
 
 These sources are included to give inspiration to users who which to perform HPC surveys, though the user's architecture may well differ.
+
+## Contribute
+
+Please do! I'm always responsive to emails (about science), so be sure to reach out at [wb263@cam.ac.uk](wb263@cam.ac.uk). I will also do my best to get your code working if you are just trying to use HiGGS.
