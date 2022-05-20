@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     61947,       1038]
-NotebookOptionsPosition[     60279,       1002]
-NotebookOutlinePosition[     60701,       1019]
-CellTagsIndexPosition[     60658,       1016]
+NotebookDataLength[     65815,       1116]
+NotebookOptionsPosition[     63381,       1071]
+NotebookOutlinePosition[     63803,       1088]
+CellTagsIndexPosition[     63760,       1085]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -41,6 +41,16 @@ cluster and component of the Cambridge Service for Data-Driven Discovery \
   3.860959184437006*^9}},ExpressionUUID->"ac3b952a-323b-405e-9ac1-\
 f072cdc53b32"],
 
+Cell["\<\
+We use the $Timing environment to activate some (undocumented) functionality \
+in HiGGS, which clocks function calls and allows us to plot the HPC \
+electroencephalograph (EEG). Beware, this is a very inefficient and \
+data-intensive process!\
+\>", "Text",
+ CellChangeTimes->{{3.861995247671852*^9, 
+  3.861995355087325*^9}},ExpressionUUID->"794dafc1-e87b-4d0f-b4e9-\
+0b5888c33eda"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"$Timing", "=", "True"}], ";"}]], "Input",
@@ -49,6 +59,41 @@ Cell[BoxData[
   3.860941328673038*^9, 3.860941330424848*^9}, {3.8610183117224417`*^9, 
   3.861018312626536*^9}},ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-\
 d6000881fded"],
+
+Cell["\<\
+There are two options for the peta4 job. Firstly we can run the \
+\[OpenCurlyDoubleQuote]Commissioning Survey\[CloseCurlyDoubleQuote], i.e. \
+calculate all the brackets for the batches of theories created in \
+peta4.svy.m. Careful analysis of this survey indicated that there were two \
+cases of interest when targeting strong coupling. For these cases, we would \
+additionally like to know about the velocities: this is a tough calculation, \
+poorly parallelized, so if we go for this option it is better to modify \
+peta4.job.slm to an array of e.g. two nodes.\
+\>", "Text",
+ CellChangeTimes->{{3.8619954058339863`*^9, 3.861995409548527*^9}, {
+  3.8619954590701027`*^9, 
+  3.861995734483922*^9}},ExpressionUUID->"3b5519f5-12e0-475d-ab82-\
+bb8c58f5cbeb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CommissioningSurvey", "=", "False"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.861995745476265*^9, 
+  3.8619957590353327`*^9}},ExpressionUUID->"5f3f8005-173c-4c7f-8821-\
+f61eba7d3105"],
+
+Cell["\<\
+If we choose to run the survey, we need to import a batch of jobs based on \
+the node number allocated by the SLURM array index variable. Sometimes we are \
+doing some calibration on the login node, in which case we pass peta4.job.m \
+no command line option for any node, and the batch of jobs is simply taken to \
+be the Yo-Nester theories without any geometric multipliers. \
+\>", "Text",
+ CellChangeTimes->{{3.8619958039300737`*^9, 3.861995824602295*^9}, {
+  3.861995877417856*^9, 
+  3.861996002713149*^9}},ExpressionUUID->"e9e38e54-7d82-4f89-85cf-\
+43e689908a7a"],
 
 Cell[BoxData[
  RowBox[{
@@ -439,6 +484,11 @@ Cell[BoxData[
    3.861018353474094*^9}},ExpressionUUID->"ecfae8f8-9928-4519-ae15-\
 3f06f02b8c48"],
 
+Cell["Load and build HiGGS.", "Text",
+ CellChangeTimes->{{3.86199601461628*^9, 
+  3.86199602037624*^9}},ExpressionUUID->"8cadafe2-ebaa-4368-8892-\
+872c76afd29d"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", 
@@ -600,73 +650,77 @@ Cell[BoxData[
    3.860694644272841*^9}},ExpressionUUID->"cae13836-2cd3-4564-b2d1-\
 8cd274f6bb3c"],
 
-Cell[BoxData[{
+Cell["\<\
+This is where we do the job. Remember that either we are doing \
+\[OpenCurlyDoubleQuote]Commissioning Survey\[CloseCurlyDoubleQuote] \
+(including calibration), so we want to process a batch, or we are targeting a \
+pair of cases later on, in which case we want to find also the velocities.\
+\>", "Text",
+ CellChangeTimes->{{3.861996252077731*^9, 
+  3.861996323637498*^9}},ExpressionUUID->"394febfe-10f8-4bde-bc1a-\
+ad0ae8c7010c"],
+
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"StudyTheory", "[", 
+  RowBox[{"If", "[", 
+   RowBox[{"CommissioningSurvey", ",", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"{", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"\"\<simple_spin_1p_A3A4A6B1B3_velocities\>\"", "<>", 
-         RowBox[{"ToString", "@", "$Node"}]}], ",", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
-          RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
-          RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
-          RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
-          RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
-          RowBox[{"Bet1", "==", "0"}], ",", 
-          RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp1", "==", "0"}], ",", 
-          RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-          RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-          RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-          RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}], ",", 
-     RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
-     RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"StudyTheory", "[", 
-     RowBox[{
-      RowBox[{"{", 
+     RowBox[{"StudyTheory", "[", 
+      RowBox[{"JobsBatch", ",", 
+       RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
+       RowBox[{"\"\<Velocities\>\"", "\[Rule]", "False"}]}], "]"}], ";"}], 
+    ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"StudyTheory", "[", 
+      RowBox[{
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"\"\<simple_spin_1p_A3A6B1B2B3_velocities\>\"", "<>", 
-          RowBox[{"ToString", "@", "$Node"}]}], ",", 
          RowBox[{"{", 
           RowBox[{
-           RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
-           RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
-           RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
-           RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
-           RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
-           RowBox[{"Bet1", "==", "0"}], ",", 
-           RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
-           RowBox[{"cAlp1", "==", "0"}], ",", 
-           RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
-           RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
-           RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
-           RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
-           RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
-           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
-           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], "}"}], ",", 
-      RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
-      RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], ";"}], 
-   "\[IndentingNewLine]", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"StudyTheory", "[", 
-     RowBox[{"JobsBatch", ",", 
-      RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
-      RowBox[{"\"\<Velocities\>\"", "\[Rule]", "False"}]}], "]"}], ";"}], 
-   "*)"}]}]}], "Input",
+           RowBox[{"\"\<simple_spin_1p_A3A4A6B1B3_velocities\>\"", "<>", 
+            RowBox[{"ToString", "@", "$Node"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+             RowBox[{"Bet1", "==", "0"}], ",", 
+             RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp1", "==", "0"}], ",", 
+             RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+             RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+             RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\"\<simple_spin_1p_A3A6B1B2B3_velocities\>\"", "<>", 
+            RowBox[{"ToString", "@", "$Node"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
+             RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
+             RowBox[{"Bet1", "==", "0"}], ",", 
+             RowBox[{"Bet2", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp1", "==", "0"}], ",", 
+             RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp3", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp5", "\[Equal]", "0"}], ",", 
+             RowBox[{"cAlp6", "\[Equal]", "0"}], ",", 
+             RowBox[{"cBet1", "\[Equal]", "0"}], ",", 
+             RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
+             RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}]}], "}"}], 
+       ",", 
+       RowBox[{"\"\<Import\>\"", "\[Rule]", "False"}], ",", 
+       RowBox[{"\"\<Velocities\>\"", "\[Rule]", "True"}]}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.8561134940016623`*^9, 3.856113563953445*^9}, {
    3.856113864152964*^9, 3.856113866735909*^9}, {3.856114686146227*^9, 
@@ -817,9 +871,15 @@ Cell[BoxData[{
    3.8616844026187353`*^9, 3.86168441029397*^9}, {3.86168444939684*^9, 
    3.861684503511599*^9}, {3.861684621835538*^9, 3.861684631306999*^9}, {
    3.8616855043251534`*^9, 3.8616855080554247`*^9}, {3.861796606893694*^9, 
-   3.861796643653099*^9}, 
-   3.861870625205268*^9},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
+   3.861796643653099*^9}, 3.861870625205268*^9, {3.861995765452095*^9, 
+   3.8619957878139753`*^9}, {3.8619960255847263`*^9, 
+   3.861996125639751*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
 297f506ffb31"],
+
+Cell["If we get this far, we can go back to peta4.job.sh.", "Text",
+ CellChangeTimes->{{3.861996195182335*^9, 
+  3.861996209702506*^9}},ExpressionUUID->"7a732aea-e398-47d6-b27a-\
+6360f447923e"],
 
 Cell[BoxData[
  RowBox[{"Print", "[", 
@@ -832,9 +892,13 @@ Cell[BoxData[
   3.86096435471316*^9}},ExpressionUUID->"53af60b6-775f-495b-84cc-\
 c241bc4146a0"],
 
-Cell["Close parallel kernels to give the right exit code to SLURM.", "Text",
- CellChangeTimes->{{3.860964365538021*^9, 
-  3.860964384568491*^9}},ExpressionUUID->"636218a9-69ad-46db-aff0-\
+Cell["\<\
+Close parallel kernels to give the right exit code to SLURM, you mustn\
+\[CloseCurlyQuote]t let the kernels loiter.\
+\>", "Text",
+ CellChangeTimes->{{3.860964365538021*^9, 3.860964384568491*^9}, {
+  3.8619961426628637`*^9, 
+  3.861996152247435*^9}},ExpressionUUID->"636218a9-69ad-46db-aff0-\
 325a7f81a551"],
 
 Cell[BoxData[
@@ -846,6 +910,11 @@ Cell[BoxData[
   3.860476794582974*^9}, {3.860964353697081*^9, 
   3.860964386856573*^9}},ExpressionUUID->"e4217b10-d107-4106-b268-\
 77b2f1425036"],
+
+Cell["Also for the right exit code, master kernel suicide.", "Text",
+ CellChangeTimes->{{3.861996158696113*^9, 
+  3.861996187038691*^9}},ExpressionUUID->"441d5cc0-f5e3-46b1-8152-\
+f3dc81831c40"],
 
 Cell[BoxData[
  RowBox[{
@@ -1021,23 +1090,32 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 354, 9, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576cdf0004"],
 Cell[937, 33, 402, 8, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
-Cell[1342, 43, 328, 7, 47, "Input",ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-d6000881fded",
+Cell[1342, 43, 392, 8, 36, "Text",ExpressionUUID->"794dafc1-e87b-4d0f-b4e9-0b5888c33eda"],
+Cell[1737, 53, 328, 7, 47, "Input",ExpressionUUID->"0598b0f1-b4ed-48e5-84a9-d6000881fded",
  InitializationCell->True],
-Cell[1673, 52, 9790, 205, 324, "Input",ExpressionUUID->"a60e8bc9-0d86-412a-8600-18c7b30e6c81",
+Cell[2068, 62, 765, 13, 60, "Text",ExpressionUUID->"3b5519f5-12e0-475d-ab82-bb8c58f5cbeb"],
+Cell[2836, 77, 244, 6, 47, "Input",ExpressionUUID->"5f3f8005-173c-4c7f-8821-f61eba7d3105",
  InitializationCell->True],
-Cell[11466, 259, 195, 3, 36, "Text",ExpressionUUID->"ee52d6a2-e148-4542-baaa-4943d57775fa"],
-Cell[11664, 264, 11710, 175, 163, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
+Cell[3083, 85, 577, 10, 60, "Text",ExpressionUUID->"e9e38e54-7d82-4f89-85cf-43e689908a7a"],
+Cell[3663, 97, 9790, 205, 324, "Input",ExpressionUUID->"a60e8bc9-0d86-412a-8600-18c7b30e6c81",
  InitializationCell->True],
-Cell[23377, 441, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
+Cell[13456, 304, 195, 3, 36, "Text",ExpressionUUID->"ee52d6a2-e148-4542-baaa-4943d57775fa"],
+Cell[13654, 309, 11710, 175, 163, "Input",ExpressionUUID->"ecfae8f8-9928-4519-ae15-3f06f02b8c48",
  InitializationCell->True],
-Cell[34493, 602, 13949, 219, 232, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[25367, 486, 161, 3, 36, "Text",ExpressionUUID->"8cadafe2-ebaa-4368-8892-872c76afd29d"],
+Cell[25531, 491, 11113, 159, 119, "Input",ExpressionUUID->"cae13836-2cd3-4564-b2d1-8cd274f6bb3c",
  InitializationCell->True],
-Cell[48445, 823, 435, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
+Cell[36647, 652, 439, 8, 36, "Text",ExpressionUUID->"394febfe-10f8-4bde-bc1a-ad0ae8c7010c"],
+Cell[37089, 662, 13948, 214, 186, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[48883, 834, 202, 3, 36, "Text",ExpressionUUID->"636218a9-69ad-46db-aff0-325a7f81a551"],
-Cell[49088, 839, 374, 8, 47, "Input",ExpressionUUID->"e4217b10-d107-4106-b268-77b2f1425036",
+Cell[51040, 878, 193, 3, 36, "Text",ExpressionUUID->"7a732aea-e398-47d6-b27a-6360f447923e"],
+Cell[51236, 883, 435, 9, 47, "Input",ExpressionUUID->"53af60b6-775f-495b-84cc-c241bc4146a0",
  InitializationCell->True],
-Cell[49465, 849, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
+Cell[51674, 894, 316, 7, 36, "Text",ExpressionUUID->"636218a9-69ad-46db-aff0-325a7f81a551"],
+Cell[51993, 903, 374, 8, 47, "Input",ExpressionUUID->"e4217b10-d107-4106-b268-77b2f1425036",
+ InitializationCell->True],
+Cell[52370, 913, 194, 3, 36, "Text",ExpressionUUID->"441d5cc0-f5e3-46b1-8152-f3dc81831c40"],
+Cell[52567, 918, 10798, 150, 47, "Input",ExpressionUUID->"e62bc551-0b92-4abb-81fc-3bafa72a1f11",
  InitializationCell->True]
 }, Open  ]]
 }

@@ -24,6 +24,10 @@ $Timing=True;
 
 
 (* ::Input::Initialization:: *)
+CommissioningSurvey=False;
+
+
+(* ::Input::Initialization:: *)
 If[IntegerQ@ToExpression@$CommandLine[[-1]],
 $Node=$CommandLine[[-1]];
 ToExpression@("<<"<>FileNameJoin@{Directory[],"svy","node-"<>$Node,"peta4.svy.mx"}<>";");
@@ -54,12 +58,10 @@ BuildHiGGS[];
 
 
 (* ::Input::Initialization:: *)
-StudyTheory[{{"simple_spin_1p_A3A4A6B1B3_velocities"<>ToString@$Node,{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet3==0}}},"Import"->False,"Velocities"->True];
-
-(*
-StudyTheory[{{"simple_spin_1p_A3A6B1B2B3_velocities"<>ToString@$Node,{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}},"Import"\[Rule]False,"Velocities"\[Rule]True];
-*)
-(*StudyTheory[JobsBatch,"Import"\[Rule]False,"Velocities"\[Rule]False];*)
+If[CommissioningSurvey,
+StudyTheory[JobsBatch,"Import"->False,"Velocities"->False];,
+StudyTheory[{{"simple_spin_1p_A3A4A6B1B3_velocities"<>ToString@$Node,{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet3==0}},{"simple_spin_1p_A3A6B1B2B3_velocities"<>ToString@$Node,{Alp1==0,Alp2==0,Alp3==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}},"Import"->False,"Velocities"->True];
+];
 
 
 (* ::Input::Initialization:: *)
