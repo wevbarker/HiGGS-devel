@@ -10,6 +10,9 @@ Will E. V. Barker
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## v 1.0.0-beta
+
+<img src="xAct/HiGGS/Documentation/Examples/peta4.plt.pdf" width="1000">
+
 ## License
 
 Copyright © 2022 Will E. V. Barker
@@ -46,7 +49,7 @@ HiGGS has been tested in the following environment(s):
 	```
 ## Quickstart 
 
-The package loads just like any other part of `xAct`, just open a fresh notebook and run:
+The package loads just like any other part of xAct, just open a fresh notebook and run:
 ```wolfram
 Needs["xAct`HiGGS`"];
 ```
