@@ -4028,44 +4028,74 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefLinearSuperMomentum[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_]:=Module[{MainPart,GradPart,res},
+Options[DefLinearSuperMomentum]={"Order"->1,"ProtectSurface"->False};
+
+
+(* ::Input::Initialization:: *)
+DefLinearSuperMomentum[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_,OptionsPattern[]]:=Module[{MainPart,GradPart,res},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"linear super-momentum for the theory",""}];
-MainPart=BPiP[-i,r]PPara[-r,p]PPara[-l,q]T[i,-q,-p]+(1/2)APiP[-i,-j,r]PPara[-r,p]PPara[-l,q]R[i,j,-q,-p]-
-PPara[-l,k]G3[-b,n](CD[-n][BPiP[-k,j]H[-j,b]]+
-A[i,-k,-n]BPiP[-i,j]PPara[-j,m]H[-m,b]);
+MainPart=BPiP[-i,r]PPara[-r,p]PPara[-l,q]T[i,-q,-p]+(1/2)APiP[-i,-j,r]PPara[-r,p]PPara[-l,q]R[i,j,-q,-p];
 MainPart=MainPart/.PADMActivate;
-MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
+MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
+
+GradPart=-PPara[-l,k]G3[-b,n](CD[-n][BPiP[-k,j]H[-j,b]]+A[i,-k,-n]BPiP[-i,j]PPara[-j,m]H[-m,b]);
+GradPart=GradPart/.PADMActivate;
+If[!OptionValue@"ProtectSurface",
+GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
+];
+GradPart=MainPart+GradPart//ToNewCanonical;
+GradPart=GradPart//CollectTensors;
+
 HiGGSPrint["** DefTheory: The linear super-momentum is:"];
-HiGGSPrint[LinearSuperMomentum1m[-l]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
+HiGGSPrint[LinearSuperMomentum1m[-l]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefAngularSuperMomentum[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_]:=Module[{MainPart,GradPart,res},
+Options[DefAngularSuperMomentum]={"Order"->1,"ProtectSurface"->False};
+
+
+(* ::Input::Initialization:: *)
+DefAngularSuperMomentum[$ToShellFreedoms_,$IfConstraintToNesterForm_,$ToTheory_,$Theory_,OptionsPattern[]]:=Module[{MainPart,GradPart,res},
 (*a message*)
 xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"angular super-momentum for the theory",""}];
-MainPart=2V[k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}]+
-V[k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+
-V[k]PPara[-m,l]G3[-b,p](-2Antisymmetrize[A[i,-k,-p]APiP[-i,-l,j] PPara[-j,z]H[-z,b],{-k,-l}]);
+MainPart=2V[k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}];
 MainPart=MainPart/.PADMActivate;
-MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
+MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
+
+GradPart=V[k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+V[k]PPara[-m,l]G3[-b,p](-2Antisymmetrize[A[i,-k,-p]APiP[-i,-l,j] PPara[-j,z]H[-z,b],{-k,-l}]);
+GradPart=GradPart/.PADMActivate;
+If[!OptionValue@"ProtectSurface",
+GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
+];
+GradPart=MainPart+GradPart//ToNewCanonical;
+GradPart=GradPart//CollectTensors;
+
 HiGGSPrint["** DefTheory: The 1- part of the angular super-momentum is:"];
-HiGGSPrint[RotationalSuperMomentum1m[-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
-MainPart=2PPara[-n,k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}]+
-PPara[-n,k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+
-PPara[-n,k]PPara[-m,l]G3[-b,p](-2Antisymmetrize[A[i,-k,-p]APiP[-i,-l,j] PPara[-j,z]H[-z,b],{-k,-l}]);
+HiGGSPrint[RotationalSuperMomentum1m[-m]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
+
+MainPart=2PPara[-n,k]PPara[-m,l]Antisymmetrize[BPi[-k,a]G3[-a,b]B[-l,-b],{-k,-l}];
 MainPart=MainPart/.PADMActivate;
-MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->1];
+MainPart=ToNesterForm[MainPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
 MainPart=MainPart//ToNewCanonical;
 MainPart=MainPart//CollectTensors;
+
+GradPart=PPara[-n,k]PPara[-m,l]G3[-b,p](CD[-p][APiP[-k,-l,j]H[-j,b]])+PPara[-n,k]PPara[-m,l]G3[-b,p](-2Antisymmetrize[A[i,-k,-p]APiP[-i,-l,j] PPara[-j,z]H[-z,b],{-k,-l}]);
+GradPart=GradPart/.PADMActivate;
+If[!OptionValue@"ProtectSurface",
+GradPart=ToNesterForm[GradPart,"ToShell"->True,"Hard"->True,"Order"->OptionValue@"Order"];
+];
+GradPart=MainPart+GradPart//ToNewCanonical;
+GradPart=GradPart//CollectTensors;
+
 HiGGSPrint["** DefTheory: The 1+ part of the angular super-momentum is:"];
-HiGGSPrint[RotationalSuperMomentum1m[-n,-m]," \[Congruent] ",MainPart," \[TildeTilde] 0"];
+HiGGSPrint[RotationalSuperMomentum1p[-n,-m]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
 ClearBuild[];
 
@@ -5421,7 +5451,7 @@ DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
 (*Firstly we remove all definitions which might be associated with a theory already*)
 UndefTheory[];
 If[StringQ@OptionValue@"Import",
-HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",OptionValue@"Import"<>".thr.mx"}];
+HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{"svy",OptionValue@"Import"<>".thr.mx"}];
 $TheoryName=OptionValue@"Import";
 Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy",OptionValue@"Import"<>".thr.mx"}<>";"],
 Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"svy",ToString@OptionValue@"Import"<>".thr.mx"}];
@@ -5447,14 +5477,14 @@ DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
 DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
 DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
-DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
-DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory];
+DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
+DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
 If[OptionValue@"Velocities",
 DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
 ];
 ];
 If[StringQ@OptionValue@"Export",
-HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",OptionValue@"Export"<>".thr.mx"}];
+HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{"svy",OptionValue@"Export"<>".thr.mx"}];
 $TheoryName=OptionValue@"Export";
 Print@$IfConstraints;
 (FileNameJoin@{$WorkingDirectory,"svy",ToString@OptionValue@"Export"<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
@@ -5574,7 +5604,7 @@ SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
 DefTheory["Import"->theory];
 $PPM=PPM;
 HiGGSPrint["$PPM value is ",$PPM];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"}];
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
 (FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
 ];
 HiGGSPrint[PPMs];
@@ -5598,7 +5628,7 @@ SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints
 DefTheory["Import"->theory];
 $Velocities=Velocity;
 HiGGSPrint["$Velocities value is ",$Velocities];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"}];
+HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
 (FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
 ];
 HiGGSPrint[Velocities];

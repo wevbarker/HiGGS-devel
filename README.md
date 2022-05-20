@@ -20,7 +20,7 @@ HiGGS is provided without warranty, or the implied warranty of merchantibility o
 
 Users of HiGGS, including authors of derivative works as defined by the GPL, must cite the 2022 HiGGS papers in their resulting publications.
 
-These conditions apply to all software in this repository, including HPC visualisation tools.
+These conditions apply to all software in this repository, including "HPC-EEG" visualisation tools.
 
 ## About
 
