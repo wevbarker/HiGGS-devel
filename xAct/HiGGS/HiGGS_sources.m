@@ -3990,12 +3990,22 @@ cPerpA2m (1/AlpPerpPerp2m) ShellOrigA2m  PhiA2m[-a,-b,-c]PhiA2m[a,b,c])))-
 (J[]T[i,-m,-n]PPara[m,g]PPara[n,h](Bet1 PT1[-i,-g,-h,a,c,d]+
 Bet2 PT2[-i,-g,-h,a,c,d]+
 Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,e]PPara[-d,f]T[-a,-e,-f]+
+J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
+cBet2 PT2[-i,-g,-h,a,c,d]+
+cBet3 PT3[-i,-g,-h,a,c,d])PPara[-c,p]PPara[-d,q]T[-a,-p,-q]+
 J[](R[i,j,-m,-n]PPara[m,g]PPara[n,h](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+
 Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+
 Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+
 Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+
-Alp6 PR6[-i,-j,-g,-h,a,b,c,d])-(1/2)Alp0 PPara[a,c]PPara[b,d])PPara[-c,e]PPara[-d,f]R[-a,-b,-e,-f]);
+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])-(1/2)Alp0 PPara[a,c]PPara[b,d])PPara[-c,e]PPara[-d,f]R[-a,-b,-e,-f]+
+RLambda[i,j,-m,-n]PPara[m,g]PPara[n,h](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+
+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+
+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+
+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+
+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+
+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,p]PPara[-d,q]R[-a,-b,-p,-q]);
+
 MainPart=MainPart/.TocPerp;
 MainPart=MainPart/.ToAlp;
 MainPart=MainPart/.ToBet;
