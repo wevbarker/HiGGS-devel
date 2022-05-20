@@ -11,7 +11,7 @@ Will E. V. Barker
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## v 1.0.0-beta
 
-<img src="xAct/HiGGS/Documentation/Examples/peta4.plt.png" width="1000">
+<img src="xAct/HiGGS/Documentation/Examples/peta4.plt.pdf" width="1000">
 
 ## License
 
