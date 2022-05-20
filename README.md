@@ -58,7 +58,6 @@ The build process may take about a minute or so. When it has concluded, you shou
 ```wolfram
 PoissonBracket[PiPB2p[-a, -b], TP1m[-c], "ToShell" -> False];
 ```
-
 <img src="xAct/HiGGS/Documentation/Examples/tutor.png" width="1000">
 
 If you want to try something more ambitious, build the constraint structure for Einstein-Cartan theory:
@@ -68,6 +67,7 @@ DefTheory[{Alp1 == 0, Alp2 == 0, Alp3 == 0, Alp4 == 0, Alp5 == 0,
     cAlp3 == 0, cAlp4 == 0, cAlp5 == 0, cAlp6 == 0, cBet1 == 0, 
    cBet2 == 0, cBet3 == 0}, "Export" -> "EinsteinCartan"];
 ```
+That output is less easy to show.
 More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`.
 
 ## What's in the box? 
