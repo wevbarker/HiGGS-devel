@@ -4,7 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/paper-c)
 [![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
 
-[wb263@cam.ac.uk](wb263@cam.ac.uk)
+[wb263@cam.ac.uk](mailto:wb263@cam.ac.uk)
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## v 1.0.0-beta
@@ -141,4 +141,4 @@ These sources are included to give inspiration to users who which to perform HPC
 
 ## Contribute
 
-Please do! I'm always responsive to emails (about science), so be sure to reach out at [wb263@cam.ac.uk](wb263@cam.ac.uk). I will also do my best to get your code working if you are just trying to use HiGGS.
+Please do! I'm always responsive to emails (about science), so be sure to reach out at [wb263@cam.ac.uk](mailto:wb263@cam.ac.uk). I will also do my best to get your code working if you are just trying to use HiGGS.
