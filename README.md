@@ -4,6 +4,8 @@
 [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/paper-c)
 [![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
 
+Will E. V. Barker
+
 [wb263@cam.ac.uk](mailto:wb263@cam.ac.uk)
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
