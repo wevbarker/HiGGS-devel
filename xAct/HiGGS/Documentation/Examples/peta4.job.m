@@ -24,7 +24,7 @@ $Timing=True;
 
 
 (* ::Input::Initialization:: *)
-CommissioningSurvey=False;
+CommissioningSurvey=True;
 
 
 (* ::Input::Initialization:: *)
