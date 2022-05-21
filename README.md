@@ -7,7 +7,7 @@
 <img src="xAct/HiGGS/Documentation/Examples/peta4.rdm.png" width="1000">
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
-## v 1.0.0-beta
+## Version 1.0.0
 
 
 ## License
