@@ -47,7 +47,7 @@ asp = 1.                                #   vertical aspect ratio
 barwidth = 0.9                          #   main thickness of bar
 size = 10000                            #   how many slices
 time_array = np.linspace(0,1,size)      #   plotting space
-maxtheory = 10                          #    how many total theory columns did we allow?
+maxtheory = 20                          #    how many total theory columns did we allow?
 rough_number_of_functions = 6           #   less info, middle sub-bar
 rougher_number_of_functions = 5         #   even less, upper sub-bar
 
@@ -310,7 +310,7 @@ for x in range(xmx):
             axs[y,x].set_ylim(-0.5*propunit, (number_of_kernels-0.5)*propunit)
             axs[y,x].tick_params(axis = 'y',labelsize = 6)
             axs[y,x].tick_params(axis = 'x',labelsize = 6)
-            axs[y,x].set_xscale('symlog',linthreshx = 600) #   this causes serious delays
+            #axs[y,x].set_xscale('symlog',linthreshx = 600) #   this causes serious delays
 
             #=================== end admin to label the plot ======================
 

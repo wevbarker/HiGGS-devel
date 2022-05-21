@@ -156,7 +156,7 @@ HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
 $TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
 (*initial zeroes, i.e. the default line*)
-$HiGGSTimingLine=0.~ConstantArray~(10*2Length@$TimedFunctionList);
+$HiGGSTimingLine=0.~ConstantArray~(20*2Length@$TimedFunctionList);
 
 
 (* ::Input::Initialization:: *)

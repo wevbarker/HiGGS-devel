@@ -29,7 +29,8 @@ Run@"mkdir ./svy"
 RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet1+2Bet3==0}},
 {"spin_0m",{Alp1==0,Alp2==0,Alp4==0,Alp5==0,Alp6==0,2Bet1+Bet2==0,Bet1+2Bet3==0}},
 {"simple_spin_1p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp5==0}},
-{"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_0-2m_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}},
+{"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0,cAlp5==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_1p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp5==0}},
+{"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp2==0,cAlp4==0,cAlp5==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_0-2m_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}},
 {"simple_spin_0-2m_b",{Alp2==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}}};
 
 
@@ -47,22 +48,34 @@ FileNameJoin@{Directory[],"svy/node-"<>ToString@node,"JobsBatch.mx"}~DumpSave~{J
 
 
 (* ::Input::Initialization:: *)
-(**)
 AllTheories={};
 Combos[conds_,combo_]:=Module[{extraconds,extralabel},
 extraconds=#[[1]]&/@combo;
 extralabel=StringJoin@(#[[2]]&/@combo);
 {conds[[1]]<>"_"<>extralabel,conds[[2]]~Join~extraconds}];
-Switches=Subsets@{{cAlp3==0,"A3"},{cAlp4==0,"A4"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
-C1=Combos[RawJobsBatch[[3]],#]&/@Switches;
-C2={};
-Switches=Subsets@{{cAlp3==0,"A3"},{cAlp5==0,"A5"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
-C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
-(*
-C2=Combos[RawJobsBatch[[4]],#]&/@Switches;
-C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
 
+
+(* ::Input::Initialization:: *)
+(*
+Switches=Subsets@{{cAlp3\[Equal]0,"A3"},{cAlp4\[Equal]0,"A4"},{cAlp6\[Equal]0,"A6"},{cBet1\[Equal]0,"B1"},{cBet2\[Equal]0,"B2"},{cBet3\[Equal]0,"B3"}};
+C1=Combos[RawJobsBatch[[3]],#]&/@Switches;
+Switches=Subsets@{{cAlp3\[Equal]0,"A3"},{cAlp6\[Equal]0,"A6"},{cBet1\[Equal]0,"B1"},{cBet2\[Equal]0,"B2"},{cBet3\[Equal]0,"B3"}};
+C2=Combos[RawJobsBatch[[4]],#]&/@Switches;
+Switches=Subsets@{{cAlp3\[Equal]0,"A3"},{cAlp5\[Equal]0,"A5"},{cAlp6\[Equal]0,"A6"},{cBet1\[Equal]0,"B1"},{cBet2\[Equal]0,"B2"},{cBet3\[Equal]0,"B3"}};
+C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
 *)
+
+
+(* ::Input::Initialization:: *)
+Switches=Subsets@{{cAlp3==0,"A3"},{cAlp4==0,"A4"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
+C1=Combos[RawJobsBatch[[6]],#]&/@Switches;
+Switches=Subsets@{{cAlp1==0,"A1"},{cAlp3==0,"A3"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
+C2=Combos[RawJobsBatch[[7]],#]&/@Switches;
+Switches=Subsets@{{cAlp3==0,"A3"},{cAlp5==0,"A5"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};(*don't add A4*)
+C3=Combos[RawJobsBatch[[8]],#]&/@Switches;
+
+
+(* ::Input::Initialization:: *)
 AllTheories=Join[C1,C2,C3];
 (**)AllTheories=RandomSample@AllTheories;(**)
 (*AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));*)
@@ -75,28 +88,15 @@ Print@st[[index]];
 st[[index]]=st[[index]]~Append~AllTheories[[i]];
 ];
 AllTheories=st;
-Print["ih"]
-Print@Length@AllTheories[[1]]
-Print@Length@AllTheories[[2]]
-Print@Length@AllTheories[[3]]
-Print@Length@AllTheories[[4]]
-Print@Length@AllTheories[[5]]
-Print@Length@AllTheories[[6]]
-Print@Length@AllTheories[[7]]
-Print@Length@AllTheories[[8]]
-Print@Length@AllTheories[[9]]
-Print@Length@AllTheories[[10]]
-Print@Length@AllTheories[[11]]
-Print@Length@AllTheories[[12]]
-Print@Length@AllTheories[[13]]
-Print@Length@AllTheories[[14]]
+
+For[i=1,i<15,i++,Print["Node number ",i-1," is allocated a batch of ",Length@AllTheories[[i]]," theories."];];
+
 For[node=0,node<Length@AllTheories,node++,
 JobsBatch=AllTheories[[node+1]];
 Run@("mkdir ./svy/node-"<>ToString@node);
 Run@("mkdir ./svy/node-"<>ToString@node<>"/chr");
 FileNameJoin@{Directory[],"svy/node-"<>ToString@node,"peta4.svy.mx"}~DumpSave~{JobsBatch};
 ];
-(**)
 
 
 (* ::Input::Initialization:: *)
