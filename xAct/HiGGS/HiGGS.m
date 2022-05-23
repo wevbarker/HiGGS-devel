@@ -58,7 +58,7 @@ You should have received a copy of the GNU General Public License
   
 (* :Context: xAct`HiGGS` *)
 
-(* :Package Version: 1.0.0-beta *)
+(* :Package Version: 1.0.0 *)
 
 (* :Copyright: Will E. V. Barker (2022) *)
 
