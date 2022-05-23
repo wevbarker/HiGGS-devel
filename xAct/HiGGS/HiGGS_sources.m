@@ -114,7 +114,7 @@ $Widetext=False;
 
 Options[HiGGSPrint]={"Widetext"->False};
 HiGGSPrint[expr__,OptionsPattern[]]:=Block[{res,$ListingsFile,size},
-If[$Widetext,size=(510/246)*300,size=300];
+If[$Widetext,size=(510/246)*350,size=350];
 (*If[OptionValue@"Widetext",size=(510/246)*300,size=300];*)
 res=expr;
 Print@res;
@@ -128,10 +128,11 @@ $ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput},
 If[{res}~AllTrue~StringQ,
 WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n|\n"<>"      "<>StringJoin@{res}<>"\n|"<>"\n"];,*)
-res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],ContentPadding->True,Alignment->Right];
+res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],FrameMargins->None,ContentPadding->True,Alignment->Right];
 Print@res;
+(*order below was 4-7 now 5-5*)
 FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
-WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-7pt}\n|\n"];
+WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-5pt}\n|\n"];
 (*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
 ];
 Close@$ListingsFile;
@@ -3285,12 +3286,26 @@ AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[ASectorNam
 
 For[ii=1,ii<7,ii++,
 If[cBetPerpPerpTheory[[ii]]cBetPerpParaTheory[[ii]]cBetParaPerpTheory[[ii]]cBetParaParaTheory[[ii]]==0,
-{AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+If[ii==2||ii==6,
+If[!(cBetParaParaTheory[[ii]]==0),
+{AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPara"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
 If[BetPerpPerpTheory[[ii]]==0,
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]]]},
+{AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+If[BetPerpPerpTheory[[ii]]==0,
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]]]}];,
+{AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
+If[BetPerpPerpTheory[[ii]]==0,
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
+AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]]]}];,
 If[cBetDetTheory[[ii]]==0,
 If[BetPerpPerpTheory[[ii]]==0,
 {AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
@@ -5528,6 +5543,7 @@ $ToTheory=Quiet[Solve[InputSystem,Join[cAlp,cBet,{Alp0},Alp,Bet]][[1]]];
 (*append a dummy replacement rule so that an empty *)
 (*these functions do all the hard work*)
 ComputeShellFreedoms[$ToTheory,$Theory];
+Print@$ToShellFreedoms;
 DefFieldStrengthShell[$ToShellFreedoms,$Theory];
 DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
 DefO3MomentaShell[$Theory];
