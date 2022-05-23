@@ -3130,7 +3130,8 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DpHComp[-z],M4,PrintAs->"\!\(\*OverscriptBox[\(\[CapitalDifferentialD]\), \(^\)]\)H",OrthogonalTo->{V[z]}];
+UnknownSymb="\[Star]";
+DefTensor[DpHComp[-z],M4,PrintAs->SymbolBuild[UnknownSymb,"Derivative"->2],OrthogonalTo->{V[z]}];
 DpHCompActivate=MakeRule[{G3[-y,z]DHComp[-z],G3[-y,z]B[x,-z]DpHComp[-x]},MetricOn->All,ContractMetrics->True];
 
 DGrandActivate=Join[DPiPActivate,DRPActivate,DRLambdaPActivate,DRLambdaPerpActivate,DHCompActivate];
@@ -4333,81 +4334,126 @@ DefTensor[RD[a,b,-d,-e,-x,-y,-z],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]
 DefTensor[RDS1[a,b,-d,-e,-x,-y,-z,v],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[RDS2[a,b,-d,-e,-x,-y,-z,v],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[RDS3[a,b,-d,-e,-x,-y,-z,v,w],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[TD[a,-b,-c,-x,-y,-z],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[TDS1[a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[TDS2[a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[TDS3[a,-b,-c,-x,-y,-z,v,w],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 (*copies of all the constraint functions*)
 DefTensor[PhiDB0p[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1B0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B0p[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDB1p[-a,-b,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1B1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B1p[-a,-b,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDB1m[-a,-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1B1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B1m[-a,-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDB2p[-a,-b,-x,-y,-z],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1B2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B2p[-a,-b,-x,-y,-z,v,w],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA0p[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A0p[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA0m[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A0m[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A0m[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A0m[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA1p[-a,-b,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A1p[-a,-b,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA1m[-a,-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A1m[-a,-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA2p[-a,-b,-x,-y,-z],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A2p[-a,-b,-x,-y,-z,v,w],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 DefTensor[PhiDA2m[-a,-b,-c,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS1A2m[-a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A2m[-a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A2m[-a,-b,-c,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 (*Apparently A2m is the only sector which requires extra attention beyond symmetry declarations*)
 AutomaticRules[PhiDA2m,MakeRule[{PhiDA2m[a,-b,-a,-x,-y,-z],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PhiDS1A2m,MakeRule[{PhiDS1A2m[a,-b,-a,-x,-y,-z,v],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PhiDS2A2m,MakeRule[{PhiDS2A2m[a,-b,-a,-x,-y,-z,v],0},MetricOn->All,ContractMetrics->True]]; 
 AutomaticRules[PhiDS3A2m,MakeRule[{PhiDS3A2m[a,-b,-a,-x,-y,-z,v,w],0},MetricOn->All,ContractMetrics->True]]; 
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 (*This part set up to deal with final surface term*)
 DefTensor[QD[-a,-y,-z],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[QDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[QDS2[-a,-y,-z,v],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[QDS3[-a,-y,-z,v,w],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 (*This part to deal with the measure*)
 DefTensor[JD[-a,-y,-z],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[JDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[JDS2[-a,-y,-z,v],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[JDS3[-a,-y,-z,v,w],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
+ClearBuild[];
 
+
+(* ::Input::Initialization:: *)
 (*This part to deal with the lapse*)
 DefTensor[LapseD[-a,-y,-z],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[Delta]\[Delta]\)]\)"];
 DefTensor[LapseDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
@@ -4530,13 +4576,13 @@ Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+
 Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+
 Alp6 PR6[-i,-j,-g,-h,a,b,c,d])-(1/4)Alp0 PPara[a,c]PPara[b,d])]RDS3[-a,-b,-c,-d,-x,-y,-z,v,w]])//ToCanonical//CollectTensors;
 
-$LagrangianHamiltonianBilinearMultiplierT=-( Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
+$LagrangianHamiltonianBilinearMultiplierT=-( Lapse[]J[]TLambda[i,g,h](cBet1 PT1[-i,-g,-h,a,c,d]+
 cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])TD[-a,-c,-d,-x,-y,-z]-
- CD[-v][Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
+ CD[-v][Lapse[]J[]TLambda[i,g,h](cBet1 PT1[-i,-g,-h,a,c,d]+
 cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])TDS1[-a,-c,-d,-x,-y,-z,v]]+
- CD[-v][Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
+ CD[-v][Lapse[]J[]TLambda[i,g,h](cBet1 PT1[-i,-g,-h,a,c,d]+
 cBet2 PT2[-i,-g,-h,a,c,d]+
 cBet3 PT3[-i,-g,-h,a,c,d])]TDS2[-a,-c,-d,-x,-y,-z,v]-
  CD[-w][CD[-v][Lapse[]J[]TLambda[i,-m,-n]PPara[m,g]PPara[n,h](cBet1 PT1[-i,-g,-h,a,c,d]+
@@ -4701,7 +4747,7 @@ $SurfaceHamiltonian=$SurfaceHamiltonian//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
 
-DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];S
+DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
 ClearBuild[];}
 ];
 
