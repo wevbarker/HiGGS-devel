@@ -3286,7 +3286,7 @@ AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[ASectorNam
 
 For[ii=1,ii<7,ii++,
 If[cBetPerpPerpTheory[[ii]]cBetPerpParaTheory[[ii]]cBetParaPerpTheory[[ii]]cBetParaParaTheory[[ii]]==0,
-If[ii==2||ii==6,
+If[(ii==2||ii==6)&&False,
 If[!(cBetParaParaTheory[[ii]]==0),
 {AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPara"<>ToString[BSectorNames[[ii]]]<>"->0"]]],
 AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]],
