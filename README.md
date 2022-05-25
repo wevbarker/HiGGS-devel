@@ -18,7 +18,7 @@ HiGGS is distributed as free software under the [GNU General Public License (GPL
 
 HiGGS is provided without warranty, or the implied warranty of merchantibility or fitness for a particular purpose.
 
-Users of HiGGS, including authors of derivative works as defined by the GPL, must cite the 2022 HiGGS papers in their resulting publications.
+Users of HiGGS, including authors of derivative works as defined by the GPL, are kindly requested to cite the 2022 HiGGS papers in their resulting publications.
 
 These conditions apply to all software in this repository, including "HPC-EEG" visualisation tools.
 
