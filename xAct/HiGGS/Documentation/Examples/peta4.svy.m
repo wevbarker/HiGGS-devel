@@ -30,7 +30,7 @@ RawJobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,
 {"spin_0m",{Alp1==0,Alp2==0,Alp4==0,Alp5==0,Alp6==0,2Bet1+Bet2==0,Bet1+2Bet3==0}},
 {"simple_spin_1p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp5==0}},
 {"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0,cAlp5==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_1p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp5==0}},
-{"simple_spin_1m",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp2==0,cAlp4==0,cAlp5==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_0-2m_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}},
+{"simple_spin_1m",{Alp2==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet3==0,cAlp1==0,cAlp4==0,cAlp5==0}},{"simple_spin_2m",{Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp4==0}},{"simple_spin_0-2m_a",{Alp1==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}},
 {"simple_spin_0-2m_b",{Alp2==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0}}};
 
 
@@ -69,14 +69,15 @@ C3=Combos[RawJobsBatch[[5]],#]&/@Switches;
 (* ::Input::Initialization:: *)
 Switches=Subsets@{{cAlp3==0,"A3"},{cAlp4==0,"A4"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
 C1=Combos[RawJobsBatch[[6]],#]&/@Switches;
-Switches=Subsets@{{cAlp1==0,"A1"},{cAlp3==0,"A3"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};
+Switches=Subsets@{{cAlp2==0,"A2"},{cAlp3==0,"A3"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};(*trying A2 --- VERY HEAVY, but posibly do-able*)
 C2=Combos[RawJobsBatch[[7]],#]&/@Switches;
 Switches=Subsets@{{cAlp3==0,"A3"},{cAlp5==0,"A5"},{cAlp6==0,"A6"},{cBet1==0,"B1"},{cBet2==0,"B2"},{cBet3==0,"B3"}};(*don't add A4*)
 C3=Combos[RawJobsBatch[[8]],#]&/@Switches;
 
 
 (* ::Input::Initialization:: *)
-AllTheories=Join[C1,C2,C3];
+(**)AllTheories=Join[C1,C2,C3];(**)
+(*AllTheories=C1;*)
 (**)AllTheories=RandomSample@AllTheories;(**)
 (*AllTheories=Reverse@(AllTheories~SortBy~((Length@Flatten@#)&));*)
 Print[Length@AllTheories];
