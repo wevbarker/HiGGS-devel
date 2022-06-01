@@ -8,6 +8,7 @@
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## Version 1.0.0
 
+- Initial release
 
 ## License
 
