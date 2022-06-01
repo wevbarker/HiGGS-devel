@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     70054,       1323]
-NotebookOptionsPosition[     68378,       1287]
-NotebookOutlinePosition[     68800,       1304]
-CellTagsIndexPosition[     68757,       1301]
+NotebookDataLength[     71111,       1340]
+NotebookOptionsPosition[     69435,       1304]
+NotebookOutlinePosition[     69857,       1321]
+CellTagsIndexPosition[     69814,       1318]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -153,14 +153,14 @@ Cell[BoxData[
       RowBox[{"\"\<simple_spin_1m\>\"", ",", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"Alp1", "\[Equal]", "0"}], ",", 
+         RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
          RowBox[{"Alp2", "\[Equal]", "0"}], ",", 
          RowBox[{"Alp3", "\[Equal]", "0"}], ",", 
          RowBox[{"Alp4", "\[Equal]", "0"}], ",", 
          RowBox[{"Alp6", "\[Equal]", "0"}], ",", 
          RowBox[{"Bet1", "==", "0"}], ",", 
          RowBox[{"Bet3", "\[Equal]", "0"}], ",", 
-         RowBox[{"cAlp2", "\[Equal]", "0"}], ",", 
+         RowBox[{"cAlp1", "\[Equal]", "0"}], ",", 
          RowBox[{"cAlp4", "\[Equal]", "0"}], ",", 
          RowBox[{"cAlp5", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
      RowBox[{"{", 
@@ -363,8 +363,11 @@ Cell[BoxData[
    3.862065882026348*^9, {3.862077421785433*^9, 3.862077424870319*^9}, {
    3.862118549649253*^9, 3.862118552336906*^9}, 3.862118583328816*^9, {
    3.862124875270627*^9, 3.8621248779942913`*^9}, 3.862129782649626*^9, {
-   3.862136583011747*^9, 3.8621365874280367`*^9}, 
-   3.862136780685607*^9},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
+   3.862136583011747*^9, 3.8621365874280367`*^9}, 3.862136780685607*^9, 
+   3.862309157389801*^9, {3.862309388203762*^9, 3.8623093883235617`*^9}, 
+   3.862345426233416*^9, {3.86241137106078*^9, 3.862411372850412*^9}, 
+   3.8624114533054733`*^9, {3.862414749323365*^9, 
+   3.8624147495359583`*^9}},ExpressionUUID->"e2c58913-e1e8-4976-9444-\
 297f506ffb31"],
 
 Cell[BoxData[
@@ -860,7 +863,7 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"cAlp1", "\[Equal]", "0"}], ",", "\"\<A1\>\""}], "}"}], ",", 
+        RowBox[{"cAlp2", "\[Equal]", "0"}], ",", "\"\<A2\>\""}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"cAlp3", "\[Equal]", "0"}], ",", "\"\<A3\>\""}], "}"}], ",", 
@@ -876,8 +879,16 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{
         RowBox[{"cBet3", "\[Equal]", "0"}], ",", "\"\<B3\>\""}], "}"}]}], 
-     "}"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
+     "}"}]}]}], ";", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"trying", " ", 
+      RowBox[{"A2", " ", "--"}]}], "-", " ", 
+     RowBox[{"VERY", " ", "HEAVY"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"but", " ", "posibly", " ", "do"}], "-", "able"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
   RowBox[{"C2", "=", 
    RowBox[{
     RowBox[{
@@ -962,135 +973,140 @@ Cell[BoxData[{
    3.862065894875103*^9, 3.862077410047164*^9, 3.862118528242516*^9, {
    3.8621246307011147`*^9, 3.862124650076247*^9}, 3.862124851227956*^9, {
    3.8621297904771214`*^9, 3.862129794700326*^9}, {3.8621365383637743`*^9, 
-   3.8621365709956713`*^9}, {3.862136766196124*^9, 
-   3.862136770066228*^9}},ExpressionUUID->"c0a2ad95-eb1b-485e-928b-\
+   3.8621365709956713`*^9}, {3.862136766196124*^9, 3.862136770066228*^9}, {
+   3.862309401883967*^9, 3.862309411434307*^9}, {3.8624147174724417`*^9, 
+   3.862414733760867*^9}, {3.8624636140601683`*^9, 
+   3.86246361612514*^9}},ExpressionUUID->"c0a2ad95-eb1b-485e-928b-\
 017df7a3b150"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"AllTheories", "=", 
-   RowBox[{"Join", "[", 
-    RowBox[{"C1", ",", "C2", ",", "C3"}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+Cell[BoxData[
  RowBox[{
   RowBox[{"(*", "*)"}], 
   RowBox[{
-   RowBox[{"AllTheories", "=", 
-    RowBox[{"RandomSample", "@", "AllTheories"}]}], ";", 
-   RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{
-     RowBox[{"AllTheories", "=", 
-      RowBox[{"Reverse", "@", 
-       RowBox[{"(", 
-        RowBox[{"AllTheories", "~", "SortBy", "~", 
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{"(", 
-            RowBox[{"Length", "@", 
-             RowBox[{"Flatten", "@", "#"}]}], ")"}], "&"}], ")"}]}], 
-        ")"}]}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
-   RowBox[{"Print", "[", 
-    RowBox[{"Length", "@", "AllTheories"}], "]"}], 
-   ";"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"st", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}], ",", 
-     RowBox[{"{", "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"For", "[", 
    RowBox[{
-    RowBox[{"i", "=", "1"}], ",", 
-    RowBox[{"i", "<", 
+    RowBox[{"AllTheories", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"C1", ",", "C2", ",", "C3"}], "]"}]}], ";", 
+    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
      RowBox[{
-      RowBox[{"Length", "@", "AllTheories"}], "+", "1"}]}], ",", 
-    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"index", "=", 
-      RowBox[{
-       RowBox[{"i", "~", "Mod", "~", "14"}], "+", "1"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Print", "@", "index"}], ";", "\[IndentingNewLine]", 
-     RowBox[{"Print", "@", 
-      RowBox[{"st", "[", 
-       RowBox[{"[", "index", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"AllTheories", "=", "C1"}], ";"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", "*)"}], 
+    RowBox[{"AllTheories", "=", 
+     RowBox[{"RandomSample", "@", "AllTheories"}]}], ";", 
+    RowBox[{"(*", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
      RowBox[{
-      RowBox[{"st", "[", 
-       RowBox[{"[", "index", "]"}], "]"}], "=", 
-      RowBox[{
-       RowBox[{"st", "[", 
-        RowBox[{"[", "index", "]"}], "]"}], "~", "Append", "~", 
-       RowBox[{"AllTheories", "[", 
-        RowBox[{"[", "i", "]"}], "]"}]}]}], ";"}]}], "\[IndentingNewLine]", 
-   "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"AllTheories", "=", "st"}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"For", "[", 
-    RowBox[{
-     RowBox[{"i", "=", "1"}], ",", 
-     RowBox[{"i", "<", "15"}], ",", 
-     RowBox[{"i", "++"}], ",", 
-     RowBox[{
-      RowBox[{"Print", "[", 
-       RowBox[{"\"\<Node number \>\"", ",", 
-        RowBox[{"i", "-", "1"}], ",", "\"\< is allocated a batch of \>\"", 
-        ",", 
-        RowBox[{"Length", "@", 
-         RowBox[{"AllTheories", "[", 
-          RowBox[{"[", "i", "]"}], "]"}]}], ",", "\"\< theories.\>\""}], 
-       "]"}], ";"}]}], "]"}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"For", "[", 
+      RowBox[{"AllTheories", "=", 
+       RowBox[{"Reverse", "@", 
+        RowBox[{"(", 
+         RowBox[{"AllTheories", "~", "SortBy", "~", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"Length", "@", 
+              RowBox[{"Flatten", "@", "#"}]}], ")"}], "&"}], ")"}]}], 
+         ")"}]}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"Length", "@", "AllTheories"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"node", "=", "0"}], ",", 
-    RowBox[{"node", "<", 
-     RowBox[{"Length", "@", "AllTheories"}]}], ",", 
-    RowBox[{"node", "++"}], ",", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"JobsBatch", "=", 
-      RowBox[{"AllTheories", "[", 
-       RowBox[{"[", 
-        RowBox[{"node", "+", "1"}], "]"}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Run", "@", 
-      RowBox[{"(", 
-       RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
-        RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Run", "@", 
-      RowBox[{"(", 
-       RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
-        RowBox[{"ToString", "@", "node"}], "<>", "\"\</chr\>\""}], ")"}]}], 
-     ";", "\[IndentingNewLine]", 
+    RowBox[{"st", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"For", "[", 
      RowBox[{
-      RowBox[{"FileNameJoin", "@", 
-       RowBox[{"{", 
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<", 
+       RowBox[{
+        RowBox[{"Length", "@", "AllTheories"}], "+", "1"}]}], ",", 
+      RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"index", "=", 
         RowBox[{
-         RowBox[{"Directory", "[", "]"}], ",", 
-         RowBox[{"\"\<svy/node-\>\"", "<>", 
-          RowBox[{"ToString", "@", "node"}]}], ",", "\"\<peta4.svy.mx\>\""}], 
-        "}"}]}], "~", "DumpSave", "~", 
-      RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
-   "]"}], ";"}]}], "Input",
+         RowBox[{"i", "~", "Mod", "~", "14"}], "+", "1"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "@", "index"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "@", 
+        RowBox[{"st", "[", 
+         RowBox[{"[", "index", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"st", "[", 
+         RowBox[{"[", "index", "]"}], "]"}], "=", 
+        RowBox[{
+         RowBox[{"st", "[", 
+          RowBox[{"[", "index", "]"}], "]"}], "~", "Append", "~", 
+         RowBox[{"AllTheories", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}]}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllTheories", "=", "st"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<", "15"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<Node number \>\"", ",", 
+         RowBox[{"i", "-", "1"}], ",", "\"\< is allocated a batch of \>\"", 
+         ",", 
+         RowBox[{"Length", "@", 
+          RowBox[{"AllTheories", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], ",", "\"\< theories.\>\""}], 
+        "]"}], ";"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"node", "=", "0"}], ",", 
+      RowBox[{"node", "<", 
+       RowBox[{"Length", "@", "AllTheories"}]}], ",", 
+      RowBox[{"node", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"JobsBatch", "=", 
+        RowBox[{"AllTheories", "[", 
+         RowBox[{"[", 
+          RowBox[{"node", "+", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Run", "@", 
+        RowBox[{"(", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
+          RowBox[{"ToString", "@", "node"}]}], ")"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Run", "@", 
+        RowBox[{"(", 
+         RowBox[{"\"\<mkdir ./svy/node-\>\"", "<>", 
+          RowBox[{"ToString", "@", "node"}], "<>", "\"\</chr\>\""}], ")"}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"FileNameJoin", "@", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Directory", "[", "]"}], ",", 
+           RowBox[{"\"\<svy/node-\>\"", "<>", 
+            RowBox[{"ToString", "@", "node"}]}], ",", 
+           "\"\<peta4.svy.mx\>\""}], "}"}]}], "~", "DumpSave", "~", 
+        RowBox[{"{", "JobsBatch", "}"}]}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}], ";"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.860689653060398*^9, 3.8606896738540163`*^9}, {
    3.860689779537664*^9, 3.860689785705659*^9}, {3.860690060367118*^9, 
@@ -1126,8 +1142,9 @@ Cell[BoxData[{
    3.8611987924809303`*^9}, {3.8618707047169857`*^9, 3.861870705837042*^9}, {
    3.862041702848177*^9, 3.8620417030025597`*^9}, {3.8620417775356083`*^9, 
    3.8620418508051157`*^9}, {3.8620419750994463`*^9, 3.862042061060047*^9}, {
-   3.862053428336557*^9, 
-   3.86205344070448*^9}},ExpressionUUID->"9fff71ad-812a-4932-bbfb-\
+   3.862053428336557*^9, 3.86205344070448*^9}, {3.8624147826228333`*^9, 
+   3.862414792399225*^9}, {3.862463646444865*^9, 
+   3.862463654643414*^9}},ExpressionUUID->"9fff71ad-812a-4932-bbfb-\
 1ff310584aef"],
 
 Cell[BoxData[
@@ -1308,21 +1325,21 @@ Cell[580, 22, 329, 8, 99, "Title",ExpressionUUID->"77b3805d-060b-4070-8508-41576
 Cell[912, 32, 411, 8, 36, "Text",ExpressionUUID->"ac3b952a-323b-405e-9ac1-f072cdc53b32"],
 Cell[1326, 42, 568, 10, 94, "Input",ExpressionUUID->"68ab92ad-3c68-4108-8669-f32b9f7a052f",
  InitializationCell->True],
-Cell[1897, 54, 18023, 313, 255, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
+Cell[1897, 54, 18244, 316, 255, "Input",ExpressionUUID->"e2c58913-e1e8-4976-9444-297f506ffb31",
  InitializationCell->True],
-Cell[19923, 369, 13760, 214, 255, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
+Cell[20144, 372, 13760, 214, 255, "Input",ExpressionUUID->"e7328ef6-6ef5-448b-ac02-9556f9c7556d",
  InitializationCell->True],
-Cell[33686, 585, 3855, 75, 140, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
+Cell[33907, 588, 3855, 75, 140, "Input",ExpressionUUID->"c01d7981-e125-4af4-abe3-cbc57af5a91d",
  InitializationCell->True],
-Cell[37544, 662, 233, 6, 36, "Text",ExpressionUUID->"648c8900-cff7-4c84-bce0-9a3024800ef9"],
-Cell[37780, 670, 6061, 144, 209, "Input",ExpressionUUID->"05b577b9-54c0-4e71-b5bc-6a919093819b",
+Cell[37765, 665, 233, 6, 36, "Text",ExpressionUUID->"648c8900-cff7-4c84-bce0-9a3024800ef9"],
+Cell[38001, 673, 6061, 144, 209, "Input",ExpressionUUID->"05b577b9-54c0-4e71-b5bc-6a919093819b",
  InitializationCell->True],
-Cell[43844, 816, 180, 3, 36, "Text",ExpressionUUID->"6b677ffa-4d4c-4bdb-bdc8-3199f382d3fd"],
-Cell[44027, 821, 6395, 145, 163, "Input",ExpressionUUID->"c0a2ad95-eb1b-485e-928b-017df7a3b150",
+Cell[44065, 819, 180, 3, 36, "Text",ExpressionUUID->"6b677ffa-4d4c-4bdb-bdc8-3199f382d3fd"],
+Cell[44248, 824, 6790, 155, 163, "Input",ExpressionUUID->"c0a2ad95-eb1b-485e-928b-017df7a3b150",
  InitializationCell->True],
-Cell[50425, 968, 6874, 162, 508, "Input",ExpressionUUID->"9fff71ad-812a-4932-bbfb-1ff310584aef",
+Cell[51041, 981, 7315, 166, 531, "Input",ExpressionUUID->"9fff71ad-812a-4932-bbfb-1ff310584aef",
  InitializationCell->True],
-Cell[57302, 1132, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
+Cell[58359, 1149, 11060, 152, 47, "Input",ExpressionUUID->"e538eff8-6b5e-429d-8880-74d9dd7cafd3",
  InitializationCell->True]
 }, Open  ]]
 }

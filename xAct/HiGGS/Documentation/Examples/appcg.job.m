@@ -43,9 +43,9 @@ BuildHiGGS[];
 
 
 (* ::Input::Initialization:: *)
-(*
-JobsBatch={{"EinsteinCartan",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
-*)
+(**)
+JobsBatch={{"EinsteinCartan",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,Alp6==0,Bet1==0,Bet2==0,Bet3==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}};
+(**)
 
 
 (* ::Input::Initialization:: *)
@@ -59,13 +59,13 @@ JobsBatch={{"spin_0p",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp5==0,2Bet1+Bet2==0,Bet
 
 
 (* ::Input::Initialization:: *)
-(**)
-JobsBatch={{"simple_spin_1p_A3A4A6B1B3_velocities",{Alp1==0,Alp2==0,Alp3==0,Alp4==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet3==0}},{"simple_spin_1p_A3A6B1B2B3_velocities",{Alp1==0,Alp2==0,Alp3==0,Alp6==0,Bet1==0,Bet2==0,cAlp1==0,cAlp2==0,cAlp3==0,cAlp4==0,cAlp5==0,cAlp6==0,cBet1==0,cBet2==0,cBet3==0}}};
-(**)
+(*
+JobsBatch={{"simple_spin_1p_A3A4A6B1B3_velocities",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp4\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet3\[Equal]0}},{"simple_spin_1p_A3A6B1B2B3_velocities",{Alp1\[Equal]0,Alp2\[Equal]0,Alp3\[Equal]0,Alp6\[Equal]0,Bet1==0,Bet2\[Equal]0,cAlp1==0,cAlp2\[Equal]0,cAlp3\[Equal]0,cAlp4\[Equal]0,cAlp5\[Equal]0,cAlp6\[Equal]0,cBet1\[Equal]0,cBet2\[Equal]0,cBet3\[Equal]0}}};
+*)
 
 
 (* ::Input::Initialization:: *)
-StudyTheory[JobsBatch,"Import"->False,"Brackets"->False];
+StudyTheory[JobsBatch,"Import"->False,"Brackets"->True];
 
 
 (* ::Input::Initialization:: *)

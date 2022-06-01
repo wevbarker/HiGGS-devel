@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import statistics
 import sys
 import random
 import matplotlib as mpl
@@ -110,6 +111,58 @@ plt.savefig('peta4.plt.png',bbox_inches = 'tight',dpi = 900)
 
 mycmaps = { 'notacmap' : 0 }
 twinxs = { 'notacmap' : 0 }
+
+
+tots=[]
+for x in range(xmx):
+    for y in range(ymx):
+        node = y*xmx+x
+        print("node ",node)
+        #=============== files =================================
+        kernel_files = os.listdir("svy/node-" + str(node) + "/chr/")
+        def make_np(filename):
+            return pd.read_csv('svy/node-' + str(node) + '/chr/'+filename).to_numpy()
+
+        print("all kernel data")
+        #   a list, not np, of np arrays containing all data with headers
+        all_kernel_data = list(map(make_np,kernel_files))
+
+        #   all numerical columns, no headers, with the start times
+        def start_cols(array):
+            return array[1:,::2]
+
+        print("start times")
+        #   to find the start and end of the whole survey
+        start_times = np.concatenate(list(map(start_cols,all_kernel_data)))
+        start_times = start_times.astype('float')
+        s_times = np.copy(start_times)
+        start_times[start_times == 0.] = 'nan'
+        start_time = np.nanmin(start_times)
+        stop_time = np.nanmax(start_times)
+        total_time=stop_time-start_time
+        tots.append(total_time)
+        print("total time from node ",node," is ",total_time)
+
+
+print(tots)
+print(max(tots))
+'''
+average = statistics.mean(tots)
+standev = statistics.stdev(tots)
+
+print("node times have average ",average," and error ",standev)
+
+total_time_new = max(tots)
+
+sys.exit()
+'''
+
+
+
+
+
+
+
 
 for x in range(xmx):
     for y in range(ymx):
@@ -301,7 +354,8 @@ for x in range(xmx):
 
             #=================== limits ======================
 
-            axs[y,x].set_xlim(0., total_time)
+            #   maybe don't need to limit if truncating
+            axs[y,x].set_xlim(0., total_time_new)
             '''
             axs[y,x].set_yticks(list(propunit*np.array(list(range(0,number_of_kernels)))))
             '''
