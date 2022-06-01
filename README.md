@@ -73,6 +73,9 @@ More general examples can be found in the notebook `./xAct/HiGGS/Documentation/E
 ## What's in the box? 
 
 The HiGGS package has the following structure:
+
+
+
 ```
 xAct
 └── HiGGS
@@ -88,29 +91,34 @@ xAct
     │       ├── NonCanonicalPhiToggle.mx
     │       ├── O13ProjectionsToggle.mx
     │       ├── ProjectionNormalisationsToggle.mx
-    │       ├── VelocityToggle.mx
-    │       └── VelocityToggletmp.mx
+    │       └── VelocityToggle.mx
     ├── COPYING
     ├── Documentation
     │   ├── Examples
     │   │   ├── appcg.job.m
     │   │   ├── appcg.job.nb
     │   │   ├── appcg.job.sh
-    │   │   ├── appcg.plt.png
     │   │   ├── appcg.plt.py
     │   │   ├── appcg.plt.sh
+    │   │   ├── appcg.scp.sh
     │   │   ├── peta4.job.m
     │   │   ├── peta4.job.nb
     │   │   ├── peta4.job.sh
     │   │   ├── peta4.job.slm
-    │   │   ├── peta4.plt.pdf
-    │   │   ├── peta4.plt.png
     │   │   ├── peta4.plt.py
     │   │   ├── peta4.plt.sh
+    │   │   ├── peta4.rdm.png
+    │   │   ├── peta4.scp.sh
     │   │   ├── peta4.svy.m
     │   │   ├── peta4.svy.nb
-    │   │   ├── tutor.m
-    │   │   └── tutor.nb
+    │   │   ├── svy
+    │   │   │   ├── EinsteinCartan.thr.mx
+    │   │   │   ├── EinsteinCartan_vel.thr.mx
+    │   │   │   ├── simple_spin_1p.thr.mx
+    │   │   │   └── simple_spin_1p_vel.thr.mx
+    │   │   ├── tutor.nb
+    │   │   ├── tutor.pdf
+    │   │   └── tutor.png
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
     ├── HiGGS.m
