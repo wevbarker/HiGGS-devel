@@ -283,5 +283,12 @@ $HiGGSBuilt=True;
 
 
 (* ::Input::Initialization:: *)
+(*
+FrontEndExecute@{FrontEndToken[InputNotebook[],"SelectAll"],FrontEndToken[InputNotebook[],"SelectionOpenAllGroups"]};
+Export[NotebookDirectory[]<>"Documentation/HiGGS.pdf",EvaluationNotebook[]];
+*)
+
+
+(* ::Input::Initialization:: *)
 End[];
 EndPackage[];

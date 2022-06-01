@@ -5711,7 +5711,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-IfBuild["documentation",
+(*
 FrontEndExecute@{FrontEndToken[InputNotebook[],"SelectAll"],FrontEndToken[InputNotebook[],"SelectionOpenAllGroups"]};
 Export[NotebookDirectory[]<>"Documentation/HiGGS_sources.pdf",EvaluationNotebook[]];
-];
+*)
