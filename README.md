@@ -76,9 +76,9 @@ More general examples can be found in the notebook `./xAct/HiGGS/Documentation/E
 	```bash
 	cp /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/tutor.nb ./
 	cp -r /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/svy ./
-	mkdir fig
+	mkdir ./fig
 	```
-2. Open Mathematica and run `./tutor.nb` in a notebook front end.
+2. Open Mathematica and run `./tutor.nb` in a notebook front end. Make sure you run all the initialisation cells, from the beginning, to the end.
 
 ## What's in the box? 
 
