@@ -117,7 +117,6 @@ xAct
     │   │   │   ├── simple_spin_1p.thr.mx
     │   │   │   └── simple_spin_1p_vel.thr.mx
     │   │   ├── tutor.nb
-    │   │   ├── tutor.pdf
     │   │   └── tutor.png
     │   ├── HiGGS.pdf
     │   └── HiGGS_sources.pdf
