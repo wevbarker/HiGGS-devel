@@ -18,7 +18,7 @@ HiGGS is distributed as free software under the [GNU General Public License (GPL
 
 HiGGS is provided without warranty, or the implied warranty of merchantibility or fitness for a particular purpose.
 
-Users of HiGGS, including authors of derivative works as defined by the GPL, are kindly requested to cite the 2022 HiGGS papers in their resulting publications.
+Users of HiGGS, including authors of derivative works as defined by the GPL, are kindly requested to cite the 2022 HiGGS papers ([2206.00658](https://arxiv.org/abs/2206.00658) and [2205.13534](https://arxiv.org/abs/2205.13534)) in their resulting publications.
 
 These conditions apply to all software in this repository, including "HPC-EEG" visualisation tools.
 
@@ -72,7 +72,7 @@ That output is less easy to show.
 #### Installation test
 
 More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`. This notebook also acts as an install test.
-1. Move the test files into your working directory: 
+1. Move the test files into your working directory, e.g. for a global install: 
 	```bash
 	cp /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/tutor.nb ./
 	cp -r /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/svy ./
