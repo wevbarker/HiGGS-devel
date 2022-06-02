@@ -69,7 +69,7 @@ DefTheory[{Alp1 == 0, Alp2 == 0, Alp3 == 0, Alp4 == 0, Alp5 == 0,
 ```
 That output is less easy to show.
 
-####
+#### Installation test
 
 More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`. This notebook also acts as an install test.
 1. Move the test files into your working directory: 
