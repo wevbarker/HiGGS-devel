@@ -44,7 +44,6 @@ HiGGS has been tested in the following environment(s):
 	```bash
 	/usr/share/Mathematica/Applications/xAct
 	```
-so
 ## Quickstart 
 
 The package loads just like any other part of xAct, just open a fresh notebook and run:
@@ -69,13 +68,21 @@ DefTheory[{Alp1 == 0, Alp2 == 0, Alp3 == 0, Alp4 == 0, Alp5 == 0,
    cBet2 == 0, cBet3 == 0}, "Export" -> "EinsteinCartan"];
 ```
 That output is less easy to show.
-More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`.
+
+####
+
+More general examples can be found in the notebook `./xAct/HiGGS/Documentation/Examples/tutor.nb`. This notebook also acts as an install test.
+1. Move the test files into your working directory: 
+	```bash
+	cp /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/tutor.nb ./
+	cp -r /usr/share/Mathematica/Applications/xAct/HiGGS/Documentation/Examples/svy ./
+	mkdir fig
+	```
+2. Open Mathematica and run `./tutor.nb` in a notebook front end.
 
 ## What's in the box? 
 
 The HiGGS package has the following structure:
-
-
 
 ```
 xAct
