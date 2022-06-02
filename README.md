@@ -42,8 +42,9 @@ HiGGS has been tested in the following environment(s):
 	```
 3. Place the `./xAct/HiGGS` directory relative to your xAct install. A global install might have ended up at: 
 	```bash
-	/usr/share/Mathematica/Applications/xAct/HiGGS
+	/usr/share/Mathematica/Applications/xAct
 	```
+so
 ## Quickstart 
 
 The package loads just like any other part of xAct, just open a fresh notebook and run:
