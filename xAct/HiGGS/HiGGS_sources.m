@@ -925,21 +925,24 @@ ToStrengths=Join[ToTorsion,ToRiemannCartan];
 
 (*would be good to put parallel momenta up here also*)
 
-
-
 FPSymb="\!\(\*OverscriptBox[\(\[ScriptF]\), \(^\)]\)";
-DefTensor[FP[-a],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[a]}];
-DeclareOrder[FP[-a],1];
+DefTensor[FP[-a,-b],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[b]}];
+DeclareOrder[FP[-a,-b],1];
 APSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalA]\), \(^\)]\)";
-DefTensor[AP[-a,-b],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[b],V[c]}];
-DeclareOrder[TP[-a,-b,-c],1];
+DefTensor[AP[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[c]}];
+DeclareOrder[AP[-a,-b,-c],1];
 FPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptF]\), \(\[UpTee]\)]\)";
-DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
-DeclareOrder[TP[-a,-b,-c],1];
+DefTensor[FPerp[-a],M4,PrintAs->SymbolBuild[FPerpSymb]];
+DeclareOrder[FPerp[-a],1];
 APerpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalA]\), \(\[UpTee]\)]\)";
-DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
-DeclareOrder[TP[-a,-b,-c],1];
+DefTensor[APerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb]];
+DeclareOrder[APerp[-a,-b],1];
 
+FDecomposeDefinition=FP[-a,-b]+V[-b]FPerp[-a];
+ADecomposeDefinition=AP[-a,-b,-c]+V[-c]APerp[-a,-b];
+FDecompose=MakeRule[{F[-a,-b],Evaluate[FDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+ADecompose=MakeRule[{A[-a,-b,-c],Evaluate[ADecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+GaugeDecompose=Join[FDecompose,ADecompose];
 
 (*Defining parallel field strengths, i.e. the canonical parts*)
 TPpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
@@ -1534,7 +1537,7 @@ tmp=BetPerpPara1p PT1p[-n,-m,e,f]PTPerp[-e,-f,a,v,w]- PB1p[-q,-r,x,z]PBPara[-x,-
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1p][[1]]];
 tmp=BetPerpPara1m  PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB1m[-q,z]PBPerp[-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1m][[1]]];
-tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
+tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate . PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara2p][[1]]];
 tmp=AlpPerpPara0p PR0p[e,f,g,h]Antisymmetrize[PRPara[-e,-f,-g,-h,a,b,v,w],{a,b}]- PA0p[x,z]PAPerp[-x,-z,i,j,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],AlpPerpPara0p][[1]]];
@@ -2259,9 +2262,9 @@ DefTensor[APerp1m[-a],M4,PrintAs->SymbolBuild[APerpSymb,Spin1m],OrthogonalTo->{V
 DeclareOrder[APerp1m[-a],1];
 
 FPerp0pDefinition=V[a]FPerp[-a];
-FPerp1mDefinition=PPerp[-n,a]FPerp[-a];
-APerp1pDefinition=PPerp[-n,a]PPerp[-m,b]APerp[-a,-b];
-APerp1mDefinition=PPerp[-n,a]V[b]APerp[-a,-b];
+FPerp1mDefinition=PPara[-n,a]FPerp[-a];
+APerp1pDefinition=PPara[-n,a]PPara[-m,b]APerp[-a,-b];
+APerp1mDefinition=PPara[-n,a]V[b]APerp[-a,-b];
 
 FPerp0pActivate=MakeRule[{FPerp0p[],Scalar[Evaluate[FPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
 FPerp1mActivate=MakeRule[{FPerp1m[-n],Evaluate[FPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
@@ -2687,6 +2690,36 @@ APiPDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]PiPA0p[],{
 BPiPActivate=MakeRule[{BPiP[-n,-m],Evaluate[BPiPDefinition]},MetricOn->All,ContractMetrics->True];
 APiPActivate=MakeRule[{APiP[-n,-m,-o],Evaluate[APiPDefinition]},MetricOn->All,ContractMetrics->True];
 PiPToPiPO3=Join[BPiPActivate,APiPActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+FPDefinition=((1/3)PPara[-n,-m]FP0p[]+
+  FP1p[-n,-m]+
+  FP2p[-n,-m]+
+ V[-n]FP1m[-m])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
+
+APDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]AP0p[],{-n,-m}]+
+ 2Antisymmetrize[V[-n]AP1p[-m,-o],{-n,-m}]+
+ 2Antisymmetrize[V[-n]AP2p[-m,-o],{-n,-m}]+
+ (-1/6)PA0m[-n,-m,-o]AP0m[]+
+ Antisymmetrize[-PPara[-m,-o]AP1m[-n],{-m,-n}]+
+(4/3)AP2m[-n,-m,-o],{-n,-m}])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
+
+FPActivate=MakeRule[{FP[-n,-m],Evaluate[FPDefinition]},MetricOn->All,ContractMetrics->True];
+APActivate=MakeRule[{AP[-n,-m,-o],Evaluate[APDefinition]},MetricOn->All,ContractMetrics->True];
+GaugePToGaugePO3=Join[FPActivate,APActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+FPerpDefinition=FPerp0p[]V[-n]+FPerp1m[-n];
+
+APerpDefinition=APerp1p[-n,-m]+ 2Antisymmetrize[V[-m]APerp1m[-n],{-n,-m}];
+
+FPerpActivate=MakeRule[{FPerp[-n],Evaluate[FPerpDefinition]},MetricOn->All,ContractMetrics->True];
+APerpActivate=MakeRule[{APerp[-n,-m],Evaluate[APerpDefinition]},MetricOn->All,ContractMetrics->True];
+GaugePerpToGaugePO3=Join[FPerpActivate,APerpActivate];
 ClearBuild[];
 
 
