@@ -925,6 +925,22 @@ ToStrengths=Join[ToTorsion,ToRiemannCartan];
 
 (*would be good to put parallel momenta up here also*)
 
+
+
+FPSymb="\!\(\*OverscriptBox[\(\[ScriptF]\), \(^\)]\)";
+DefTensor[FP[-a],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[a]}];
+DeclareOrder[FP[-a],1];
+APSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalA]\), \(^\)]\)";
+DefTensor[AP[-a,-b],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[b],V[c]}];
+DeclareOrder[TP[-a,-b,-c],1];
+FPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptF]\), \(\[UpTee]\)]\)";
+DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
+DeclareOrder[TP[-a,-b,-c],1];
+APerpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalA]\), \(\[UpTee]\)]\)";
+DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
+DeclareOrder[TP[-a,-b,-c],1];
+
+
 (*Defining parallel field strengths, i.e. the canonical parts*)
 TPpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
@@ -2175,6 +2191,84 @@ PiPA2pActivate=MakeRule[{PiPA2p[-n,-m],Evaluate[PiPA2pDefinition]},MetricOn->All
 PiPA2mActivate=MakeRule[{PiPA2m[-n,-m,-o],Evaluate[PiPA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 PiPO3Activate=Join[PiPB0pActivate,PiPB1pActivate,PiPB1mActivate,PiPB2pActivate,PiPA0pActivate,PiPA0mActivate,PiPA1pActivate,PiPA1mActivate,PiPA2pActivate,PiPA2mActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[FP0p[],M4,PrintAs->SymbolBuild[FPSymb,Spin0p]];
+DeclareOrder[FP0p[],1];
+DefTensor[FP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[FP1p[-a,-b],1];
+DefTensor[FP1m[-a],M4,PrintAs->SymbolBuild[FPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[FP1m[-a],1];
+DefTensor[FP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[FP2p[-a,-b],1];
+
+DefTensor[AP0p[],M4,PrintAs->SymbolBuild[APSymb,Spin0p]];
+DeclareOrder[AP0p[],1];
+DefTensor[AP0m[],M4,PrintAs->SymbolBuild[APSymb,Spin0m]];
+DeclareOrder[AP0m[],1];
+DefTensor[AP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[AP1p[-a,-b],1];
+DefTensor[AP1m[-a],M4,PrintAs->SymbolBuild[APSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[AP1m[-a],1];
+DefTensor[AP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[AP2p[-a,-b],1];
+DefTensor[AP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
+DeclareOrder[AP2m[-a,-b,-c],1];
+AutomaticRules[AP2m,MakeRule[{AP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[AP2m,MakeRule[{epsilonG[a,b,c,d]AP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[FP2p,MakeRule[{FP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[AP2p,MakeRule[{AP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+
+FP0pDefinition=PB0p[e,f]PBPara[-e,-f,a,c]FP[-a,-c];
+FP1pDefinition=PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]FP[-a,-c];
+FP2pDefinition=PB2p[-n,-m,e,f]PBPara[-e,-f,a,c]FP[-a,-c];
+FP1mDefinition=PB1m[-n,f]PBPerp[-f,a,c]FP[-a,-c];
+AP0pDefinition=PA0p[e,f]PAPerp[-e,-f,a,b,c]AP[-a,-b,-c];
+AP1pDefinition=PA1p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]AP[-a,-b,-c];
+AP2pDefinition=PA2p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]AP[-a,-b,-c];
+AP0mDefinition=PA0m[d,e,f]PAPara[-d,-e,-f,a,b,c]AP[-a,-b,-c];
+AP1mDefinition=PA1m[-n,d,e,f]PAPara[-d,-e,-f,a,b,c]AP[-a,-b,-c];
+AP2mDefinition=PA2m[-n,-m,-o,d,e,f]PAPara[-d,-e,-f,a,b,c]AP[-a,-b,-c];
+
+FP0pActivate=MakeRule[{FP0p[],Scalar[Evaluate[FP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+FP1pActivate=MakeRule[{FP1p[-n,-m],Evaluate[FP1pDefinition]},MetricOn->All,ContractMetrics->True];
+FP1mActivate=MakeRule[{FP1m[-n],Evaluate[FP1mDefinition]},MetricOn->All,ContractMetrics->True];
+FP2pActivate=MakeRule[{FP2p[-n,-m],Evaluate[FP2pDefinition]},MetricOn->All,ContractMetrics->True];
+AP0pActivate=MakeRule[{AP0p[],Scalar[Evaluate[AP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+AP0mActivate=MakeRule[{AP0m[],Scalar[Evaluate[AP0mDefinition]]},MetricOn->All,ContractMetrics->True];
+AP1pActivate=MakeRule[{AP1p[-n,-m],Evaluate[AP1pDefinition]},MetricOn->All,ContractMetrics->True];
+AP1mActivate=MakeRule[{AP1m[-n],Evaluate[AP1mDefinition]},MetricOn->All,ContractMetrics->True];
+AP2pActivate=MakeRule[{AP2p[-n,-m],Evaluate[AP2pDefinition]},MetricOn->All,ContractMetrics->True];
+AP2mActivate=MakeRule[{AP2m[-n,-m,-o],Evaluate[AP2mDefinition]},MetricOn->All,ContractMetrics->True];
+
+GaugePO3Activate=Join[FP0pActivate,FP1pActivate,FP1mActivate,FP2pActivate,AP0pActivate,AP0mActivate,AP1pActivate,AP1mActivate,AP2pActivate,AP2mActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[FPerp0p[],M4,PrintAs->SymbolBuild[FPerpSymb,Spin0p]];
+DeclareOrder[FP0p[],1];
+DefTensor[FPerp1m[-a],M4,PrintAs->SymbolBuild[FPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[FPerp1m[-a],1];
+
+DefTensor[APerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[APerp1p[-a,-b],1];
+DefTensor[APerp1m[-a],M4,PrintAs->SymbolBuild[APerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[APerp1m[-a],1];
+
+FPerp0pDefinition=V[a]FPerp[-a];
+FPerp1mDefinition=PPerp[-n,a]FPerp[-a];
+APerp1pDefinition=PPerp[-n,a]PPerp[-m,b]APerp[-a,-b];
+APerp1mDefinition=PPerp[-n,a]V[b]APerp[-a,-b];
+
+FPerp0pActivate=MakeRule[{FPerp0p[],Scalar[Evaluate[FPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
+FPerp1mActivate=MakeRule[{FPerp1m[-n],Evaluate[FPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+APerp1pActivate=MakeRule[{APerp1p[-n,-m],Evaluate[APerp1pDefinition]},MetricOn->All,ContractMetrics->True];
+APerp1mActivate=MakeRule[{APerp1m[-n],Evaluate[APerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+
+GaugePerpO3Activate=Join[FPerp0pActivate,FPerp1mActivate,APerp1pActivate,APerp1mActivate];
 ClearBuild[];
 
 
