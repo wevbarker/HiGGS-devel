@@ -328,6 +328,8 @@ epsilonG[-i,-j,-k,-m]A3[m];
 
 ASO13Activate=MakeRule[{A[-j,-k,-i],Evaluate[ADefinition]},MetricOn->All,ContractMetrics->True];
 
+
+(* ::Input::Initialization:: *)
 BSymb="\[ScriptB]";
 FSymb="\[ScriptF]";
 DefTensor[F[-i,-j],M4,PrintAs->SymbolBuild[FSymb]];
@@ -344,6 +346,22 @@ FDefinition=F1[-i,-j]+F2[-i,-j]+(1/4)G[-i,-j]F3[];
 FSO13Activate=MakeRule[{F[-i,-j],Evaluate[FDefinition]},MetricOn->All,ContractMetrics->True];
 
 GaugeSO13Activate=Join[FSO13Activate,ASO13Activate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+SigmaSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)]\)";
+DefTensor[Sigma[-d,a,c],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[SigmaSymb]];
+DeclareOrder[Sigma[a,c,-d],1];
+
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+TauSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\[Flat]\)]\)";
+DefTensor[Tau[-i,-j],M4,PrintAs->SymbolBuild[TauSymb]];
+DeclareOrder[Tau[-i,-j], 1]; 
+
 ClearBuild[];
 
 
@@ -835,7 +853,6 @@ AutomaticRules[H,MakeRule[{H[-a,i]B[a,-j],G[i,-j]},MetricOn->All,ContractMetrics
 (*Rule to contract Greek indices*)
 AutomaticRules[H,MakeRule[{H[-a,i]B[c,-i],G[-a,c]},MetricOn->All,ContractMetrics->True]];
 
-
 G3Symb="\!\(\*SuperscriptBox[\(\[Gamma]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[G3[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[G3Symb]];
 AutomaticRules[G3,MakeRule[{G3[-a,-b]G3[b,-d],G3[-a,-d]},MetricOn->All,ContractMetrics->True]];
@@ -925,16 +942,18 @@ ToStrengths=Join[ToTorsion,ToRiemannCartan];
 
 (*would be good to put parallel momenta up here also*)
 
+
+(* ::Input::Initialization:: *)
 FPSymb="\!\(\*OverscriptBox[\(\[ScriptF]\), \(^\)]\)";
 DefTensor[FP[-a,-b],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[b]}];
 DeclareOrder[FP[-a,-b],1];
-APSymb="\!\(\*OverscriptBox[\(\[ScriptCapitalA]\), \(^\)]\)";
+APSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[ScriptCapitalA]\), \(^\)], \(\[Flat]\)]\)";
 DefTensor[AP[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[c]}];
 DeclareOrder[AP[-a,-b,-c],1];
 FPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptF]\), \(\[UpTee]\)]\)";
 DefTensor[FPerp[-a],M4,PrintAs->SymbolBuild[FPerpSymb]];
 DeclareOrder[FPerp[-a],1];
-APerpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalA]\), \(\[UpTee]\)]\)";
+APerpSymb="\!\(\*SuperscriptBox[SuperscriptBox[\(\[ScriptCapitalA]\), \(\[Flat]\)], \(\[UpTee]\)]\)";
 DefTensor[APerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb]];
 DeclareOrder[APerp[-a,-b],1];
 
@@ -944,6 +963,29 @@ FDecompose=MakeRule[{F[-a,-b],Evaluate[FDecomposeDefinition]},MetricOn->All,Cont
 ADecompose=MakeRule[{A[-a,-b,-c],Evaluate[ADecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 GaugeDecompose=Join[FDecompose,ADecompose];
 
+
+(* ::Input::Initialization:: *)
+TauPSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\(\[Flat]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefTensor[TauP[-a,-b],M4,PrintAs->SymbolBuild[TauPSymb],OrthogonalTo->{V[b]}];
+DeclareOrder[TauP[-a,-b],1];
+SigmaPSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\(\[Flat]\)\(\[DoubleVerticalBar]\)\)]\)";
+DefTensor[SigmaP[-c,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb],OrthogonalTo->{V[c]}];
+DeclareOrder[SigmaP[-a,-b,-c],1];
+TauPerpSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\(\[Flat]\)\(\[UpTee]\)\)]\)";
+DefTensor[TauPerp[-a],M4,PrintAs->SymbolBuild[TauPerpSymb]];
+DeclareOrder[TauPerp[-a],1];
+SigmaPerpSymb="\!\(\*SuperscriptBox[SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)], \(\[UpTee]\)]\)";
+DefTensor[SigmaPerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb]];
+DeclareOrder[SigmaPerp[-a,-b],1];
+
+TauDecomposeDefinition=TauP[-a,-b]+V[-b]TauPerp[-a];
+SigmaDecomposeDefinition=SigmaP[-c,-a,-b]+V[-c]SigmaPerp[-a,-b];
+TauDecompose=MakeRule[{Tau[-a,-b],Evaluate[TauDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaDecompose=MakeRule[{Sigma[-c,-a,-b],Evaluate[SigmaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+SourceDecompose=Join[TauDecompose,SigmaDecompose];
+
+
+(* ::Input::Initialization:: *)
 (*Defining parallel field strengths, i.e. the canonical parts*)
 TPpSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[TP[-a,-b,-c],M4,Antisymmetric[{-b,-c}],PrintAs->SymbolBuild[TPpSymb],OrthogonalTo->{V[b],V[c]}];
@@ -2276,6 +2318,84 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
+DefTensor[TauP0p[],M4,PrintAs->SymbolBuild[TauPSymb,Spin0p]];
+DeclareOrder[TauP0p[],1];
+DefTensor[TauP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[TauP1p[-a,-b],1];
+DefTensor[TauP1m[-a],M4,PrintAs->SymbolBuild[TauPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[TauP1m[-a],1];
+DefTensor[TauP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[TauP2p[-a,-b],1];
+
+DefTensor[SigmaP0p[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0p]];
+DeclareOrder[SigmaP0p[],1];
+DefTensor[SigmaP0m[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0m]];
+DeclareOrder[SigmaP0m[],1];
+DefTensor[SigmaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[SigmaP1p[-a,-b],1];
+DefTensor[SigmaP1m[-a],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[SigmaP1m[-a],1];
+DefTensor[SigmaP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[SigmaP2p[-a,-b],1];
+DefTensor[SigmaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
+DeclareOrder[SigmaP2m[-a,-b,-c],1];
+AutomaticRules[SigmaP2m,MakeRule[{SigmaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[SigmaP2m,MakeRule[{epsilonG[a,b,c,d]SigmaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[TauP2p,MakeRule[{TauP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[SigmaP2p,MakeRule[{SigmaP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+
+TauP0pDefinition=PB0p[e,f]PBPara[-e,-f,a,c]TauP[-a,-c];
+TauP1pDefinition=PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]TauP[-a,-c];
+TauP2pDefinition=PB2p[-n,-m,e,f]PBPara[-e,-f,a,c]TauP[-a,-c];
+TauP1mDefinition=PB1m[-n,f]PBPerp[-f,a,c]TauP[-a,-c];
+SigmaP0pDefinition=PA0p[e,f]PAPerp[-e,-f,a,b,c]SigmaP[-a,-b,-c];
+SigmaP1pDefinition=PA1p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]SigmaP[-a,-b,-c];
+SigmaP2pDefinition=PA2p[-n,-m,e,f]PAPerp[-e,-f,a,b,c]SigmaP[-a,-b,-c];
+SigmaP0mDefinition=PA0m[d,e,f]PAPara[-d,-e,-f,a,b,c]SigmaP[-a,-b,-c];
+SigmaP1mDefinition=PA1m[-n,d,e,f]PAPara[-d,-e,-f,a,b,c]SigmaP[-a,-b,-c];
+SigmaP2mDefinition=PA2m[-n,-m,-o,d,e,f]PAPara[-d,-e,-f,a,b,c]SigmaP[-a,-b,-c];
+
+TauP0pActivate=MakeRule[{TauP0p[],Scalar[Evaluate[TauP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+TauP1pActivate=MakeRule[{TauP1p[-n,-m],Evaluate[TauP1pDefinition]},MetricOn->All,ContractMetrics->True];
+TauP1mActivate=MakeRule[{TauP1m[-n],Evaluate[TauP1mDefinition]},MetricOn->All,ContractMetrics->True];
+TauP2pActivate=MakeRule[{TauP2p[-n,-m],Evaluate[TauP2pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP0pActivate=MakeRule[{SigmaP0p[],Scalar[Evaluate[SigmaP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+SigmaP0mActivate=MakeRule[{SigmaP0m[],Scalar[Evaluate[SigmaP0mDefinition]]},MetricOn->All,ContractMetrics->True];
+SigmaP1pActivate=MakeRule[{SigmaP1p[-n,-m],Evaluate[SigmaP1pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP1mActivate=MakeRule[{SigmaP1m[-n],Evaluate[SigmaP1mDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP2pActivate=MakeRule[{SigmaP2p[-n,-m],Evaluate[SigmaP2pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP2mActivate=MakeRule[{SigmaP2m[-n,-m,-o],Evaluate[SigmaP2mDefinition]},MetricOn->All,ContractMetrics->True];
+
+SourcePO3Activate=Join[TauP0pActivate,TauP1pActivate,TauP1mActivate,TauP2pActivate,SigmaP0pActivate,SigmaP0mActivate,SigmaP1pActivate,SigmaP1mActivate,SigmaP2pActivate,SigmaP2mActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[TauPerp0p[],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin0p]];
+DeclareOrder[TauP0p[],1];
+DefTensor[TauPerp1m[-a],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[TauPerp1m[-a],1];
+
+DefTensor[SigmaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DeclareOrder[SigmaPerp1p[-a,-b],1];
+DefTensor[SigmaPerp1m[-a],M4,PrintAs->SymbolBuild[SigmaPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DeclareOrder[SigmaPerp1m[-a],1];
+
+TauPerp0pDefinition=V[a]TauPerp[-a];
+TauPerp1mDefinition=PPara[-n,a]TauPerp[-a];
+SigmaPerp1pDefinition=PPara[-n,a]PPara[-m,b]SigmaPerp[-a,-b];
+SigmaPerp1mDefinition=PPara[-n,a]V[b]SigmaPerp[-a,-b];
+
+TauPerp0pActivate=MakeRule[{TauPerp0p[],Scalar[Evaluate[TauPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
+TauPerp1mActivate=MakeRule[{TauPerp1m[-n],Evaluate[TauPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerp1pActivate=MakeRule[{SigmaPerp1p[-n,-m],Evaluate[SigmaPerp1pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerp1mActivate=MakeRule[{SigmaPerp1m[-n],Evaluate[SigmaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+
+SourcePerpO3Activate=Join[TauPerp0pActivate,TauPerp1mActivate,SigmaPerp1pActivate,SigmaPerp1mActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
 (*O(3) decomposition of the canonical parts of field strengths*)
 TPSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
 DefTensor[TP0m[],M4,PrintAs->SymbolBuild[TPSymb,Spin0m]];
@@ -2720,6 +2840,36 @@ APerpDefinition=APerp1p[-n,-m]+ 2Antisymmetrize[V[-m]APerp1m[-n],{-n,-m}];
 FPerpActivate=MakeRule[{FPerp[-n],Evaluate[FPerpDefinition]},MetricOn->All,ContractMetrics->True];
 APerpActivate=MakeRule[{APerp[-n,-m],Evaluate[APerpDefinition]},MetricOn->All,ContractMetrics->True];
 GaugePerpToGaugePO3=Join[FPerpActivate,APerpActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+TauPDefinition=((1/3)PPara[-n,-m]TauP0p[]+
+  TauP1p[-n,-m]+
+  TauP2p[-n,-m]+
+ V[-n]TauP1m[-m])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
+
+SigmaPDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]SigmaP0p[],{-n,-m}]+
+ 2Antisymmetrize[V[-n]SigmaP1p[-m,-o],{-n,-m}]+
+ 2Antisymmetrize[V[-n]SigmaP2p[-m,-o],{-n,-m}]+
+ (-1/6)PA0m[-n,-m,-o]SigmaP0m[]+
+ Antisymmetrize[-PPara[-m,-o]SigmaP1m[-n],{-m,-n}]+
+(4/3)SigmaP2m[-n,-m,-o],{-n,-m}])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
+
+TauPActivate=MakeRule[{TauP[-n,-m],Evaluate[TauPDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPActivate=MakeRule[{SigmaP[-o,-n,-m],Evaluate[SigmaPDefinition]},MetricOn->All,ContractMetrics->True];(*remember change of order in indices due to Blagojevic*)
+SourcePToGaugePO3=Join[TauPActivate,SigmaPActivate];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+TauPerpDefinition=TauPerp0p[]V[-n]+TauPerp1m[-n];
+
+SigmaPerpDefinition=SigmaPerp1p[-n,-m]+ 2Antisymmetrize[V[-m]SigmaPerp1m[-n],{-n,-m}];
+
+TauPerpActivate=MakeRule[{TauPerp[-n],Evaluate[TauPerpDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerpActivate=MakeRule[{SigmaPerp[-n,-m],Evaluate[SigmaPerpDefinition]},MetricOn->All,ContractMetrics->True];
+SourcePerpToGaugePO3=Join[TauPerpActivate,SigmaPerpActivate];
 ClearBuild[];
 
 
