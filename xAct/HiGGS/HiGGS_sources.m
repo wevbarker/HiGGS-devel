@@ -984,6 +984,17 @@ TauDecompose=MakeRule[{Tau[-a,-b],Evaluate[TauDecomposeDefinition]},MetricOn->Al
 SigmaDecompose=MakeRule[{Sigma[-c,-a,-b],Evaluate[SigmaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 SourceDecompose=Join[TauDecompose,SigmaDecompose];
 
+TauPToTauDefinition=PPara[-b,c]Tau[-a,-c]/.PADMActivate;
+TauPerpToTauDefinition=V[c]Tau[-a,-c];
+SigmaPToSigmaDefinition=PPara[-b,c]Sigma[-c,-a,-e]/.PADMActivate;
+SigmaPerpToSigmaDefinition=V[c]Sigma[-c,-a,-e];
+
+TauPToTau=MakeRule[{TauP[-a,-b],Evaluate[TauPToTauDefinition]},MetricOn->All,ContractMetrics->True];
+TauPerpToTau=MakeRule[{TauPerp[-a],Evaluate[TauPerpToTauDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPToSigma=MakeRule[{SigmaP[-b,-a,-e],Evaluate[SigmaPToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerpToSigma=MakeRule[{SigmaPerp[-a,-e],Evaluate[SigmaPerpToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
+SourceCompose=Join[TauPToTau,TauPerpToTau,SigmaPToSigma,SigmaPerpToSigma];
+
 
 (* ::Input::Initialization:: *)
 (*Defining parallel field strengths, i.e. the canonical parts*)
@@ -1579,7 +1590,7 @@ tmp=BetPerpPara1p PT1p[-n,-m,e,f]PTPerp[-e,-f,a,v,w]- PB1p[-q,-r,x,z]PBPara[-x,-
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1p][[1]]];
 tmp=BetPerpPara1m  PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB1m[-q,z]PBPerp[-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara1m][[1]]];
-tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
+tmp=BetPerpPara2p PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,v,w]- PB2p[-q,-r,x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3TActivate/.PADMTActivate . PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPara2p][[1]]];
 tmp=AlpPerpPara0p PR0p[e,f,g,h]Antisymmetrize[PRPara[-e,-f,-g,-h,a,b,v,w],{a,b}]- PA0p[x,z]PAPerp[-x,-z,i,j,f]V[g]PPara[-f,h]PPara[v,-c]PPara[w,-d](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])/.PO3TActivate/.PADMTActivate/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],AlpPerpPara0p][[1]]];
