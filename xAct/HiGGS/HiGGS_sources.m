@@ -26,7 +26,10 @@ $PrintCellsBeforeBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"
 ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
 (*ClearBuild[]:=Print@"clearb"*)
 (*This setup works for CellTags*)
-DirectoryEnvironment[]:=Module[{RelevantTag,CurrentCell},
+DirectoryEnvironment[]:=Module[{RelevantTag,CurrentCell},(*
+res=res//ToNewCanonical;
+res=res//NoScalar;
+*)
 CurrentCell=EvaluationCell[];
 RelevantTag=CurrentValue[CurrentCell,CellTags];
 Print["DiectoryEnvironment[] was called and will return CellTag ",RelevantTag,"."];
@@ -351,7 +354,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 SigmaSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)]\)";
-DefTensor[Sigma[-d,a,c],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[SigmaSymb]];
+DefTensor[Sigma[-d,-a,-c],M4,Antisymmetric[{-a,-c}],PrintAs->SymbolBuild[SigmaSymb]];
 DeclareOrder[Sigma[a,c,-d],1];
 
 ClearBuild[];
