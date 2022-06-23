@@ -314,7 +314,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 ASymb="\[ScriptCapitalA]";
-DefTensor[A[a,c,-d],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[ASymb]];
+DefTensor[A[a,c,-d],M4,Antisymmetric[{a,c}],PrintAs->SymbolBuild[ASymb],Dagger->Complex];
 DeclareOrder[A[a,c,-d],1];
 DefTensor[A1[-k,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[ASymb,SO1]]; 
 DeclareOrder[A1[-k,-i,-j], 1]; 
@@ -335,7 +335,7 @@ ASO13Activate=MakeRule[{A[-j,-k,-i],Evaluate[ADefinition]},MetricOn->All,Contrac
 (* ::Input::Initialization:: *)
 BSymb="\[ScriptB]";
 FSymb="\[ScriptF]";
-DefTensor[F[-i,-j],M4,PrintAs->SymbolBuild[FSymb]];
+DefTensor[F[-i,-j],M4,PrintAs->SymbolBuild[FSymb],Dagger->Complex];
 DefTensor[F1[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[FSymb,SO1]]; 
 DeclareOrder[F1[-i,-j], 1]; 
 DefTensor[F2[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[FSymb,SO2]]; 
@@ -354,7 +354,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 SigmaSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)]\)";
-DefTensor[Sigma[-d,-a,-c],M4,Antisymmetric[{-a,-c}],PrintAs->SymbolBuild[SigmaSymb]];
+DefTensor[Sigma[-d,-a,-c],M4,Antisymmetric[{-a,-c}],PrintAs->SymbolBuild[SigmaSymb],Dagger->Complex];
 DeclareOrder[Sigma[a,c,-d],1];
 
 ClearBuild[];
@@ -362,7 +362,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 TauSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\[Flat]\)]\)";
-DefTensor[Tau[-i,-j],M4,PrintAs->SymbolBuild[TauSymb]];
+DefTensor[Tau[-i,-j],M4,PrintAs->SymbolBuild[TauSymb],Dagger->Complex];
 DeclareOrder[Tau[-i,-j], 1]; 
 
 ClearBuild[];
@@ -703,7 +703,7 @@ DefConstantSymbol[cAlpParaPerp2m,PrintAs->SymbolBuild[cAlpParaPerpSymb,dSO6,"Con
 
 cAlpParaPerp={cAlpParaPerp0p,cAlpParaPerp0m,cAlpParaPerp1p,cAlpParaPerp1m,cAlpParaPerp2p,cAlpParaPerp2m};
 
-cBetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \(_\)]\)";
+cBetSymb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\!\(\*OverscriptBox[\(\[Beta]\), \(_\)]\)";
 DefConstantSymbol[cBet1,PrintAs->SymbolBuild[cBetSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[cBet2,PrintAs->SymbolBuild[cBetSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[cBet3,PrintAs->SymbolBuild[cBetSymb,dSO3,"Constant"->True]];
@@ -713,7 +713,7 @@ DefConstantSymbol[cBet6,PrintAs->SymbolBuild[cBetSymb,dSO6,"Constant"->True]];
 
 cBet={cBet1,cBet2,cBet3};
 
-gBetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \('\)]\)";
+gBetSymb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\!\(\*OverscriptBox[\(\[Beta]\), \('\)]\)";
 DefConstantSymbol[gBet1,PrintAs->SymbolBuild[gBetSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[gBet2,PrintAs->SymbolBuild[gBetSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[gBet3,PrintAs->SymbolBuild[gBetSymb,dSO3,"Constant"->True]];
@@ -768,7 +768,8 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 (*Mike's couplings for irrep Lorentz constraints*)
 mAlpSymb="\[Alpha]";
-DefConstantSymbol[mAlp0,PrintAs->SymbolBuild[mAlpSymb,dSO0,"Constant"->True]];
+mAlp0Symb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\[Alpha]";
+DefConstantSymbol[mAlp0,PrintAs->SymbolBuild[mAlp0Symb,dSO0,"Constant"->True]];
 DefConstantSymbol[mAlp1,PrintAs->SymbolBuild[mAlpSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[mAlp2,PrintAs->SymbolBuild[mAlpSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[mAlp3,PrintAs->SymbolBuild[mAlpSymb,dSO3,"Constant"->True]];
@@ -780,7 +781,8 @@ mAlp={mAlp1,mAlp2,mAlp3,mAlp4,mAlp5,mAlp6};
 
 (*My couplings for irrep Lorentz constraints*)
 AlpSymb="\!\(\*OverscriptBox[\(\[Alpha]\), \(^\)]\)";
-DefConstantSymbol[Alp0,PrintAs->SymbolBuild[AlpSymb,dSO0,"Constant"->True]];
+Alp0Symb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\!\(\*OverscriptBox[\(\[Alpha]\), \(^\)]\)";
+DefConstantSymbol[Alp0,PrintAs->SymbolBuild[Alp0Symb,dSO0,"Constant"->True]];
 DefConstantSymbol[Alp1,PrintAs->SymbolBuild[AlpSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[Alp2,PrintAs->SymbolBuild[AlpSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[Alp3,PrintAs->SymbolBuild[AlpSymb,dSO3,"Constant"->True]];
@@ -790,7 +792,7 @@ DefConstantSymbol[Alp6,PrintAs->SymbolBuild[AlpSymb,dSO6,"Constant"->True]];
 
 Alp={Alp1,Alp2,Alp3,Alp4,Alp5,Alp6};
 
-mBetSymb="\[Beta]";
+mBetSymb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\[Beta]";
 DefConstantSymbol[mBet1,PrintAs->SymbolBuild[mBetSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[mBet2,PrintAs->SymbolBuild[mBetSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[mBet3,PrintAs->SymbolBuild[mBetSymb,dSO3,"Constant"->True]];
@@ -800,7 +802,7 @@ DefConstantSymbol[mBet6,PrintAs->SymbolBuild[mBetSymb,dSO6,"Constant"->True]];
 
 mBet={mBet1,mBet2,mBet3};
 
-BetSymb="\!\(\*OverscriptBox[\(\[Beta]\), \(^\)]\)";
+BetSymb="\!\(\*SuperscriptBox[SubscriptBox[\(\[ScriptCapitalM]\), \(Pl\)], \(2\)]\)\!\(\*OverscriptBox[\(\[Beta]\), \(^\)]\)";
 DefConstantSymbol[Bet1,PrintAs->SymbolBuild[BetSymb,dSO1,"Constant"->True]];
 DefConstantSymbol[Bet2,PrintAs->SymbolBuild[BetSymb,dSO2,"Constant"->True]];
 DefConstantSymbol[Bet3,PrintAs->SymbolBuild[BetSymb,dSO3,"Constant"->True]];
@@ -948,44 +950,64 @@ ToStrengths=Join[ToTorsion,ToRiemannCartan];
 
 (* ::Input::Initialization:: *)
 FPSymb="\!\(\*OverscriptBox[\(\[ScriptF]\), \(^\)]\)";
-DefTensor[FP[-a,-b],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[b]}];
+DefTensor[FP[-a,-b],M4,PrintAs->SymbolBuild[FPSymb],OrthogonalTo->{V[b]},Dagger->Complex];
 DeclareOrder[FP[-a,-b],1];
 APSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[ScriptCapitalA]\), \(^\)], \(\[Flat]\)]\)";
-DefTensor[AP[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[c]}];
+DefTensor[AP[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb],OrthogonalTo->{V[c]},Dagger->Complex];
 DeclareOrder[AP[-a,-b,-c],1];
 FPerpSymb="\!\(\*SuperscriptBox[\(\[ScriptF]\), \(\[UpTee]\)]\)";
-DefTensor[FPerp[-a],M4,PrintAs->SymbolBuild[FPerpSymb]];
+DefTensor[FPerp[-a],M4,PrintAs->SymbolBuild[FPerpSymb],Dagger->Complex];
 DeclareOrder[FPerp[-a],1];
 APerpSymb="\!\(\*SuperscriptBox[SuperscriptBox[\(\[ScriptCapitalA]\), \(\[Flat]\)], \(\[UpTee]\)]\)";
-DefTensor[APerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb]];
+DefTensor[APerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb],Dagger->Complex];
 DeclareOrder[APerp[-a,-b],1];
 
 FDecomposeDefinition=FP[-a,-b]+V[-b]FPerp[-a];
 ADecomposeDefinition=AP[-a,-b,-c]+V[-c]APerp[-a,-b];
 FDecompose=MakeRule[{F[-a,-b],Evaluate[FDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 ADecompose=MakeRule[{A[-a,-b,-c],Evaluate[ADecomposeDefinition]},MetricOn->All,ContractMetrics->True];
-GaugeDecompose=Join[FDecompose,ADecompose];
+FDecomposeD=MakeRule[{Evaluate@Dagger@F[-a,-b],Evaluate[Dagger@FDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+ADecomposeD=MakeRule[{Evaluate@Dagger@A[-a,-b,-c],Evaluate[Dagger@ADecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+GaugeDecompose=Join[FDecompose,ADecompose,FDecomposeD,ADecomposeD];
+
+FPToFDefinition=PPara[-b,c]F[-a,-c]/.PADMActivate;
+FPerpToFDefinition=V[c]F[-a,-c];
+APToADefinition=PPara[-b,c]A[-a,-e,-c]/.PADMActivate;
+APerpToADefinition=V[c]A[-a,-e,-c];
+
+FPToF=MakeRule[{FP[-a,-b],Evaluate[FPToFDefinition]},MetricOn->All,ContractMetrics->True];
+FPerpToF=MakeRule[{FPerp[-a],Evaluate[FPerpToFDefinition]},MetricOn->All,ContractMetrics->True];
+APToA=MakeRule[{AP[-a,-e,-b],Evaluate[APToADefinition]},MetricOn->All,ContractMetrics->True];
+APerpToA=MakeRule[{APerp[-a,-e],Evaluate[APerpToADefinition]},MetricOn->All,ContractMetrics->True];
+FPToFD=MakeRule[{Evaluate@Dagger@FP[-a,-b],Evaluate[Dagger@FPToFDefinition]},MetricOn->All,ContractMetrics->True];
+FPerpToFD=MakeRule[{Evaluate@Dagger@FPerp[-a],Evaluate[Dagger@FPerpToFDefinition]},MetricOn->All,ContractMetrics->True];
+APToAD=MakeRule[{Evaluate@Dagger@AP[-a,-e,-b],Evaluate[Dagger@APToADefinition]},MetricOn->All,ContractMetrics->True];
+APerpToAD=MakeRule[{Evaluate@Dagger@APerp[-a,-e],Evaluate[Dagger@APerpToADefinition]},MetricOn->All,ContractMetrics->True];
+GaugeCompose=Join[FPToF,FPerpToF,APToA,APerpToA,FPToFD,FPerpToFD,APToAD,APerpToAD];
+ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
 TauPSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\(\[Flat]\)\(\[DoubleVerticalBar]\)\)]\)";
-DefTensor[TauP[-a,-b],M4,PrintAs->SymbolBuild[TauPSymb],OrthogonalTo->{V[b]}];
+DefTensor[TauP[-a,-b],M4,PrintAs->SymbolBuild[TauPSymb],OrthogonalTo->{V[b]},Dagger->Complex];
 DeclareOrder[TauP[-a,-b],1];
 SigmaPSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\(\[Flat]\)\(\[DoubleVerticalBar]\)\)]\)";
-DefTensor[SigmaP[-c,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb],OrthogonalTo->{V[c]}];
+DefTensor[SigmaP[-c,-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb],OrthogonalTo->{V[c]},Dagger->Complex];
 DeclareOrder[SigmaP[-a,-b,-c],1];
 TauPerpSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\(\[Flat]\)\(\[UpTee]\)\)]\)";
-DefTensor[TauPerp[-a],M4,PrintAs->SymbolBuild[TauPerpSymb]];
+DefTensor[TauPerp[-a],M4,PrintAs->SymbolBuild[TauPerpSymb],Dagger->Complex];
 DeclareOrder[TauPerp[-a],1];
 SigmaPerpSymb="\!\(\*SuperscriptBox[SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)], \(\[UpTee]\)]\)";
-DefTensor[SigmaPerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb]];
+DefTensor[SigmaPerp[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb],Dagger->Complex];
 DeclareOrder[SigmaPerp[-a,-b],1];
 
 TauDecomposeDefinition=TauP[-a,-b]+V[-b]TauPerp[-a];
 SigmaDecomposeDefinition=SigmaP[-c,-a,-b]+V[-c]SigmaPerp[-a,-b];
 TauDecompose=MakeRule[{Tau[-a,-b],Evaluate[TauDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaDecompose=MakeRule[{Sigma[-c,-a,-b],Evaluate[SigmaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
-SourceDecompose=Join[TauDecompose,SigmaDecompose];
+TauDecomposeD=MakeRule[{Evaluate@Dagger@Tau[-a,-b],Evaluate[Dagger@TauDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaDecomposeD=MakeRule[{Evaluate@Dagger@Sigma[-c,-a,-b],Evaluate[Dagger@SigmaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
+SourceDecompose=Join[TauDecompose,SigmaDecompose,TauDecomposeD,SigmaDecomposeD];
 
 TauPToTauDefinition=PPara[-b,c]Tau[-a,-c]/.PADMActivate;
 TauPerpToTauDefinition=V[c]Tau[-a,-c];
@@ -996,7 +1018,12 @@ TauPToTau=MakeRule[{TauP[-a,-b],Evaluate[TauPToTauDefinition]},MetricOn->All,Con
 TauPerpToTau=MakeRule[{TauPerp[-a],Evaluate[TauPerpToTauDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPToSigma=MakeRule[{SigmaP[-b,-a,-e],Evaluate[SigmaPToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPerpToSigma=MakeRule[{SigmaPerp[-a,-e],Evaluate[SigmaPerpToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
-SourceCompose=Join[TauPToTau,TauPerpToTau,SigmaPToSigma,SigmaPerpToSigma];
+TauPToTauD=MakeRule[{Evaluate@Dagger@TauP[-a,-b],Evaluate[Dagger@TauPToTauDefinition]},MetricOn->All,ContractMetrics->True];
+TauPerpToTauD=MakeRule[{Evaluate@Dagger@TauPerp[-a],Evaluate[Dagger@TauPerpToTauDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPToSigmaD=MakeRule[{Evaluate@Dagger@SigmaP[-b,-a,-e],Evaluate[Dagger@SigmaPToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerpToSigmaD=MakeRule[{Evaluate@Dagger@SigmaPerp[-a,-e],Evaluate[Dagger@SigmaPerpToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
+SourceCompose=Join[TauPToTau,TauPerpToTau,SigmaPToSigma,SigmaPerpToSigma,TauPToTauD,TauPerpToTauD,SigmaPToSigmaD,SigmaPerpToSigmaD];
+ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2254,27 +2281,39 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[FP0p[],M4,PrintAs->SymbolBuild[FPSymb,Spin0p]];
+DefTensor[FP0p[],M4,PrintAs->SymbolBuild[FPSymb,Spin0p],Dagger->Complex];
 DeclareOrder[FP0p[],1];
-DefTensor[FP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[FP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[FP1p[-a,-b],1];
-DefTensor[FP1m[-a],M4,PrintAs->SymbolBuild[FPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[FP1m[-a],M4,PrintAs->SymbolBuild[FPSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[FP1m[-a],1];
-DefTensor[FP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[FP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[FPSymb,Spin2p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[FP2p[-a,-b],1];
 
-DefTensor[AP0p[],M4,PrintAs->SymbolBuild[APSymb,Spin0p]];
+DefTensor[AP0p[],M4,PrintAs->SymbolBuild[APSymb,Spin0p],Dagger->Complex];
 DeclareOrder[AP0p[],1];
-DefTensor[AP0m[],M4,PrintAs->SymbolBuild[APSymb,Spin0m]];
+DefTensor[AP0m[],M4,PrintAs->SymbolBuild[APSymb,Spin0m],Dagger->Complex];
 DeclareOrder[AP0m[],1];
-DefTensor[AP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[AP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[AP1p[-a,-b],1];
-DefTensor[AP1m[-a],M4,PrintAs->SymbolBuild[APSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[AP1m[-a],M4,PrintAs->SymbolBuild[APSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[AP1m[-a],1];
-DefTensor[AP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[AP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[AP2p[-a,-b],1];
-DefTensor[AP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
+DefTensor[AP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]},Dagger->Complex];
 DeclareOrder[AP2m[-a,-b,-c],1];
+
+AutomaticRules[AP2m,MakeRule[{Evaluate@Dagger@AP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[AP2m,MakeRule[{Evaluate@Dagger[epsilonG[a,b,c,d]AP2m[-a,-b,-c]],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[FP2p,MakeRule[{Evaluate@Dagger@FP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[AP2p,MakeRule[{Evaluate@Dagger@AP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+
+Manual1=MakeRule[{Evaluate@Dagger@AP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True];
+Manual2=MakeRule[{Evaluate@Dagger[epsilonG[a,b,c,d]AP2m[-a,-b,-c]],0},MetricOn->All,ContractMetrics->True];
+Manual3=MakeRule[{Evaluate@Dagger@FP2p[a,-a],0},MetricOn->All,ContractMetrics->True];
+Manual4=MakeRule[{Evaluate@Dagger@AP2p[a,-a],0},MetricOn->All,ContractMetrics->True];
+ManualAll=Join[Manual1,Manual2,Manual3,Manual4];
+
 AutomaticRules[AP2m,MakeRule[{AP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[AP2m,MakeRule[{epsilonG[a,b,c,d]AP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[FP2p,MakeRule[{FP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -2302,19 +2341,30 @@ AP1mActivate=MakeRule[{AP1m[-n],Evaluate[AP1mDefinition]},MetricOn->All,Contract
 AP2pActivate=MakeRule[{AP2p[-n,-m],Evaluate[AP2pDefinition]},MetricOn->All,ContractMetrics->True];
 AP2mActivate=MakeRule[{AP2m[-n,-m,-o],Evaluate[AP2mDefinition]},MetricOn->All,ContractMetrics->True];
 
-GaugePO3Activate=Join[FP0pActivate,FP1pActivate,FP1mActivate,FP2pActivate,AP0pActivate,AP0mActivate,AP1pActivate,AP1mActivate,AP2pActivate,AP2mActivate];
+FP0pActivateD=MakeRule[{Evaluate@Dagger@FP0p[],Scalar[Evaluate[Dagger@FP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+FP1pActivateD=MakeRule[{Evaluate@Dagger@FP1p[-n,-m],Evaluate[Dagger@FP1pDefinition]},MetricOn->All,ContractMetrics->True];
+FP1mActivateD=MakeRule[{Evaluate@Dagger@FP1m[-n],Evaluate[Dagger@FP1mDefinition]},MetricOn->All,ContractMetrics->True];
+FP2pActivateD=MakeRule[{Evaluate@Dagger@FP2p[-n,-m],Evaluate[Dagger@FP2pDefinition]},MetricOn->All,ContractMetrics->True];
+AP0pActivateD=MakeRule[{Evaluate@Dagger@AP0p[],Scalar[Evaluate[Dagger@AP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+AP0mActivateD=MakeRule[{Evaluate@Dagger@AP0m[],Scalar[Evaluate[Dagger@AP0mDefinition]]},MetricOn->All,ContractMetrics->True];
+AP1pActivateD=MakeRule[{Evaluate@Dagger@AP1p[-n,-m],Evaluate[Dagger@AP1pDefinition]},MetricOn->All,ContractMetrics->True];
+AP1mActivateD=MakeRule[{Evaluate@Dagger@AP1m[-n],Evaluate[Dagger@AP1mDefinition]},MetricOn->All,ContractMetrics->True];
+AP2pActivateD=MakeRule[{Evaluate@Dagger@AP2p[-n,-m],Evaluate[Dagger@AP2pDefinition]},MetricOn->All,ContractMetrics->True];
+AP2mActivateD=MakeRule[{Evaluate@Dagger@AP2m[-n,-m,-o],Evaluate[Dagger@AP2mDefinition]},MetricOn->All,ContractMetrics->True];
+
+GaugePO3Activate=Join[FP0pActivate,FP1pActivate,FP1mActivate,FP2pActivate,AP0pActivate,AP0mActivate,AP1pActivate,AP1mActivate,AP2pActivate,AP2mActivate,FP0pActivateD,FP1pActivateD,FP1mActivateD,FP2pActivateD,AP0pActivateD,AP0mActivateD,AP1pActivateD,AP1mActivateD,AP2pActivateD,AP2mActivateD];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[FPerp0p[],M4,PrintAs->SymbolBuild[FPerpSymb,Spin0p]];
+DefTensor[FPerp0p[],M4,PrintAs->SymbolBuild[FPerpSymb,Spin0p],Dagger->Complex];
 DeclareOrder[FP0p[],1];
-DefTensor[FPerp1m[-a],M4,PrintAs->SymbolBuild[FPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[FPerp1m[-a],M4,PrintAs->SymbolBuild[FPerpSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[FPerp1m[-a],1];
 
-DefTensor[APerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[APerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[APerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[APerp1p[-a,-b],1];
-DefTensor[APerp1m[-a],M4,PrintAs->SymbolBuild[APerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[APerp1m[-a],M4,PrintAs->SymbolBuild[APerpSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[APerp1m[-a],1];
 
 FPerp0pDefinition=V[a]FPerp[-a];
@@ -2326,33 +2376,49 @@ FPerp0pActivate=MakeRule[{FPerp0p[],Scalar[Evaluate[FPerp0pDefinition]]},MetricO
 FPerp1mActivate=MakeRule[{FPerp1m[-n],Evaluate[FPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
 APerp1pActivate=MakeRule[{APerp1p[-n,-m],Evaluate[APerp1pDefinition]},MetricOn->All,ContractMetrics->True];
 APerp1mActivate=MakeRule[{APerp1m[-n],Evaluate[APerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+FPerp0pActivateD=MakeRule[{Evaluate@Dagger@FPerp0p[],Scalar[Evaluate[Dagger@FPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
+FPerp1mActivateD=MakeRule[{Evaluate@Dagger@FPerp1m[-n],Evaluate[Dagger@FPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+APerp1pActivateD=MakeRule[{Evaluate@Dagger@APerp1p[-n,-m],Evaluate[Dagger@APerp1pDefinition]},MetricOn->All,ContractMetrics->True];
+APerp1mActivateD=MakeRule[{Evaluate@Dagger@APerp1m[-n],Evaluate[Dagger@APerp1mDefinition]},MetricOn->All,ContractMetrics->True];
 
-GaugePerpO3Activate=Join[FPerp0pActivate,FPerp1mActivate,APerp1pActivate,APerp1mActivate];
+GaugePerpO3Activate=Join[FPerp0pActivate,FPerp1mActivate,APerp1pActivate,APerp1mActivate,FPerp0pActivateD,FPerp1mActivateD,APerp1pActivateD,APerp1mActivateD];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[TauP0p[],M4,PrintAs->SymbolBuild[TauPSymb,Spin0p]];
+DefTensor[TauP0p[],M4,PrintAs->SymbolBuild[TauPSymb,Spin0p],Dagger->Complex];
 DeclareOrder[TauP0p[],1];
-DefTensor[TauP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[TauP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[TauP1p[-a,-b],1];
-DefTensor[TauP1m[-a],M4,PrintAs->SymbolBuild[TauPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[TauP1m[-a],M4,PrintAs->SymbolBuild[TauPSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[TauP1m[-a],1];
-DefTensor[TauP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[TauP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[TauPSymb,Spin2p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[TauP2p[-a,-b],1];
 
-DefTensor[SigmaP0p[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0p]];
+DefTensor[SigmaP0p[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0p],Dagger->Complex];
 DeclareOrder[SigmaP0p[],1];
-DefTensor[SigmaP0m[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0m]];
+DefTensor[SigmaP0m[],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin0m],Dagger->Complex];
 DeclareOrder[SigmaP0m[],1];
-DefTensor[SigmaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[SigmaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[SigmaP1p[-a,-b],1];
-DefTensor[SigmaP1m[-a],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[SigmaP1m[-a],M4,PrintAs->SymbolBuild[SigmaPSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[SigmaP1m[-a],1];
-DefTensor[SigmaP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[SigmaP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[SigmaP2p[-a,-b],1];
-DefTensor[SigmaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
+DefTensor[SigmaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPSymb,Spin2m],OrthogonalTo->{V[a],V[b],V[c]},Dagger->Complex];
 DeclareOrder[SigmaP2m[-a,-b,-c],1];
+
+AutomaticRules[SigmaP2m,MakeRule[{Evaluate@Dagger@SigmaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[SigmaP2m,MakeRule[{Evaluate@Dagger[epsilonG[a,b,c,d]SigmaP2m[-a,-b,-c]],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[TauP2p,MakeRule[{Evaluate@Dagger@TauP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[SigmaP2p,MakeRule[{Evaluate@Dagger@SigmaP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
+
+Manual5=MakeRule[{Evaluate@Dagger@SigmaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True];
+Manual6=MakeRule[{Evaluate@Dagger[epsilonG[a,b,c,d]SigmaP2m[-a,-b,-c]],0},MetricOn->All,ContractMetrics->True];
+Manual7=MakeRule[{Evaluate@Dagger@TauP2p[a,-a],0},MetricOn->All,ContractMetrics->True];
+Manual8=MakeRule[{Evaluate@Dagger@SigmaP2p[a,-a],0},MetricOn->All,ContractMetrics->True];
+ManualAll=Join[ManualAll,Manual5,Manual6,Manual7,Manual8];
+
 AutomaticRules[SigmaP2m,MakeRule[{SigmaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[SigmaP2m,MakeRule[{epsilonG[a,b,c,d]SigmaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[TauP2p,MakeRule[{TauP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
@@ -2380,19 +2446,30 @@ SigmaP1mActivate=MakeRule[{SigmaP1m[-n],Evaluate[SigmaP1mDefinition]},MetricOn->
 SigmaP2pActivate=MakeRule[{SigmaP2p[-n,-m],Evaluate[SigmaP2pDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaP2mActivate=MakeRule[{SigmaP2m[-n,-m,-o],Evaluate[SigmaP2mDefinition]},MetricOn->All,ContractMetrics->True];
 
-SourcePO3Activate=Join[TauP0pActivate,TauP1pActivate,TauP1mActivate,TauP2pActivate,SigmaP0pActivate,SigmaP0mActivate,SigmaP1pActivate,SigmaP1mActivate,SigmaP2pActivate,SigmaP2mActivate];
+TauP0pActivateD=MakeRule[{Evaluate@Dagger@TauP0p[],Scalar[Evaluate[Dagger@TauP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+TauP1pActivateD=MakeRule[{Evaluate@Dagger@TauP1p[-n,-m],Evaluate[Dagger@TauP1pDefinition]},MetricOn->All,ContractMetrics->True];
+TauP1mActivateD=MakeRule[{Evaluate@Dagger@TauP1m[-n],Evaluate[Dagger@TauP1mDefinition]},MetricOn->All,ContractMetrics->True];
+TauP2pActivateD=MakeRule[{Evaluate@Dagger@TauP2p[-n,-m],Evaluate[Dagger@TauP2pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP0pActivateD=MakeRule[{Evaluate@Dagger@SigmaP0p[],Scalar[Evaluate[Dagger@SigmaP0pDefinition]]},MetricOn->All,ContractMetrics->True];
+SigmaP0mActivateD=MakeRule[{Evaluate@Dagger@SigmaP0m[],Scalar[Evaluate[Dagger@SigmaP0mDefinition]]},MetricOn->All,ContractMetrics->True];
+SigmaP1pActivateD=MakeRule[{Evaluate@Dagger@SigmaP1p[-n,-m],Evaluate[Dagger@SigmaP1pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP1mActivateD=MakeRule[{Evaluate@Dagger@SigmaP1m[-n],Evaluate[Dagger@SigmaP1mDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP2pActivateD=MakeRule[{Evaluate@Dagger@SigmaP2p[-n,-m],Evaluate[Dagger@SigmaP2pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaP2mActivateD=MakeRule[{Evaluate@Dagger@SigmaP2m[-n,-m,-o],Evaluate[Dagger@SigmaP2mDefinition]},MetricOn->All,ContractMetrics->True];
+
+SourcePO3Activate=Join[TauP0pActivate,TauP1pActivate,TauP1mActivate,TauP2pActivate,SigmaP0pActivate,SigmaP0mActivate,SigmaP1pActivate,SigmaP1mActivate,SigmaP2pActivate,SigmaP2mActivate,TauP0pActivateD,TauP1pActivateD,TauP1mActivateD,TauP2pActivateD,SigmaP0pActivateD,SigmaP0mActivateD,SigmaP1pActivateD,SigmaP1mActivateD,SigmaP2pActivateD,SigmaP2mActivateD];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[TauPerp0p[],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin0p]];
+DefTensor[TauPerp0p[],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin0p],Dagger->Complex];
 DeclareOrder[TauP0p[],1];
-DefTensor[TauPerp1m[-a],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[TauPerp1m[-a],M4,PrintAs->SymbolBuild[TauPerpSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[TauPerp1m[-a],1];
 
-DefTensor[SigmaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
+DefTensor[SigmaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[SigmaPerpSymb,Spin1p],OrthogonalTo->{V[a],V[b]},Dagger->Complex];
 DeclareOrder[SigmaPerp1p[-a,-b],1];
-DefTensor[SigmaPerp1m[-a],M4,PrintAs->SymbolBuild[SigmaPerpSymb,Spin1m],OrthogonalTo->{V[a]}];
+DefTensor[SigmaPerp1m[-a],M4,PrintAs->SymbolBuild[SigmaPerpSymb,Spin1m],OrthogonalTo->{V[a]},Dagger->Complex];
 DeclareOrder[SigmaPerp1m[-a],1];
 
 TauPerp0pDefinition=V[a]TauPerp[-a];
@@ -2405,7 +2482,12 @@ TauPerp1mActivate=MakeRule[{TauPerp1m[-n],Evaluate[TauPerp1mDefinition]},MetricO
 SigmaPerp1pActivate=MakeRule[{SigmaPerp1p[-n,-m],Evaluate[SigmaPerp1pDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPerp1mActivate=MakeRule[{SigmaPerp1m[-n],Evaluate[SigmaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
 
-SourcePerpO3Activate=Join[TauPerp0pActivate,TauPerp1mActivate,SigmaPerp1pActivate,SigmaPerp1mActivate];
+TauPerp0pActivateD=MakeRule[{Evaluate@Dagger@TauPerp0p[],Scalar[Evaluate[Dagger@TauPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
+TauPerp1mActivateD=MakeRule[{Evaluate@Dagger@TauPerp1m[-n],Evaluate[Dagger@TauPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerp1pActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp1p[-n,-m],Evaluate[Dagger@SigmaPerp1pDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerp1mActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp1m[-n],Evaluate[Dagger@SigmaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
+
+SourcePerpO3Activate=Join[TauPerp0pActivate,TauPerp1mActivate,SigmaPerp1pActivate,SigmaPerp1mActivate,TauPerp0pActivateD,TauPerp1mActivateD,SigmaPerp1pActivateD,SigmaPerp1mActivateD];
 ClearBuild[];
 
 
@@ -2842,7 +2924,9 @@ APDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]AP0p[],{-n,-
 
 FPActivate=MakeRule[{FP[-n,-m],Evaluate[FPDefinition]},MetricOn->All,ContractMetrics->True];
 APActivate=MakeRule[{AP[-n,-m,-o],Evaluate[APDefinition]},MetricOn->All,ContractMetrics->True];
-GaugePToGaugePO3=Join[FPActivate,APActivate];
+FPActivateD=MakeRule[{Evaluate@Dagger@FP[-n,-m],Evaluate[Dagger@FPDefinition]},MetricOn->All,ContractMetrics->True];
+APActivateD=MakeRule[{Evaluate@Dagger@AP[-n,-m,-o],Evaluate[Dagger@APDefinition]},MetricOn->All,ContractMetrics->True];
+GaugePToGaugePO3=Join[FPActivate,APActivate,FPActivateD,APActivateD];
 ClearBuild[];
 
 
@@ -2853,7 +2937,9 @@ APerpDefinition=APerp1p[-n,-m]+ 2Antisymmetrize[V[-m]APerp1m[-n],{-n,-m}];
 
 FPerpActivate=MakeRule[{FPerp[-n],Evaluate[FPerpDefinition]},MetricOn->All,ContractMetrics->True];
 APerpActivate=MakeRule[{APerp[-n,-m],Evaluate[APerpDefinition]},MetricOn->All,ContractMetrics->True];
-GaugePerpToGaugePO3=Join[FPerpActivate,APerpActivate];
+FPerpActivateD=MakeRule[{Evaluate@Dagger@FPerp[-n],Evaluate[Dagger@FPerpDefinition]},MetricOn->All,ContractMetrics->True];
+APerpActivateD=MakeRule[{Evaluate@Dagger@APerp[-n,-m],Evaluate[Dagger@APerpDefinition]},MetricOn->All,ContractMetrics->True];
+GaugePerpToGaugePO3=Join[FPerpActivate,APerpActivate,FPerpActivateD,APerpActivateD];
 ClearBuild[];
 
 
@@ -2871,7 +2957,11 @@ SigmaPDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]SigmaP0p
 (4/3)SigmaP2m[-n,-m,-o],{-n,-m}])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
 
 TauPActivate=MakeRule[{TauP[-n,-m],Evaluate[TauPDefinition]},MetricOn->All,ContractMetrics->True];
-SigmaPActivate=MakeRule[{SigmaP[-o,-n,-m],Evaluate[SigmaPDefinition]},MetricOn->All,ContractMetrics->True];(*remember change of order in indices due to Blagojevic*)
+SigmaPActivate=MakeRule[{SigmaP[-o,-n,-m],Evaluate[SigmaPDefinition]},MetricOn->All,ContractMetrics->True];
+
+TauPActivateD=MakeRule[{Evaluate@Dagger@TauP[-n,-m],Evaluate[Dagger@TauPDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPActivateD=MakeRule[{Evaluate@Dagger@SigmaP[-o,-n,-m],Evaluate[Dagger@SigmaPDefinition]},MetricOn->All,ContractMetrics->True];
+(*remember change of order in indices due to Blagojevic*)
 SourcePToGaugePO3=Join[TauPActivate,SigmaPActivate];
 ClearBuild[];
 
@@ -2883,7 +2973,10 @@ SigmaPerpDefinition=SigmaPerp1p[-n,-m]+ 2Antisymmetrize[V[-m]SigmaPerp1m[-n],{-n
 
 TauPerpActivate=MakeRule[{TauPerp[-n],Evaluate[TauPerpDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPerpActivate=MakeRule[{SigmaPerp[-n,-m],Evaluate[SigmaPerpDefinition]},MetricOn->All,ContractMetrics->True];
-SourcePerpToGaugePO3=Join[TauPerpActivate,SigmaPerpActivate];
+
+TauPerpActivateD=MakeRule[{Evaluate@Dagger@TauPerp[-n],Evaluate[Dagger@TauPerpDefinition]},MetricOn->All,ContractMetrics->True];
+SigmaPerpActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp[-n,-m],Evaluate[Dagger@SigmaPerpDefinition]},MetricOn->All,ContractMetrics->True];
+SourcePerpToGaugePO3=Join[TauPerpActivate,SigmaPerpActivate,TauPerpActivateD,SigmaPerpActivateD];
 ClearBuild[];
 
 
