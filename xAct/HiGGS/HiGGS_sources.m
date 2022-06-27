@@ -202,6 +202,7 @@ SO3="\!\(\*OverscriptBox[\(.\), \(3\)]\)";
 SO4="\!\(\*OverscriptBox[\(.\), \(4\)]\)";
 SO5="\!\(\*OverscriptBox[\(.\), \(5\)]\)";
 SO6="\!\(\*OverscriptBox[\(.\), \(6\)]\)";
+GB="\!\(\*OverscriptBox[\(.\), \(GB\)]\)";
 dSpin0p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(+\)]]\)";
 dSpin0m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(-\)]]\)";
 dSpin1p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(1\), \(+\)]]\)";
@@ -215,6 +216,8 @@ dSO3="\!\(\*UnderscriptBox[\(.\), \(3\)]\)";
 dSO4="\!\(\*UnderscriptBox[\(.\), \(4\)]\)";
 dSO5="\!\(\*UnderscriptBox[\(.\), \(5\)]\)";
 dSO6="\!\(\*UnderscriptBox[\(.\), \(6\)]\)";
+dGB="\!\(\*UnderscriptBox[\(.\), \(GB\)]\)";
+ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -789,6 +792,8 @@ DefConstantSymbol[Alp3,PrintAs->SymbolBuild[AlpSymb,dSO3,"Constant"->True]];
 DefConstantSymbol[Alp4,PrintAs->SymbolBuild[AlpSymb,dSO4,"Constant"->True]];
 DefConstantSymbol[Alp5,PrintAs->SymbolBuild[AlpSymb,dSO5,"Constant"->True]];
 DefConstantSymbol[Alp6,PrintAs->SymbolBuild[AlpSymb,dSO6,"Constant"->True]];
+
+DefConstantSymbol[AlpGB,PrintAs->SymbolBuild[AlpSymb,dGB,"Constant"->True]];
 
 Alp={Alp1,Alp2,Alp3,Alp4,Alp5,Alp6};
 
