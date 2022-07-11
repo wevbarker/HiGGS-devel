@@ -231,7 +231,7 @@ res=ColorString[IrrepSymbol,$IrrepColour]~StringJoin~ColorString[TensorSymbol,$T
 ];
 ];
 If[OptionValue@"Derivative"==1,
-res="D"~StringJoin~res;
+res="\[GothicCapitalD]"~StringJoin~res;
 ];
 If[OptionValue@"Derivative"==2,
 res="(\[ScriptCapitalD]"~StringJoin~res;
