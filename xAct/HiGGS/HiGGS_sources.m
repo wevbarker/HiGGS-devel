@@ -356,7 +356,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-SigmaSymb="\!\(\*SuperscriptBox[\(\[Sigma]\), \(\[Flat]\)]\)";
+SigmaSymb="\[Sigma]";
 DefTensor[Sigma[-d,-a,-c],M4,Antisymmetric[{-a,-c}],PrintAs->SymbolBuild[SigmaSymb],Dagger->Complex];
 DeclareOrder[Sigma[a,c,-d],1];
 
@@ -364,7 +364,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-TauSymb="\!\(\*SuperscriptBox[\(\[Tau]\), \(\[Flat]\)]\)";
+TauSymb="\[Tau]";
 DefTensor[Tau[-i,-j],M4,PrintAs->SymbolBuild[TauSymb],Dagger->Complex];
 DeclareOrder[Tau[-i,-j], 1]; 
 
