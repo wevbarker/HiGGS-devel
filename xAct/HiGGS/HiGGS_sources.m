@@ -86,6 +86,10 @@ Quiet@DefMetric[-1,G[-a,-c],CD,{",","\[PartialD]"},PrintAs->"\[Gamma]",FlatMetri
 ClearBuild[];
 
 
+$PostMetricNames=Names["Global`*"];
+ClearBuild[];
+
+
 (* ::Input::Initialization:: *)
 If[$PaperPrint,
 If[NotebookDirectory[]==$Failed,
