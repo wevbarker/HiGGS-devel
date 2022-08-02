@@ -224,6 +224,18 @@ dGB="\!\(\*UnderscriptBox[\(.\), \(GB\)]\)";
 ClearBuild[];
 
 
+StandardIndices=ToExpression/@Alphabet[]
+ExtendedIndices=ToExpression@(ToString@#<>"1")&/@StandardIndices
+
+
+StandardIndicesSymb=ToString@ToExpression@("\\[Gothic"<>ToUpperCase@ToString@#<>"]")&/@Alphabet[]
+ExtendedIndicesSymb=ToString@ToExpression@("\\[Gothic"<>ToUpperCase@ToString@#<>"]'")&/@Alphabet[]
+
+
+(PrintAs@Evaluate@#1^=Evaluate@#2)&~MapThread~{StandardIndices,StandardIndicesSymb};
+(PrintAs@Evaluate@#1^=Evaluate@#2)&~MapThread~{ExtendedIndices,ExtendedIndicesSymb};
+
+
 (* ::Input::Initialization:: *)
 Options[SymbolBuild]={"Derivative"->0,"Constant"->False};
 SymbolBuild[TensorSymbol_,IrrepSymbol:_?StringQ :"",OptionsPattern[]]:=Module[{res},
@@ -359,19 +371,28 @@ GaugeSO13Activate=Join[FSO13Activate,ASO13Activate];
 ClearBuild[];
 
 
-(* ::Input::Initialization:: *)
 SigmaSymb="\[Sigma]";
-DefTensor[Sigma[-d,-a,-c],M4,Antisymmetric[{-a,-c}],PrintAs->SymbolBuild[SigmaSymb],Dagger->Complex];
+DefTensor[Sigma[-i,-j,-k],M4,Antisymmetric[{-j,-k}],PrintAs->SymbolBuild[SigmaSymb],Dagger->Complex];
 DeclareOrder[Sigma[a,c,-d],1];
-
 ClearBuild[];
+
+
+DefTensor[Sigma1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[SigmaSymb,SO1]]; 
+DefTensor[Sigma2[-i], M4, PrintAs -> SymbolBuild[SigmaSymb,SO2]];
+DefTensor[Sigma3[-i], M4, PrintAs -> SymbolBuild[SigmaSymb,SO3]];
+
+AutomaticRules[Sigma1,MakeRule[{Sigma1[a,a1,-a1],0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[Sigma1,MakeRule[{Sigma1[a,-a,-a1],0},MetricOn->All,ContractMetrics->True]];
+
+SigmaDefinition=(2/3)(Sigma1[-i,-j,-k]-Sigma1[-i,-k,-j])+
+(1/3)(G[-i,-j]Sigma2[-k]-G[-i,-k]Sigma2[-j])+
+epsilonG[-i,-j,-k,-m]Sigma3[m];
 
 
 (* ::Input::Initialization:: *)
 TauSymb="\[Tau]";
 DefTensor[Tau[-i,-j],M4,PrintAs->SymbolBuild[TauSymb],Dagger->Complex];
 DeclareOrder[Tau[-i,-j], 1]; 
-
 ClearBuild[];
 
 
@@ -1032,6 +1053,9 @@ TauPerpToTauD=MakeRule[{Evaluate@Dagger@TauPerp[-a],Evaluate[Dagger@TauPerpToTau
 SigmaPToSigmaD=MakeRule[{Evaluate@Dagger@SigmaP[-b,-a,-e],Evaluate[Dagger@SigmaPToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPerpToSigmaD=MakeRule[{Evaluate@Dagger@SigmaPerp[-a,-e],Evaluate[Dagger@SigmaPerpToSigmaDefinition]},MetricOn->All,ContractMetrics->True];
 SourceCompose=Join[TauPToTau,TauPerpToTau,SigmaPToSigma,SigmaPerpToSigma,TauPToTauD,TauPerpToTauD,SigmaPToSigmaD,SigmaPerpToSigmaD];
+
+SigmaSO13Activate=MakeRule[{Sigma[-z,-j,-k],B[i,-z]Evaluate[SigmaDefinition]},MetricOn->All,ContractMetrics->True];
+
 ClearBuild[];
 
 
