@@ -54,10 +54,10 @@ Quit[];];
 *)
 
 (*This construction supercedes the use of CellTags*)
-BinaryLocation[RelevantTag_String]:=FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>RelevantTag<>".mx"};
+BinaryLocation[RelevantTag_?StringQ]:=FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>RelevantTag<>".mx"};
 BuildHiGGS::nobin="The binary at `1` cannot be found; quitting.";
 SetAttributes[IfBuild,HoldAll];
-IfBuild[RelevantTag_String,expr_]:=Catch@If[PrematureCellTags~MemberQ~RelevantTag,
+IfBuild[RelevantTag_?StringQ,expr_]:=Catch@If[PrematureCellTags~MemberQ~RelevantTag,
 Print[" ** BuildHiGGS: The binary at "<>BinaryLocation@RelevantTag<>" has been ignored."];,
 If[ActiveCellTags~MemberQ~RelevantTag,
 Print[" ** BuildHiGGS: Building the binary at "<>BinaryLocation@RelevantTag<>"..."];
@@ -328,6 +328,28 @@ RSO13Activate=MakeRule[{R[-i,-j,-m,-n],Evaluate[RDefinition]},MetricOn->All,Cont
 TSO13Activate=MakeRule[{T[-i,-j,-k],Evaluate[TDefinition]},MetricOn->All,ContractMetrics->True];
 
 StrengthSO13Activate=Join[RSO13Activate,TSO13Activate];
+ClearBuild[];
+
+
+(*
+(1/2)(R[a,-i,-a,-j]+R[a,-j,-a,-i])-(1/4)G[-i,-j]R[a,b,-a,-b]/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
+%//ToNewCanonical;
+%//ToCanonical;
+*)
+R4Activate=MakeRule[{R4[-i,-j],(1/2)(R[a,-i,-a,-j]+R[a,-j,-a,-i])-(1/4)G[-i,-j]R[a,b,-a,-b]},MetricOn->All,ContractMetrics->True];
+(*
+(1/2)(R[a,-i,-a,-j]-R[a,-j,-a,-i])/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
+%//ToNewCanonical;
+%//ToCanonical;
+*)
+R5Activate=MakeRule[{R5[-i,-j],(1/2)(R[a,-i,-a,-j]-R[a,-j,-a,-i])},MetricOn->All,ContractMetrics->True];
+(*
+-R[a,b,-a,-b]/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
+%//ToNewCanonical;
+%//ToCanonical;
+*)
+R6Activate=MakeRule[{R6[],-R[a,b,-a,-b]},MetricOn->All,ContractMetrics->True];
+RActivate=Join[R4Activate,R5Activate,R6Activate];
 ClearBuild[];
 
 
@@ -1274,6 +1296,90 @@ exp=exp/.FlagBroken;
 exp];
 *)
 
+
+
+MakeDDeactivate[Tensor_?xTensorQ[Indices___]]:=Module[{NewIndex,QuotientRule,DTensorActivate,DTensor,DTensorDeactivate,DTensorDeactivateDefinition},
+NewIndex=First@((First@IndicesOfVBundle@TangentM4)~Complement~((PowerExpand@Sqrt@(#^2))&/@List@Indices));
+DTensor=ToExpression@("D"<>ToString@Tensor);
+DTensorDeactivateDefinition=CD[-NewIndex]@Tensor[Indices]/.ToExpression@(ToString@DTensor<>"Activate");
+DTensorDeactivateDefinition=DTensorDeactivateDefinition-CD[-NewIndex]@Tensor[Indices];
+DTensorDeactivate=MakeQuotientRule[{DTensor[-NewIndex,Indices],Evaluate@DTensorDeactivateDefinition}];
+ToExpression[ToString@DTensor<>"Deactivate", InputForm, Function[name, name = DTensorDeactivate, HoldAll]];
+DDeactivate=DDeactivate~Join~DTensorDeactivate;
+];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DR[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,"Derivative"->1]]; 
+DefTensor[DT[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TSymb,"Derivative"->1]]; 
+DefTensor[DTLambda[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TLambdaSymb,"Derivative"->1]];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DR1[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,SO1,"Derivative"->1]]; 
+DefTensor[DR2[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RSymb,SO2,"Derivative"->1]]; 
+DefTensor[DR3[-z,-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> SymbolBuild[RSymb,SO3,"Derivative"->1]]; 
+DefTensor[DR4[-z,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO4,"Derivative"->1]]; 
+DefTensor[DR5[-z,-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO5,"Derivative"->1]]; 
+DefTensor[DR6[-z], M4, PrintAs ->SymbolBuild[RSymb,SO6,"Derivative"->1]];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DT1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TSymb,SO1,"Derivative"->1]]; 
+DefTensor[DT2[-z,-i], M4, PrintAs -> SymbolBuild[TSymb,SO2,"Derivative"->1]]; 
+DefTensor[DT3[-z,-i], M4, PrintAs ->SymbolBuild[TSymb,SO3,"Derivative"->1]];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DTLambda1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TLambdaSymb,SO1,"Derivative"->1]]; 
+DefTensor[DTLambda2[-z,-i], M4, PrintAs -> SymbolBuild[TLambdaSymb,SO2,"Derivative"->1]]; 
+DefTensor[DTLambda3[-z,-i], M4, PrintAs ->SymbolBuild[TLambdaSymb,SO3,"Derivative"->1]];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DRActivate=MakeRule[{CD[-z][R[-a,-b,-c,-d]],DR[-z,-a,-b,-c,-d]+A[i,-a,-z]R[-i,-b,-c,-d]+A[i,-b,-z]R[-a,-i,-c,-d]+A[i,-c,-z]R[-a,-b,-i,-d]+A[i,-d,-z]R[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DTLambdaActivate=MakeRule[{CD[-z][TLambda[-a,-b,-c]],DTLambda[-z,-a,-b,-c]+A[i,-a,-z]TLambda[-i,-b,-c]+A[i,-b,-z]TLambda[-a,-i,-c]+A[i,-c,-z]TLambda[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
+DTActivate=MakeRule[{CD[-z][T[-a,-b,-c]],DT[-z,-a,-b,-c]+A[i,-a,-z]T[-i,-b,-c]+A[i,-b,-z]T[-a,-i,-c]+A[i,-c,-z]T[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DR1Activate=MakeRule[{CD[-z][R1[-a,-b,-c,-d]],DR1[-z,-a,-b,-c,-d]+A[i,-a,-z]R1[-i,-b,-c,-d]+A[i,-b,-z]R1[-a,-i,-c,-d]+A[i,-c,-z]R1[-a,-b,-i,-d]+A[i,-d,-z]R1[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DR2Activate=MakeRule[{CD[-z][R2[-a,-b,-c,-d]],DR2[-z,-a,-b,-c,-d]+A[i,-a,-z]R2[-i,-b,-c,-d]+A[i,-b,-z]R2[-a,-i,-c,-d]+A[i,-c,-z]R2[-a,-b,-i,-d]+A[i,-d,-z]R2[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DR3Activate=MakeRule[{CD[-z][R3[-a,-b,-c,-d]],DR3[-z,-a,-b,-c,-d]+A[i,-a,-z]R3[-i,-b,-c,-d]+A[i,-b,-z]R3[-a,-i,-c,-d]+A[i,-c,-z]R3[-a,-b,-i,-d]+A[i,-d,-z]R3[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DR4Activate=MakeRule[{CD[-z][R4[-a,-b]],DR4[-z,-a,-b]+A[i,-a,-z]R4[-i,-b]+A[i,-b,-z]R4[-a,-i]},MetricOn->All,ContractMetrics->True];
+DR5Activate=MakeRule[{CD[-z][R5[-a,-b]],DR5[-z,-a,-b]+A[i,-a,-z]R5[-i,-b]+A[i,-b,-z]R5[-a,-i]},MetricOn->All,ContractMetrics->True];
+DR6Activate=MakeRule[{CD[-z][R6[]],DR6[-z]},MetricOn->All,ContractMetrics->True];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DT1Activate=MakeRule[{CD[-z][T1[-a,-b,-c]],DT1[-z,-a,-b,-c]+A[i,-a,-z]T1[-i,-b,-c]+A[i,-b,-z]T1[-a,-i,-c]+A[i,-c,-z]T1[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
+DT2Activate=MakeRule[{CD[-z][T2[-a]],DT2[-z,-a]+A[i,-a,-z]T2[-i]},MetricOn->All,ContractMetrics->True];
+DT3Activate=MakeRule[{CD[-z][T3[-a]],DT3[-z,-a]+A[i,-a,-z]T3[-i]},MetricOn->All,ContractMetrics->True];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DTLambda1Activate=MakeRule[{CD[-z][TLambda1[-a,-b,-c]],DTLambda1[-z,-a,-b,-c]+A[i,-a,-z]TLambda1[-i,-b,-c]+A[i,-b,-z]TLambda1[-a,-i,-c]+A[i,-c,-z]TLambda1[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
+DTLambda2Activate=MakeRule[{CD[-z][TLambda2[-a]],DTLambda2[-z,-a]+A[i,-a,-z]TLambda2[-i]},MetricOn->All,ContractMetrics->True];
+DTLambda3Activate=MakeRule[{CD[-z][TLambda3[-a]],DTLambda3[-z,-a]+A[i,-a,-z]TLambda3[-i]},MetricOn->All,ContractMetrics->True];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DActivate=Join[DRActivate,DTActivate,DTLambdaActivate,DR1Activate,DR2Activate,DR3Activate,DR4Activate,DR5Activate,DR6Activate,DT1Activate,DT2Activate,DT3Activate,DTLambda1Activate,DTLambda2Activate,DTLambda3Activate];
+ClearBuild[];
+
+
+DDeactivate={};
+MakeDDeactivate/@{R[a,b,c,d],T[a,b,c],TLambda[a,b,c],R1[a,b,c,d],R2[a,b,c,d],R3[a,b,c,d],R4[a,b],R5[a,b],R6[],T[a,b,c],T1[a,b,c],T2[a],T3[a],TLambda[a,b,c],TLambda1[a,b,c],TLambda2[a],TLambda3[a]};
+ClearBuild[];
 
 
 (* ::Input::Initialization:: *)

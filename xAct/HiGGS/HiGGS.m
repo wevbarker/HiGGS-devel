@@ -74,6 +74,12 @@ You should have received a copy of the GNU General Public License
 	- many *)
 
 
+xAct`HiGGS`$Timing;
+Off[Global`$Timing::shdw];
+xAct`HiGGS`$Node;
+Off[Global`$Node::shdw];
+
+
 (* ::Input::Initialization:: *)
 BeginPackage["xAct`HiGGS`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`","xAct`xTras`"}];
 
@@ -90,7 +96,7 @@ SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight (C) 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
-Print["This free version of HiGGS is an open source dependent of the xAct bundle, but NOT an official part thereof."];
+Print["This free version of HiGGS is an open source dependent of the xAct bundle."];
 Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
 Print[xAct`xCore`Private`bars];
 
@@ -102,7 +108,9 @@ Global`$Timing=False;
 Global`$Node="";
 ];
 *)
+(*
 Print["Some hard-to-suppress error messages may appear below..."];
+*)
 Quiet[
 DistributeDefinitions@$Timing;
 DistributeDefinitions@Global`$Timing;
@@ -113,8 +121,10 @@ DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
 ];
 ];
+(*
 Print["...and that should be it: no further errors should appear below here."];
 Print[xAct`xCore`Private`bars];
+*)
 (*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
 
 
@@ -248,6 +258,14 @@ Velocity::usage="Calculate the velocity of a quantity with respect to the Hamilt
 
 
 (* ::Input::Initialization:: *)
+MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
+
+
+Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
+Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
+
+
+(* ::Input::Initialization:: *)
 $Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
 
 
@@ -280,6 +298,24 @@ NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complemen
 Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 $HiGGSBuilt=True;
 ];
+
+
+Options[MakeQuotientRule]={MetricOn->All,ContractMetrics->True,Canonicalise->True,Verify->True,Method->"SolveTensors"};
+MakeQuotientRule::method="Option Method should be strings \"SolveTensors\" or \"Coefficient\".";
+MakeQuotientRule[{xTensor_[Indices___],Expr_},OptionsPattern[]]:=Catch@Module[{QuotientRule,ScalarCoefficient,ReplacementValue,SelfApplied,printer},
+printer={};
+printer=printer~Append~PrintTemporary@" ** MakeQuotientRule...";
+Switch[OptionValue@Method,"SolveTensors",
+QuotientRule=First@SolveTensors[Expr==0,xTensor[Indices]];,
+"Coefficient",
+ScalarCoefficient=Expr~Coefficient~xTensor[Indices];
+ReplacementValue=Evaluate@(-(Expr-xTensor[Indices] ScalarCoefficient)/ScalarCoefficient);
+QuotientRule=MakeRule[{xTensor[Indices],Evaluate@ReplacementValue},MetricOn->OptionValue@MetricOn,ContractMetrics->OptionValue@ContractMetrics];,
+_,Throw@Message@(MakeQuotientRule::method)];
+If[OptionValue@Canonicalise,Print@" ** MakeQuotientRule: canonicalised expression with tensor substituted by rule:";ReplacementValue=ToCanonical@ReplacementValue;];
+If[OptionValue@Verify,printer=printer~Append~PrintTemporary@" ** ToCanonical...";SelfApplied=Expr/.QuotientRule;SelfApplied=SelfApplied//NoScalar;SelfApplied=SelfApplied//ToCanonical;Print@SelfApplied;];
+NotebookDelete@printer;
+QuotientRule];
 
 
 (* ::Input::Initialization:: *)
