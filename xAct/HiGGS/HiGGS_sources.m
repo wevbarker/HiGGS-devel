@@ -66,11 +66,33 @@ Evaluate@expr;,
 If[UnitTests~MemberQ~RelevantTag,
 Print[" ** BuildHiGGS: The unit test labelled "<>RelevantTag<>" has been ignored."];,
 Print[" ** BuildHiGGS: Incorporating the binary at "<>BinaryLocation@RelevantTag<>"..."];
+Check[ToExpression["<<\""<>(BinaryLocation@RelevantTag~StringReplace~("\\"->"\\\\"))<>"\";"],
+Throw@Message[BuildHiGGS::nobin,BinaryLocation@RelevantTag];
+Quit[];];];
+];
+];
+
+(*This is a version which was causing problems for the Windows users. Resolution was to use explicit string and StringReplace*)
+(*
+BinaryLocation[RelevantTag_?StringQ]:=FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>RelevantTag<>".mx"};
+BuildHiGGS::nobin="The binary at `1` cannot be found; quitting.";
+SetAttributes[IfBuild,HoldAll];
+IfBuild[RelevantTag_?StringQ,expr_]:=Catch@If[PrematureCellTags~MemberQ~RelevantTag,
+Print[" ** BuildHiGGS: The binary at "<>BinaryLocation@RelevantTag<>" has been ignored."];,
+If[ActiveCellTags~MemberQ~RelevantTag,
+Print[" ** BuildHiGGS: Building the binary at "<>BinaryLocation@RelevantTag<>"..."];
+$BinaryLocation=BinaryLocation@RelevantTag;
+Evaluate@expr;,
+If[UnitTests~MemberQ~RelevantTag,
+Print[" ** BuildHiGGS: The unit test labelled "<>RelevantTag<>" has been ignored."];,
+Print[" ** BuildHiGGS: Incorporating the binary at "<>BinaryLocation@RelevantTag<>"..."];
 Check[ToExpression["<<"<>BinaryLocation@RelevantTag<>";"],
 Throw@Message[BuildHiGGS::nobin,BinaryLocation@RelevantTag];
 Quit[];];];
 ];
 ];
+
+*)
 
 (*Incorporate borrowed scripts from Cyril Pitrou's contributions*)
 Get["xAct/HiGGS/HiGGS_variations.m"];
@@ -1311,7 +1333,7 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DefTensor[DR[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,"Derivative"->1]]; 
+DefTensor[DR[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->SymbolBuild[RSymb,"Derivative"->1]]; 
 DefTensor[DT[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TSymb,"Derivative"->1]]; 
 DefTensor[DTLambda[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TLambdaSymb,"Derivative"->1]];
 ClearBuild[];
