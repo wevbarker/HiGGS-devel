@@ -20,7 +20,8 @@
 
 
 (* ::Input::Initialization:: *)
-xAct`HiGGS`$Version={"1.0.0-beta",{2022,2,1}};
+(*xAct`HiGGS`$Version={"1.0.0-beta",{2022,2,1}};*)
+xAct`HiGGS`$Version={"1.0.0-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
 
 
 (* ::Input::Initialization:: *)

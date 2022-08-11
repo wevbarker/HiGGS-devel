@@ -1334,32 +1334,47 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 DefTensor[DR[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->SymbolBuild[RSymb,"Derivative"->1]]; 
+DeclareOrder[DR[-z,-i,-j,-m,-n],1];
 DefTensor[DT[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TSymb,"Derivative"->1]]; 
+DeclareOrder[DT[-z,-i,-j,-k],1];
 DefTensor[DTLambda[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TLambdaSymb,"Derivative"->1]];
+DeclareOrder[DTLambda[-z,-i,-j,-k],1];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
 DefTensor[DR1[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RSymb,SO1,"Derivative"->1]]; 
+DeclareOrder[DR1[-z,-i,-j,-m,-n],1];
 DefTensor[DR2[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RSymb,SO2,"Derivative"->1]]; 
+DeclareOrder[DR2[-z,-i,-j,-m,-n],1];
 DefTensor[DR3[-z,-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> SymbolBuild[RSymb,SO3,"Derivative"->1]]; 
+DeclareOrder[DR3[-z,-i,-j,-m,-n],1];
 DefTensor[DR4[-z,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO4,"Derivative"->1]]; 
+DeclareOrder[DR4[-z,-i,-j],1];
 DefTensor[DR5[-z,-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[RSymb,SO5,"Derivative"->1]]; 
+DeclareOrder[DR5[-z,-i,-j],1];
 DefTensor[DR6[-z], M4, PrintAs ->SymbolBuild[RSymb,SO6,"Derivative"->1]];
+DeclareOrder[DR6[-z],1];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
 DefTensor[DT1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TSymb,SO1,"Derivative"->1]]; 
+DeclareOrder[DT1[-z,-i,-j,-k],1];
 DefTensor[DT2[-z,-i], M4, PrintAs -> SymbolBuild[TSymb,SO2,"Derivative"->1]]; 
+DeclareOrder[DT2[-z,-i],1];
 DefTensor[DT3[-z,-i], M4, PrintAs ->SymbolBuild[TSymb,SO3,"Derivative"->1]];
+DeclareOrder[DT3[-z,-i],1];
 ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
 DefTensor[DTLambda1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[TLambdaSymb,SO1,"Derivative"->1]]; 
+DeclareOrder[DTLambda1[-z,-i,-j,-k],1];
 DefTensor[DTLambda2[-z,-i], M4, PrintAs -> SymbolBuild[TLambdaSymb,SO2,"Derivative"->1]]; 
+DeclareOrder[DTLambda2[-z,-i],1];
 DefTensor[DTLambda3[-z,-i], M4, PrintAs ->SymbolBuild[TLambdaSymb,SO3,"Derivative"->1]];
+DeclareOrder[DTLambda3[-z,-i],1];
 ClearBuild[];
 
 
