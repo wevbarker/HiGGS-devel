@@ -260,6 +260,7 @@ Velocity::usage="Calculate the velocity of a quantity with respect to the Hamilt
 
 (* ::Input::Initialization:: *)
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
+ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr.";
 
 
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
@@ -299,6 +300,16 @@ NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complemen
 Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 $HiGGSBuilt=True;
 ];
+
+
+ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},
+printer=PrintTemporary[" ** ToNewCanonical..."];
+(*Beep[];*)
+temp=Expr//ToCanonical;
+temp=temp//ContractMetric;
+temp=temp//ScreenDollarIndices;
+NotebookDelete@printer;
+temp];
 
 
 Options[MakeQuotientRule]={MetricOn->All,ContractMetrics->True,Canonicalise->True,Verify->True,Method->"SolveTensors"};

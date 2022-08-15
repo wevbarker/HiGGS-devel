@@ -171,17 +171,6 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-(*Probably a better place to put this at the top*)
-ToNewCanonical[x_]:="ToNewCanonical"~TimeWrapper~Module[{temp,res,time,duration,filename,printer},
-printer=PrintTemporary[" ** ToNewCanonical..."];
-(*Beep[];*)
-temp=x;
-temp=ToCanonical@temp;
-temp=temp//ContractMetric;
-temp=temp//ScreenDollarIndices;
-NotebookDelete[printer];
-temp];
-
 (*To suppress the error message from VarD when CyrilPitrou's VarAction runs on indexed tensors*)
 NewVarAction[x_,y_]:="VarAction"~TimeWrapper~Quiet[VarAction[x,y],{VarD::nouse}];
 ClearBuild[];
