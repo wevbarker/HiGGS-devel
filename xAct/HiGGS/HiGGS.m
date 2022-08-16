@@ -102,6 +102,9 @@ Print["This free version of HiGGS incorporates Cyril Pitrou's code from the publ
 Print[xAct`xCore`Private`bars];
 
 
+Get@"xAct/HiGGS/HiGGS_variations.m";
+
+
 (* ::Input::Initialization:: *)
 (*
 If[!ValueQ@Global`$Timing,
@@ -261,6 +264,7 @@ Velocity::usage="Calculate the velocity of a quantity with respect to the Hamilt
 (* ::Input::Initialization:: *)
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
 ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr.";
+NewVarAction::usage="NewVarAction[Action,Field] is a convenience wrapper for Cyril Pitrou's VarAction, in which VarD error is suppressed on indexed tensors.";
 
 
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
@@ -300,6 +304,10 @@ NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complemen
 Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 $HiGGSBuilt=True;
 ];
+
+
+(*Incorporate borrowed scripts from Cyril Pitrou's contributions*)
+NewVarAction[Action_,Field_]:="VarAction"~TimeWrapper~Quiet[VarAction[Action,Field],{VarD::nouse}];
 
 
 ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},

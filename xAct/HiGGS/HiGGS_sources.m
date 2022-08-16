@@ -94,8 +94,6 @@ Quit[];];];
 
 *)
 
-(*Incorporate borrowed scripts from Cyril Pitrou's contributions*)
-Get["xAct/HiGGS/HiGGS_variations.m"];
 ClearBuild[];
 
 
@@ -167,12 +165,6 @@ WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraph
 Close@$ListingsFile;
 ];
 ];
-ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-(*To suppress the error message from VarD when CyrilPitrou's VarAction runs on indexed tensors*)
-NewVarAction[x_,y_]:="VarAction"~TimeWrapper~Quiet[VarAction[x,y],{VarD::nouse}];
 ClearBuild[];
 
 
