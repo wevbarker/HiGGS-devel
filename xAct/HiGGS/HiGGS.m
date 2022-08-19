@@ -100,7 +100,7 @@ SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 (* ::Code::Initialization:: *)
 Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
-Print["CopyRight (C) 2022, Will E. V. Barker, under the General Public License."];
+Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["This free version of HiGGS is an open source dependent of the xAct bundle."];
 Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
