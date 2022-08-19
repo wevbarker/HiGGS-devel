@@ -19,7 +19,7 @@
 
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*xAct`HiGGS`$Version={"1.0.0-beta",{2022,2,1}};*)
 xAct`HiGGS`$Version={"1.0.0-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
 
@@ -46,7 +46,7 @@ You should have received a copy of the GNU General Public License
 *)
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (* :Title: HiGGS *)
 
 (* :Author: Will E. V. Barker *)
@@ -81,31 +81,33 @@ xAct`HiGGS`$Node;
 Off[Global`$Node::shdw];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
+If[Unevaluated[xAct`xCore`Private`$LastPackage]===xAct`xCore`Private`$LastPackage,xAct`xCore`Private`$LastPackage="xAct`HiGGS`"];
+
+
+(* ::Code::Initialization:: *)
 BeginPackage["xAct`HiGGS`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`","xAct`xTras`"}];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 ParallelNeeds["xAct`HiGGS`"];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
+Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight (C) 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["This free version of HiGGS is an open source dependent of the xAct bundle."];
 Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
-Print[xAct`xCore`Private`bars];
+(*Print[xAct`xCore`Private`bars];*)
 
 
-Get@"xAct/HiGGS/HiGGS_variations.m";
-
-
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*
 If[!ValueQ@Global`$Timing,
 Global`$Timing=False;
@@ -132,18 +134,18 @@ Print[xAct`xCore`Private`bars];
 (*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
 (*was Needs called on the HiGGS package from a notebook?*)
 If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
-Print["The working directory is "<>$WorkingDirectory];
+(*Print["The working directory is "<>$WorkingDirectory];*)
 $Path~AppendTo~$WorkingDirectory;
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
-Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
-Print[xAct`xCore`Private`bars];
+(*Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
+Print[xAct`xCore`Private`bars];*)
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 ActiveCellTags={"build"};
 UnitTests={"CheckOrthogonalityToggle","ShowIrrepsToggle","ProjectionNormalisationsCheckToggle","ShowIrrepsToggle","documentation"};
 PrematureCellTags={"TransferCouplingsPerpPerpToggle","TransferCouplingsPerpParaToggle"};
@@ -152,7 +154,7 @@ BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirecto
 ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*time when the package is called*)
 $HiGGSBuildTime=AbsoluteTime[];
 (*set up a file to record the start time of a job*)
@@ -166,14 +168,14 @@ ToExpression@("<<"<>$BuildTimeFilename<>";");
 HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*remember to modify this if you want to time another function in HiGGS_sources.nb *)
 $TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
 (*initial zeroes, i.e. the default line*)
 $HiGGSTimingLine=0.~ConstantArray~(20*2Length@$TimedFunctionList);
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*which kernel are we in? This sets the file in which we record stats*)
 $HiGGSTimingFile=Quiet@FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"chr","kernel-"<>ToString@$KernelID<>".chr.csv"};
 (*a function which writes all current data to the kernel file*)
@@ -187,7 +189,7 @@ $HiGGSTimingData={};
 ];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*headers for the timing file*)
 $HiGGSTimingData={};
 (*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
@@ -196,7 +198,7 @@ $HiGGSTimingData~AppendTo~$HiGGSTimingLine;
 Quiet[WriteHiGGSTimingData[]];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
 $PauseSeconds=6;
 $LastMultiple=0;
@@ -216,12 +218,12 @@ NotebookDelete[printer];
 ];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*don't try timing until we call the function in expr*)
 TimeWrapper~SetAttributes~HoldAll;
 (*the actual timing function*)
@@ -246,11 +248,19 @@ temp=Evaluate@expr];
 temp];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 ForceTiming[]:=WriteHiGGSTimingData[];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
+If[xAct`xCore`Private`$LastPackage==="xAct`HiGGS`",
+Unset[xAct`xCore`Private`$LastPackage];
+Print[xAct`xCore`Private`bars];
+Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclaimer[]. This is free software, and you are welcome to redistribute it under certain conditions. See the General Public License for details."];
+Print[xAct`xCore`Private`bars]];
+
+
+(* ::Code::Initialization:: *)
 BuildHiGGS::usage="Rebuild the HiGGS session";
 ToNesterForm::usage="Express quantity in terms of human-readable irreps";
 ToBasicForm::usage="Express quantity in terms of basic gauge fields";
@@ -261,25 +271,24 @@ StudyTheory::usage="Calculate the links in the constraint chain down do a certai
 Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
 ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr.";
-NewVarAction::usage="NewVarAction[Action,Field] is a convenience wrapper for Cyril Pitrou's VarAction, in which VarD error is suppressed on indexed tensors.";
 
 
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
 Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 $Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 Begin["xAct`HiGGS`Private`"];
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 (*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
 $HiGGSBuilt=False;
 BuildHiGGS::built="The HiGGS environment has already been built.";
@@ -304,10 +313,6 @@ NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complemen
 Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
 $HiGGSBuilt=True;
 ];
-
-
-(*Incorporate borrowed scripts from Cyril Pitrou's contributions*)
-NewVarAction[Action_,Field_]:="VarAction"~TimeWrapper~Quiet[VarAction[Action,Field],{VarD::nouse}];
 
 
 ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},
@@ -345,6 +350,6 @@ Export[NotebookDirectory[]<>"Documentation/HiGGS.pdf",EvaluationNotebook[]];
 *)
 
 
-(* ::Input::Initialization:: *)
+(* ::Code::Initialization:: *)
 End[];
 EndPackage[];
