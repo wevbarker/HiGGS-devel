@@ -276,6 +276,7 @@ MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which tak
 ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr.";
 
 
+BuildSO3::usage="BuildSO3 is a boolean option for BuildHiGGS, which determines whether objects referring to the special orthogonal group in three dimensions, SO(3), are also to be built. Default is True.";
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
 Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
 
