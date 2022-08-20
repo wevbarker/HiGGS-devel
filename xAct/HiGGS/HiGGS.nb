@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[    107571,       2254]
-NotebookOptionsPosition[     99041,       2101]
-NotebookOutlinePosition[     99604,       2121]
-CellTagsIndexPosition[     99561,       2118]
+NotebookDataLength[    106987,       2242]
+NotebookOptionsPosition[     98459,       2089]
+NotebookOutlinePosition[     99020,       2109]
+CellTagsIndexPosition[     98977,       2106]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1744,7 +1744,13 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
-     RowBox[{"BuildHiGGS", "[", "]"}], ":=", 
+     RowBox[{"Options", "@", "BuildHiGGS"}], "=", 
+     RowBox[{"{", 
+      RowBox[{"BuildSO3", "->", "True"}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"BuildHiGGS", "[", 
+      RowBox[{"OptionsPattern", "[", "]"}], "]"}], ":=", 
      RowBox[{"\"\<BuildHiGGS\>\"", "~", "TimeWrapper", "~", 
       RowBox[{"Catch", "@", 
        RowBox[{"Module", "[", 
@@ -1805,42 +1811,23 @@ Cell[BoxData[
               RowBox[{
               "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
               "}"}]}], ",", "\"\< with active CellTags \>\"", ",", 
-            "ActiveCellTags", ",", "\"\<.\>\""}], "]"}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"(*", 
-           RowBox[{
-            RowBox[{"NotebookEvaluate", "[", 
-             RowBox[{
-              RowBox[{"FileNameJoin", "@", 
-               RowBox[{"{", 
-                RowBox[{
-                "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-                "}"}]}], ",", 
-              RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
-           "*)"}], "\[IndentingNewLine]", 
-          RowBox[{"(*", 
-           RowBox[{
-            RowBox[{"NotebookEvaluate", "[", 
-             RowBox[{
-              RowBox[{"FileNameJoin", "@", 
-               RowBox[{"{", 
-                RowBox[{
-                "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.nb\>\""}], 
-                "}"}]}], ",", 
-              RowBox[{"EvaluationElements", "\[Rule]", 
-               RowBox[{"\"\<Tags\>\"", "->", "ActiveCellTags"}]}], ",", 
-              RowBox[{"InsertResults", "\[Rule]", "False"}]}], "]"}], ";"}], 
-           "*)"}], "\[IndentingNewLine]", 
+            "ActiveCellTags", ",", "\"\<.\>\""}], "]"}], ";", "\n", 
           RowBox[{"Get", "[", 
            RowBox[{"FileNameJoin", "@", 
             RowBox[{"{", 
              RowBox[{
              "$HiGGSInstallDirectory", ",", "\"\<HiGGS_sources.m\>\""}], 
-             "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
-          RowBox[{"Print", "[", 
+             "}"}]}], "]"}], ";", "\n", 
+          RowBox[{"If", "[", 
            RowBox[{
-           "\"\< ** BuildHiGGS: The context on quitting HiGGS.m is \>\"", ",",
-             "$Context", ",", "\"\<.\>\""}], "]"}], ";", 
+            RowBox[{"OptionValue", "@", "BuildSO3"}], ",", "\n", 
+            RowBox[{
+             RowBox[{"Get", "[", 
+              RowBox[{"FileNameJoin", "@", 
+               RowBox[{"{", 
+                RowBox[{
+                "$HiGGSInstallDirectory", ",", "\"\<HiGGS_SO3.m\>\""}], 
+                "}"}]}], "]"}], ";"}]}], "\n", "]"}], ";", 
           "\[IndentingNewLine]", 
           RowBox[{"(*", 
            RowBox[{
@@ -1872,18 +1859,19 @@ environment is now ready to use and is occupying \>\"", ",", "UsedMemory",
         "\[IndentingNewLine]", "]"}]}]}]}], ";"}]}]}]], "Code",
  InitializationCell->True,
  CellChangeTimes->CompressedData["
-1:eJwd0W1IU3EUBvA7EyJRmDHImtZqUuaNVRQqZbFbbOrF2bDZZBFbpWaRmhLb
-ymmm12C2sg+ThOxNpwSN8GWucrJibBEhJENoRYTNQS9eKPAF0aX9n/vh8Pvw
-cD6c52w/V1damUBRFE0G+isT/8x5eKZqWD0He/IkMfUoz5julAgaVNe7i4iL
-0RbBox/SN7LE4q4ywcnDfp2eyOaEyuGW2b9GmCMNnYdVXMAGX8S2NsFyk36b
-yssz3/JlMvh1qjWhkLhnQbweHkiTp8LkPoNgkkW+A4ozVIITO2fulxAzfaXd
-sPGJtg/S1ppnsEOseglZy5kgHNyVJz9BrPh4RDCl+eJuOJ18mYZLXeyjWqJ5
-9Z8LOljGDWlN7gj0flEGIKtteA/HPqd+h/5azTJU0N41yGWZqTqiKTMpA+ZL
-nDI44zh2NfCa3MkZLDBcFr0JOxSPW+EK91a5OMYzvZN2Bp5qdN6CLQ9WBIeU
-lzpTfGTveFSwV8efriZeuG01wqDWorlCrNgQ0cLsgdy2eqJrpE1wSl9kh5FP
-rxyw2ONyw5/XPILxk6NS6TjpSfQrHcbPSpxQZLc9hdzq3ufwoOGeG5ofTg/C
-6vF2H5y/sbYAlb9r4nDgXWFTxE/+NBxqhvPts+ofxJ79WQUwW5wm0r0h+aHl
-RKgOb6IUQZ6xxvrXwfBm212oH5J0wqX6/oJ9xIYJIwv/A6MEa4s=
+1:eJwd0WtIk3EUBvDNpEgUpgyypmUptVxpUajUir3Fpr44GzabLEItN2c0TYnN
+8tqcwWxlH5Qs7aZTgiS8zFVOlgzthpGI0YoIm4suvlAwNXFL+z/vh8Pvw8P5
+cJ6z9XRZjiaEw+Ekk4EuTehvv52htAMyP+xI4/tkQwxVcC2bVS291JZJXPTW
+sx5+ExNFE7Nac1knD7qUKiKdMp4HN839yYcpgvEzUGt2V8PHvs01MK9AtUXq
+YKgv4rg4+HnaFJJB3LXAWwf3RcdHwvAuNWuYMX4b5MVKWSe2z97MJiY4c9pg
+1X1FFxRV6h/CJp70CaSNp8Zg3460+GPEoneHWCNqS3bCmfBzIrjUSt8tJRpW
+/tmglaZ6oUieOggdnyRuSCsqXsHhj5FfoatUvgyTRI5VaBYaOGXEgoSwWCjm
+t8TBWeuRC+5n5E6z2gincr2XYVPSPRMMmEcli8MM1TlpoeCJqpYrsL49wNov
+Odsc4SR7R72snUrmpI5YfLUyH44pjPLzxKL1HgVM7EltKCfaBhtYp1WZFuj5
+8NQKs+y2Xvjjop01eHxIIBghPXF/xsBgIb8Fci3VD6B5JfkR3K++0QsNd2b6
+oG6k0Qnn61YXoOSXPgh7XmTUeFzkTwPjtXC+cU72ndixV5gOE3nRXOVzkh9Y
+DoWyqQ2cpDGGqvR1r4FTG6uvQ1U/vxkulXen7yFWTOTTcNJU59W8ZyghU+qD
+9G3GD2+9jPoLlwr1AajbLV6BoyVv12qJr4u/sf4HjWSRtQ==
   "],ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21"],
 
 Cell["\<\
@@ -2101,8 +2089,8 @@ fb53d3fb1583"]
 },
 AutoGeneratedPackage->Automatic,
 ScreenStyleEnvironment->"NoLineNumbers",
-WindowSize->{1440., 860.25},
-WindowMargins->{{Automatic, 810}, {Automatic, 19.5}},
+WindowSize->{1440., 770.25},
+WindowMargins->{{0, Automatic}, {Automatic, 19.5}},
 TaggingRules-><|
  "TryRealOnly" -> False, "CodeFormatter" -> <|"ToolbarState" -> False|>|>,
 FrontEndVersion->"13.1 for Linux x86 (64-bit) (June 16, 2022)",
@@ -2237,15 +2225,15 @@ Cell[82950, 1707, 203, 4, 68, "Section",ExpressionUUID->"6225deb7-2b53-408d-b1b9
 Cell[83156, 1713, 186, 4, 36, "Code",ExpressionUUID->"3e8c7887-313a-4be9-be0b-6f2331297405",
  InitializationCell->True],
 Cell[83345, 1719, 197, 3, 35, "Text",ExpressionUUID->"2b3dbfd9-cbf4-4084-89ed-aadcc0b74f86"],
-Cell[83545, 1724, 7219, 162, 528, "Code",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
+Cell[83545, 1724, 6637, 150, 546, "Code",ExpressionUUID->"cb99ac3a-cc01-4b79-a586-19abccb79c21",
  InitializationCell->True],
-Cell[90767, 1888, 242, 6, 35, "Text",ExpressionUUID->"e8bb08e2-6bd6-4d3c-863f-fee868b9df20"],
-Cell[91012, 1896, 1281, 30, 185, "Code",ExpressionUUID->"c14a8d1d-a4bc-4faa-a695-572bfd122150"],
-Cell[92296, 1928, 499, 9, 58, "Text",ExpressionUUID->"2d40a58c-c967-4630-81c2-3f1b3eaa2975"],
-Cell[92798, 1939, 5036, 122, 358, "Code",ExpressionUUID->"624a160f-eedc-48c2-9d59-1f58da368844"],
-Cell[97837, 2063, 873, 24, 99, "Input",ExpressionUUID->"03274340-7a9d-45a4-b362-c89100ef9e71",
+Cell[90185, 1876, 242, 6, 35, "Text",ExpressionUUID->"e8bb08e2-6bd6-4d3c-863f-fee868b9df20"],
+Cell[90430, 1884, 1281, 30, 185, "Code",ExpressionUUID->"c14a8d1d-a4bc-4faa-a695-572bfd122150"],
+Cell[91714, 1916, 499, 9, 58, "Text",ExpressionUUID->"2d40a58c-c967-4630-81c2-3f1b3eaa2975"],
+Cell[92216, 1927, 5036, 122, 358, "Code",ExpressionUUID->"624a160f-eedc-48c2-9d59-1f58da368844"],
+Cell[97255, 2051, 873, 24, 99, "Input",ExpressionUUID->"03274340-7a9d-45a4-b362-c89100ef9e71",
  InitializationCell->True],
-Cell[98713, 2089, 300, 8, 58, "Code",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
+Cell[98131, 2077, 300, 8, 58, "Code",ExpressionUUID->"c5b08fed-f48e-4067-af8b-fb53d3fb1583",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]]

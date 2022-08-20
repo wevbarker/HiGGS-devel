@@ -293,7 +293,8 @@ Begin["xAct`HiGGS`Private`"];
 (*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
 $HiGGSBuilt=False;
 BuildHiGGS::built="The HiGGS environment has already been built.";
-BuildHiGGS[]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
+Options@BuildHiGGS={BuildSO3->True};
+BuildHiGGS[OptionsPattern[]]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
 (*A message*)
 xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
 (*Check for pre-existing build*)
@@ -303,10 +304,10 @@ $PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"P
 PriorMemory=MemoryInUse[];
 Print[" ** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
 Print[" ** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"}," with active CellTags ",ActiveCellTags,"."];
-(*NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},InsertResults\[Rule]False];*)
-(*NotebookEvaluate[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.nb"},EvaluationElements\[Rule]"Tags"->ActiveCellTags,InsertResults\[Rule]False];*)
 Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_sources.m"}];
-Print[" ** BuildHiGGS: The context on quitting HiGGS.m is ",$Context,"."];
+If[OptionValue@BuildSO3,
+Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_SO3.m"}];
+];
 (*Purge all cells created during build process*)
 Pause[2];
 UsedMemory=MemoryInUse[]-PriorMemory;
