@@ -2490,22 +2490,6 @@ AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNam
 
 ];
 
-ToOrderCanonical[expr_,order_]:="ToOrderCanonical"~TimeWrapper~Module[{res,printer},
-printer=PrintTemporary[" ** ToOrderCanonical: order ",order,"..."];
-res=expr;
-Switch[order,0,{
-res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
-res=res/.{Prt->0};
-},1,{
-res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
-res=res/.{Prt^2->0,Prt^3->0,Prt^4->0,Prt^5->0,Prt^6->0,Prt^7->0,Prt^8->0,Prt^9->0,Prt^10->0,Prt^11->0,Prt^12->0,Prt^13->0,Prt^14->0};
-res=res/.{Prt->1};
-},Infinity,{}];
-res=res//ToNewCanonical;
-NotebookDelete[printer];
-res];
 ClearBuild[];
 
 

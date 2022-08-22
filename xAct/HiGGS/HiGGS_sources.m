@@ -1324,10 +1324,28 @@ ClearBuild[];
 (* ::Input::Initialization:: *)
 DefTensor[DR[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->SymbolBuild[RSymb,"Derivative"->1]]; 
 DeclareOrder[DR[-z,-i,-j,-m,-n],1];
+DefTensor[DRLambda[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->SymbolBuild[RLambdaSymb,"Derivative"->1]]; 
+DeclareOrder[DRLambda[-z,-i,-j,-m,-n],1];
 DefTensor[DT[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TSymb,"Derivative"->1]]; 
 DeclareOrder[DT[-z,-i,-j,-k],1];
 DefTensor[DTLambda[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> SymbolBuild[TLambdaSymb,"Derivative"->1]];
 DeclareOrder[DTLambda[-z,-i,-j,-k],1];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DefTensor[DRLambda1[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->SymbolBuild[RLambdaSymb,SO1,"Derivative"->1]]; 
+DeclareOrder[DRLambda1[-z,-i,-j,-m,-n],1];
+DefTensor[DRLambda2[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> SymbolBuild[RLambdaSymb,SO2,"Derivative"->1]]; 
+DeclareOrder[DRLambda2[-z,-i,-j,-m,-n],1];
+DefTensor[DRLambda3[-z,-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> SymbolBuild[RLambdaSymb,SO3,"Derivative"->1]]; 
+DeclareOrder[DRLambda3[-z,-i,-j,-m,-n],1];
+DefTensor[DRLambda4[-z,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> SymbolBuild[RLambdaSymb,SO4,"Derivative"->1]]; 
+DeclareOrder[DRLambda4[-z,-i,-j],1];
+DefTensor[DRLambda5[-z,-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> SymbolBuild[RLambdaSymb,SO5,"Derivative"->1]]; 
+DeclareOrder[DRLambda5[-z,-i,-j],1];
+DefTensor[DRLambda6[-z], M4, PrintAs ->SymbolBuild[RLambdaSymb,SO6,"Derivative"->1]];
+DeclareOrder[DRLambda6[-z],1];
 ClearBuild[];
 
 
@@ -1369,6 +1387,7 @@ ClearBuild[];
 
 (* ::Input::Initialization:: *)
 DRActivate=MakeRule[{CD[-z][R[-a,-b,-c,-d]],DR[-z,-a,-b,-c,-d]+A[i,-a,-z]R[-i,-b,-c,-d]+A[i,-b,-z]R[-a,-i,-c,-d]+A[i,-c,-z]R[-a,-b,-i,-d]+A[i,-d,-z]R[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DRLambdaActivate=MakeRule[{CD[-z][RLambda[-a,-b,-c,-d]],DRLambda[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda[-i,-b,-c,-d]+A[i,-b,-z]RLambda[-a,-i,-c,-d]+A[i,-c,-z]RLambda[-a,-b,-i,-d]+A[i,-d,-z]RLambda[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
 DTLambdaActivate=MakeRule[{CD[-z][TLambda[-a,-b,-c]],DTLambda[-z,-a,-b,-c]+A[i,-a,-z]TLambda[-i,-b,-c]+A[i,-b,-z]TLambda[-a,-i,-c]+A[i,-c,-z]TLambda[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 DTActivate=MakeRule[{CD[-z][T[-a,-b,-c]],DT[-z,-a,-b,-c]+A[i,-a,-z]T[-i,-b,-c]+A[i,-b,-z]T[-a,-i,-c]+A[i,-c,-z]T[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 ClearBuild[];
@@ -1381,6 +1400,16 @@ DR3Activate=MakeRule[{CD[-z][R3[-a,-b,-c,-d]],DR3[-z,-a,-b,-c,-d]+A[i,-a,-z]R3[-
 DR4Activate=MakeRule[{CD[-z][R4[-a,-b]],DR4[-z,-a,-b]+A[i,-a,-z]R4[-i,-b]+A[i,-b,-z]R4[-a,-i]},MetricOn->All,ContractMetrics->True];
 DR5Activate=MakeRule[{CD[-z][R5[-a,-b]],DR5[-z,-a,-b]+A[i,-a,-z]R5[-i,-b]+A[i,-b,-z]R5[-a,-i]},MetricOn->All,ContractMetrics->True];
 DR6Activate=MakeRule[{CD[-z][R6[]],DR6[-z]},MetricOn->All,ContractMetrics->True];
+ClearBuild[];
+
+
+(* ::Input::Initialization:: *)
+DRLambda1Activate=MakeRule[{CD[-z][RLambda1[-a,-b,-c,-d]],DRLambda1[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda1[-i,-b,-c,-d]+A[i,-b,-z]RLambda1[-a,-i,-c,-d]+A[i,-c,-z]RLambda1[-a,-b,-i,-d]+A[i,-d,-z]RLambda1[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DRLambda2Activate=MakeRule[{CD[-z][RLambda2[-a,-b,-c,-d]],DRLambda2[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda2[-i,-b,-c,-d]+A[i,-b,-z]RLambda2[-a,-i,-c,-d]+A[i,-c,-z]RLambda2[-a,-b,-i,-d]+A[i,-d,-z]RLambda2[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DRLambda3Activate=MakeRule[{CD[-z][RLambda3[-a,-b,-c,-d]],DRLambda3[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda3[-i,-b,-c,-d]+A[i,-b,-z]RLambda3[-a,-i,-c,-d]+A[i,-c,-z]RLambda3[-a,-b,-i,-d]+A[i,-d,-z]RLambda3[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
+DRLambda4Activate=MakeRule[{CD[-z][RLambda4[-a,-b]],DRLambda4[-z,-a,-b]+A[i,-a,-z]RLambda4[-i,-b]+A[i,-b,-z]RLambda4[-a,-i]},MetricOn->All,ContractMetrics->True];
+DRLambda5Activate=MakeRule[{CD[-z][RLambda5[-a,-b]],DRLambda5[-z,-a,-b]+A[i,-a,-z]RLambda5[-i,-b]+A[i,-b,-z]RLambda5[-a,-i]},MetricOn->All,ContractMetrics->True];
+DRLambda6Activate=MakeRule[{CD[-z][RLambda6[]],DRLambda6[-z]},MetricOn->All,ContractMetrics->True];
 ClearBuild[];
 
 
@@ -1399,10 +1428,28 @@ ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
-DActivate=Join[DRActivate,DTActivate,DTLambdaActivate,DR1Activate,DR2Activate,DR3Activate,DR4Activate,DR5Activate,DR6Activate,DT1Activate,DT2Activate,DT3Activate,DTLambda1Activate,DTLambda2Activate,DTLambda3Activate];
+DActivate=Join[DRActivate,DRLambdaActivate,DTActivate,DTLambdaActivate,DR1Activate,DR2Activate,DR3Activate,DR4Activate,DR5Activate,DR6Activate,DRLambda1Activate,DRLambda2Activate,DRLambda3Activate,DRLambda4Activate,DRLambda5Activate,DRLambda6Activate,DT1Activate,DT2Activate,DT3Activate,DTLambda1Activate,DTLambda2Activate,DTLambda3Activate];
 ClearBuild[];
 
 
 DDeactivate={};
-MakeDDeactivate/@{R[a,b,c,d],T[a,b,c],TLambda[a,b,c],R1[a,b,c,d],R2[a,b,c,d],R3[a,b,c,d],R4[a,b],R5[a,b],R6[],T[a,b,c],T1[a,b,c],T2[a],T3[a],TLambda[a,b,c],TLambda1[a,b,c],TLambda2[a],TLambda3[a]};
+MakeDDeactivate/@{R[a,b,c,d],RLambda[a,b,c,d],T[a,b,c],TLambda[a,b,c],R1[a,b,c,d],R2[a,b,c,d],R3[a,b,c,d],R4[a,b],R5[a,b],R6[],RLambda1[a,b,c,d],RLambda2[a,b,c,d],RLambda3[a,b,c,d],RLambda4[a,b],RLambda5[a,b],RLambda6[],T[a,b,c],T1[a,b,c],T2[a],T3[a],TLambda[a,b,c],TLambda1[a,b,c],TLambda2[a],TLambda3[a]};
 ClearBuild[];
+
+
+ToOrderCanonical[expr_,order_]:="ToOrderCanonical"~TimeWrapper~Module[{res,printer},
+printer=PrintTemporary[" ** ToOrderCanonical: order ",order,"..."];
+res=expr;
+Switch[order,0,{
+res=res/.$ToOrderRules;
+res=CollectConstants[res,Prt];
+res=res/.{Prt->0};
+},1,{
+res=res/.$ToOrderRules;
+res=CollectConstants[res,Prt];
+res=res/.{Prt^2->0,Prt^3->0,Prt^4->0,Prt^5->0,Prt^6->0,Prt^7->0,Prt^8->0,Prt^9->0,Prt^10->0,Prt^11->0,Prt^12->0,Prt^13->0,Prt^14->0};
+res=res/.{Prt->1};
+},Infinity,{}];
+res=res//ToNewCanonical;
+NotebookDelete[printer];
+res];
