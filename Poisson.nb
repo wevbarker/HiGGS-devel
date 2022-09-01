@@ -1,0 +1,199 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6862,        191]
+NotebookOptionsPosition[      5842,        169]
+NotebookOutlinePosition[      6272,        186]
+CellTagsIndexPosition[      6229,        183]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Run", "[", "\"\<pkill -KILL xperm.linux.64-\>\"", "]"}]], "Code",
+ CellChangeTimes->{{3.868709515429967*^9, 3.8687095508943243`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"0146b230-9bbf-4d0d-ab89-91b1a569d36b"],
+
+Cell[BoxData[
+ RowBox[{"<<", "xAct`HiGGS`"}]], "Code",
+ CellChangeTimes->{{3.868709559355681*^9, 3.8687095666081543`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"e611d09c-ec5d-4e57-a1d7-2271363d1b72"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BuildHiGGS", "[", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.868709873926159*^9, 3.868709879950963*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"ae65537c-c5ef-4667-a307-9553f9bb2f6d"],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Code",
+ CellChangeTimes->{{3.86906573860539*^9, 3.869065747888596*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"71595388-bf96-4e9d-bf62-2d4521098192"],
+
+Cell[BoxData[
+ RowBox[{"jobs", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"MapAt", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Join", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Alp0", "==", "0"}], ",", 
+           RowBox[{"Alp1", "==", "0"}], ",", 
+           RowBox[{"Alp2", "==", "0"}], ",", 
+           RowBox[{"Alp3", "==", "0"}], ",", 
+           RowBox[{"Alp4", "==", "0"}], ",", 
+           RowBox[{"Alp5", "==", "0"}], ",", 
+           RowBox[{"Alp6", "==", "0"}], ",", 
+           RowBox[{"cBet1", "==", "0"}], ",", 
+           RowBox[{"cBet2", "==", "0"}], ",", 
+           RowBox[{"cBet3", "==", "0"}]}], "}"}]}], "]"}], "&"}], ",", "#", 
+      ",", "2"}], "]"}], "&"}], "/@", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<TEGR\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Bet1", "==", 
+          RowBox[{"1", "/", "2"}]}], ",", 
+         RowBox[{"Bet2", "==", 
+          RowBox[{"-", "1"}]}], ",", 
+         RowBox[{"Bet3", "==", 
+          RowBox[{
+           RowBox[{"-", "1"}], "/", "4"}]}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<NGR1P\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Bet1", "==", 
+          RowBox[{"1", "/", "2"}]}], ",", 
+         RowBox[{"Bet2", "==", 
+          RowBox[{"-", "1"}]}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<av_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"2", "Bet1"}], "+", "Bet2"}], "==", "0"}], ",", 
+         RowBox[{
+          RowBox[{"Bet1", "+", 
+           RowBox[{"2", "Bet3"}]}], "==", "0"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<at_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Bet1", "+", 
+           RowBox[{"2", "Bet3"}]}], "==", "0"}], ",", 
+         RowBox[{"Bet2", "==", "0"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<as_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Bet1", "==", "0"}], ",", 
+         RowBox[{"Bet3", "==", "0"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<vst_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Bet1", "==", "0"}], ",", 
+         RowBox[{"Bet2", "==", "0"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<v_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"2", "Bet1"}], "+", "Bet2"}], "==", "0"}], "}"}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<a_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Bet1", "+", 
+          RowBox[{"2", "Bet3"}]}], "==", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<s_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"Bet1", "==", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<t_cons\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"Bet2", "==", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<unconstr\>\"", ",", 
+       RowBox[{"{", "}"}]}], "}"}]}], "}"}]}]}]], "Code",
+ CellChangeTimes->{{3.869064940553669*^9, 3.869064949445942*^9}, {
+  3.8690649953781223`*^9, 3.8690651283286667`*^9}, {3.869065163698905*^9, 
+  3.869065182520623*^9}, {3.86906522677966*^9, 3.869065452637033*^9}, {
+  3.8690654845460463`*^9, 3.869065540078923*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"decf7bd0-0cef-4ec4-8cf0-116e61f46edb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$Cores", "=", "6"}], ";"}]], "Code",
+ CellChangeTimes->{{3.869065652925119*^9, 3.869065659050465*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"ea25b7d2-6372-41c5-aa5c-5652ffffdffd"],
+
+Cell[BoxData[
+ RowBox[{"StudyTheory", "[", 
+  RowBox[{"jobs", ",", 
+   RowBox[{"\"\<Import\>\"", "->", "True"}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.868711013139563*^9, 3.868711084297598*^9}, {
+  3.86906561093528*^9, 3.8690656165506563`*^9}, {3.869135076184003*^9, 
+  3.86913507681145*^9}},ExpressionUUID->"7c3acaa2-9415-4814-b245-\
+ab417dd25efc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"CloseKernels", "[", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Quit", "[", "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.8691351155221643`*^9, 
+  3.869135123809539*^9}},ExpressionUUID->"49f1fc39-6034-4de4-95ea-\
+df407509ca8c"]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{1078, 1898},
+WindowMargins->{{Automatic, -1078}, {2, Automatic}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3c69eebd-bf8a-49ed-b9c7-b3833de03450"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 235, 3, 52, "Code",ExpressionUUID->"0146b230-9bbf-4d0d-ab89-91b1a569d36b"],
+Cell[796, 25, 200, 3, 52, "Code",ExpressionUUID->"e611d09c-ec5d-4e57-a1d7-2271363d1b72"],
+Cell[999, 30, 219, 4, 52, "Code",ExpressionUUID->"ae65537c-c5ef-4667-a307-9553f9bb2f6d"],
+Cell[1221, 36, 247, 4, 52, "Code",ExpressionUUID->"71595388-bf96-4e9d-bf62-2d4521098192"],
+Cell[1471, 42, 3513, 101, 52, "Code",ExpressionUUID->"decf7bd0-0cef-4ec4-8cf0-116e61f46edb"],
+Cell[4987, 145, 216, 4, 52, "Code",ExpressionUUID->"ea25b7d2-6372-41c5-aa5c-5652ffffdffd"],
+Cell[5206, 151, 351, 7, 52, "Code",ExpressionUUID->"7c3acaa2-9415-4814-b245-ab417dd25efc"],
+Cell[5560, 160, 278, 7, 73, "Code",ExpressionUUID->"49f1fc39-6034-4de4-95ea-df407509ca8c"]
+}
+]
+*)
+
