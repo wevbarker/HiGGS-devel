@@ -10,6 +10,8 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 	
 		If[Length@EvaluatedBracket==3||(PossibleZeroQ@EvaluatedBracket[[2]]&&PossibleZeroQ@EvaluatedBracket[[3]]&&PossibleZeroQ@EvaluatedBracket[[4]]),
 
+		(*Note that the Dot function is a helpful alternative to implicit Times which preserves the ordering of the operands: this is a purely cosmetic choice so as to keep the smearing functions from mixing with the terms in the bracket, and ensure that they sit at the end for easy visual inspection.*)
+
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
 		SmearedEvaluatedBracketTerm1=
