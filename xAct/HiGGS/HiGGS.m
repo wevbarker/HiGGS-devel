@@ -352,6 +352,9 @@ Export[NotebookDirectory[]<>"Documentation/HiGGS.pdf",EvaluationNotebook[]];
 *)
 
 
+Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_smearing_functions.m"}];
+
+
 (* ::Code::Initialization:: *)
 End[];
 EndPackage[];
