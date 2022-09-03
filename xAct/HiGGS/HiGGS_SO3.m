@@ -3436,10 +3436,10 @@ ReplaceIndex[Evaluate[Partialf1DBz],z->t] ManualCovariantDerivative[-t,BarVariat
 2ReplaceIndex[Evaluate[Partialf1DAz],z->t]ManualCovariantDerivative[-t,BarVariationalf2APi,IndexList[-s],u]-
 ReplaceIndex[Evaluate[Partialf1DBPiz],z->t] ManualCovariantDerivative[-t,BarVariationalf2B,IndexList[r],u]-
 2ReplaceIndex[Evaluate[Partialf1DAPiz],z->t] ManualCovariantDerivative[-t,BarVariationalf2A,IndexList[s],u];
-D1Term=(Partialf1DBPiz BarVariationalf2B+
-2Partialf1DAPiz BarVariationalf2A-
-Partialf1DBz BarVariationalf2BPi-
-2Partialf1DAz BarVariationalf2APi+
+D1Term=(XQX Partialf1DBPiz BarVariationalf2B+
+2XQX Partialf1DAPiz BarVariationalf2A-
+XQX Partialf1DBz BarVariationalf2BPi-
+2XQX Partialf1DAz BarVariationalf2APi+
 BarPartialf1BPi Partialf2DBz+
 2BarPartialf1APi Partialf2DAz-
 BarPartialf1B Partialf2DBPiz-
