@@ -7,10 +7,6 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 
 		LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[1]]));
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
-
-		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(Global`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(Global`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@Dummies2};
 	
 		If[Length@EvaluatedBracket==3||(PossibleZeroQ@EvaluatedBracket[[2]]&&PossibleZeroQ@EvaluatedBracket[[3]]&&PossibleZeroQ@EvaluatedBracket[[4]]),
 
