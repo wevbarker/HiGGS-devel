@@ -3270,6 +3270,9 @@ HiGGSPrint[RotationalSuperMomentum1p[-n,-m]," \[Congruent] ",GradPart," \[TildeT
 ClearBuild[];
 
 
+Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_smearing_functions_global.m"}];
+
+
 (* ::Input::Initialization:: *)
 DefTensor[KX[-a,-b,-c],M4];
 DefTensor[KKX[-a,-b,-c,-d],M4,Antisymmetric[{-b,-c}]];
@@ -3478,10 +3481,13 @@ res=CollectTensors/@res;
 }];
 NotebookDelete[printer];
 If[OptionValue["PrintAnswer"],
+(*
 If[OptionValue["ToShell"],
 HiGGSPrint[{f1x,f2x}," \[TildeTilde] ",res];,
 HiGGSPrint[{f1x,f2x}," = ",res];
 ];
+*)
+xAct`HiGGS`Private`PrintPoissonBracket[{f1x,f2x},res,ToShell->OptionValue["ToShell"]];
 ];
 res];
 ClearBuild[];
@@ -4730,8 +4736,9 @@ $PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
 nontrivial=!(x=={0,0,0}||x=={0,0,0,0}||y==0);
 If[nontrivial,
-HiGGSPrint[y," \[TildeTilde] ",x],Null;,
-HiGGSPrint[y," \[TildeTilde] ",x]];
+(*HiGGSPrint[y," \[TildeTilde] ",x];*)
+xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];,Null;,
+(*HiGGSPrint[y," \[TildeTilde] ",x];*)xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];];
 ];
 Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
 MapThread[PrintBracket,{$PPM,$PPMlabels},2];

@@ -20,8 +20,10 @@
 
 
 (* ::Code::Initialization:: *)
-(*xAct`HiGGS`$Version={"1.0.0-beta",{2022,2,1}};*)
-xAct`HiGGS`$Version={"1.0.0-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
+(**)xAct`HiGGS`$Version={"1.1.2",{2022,9,4}};(**)
+(*
+xAct`HiGGS`$Version={"1.1.2-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
+*)
 
 
 (* ::Input::Initialization:: *)
@@ -102,8 +104,8 @@ Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
-Print["This free version of HiGGS is an open source dependent of the xAct bundle."];
-Print["This free version of HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
+Print["HiGGS is an open source dependent of the xAct bundle."];
+Print["HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
 (*Print[xAct`xCore`Private`bars];*)
 
 

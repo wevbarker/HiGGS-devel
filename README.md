@@ -6,9 +6,11 @@
 <img src="xAct/HiGGS/Documentation/Examples/peta4.rdm.png" width="1000">
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
-## Version 1.0.0
+## Version 1.1.2
 
-- Initial release
+- Minor update to provide more intuitive formatting of Poisson brackets in terms of smearing functions, as seen in output of `PoissonBracket` and `ViewTheory`
+- Patch to fix Issue #1, loading of binaries on Windows
+- Patch to fix errors produced by `PoissonBracket` with the option `"Surficial"->True`. This error follows from sign errors in line two of Equation (E3) in [2205.13534](https://arxiv.org/abs/2205.13534)), and generates nonphysical surface terms
 
 ## License
 

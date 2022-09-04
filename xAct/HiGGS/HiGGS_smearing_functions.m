@@ -1,16 +1,21 @@
 (*The purpose of this file is to provide a function to xAct`HiGGS`Private` which prints the bracket output with the HiGGS-like List head in a mathematically meaningful form using smearing functions. Our understanding of the smearing function formalism is kindly suggested by Manuel Hohmann, through refs 1111.5490, 1111.5498, 1309.4685.*)
 
 Options[PrintPoissonBracket]={ToShell->False};
-PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@Module[{tmp1,tmp2,LHS},
-		Dummies1=Table[Superscript[\[ScriptX],i],{i,0,3}];
-		Dummies2={Dummies1[[1]]}~Join~Table[Superscript[\[ScriptY],i],{i,1,3}];
+PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@Module[{
+	LeftFreeIndices,
+	RightFreeIndices,
+	SmearedUnevaluatedBracket,
+	SmearedEvaluatedBracket,
+	SmearedEvaluatedBracketTerm1,
+	SmearedEvaluatedBracketTerm2,
+	SmearedEvaluatedBracketTerm3},
 
 		LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[1]]));
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
 
 		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(Global`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(Global`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@Dummies2};
+		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(Global`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
+		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(Global`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
 	
 		If[Length@EvaluatedBracket==3||(PossibleZeroQ@EvaluatedBracket[[2]]&&PossibleZeroQ@EvaluatedBracket[[3]]&&PossibleZeroQ@EvaluatedBracket[[4]]),
 
@@ -39,7 +44,7 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 
 		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
-		SmearedEvaluatedBracketTerm3)@@#}~Join~(#[[2;;4]]))&@Dummies1;
+		SmearedEvaluatedBracketTerm3)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1;
 		
 		If[OptionValue@ToShell,
 		Print@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
