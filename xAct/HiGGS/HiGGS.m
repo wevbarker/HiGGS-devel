@@ -20,9 +20,9 @@
 
 
 (* ::Code::Initialization:: *)
-(**)xAct`HiGGS`$Version={"1.1.2",{2022,9,4}};(**)
+(**)xAct`HiGGS`$Version={"1.2.3",{2022,9,4}};(**)
 (*
-xAct`HiGGS`$Version={"1.1.2-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
+xAct`HiGGS`$Version={"1.2.3-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
 *)
 
 
