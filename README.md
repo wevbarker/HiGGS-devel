@@ -35,6 +35,7 @@ HiGGS is an (unofficial) part of the [xAct bundle](http://www.xact.es/). It prov
 #### Requirements 
 HiGGS has been tested in the following environment(s):
 - Linux x86 (64-bit), specifically Manjaro, Arch, CentOS, Scientific Linux and Ubuntu
+- Windows 10, as of HiGGS v 1.2.3
 - Mathematica v 11.3.0.0
 - xAct v 1.2.0
 #### Install 
