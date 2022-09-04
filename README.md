@@ -10,7 +10,7 @@
 
 - **Feature:** abstract indices representing gauge-fixed theory given cleaner formatting with Gothic script, extended indices `a1`, `b1`, `c1` etc. denoted by primes.
 - **Feature:** provide more intuitive formatting of Poisson brackets in terms of smearing functions, as seen in output of `PoissonBracket` and `ViewTheory`.
-- **Patch:** fix shadowing error messages during the `Needs["xAct\`HiGGS\`"];` call.
+- **Patch:** fix shadowing error messages during the `<<xAct\`HiGGS\`` call.
 - **Patch:** fix [Issue #1](https://github.com/wevbarker/HiGGS/issues/1), loading of binaries on Windows.
 - **Patch:** fix errors produced by `PoissonBracket` with the option `"Surficial"->True`. This error follows from sign errors in line two of Equation (E3) in [2205.13534](https://arxiv.org/abs/2205.13534), and generates nonphysical surface terms.
 
