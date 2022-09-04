@@ -111,7 +111,6 @@ xAct
     │   │   ├── appcg.job.sh
     │   │   ├── appcg.plt.py
     │   │   ├── appcg.plt.sh
-    │   │   ├── appcg.scp.sh
     │   │   ├── peta4.job.m
     │   │   ├── peta4.job.nb
     │   │   ├── peta4.job.sh
@@ -119,7 +118,6 @@ xAct
     │   │   ├── peta4.plt.py
     │   │   ├── peta4.plt.sh
     │   │   ├── peta4.rdm.png
-    │   │   ├── peta4.scp.sh
     │   │   ├── peta4.svy.m
     │   │   ├── peta4.svy.nb
     │   │   ├── svy
@@ -133,6 +131,10 @@ xAct
     │   └── HiGGS_sources.pdf
     ├── HiGGS.m
     ├── HiGGS.nb
+    ├── HiGGS_smearing_functions_global.m
+    ├── HiGGS_smearing_functions.m
+    ├── HiGGS_SO3.m
+    ├── HiGGS_SO3.nb
     ├── HiGGS_sources.m
     ├── HiGGS_sources.nb
     ├── HiGGS_variations.m
@@ -153,6 +155,8 @@ The sub-package `HiGGS_variations.m` incorporates elements of [Cyril Pitrou's](h
 The files `HiGGS.pdf` and `HiGGS_sources.pdf` are carbon copies of the source notebooks.
 
 The notebook `tutor.nb` contains some more basic examples, and it relies on the `*.thr.mx` files in the `svy` directory.
+
+The Wolfram Language files which refer to smearing functions are patches in version 1.2.2.
 
 #### What are peta4 and appcg? 
 
