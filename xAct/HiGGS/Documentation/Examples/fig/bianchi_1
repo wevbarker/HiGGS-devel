@@ -1,8 +1,0 @@
-In[]:= quantity2 = (ToCanonical[(1/2)*(#1 + CommuteCovDs[#1, CD, {l, m}])] & )[quantity2]; 
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/bianchi_193-1fig.pdf}
-\end{flushleft}
-\vspace{-5pt}
-|

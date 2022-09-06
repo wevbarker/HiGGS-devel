@@ -2,15 +2,7 @@ In[]:= quantity = {H[-a, b], B[a, -b], A[a, b, -c], V[a], V[a]*V[-a], A[a, -a, -
 Out[]= |
 \vspace{-4pt}
 \begin{flushleft}
-\includegraphics[width=\linewidth]{figures/basic_identities9-1fig.pdf}
-\end{flushleft}
-\vspace{-5pt}
-|
-In[]:= ToCanonical[quantity]
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/basic_identities11-1fig.pdf}
+\includegraphics[width=\linewidth]{figures/basic_identities8-1fig.pdf}
 \end{flushleft}
 \vspace{-5pt}
 |

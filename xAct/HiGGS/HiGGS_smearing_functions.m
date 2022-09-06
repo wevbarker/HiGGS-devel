@@ -1,7 +1,7 @@
 (*The purpose of this file is to provide a function to xAct`HiGGS`Private` which prints the bracket output with the HiGGS-like List head in a mathematically meaningful form using smearing functions. Our understanding of the smearing function formalism is kindly suggested by Manuel Hohmann, through refs 1111.5490, 1111.5498, 1309.4685.*)
 
 Options[PrintPoissonBracket]={ToShell->False};
-PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@HiGGSPrint@Module[{
+PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@Module[{
 	LeftFreeIndices,
 	RightFreeIndices,
 	SmearedUnevaluatedBracket,
@@ -47,13 +47,13 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 		SmearedEvaluatedBracketTerm3)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1;
 		
 		If[OptionValue@ToShell,
-		Print@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
-		Print@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
+		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
+		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
 
-		Print@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
+		HiGGSPrint@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
 		
 		If[OptionValue@ToShell,
-		Print@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
-		Print@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
+		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
+		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
 		];
 	];

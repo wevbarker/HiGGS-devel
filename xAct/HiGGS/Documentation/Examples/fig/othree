@@ -1,8 +1,0 @@
-In[]:= ScreenDollarIndices[ToCanonical[{APiP[-a, -b, -c], BPiP[-a, -b]} /. PiPToPiPO3]]
-Out[]= |
-\vspace{-4pt}
-\begin{flushleft}
-\includegraphics[width=\linewidth]{figures/othree49-1fig.pdf}
-\end{flushleft}
-\vspace{-5pt}
-|
