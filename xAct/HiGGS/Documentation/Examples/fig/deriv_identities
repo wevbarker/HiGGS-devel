@@ -1,0 +1,8 @@
+In[]:= quantity = ScreenDollarIndices[{J[], Lapse[], CD[-a][V[-j]], CD[-a][H[-j, n]], CD[-a][J[]], CD[-a][Lapse[]]}]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/deriv_identities14-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

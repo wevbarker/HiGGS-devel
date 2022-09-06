@@ -1,0 +1,2 @@
+In[]:= PoissonBracket[PiPB2p[-a, -b], TP1p[-c, -d], "ToShell" -> False]; 
+Out[]= 

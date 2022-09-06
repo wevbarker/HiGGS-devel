@@ -1,0 +1,16 @@
+In[]:= quantity = ScreenDollarIndices[ContractMetric[ToCanonical[{PB0p[e, f]*PBPara[-e, -f, a, c]*BPiP[-a, -c], PB1m[-n, f]*PBPerp[-f, a, c]*BPiP[-a, -c], PA2p[-n, -m, e, f]*PAPerp[-e, -f, a, b, c]*APiP[-a, -b, -c], PR0p[e, f, g, h]*RP[-e, -f, -g, -h], PR0m[e, f, g]*RPerp[-e, -f, -g], PR1p[-n, -m, e, f, g, h]*RLambdaP[-e, -f, -g, -h], PT1p[-a, -b, c, d]*TPerp[-c, -d], PT2m[-a, -b, -c, d, e, f]*TP[-d, -e, -f]} /. PADMPiActivate]]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/othree_561-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|
+In[]:= quantity = quantity /. PO3PiActivate /. PO3TActivate /. PO3RActivate /. PiPToPiPO3 /. StrengthPToStrengthPO3 /. StrengthPerpToStrengthPerpO3 /. StrengthLambdaPToStrengthLambdaPO3 /. StrengthLambdaPerpToStrengthLambdaPerpO3; quantity = Simplify[ScreenDollarIndices[ContractMetric[ToCanonical[quantity]]]]; quantity = Simplify[ScreenDollarIndices[ContractMetric[ToCanonical[quantity]]]]; 
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/othree_563-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

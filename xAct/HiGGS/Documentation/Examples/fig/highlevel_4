@@ -1,0 +1,8 @@
+In[]:= ToNesterForm[PPara[-y, v]*H[-v, w]*G3[-w, m]*PPara[-q, b1]*H[-b1, a1]*G3[-a1, l]*(G3[-l, n]*V[-k]*CD[-m][B[k, -n]] + G3[-l, n]*B[j, -n]*A[k, -j, -m]*V[-k]) /. PADMActivate, "ToShell" -> False]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/highlevel_4104-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

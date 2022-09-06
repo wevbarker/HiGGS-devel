@@ -1,0 +1,16 @@
+In[]:= quantity = {H[-a, b], B[a, -b], A[a, b, -c], V[a], V[a]*V[-a], A[a, -a, -c], A[a, b, -c] + A[b, a, -c], H[-a, i]*B[a, -j], H[-a, i]*B[c, -i], G3[-a, -b]*G3[b, -d], G3[-a, a], B[a, -b]*G3[b, -c]*V[-a], CD[-a][G3[-c, b]]}
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/basic_identities9-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|
+In[]:= ToCanonical[quantity]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/basic_identities11-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

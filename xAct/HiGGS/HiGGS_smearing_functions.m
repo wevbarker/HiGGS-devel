@@ -1,7 +1,7 @@
 (*The purpose of this file is to provide a function to xAct`HiGGS`Private` which prints the bracket output with the HiGGS-like List head in a mathematically meaningful form using smearing functions. Our understanding of the smearing function formalism is kindly suggested by Manuel Hohmann, through refs 1111.5490, 1111.5498, 1309.4685.*)
 
 Options[PrintPoissonBracket]={ToShell->False};
-PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@Module[{
+PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern[]]:=Catch@HiGGSPrint@Module[{
 	LeftFreeIndices,
 	RightFreeIndices,
 	SmearedUnevaluatedBracket,

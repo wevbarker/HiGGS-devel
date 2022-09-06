@@ -1,0 +1,16 @@
+In[]:= quantity = {PPerp[-a, b], PPara[-a, b]}
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/pperp_ppara22-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|
+In[]:= ScreenDollarIndices[ToCanonical[quantity /. PADMActivate]]
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/pperp_ppara24-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

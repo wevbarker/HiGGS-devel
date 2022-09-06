@@ -3450,7 +3450,7 @@ BarPartialf1B Partialf2DBPiz-
 ReplaceIndex[Evaluate[Partialf1DBPiz],z->w] ManualCovariantDerivative[-w,Partialf2DBz,IndexList[z,r],u]+
 2ReplaceIndex[Evaluate[Partialf1DAPiz],z->w] ManualCovariantDerivative[-w,Partialf2DAz,IndexList[z,s],u]-
 ReplaceIndex[Evaluate[Partialf1DBz],z->w] ManualCovariantDerivative[-w,Partialf2DBPiz,IndexList[z,-r],u]-
-2ReplaceIndex[Evaluate[Partialf1DAz],z->w] ManualCovariantDerivative[-w,Partialf2DAPiz,IndexList[z,-s],u])CD[-z][HComp[]];
+2ReplaceIndex[Evaluate[Partialf1DAz],z->w] ManualCovariantDerivative[-w,Partialf2DAPiz,IndexList[z,-s],u]);
 D2Term=Partialf1DBz ReplaceIndex[Evaluate[Partialf2DBPiz],z->w]+
 2Partialf1DAz ReplaceIndex[Evaluate[Partialf2DAPiz],z->w]-
 Partialf1DBPiz ReplaceIndex[Evaluate[Partialf2DBz],z->w]-
