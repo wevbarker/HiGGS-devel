@@ -1,0 +1,8 @@
+In[]:= PoissonBracket[PiPB2p[-i, -j], TP1m[-l], "ToShell" -> False, "Surficial" -> True]; 
+Out[]= |
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/poissonbracket_315-1fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

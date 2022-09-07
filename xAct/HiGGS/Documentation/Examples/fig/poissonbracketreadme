@@ -2,7 +2,7 @@ In[]:= PoissonBracket[PiPB2p[-a, -b], TP1p[-c, -d], "ToShell" -> False];
 Out[]= |
 \vspace{-4pt}
 \begin{flushleft}
-\includegraphics[width=\linewidth]{figures/poissonbracket11-1fig.pdf}
+\includegraphics[width=\linewidth]{figures/poissonbracketreadme8-1fig.pdf}
 \end{flushleft}
 \vspace{-5pt}
 |

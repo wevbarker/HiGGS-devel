@@ -1,0 +1,12 @@
+In[]:= PoissonBracket[PiPB2p[-a, -b], TP1m[-c], "ToShell" -> False]; 
+Out[]= |
+\vspace{-10pt}
+|
+ ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option "Surficial->True" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).
+|
+\vspace{-4pt}
+\begin{flushleft}
+\includegraphics[width=\linewidth]{figures/poissonbracket_212-2fig.pdf}
+\end{flushleft}
+\vspace{-5pt}
+|

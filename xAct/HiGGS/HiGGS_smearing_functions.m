@@ -8,7 +8,8 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 	SmearedEvaluatedBracket,
 	SmearedEvaluatedBracketTerm1,
 	SmearedEvaluatedBracketTerm2,
-	SmearedEvaluatedBracketTerm3},
+	SmearedEvaluatedBracketTerm3,
+	SmearedEvaluatedBracketTotal},
 
 		LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[1]]));
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
@@ -42,18 +43,22 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
 		(Global`DDSmearingRight@@({-Global`z,-Global`w}~Join~(List@@RightFreeIndices))))];
 
-		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTerm1+
+		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
-		SmearedEvaluatedBracketTerm3)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1;
-		
-		If[OptionValue@ToShell,
-		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
-		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
+		SmearedEvaluatedBracketTerm3;
 
-		HiGGSPrint@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
+		If[PossibleZeroQ@SmearedEvaluatedBracketTotal,
+		SmearedEvaluatedBracket=0,
+		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTotal)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];
 		
 		If[OptionValue@ToShell,
-		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
-		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
+		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
+		Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
+
+		Global`HiGGSPrint@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
+		
+		If[OptionValue@ToShell,
+		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
+		Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
 		];
 	];
