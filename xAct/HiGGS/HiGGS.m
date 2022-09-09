@@ -272,6 +272,8 @@ UndefTheory::usage="Undefine a theory using a system of equations to constrain t
 StudyTheory::usage="Calculate the links in the constraint chain down do a certain level";
 Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
 
+NesterFormQ::usage="NesterFormQ[expr] gives True if expr is a valid tensor expression in Nester form, and False otherwise.";
+
 
 (* ::Code::Initialization:: *)
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
@@ -355,6 +357,8 @@ Export[NotebookDirectory[]<>"Documentation/HiGGS.pdf",EvaluationNotebook[]];
 
 
 Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_smearing_functions.m"}];
+
+Get[FileNameJoin@{$HiGGSInstallDirectory,"HiGGS_NesterFormQ.m"}];
 
 
 (* ::Code::Initialization:: *)
