@@ -1,62 +1,9 @@
 (* this file provides the HiGGS package *)
 
-(* ::Code::Initialization:: *)
 (**)xAct`HiGGS`$Version={"1.2.3",{2022,9,4}};(**)
 (*
 xAct`HiGGS`$Version={"1.2.3-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
 *)
-
-
-(* ::Input::Initialization:: *)
-(* HiGGS, Hamiltonian analysis of Poincare gauge theory *)
-
-(* Copyright (C) 2022 Will E. V. Barker *)
-
-(* This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License as
- published by the Free Software Foundation; either version 2 of
- the License,or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- General Public License for more details.
-
-You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place-Suite 330, Boston, MA 02111-1307,
-  USA. 
-*)
-
-
-(* ::Code::Initialization:: *)
-(* :Title: HiGGS *)
-
-(* :Author: Will E. V. Barker *)
-
-(* :Summary: Hamiltonian analysis of Poincare gauge theory *)
-
-(* :Brief Discussion:
-   - tbc
-*)
-  
-(* :Context: xAct`HiGGS` *)
-
-(* :Package Version: 1.0.0 *)
-
-(* :Copyright: Will E. V. Barker (2022) *)
-
-(* :History: see HiGGS.History *)
-
-(* :Keywords: *)
-
-(* :Source: HiGGS.nb *)
-
-(* :Mathematica Version: 11.3 and later *)
-
-(* :Limitations: 
-	- many *)
-
 
 xAct`HiGGS`$Timing;
 Off[Global`$Timing::shdw];
@@ -86,7 +33,8 @@ Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["HiGGS is an open source dependent of the xAct bundle."];
-Print["HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];
+Print["HiGGS incorporates example code by Cyril Pitrou."];
+(*Print["HiGGS incorporates Cyril Pitrou's code from the public repository at https://github.com/xAct-contrib/examples."];*)
 (*Print[xAct`xCore`Private`bars];*)
 
 
@@ -300,13 +248,17 @@ Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now rea
 $HiGGSBuilt=True;
 ];
 
+GPToFoliG={DummyReplacementVariable->0};
+
 ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},
-printer=PrintTemporary[" ** ToNewCanonical..."];
-(*Beep[];*)
-temp=Expr//ToCanonical;
-temp=temp//ContractMetric;
-temp=temp//ScreenDollarIndices;
-NotebookDelete@printer;
+	printer=PrintTemporary[" ** ToNewCanonical..."];
+
+	(*Beep[];*)
+	temp=Expr//ToCanonical;
+	temp=temp/.GPToFoliG;
+	temp=temp//ContractMetric;
+	temp=temp//ScreenDollarIndices;
+	NotebookDelete@printer;
 temp];
 
 Options[MakeQuotientRule]={MetricOn->All,ContractMetrics->True,Canonicalise->True,Verify->True,Method->"SolveTensors"};
@@ -330,6 +282,8 @@ QuotientRule];
 
 Get[FileNameJoin@{$HiGGSInstallDirectory,"ToNesterForm.m"}];
 
+Get[FileNameJoin@{$HiGGSInstallDirectory,"ToBasicForm.m"}];
+
 Get[FileNameJoin@{$HiGGSInstallDirectory,"Smearing.m"}];
 
 Get[FileNameJoin@{$HiGGSInstallDirectory,"NesterFormQ.m"}];
@@ -337,6 +291,8 @@ Get[FileNameJoin@{$HiGGSInstallDirectory,"NesterFormQ.m"}];
 Get[FileNameJoin@{$HiGGSInstallDirectory,"CovD.m"}];
 
 Get[FileNameJoin@{$HiGGSInstallDirectory,"Induced.m"}];
+
+Get[FileNameJoin@{$HiGGSInstallDirectory,"PoissonBracket.m"}];
 
 (* ::Code::Initialization:: *)
 End[];
