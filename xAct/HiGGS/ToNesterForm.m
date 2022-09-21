@@ -179,5 +179,3 @@ ToNesterForm[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
 	Expr=Global`ToOrderCanonical[Expr,OptionValue["Order"]];
 	NotebookDelete[PrintVariable];
 Expr];
-
-ClearBuild[];

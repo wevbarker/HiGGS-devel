@@ -8,7 +8,6 @@ Quiet@UndefTensor@PerturbationGP;  (*we find using VisitorsOf that the calling o
 Quiet@UndefMetric@GP;
 *)
 Catch@Quiet@DefMetric[1,GP[-a,-b],CDP,{"~","error"},InducedFrom->{G,V},PrintAs->GPSymb];
-ClearBuild[];
 
 (* a rule which switches the induce metric for FoliG within ToNewCanonical *)
 
@@ -21,5 +20,3 @@ xAct`HiGGS`Private`PrecomputeDerivativeProjections[];
 (* another miscellaneous rule whose counterpart we need to form using induced structure *)
 
 xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand=MakeRule[{Evaluate@(ProjectorGP@(LorentzGaugeCovD[-m]@V[-j])),Evaluate[Symmetrize[ProjectorGP@(LorentzGaugeCovD[-m]@V[-j]),{-m,-j}]-(1/2)V[-i]TP[i,-m,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
-
-ClearBuild[];

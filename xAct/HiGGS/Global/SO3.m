@@ -104,7 +104,7 @@ PiPToPi=Join[APiPToAPi,BPiPToBPi];
 
 ActivateGeneralO3Projections[expr_]:=Module[{exp,kern},exp=Evaluate[expr];exp=exp//ToCanonical;exp=exp/.PActivate;exp=exp//ToCanonical;exp=exp/.PADMActivate;exp=exp//ToCanonical;exp=exp/.PADMPiActivate;exp=exp//ToCanonical;exp=exp/.PO3PiActivate;exp=exp//ToCanonical;exp=exp/.HG3BExpandLazy;exp=exp//ContractMetric;exp=exp//ToCanonical;
 exp=exp//CollectTensors;exp];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -121,7 +121,7 @@ DefTensor[PA2pT[-n,-m,-o,a,b,c],M4,PrintAs->SymbolBuild[PATSymb,Spin2p]];
 DefTensor[PA0mT[-n,-m,-o,a,b,c],M4,PrintAs->SymbolBuild[PATSymb,Spin0m]];
 DefTensor[PA1mT[-n,-m,-o,a,b,c],M4,PrintAs->SymbolBuild[PATSymb,Spin1m]];
 DefTensor[PA2mT[-n,-m,-o,a,b,c],M4,PrintAs->SymbolBuild[PATSymb,Spin2m]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -159,7 +159,7 @@ tmp=(PB0pT[-n,-m,a,c]+PB1pT[-n,-m,a,c]+PB2pT[-n,-m,a,c]+PB1mT[-n,-m,a,c])BPi[-a,
 HiGGSPrint[tmp];
 
 DumpSave[BinaryLocation["CompleteO3ProjectionsToggle"],{NewPO3TActivate}];
-ClearBuild["CompleteO3ProjectionsToggle"];
+xAct`HiGGS`Private`ClearBuild["CompleteO3ProjectionsToggle"];
 ];
 
 
@@ -181,7 +181,7 @@ DefConstantSymbol[cPerpB1p,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptB
 DefConstantSymbol[cPerpB1m,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b1\), \(-\)], \(\[UpTee]\)]\)"];
 DefConstantSymbol[cPerpB2p,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b2\), \(+\)], \(\[UpTee]\)]\)"];
 DefConstantSymbol[cPerpB2m,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b2\), \(-\)], \(\[UpTee]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -210,7 +210,7 @@ Solutions=Join[Solutions,Solve[ToConstantSymbolEquations[tmp==0],cPerpA2m][[1]]]
 TocPerp=Solutions;
 
 DumpSave[BinaryLocation[],{TocPerp}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -250,7 +250,7 @@ HiGGSPrint[tmp];
 HiGGSPrint[Style["A2m",Red,20]];
 tmp= Antisymmetrize[ PA2m[-x,-y,-z,g,h,i]PAPara[-g,-h,-i,-n,-m,-o],{-n,-m}]PA2m[u,v,w,e,f,j]PAPara[-e,-f,-j,a,b,c]G[n,-a]G[m,-b]G[o,-c]-(1/cPerpA2m) Antisymmetrize[Antisymmetrize[PPara[-x,u]PPara[-y,v]PPara[-z,w],{-x,-y}],{u,v}]/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 HiGGSPrint[tmp];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -272,7 +272,7 @@ DefConstantSymbol[AlpPerpPerp2p,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 DefConstantSymbol[AlpPerpPerp2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], SuperscriptBox[\(2\), \(-\)], \(\(\[UpTee]\)\(\[UpTee]\)\)]\)",$Coupling]];
 
 AlpPerpPerp={AlpPerpPerp0p,AlpPerpPerp0m,AlpPerpPerp1p,AlpPerpPerp1m,AlpPerpPerp2p,AlpPerpPerp2m};
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -300,7 +300,7 @@ tmp=AlpPerpPerp2m PA2m[-q,-p,-r,g,h,i]Antisymmetrize[PAPara[-g,-h,-i,a,b,e],{a,b
 Transfer$CouplingsPerpPerpSolutions=Join[Transfer$CouplingsPerpPerpSolutions,Solve[ToConstantSymbolEquations[tmp==0],AlpPerpPerp2m][[1]]];
 
 DumpSave[BinaryLocation[],{Transfer$CouplingsPerpPerpSolutionsDUMMY}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -346,7 +346,7 @@ PR2mActivate=MakeRule[{PR2m[-a,-b,-c,d,e,f],Evaluate[PR2mDefinition]},MetricOn->
 (*These rules then expand those canonical field strength O(3) projection operators*)
 PO3TActivate=Join[PT0mActivate,PT1pActivate,PT1mActivate,PT2mActivate];
 PO3RActivate=Join[PR0pActivate,PR0mActivate,PR1pActivate,PR1mActivate,PR2pActivate,PR2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -363,7 +363,7 @@ DefConstantSymbol[cParaB1p,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptB
 DefConstantSymbol[cParaB1m,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b1\), \(-\)], \(\[DoubleVerticalBar]\)]\)"];
 DefConstantSymbol[cParaB2p,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b2\), \(+\)], \(\[DoubleVerticalBar]\)]\)"];
 DefConstantSymbol[cParaB2m,PrintAs->"\!\(\*SubsuperscriptBox[\(c\), SuperscriptBox[\(b2\), \(-\)], \(\[DoubleVerticalBar]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -384,7 +384,7 @@ DefConstantSymbol[BetPerpPara2p,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 DefConstantSymbol[BetPerpPara2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], SuperscriptBox[\(2\), \(-\)], \(\(\[UpTee]\)\(\[DoubleVerticalBar]\)\)]\)",$Coupling]];
 
 BetPerpPara={BetPerpPara0p,BetPerpPara0m,BetPerpPara1p,BetPerpPara1m,BetPerpPara2p,BetPerpPara2m};
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -413,7 +413,7 @@ tmp=AlpPerpPara2m PR2m[-n,-m,-o,e,f,g]Antisymmetrize[PRPerp[-e,-f,-g,a,b,v,w],{a
 Transfer$CouplingsPerpParaSolutions=Join[Transfer$CouplingsPerpParaSolutions,Solve[ToConstantSymbolEquations[tmp==0],AlpPerpPara2m][[1]]];
 
 DumpSave[BinaryLocation[],{Transfer$CouplingsPerpParaSolutionsDUMMY}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -439,7 +439,7 @@ DefConstantSymbol[BetParaPerp2p,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 DefConstantSymbol[BetParaPerp2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], SuperscriptBox[\(2\), \(-\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)]\)",$Coupling]];
 
 BetParaPerp={BetParaPerp0p,BetParaPerp0m,BetParaPerp1p,BetParaPerp1m,BetParaPerp2p,BetParaPerp2m};
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -460,7 +460,7 @@ DefConstantSymbol[BetParaPara2p,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 DefConstantSymbol[BetParaPara2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[OverscriptBox[\(\[Beta]\), \(^\)], SuperscriptBox[\(2\), \(-\)], \(\(\[DoubleVerticalBar]\)\(\[DoubleVerticalBar]\)\)]\)",$Coupling]];
 
 BetParaPara={BetParaPara0p,BetParaPara0m,BetParaPara1p,BetParaPara1m,BetParaPara2p,BetParaPara2m};
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -599,7 +599,7 @@ cBetParaPara2m cBetPerpPerp2m-cBetParaPerp2m cBetPerpPara2m};
 TocAlp=SolveConstants[cAlpDetRelations,Join[cAlpPerpPara,cAlpPerpPerp,cAlpParaPara,cAlpParaPerp]][[1]];
 
 TocBet=SolveConstants[cBetDetRelations,Join[cBetPerpPara,cBetPerpPerp,cBetParaPara,cBetParaPerp]][[1]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -659,7 +659,7 @@ PPerpR2mActivate=MakeRule[{PPerpR2m[-a,-b,-c,e,f,d],Evaluate[PPerpR2mDefinition]
 (*These rules then expand those canonical field strength O(3) projection operators*)
 PPerpO3TActivate=Join[PPerpT0pActivate,PPerpT1pActivate,PPerpT1mActivate,PPerpT2pActivate];
 PPerpO3RActivate=Join[PPerpR0pActivate,PPerpR0mActivate,PPerpR1pActivate,PPerpR1mActivate,PPerpR2pActivate,PPerpR2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -703,7 +703,7 @@ APhiDefinition=Ji[]APi[-i,-j,z]G3[-z,a]B[-k,-a]+
 8V[g]B[-k,-o]G3[o,-z]H[h,z](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]R[-a,-b,-m,-n]-4V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]-
 4V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])(PPerp[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+PPara[-c,m]PPerp[-d,n]RLambda[-a,-b,-m,-n]);
 APhiActivate=MakeRule[{APhi[-i,-j,-k],Evaluate[APhiDefinition]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -734,7 +734,7 @@ PhiA2mActivate=MakeRule[{PhiA2m[-n,-m,-o],Evaluate[PhiA2mDefinition]},MetricOn->
 PhiActivate=Join[PhiB0pActivate,PhiB1pActivate,PhiB1mActivate,PhiB2pActivate,PhiA0pActivate,PhiA0mActivate,PhiA1pActivate,PhiA1mActivate,PhiA2pActivate,PhiA2mActivate];
 
 DumpSave[BinaryLocation[],{PhiActivate}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -748,7 +748,7 @@ BPhiNonCanonicalActivate=MakeRule[{BPhi[-i,-k],Evaluate[BPhiNonCanonicalDefiniti
 
 APhiNonCanonicalDefinition=8V[g]B[-k,-o]G3[o,-z]H[h,z](Alp1 PR1[-i,-j,-g,-h,a,b,c,d]+Alp2 PR2[-i,-j,-g,-h,a,b,c,d]+Alp3 PR3[-i,-j,-g,-h,a,b,c,d]+Alp4 PR4[-i,-j,-g,-h,a,b,c,d]+Alp5 PR5[-i,-j,-g,-h,a,b,c,d]+Alp6 PR6[-i,-j,-g,-h,a,b,c,d])(PPerp[-c,m]PPara[-d,n]R[-a,-b,-m,-n]+PPara[-c,m]PPerp[-d,n]R[-a,-b,-m,-n]);
 APhiNonCanonicalActivate=MakeRule[{APhi[-i,-j,-k],Evaluate[APhiNonCanonicalDefinition]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -779,7 +779,7 @@ PhiNonCanonicalA2mActivate=MakeRule[{PhiA2m[-n,-m,-o],Evaluate[PhiNonCanonicalA2
 PhiNonCanonicalActivate=Join[PhiNonCanonicalB0pActivate,PhiNonCanonicalB1pActivate,PhiNonCanonicalB1mActivate,PhiNonCanonicalB2pActivate,PhiNonCanonicalA0pActivate,PhiNonCanonicalA0mActivate,PhiNonCanonicalA1pActivate,PhiNonCanonicalA1mActivate,PhiNonCanonicalA2pActivate,PhiNonCanonicalA2mActivate];
 
 DumpSave[BinaryLocation[],{PhiNonCanonicalActivate}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -812,7 +812,7 @@ DefTensor[ChiA2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[ChiASy
 DeclareOrder[ChiA2m[-a,-b,-c],1];
 AutomaticRules[ChiA2m,MakeRule[{ChiA2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[ChiA2m,MakeRule[{epsilonG[a,b,c,d]ChiA2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -853,7 +853,7 @@ DeclareOrder[AChiPerp[-a,-b,-c],1];
 AChiPerpDefinition=Ji[]APi[-i,-j,z]G3[-z,a]B[-k,-a]-4V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]-
 4V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])(PPerp[-c,m]PPara[-d,n]RLambda[-a,-b,-m,-n]+PPara[-c,m]PPerp[-d,n]RLambda[-a,-b,-m,-n]);
 AChiPerpActivate=MakeRule[{AChiPerp[-i,-j,-k],Evaluate[AChiPerpDefinition]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -884,7 +884,7 @@ ChiPerpA2mActivate=MakeRule[{ChiPerpA2m[-n,-m,-o],Evaluate[ChiPerpA2mDefinition]
 ChiPerpActivate=Join[ChiPerpB0pActivate,ChiPerpB1pActivate,ChiPerpB1mActivate,ChiPerpB2pActivate,ChiPerpA0pActivate,ChiPerpA0mActivate,ChiPerpA1pActivate,ChiPerpA1mActivate,ChiPerpA2pActivate,ChiPerpA2mActivate];
 
 DumpSave[BinaryLocation[],{ChiPerpActivate}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -927,7 +927,7 @@ DefTensor[AChiSingExtra[-a,-b,-c],M4,Antisymmetric[{-a,-b}]];
 DeclareOrder[AChiSingExtra[-a,-b,-c],1];
 AChiSingExtraDefinition=8V[g]B[-k,-o]G3[o,-z]H[h,z](cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]+cAlp4 PR4[-i,-j,-g,-h,a,b,c,d]+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d])PPara[-c,m]PPara[-d,n]R[-a,-b,-m,-n];
 AChiSingExtraActivate=MakeRule[{AChiSingExtra[-i,-j,-k],Evaluate[AChiSingExtraDefinition]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -964,7 +964,7 @@ ChiSingA2mActivate=MakeRule[{ChiSingA2m[-n,-m,-o],Evaluate[ChiSingA2mDefinition]
 ChiSingActivate=Join[ChiSingB1pActivate,ChiSingB1mActivate,ChiSingA0pActivate,ChiSingA0mActivate,ChiSingA1pActivate,ChiSingA1mActivate,ChiSingA2pActivate,ChiSingA2mActivate];
 
 DumpSave[BinaryLocation[],{ChiSingActivate}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -999,7 +999,7 @@ AutomaticRules[UA2m,MakeRule[{UA2m[a,-b,-a],0},MetricOn->All,ContractMetrics->Tr
 AutomaticRules[UA2m,MakeRule[{epsilonG[a,b,c,d]UA2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[UB2p,MakeRule[{UB2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[UA2p,MakeRule[{UA2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1053,7 +1053,7 @@ PiPA2pActivate=MakeRule[{PiPA2p[-n,-m],Evaluate[PiPA2pDefinition]},MetricOn->All
 PiPA2mActivate=MakeRule[{PiPA2m[-n,-m,-o],Evaluate[PiPA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 PiPO3Activate=Join[PiPB0pActivate,PiPB1pActivate,PiPB1mActivate,PiPB2pActivate,PiPA0pActivate,PiPA0mActivate,PiPA1pActivate,PiPA1mActivate,PiPA2pActivate,PiPA2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1129,7 +1129,7 @@ AP2pActivateD=MakeRule[{Evaluate@Dagger@AP2p[-n,-m],Evaluate[Dagger@AP2pDefiniti
 AP2mActivateD=MakeRule[{Evaluate@Dagger@AP2m[-n,-m,-o],Evaluate[Dagger@AP2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 GaugePO3Activate=Join[FP0pActivate,FP1pActivate,FP1mActivate,FP2pActivate,AP0pActivate,AP0mActivate,AP1pActivate,AP1mActivate,AP2pActivate,AP2mActivate,FP0pActivateD,FP1pActivateD,FP1mActivateD,FP2pActivateD,AP0pActivateD,AP0mActivateD,AP1pActivateD,AP1mActivateD,AP2pActivateD,AP2mActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1158,7 +1158,7 @@ APerp1pActivateD=MakeRule[{Evaluate@Dagger@APerp1p[-n,-m],Evaluate[Dagger@APerp1
 APerp1mActivateD=MakeRule[{Evaluate@Dagger@APerp1m[-n],Evaluate[Dagger@APerp1mDefinition]},MetricOn->All,ContractMetrics->True];
 
 GaugePerpO3Activate=Join[FPerp0pActivate,FPerp1mActivate,APerp1pActivate,APerp1mActivate,FPerp0pActivateD,FPerp1mActivateD,APerp1pActivateD,APerp1mActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1234,7 +1234,7 @@ SigmaP2pActivateD=MakeRule[{Evaluate@Dagger@SigmaP2p[-n,-m],Evaluate[Dagger@Sigm
 SigmaP2mActivateD=MakeRule[{Evaluate@Dagger@SigmaP2m[-n,-m,-o],Evaluate[Dagger@SigmaP2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 SourcePO3Activate=Join[TauP0pActivate,TauP1pActivate,TauP1mActivate,TauP2pActivate,SigmaP0pActivate,SigmaP0mActivate,SigmaP1pActivate,SigmaP1mActivate,SigmaP2pActivate,SigmaP2mActivate,TauP0pActivateD,TauP1pActivateD,TauP1mActivateD,TauP2pActivateD,SigmaP0pActivateD,SigmaP0mActivateD,SigmaP1pActivateD,SigmaP1mActivateD,SigmaP2pActivateD,SigmaP2mActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1264,7 +1264,7 @@ SigmaPerp1pActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp1p[-n,-m],Evaluate[Dagge
 SigmaPerp1mActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp1m[-n],Evaluate[Dagger@SigmaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
 
 SourcePerpO3Activate=Join[TauPerp0pActivate,TauPerp1mActivate,SigmaPerp1pActivate,SigmaPerp1mActivate,TauPerp0pActivateD,TauPerp1mActivateD,SigmaPerp1pActivateD,SigmaPerp1mActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1297,7 +1297,7 @@ AutomaticRules[TP2m,MakeRule[{Eps[a,b,c]TP2m[-a,-b,-c],0},MetricOn->All,Contract
 AutomaticRules[RP2m,MakeRule[{RP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RP2m,MakeRule[{epsilonG[a,b,c,d]RP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RP2p,MakeRule[{RP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 (*Projections to break the field strengths up into canonical and non-canonical parts*)
 DefTensor[PTPerp[-e,-f,a,b,c],M4];
@@ -1314,7 +1314,7 @@ PRParaDefinition=PPara[-e,a]PPara[-f,b]PPara[-g,c]PPara[-h,d]/.PADMActivate//ToC
 PRParaActivate=MakeRule[{PRPara[-e,-f,-g,-h,a,b,c,d],Evaluate[PRParaDefinition]},MetricOn->All,ContractMetrics->True];
 PADMTActivate=Join[PTPerpActivate,PTParaActivate];
 PADMRActivate=Join[PRPerpActivate,PRParaActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1346,7 +1346,7 @@ AutomaticRules[RLambdaP2m,MakeRule[{epsilonG[a,b,c,d]RLambdaP2m[-a,-b,-c],0},Met
 AutomaticRules[RLambdaP2p,MakeRule[{RLambdaP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[TLambdaP2m,MakeRule[{TLambdaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[TLambdaP2m,MakeRule[{epsilonG[a,b,c,d]TLambdaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1377,7 +1377,7 @@ AutomaticRules[TPerp2p,MakeRule[{TPerp2p[a,-a],0},MetricOn->All,ContractMetrics-
 AutomaticRules[RPerp2m,MakeRule[{RPerp2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RPerp2m,MakeRule[{epsilonG[a,b,c,d]RPerp2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RPerp2p,MakeRule[{RPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1407,7 +1407,7 @@ AutomaticRules[RLambdaPerp2m,MakeRule[{RLambdaPerp2m[a,-b,-a],0},MetricOn->All,C
 AutomaticRules[RLambdaPerp2m,MakeRule[{epsilonG[a,b,c,d]RLambdaPerp2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[RLambdaPerp2p,MakeRule[{RLambdaPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[TLambdaPerp2p,MakeRule[{TLambdaPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1467,7 +1467,7 @@ RPDefinition=RPDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
 TPActivate=MakeRule[{TP[-a,-b,-c],Evaluate[TPDefinition]},MetricOn->All,ContractMetrics->True];
 RPActivate=MakeRule[{RP[-a,-b,-c,-d],Evaluate[RPDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthPToStrengthPO3=Join[TPActivate,RPActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1527,7 +1527,7 @@ RLambdaPDefinition=RLambdaPDefinition//CollectTensors//ScreenDollarIndices//Coll
 TLambdaPActivate=MakeRule[{TLambdaP[-a,-b,-c],Evaluate[TLambdaPDefinition]},MetricOn->All,ContractMetrics->True];
 RLambdaPActivate=MakeRule[{RLambdaP[-a,-b,-c,-d],Evaluate[RLambdaPDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthLambdaPToStrengthLambdaPO3=Join[TLambdaPActivate,RLambdaPActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1596,7 +1596,7 @@ HiGGSPrint[RPerpDefinition];
 TPerpActivate=MakeRule[{TPerp[-a,-b],Evaluate[TPerpDefinition]},MetricOn->All,ContractMetrics->True];
 RPerpActivate=MakeRule[{RPerp[-a,-b,-c],Evaluate[RPerpDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthPerpToStrengthPerpO3=Join[TPerpActivate,RPerpActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1663,7 +1663,7 @@ TLambdaPerpActivate=MakeRule[{TLambdaPerp[-a,-b],Evaluate[TLambdaPerpDefinition]
 RLambdaPerpActivate=MakeRule[{RLambdaPerp[-a,-b,-c],Evaluate[RLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthLambdaPerpToStrengthLambdaPerpO3=Join[TLambdaPerpActivate,RLambdaPerpActivate];
 (*Again used to be Join...*)
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1682,7 +1682,7 @@ APiPDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]PiPA0p[],{
 BPiPActivate=MakeRule[{BPiP[-n,-m],Evaluate[BPiPDefinition]},MetricOn->All,ContractMetrics->True];
 APiPActivate=MakeRule[{APiP[-n,-m,-o],Evaluate[APiPDefinition]},MetricOn->All,ContractMetrics->True];
 PiPToPiPO3=Join[BPiPActivate,APiPActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1703,7 +1703,7 @@ APActivate=MakeRule[{AP[-n,-m,-o],Evaluate[APDefinition]},MetricOn->All,Contract
 FPActivateD=MakeRule[{Evaluate@Dagger@FP[-n,-m],Evaluate[Dagger@FPDefinition]},MetricOn->All,ContractMetrics->True];
 APActivateD=MakeRule[{Evaluate@Dagger@AP[-n,-m,-o],Evaluate[Dagger@APDefinition]},MetricOn->All,ContractMetrics->True];
 GaugePToGaugePO3=Join[FPActivate,APActivate,FPActivateD,APActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1716,7 +1716,7 @@ APerpActivate=MakeRule[{APerp[-n,-m],Evaluate[APerpDefinition]},MetricOn->All,Co
 FPerpActivateD=MakeRule[{Evaluate@Dagger@FPerp[-n],Evaluate[Dagger@FPerpDefinition]},MetricOn->All,ContractMetrics->True];
 APerpActivateD=MakeRule[{Evaluate@Dagger@APerp[-n,-m],Evaluate[Dagger@APerpDefinition]},MetricOn->All,ContractMetrics->True];
 GaugePerpToGaugePO3=Join[FPerpActivate,APerpActivate,FPerpActivateD,APerpActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1739,7 +1739,7 @@ TauPActivateD=MakeRule[{Evaluate@Dagger@TauP[-n,-m],Evaluate[Dagger@TauPDefiniti
 SigmaPActivateD=MakeRule[{Evaluate@Dagger@SigmaP[-o,-n,-m],Evaluate[Dagger@SigmaPDefinition]},MetricOn->All,ContractMetrics->True];
 (*remember change of order in indices due to Blagojevic*)
 SourcePToGaugePO3=Join[TauPActivate,SigmaPActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1753,7 +1753,7 @@ SigmaPerpActivate=MakeRule[{SigmaPerp[-n,-m],Evaluate[SigmaPerpDefinition]},Metr
 TauPerpActivateD=MakeRule[{Evaluate@Dagger@TauPerp[-n],Evaluate[Dagger@TauPerpDefinition]},MetricOn->All,ContractMetrics->True];
 SigmaPerpActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp[-n,-m],Evaluate[Dagger@SigmaPerpDefinition]},MetricOn->All,ContractMetrics->True];
 SourcePerpToGaugePO3=Join[TauPerpActivate,SigmaPerpActivate,TauPerpActivateD,SigmaPerpActivateD];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1807,7 +1807,7 @@ ChiParaA2pActivate=MakeRule[{ChiParaA2p[-i,-j],Evaluate[ChiParaA2pDefinition]},M
 ChiParaA2mActivate=MakeRule[{ChiParaA2m[-i,-j,-k],Evaluate[ChiParaA2mDefinition]},MetricOn->All,ContractMetrics->True];
 
 ChiParaActivate=Join[ChiParaB0mActivate,ChiParaB1pActivate,ChiParaB1mActivate,ChiParaB2mActivate,ChiParaA0pActivate,ChiParaA0mActivate,ChiParaA1pActivate,ChiParaA1mActivate,ChiParaA2pActivate,ChiParaA2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1859,7 +1859,7 @@ DPiPA1mDeactivate=MakeRule[{DPiPA1m[-z,-a],CD[-z][PiPA1m[-a]]-A[i,-a,-z]PiPA1m[-
 DPiPA2pDeactivate=MakeRule[{DPiPA2p[-z,-a,-b],CD[-z][PiPA2p[-a,-b]]-A[i,-a,-z]PiPA2p[-i,-b]-A[i,-b,-z]PiPA2p[-a,-i]},MetricOn->All,ContractMetrics->True];
 DPiPA2mDeactivate=MakeRule[{DPiPA2m[-z,-a,-b,-c],CD[-z][PiPA2m[-a,-b,-c]]-A[i,-a,-z]PiPA2m[-i,-b,-c]-A[i,-b,-z]PiPA2m[-a,-i,-c]-A[i,-c,-z]PiPA2m[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 DPiPDeactivate=Join[DPiPB0pDeactivate,DPiPB1pDeactivate,DPiPB1mDeactivate,DPiPB2pDeactivate,DPiPA0pDeactivate,DPiPA0mDeactivate,DPiPA1pDeactivate,DPiPA1mDeactivate,DPiPA2pDeactivate,DPiPA2mDeactivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1921,7 +1921,7 @@ DpPiPA1mDeactivate=MakeRule[{DpPiPA1m[-w,-a],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]
 DpPiPA2pDeactivate=MakeRule[{DpPiPA2p[-w,-a,-b],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DPiPA2p[-z,-a,-b]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]-PPara[-a,i]PPara[-b,j])G3[-y,z]DPiPA2p[-z,-i,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpPiPA2mDeactivate=MakeRule[{DpPiPA2m[-w,-a,-b,-c],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DPiPA2m[-z,-a,-b,-c]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]G[-c,k]-PPara[-a,i]PPara[-b,j]PPara[-c,k])G3[-y,z]DPiPA2m[-z,-i,-j,-k]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpPiPDeactivate=Join[DpPiPB0pDeactivate,DpPiPB1pDeactivate,DpPiPB1mDeactivate,DpPiPB2pDeactivate,DpPiPA0pDeactivate,DpPiPA0mDeactivate,DpPiPA1pDeactivate,DpPiPA1mDeactivate,DpPiPA2pDeactivate,DpPiPA2mDeactivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1949,7 +1949,7 @@ DeclareOrder[DUA2m[-z,-a,-b,-c],1];
 AutomaticRules[DUA2m,MakeRule[{DUA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DUA2m,MakeRule[{epsilonG[a,b,c,d]DUA2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DUA2p,MakeRule[{DUA2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -1987,7 +1987,7 @@ DeclareOrder[DUA2m[-z,-a,-b,-c],1,"approximation"->B[w,-z]DpUA2m[-w,-a,-b,-c]+V[
 AutomaticRules[DpUA2m,MakeRule[{DpUA2m[-z,a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DpUA2m,MakeRule[{epsilonG[a,b,c,d]DpUA2m[-z,-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[DpUA2p,MakeRule[{DpUA2p[-z,a,-a],0},MetricOn->All,ContractMetrics->True]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2040,7 +2040,7 @@ DRP1mDeactivate=MakeRule[{DRP1m[-z,-a],CD[-z][RP1m[-a]]-A[i,-a,-z]RP1m[-i]},Metr
 DRP2pDeactivate=MakeRule[{DRP2p[-z,-a,-b],CD[-z][RP2p[-a,-b]]-A[i,-a,-z]RP2p[-i,-b]-A[i,-b,-z]RP2p[-a,-i]},MetricOn->All,ContractMetrics->True];
 DRP2mDeactivate=MakeRule[{DRP2m[-z,-a,-b,-c],CD[-z][RP2m[-a,-b,-c]]-A[i,-a,-z]RP2m[-i,-b,-c]-A[i,-b,-z]RP2m[-a,-i,-c]-A[i,-c,-z]RP2m[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 DRPDeactivate=Join[DTP0mDeactivate,DTP1pDeactivate,DTP1mDeactivate,DTP2mDeactivate,DRP0pDeactivate,DRP0mDeactivate,DRP1pDeactivate,DRP1mDeactivate,DRP2pDeactivate,DRP2mDeactivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2080,7 +2080,7 @@ DRLambdaP1mActivate=MakeRule[{CD[-z][RLambdaP1m[-a]],DRLambdaP1m[-z,-a]+A[i,-a,-
 DRLambdaP2pActivate=MakeRule[{CD[-z][RLambdaP2p[-a,-b]],DRLambdaP2p[-z,-a,-b]+A[i,-a,-z]RLambdaP2p[-i,-b]+A[i,-b,-z]RLambdaP2p[-a,-i]},MetricOn->All,ContractMetrics->True];
 DRLambdaP2mActivate=MakeRule[{CD[-z][RLambdaP2m[-a,-b,-c]],DRLambdaP2m[-z,-a,-b,-c]+A[i,-a,-z]RLambdaP2m[-i,-b,-c]+A[i,-b,-z]RLambdaP2m[-a,-i,-c]+A[i,-c,-z]RLambdaP2m[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 DRLambdaPActivate=Join[DTLambdaP0mActivate,DTLambdaP1pActivate,DTLambdaP1mActivate,DTLambdaP2mActivate,DRLambdaP0pActivate,DRLambdaP0mActivate,DRLambdaP1pActivate,DRLambdaP1mActivate,DRLambdaP2pActivate,DRLambdaP2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2119,13 +2119,13 @@ DRLambdaPerp1mActivate=MakeRule[{CD[-z][RLambdaPerp1m[-a]],DRLambdaPerp1m[-z,-a]
 DRLambdaPerp2pActivate=MakeRule[{CD[-z][RLambdaPerp2p[-a,-b]],DRLambdaPerp2p[-z,-a,-b]+A[i,-a,-z]RLambdaPerp2p[-i,-b]+A[i,-b,-z]RLambdaPerp2p[-a,-i]},MetricOn->All,ContractMetrics->True];
 DRLambdaPerp2mActivate=MakeRule[{CD[-z][RLambdaPerp2m[-a,-b,-c]],DRLambdaPerp2m[-z,-a,-b,-c]+A[i,-a,-z]RLambdaPerp2m[-i,-b,-c]+A[i,-b,-z]RLambdaPerp2m[-a,-i,-c]+A[i,-c,-z]RLambdaPerp2m[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
 DRLambdaPerpActivate=Join[DTLambdaPerp0pActivate,DTLambdaPerp1pActivate,DTLambdaPerp1mActivate,DTLambdaPerp2pActivate,DRLambdaPerp0pActivate,DRLambdaPerp0mActivate,DRLambdaPerp1pActivate,DRLambdaPerp1mActivate,DRLambdaPerp2pActivate,DRLambdaPerp2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
 DefTensor[DHComp[-z],M4,PrintAs->"\[CapitalDifferentialD]H"];
 DHCompActivate=MakeRule[{CD[-z][HComp[]],DHComp[-z]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2188,7 +2188,7 @@ DpRP1mDeactivate=MakeRule[{DpRP1m[-w,-a],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DRP1
 DpRP2pDeactivate=MakeRule[{DpRP2p[-w,-a,-b],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DRP2p[-z,-a,-b]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]-PPara[-a,i]PPara[-b,j])G3[-y,z]DRP2p[-z,-i,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRP2mDeactivate=MakeRule[{DpRP2m[-w,-a,-b,-c],Evaluate[PPara[-w,v]H[-v,y]G3[-y,z]DRP2m[-z,-a,-b,-c]-PPara[-w,v]H[-v,y](G[-a,i]G[-b,j]G[-c,k]-PPara[-a,i]PPara[-b,j]PPara[-c,k])G3[-y,z]DRP2m[-z,-i,-j,-k]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRPDeactivate=Join[DpTP0mDeactivate,DpTP1pDeactivate,DpTP1mDeactivate,DpTP2mDeactivate,DpRP0pDeactivate,DpRP0mDeactivate,DpRP1pDeactivate,DpRP1mDeactivate,DpRP2pDeactivate,DpRP2mDeactivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2238,7 +2238,7 @@ DpRLambdaP1mActivate=MakeRule[{G3[-y,z]DRLambdaP1m[-z,-a],Evaluate[G3[-y,z]B[x,-
 DpRLambdaP2pActivate=MakeRule[{G3[-y,z]DRLambdaP2p[-z,-a,-b],Evaluate[G3[-y,z]B[x,-z]DpRLambdaP2p[-x,-a,-b]+(G[-a,i]G[-b,j]-PPara[-a,i]PPara[-b,j])G3[-y,z]DRLambdaP2p[-z,-i,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRLambdaP2mActivate=MakeRule[{G3[-y,z]DRLambdaP2m[-z,-a,-b,-c],Evaluate[G3[-y,z]B[x,-z]DpRLambdaP2m[-x,-a,-b,-c]+(G[-a,i]G[-b,j]G[-c,k]-PPara[-a,i]PPara[-b,j]PPara[-c,k])G3[-y,z]DRLambdaP2m[-z,-i,-j,-k]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRLambdaPActivate=Join[DpTLambdaP0mActivate,DpTLambdaP1pActivate,DpTLambdaP1mActivate,DpTLambdaP2mActivate,DpRLambdaP0pActivate,DpRLambdaP0mActivate,DpRLambdaP1pActivate,DpRLambdaP1mActivate,DpRLambdaP2pActivate,DpRLambdaP2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2287,7 +2287,7 @@ DpRLambdaPerp1mActivate=MakeRule[{G3[-y,z]DRLambdaPerp1m[-z,-a],Evaluate[G3[-y,z
 DpRLambdaPerp2pActivate=MakeRule[{G3[-y,z]DRLambdaPerp2p[-z,-a,-b],Evaluate[G3[-y,z]B[x,-z]DpRLambdaPerp2p[-x,-a,-b]+(G[-a,i]G[-b,j]-PPara[-a,i]PPara[-b,j])G3[-y,z]DRLambdaPerp2p[-z,-i,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRLambdaPerp2mActivate=MakeRule[{G3[-y,z]DRLambdaPerp2m[-z,-a,-b,-c],Evaluate[G3[-y,z]B[x,-z]DpRLambdaPerp2m[-x,-a,-b,-c]+(G[-a,i]G[-b,j]G[-c,k]-PPara[-a,i]PPara[-b,j]PPara[-c,k])G3[-y,z]DRLambdaPerp2m[-z,-i,-j,-k]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 DpRLambdaPerpActivate=Join[DpTLambdaPerp0pActivate,DpTLambdaPerp1pActivate,DpTLambdaPerp1mActivate,DpTLambdaPerp2pActivate,DpRLambdaPerp0pActivate,DpRLambdaPerp0mActivate,DpRLambdaPerp1pActivate,DpRLambdaPerp1mActivate,DpRLambdaPerp2pActivate,DpRLambdaPerp2mActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2297,7 +2297,7 @@ DpHCompActivate=MakeRule[{G3[-y,z]DHComp[-z],G3[-y,z]B[x,-z]DpHComp[-x]},MetricO
 
 DGrandActivate=Join[DPiPActivate,DRPActivate,DRLambdaPActivate,DRLambdaPerpActivate,DHCompActivate];
 DpGrandActivate=Join[DpPiPActivate,DpRPActivate,DpRLambdaPActivate,DpRLambdaPerpActivate,DpJActivate,DpVActivate,DpHCompActivate];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2312,13 +2312,13 @@ DefTensor[RotationalSuperMomentum1m[-a],M4,PrintAs->SymbolBuild[RotationalSuperM
 DeclareOrder[RotationalSuperMomentum1m[-a],1];
 DefTensor[RotationalSuperMomentum1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->SymbolBuild[RotationalSuperMomentumSymb,Spin1p],OrthogonalTo->{V[a],V[b]}];
 DeclareOrder[RotationalSuperMomentum1p[-a,-b],1];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
-Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","Smearing.m"}];
+xAct`HiGGS`Private`BuildGlobally@"Smearing.m";
 
 
-Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","Induced.m"}];
+xAct`HiGGS`Private`BuildGlobally@"Induced.m";
 
 
 (* ::Input::Initialization:: *)
@@ -2496,7 +2496,7 @@ AppendTo[$ToShellFreedoms,Evaluate[ToExpression["ShellPerp"<>ToString[BSectorNam
 
 ];
 
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2530,7 +2530,7 @@ TPShellActivate=MakeRule[{TP[-a,-b,-c],Evaluate[TPShellDefinition]},MetricOn->Al
 RPShellActivate=MakeRule[{RP[-a,-b,-c,-d],Evaluate[RPShellDefinition]},MetricOn->All,ContractMetrics->True];
 $StrengthPShellToStrengthPO3=Join[TPShellActivate,RPShellActivate];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2540,7 +2540,7 @@ DefTensor[SingBComplement[-i,-k],M4];
 DefTensor[PerpAComplement[-i,-j,-k],M4,Antisymmetric[{-i,-j}]];
 DefTensor[OrigAComplement[-i,-j,-k],M4,Antisymmetric[{-i,-j}]];
 DefTensor[SingAComplement[-i,-j,-k],M4,Antisymmetric[{-i,-j}]];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2643,7 +2643,7 @@ OnShellBLambdaDefinition=OnShellBLambdaDefinition/.RawComplementActivate//ToCano
 RawOnShellBLambdaDefinition=OnShellBLambdaDefinition/.NewPO3TActivate//ToCanonical//ContractMetric;
 
 DumpSave[BinaryLocation[],{RawComplementActivate,RawOnShellALambdaDefinition,RawOnShellBLambdaDefinition,OrigBComplementDefinition,PerpBComplementDefinition,SingBComplementDefinition,OrigAComplementDefinition,PerpAComplementDefinition,SingAComplementDefinition}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -2679,7 +2679,7 @@ OnShellBLambdaActivate=MakeRule[{BPiP[-n,-m],Evaluate[OnShellBLambdaDefinition]}
 OnShellALambdaActivate=MakeRule[{APiP[-n,-m,-o],Evaluate[OnShellALambdaDefinition]},MetricOn->All,ContractMetrics->True];
 $PiPShellToPiPPO3=Join[OnShellBLambdaActivate,OnShellALambdaActivate];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2690,7 +2690,7 @@ ManualA2m=MakeRule[{PiPA2m[-a,-b,-c],-16Alp6 J[]RP2m[-a,-b,-c]},MetricOn\[Rule]A
 ManualA2m=MakeRule[{PiPA2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True];(*It is essential that we update this for Lambdas*)
 (**)(*this version for case 26*)
 (*comment out for simple Spin1^+*)
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2722,7 +2722,7 @@ res=res//ToNewCanonical;
 *)res=ToOrderCanonical[res,OptionValue["Order"]];
 NotebookDelete[printer];
 res];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2735,7 +2735,7 @@ tmp=CD[-z][tmp]//ToNewCanonical;
 CDBPiPToCDBPiPO3=MakeRule[{CD[-z][BPiP[-a,-b]],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];
 $CDPiPToCDPiPO3=Join[CDAPiPToCDAPiPO3,CDBPiPToCDBPiPO3];
 DumpSave[BinaryLocation[],{$CDPiPToCDPiPO3}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -2759,7 +2759,7 @@ TheoryCDBPiPToCDBPiPO3=MakeRule[{CD[-z][BPiP[-a,-b]],Evaluate[tmp]},MetricOn->Al
 $TheoryCDPiPToCDPiPO3=Join[TheoryCDAPiPToCDAPiPO3,TheoryCDBPiPToCDBPiPO3];
 $TheoryPiPToPiPO3=Join[TheoryAPiPToAPiPO3,TheoryBPiPToBPiPO3];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -2891,7 +2891,7 @@ ToNesterFormChiSingA2m=MakeRule[{ChiSingA2m[-i,-j,-k],Evaluate[NesterFormChiSing
 ChiSingToNesterFormChiSing=Join[ToNesterFormChiSingB1p,ToNesterFormChiSingB1m,ToNesterFormChiSingA0p,ToNesterFormChiSingA0m,ToNesterFormChiSingA1p,ToNesterFormChiSingA1m,ToNesterFormChiSingA2p,ToNesterFormChiSingA2m];
 
 DumpSave[BinaryLocation[],{PhiToNesterFormPhi,ChiPerpToNesterFormChiPerp,ChiParaToNesterFormChiPara,ChiSingToNesterFormChiSing}];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -2942,7 +2942,7 @@ ChiSings=({#,ImposeTheory[#,$ToTheory]})&/@ChiSings;
 HiGGSPrint["** DefTheory: Found the following secondary singular if-constraints:"];
 (HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiSings;
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3010,7 +3010,7 @@ GradPart=GradPart//CollectTensors;
 HiGGSPrint["** DefTheory: The super-Hamiltonian is:"];
 HiGGSPrint[SuperHamiltonian0p[]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3038,7 +3038,7 @@ GradPart=GradPart//CollectTensors;
 HiGGSPrint["** DefTheory: The linear super-momentum is:"];
 HiGGSPrint[LinearSuperMomentum1m[-l]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3083,10 +3083,10 @@ GradPart=GradPart//CollectTensors;
 HiGGSPrint["** DefTheory: The 1+ part of the angular super-momentum is:"];
 HiGGSPrint[RotationalSuperMomentum1p[-n,-m]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 ];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
-Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","PoissonBracket.m"}];
+xAct`HiGGS`Private`BuildGlobally@"PoissonBracket.m";
 
 
 (* ::Input::Initialization:: *)
@@ -3095,7 +3095,7 @@ DefTensor[RD[a,b,-d,-e,-x,-y,-z],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]
 DefTensor[RDS1[a,b,-d,-e,-x,-y,-z,v],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[RDS2[a,b,-d,-e,-x,-y,-z,v],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[RDS3[a,b,-d,-e,-x,-y,-z,v,w],M4,{Antisymmetric[{a,b}],Antisymmetric[{-d,-e}]},PrintAs->"{\[Psi],R\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3103,7 +3103,7 @@ DefTensor[TD[a,-b,-c,-x,-y,-z],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(
 DefTensor[TDS1[a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[TDS2[a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[TDS3[a,-b,-c,-x,-y,-z,v,w],M4,Antisymmetric[{-b,-c}],PrintAs->"{\[Psi],T\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3112,7 +3112,7 @@ DefTensor[PhiDB0p[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0
 DefTensor[PhiDS1B0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B0p[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3120,7 +3120,7 @@ DefTensor[PhiDB1p[-a,-b,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!
 DefTensor[PhiDS1B1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B1p[-a,-b,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3128,7 +3128,7 @@ DefTensor[PhiDB1m[-a,-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi
 DefTensor[PhiDS1B1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B1m[-a,-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3136,7 +3136,7 @@ DefTensor[PhiDB2p[-a,-b,-x,-y,-z],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*
 DefTensor[PhiDS1B2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2B2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3B2p[-a,-b,-x,-y,-z,v,w],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]b2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3144,7 +3144,7 @@ DefTensor[PhiDA0p[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0
 DefTensor[PhiDS1A0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A0p[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A0p[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3152,7 +3152,7 @@ DefTensor[PhiDA0m[-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0
 DefTensor[PhiDS1A0m[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A0m[-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A0m[-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A0\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3160,7 +3160,7 @@ DefTensor[PhiDA1p[-a,-b,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!
 DefTensor[PhiDS1A1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A1p[-a,-b,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A1p[-a,-b,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3168,7 +3168,7 @@ DefTensor[PhiDA1m[-a,-x,-y,-z],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi
 DefTensor[PhiDS1A1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A1m[-a,-x,-y,-z,v],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A1m[-a,-x,-y,-z,v,w],M4,PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A1\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3176,7 +3176,7 @@ DefTensor[PhiDA2p[-a,-b,-x,-y,-z],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*
 DefTensor[PhiDS1A2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A2p[-a,-b,-x,-y,-z,v],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A2p[-a,-b,-x,-y,-z,v,w],M4,Symmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(+\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3184,7 +3184,7 @@ DefTensor[PhiDA2m[-a,-b,-c,-x,-y,-z],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi]
 DefTensor[PhiDS1A2m[-a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[PhiDS2A2m[-a,-b,-c,-x,-y,-z,v],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[PhiDS3A2m[-a,-b,-c,-x,-y,-z,v,w],M4,Antisymmetric[{-a,-b}],PrintAs->"{\[Psi],\!\(\*SuperscriptBox[\(\[Phi]A2\), \(-\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3193,7 +3193,7 @@ AutomaticRules[PhiDA2m,MakeRule[{PhiDA2m[a,-b,-a,-x,-y,-z],0},MetricOn->All,Cont
 AutomaticRules[PhiDS1A2m,MakeRule[{PhiDS1A2m[a,-b,-a,-x,-y,-z,v],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[PhiDS2A2m,MakeRule[{PhiDS2A2m[a,-b,-a,-x,-y,-z,v],0},MetricOn->All,ContractMetrics->True]]; 
 AutomaticRules[PhiDS3A2m,MakeRule[{PhiDS3A2m[a,-b,-a,-x,-y,-z,v,w],0},MetricOn->All,ContractMetrics->True]]; 
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3202,7 +3202,7 @@ DefTensor[QD[-a,-y,-z],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\
 DefTensor[QDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[QDS2[-a,-y,-z,v],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[QDS3[-a,-y,-z,v,w],M4,PrintAs->"{\[Psi],-\!\(\*SuperscriptBox[\(n\), \(v\)]\)\!\(\*SubscriptBox[\(D\), \(\[Alpha]\)]\)\!\(\*SuperscriptBox[SubscriptBox[\(\[Pi]\), \(v\)], \(\[Alpha]\)]\)\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3211,7 +3211,7 @@ DefTensor[JD[-a,-y,-z],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[Delta
 DefTensor[JDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[JDS2[-a,-y,-z,v],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[JDS3[-a,-y,-z,v,w],M4,PrintAs->"{\[Psi],J\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3220,7 +3220,7 @@ DefTensor[LapseD[-a,-y,-z],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[D
 DefTensor[LapseDS1[-a,-y,-z,v],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta]\[Delta]\)]\)"];
 DefTensor[LapseDS2[-a,-y,-z,v],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[Delta] \[PartialD]\[Delta]\)]\)"];
 DefTensor[LapseDS3[-a,-y,-z,v,w],M4,PrintAs->"{\[Psi],N\!\(\*SubscriptBox[\(}\), \(\[PartialD]\[Delta] \[PartialD]\[Delta]\)]\)"];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3242,7 +3242,7 @@ For[ii=1,ii<PsiFreeIndexListLength+1,ii++,Temp=NewVarAction[Temp,PlaceholdersToD
 Temp=Temp//ToNewCanonical;
 HiGGSPrint[Temp];
 Temp];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3509,7 +3509,7 @@ $SurfaceHamiltonian=$SurfaceHamiltonian/.PActivate//ToNewCanonical;
 $SurfaceHamiltonian=$SurfaceHamiltonian/.PADMActivate//ToNewCanonical;
 
 DumpSave[BinaryLocation["VelocityToggle"],{$ConstraintHamiltonianBilinearB0p,$ConstraintHamiltonianBilinearB1p,$ConstraintHamiltonianBilinearB1m,$ConstraintHamiltonianBilinearB2p,$ConstraintHamiltonianBilinearA0p,$ConstraintHamiltonianBilinearA0m,$ConstraintHamiltonianBilinearA1p,$ConstraintHamiltonianBilinearA1m,$ConstraintHamiltonianBilinearA2p,$ConstraintHamiltonianBilinearA2m,$LagrangianHamiltonianBilinearT,$LagrangianHamiltonianBilinearR,$LagrangianHamiltonianBilinearMultiplierT,$LagrangianHamiltonianBilinearMultiplierR,$ConstraintLagrangianMeasure1,$ConstraintLagrangianMeasure2,$ConstraintLagrangianMeasure3,$ConstraintLagrangianMeasure4,$SurfaceHamiltonian}];
-ClearBuild[];}
+xAct`HiGGS`Private`ClearBuild[];}
 ];
 
 
@@ -3561,7 +3561,7 @@ NotebookDelete[printer];
 Print["made it final"];
 (**)
 $InertVelocity];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3583,7 +3583,7 @@ PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 result=ToExpression@("RiemannBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
 ForceTiming[];
 result];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3645,7 +3645,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,P
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@RiemannBracketParallel;
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3663,7 +3663,7 @@ PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 result=ToExpression@("TorsionBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
 ForceTiming[];
 result];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3728,7 +3728,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,P
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@TorsionBracketParallel;
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3746,7 +3746,7 @@ PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 result=ToExpression@("SurfaceBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
 ForceTiming[];
 result];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3831,7 +3831,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,P
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@SurfaceBracketParallel;
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3849,7 +3849,7 @@ PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 result=ToExpression@("MeasureBracket["<>PsiInert<>","<>EH0Inert<>","<>PsiFreeIndexListNormalInert<>"]");
 ForceTiming[];
 result];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3910,7 +3910,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,P
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@MeasureBracketParallel;
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3930,7 +3930,7 @@ PsiFreeIndexListNormalInert=ToString@PsiFreeIndexListNormal;
 result=ToExpression@("ConstraintBracket["<>PsiInert<>","<>EH0Inert<>","<>FreeConstraintString<>","<>PhiFreeIndexListNormalInert<>","<>iiInert<>","<>PsiFreeIndexListNormalInert<>"]");
 ForceTiming[];
 result];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -3994,7 +3994,7 @@ VelocitySegments=ImposeCommutatorReplacementRules[PlaceholderBracketActivate,#,P
 NotebookDelete[printer];
 VelocitySegments];
 DistributeDefinitions@ConstraintBracketParallel;
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -4080,7 +4080,7 @@ printer=printer~Append~PrintTemporary[" ** PoissonBracket: Final form of linear 
 NotebookDelete[printer];
 If[OptionValue["PrintAnswer"],HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)",Psi," \[TildeTilde] ",return];];
 return];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -4133,7 +4133,7 @@ SetupConstraintSegment[ii];
 (**)
 NotebookDelete[printer];
 Jobs];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -4167,7 +4167,7 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -4190,7 +4190,7 @@ return=return//ToNewCanonical;
 NotebookDelete[printer];
 HiGGSPrint["\!\(\*FractionBox[\(\[PartialD]\), \(\[PartialD]\[ScriptT]\)]\)\[Psi] \[TildeTilde] ",return];
 return];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -4227,231 +4227,7 @@ Print[Velocities];
 
 NotebookDelete[printer];
 Velocities];
-ClearBuild[];
+xAct`HiGGS`Private`ClearBuild[];
 
 
-(* ::Input::Initialization:: *)
-Options[DefTheoryParallel]={"Export"->False,"Import"->False,"Velocities"->True,"Order"->1};
-
-
-(* ::Input::Initialization:: *)
-DefTheoryParallel[InputSystem___:Null,OptionsPattern[]]:=Module[{},
-(*Build the HiGGS environment*)
-(*$Timing=True;*)
-BuildHiGGS[];
-(*import theory names*)
-Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
-(*Define the theory*)
-DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Import"],"Velocities"->OptionValue@"Velocities","Order"->OptionValue@"Order"];
-ForceTiming[];
-];
-DistributeDefinitions@DefTheoryParallel;
-
-
-(* ::Input::Initialization:: *)
-TheoryQ[x_]:=Module[{res},
-res=ListQ[x];
-If[res,
-res=Flatten@{{Alp0},Alp,Bet,cAlp,cBet}~SubsetQ~Flatten@(Variables/@Flatten@((List@@(#))&/@x));
-];
-res];
-DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
-DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-Options[DefTheory]={"Export"->False,"Import"->False,"Velocities"->False,"Order"->1,"ProtectSurface"->False};
-UndefTheory[]:=Clear@@{"$TheoryName","$Theory","$ToTheory","$ToShellFreedoms","$StrengthPShellToStrengthPO3","$PiPShellToPiPPO3","$TheoryCDPiPToCDPiPO3","$TheoryPiPToPiPO3","$IfConstraintToTheoryNesterForm","$IfConstraints","$InertVelocity","$ToOrderRules","$PPM","$Velocities"};
-
-
-(* ::Input::Initialization:: *)
-(*removed timing wrapper since it is better to show the internal steps -- these get washed out in the plot*)
-(*DefTheory[InputSystem___:Null,OptionsPattern[]]:="DefTheory"~TimeWrapper~Catch@Module[{res},*)
-DefTheory[InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{res},
-(*Firstly we remove all definitions which might be associated with a theory already*)
-UndefTheory[];
-If[StringQ@OptionValue@"Import",
-HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{"svy",OptionValue@"Import"<>".thr.mx"}];
-$TheoryName=OptionValue@"Import";
-Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy",OptionValue@"Import"<>".thr.mx"}<>";"],
-Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"svy",ToString@OptionValue@"Import"<>".thr.mx"}];
-Quit[];
-];,
-(*check if a real theory was provided*)
-If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
-(*define the theory constant in Global`*)
-$Theory=InputSystem;
-$Theory=$Theory~Join~{dummy->0};
-(*a message*)
-xAct`xTensor`Private`MakeDefInfo[DefTheory,$Theory,{"$ToTheory for the theory",""}];
-(*these are rules we can always use to impose the theory*)
-If[$Theory=={dummy->0},
-$ToTheory={dummy->0};,
-$ToTheory=Quiet[Solve[InputSystem,Join[cAlp,cBet,{Alp0},Alp,Bet]][[1]]];
-];
-(*append a dummy replacement rule so that an empty *)
-(*these functions do all the hard work*)
-ComputeShellFreedoms[$ToTheory,$Theory];
-Print@$ToShellFreedoms;
-DefFieldStrengthShell[$ToShellFreedoms,$Theory];
-DefMomentaShell[$ToShellFreedoms,$ToTheory,$Theory];
-DefO3MomentaShell[$Theory];
-DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-DefSuperHamiltonian[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
-DefLinearSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
-DefAngularSuperMomentum[$ToShellFreedoms,$IfConstraintToNesterForm,$ToTheory,$Theory,"Order"->OptionValue@"Order","ProtectSurface"->OptionValue@"ProtectSurface"];
-If[OptionValue@"Velocities",
-DefInertVelocity[$ToShellFreedoms,$ToTheory,$Theory];
-];
-];
-If[StringQ@OptionValue@"Export",
-HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{"svy",OptionValue@"Export"<>".thr.mx"}];
-$TheoryName=OptionValue@"Export";
-Print@$IfConstraints;
-(FileNameJoin@{$WorkingDirectory,"svy",ToString@OptionValue@"Export"<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules};
-];
-];
-(*so that a replacement rule exists, even if no theory is defined*)
-dummySymb="\!\(\*SubscriptBox[\(\[ScriptCapitalL]\), \(matter\)]\)";
-DefConstantSymbol[dummy,PrintAs->SymbolBuild[dummySymb]];
-$ToTheory={dummy->0};
-ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-Options[ViewTheory]={"Literature"->True,"PPM"->True,"Velocities"->True};
-ViewTheory[theory_String,OptionsPattern[]]:=Module[{IndIfConstraints,ii,jj},
-DefTheory["Import"->theory];
-If[OptionValue["Literature"],
-DefIfConstraintToTheoryNesterForm[$ToShellFreedoms,$ToTheory,$Theory];
-];
-(*
-Print@MatrixForm@$PPM;
-*)
-If[OptionValue["PPM"],
-IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-$PPMlabels=Table[{$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}]~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
-$PPM=$PPM~PadLeft~{Length@$IfConstraints,Length@$IfConstraints};
-PrintBracket[x_,y_]:=Module[{nontrivial},
-nontrivial=!(x=={0,0,0}||x=={0,0,0,0}||y==0);
-If[nontrivial,
-(*HiGGSPrint[y," \[TildeTilde] ",x];*)
-xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];,Null;,
-(*HiGGSPrint[y," \[TildeTilde] ",x];*)xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];];
-];
-Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
-MapThread[PrintBracket,{$PPM,$PPMlabels},2];
-(*Print/@$Velocities;*)
-];
-If[OptionValue["Velocities"],
-IndVelocities=(#~ChangeFreeIndices~({-i,-j,-k}~Take~Length@FindFreeIndices@#))&/@$Velocities;
-PrintVelocity[x_,y_]:=Module[{nontrivial},
-nontrivial=!(x==0);
-If[nontrivial,
-HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x],Null;,
-HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x]];
-];
-Print@" ** ViewTheory: encountered the following nonvanishing velocities:";
-MapThread[PrintVelocity,{IndVelocities,$IfConstraints}];
-(*Print/@$Velocities;*)
-];
-];
-
-
-(* ::Input::Initialization:: *)
-Options[StudyTheory]={"Export"->False,"Import"->False,"DefTheory"->True,"Brackets"->True,"Velocities"->True};
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{LaunchSome,DefinedTheories,IndIfConstraints2,Jobs,PreparePPM,PPMs,SavePPM,PrepareVelocities,Velocities,SaveVelocity},
-(*We now want to change this module into something which studies batches of theories*)
-
-(*As long as the 2^- sector remains problematic, the optimal quotient will be ~1 theory per core*)
-(*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
-$TryKernels=True;
-If[ValueQ@$Cores,
-While[$TryKernels,
-HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
-CloseKernels[];
-(*launch should be 32*)
-TimeConstrained[Check[LaunchKernels[$Cores],$TryKernels=False;];
-$TryKernels=False;,
-10,
-CloseKernels[];
-HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
-];
-];,
-While[$TryKernels,
-HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
-CloseKernels[];
-(*launch should be 32*)
-TimeConstrained[Check[LaunchKernels[],$TryKernels=False;];
-$TryKernels=False;,
-10,
-CloseKernels[];
-HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
-];
-];];
-
-
-If[OptionValue@"DefTheory",
-If[!OptionValue@"Import",
-If[OptionValue@"Velocities",
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;,
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;
-];
-HiGGSPrint[Jobs];
-DefinedTheories=WaitAll[Jobs];
-];
-(*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
-Print@InputBatch;
-$TheoryNames=(#[[1]])&/@InputBatch;
-(FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"})~DumpSave~{$TheoryNames};
-];
-
-(**)
-
-If[OptionValue@"Brackets",
-PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-IndIfConstraints=(#~ChangeFreeIndices~({-l,-m,-n}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-(*Evaluate lots of Poisson brackets*)
-PPMArguments=Table[{theory,$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@$IfConstraints},{jj,ii,Length@$IfConstraints}];
-PPMArguments];
-Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
-Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]],"Surficial"->True])&,Jobs,{3}];
-Print@Jobs;
-PPMs=WaitAll[Jobs];
-PPMs=Riffle[$TheoryNames,PPMs]~Partition~2;
-SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-$PPM=PPM;
-HiGGSPrint["$PPM value is ",$PPM];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
-(FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM};
-];
-HiGGSPrint[PPMs];
-SavePPM[#1,#2]&@@@PPMs;
-];
-
-(**)
-
-If[OptionValue@"Velocities",
-PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"->theory];
-IndIfConstraints=(#~ChangeFreeIndices~({-q1,-p1,-v1}~Take~Length@FindFreeIndices@#))&/@$IfConstraints;
-(*IndIfConstraints=IndIfConstraints~Take~-1;*)
-(*IndIfConstraints={IndIfConstraints[[6]]};*)
-(*Evaluate lots of Velocities*)
-{theory,IndIfConstraints}];
-Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
-Velocities=VelocityParallel@Jobs;
-Velocities=Riffle[$TheoryNames,Velocities]~Partition~2;
-SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-$Velocities=Velocity;
-HiGGSPrint["$Velocities value is ",$Velocities];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
-(FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{$TheoryName,$Theory,$ToTheory,$ToShellFreedoms,$StrengthPShellToStrengthPO3,$PiPShellToPiPPO3,$TheoryCDPiPToCDPiPO3,$TheoryPiPToPiPO3,$IfConstraintToTheoryNesterForm,$IfConstraints,$InertVelocity,$ToOrderRules,$PPM,$Velocities};
-];
-HiGGSPrint[Velocities];
-SaveVelocity[#1,#2]&@@@Velocities;
-];
-];
-ClearBuild[];
+xAct`HiGGS`Private`BuildGlobally@"DefTheory.m";

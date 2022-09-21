@@ -54,5 +54,3 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	Expr=Expr//NoScalar;
 	NotebookDelete[PrintVariable];
 Expr];
-
-ClearBuild[];

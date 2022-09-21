@@ -8,17 +8,14 @@ ClearBuild[];
 
 (*this step is necessary since the covariant derivative is not defined by default, forcing xAct to think about an example conversion cauuses the definition to be made*)
 Quiet@ChangeCovD[CD[-a]@B[a,-d],CD,GaugeCovD];
-ClearBuild[];
 
 (* define the Christoffel to produce the rotational gauge field by default *)
 ChristoffelCDGaugeCovD~AutomaticRules~MakeRule[{ChristoffelCDGaugeCovD[a,-b,-c],A[-c,a,-b]},MetricOn->All,ContractMetrics->True];
-ClearBuild[];
 
 (* Lorentz index from 0 to 4, but assumed to be formed from the Greek index 1-3 *)
 
 LorentzGaugeCovDSymb=SO3~StringJoin~"\[ScriptCapitalD]";
 Catch@DefCovD[LorentzGaugeCovD[-a],{"~",LorentzGaugeCovDSymb},FromMetric->G];
-ClearBuild[];
 
 (* laws for transforming between holonomic and anholonomic gauge covariant derivatives *)
 
@@ -34,5 +31,3 @@ DefTensor[xAct`HiGGS`Private`CDA[-a, b, c, -d], M4, Antisymmetric[{b, c}]];
 xAct`HiGGS`Private`CDGaugeFieldsToInert=(MakeRule[{CD[-a]@B[b,-c],xAct`HiGGS`Private`CDB[-a,b,-c]},MetricOn->All,ContractMetrics->True])~Join~(MakeRule[{CD[-a]@A[b,c,-d],xAct`HiGGS`Private`CDA[-a,b,c,-d]},MetricOn->All,ContractMetrics->True]);
 
 xAct`HiGGS`Private`CDGaugeFieldsFromInert=(MakeRule[{xAct`HiGGS`Private`CDB[-a,b,-c],CD[-a]@B[b,-c]},MetricOn->All,ContractMetrics->True])~Join~(MakeRule[{xAct`HiGGS`Private`CDA[-a,b,c,-d],CD[-a]@A[b,c,-d]},MetricOn->All,ContractMetrics->True]);
-
-ClearBuild[];

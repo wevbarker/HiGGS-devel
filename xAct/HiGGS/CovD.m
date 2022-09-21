@@ -24,5 +24,3 @@ LorentzGaugeCovDToGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
 	ConvertedExpr=Expr/.xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovDRule;
 	ConvertedExpr//=ToNewCanonical;
 	ConvertedExpr];
-
-ClearBuild[];
