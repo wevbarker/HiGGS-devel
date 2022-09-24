@@ -2,6 +2,6 @@
 
 #	copy everything under the xAct directory into the local Mathematica install
 
-cp -r ./xAct/* ~/.Mathematica/Applications/xAct/
+rsync -avh --exclude '*.mx' ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 
 exit 0

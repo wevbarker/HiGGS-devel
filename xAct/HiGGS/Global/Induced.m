@@ -15,6 +15,10 @@ xAct`HiGGS`Private`GPToFoliG=MakeRule[{GP[-a,-b],G[-a,-b]-V[-a]V[-b]},MetricOn->
 
 (* generate projection rules over the Lorentzian derivative for all the most imporant Nester form tensors *)
 
+xAct`HiGGS`Private`ProjectLorentzGaugeCovDRule={};
+xAct`HiGGS`Private`ExpandLorentzGaugeCovDProjectionRule={};
+xAct`HiGGS`Private`ProjectGaugeCovDRule={};
+
 xAct`HiGGS`Private`PrecomputeDerivativeProjections[];
 
 (* another miscellaneous rule whose counterpart we need to form using induced structure *)

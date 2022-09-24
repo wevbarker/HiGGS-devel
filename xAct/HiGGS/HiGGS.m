@@ -191,99 +191,46 @@ Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclai
 Print[xAct`xCore`Private`bars]];
 
 
- 
-BuildHiGGS::usage="Rebuild the HiGGS session";
-ToNesterForm::usage="Express quantity in terms of human-readable irreps";
-ToBasicForm::usage="Express quantity in terms of basic gauge fields";
-PoissonBracket::usage="Calculate a Poisson bracket between two quantities";
-NonlinearPoissonBracket::usage="NonlinearPoissonBracket[LeftOperand,RightOperand,Options] evaluates the nonlinear Poisson bracket {LeftOperand,RightOperand}, where both arguments must be in Nester form, as tested by NesterFormQ. Options are Parallel->False, ToShell->True and xTensorCovD->False.";
-DefTheory::usage="Define a theory using a system of equations to constrain the coupling coefficients";
-UndefTheory::usage="Undefine a theory using a system of equations to constrain the coupling coefficients";
-StudyTheory::usage="Calculate the links in the constraint chain down do a certain level";
-Velocity::usage="Calculate the velocity of a quantity with respect to the Hamiltonian indicated by DefTheory";
-
-
-
-MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
-ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr.";
-NesterFormQ::usage="NesterFormQ[expr] gives True if expr is a valid tensor expression in Nester form, and False otherwise.";
+(* main provided functions *) 
+BuildHiGGS::usage="BuildHiGGS[] builds the HiGGS environment, which is composed of many symbol definitions and up- and down-values across multiple xAct contexts.";
 BuildSO3::usage="BuildSO3 is a boolean option for BuildHiGGS, which determines whether objects referring to the special orthogonal group in three dimensions, SO(3), are also to be built. Default is True.";
-Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression.";
-Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
-Parallel::usage="Parallel is an option for several functions, which determines whether the calculation should be parallelised. Parallel will eventually replace the string option \"Parallel\".";
+Recompile::usage="Recompile is a boolean option for BuildHiGGS, which determines whether to re-compile the sources and save the HiGGS environment into context binaries, or load these binaries. Default is False. Note that you may encounter permissions-related issues when attempting to re-compile a global install.";
+ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 xTensorCovD::usage="xTensorCovD is a boolean option for ToNesterForm, ToBasicForm and NonlinearPoissonBracket, which determines whether the new structure of xTensor CovD derivatives and induced metrics should be used. Default is False.";
+ToBasicForm::usage="ToBasicForm[Expr] expresses Expr in terms of basic gauge fields. In some sense, this \"expands\" the output of ToNesterForm.";
+PoissonBracket::usage="PoissonBracket[LeftOperand,RightOperand] calculates a Poisson bracket between the operands.";
+Parallel::usage="Parallel is an option for several functions, which determines whether the calculation should be parallelised. Parallel will eventually replace the string option \"Parallel\".";
+NonlinearPoissonBracket::usage="NonlinearPoissonBracket[LeftOperand,RightOperand,Options] evaluates the nonlinear Poisson bracket {LeftOperand,RightOperand}, where both arguments must be in Nester form, as tested by NesterFormQ. Options are Parallel->False, ToShell->True and xTensorCovD->False.";
+DefTheory::usage="DefTheory[System] defines a theory using System, a system of equations to constrain the coupling coefficients.";
+UndefTheory::usage="UndefTheory[TheoryName] undefines a named theory.";
+StudyTheory::usage="StudyTheory[TheoryName] calculates the primary Poisson matrix and velocities of a named theory.";
+Velocity::usage="DEPRECIATED in v 2.0.0";
+NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expression in Nester form, and False otherwise.";
 
- 
+(* convenience wrappers, for use beyond HiGGS *)
+MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
+Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression. Default is True.";
+Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
+ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr. As of v2.0.0 it includes some functionality to remove projection operators.";
+
+(* variables *) 
 $Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
 
 Begin["xAct`HiGGS`Private`"];
-
-(*HiGGS cannot build itself more than once, since xAct does not forgive mutability...!*)
-$HiGGSBuilt=False;
-BuildHiGGS::built="The HiGGS environment has already been built.";
-Options@BuildHiGGS={BuildSO3->True};
-BuildHiGGS[OptionsPattern[]]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
-(*A message*)
-xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
-(*Check for pre-existing build*)
-If[$HiGGSBuilt,Throw@Message[BuildHiGGS::built]];
-(*List of all print cells in front end before this notebook starts to run*)
-$PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
-PriorMemory=MemoryInUse[];
-Print[" ** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
-Print[" ** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"Global","Main.nb"}," with active CellTags ",ActiveCellTags,"."];
-Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","Main.m"}];
-If[OptionValue@BuildSO3,
-Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","SO3.m"}];
-];
-(*Purge all cells created during build process*)
-Pause[2];
-UsedMemory=MemoryInUse[]-PriorMemory;
-NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
-Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
-$HiGGSBuilt=True;
-];
-
-GPToFoliG={DummyReplacementVariable->0};
-
-ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},
-	printer=PrintTemporary[" ** ToNewCanonical..."];
-
-	(*Beep[];*)
-	temp=Expr//ToCanonical;
-	temp=temp/.GPToFoliG;
-	temp=temp//ContractMetric;
-	temp=temp//ScreenDollarIndices;
-	NotebookDelete@printer;
-temp];
-
-Options[MakeQuotientRule]={MetricOn->All,ContractMetrics->True,Canonicalise->True,Verify->True,Method->"SolveTensors"};
-MakeQuotientRule::method="Option Method should be strings \"SolveTensors\" or \"Coefficient\".";
-MakeQuotientRule[{xTensor_[Indices___],Expr_},OptionsPattern[]]:=Catch@Module[{QuotientRule,ScalarCoefficient,ReplacementValue,SelfApplied,printer},
-printer={};
-printer=printer~Append~PrintTemporary@" ** MakeQuotientRule...";
-Switch[OptionValue@Method,"SolveTensors",
-QuotientRule=First@SolveTensors[Expr==0,xTensor[Indices]];,
-"Coefficient",
-ScalarCoefficient=Expr~Coefficient~xTensor[Indices];
-ReplacementValue=Evaluate@(-(Expr-xTensor[Indices] ScalarCoefficient)/ScalarCoefficient);
-QuotientRule=MakeRule[{xTensor[Indices],Evaluate@ReplacementValue},MetricOn->OptionValue@MetricOn,ContractMetrics->OptionValue@ContractMetrics];,
-_,Throw@Message@(MakeQuotientRule::method)];
-If[OptionValue@Canonicalise,Print@" ** MakeQuotientRule: canonicalised expression with tensor substituted by rule:";ReplacementValue=ToCanonical@ReplacementValue;];
-If[OptionValue@Verify,printer=printer~Append~PrintTemporary@" ** ToCanonical...";SelfApplied=Expr/.QuotientRule;SelfApplied=SelfApplied//NoScalar;SelfApplied=SelfApplied//ToCanonical;Print@SelfApplied;];
-NotebookDelete@printer;
-QuotientRule];
 
 (* delete print cells during build *)
 $PrintCellsBeforeBuildHiGGS=.;
 ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
 BuildGlobally[FileName_String]:=(Get[FileNameJoin@{$HiGGSInstallDirectory,"Global",FileName}];ClearBuild[]);
-BuildPrivately[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,FileName}];
+BuildPrivately[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Private",FileName}];
 
 (* load all the functions which were written directly into vim *)
 
-BuildPrivately/@{
+BuildHiGGSPrivate[]:=BuildPrivately/@{
+	"BuildHiGGS.m",
+	"ToNewCanonical.m",
+	"MakeQuotientRule.m",
 	"ToNesterForm.m",
 	"ToBasicForm.m",
 	"Smearing.m",
@@ -295,60 +242,10 @@ BuildPrivately/@{
 	"ViewTheory.m",
 	"StudyTheory.m"};
 
+BuildHiGGSPrivate[];
 
-TrialContexts={"Evaluators`CloudKernels`", "Evaluators`CloudKernels`Private`", \
-"Evaluators`LocalKernels`", "Evaluators`LocalKernels`Private`", \
-"Evaluators`LWGKernels`", "Evaluators`LWGKernels`Private`", \
-"Evaluators`SelfKernels`", "Evaluators`SelfKernels`Private`", \
-"Evaluators`SshKernels`", "Evaluators`SshKernels`Private`", \
-"Evaluators`WSTPServerKernels`", \
-"Evaluators`WSTPServerKernels`Private`", "FEImage3D`", "Forms`", \
-"Globl`", "Graphics`GraphicsGridDump`", "Image`Utilities`Private`", \
-"KernelConfiguration`Private`", "KernelObject`Private`", \
-"KernelObjects`Implementations`Private`", "Language`ContainsDump`", \
-"Language`SequencesDump`", "LightweightGridClient`", \
-"LightweightGridClient`Kernel`", "MachineLearning`PackageScope`", \
-"MessageMenu`Dump`", "NotebookTools`ControlsDump`", \
-"OpenCVLink`FilteringOps`", "OpenCVLink`PhotoOps`", \
-"Parallel`Client`", "Parallel`Client`Private`", "Parallel`Combine`", \
-"Parallel`Combine`Private`", "Parallel`Concurrency`", \
-"Parallel`Concurrency`Private`", "Parallel`Debug`Perfmon`", \
-"Parallel`Debug`Perfmon`Private`", "Parallel`Debug`Private`", \
-"Parallel`Evaluate`Private`", "Parallel`Kernels`", \
-"Parallel`Kernels`Private`", "Parallel`OldClient`", \
-"Parallel`Parallel`Private`", "Parallel`Protected`", \
-"Parallel`Protected`Private`", "Parallel`Queue`FIFO`", \
-"Parallel`Queue`FIFO`Private`", "Parallel`Queue`Interface`", \
-"Parallel`Queue`Interface`Private`", "Parallel`Queue`Priority`", \
-"Parallel`Queue`Priority`Private`", "Parallel`Settings`Private`", \
-"Parallel`Status`", "Parallel`Status`Private`", \
-"Parallel`VirtualShared`Private`", "SubKernels`", \
-"SubKernels`Protected`", "SVTools`", "SVTools`Private`", \
-"SVTools`Private`LLU`", "SVTools`Private`LLU`Logger`", \
-"SVTools`Private`LLU`Private`", "System`HypergeometricDump`", \
-"System`MeijerGDump`", "Templating`Evaluator`PackagePrivate`", \
-"Templating`Files`PackagePrivate`", \
-"Templating`GenerateHTTPResponse`PackagePrivate`", \
-"Templating`HTMLExport`PackagePrivate`", \
-"Templating`HTML`PackagePrivate`", "Templating`PackageScope`", \
-"Templating`Pagination`PackagePrivate`", \
-"Templating`PanelLanguage`PackagePrivate`", \
-"Templating`Parsing`PackagePrivate`", \
-"Templating`Primitives`PackagePrivate`", "Templating`Private`", \
-"Templating`Utils`PackagePrivate`", "Workbench`", "WrappersDump`", \
-"WSTPCommand`", "xAct`ExpressionManipulation`", \
-"xAct`ExpressionManipulation`Private`", "xAct`HiGGS`", \
-"xAct`HiGGS`Private`", "xAct`Invar`", "xAct`Invar`Private`", \
-"xAct`Spinors`", "xAct`Spinors`Private`", "xAct`SymManipulator`", \
-"xAct`SymManipulator`Private`", "xAct`TexAct`", \
-"xAct`TexAct`Private`", "xAct`xCoba`", "xAct`xCoba`Private`", \
-"xAct`xCore`", "xAct`xCore`Private`", "xAct`xPerm`", \
-"xAct`xPerm`Private`", "xAct`xPert`", "xAct`xPert`Private`", \
-"xAct`xTableau`", "xAct`xTensor`", "xAct`xTensor`Private`", \
-"xAct`xTras`", "xAct`xTras`Private`", "$`", "$CellContext`"};
-
-SaveEverything[]:=DumpSave[FileNameJoin[{"$WorkingDirectory","SaveEverything.mx"}],TrialContexts];
-
+(* if you want to recompile the HiGGS sources, pass "Recompile->True" to the command below *)
+BuildHiGGS[];
  
 End[];
 EndPackage[];

@@ -34,19 +34,19 @@ Result];
 DistributeDefinitions@PoissonBracketParallel;
 
 
-Options[PoissonBracket]={
+Options[xAct`HiGGS`Private`PoissonBracketList]={
 	xTensorCovD->False,
-	"ToShell"->True,
-	"Hard"->False,
-	"Surficial"->False,
-	"Order"->Infinity,
-	"GToFoliG"->True,
-	"PreTruncate"->False,
-	"NesterForm"->True,
-	"PrintAnswer"->True,
-	"Parallel"->False};
+	ToShell->True,
+	Hard->False,
+	Surficial->False,
+	OrderOption->Infinity,
+	GToFoliGOption->True,
+	PreTruncate->False,
+	NesterForm->True,
+	PrintAnswer->True,
+	Parallel->False};
 
-PoissonBracket[LeftOperand_,RightOperand_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@Module[{
+xAct`HiGGS`Private`PoissonBracketList[LeftOperand_,RightOperand_,OptionsPattern[]]:="PoissonBracket"~TimeWrapper~Catch@Module[{
 	Expr,
 	LeftOp,
 	RightOp,
@@ -114,7 +114,7 @@ PoissonBracket[LeftOperand_,RightOperand_,OptionsPattern[]]:="PoissonBracket"~Ti
 	PrintVariable3},
 
 (*distributed defs seem not to be working for split def*)
-If[OptionValue["Parallel"],
+If[OptionValue[Parallel],
 	(*Build the HiGGS environment*)
 	(*$Timing=True;*)
 	BuildHiGGS[];
@@ -126,12 +126,12 @@ If[OptionValue["Parallel"],
 	PrintVariable={};
 	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracket ",{LeftOperand,RightOperand}," with options ",Options[PoissonBracket],"..."];
 		
-	LeftOp=ToBasicForm[LeftOperand,"Hard"->True];
+	LeftOp=ToBasicForm[LeftOperand,Hard->True];
 	LeftOp//=NoScalar;
-	If[OptionValue["PreTruncate"],LeftOp=ToOrderCanonical[LeftOp,1]];
-	RightOp=ToBasicForm[RightOperand,"Hard"->True];
+	If[OptionValue[PreTruncate],LeftOp=ToOrderCanonical[LeftOp,1]];
+	RightOp=ToBasicForm[RightOperand,Hard->True];
 	RightOp//=NoScalar;
-	If[OptionValue["PreTruncate"],RightOp=ToOrderCanonical[RightOp,1]];
+	If[OptionValue[PreTruncate],RightOp=ToOrderCanonical[RightOp,1]];
 
 	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracket: BasicForm to be evaluated is:"];
 	PrintVariable=PrintVariable~Append~PrintTemporary[{LeftOp,RightOp}];
@@ -203,7 +203,7 @@ If[OptionValue["Parallel"],
 	PartialLeftOpDAPiv=NewVarAction[LeftOpDummyInert,xAct`HiGGS`Private`CDAPiDummy[-v,-q,-r,s]];
 	PartialRightOpDAPiv=NewVarAction[RightOpDummyInert,xAct`HiGGS`Private`CDAPiDummy[-v,-q,-r,s]];
 
-	If[OptionValue["Surficial"],
+	If[OptionValue[Surficial],
 		{
 			PrintVariable2={};
 			PrintVariable2=PrintVariable2~Append~PrintTemporary[" ** PoissonBracket: Finding barred derivatives..."];
@@ -262,12 +262,12 @@ If[OptionValue["Parallel"],
 
 
 
-			If[OptionValue["NesterForm"],
+			If[OptionValue[NesterForm],
 			Expr=ToNesterForm[#,
-				"ToShell"->OptionValue["ToShell"],
-				"Hard"->OptionValue["Hard"],
-				"Order"->OptionValue["Order"],
-				"GToFoliG"->OptionValue["GToFoliG"],
+				ToShell->OptionValue[ToShell],
+				Hard->OptionValue[Hard],
+				OrderOption->OptionValue[OrderOption],
+				GToFoliGOption->OptionValue[GToFoliGOption],
 				xTensorCovD->OptionValue@xTensorCovD]&/@Expr;
 			];
 			Expr=CollectTensors/@Expr;
@@ -290,22 +290,23 @@ If[OptionValue["Parallel"],
 
 			NotebookDelete[PrintVariable3];
 
-			If[OptionValue["NesterForm"],
+			If[OptionValue[NesterForm],
 				Expr=ToNesterForm[#,
-					"ToShell"->OptionValue["ToShell"],
-					"Hard"->OptionValue["Hard"],
-					"Order"->OptionValue["Order"],
-					"GToFoliG"->OptionValue["GToFoliG"],
+					ToShell->OptionValue[ToShell],
+					Hard->OptionValue[Hard],
+					OrderOption->OptionValue[OrderOption],
+					GToFoliGOption->OptionValue[GToFoliGOption],
 					xTensorCovD->OptionValue@xTensorCovD]&/@Expr,
-				Expr=ToBasicForm[Expr,"Hard"->OptionValue["Hard"],"Order"->OptionValue["Order"]]];
+				Expr=ToBasicForm[Expr,Hard->OptionValue[Hard],OrderOption->OptionValue[OrderOption]]];
 			Expr=CollectTensors/@Expr;
 		}];
 
 	NotebookDelete[PrintVariable];
-
-	If[OptionValue["PrintAnswer"],
-		xAct`HiGGS`Private`PrintPoissonBracket[{LeftOperand,RightOperand},Expr,ToShell->OptionValue["ToShell"]];
+	(*
+	If[OptionValue[PrintAnswer],
+		xAct`HiGGS`Private`PrintPoissonBracket[{LeftOperand,RightOperand},Expr,ToShell->OptionValue[ToShell]];
 	];
+	*)
 Expr];
 
 ClearBuild[];

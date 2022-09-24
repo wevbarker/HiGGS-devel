@@ -10,3 +10,8 @@ DefTheory[InputSystem,"Export"->OptionValue["Export"],"Import"->OptionValue["Imp
 ForceTiming[];
 ];
 DistributeDefinitions@DefTheoryParallel;
+
+(*so that a replacement rule exists, even if no theory is defined*)
+dummySymb="\!\(\*SubscriptBox[\(\[ScriptCapitalL]\), \(matter\)]\)";
+DefConstantSymbol[dummy,PrintAs->SymbolBuild[dummySymb]];
+Global`$ToTheory={dummy->0};
