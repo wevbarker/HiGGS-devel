@@ -1,5 +1,7 @@
 (* Provides the ToNesterForm command *)
 
+CautiousNesterFormQ[Expr_]:=Quiet@Check[NesterFormQ@Expr,False];
+
 Options[TotalToO3]={ToShell->True,OrderOption->Infinity};
 TotalToO3[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
 	PrintVariable=PrintTemporary[" ** TotalToO3 with ToShell ",OptionValue[ToShell]," and OrderOption ",OptionValue[OrderOption],"..."];
@@ -163,25 +165,26 @@ Options[ToNesterForm]={
 ToNesterForm[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
 	PrintVariable=PrintTemporary[" ** ToNesterForm with Hard ",OptionValue[Hard]," and OrderOption ",OptionValue[OrderOption]," and GToFoliGOption ",OptionValue[GToFoliGOption],"..."];
 	Expr=x;
-	Expr=Expr/.Global`PhiActivate//NoScalar;
-	Expr=Expr/.Global`ChiParaActivate//NoScalar;
-	Expr=Expr/.Global`ChiPerpActivate//NoScalar;
-	Expr=Expr/.Global`ChiSingActivate//NoScalar;
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.Global`PhiActivate//NoScalar);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.Global`ChiParaActivate//NoScalar);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.Global`ChiPerpActivate//NoScalar);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.Global`ChiSingActivate//NoScalar);
 	If[OptionValue[ToShell],Expr=Expr/.Global`$ToTheory];
-	Expr=PreSimplify[Expr,Hard->OptionValue[Hard],OrderOption->OptionValue[OrderOption]];
-	Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]];
-	Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD);
-	Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]];
-	If[OptionValue@xTensorCovD,
+	(!CautiousNesterFormQ@Expr)~If~(Expr=PreSimplify[Expr,Hard->OptionValue[Hard],OrderOption->OptionValue[OrderOption]]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]]);
+	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue@xTensorCovD,
 		Expr//=CDBToGaugeCovDJGaugeCovDV,
-		Expr//=CDBToDJDV];
-	Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD);
-	Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]];
-	Expr//=CollapseA;
-	If[OptionValue[GToFoliGOption],Expr=Expr/.Global`GToFoliG];
+		Expr//=CDBToDJDV]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption]]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr//=CollapseA);
+	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue[GToFoliGOption],Expr=Expr/.Global`GToFoliG]);
 	Expr//=ToNewCanonical;
 	Expr=Expr/.Global`CollapseJ;
 	Expr=Expr/.Global`JiToJ;
+	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.HExpand;Expr//=ToNewCanonical;Expr//=GaugeCovDToLorentzGaugeCovD);
 	Expr=Global`ToOrderCanonical[Expr,OptionValue[OrderOption]];
 	NotebookDelete[PrintVariable];
 Expr];

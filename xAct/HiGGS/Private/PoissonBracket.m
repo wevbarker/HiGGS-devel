@@ -16,7 +16,7 @@ ManualCovariantDerivative[DerivativeIndex_,Expr_,GreekIndices_,DummyIndex_]:=Mod
 DerivativeExpr];
 
 (* a function to smear the Poisson bracket which has been provided as a list *)
-Options[SmearPoissonBracket]={ToShell->True};
+Options[SmearPoissonBracket]={ToShell->False};
 SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,RightSmearing_,OptionsPattern[]]:=Catch@Module[{
 	LeftFreeIndices,
 	RightFreeIndices,
@@ -31,33 +31,38 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
 
 		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
+		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
+		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
 	
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
 		SmearedEvaluatedBracketTerm1=
-		((EvaluatedBracket[[1]])~Dot~
+		((EvaluatedBracket[[1]]//ToNewCanonical)~Dot~
 		(LeftSmearing)~Dot~
 		(RightSmearing))];
 	
 		If[PossibleZeroQ@EvaluatedBracket[[2]],
 		SmearedEvaluatedBracketTerm2=0,
 		SmearedEvaluatedBracketTerm2=
-		((EvaluatedBracket[[2]])~Dot~
+		((EvaluatedBracket[[2]]//ToNewCanonical)~Dot~
 		(LeftSmearing)~Dot~
 		(Global`G3[Global`z1,-Global`z]Global`GaugeCovD[-Global`z1]@RightSmearing))];
 
 		If[PossibleZeroQ@EvaluatedBracket[[3]],
 		SmearedEvaluatedBracketTerm3=0,
 		SmearedEvaluatedBracketTerm3=
-		((EvaluatedBracket[[3]])~Dot~
+		((EvaluatedBracket[[3]]//ToNewCanonical)~Dot~
 		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
 		(Global`G3[Global`z1,-Global`z]Global`GaugeCovD[-Global`z1]@(Global`G3[Global`w1,-Global`w]Global`GaugeCovD[-Global`w1]@RightSmearing)))];
 
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
 		SmearedEvaluatedBracketTerm3;
+
+		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTotal/.{Dot->Times};
+		SmearedEvaluatedBracketTotal//=ToNewCanonical;
+
+		SmearedEvaluatedBracketTotal//=ToNesterForm[#,ToShell->OptionValue@ToShell,xTensorCovD->True]&;
 
 		If[PossibleZeroQ@SmearedEvaluatedBracketTotal,
 		SmearedEvaluatedBracket=0,
@@ -71,7 +76,8 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 	SmearedEvaluatedBracket];
 
 (* a function to form the Poisson bracket on a given term *)
-SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_}]:=Catch@Module[{
+Options[SmearedPoissonBracket]={ToShell->False};
+SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_},OptionsPattern[]]:=Catch@Module[{
 	UnevaluatedBracket,
 	EvaluatedBracket,
 	SmearedEvaluatedBracket},
@@ -82,7 +88,7 @@ SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_
 		ToShell->False,
 		PrintAnswer->False];
 	(*Print@EvaluatedBracket;*)
-	SmearedEvaluatedBracket=SmearPoissonBracket[UnevaluatedBracket,EvaluatedBracket,LeftSmearing,RightSmearing];
+	SmearedEvaluatedBracket=SmearPoissonBracket[UnevaluatedBracket,EvaluatedBracket,LeftSmearing,RightSmearing,ToShell->OptionValue@ToShell];
 	SmearedEvaluatedBracket];
 
 (* a function to test whether the argument is a derivative *)
@@ -90,6 +96,9 @@ DQ[Expr_]:=((Head@Evaluate@Expr)==D);
 
 (*I'm sure we will have some to add!*)
 Options@PoissonBracket={Parallel->False,ToShell->False};
+
+PoissonBracket[LeftOperand_?PossibleZeroQ,RightOperand_]:=0;
+PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ]:=0;
 
 (* main function for nonlinear Poisson bracket *)
 PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern[]]:=Catch@Module[{
@@ -104,9 +113,10 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	RightFreeIndices,
 	CanonicalVariables,
 	SmearedUnevaluatedBracket,
-	EvaluatedBracket},
+	EvaluatedBracket,
+	OptionSmearedPoissonBracket},
 
-	PrintVariable=PrintTemporary[" ** NonlinearPoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
+	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
 
 	DifferentiableTensors=$Tensors~Complement~{
 	Global`SmearingLeft,
@@ -123,30 +133,36 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	RightList=Flatten@List@((Evaluate@D[(Global`SmearingRight@@RightFreeIndices)*RightOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
 
 	SmearedUnevaluatedBracket={
-	Integrate@@({((LeftOperand)~Dot~(Global`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
-	Integrate@@({((RightOperand)~Dot~(Global`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
+	Integrate@@({((LeftOperand)~Dot~((Global`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
+	Integrate@@({((RightOperand)~Dot~((Global`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
 
 	LeftExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@LeftList;
 	RightExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@RightList;
 
 	NotebookDelete@PrintVariable;
 
-	Print@" ** NonlinearPoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
+	Print[" ** PoissonBracket: Note that ",Global`SmearingLeft[]," and ",Global`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
 
-	LeibnizArray=Outer[SmearedPoissonBracket,LeftExpansion,RightExpansion,1];
+	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
-	EvaluatedBracket=Total@(Head@First@(List@@#)&/@(LeibnizArray~Flatten~1))/.{Dot->Times};
-	EvaluatedBracket//=ToNewCanonical;
+	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValue@ToShell];
 
-	RecoverQuantity=EvaluatedBracket;
+	LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1];
+
+	If[LeibnizArray=={{0}},	
+		EvaluatedBracket=0,	
+		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		EvaluatedBracket//=ToNewCanonical,
+		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		EvaluatedBracket//=ToNewCanonical];
 
 	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValue@ToShell,xTensorCovD->True]&;
 
-	Print@" ** NonlinearPoissonBracket: composed the total bracket:";
+	Print@" ** PoissonBracket: composed the total bracket:";
 
 	If[PossibleZeroQ@EvaluatedBracket,
-	EvaluatedBracket=0,
-	EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];	
+		EvaluatedBracket=0,
+		EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];	
 
 	If[OptionValue@ToShell,
 		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
@@ -155,4 +171,5 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	EvaluatedBracket];
 
-PoissonBracket[OtherArgs___,OptionsPattern[]]:=Throw@Message[PoissonBracket::nester,"The current version of HiGGS can only calculate Poisson brackets on pairs of quantities in Nester form. The arguments provided were not a pair PoissonBracket[LeftOperand,RightOperand,Options...], where ToNesterForm[LeftOperand] and ToNesterForm[RightOperand] both return True."];
+PoissonBracket::nester="The current version of HiGGS can only calculate Poisson brackets on pairs of quantities in Nester form. The arguments provided were not a pair PoissonBracket[LeftOperand,RightOperand,Options...], where ToNesterForm[LeftOperand] and ToNesterForm[RightOperand] both return True."
+PoissonBracket[OtherArgs___,OptionsPattern[]]:=Throw@Message[PoissonBracket::nester];

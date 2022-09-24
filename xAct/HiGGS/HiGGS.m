@@ -1,5 +1,19 @@
 (* this file provides the HiGGS package *)
 
+(*
+
+To-do list!
+
+
+- general indices for PoissonBracket please.
+- symbol of the 3-metric
+- dollar indices in the intermediate expressions
+
+*)
+
+
+
+
 (*xAct`HiGGS`$Version={"1.2.3",{2022,9,4}};*)
 (**)
 xAct`HiGGS`$Version={"1.2.3-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
@@ -190,11 +204,7 @@ Print[xAct`xCore`Private`bars];
 Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclaimer[]. This is free software, and you are welcome to redistribute it under certain conditions. See the General Public License for details."];
 Print[xAct`xCore`Private`bars]];
 
-
 (* main provided functions *) 
-BuildHiGGS::usage="BuildHiGGS[] builds the HiGGS environment, which is composed of many symbol definitions and up- and down-values across multiple xAct contexts.";
-BuildSO3::usage="BuildSO3 is a boolean option for BuildHiGGS, which determines whether objects referring to the special orthogonal group in three dimensions, SO(3), are also to be built. Default is True.";
-Recompile::usage="Recompile is a boolean option for BuildHiGGS, which determines whether to re-compile the sources and save the HiGGS environment into context binaries, or load these binaries. Default is False. Note that you may encounter permissions-related issues when attempting to re-compile a global install.";
 ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 xTensorCovD::usage="xTensorCovD is a boolean option for ToNesterForm, ToBasicForm and NonlinearPoissonBracket, which determines whether the new structure of xTensor CovD derivatives and induced metrics should be used. Default is False.";

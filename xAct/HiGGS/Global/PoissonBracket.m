@@ -270,7 +270,7 @@ If[OptionValue[Parallel],
 				GToFoliGOption->OptionValue[GToFoliGOption],
 				xTensorCovD->OptionValue@xTensorCovD]&/@Expr;
 			];
-			Expr=CollectTensors/@Expr;
+			(*Expr=CollectTensors/@Expr;*)
 		},	
 		{
 			PrintVariable3={};
@@ -298,7 +298,7 @@ If[OptionValue[Parallel],
 					GToFoliGOption->OptionValue[GToFoliGOption],
 					xTensorCovD->OptionValue@xTensorCovD]&/@Expr,
 				Expr=ToBasicForm[Expr,Hard->OptionValue[Hard],OrderOption->OptionValue[OrderOption]]];
-			Expr=CollectTensors/@Expr;
+			(*Expr=CollectTensors/@Expr;*)
 		}];
 
 	NotebookDelete[PrintVariable];
