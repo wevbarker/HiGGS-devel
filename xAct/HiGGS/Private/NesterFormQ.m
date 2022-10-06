@@ -5,6 +5,6 @@ NesterFormQ[Expr_]:=Catch@Module[{TensorList,FinalBool},
 		Validate@Expr;
 		xAct`xTensor`Private`Identify@Expr;
 		TensorList=DeleteDuplicates@Cases[ToIndexFree@(Expr),_?xTensorQ,Infinity];
-		!(TensorList~ContainsAny~{Global`A,Global`B,Global`H})	
+		!(TensorList~ContainsAny~{xAct`HiGGS`A,xAct`HiGGS`B,xAct`HiGGS`H})	
 		)~Check~(False));
 	FinalBool];

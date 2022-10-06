@@ -14,4 +14,4 @@ DistributeDefinitions@DefTheoryParallel;
 (*so that a replacement rule exists, even if no theory is defined*)
 dummySymb="\!\(\*SubscriptBox[\(\[ScriptCapitalL]\), \(matter\)]\)";
 DefConstantSymbol[dummy,PrintAs->SymbolBuild[dummySymb]];
-Global`$ToTheory={dummy->0};
+xAct`HiGGS`$ToTheory={dummy->0};

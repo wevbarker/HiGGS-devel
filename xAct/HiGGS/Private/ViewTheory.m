@@ -9,7 +9,7 @@ DefIfConstraintToTheoryNesterForm[Global$ToShellFreedoms,Global$ToTheory,Global$
 Print@MatrixForm@Global$PPM;
 *)
 If[OptionValue["PPM"],
-IndIfConstraints=(#~ChangeFreeIndices~({-Global`l,-Global`m,-Global`n}~Take~Length@FindFreeIndices@#))&/@Global$IfConstraints;
+IndIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`l,-xAct`HiGGS`m,-xAct`HiGGS`n}~Take~Length@FindFreeIndices@#))&/@Global$IfConstraints;
 Global$PPMlabels=Table[{Global$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@Global$IfConstraints},{jj,ii,Length@Global$IfConstraints}]~PadLeft~{Length@Global$IfConstraints,Length@Global$IfConstraints};
 Global$PPM=Global$PPM~PadLeft~{Length@Global$IfConstraints,Length@Global$IfConstraints};
 PrintBracket[x_,y_]:=Module[{nontrivial},
@@ -22,7 +22,7 @@ Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:"
 MapThread[PrintBracket,{Global$PPM,Global$PPMlabels},2];
 ];
 If[OptionValue["Velocities"],
-IndVelocities=(#~ChangeFreeIndices~({-Global`i,-Global`j,-Global`k}~Take~Length@FindFreeIndices@#))&/@Global$Velocities;
+IndVelocities=(#~ChangeFreeIndices~({-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k}~Take~Length@FindFreeIndices@#))&/@Global$Velocities;
 PrintVelocity[x_,y_]:=Module[{nontrivial},
 nontrivial=!(x==0);
 If[nontrivial,

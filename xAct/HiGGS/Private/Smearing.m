@@ -5,7 +5,7 @@ Unprotect@xAct`xTensor`OrthogonalToVectorQ;
 xAct`xTensor`OrthogonalToVectorQ[vector_][tensor_?xTensorQ]:=xUpSet[
 	xAct`xTensor`OrthogonalToVectorQ[vector][tensor],
 	Module[{inds=SlotsOfTensor[tensor]},
-		If[(tensor===Global`SmearingLeft||tensor===Global`SmearingRight),
+		If[(tensor===xAct`HiGGS`SmearingLeft||tensor===xAct`HiGGS`SmearingRight),
 			False,
 			If[MemberQ[inds,AnyIndices[_]],
 				Throw@Message[xAct`xTensor`OrthogonalToVectoQ::error,"Cannot decide orthogonality to the variable-rank tensor "<>ToString[tensor]],
@@ -32,8 +32,8 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
 
 		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(Global`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(Global`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
+		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(xAct`HiGGS`SmearingLeft@@LeftFreeIndices))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(xAct`HiGGS`SmearingRight@@RightFreeIndices))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 	
 		If[Length@EvaluatedBracket==3||(PossibleZeroQ@EvaluatedBracket[[2]]&&PossibleZeroQ@EvaluatedBracket[[3]]&&PossibleZeroQ@EvaluatedBracket[[4]]),
 
@@ -43,22 +43,22 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 		SmearedEvaluatedBracketTerm1=0,
 		SmearedEvaluatedBracketTerm1=
 		((EvaluatedBracket[[1]])~Dot~
-		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
-		(Global`SmearingRight@@RightFreeIndices))];
+		(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
+		(xAct`HiGGS`SmearingRight@@RightFreeIndices))];
 	
 		If[PossibleZeroQ@EvaluatedBracket[[2]],
 		SmearedEvaluatedBracketTerm2=0,
 		SmearedEvaluatedBracketTerm2=
 		((EvaluatedBracket[[2]])~Dot~
-		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
-		(Global`DSmearingRight@@({-Global`z}~Join~(List@@RightFreeIndices))))];
+		(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
+		(xAct`HiGGS`DSmearingRight@@({-xAct`HiGGS`z}~Join~(List@@RightFreeIndices))))];
 
 		If[PossibleZeroQ@EvaluatedBracket[[3]],
 		SmearedEvaluatedBracketTerm3=0,
 		SmearedEvaluatedBracketTerm3=
 		((EvaluatedBracket[[3]])~Dot~
-		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
-		(Global`DDSmearingRight@@({-Global`z,-Global`w}~Join~(List@@RightFreeIndices))))];
+		(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
+		(xAct`HiGGS`DDSmearingRight@@({-xAct`HiGGS`z,-xAct`HiGGS`w}~Join~(List@@RightFreeIndices))))];
 
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
@@ -66,16 +66,16 @@ PrintPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,OptionsPattern
 
 		If[PossibleZeroQ@SmearedEvaluatedBracketTotal,
 		SmearedEvaluatedBracket=0,
-		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTotal)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];
+		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTotal)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];
 		
 		If[OptionValue@ToShell,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
+		xAct`HiGGS`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
+		xAct`HiGGS`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);];,
 
-		Global`HiGGSPrint@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
+		xAct`HiGGS`HiGGSPrint@" ** xAct`HiGGS`Private`PrintPoissonBracket: bracket provided in four-component list form, of which at least one of the last three components are nonvanishing (you might want to pass the option \"Surficial->True\" to PoissonBracket to get the three-component form, which ought to allow covariant handling of the smearing functions).";
 		
 		If[OptionValue@ToShell,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
+		xAct`HiGGS`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
+		xAct`HiGGS`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);];
 		];
 	];

@@ -9,9 +9,9 @@ ManualCovariantDerivative[DerivativeIndex_,Expr_,GreekIndices_,DummyIndex_]:=Mod
 	Indices=Complement[FindFreeIndices[Expr],GreekIndices];
 	LowerIndices=Select[Indices,(Quiet[#[[1]]]==-1)&];
 	UpperIndices=Complement[Indices,LowerIndices];
-	DerivativeExpr=Global`CD[DerivativeIndex][Expr];
-	Scan[(DerivativeExpr=DerivativeExpr-Global`A[DummyIndex,#,DerivativeIndex]ReplaceIndex[Evaluate[Expr],#->-DummyIndex])&,LowerIndices];
-	Scan[(DerivativeExpr=DerivativeExpr+Global`A[#,-DummyIndex,DerivativeIndex]ReplaceIndex[Evaluate[Expr],#->DummyIndex])&,UpperIndices];
+	DerivativeExpr=xAct`HiGGS`CD[DerivativeIndex][Expr];
+	Scan[(DerivativeExpr=DerivativeExpr-xAct`HiGGS`A[DummyIndex,#,DerivativeIndex]ReplaceIndex[Evaluate[Expr],#->-DummyIndex])&,LowerIndices];
+	Scan[(DerivativeExpr=DerivativeExpr+xAct`HiGGS`A[#,-DummyIndex,DerivativeIndex]ReplaceIndex[Evaluate[Expr],#->DummyIndex])&,UpperIndices];
 	DerivativeExpr//=ToNewCanonical;
 DerivativeExpr];
 
@@ -31,8 +31,8 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
 
 		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
+		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 	
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
@@ -46,14 +46,14 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		SmearedEvaluatedBracketTerm2=
 		((EvaluatedBracket[[2]]//ToNewCanonical)~Dot~
 		(LeftSmearing)~Dot~
-		(Global`G3[Global`z1,-Global`z]Global`GaugeCovD[-Global`z1]@RightSmearing))];
+		(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@RightSmearing))];
 
 		If[PossibleZeroQ@EvaluatedBracket[[3]],
 		SmearedEvaluatedBracketTerm3=0,
 		SmearedEvaluatedBracketTerm3=
 		((EvaluatedBracket[[3]]//ToNewCanonical)~Dot~
-		(Global`SmearingLeft@@LeftFreeIndices)~Dot~
-		(Global`G3[Global`z1,-Global`z]Global`GaugeCovD[-Global`z1]@(Global`G3[Global`w1,-Global`w]Global`GaugeCovD[-Global`w1]@RightSmearing)))];
+		(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
+		(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(xAct`HiGGS`G3[Zw1,-Zw]xAct`HiGGS`GaugeCovD[-Zw1]@RightSmearing)))];
 
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
@@ -66,11 +66,11 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 
 		If[PossibleZeroQ@SmearedEvaluatedBracketTotal,
 		SmearedEvaluatedBracket=0,
-		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTotal)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];	
+		SmearedEvaluatedBracket=Integrate@@({(SmearedEvaluatedBracketTotal)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];	
 
 		If[OptionValue@ToShell,
-			Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
-			Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);
+			HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
+			HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);
 		];
 
 	SmearedEvaluatedBracket];
@@ -82,7 +82,7 @@ SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_
 	EvaluatedBracket,
 	SmearedEvaluatedBracket},
 	UnevaluatedBracket={LeftOperand,RightOperand};
-	EvaluatedBracket=PoissonBracketList[LeftOperand,RightOperand,
+	EvaluatedBracket=PoissonBracketNewList[LeftOperand,RightOperand,
 		xTensorCovD->True,
 		Surficial->True,
 		ToShell->False,
@@ -119,29 +119,29 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
 
 	DifferentiableTensors=$Tensors~Complement~{
-	Global`SmearingLeft,
-	Global`DSmearingLeft,
-	Global`DDSmearingLeft,
-	Global`SmearingRight,
-	Global`DSmearingRight,
-	Global`DDSmearingRight};
+	xAct`HiGGS`SmearingLeft,
+	xAct`HiGGS`DSmearingLeft,
+	xAct`HiGGS`DDSmearingLeft,
+	xAct`HiGGS`SmearingRight,
+	xAct`HiGGS`DSmearingRight,
+	xAct`HiGGS`DDSmearingRight};
 
 	LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@LeftOperand));
 	RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@RightOperand));
 
-	LeftList=Flatten@List@((Evaluate@D[(Global`SmearingLeft@@LeftFreeIndices)*LeftOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
-	RightList=Flatten@List@((Evaluate@D[(Global`SmearingRight@@RightFreeIndices)*RightOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
+	LeftList=Flatten@List@((Evaluate@D[(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)*LeftOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
+	RightList=Flatten@List@((Evaluate@D[(xAct`HiGGS`SmearingRight@@RightFreeIndices)*RightOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
 
 	SmearedUnevaluatedBracket={
-	Integrate@@({((LeftOperand)~Dot~((Global`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies1,
-	Integrate@@({((RightOperand)~Dot~((Global`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@Global`Dummies2};
+	Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+	Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 
 	LeftExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@LeftList;
 	RightExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@RightList;
 
 	NotebookDelete@PrintVariable;
 
-	Print[" ** PoissonBracket: Note that ",Global`SmearingLeft[]," and ",Global`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
+	Print[" ** PoissonBracket: Note that ",xAct`HiGGS`SmearingLeft[]," and ",xAct`HiGGS`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
 
 	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
@@ -162,11 +162,11 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	If[PossibleZeroQ@EvaluatedBracket,
 		EvaluatedBracket=0,
-		EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@Global`Dummies1];	
+		EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];	
 
 	If[OptionValue@ToShell,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
-		Global`HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
+		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
+		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
 	];
 
 	EvaluatedBracket];

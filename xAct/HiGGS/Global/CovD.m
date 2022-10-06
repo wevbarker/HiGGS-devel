@@ -14,7 +14,7 @@ ChristoffelCDGaugeCovD~AutomaticRules~MakeRule[{ChristoffelCDGaugeCovD[a,-b,-c],
 
 (* Lorentz index from 0 to 4, but assumed to be formed from the Greek index 1-3 *)
 
-LorentzGaugeCovDSymb=SO3~StringJoin~"\[ScriptCapitalD]";
+LorentzGaugeCovDSymb=xAct`HiGGS`Private`SO3~StringJoin~"\[ScriptCapitalD]";
 Catch@DefCovD[LorentzGaugeCovD[-a],{"~",LorentzGaugeCovDSymb},FromMetric->G];
 
 (* laws for transforming between holonomic and anholonomic gauge covariant derivatives *)

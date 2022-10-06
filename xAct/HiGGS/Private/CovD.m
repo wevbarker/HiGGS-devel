@@ -6,12 +6,12 @@ NotGaugeFieldQ[Tensor_]:=!MatchQ[Head@Tensor,_?(StringMatchQ[SymbolName@#,
 ("A")]&)];
 
 CDToGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
-	ConvertedExpr=ChangeCovD[Expr,Global`CD,Global`GaugeCovD];
+	ConvertedExpr=ChangeCovD[Expr,xAct`HiGGS`CD,xAct`HiGGS`GaugeCovD];
 	ConvertedExpr//=ToNewCanonical;
 	ConvertedExpr];
 
 GaugeCovDToCD[Expr_]:=Catch@Module[{ConvertedExpr},
-	ConvertedExpr=ChangeCovD[Expr,Global`GaugeCovD,Global`CD];
+	ConvertedExpr=ChangeCovD[Expr,xAct`HiGGS`GaugeCovD,xAct`HiGGS`CD];
 	ConvertedExpr//=ToNewCanonical;
 	ConvertedExpr];
 

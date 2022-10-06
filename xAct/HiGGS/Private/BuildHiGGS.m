@@ -5,7 +5,7 @@ ContextList={
 "xAct`xTensor`",
 "xAct`xTensor`Private`",
 "TangentM4`",
-"Global`"};
+"xAct`HiGGS`"};
 
 SaveBinaryContext[Context_String]:=DumpSave[FileNameJoin[{$HiGGSInstallDirectory,"bin","Contexts",Context<>".mx"}],Context];
 
@@ -33,15 +33,15 @@ LoadHiGGS[]:=Catch@Module[{PrintVariable,InitialMemory,Progress},
 	LoadBinaryContext/@ContextList;
 	NotebookDelete@PrintVariable;	
 	NotebookDelete@Progress;
-	Print[" ** BuildHiGGS: the HiGGS environment has now been loaded"];
+	(*Print[" ** BuildHiGGS: the HiGGS environment has now been loaded"];*)
 ];
 
 $HiGGSBuilt=False;
 BuildHiGGS::built="The HiGGS environment has already been built.";
 Options@BuildHiGGS={Recompile->False,BuildSO3->True};
-BuildHiGGS[OptionsPattern[]]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory,UsedMemory},
+BuildHiGGS[OptionsPattern[]]:=Module[{PriorMemory,UsedMemory},
 
-	xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];
+(*xAct`xTensor`Private`MakeDefInfo[BuildHiGGS,$KernelID,{"HiGGS environment for kernel",""}];*)
 	If[$HiGGSBuilt,Throw@Message[BuildHiGGS::built]];
 
 		If[OptionValue@Recompile,
@@ -50,16 +50,17 @@ BuildHiGGS[OptionsPattern[]]:="BuildHiGGS"~TimeWrapper~Catch@Module[{PriorMemory
 			$PrintCellsBeforeStartBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 			PriorMemory=MemoryInUse[];
 			Print[" ** BuildHiGGS: RAM used by kernel ",$KernelID," is ",Dynamic[Refresh[MemoryInUse[],UpdateInterval->1]]," bytes."];
-			Print[" ** BuildHiGGS: Building session from ",FileNameJoin@{$HiGGSInstallDirectory,"Global","Main.nb"}," with active CellTags ",ActiveCellTags,"."];
 			Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","Main.m"}];
 			If[OptionValue@BuildSO3,
 			Get[FileNameJoin@{$HiGGSInstallDirectory,"Global","SO3.m"}];
 			];
 			(*Purge all cells created during build process*)
+(*
 			Pause[2];
 			UsedMemory=MemoryInUse[]-PriorMemory;
 			NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeStartBuildHiGGS);
 			Print[" ** BuildHiGGS: If build was successful, the HiGGS environment is now ready to use and is occupying ",UsedMemory," bytes in RAM."];
+*)
 
 			SaveBinaryContexts[],
 

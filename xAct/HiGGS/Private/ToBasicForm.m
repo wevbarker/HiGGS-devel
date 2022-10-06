@@ -2,7 +2,7 @@
 
 Options[ToBasicForm]={
 	Hard->False,
-	Order->Infinity};
+	OrderOption->Infinity};
 
 ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	Expr,
@@ -11,49 +11,49 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	PrintVariable=PrintTemporary[" ** ToBasicForm..."];
 
 	Expr=x;
-	Expr=Expr/.Global`PhiActivate//NoScalar;
-	Expr=Expr/.Global`ChiParaActivate//NoScalar;
-	Expr=Expr/.Global`ChiPerpActivate//NoScalar;
-	Expr=Expr/.Global`ChiSingActivate//NoScalar;
-	Expr=Global`ToOrderCanonical[Expr,OptionValue[Order]];
-	(*Expr=Expr/.Global`DpRPDeactivate//NoScalar;*)
+	Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`ChiParaActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`ChiPerpActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`ChiSingActivate//NoScalar;
+	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	(*Expr=Expr/.xAct`HiGGS`DpRPDeactivate//NoScalar;*)
 	(**)
 	Expr=Expr/.ExpandLorentzGaugeCovDProjectionRule;
 	Expr//=LorentzGaugeCovDToGaugeCovD;
 	Expr//=GaugeCovDToCD;
 	(**)
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	(*Expr=Expr/.Global`DRPDeactivate//NoScalar;*)
+	(*Expr=Expr/.xAct`HiGGS`DRPDeactivate//NoScalar;*)
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`RPO3Activate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`RPO3Activate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`TPO3Activate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`TPO3Activate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`StrengthPToStrength//NoScalar;
+	Expr=Expr/.xAct`HiGGS`StrengthPToStrength//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`StrengthLambdaPToStrengthLambda//NoScalar;
+	Expr=Expr/.xAct`HiGGS`StrengthLambdaPToStrengthLambda//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	(*Expr=Expr/.Global`DpPiPDeactivate//NoScalar;*)
+	(*Expr=Expr/.xAct`HiGGS`DpPiPDeactivate//NoScalar;*)
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	(*Expr=Expr/.Global`DPiPDeactivate//NoScalar;*)
+	(*Expr=Expr/.xAct`HiGGS`DPiPDeactivate//NoScalar;*)
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PiPO3Activate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PiPO3Activate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PO3PiActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PO3PiActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PADMPiActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PADMPiActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PiPToPi//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PiPToPi//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PhiActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`$ToTheory//NoScalar;
+	Expr=Expr/.xAct`HiGGS`$ToTheory//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`ExpandStrengths//NoScalar;
+	Expr=Expr/.xAct`HiGGS`ExpandStrengths//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.Global`PADMActivate//NoScalar;
+	Expr=Expr/.xAct`HiGGS`PADMActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Global`ToOrderCanonical[Expr,OptionValue[Order]];
+	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
 	Expr=Expr//NoScalar;
 	Expr//=ToNewCanonical;
 	Expr=Expr//NoScalar;
