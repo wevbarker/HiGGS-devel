@@ -32,20 +32,17 @@ DefIfConstraintToTheoryNesterForm[TheoryName_?StringQ]:=Module[{
 	(xAct`HiGGS`Private`HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiPerps;
 	Print@"ccnd";
 	ChiParas=DeleteCases[Evaluate[{(1-ShellParaB0m)ChiParaB0m[],(1-ShellParaB1p)ChiParaB1p[-i,-j],(1-ShellParaB1m)ChiParaB1m[-i],(1-ShellParaB2m)ChiParaB2m[-i,-j,-k],(1-ShellParaA0p)ChiParaA0p[],(1-ShellParaA0m)ChiParaA0m[],(1-ShellParaA1p)ChiParaA1p[-i,-j],(1-ShellParaA1m)ChiParaA1m[-i],(1-ShellParaA2p)ChiParaA2p[-i,-j],(1-ShellParaA2m)ChiParaA2m[-i,-j,-k]}/.(Evaluate@(Theory@$ToShellFreedoms))],0,Infinity];
-	Print@"ccnd";
+	Print@"ccndx";
+	Print@(Evaluate@(Theory@$ToShellFreedoms));
 	$IfConstraintsValue=$IfConstraintsValue~Join~ChiParas;
 	ChiParas=({#,ImposeTheory[#,(Evaluate@(Theory@$ToTheory))]})&/@ChiParas;
-	Print@"ccnd";
 	xAct`HiGGS`Private`HiGGSPrint["** DefTheory: Found the following secondary parallel if-constraints:"];
 	(xAct`HiGGS`Private`HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiParas;
-	Print@"ccnd";
 	ChiSings=DeleteCases[Evaluate[{(1-ShellSingB1p)ChiSingB1p[-i,-j],(1-ShellSingB1m)ChiSingB1m[-i],(1-ShellSingA0p)ChiSingA0p[],(1-ShellSingA0m)ChiSingA0m[],(1-ShellSingA1p)ChiSingA1p[-i,-j],(1-ShellSingA1m)ChiSingA1m[-i],(1-ShellSingA2p)ChiSingA2p[-i,-j],(1-ShellSingA2m)ChiSingA2m[-i,-j,-k]}/.(Evaluate@(Theory@$ToShellFreedoms))],0,Infinity];
 	$IfConstraintsValue=$IfConstraintsValue~Join~ChiSings;
 	ChiSings=({#,ImposeTheory[#,(Evaluate@(Theory@$ToTheory))]})&/@ChiSings;
 	xAct`HiGGS`Private`HiGGSPrint["** DefTheory: Found the following secondary singular if-constraints:"];
 	(xAct`HiGGS`Private`HiGGSPrint[#[[1]]," \[Congruent] ",#[[2]]," \[TildeTilde] 0"])&/@ChiSings;
-
-	Print@"ccnd";
 
 	UpdateTheoryAssociation[TheoryName,$IfConstraints,$IfConstraintsValue];
 ];

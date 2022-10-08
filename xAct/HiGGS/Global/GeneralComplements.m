@@ -1,3 +1,5 @@
+Begin["xAct`HiGGS`Private`"];
+
 xAct`HiGGS`Private`HiGGSPrint["OrigBComplementDefinition..."];
 OrigBComplementDefinition=Evaluate[J[]4 V[g]B[-k,-o]G3[o,-z]H[h,z](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])PPara[-c,x]PPara[-d,y]T[-a,-x,-y]+2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])PPara[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+
 2J[]V[g]B[-k,-o]G3[o,-z]H[h,z](cBet1 PT1[-i,-g,-h,a,c,d]+cBet2 PT2[-i,-g,-h,a,c,d]+cBet3 PT3[-i,-g,-h,a,c,d])(PPerp[-c,m]PPara[-d,n]TLambda[-a,-m,-n]+PPara[-c,m]PPerp[-d,n]TLambda[-a,-m,-n])/.PActivate/.PADMActivate//ToCanonical//ContractMetric//CollectTensors];
@@ -96,3 +98,5 @@ OnShellBLambdaDefinition=OnShellBLambdaDefinition/.RawComplementActivate//ToCano
 RawOnShellBLambdaDefinition=OnShellBLambdaDefinition/.NewPO3TActivate//ToCanonical//ContractMetric;
 
 DumpSave[xAct`HiGGS`Private`BinaryLocation["GeneralComplements"],{RawComplementActivate,RawOnShellALambdaDefinition,RawOnShellBLambdaDefinition,OrigBComplementDefinition,PerpBComplementDefinition,SingBComplementDefinition,OrigAComplementDefinition,PerpAComplementDefinition,SingAComplementDefinition}];
+
+End[];

@@ -1,24 +1,27 @@
-(* this file provides the HiGGS package *)
+(*===========================*)
+(*  HiGGS main package file  *)
+(*===========================*)
+
+(*=======================*)
+(*  Cosmetic to-do list  *)
+(*=======================*)
 
 (*
-
-To-do list!
-
 - general indices for PoissonBracket please.
 - check the validity of the overall bracket
 
 - symbol of the 3-metric
 - dollar indices in the intermediate expressions
-
-
-#	major administrative tasks
-
-- shift variables, including indices, to xAct`HiGGS`
-- shift variables into xAct`HiGGS`Private`
-
 *)
 
+(*======================*)
+(*  Serious to-do list  *)
+(*======================*)
 
+(*
+- shift variables, including indices, to xAct`HiGGS`
+- shift variables into xAct`HiGGS`Private`
+*)
 
 
 (*xAct`HiGGS`$Version={"2.0.0",{2022,9,4}};*)
