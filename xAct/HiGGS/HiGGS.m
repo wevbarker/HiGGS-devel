@@ -19,7 +19,9 @@
 (*======================*)
 
 (*
-- shift variables, including indices, to xAct`HiGGS`
+- check effect on novel theories of the ToBasicForm problem with decomposed Lagrange multipliers
+- make sure ToBasicForm can decompose the new derivative structure
+- shift variables to xAct`HiGGS`
 - shift variables into xAct`HiGGS`Private`
 *)
 
@@ -33,20 +35,18 @@ xAct`HiGGS`$Timing;
 Off[Global`$Timing::shdw];
 xAct`HiGGS`$Node;
 Off[Global`$Node::shdw];
-
-
  
 If[Unevaluated[xAct`xCore`Private`$LastPackage]===xAct`xCore`Private`$LastPackage,xAct`xCore`Private`$LastPackage="xAct`HiGGS`"];
 
 
+(*===============*)
+(*  xAct`HiGGS`  *)
+(*===============*)
+
  
 BeginPackage["xAct`HiGGS`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`","xAct`xTras`"}];
-
-
  
 ParallelNeeds["xAct`HiGGS`"];
-
-
  
 SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
  
@@ -54,7 +54,7 @@ Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
-Print["HiGGS is an open source dependent of the xAct bundle."];
+(*Print["HiGGS is an open source dependent of the xAct bundle."];*)
 Print["HiGGS incorporates example code by Cyril Pitrou."];
  
 (*
@@ -98,7 +98,7 @@ Print[xAct`xCore`Private`bars];*)
 ActiveCellTags={};
 UnitTests={"CheckOrthogonality","ShowIrreps","ProjectionNormalisationsCheck","ShowIrreps","documentation"};
 PrematureCellTags={"TransferCouplingsPerpPerp","TransferCouplingsPerpPara"};
-BinaryNames={"O13Projections","CompleteO3Projections","ProjectionNormalisations","CanonicalPhi","NonCanonicalPhi","ChiPerp","ChiSing","GeneralComplements","CDPiPToCDPiPO3","NesterFormIfConstraints"};
+BinaryNames={"O13Projections","CompleteO3Projections","ProjectionNormalisations","CanonicalPhi","NonCanonicalPhi","ChiPerp","ChiSing","GeneralComplements","CDPiPToCDPiPO3","PiPToPiPO3","PrecomputeDerivativeProjections","NesterFormIfConstraints"};
 BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
 ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
 
@@ -208,7 +208,12 @@ Print[xAct`xCore`Private`bars];
 Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclaimer[]. This is free software, and you are welcome to redistribute it under certain conditions. See the General Public License for details."];
 Print[xAct`xCore`Private`bars]];
 
-(* main provided functions *) 
+
+(*==========================================================*)
+(*  Declaration of provied functions and symbols for HiGGS  *)
+(*==========================================================*)
+
+
 ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 Hard::usage="Hard is an option for several functions.";
@@ -221,29 +226,39 @@ DefTheory::usage="DefTheory[System] defines a theory using System, a system of e
 ExportOption::usage="ExportOption is an option for DefTheory.";
 ImportOption::usage="ExportOption is an option for DefTheory.";
 
+(*
 $Theory::usage="$Theory is an association key for theories produced by DefTheory. UserDefinedTheory[$Theory] returns the set of equalities which determine the Lagrangian coupling values.";
 $ToTheory::usage="$ToTheory is an association key for theories produced by DefTheory. UserDefinedTheory[$ToTheory] returns the set of replacement rules which determine the Lagrangian coupling values.";
 $ToShellFreedoms::usage="$ToShellFreedoms is a (private) association key for theories produced by DefTheory.";
-$IfConstraints::usage="$IfConstraints is a (private) association key for theories produced by DefTheory.";
 $TheoryCDPiPToCDPiPO3::usage="$TheoryCDPiPToCDPiPO3 is an association key for theories produced by DefTheory.";
 $TheoryPiPToPiPO3::usage="$TheoryPiPToPiPO3 is an association key for theories produced by DefTheory.";
+$IfConstraintToTheoryNesterForm::usage="$IfConstraintToTheoryNesterForm is an association key for theories produced by DefTheory.";
+*)
+
+$IfConstraints::usage="$IfConstraints is an association key for theories produced by DefTheory.";
 $SuperHamiltonian::usage="$SuperHamiltonian is an association key for theories produced by DefTheory.";
 $LinearSuperMomentum::usage="$LinearSuperMomentum is an association key for theories produced by DefTheory.";
-$AngularSuperMomentum::usage="$AngularSuperMomentum is an association key for theories produced by DefTheory.";
+$AngularSuperMomentum1p::usage="$AngularSuperMomentum is an association key for theories produced by DefTheory.";
+$AngularSuperMomentum1m::usage="$AngularSuperMomentum is an association key for theories produced by DefTheory.";
 
 UndefTheory::usage="UndefTheory[TheoryName] undefines a named theory.";
 StudyTheory::usage="StudyTheory[TheoryName] calculates the primary Poisson matrix and velocities of a named theory.";
 Velocity::usage="DEPRECIATED in v 2.0.0";
 NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expression in Nester form, and False otherwise.";
 
-(* convenience wrappers, for use beyond HiGGS *)
+(*===================================================================*)
+(*  Declarations for convenience wrappers which we use beyond HiGGS  *)
+(*===================================================================*)
+
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression. Default is True.";
 Verify::usage="Verify is an option for MakeQuotientRule, which determines whether the action of the rule is verified.";
 ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenDollarIndices@ContractMetric@ToCanonical@Expr. As of v2.0.0 it includes some functionality to remove projection operators.";
 
-(* variables *) 
-$Theory::usage="The gauge theory as defined by a system of equations which constrains the coupling coefficients";
+(*=======================*)
+(*  xAct`HiGGS`Private`  *)
+(*=======================*)
+
 
 Begin["xAct`HiGGS`Private`"];
 
@@ -252,7 +267,9 @@ $PrintCellsBeforeBuildHiGGS=.;
 (*
 ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
 *)
+(*
 ClearBuild[]:=Print@"ClearBuild";
+*)
 BuildGlobally[FileName_String]:=(Get[FileNameJoin@{$HiGGSInstallDirectory,"Global",FileName}];ClearBuild[]);
 BuildPrivately[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Private",FileName}];
 
@@ -282,9 +299,14 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"DefLinearSuperMomentum.m",
 	"DefAngularSuperMomentum.m",
 	"DefTheory.m",
+	"HiGGSParallelSubmit.m",
+	"Utils.m"};
+
+(*
 	"ViewTheory.m",
 	"StudyTheory.m",
-	"Utils.m"};
+
+	*)
 
 BuildHiGGSPrivate[];
 

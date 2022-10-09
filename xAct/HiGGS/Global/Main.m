@@ -1,3 +1,7 @@
+(*========*)
+(*  Main  *)
+(*========*)
+
 xAct`HiGGS`Private`$PrintCellsBeforeBuildHiGGS=Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}];
 
 xAct`HiGGS`Private`BuildGlobally@"DefManifold.m";
@@ -39,7 +43,7 @@ xAct`HiGGS`Private`ClearBuild[];
 (* ::Input::Initialization:: *)
 (*
 (*This is where we get the notation for generating sets of permutations from, not the documentation!*)
-HiGGSPrint[RiemannSymmetry[{-i,-j,-m,-n}]];
+xAct`HiGGS`Private`HiGGSPrint[RiemannSymmetry[{-i,-j,-m,-n}]];
 *)
 DefTensor[R1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->xAct`HiGGS`Private`SymbolBuild[RSymb,xAct`HiGGS`Private`SO1]]; 
 xAct`HiGGS`Private`DeclareOrder[R1[-i,-j,-m,-n], 1]; 
@@ -324,29 +328,29 @@ OpenLastCache[];
 
 (* ::Input::Initialization:: *)
 xAct`HiGGS`Private`IfBuild["CheckOrthogonality",
-HiGGSPrint[ActiveCellTags];
-HiGGSPrint[Style["checking orthogonality",Blue,16]];
-For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]];
-For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
+xAct`HiGGS`Private`HiGGSPrint[ActiveCellTags];
+xAct`HiGGS`Private`HiGGSPrint[Style["checking orthogonality",Blue,16]];
+For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,xAct`HiGGS`Private`HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]];
+For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,xAct`HiGGS`Private`HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
 
-HiGGSPrint[Style["checking inverse orthogonality",Blue,16]];
+xAct`HiGGS`Private`HiGGSPrint[Style["checking inverse orthogonality",Blue,16]];
 
-For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[a,b,c,d,i,j,k,l]R[-i,-j,-k,-l]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]]
-For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[a,b,c,i,j,k]T[-i,-j,-k]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
+For[ii=1,ii<7,ii++,For[jj=1,jj<7,jj++,If[ii!=jj,xAct`HiGGS`Private`HiGGSPrint[ToExpression["PR"<>ToString[ii]<>"[a,b,c,d,i,j,k,l]R[-i,-j,-k,-l]PR"<>ToString[jj]<>"[-a,-b,-c,-d,e,f,g,h]R[-e,-f,-g,-h]"]/.PActivate//ToCanonical]]]]
+For[ii=1,ii<4,ii++,For[jj=1,jj<4,jj++,If[ii!=jj,xAct`HiGGS`Private`HiGGSPrint[ToExpression["PT"<>ToString[ii]<>"[a,b,c,i,j,k]T[-i,-j,-k]PT"<>ToString[jj]<>"[-a,-b,-c,e,f,g]T[-e,-f,-g]"]/.PActivate//ToCanonical]]]];
 
-HiGGSPrint[Style["checking idempotency",Blue,16]];
+xAct`HiGGS`Private`HiGGSPrint[Style["checking idempotency",Blue,16]];
 
-For[ii=1,ii<7,ii++,HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[ii]<>"[-a,-b,-c,-d,e,f,g,h]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]]
-For[ii=1,ii<4,ii++,HiGGSPrint[ToExpression["(PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[ii]<>"[-a,-b,-c,e,f,g]-PT"<>ToString[ii]<>"[-i,-j,-k,e,f,g])T[-e,-f,-g]"]/.PActivate//ToCanonical//FullSimplify]];
+For[ii=1,ii<7,ii++,xAct`HiGGS`Private`HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[-i,-k,-l,-m,a,b,c,d]PR"<>ToString[ii]<>"[-a,-b,-c,-d,e,f,g,h]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]]
+For[ii=1,ii<4,ii++,xAct`HiGGS`Private`HiGGSPrint[ToExpression["(PT"<>ToString[ii]<>"[-i,-j,-k,a,b,c]PT"<>ToString[ii]<>"[-a,-b,-c,e,f,g]-PT"<>ToString[ii]<>"[-i,-j,-k,e,f,g])T[-e,-f,-g]"]/.PActivate//ToCanonical//FullSimplify]];
 
-HiGGSPrint[Style["checking completeness",Blue,16]];
+xAct`HiGGS`Private`HiGGSPrint[Style["checking completeness",Blue,16]];
 
 (PR1[-i,-k,-l,-m,a,b,c,d]+PR2[-i,-k,-l,-m,a,b,c,d]+PR3[-i,-k,-l,-m,a,b,c,d]+PR4[-i,-k,-l,-m,a,b,c,d]+PR5[-i,-k,-l,-m,a,b,c,d]+PR6[-i,-k,-l,-m,a,b,c,d])R[-a,-b,-c,-d]/.PActivate//ToCanonical//Simplify
 (PT1[-i,-k,-l,a,b,c]+PT2[-i,-k,-l,a,b,c]+PT3[-i,-k,-l,a,b,c])T[-a,-b,-c]/.PActivate//ToCanonical//Simplify;
 
-HiGGSPrint[Style["checking invertability",Blue,16]];
+xAct`HiGGS`Private`HiGGSPrint[Style["checking invertability",Blue,16]];
 
-For[ii=1,ii<7,ii++,HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[e,f,g,h,-i,-k,-l,-m]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]];
+For[ii=1,ii<7,ii++,xAct`HiGGS`Private`HiGGSPrint[ToExpression["(PR"<>ToString[ii]<>"[e,f,g,h,-i,-k,-l,-m]-PR"<>ToString[ii]<>"[-i,-k,-l,-m,e,f,g,h])R[-e,-f,-g,-h]"]/.PActivate//ToCanonical//FullSimplify]];
 xAct`HiGGS`Private`ClearBuild[];
 ];
 
@@ -1191,21 +1195,3 @@ xAct`HiGGS`Private`ClearBuild[];
 DDeactivate={};
 MakeDDeactivate/@{R[a,b,c,d],RLambda[a,b,c,d],T[a,b,c],TLambda[a,b,c],R1[a,b,c,d],R2[a,b,c,d],R3[a,b,c,d],R4[a,b],R5[a,b],R6[],RLambda1[a,b,c,d],RLambda2[a,b,c,d],RLambda3[a,b,c,d],RLambda4[a,b],RLambda5[a,b],RLambda6[],T[a,b,c],T1[a,b,c],T2[a],T3[a],TLambda[a,b,c],TLambda1[a,b,c],TLambda2[a],TLambda3[a]};
 xAct`HiGGS`Private`ClearBuild[];
-
-
-ToOrderCanonical[expr_,order_]:="ToOrderCanonical"~TimeWrapper~Module[{res,printer},
-printer=PrintTemporary[" ** ToOrderCanonical: order ",order,"..."];
-res=expr;
-Switch[order,0,{
-res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
-res=res/.{Prt->0};
-},1,{
-res=res/.$ToOrderRules;
-res=CollectConstants[res,Prt];
-res=res/.{Prt^2->0,Prt^3->0,Prt^4->0,Prt^5->0,Prt^6->0,Prt^7->0,Prt^8->0,Prt^9->0,Prt^10->0,Prt^11->0,Prt^12->0,Prt^13->0,Prt^14->0};
-res=res/.{Prt->1};
-},Infinity,{}];
-res=res//ToNewCanonical;
-NotebookDelete[printer];
-res];

@@ -14,9 +14,6 @@ DefMomentaShell[TheoryName_?StringQ]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 
-	(*a message*)
-	xAct`xTensor`Private`MakeDefInfo[DefTheory,(Evaluate@(Theory@$Theory)),{"$PiPShellToPiPPO3 for the theory",""}];
-
 	OrigBComplementDefinition=OrigBComplementDefinition/.(Evaluate@(Theory@$ToTheory))//ToNewCanonical//CollectTensors;
 	PerpBComplementDefinition=PerpBComplementDefinition/.(Evaluate@(Theory@$ToTheory))//ToNewCanonical//CollectTensors;
 	SingBComplementDefinition=SingBComplementDefinition/.(Evaluate@(Theory@$ToTheory))//ToNewCanonical//CollectTensors;

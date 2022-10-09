@@ -1,4 +1,6 @@
-(* this file provides tools for the projection of derivatives *)
+(*===========*)
+(*  Induced  *)
+(*===========*)
 
 PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Module[{	
 	ExpandedExpr},		

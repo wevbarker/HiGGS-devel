@@ -1,3 +1,7 @@
+(*==============*)
+(*  BuildHiGGS  *)
+(*==============*)
+
 (* note that TangentM4` is not listed by default, and you have to do some digging in the xTensor source to obtain it! *)
 ContextList={	
 "xAct`HiGGS`",
@@ -29,7 +33,7 @@ LoadBinaryContext[Context_String]:=Module[{PrintVariable},
 LoadHiGGS[]:=Catch@Module[{PrintVariable,InitialMemory,Progress},
 	PrintVariable=PrintTemporary[" ** BuildHiGGS: loading binary definitions..."];
 	InitialMemory=MemoryInUse[];
-	Progress=PrintTemporary@ProgressIndicator[Dynamic[N[(Refresh[MemoryInUse[],UpdateInterval->0.1]-InitialMemory)/10^8]],Appearance->"ArcUp"];
+	Progress=PrintTemporary@ProgressIndicator[Dynamic[N[(Refresh[MemoryInUse[],UpdateInterval->0.1]-InitialMemory)/10^8]],Appearance->"Percolate"];
 	LoadBinaryContext/@ContextList;
 	NotebookDelete@PrintVariable;	
 	NotebookDelete@Progress;

@@ -5,7 +5,6 @@ Options[PoissonBracketNewList]={
 	ToShell->True,
 	Hard->False,
 	Surficial->False,
-	OrderOption->Infinity,
 	GToFoliGOption->True,
 	PreTruncate->False,
 	NesterForm->True,
@@ -87,10 +86,10 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 		
 	LeftOp=ToBasicForm[LeftOperand,Hard->True];
 	LeftOp//=NoScalar;
-	If[OptionValue[PreTruncate],LeftOp=ToOrderCanonical[LeftOp,1]];
+	If[OptionValue[PreTruncate],LeftOp=LeftOp//ToNewCanonical];
 	RightOp=ToBasicForm[RightOperand,Hard->True];
 	RightOp//=NoScalar;
-	If[OptionValue[PreTruncate],RightOp=ToOrderCanonical[RightOp,1]];
+	If[OptionValue[PreTruncate],RightOp=RightOp//ToNewCanonical];
 
 	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracket: BasicForm to be evaluated is:"];
 	PrintVariable=PrintVariable~Append~PrintTemporary[{LeftOp,RightOp}];
@@ -223,7 +222,6 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 			Expr=ToNesterForm[#,
 				ToShell->OptionValue[ToShell],
 				Hard->OptionValue[Hard],
-				OrderOption->OptionValue[OrderOption],
 				GToFoliGOption->OptionValue[GToFoliGOption],
 				xTensorCovD->OptionValue@xTensorCovD]&/@Expr;
 			];

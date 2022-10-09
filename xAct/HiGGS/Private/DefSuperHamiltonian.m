@@ -1,4 +1,6 @@
-Options[DefSuperHamiltonian]={OrderOption->1,"ProtectSurface"->False};
+(*=======================*)
+(*  DefSuperHamiltonian  *)
+(*=======================*)
 
 DefSuperHamiltonian[TheoryName_?StringQ,OptionsPattern[]]:=Module[{
 	Theory,
@@ -8,8 +10,7 @@ DefSuperHamiltonian[TheoryName_?StringQ,OptionsPattern[]]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 
-	(*a message*)
-	xAct`xTensor`Private`MakeDefInfo[DefTheory,(Evaluate@(Theory@$Theory)),{"super-Hamiltonian for the theory",""}];
+
 	MainPart=J[]((1/16)(cPerpB0p (1/BetPerpPerp0p) ShellOrigB0p PhiB0p[]PhiB0p[]+
 	cPerpB1p (1/BetPerpPerp1p) ShellOrigB1p  PhiB1p[-a,-b]PhiB1p[a,b]+
 	cPerpB1m (1/BetPerpPerp1m) ShellOrigB1m  PhiB1m[-a]PhiB1m[a]+
@@ -53,19 +54,25 @@ DefSuperHamiltonian[TheoryName_?StringQ,OptionsPattern[]]:=Module[{
 	MainPart=MainPart//ToNewCanonical;
 	MainPart=MainPart//CollectTensors;
 	MainPart=MainPart//NoScalar;
-	MainPart=MainPart/.$IfConstraintToTheoryNesterForm;
-	MainPart=ToNesterForm[MainPart,ToShell->True,Hard->True,OrderOption->OptionValue@OrderOption];
+	MainPart=MainPart/.(Evaluate@(Theory@$IfConstraintToTheoryNesterForm));
+	MainPart=ToNesterForm[MainPart,ToShell->True,Hard->True,TheoryNameOption->TheoryName];
 	MainPart=MainPart//ToNewCanonical;
 	MainPart=MainPart//CollectTensors;
+
+
+
+
+
+
 	GradPart=-V[k]G3[-b,n](CD[-n][BPiP[-k,j]H[-j,b]]-A[i,-k,-n]BPiP[-i,j]PPara[-j,m]H[-m,b]);
-	GradPart=GradPart/.PADMActivate;
-	If[!OptionValue@"ProtectSurface",
-	GradPart=ToNesterForm[GradPart,ToShell->True,Hard->True,OrderOption->OptionValue@OrderOption];
-	];
+
+	GradPart=ToBasicForm[GradPart,ToShell->False];
+	GradPart=ToNesterForm[GradPart,ToShell->False,Hard->True];
+
 	GradPart=MainPart+GradPart//ToNewCanonical;
 	GradPart=GradPart//CollectTensors;
-	xAct`HiGGS`Private`HiGGSPrint["** DefTheory: The super-Hamiltonian is:"];
-	xAct`HiGGS`Private`HiGGSPrint[SuperHamiltonian0p[]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
+	Print["** DefTheory: The super-Hamiltonian is:"];
+	Print[SuperHamiltonian0p[]," \[Congruent] ",GradPart," \[TildeTilde] 0"];
 
-	UpdateTheoryAssociation[TheoryName,$SuperHamiltonian,GradPart];
+	UpdateTheoryAssociation[TheoryName,$SuperHamiltonian,GradPart,Advertise->True];
 ];

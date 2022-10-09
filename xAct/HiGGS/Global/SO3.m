@@ -1331,12 +1331,6 @@ RLambdaPerpDefinition= RLambdaPerpPara[-a,-b,-c]+2Antisymmetrize[V[-a]RLambdaPer
 TLambdaPerpDefinition=TLambdaPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
 
 RLambdaPerpDefinition=RLambdaPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-(*
-RPerpDefinition=RPerpDefinition/.RPerpO3Activate//NoScalar;
-RPerpDefinition=RPerpDefinition//ToNewCanonical;
-RPerpDefinition=RPerpDefinition//ToCanonical;
-xAct`HiGGS`Private`HiGGSPrint[RPerpDefinition];
-*)
 
 TLambdaPerpActivate=MakeRule[{TLambdaPerp[-a,-b],Evaluate[TLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
 RLambdaPerpActivate=MakeRule[{RLambdaPerp[-a,-b,-c],Evaluate[RLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
@@ -1344,25 +1338,8 @@ StrengthLambdaPerpToStrengthLambdaPerpO3=Join[TLambdaPerpActivate,RLambdaPerpAct
 (*Again used to be Join...*)
 xAct`HiGGS`Private`ClearBuild[];
 
-
-(* ::Input::Initialization:: *)
-BPiPDefinition=((1/3)PPara[-n,-m]PiPB0p[]+
-  PiPB1p[-n,-m]+
-  PiPB2p[-n,-m]+
- V[-n]PiPB1m[-m])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
-
-APiPDefinition=(Antisymmetrize[ 2Antisymmetrize[V[-n](1/3)PPara[-m,-o]PiPA0p[],{-n,-m}]+
- 2Antisymmetrize[V[-n]PiPA1p[-m,-o],{-n,-m}]+
- 2Antisymmetrize[V[-n]PiPA2p[-m,-o],{-n,-m}]+
- (-1/6)PA0m[-n,-m,-o]PiPA0m[]+
- Antisymmetrize[-PPara[-m,-o]PiPA1m[-n],{-m,-n}]+
-(4/3)PiPA2m[-n,-m,-o],{-n,-m}])/.PO3PiActivate/.PADMActivate//ToNewCanonical;
-
-BPiPActivate=MakeRule[{BPiP[-n,-m],Evaluate[BPiPDefinition]},MetricOn->All,ContractMetrics->True];
-APiPActivate=MakeRule[{APiP[-n,-m,-o],Evaluate[APiPDefinition]},MetricOn->All,ContractMetrics->True];
-PiPToPiPO3=Join[BPiPActivate,APiPActivate];
-xAct`HiGGS`Private`ClearBuild[];
-
+xAct`HiGGS`Private`IfBuild["PiPToPiPO3"];
+OpenLastCache[];
 
 (* ::Input::Initialization:: *)
 FPDefinition=((1/3)PPara[-n,-m]FP0p[]+

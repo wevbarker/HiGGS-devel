@@ -147,7 +147,16 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValue@ToShell];
 
-	LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1];
+	If[OptionValue@Parallel,	
+(*
+		LeibnizArray=Outer[(ParallelSubmit@(Block[{PrintTemporary=Null&},SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell]]))&,LeftExpansion,RightExpansion,1];
+*)
+		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell]))&,LeftExpansion,RightExpansion,1];
+		Print@MatrixForm@LeibnizArray;
+		LeibnizArray=WaitAll[LeibnizArray];,
+		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
+	];
+
 
 	If[LeibnizArray=={{0}},	
 		EvaluatedBracket=0,	

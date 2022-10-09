@@ -12,9 +12,6 @@ DefO3MomentaShell[TheoryName_?StringQ]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 
-	(*a message*)
-	xAct`xTensor`Private`MakeDefInfo[DefTheory,(Evaluate@(Theory@$Theory)),{"(Evaluate@(Theory@$Theory))CDPiPToCDPiPO3, (Evaluate@(Theory@$Theory))PiPToPiPO3 for the theory",""}];
-
 	tmp=ToO3[APiP[-a,-b,-c],TheoryNameOption->Evaluate@TheoryName];
 	TheoryAPiPToAPiPO3=MakeRule[{APiP[-a,-b,-c],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];
 	tmp=CD[-z][tmp]//ToNewCanonical;

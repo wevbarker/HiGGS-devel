@@ -69,28 +69,31 @@ res];
 $Widetext=False;
 
 Options[HiGGSPrint]={"Widetext"->False};
-HiGGSPrint[expr__,OptionsPattern[]]:=Block[{res,$ListingsFile,size},
-If[$Widetext,size=(510/246)*350,size=350];
-(*If[OptionValue@"Widetext",size=(510/246)*300,size=300];*)
-res=expr;
-Print@res;
-If[$PaperPrint,
-	If[$Line==$OldLine,
-		$SubLine=$SubLine+1,
-		$SubLine=1;
-		$OldLine=$Line;
+HiGGSPrint[expr__,OptionsPattern[]]:=Block[{
+	res,
+	$ListingsFile,
+	size},
+
+	If[$Widetext,size=(510/246)*350,size=350];
+	res=expr;
+	Print@res;
+
+	If[$PaperPrint,
+		If[$Line==$OldLine,
+			$SubLine=$SubLine+1,
+			$SubLine=1;
+			$OldLine=$Line;
+		];
+		$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput},PageWidth->Infinity];
+		If[{res}~AllTrue~StringQ,
+			WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
+			res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],FrameMargins->None,ContentPadding->True,Alignment->Right];
+			Print@res;
+			FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
+			WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-5pt}\n|\n"];
+		];
+		Close@$ListingsFile;
 	];
-$ListingsFile=OpenAppend[FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput},PageWidth->Infinity];
-If[{res}~AllTrue~StringQ,
-WriteString[$ListingsFile,"|\n\\vspace{-10pt}\n|\n"<>""<>StringJoin@{res}<>"\n"];,
-res=Panel[Row@{"",res},ImageSize->size,Background->RGBColor[0.95,1.,0.8],FrameMargins->None,ContentPadding->True,Alignment->Right];
-Print@res;
-FileNameJoin@{$WorkingDirectory,"fig",$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf"}~Export~res;
-WriteString[$ListingsFile,"|\n\\vspace{-4pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>$ListingsOutput<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n\\vspace{-5pt}\n|\n"];
-(*WriteString[$ListingsFile,"\\vspace{-10pt}\n\\begin{flushleft}\n\\includegraphics[width=\\linewidth]{figures/"<>ToString@$OldLine<>"-"<>ToString@$SubLine<>"fig.pdf}\n\\end{flushleft}\n"];*)
-];
-Close@$ListingsFile;
-];
 ];
 
 (*

@@ -1,29 +1,31 @@
-(* Provides the ToNesterForm command *)
+(*================*)
+(*  ToNesterForm  *)
+(*================*)
 
 CautiousNesterFormQ[Expr_]:=Quiet@Check[NesterFormQ@Expr,False];
 
-Options[TotalToO3]={ToShell->True,OrderOption->Infinity,TheoryNameOption->""};
+Options[TotalToO3]={ToShell->False,TheoryNameOption->""};
 TotalToO3[x_,OptionsPattern[]]:=Module[{
 	Expr,
 	PrintVariable,
 	Theory},
 
-	Theory=Evaluate@Symbol@OptionValue@TheoryNameOption;
+	If[OptionValue[ToShell],Theory=Evaluate@Symbol@OptionValue@TheoryNameOption];
 
-	PrintVariable=PrintTemporary[" ** TotalToO3 with ToShell ",OptionValue[ToShell]," and OrderOption ",OptionValue[OrderOption],"..."];
+	PrintVariable=PrintTemporary[" ** TotalToO3 with ToShell ",OptionValue[ToShell],"..."];
 	Expr=x;
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiP;
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiPHard;
 	Expr=Expr//NoScalar/.xAct`HiGGS`PiToPiP;
 	Expr=Expr/.xAct`HiGGS`PiToPiP;
 	Expr=Expr/.xAct`HiGGS`PiToPiPHard;
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
-	If[OptionValue[ToShell],Expr=Expr/.(Evaluate@(Theory@$TheoryCDPiPToCDPiPO3)),Expr=Expr/.xAct`HiGGS`$CDPiPToCDPiPO3];
 	Expr//=ToNewCanonical;
-	If[OptionValue[ToShell],Expr=Expr/.(Evaluate@(Theory@$TheoryPiPToPiPO3)),Expr=Expr/.xAct`HiGGS`PiPToPiPO3];
+	If[OptionValue[ToShell],Expr=Expr/.(Evaluate@(Theory@$TheoryCDPiPToCDPiPO3)),Expr=Expr/.$CDPiPToCDPiPO3];
 	Expr//=ToNewCanonical;
-	Expr=xAct`HiGGS`ToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption],TheoryNameOption->OptionValue@TheoryNameOption];
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	If[OptionValue[ToShell],Expr=Expr/.(Evaluate@(Theory@$TheoryPiPToPiPO3)),Expr=Expr/.PiPToPiPO3];
+	Expr//=ToNewCanonical;
+	Expr=ToO3[Expr,ToShell->OptionValue[ToShell],TheoryNameOption->OptionValue@TheoryNameOption];
+	Expr//=ToNewCanonical;
 	NotebookDelete[PrintVariable];
 Expr];
 
@@ -147,24 +149,23 @@ CollapseA[x_]:=Module[{Expr,PrintVariable},
 	NotebookDelete[PrintVariable];
 Expr];
 
-Options[PreSimplify]={Hard->False,OrderOption->Infinity};
+Options[PreSimplify]={Hard->False};
 PreSimplify[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
-	PrintVariable=PrintTemporary[" ** TotalToO3 with Hard ",OptionValue[Hard]," and OrderOption ",OptionValue[OrderOption],"..."];
+	PrintVariable=PrintTemporary[" ** TotalToO3 with Hard ",OptionValue[Hard],"..."];
 	Expr=x;
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	Expr//=ToNewCanonical;
 	If[OptionValue[Hard],Expr=Expr/.xAct`HiGGS`HExpand];
 	Expr//=ToNewCanonical;
 	Expr=Expr/.xAct`HiGGS`HG3BExpandLazy;
 	Expr//=ToNewCanonical;
 	Expr=Expr/.xAct`HiGGS`G3HExpand;
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	Expr//=ToNewCanonical;
 	NotebookDelete[PrintVariable];
 Expr];
 
 Options[ToNesterForm]={
-	ToShell->True,
+	ToShell->False,
 	Hard->False,
-	OrderOption->Infinity,
 	GToFoliGOption->True,
 	xTensorCovD->True,
 	TheoryNameOption->""};
@@ -174,30 +175,31 @@ ToNesterForm[x_,OptionsPattern[]]:=Module[{
 	PrintVariable,
 	Theory},
 
-	Theory=Evaluate@Symbol@OptionValue@TheoryNameOption;
+	If[OptionValue[ToShell],Theory=Evaluate@Symbol@OptionValue@TheoryNameOption];
+	
 
-	PrintVariable=PrintTemporary[" ** ToNesterForm with Hard ",OptionValue[Hard]," and OrderOption ",OptionValue[OrderOption]," and GToFoliGOption ",OptionValue[GToFoliGOption],"..."];
+	PrintVariable=PrintTemporary[" ** ToNesterForm with Hard ",OptionValue[Hard]," and GToFoliGOption ",OptionValue[GToFoliGOption],"..."];
 	Expr=x;
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`ChiParaActivate//NoScalar);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`ChiPerpActivate//NoScalar);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`ChiSingActivate//NoScalar);
 	If[OptionValue[ToShell],Expr=Expr/.(Evaluate@(Theory@$ToTheory))];
-	(!CautiousNesterFormQ@Expr)~If~(Expr=PreSimplify[Expr,Hard->OptionValue[Hard],OrderOption->OptionValue[OrderOption]]);
-	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption],TheoryNameOption->OptionValue@TheoryNameOption]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=PreSimplify[Expr,Hard->OptionValue[Hard]]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],TheoryNameOption->OptionValue@TheoryNameOption]);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
-	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption],TheoryNameOption->OptionValue@TheoryNameOption]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],TheoryNameOption->OptionValue@TheoryNameOption]);
 	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue@xTensorCovD,
 		Expr//=CDBToGaugeCovDJGaugeCovDV,
 		Expr//=CDBToDJDV]);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
-	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],OrderOption->OptionValue[OrderOption],TheoryNameOption->OptionValue@TheoryNameOption]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr=TotalToO3[Expr,ToShell->OptionValue[ToShell],TheoryNameOption->OptionValue@TheoryNameOption]);
 	(!CautiousNesterFormQ@Expr)~If~(Expr//=CollapseA);
 	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue[GToFoliGOption],Expr=Expr/.xAct`HiGGS`GToFoliG]);
 	Expr//=ToNewCanonical;
 	Expr=Expr/.xAct`HiGGS`CollapseJ;
 	Expr=Expr/.xAct`HiGGS`JiToJ;
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`HExpand;Expr//=ToNewCanonical;Expr//=GaugeCovDToLorentzGaugeCovD);
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	Expr//=ToNewCanonical;
 	NotebookDelete[PrintVariable];
 Expr];

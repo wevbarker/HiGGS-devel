@@ -4,7 +4,7 @@
 
 
 if [ "$1" = "--pull" ]; then
-	rsync -avh ~/.Mathematica/Applications/xAct/HiGGS/* ./xAct/HiGGS/ --delete
+	rsync -avh ~/.Mathematica/Applications/xAct/HiGGS/bin/* ./xAct/HiGGS/bin/ --delete
 elif [ "$1" = "--push" ]; then
 	rsync -avh ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 else

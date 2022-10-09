@@ -1,24 +1,36 @@
-(* provides ToBasicForm function *)
+(*===============*)
+(*  ToBasicForm  *)
+(*===============*)
 
 Options[ToBasicForm]={
 	Hard->False,
-	OrderOption->Infinity};
+	ToShell->False,
+	TheoryNameOption->""};
 
 ToBasicForm[x_,OptionsPattern[]]:=Module[{
+	Theory,
 	Expr,
 	PrintVariable},
 
 	PrintVariable=PrintTemporary[" ** ToBasicForm..."];
+
+	If[OptionValue[ToShell],Theory=Evaluate@Symbol@OptionValue@TheoryNameOption];
 
 	Expr=x;
 	Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar;
 	Expr=Expr/.xAct`HiGGS`ChiParaActivate//NoScalar;
 	Expr=Expr/.xAct`HiGGS`ChiPerpActivate//NoScalar;
 	Expr=Expr/.xAct`HiGGS`ChiSingActivate//NoScalar;
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	Expr//=ToNewCanonical;
 	(*Expr=Expr/.xAct`HiGGS`DpRPDeactivate//NoScalar;*)
 	(**)
-	Expr=Expr/.ExpandLorentzGaugeCovDProjectionRule;
+	Expr=Expr/.ExpandLorentzGaugeCovDProjectionRule;(*this is a fast way to eliminate ProjectorGP heads on atomic gradients*)
+
+
+	Expr=Expr/.xAct`HiGGS`ProjectorGP->ProjectWith@xAct`HiGGS`GP;(*but when the arguments are non-atomic we need this*)
+	Expr//=ProjectorToMetric;
+	Expr//=ToNewCanonical;
+
 	Expr//=LorentzGaugeCovDToGaugeCovD;
 	Expr//=GaugeCovDToCD;
 	(**)
@@ -28,6 +40,10 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	Expr=Expr/.xAct`HiGGS`RPO3Activate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
 	Expr=Expr/.xAct`HiGGS`TPO3Activate//NoScalar;
+	If[OptionValue[Hard],Expr//=ToNewCanonical];
+	Expr=Expr/.xAct`HiGGS`RLambdaPO3Activate//NoScalar;
+	If[OptionValue[Hard],Expr//=ToNewCanonical];
+	Expr=Expr/.xAct`HiGGS`TLambdaPO3Activate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
 	Expr=Expr/.xAct`HiGGS`StrengthPToStrength//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
@@ -47,13 +63,13 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
 	Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=Expr/.xAct`HiGGS`$ToTheory//NoScalar;
+	If[OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$ToTheory))//NoScalar];
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
 	Expr=Expr/.xAct`HiGGS`ExpandStrengths//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
 	Expr=Expr/.xAct`HiGGS`PADMActivate//NoScalar;
 	If[OptionValue[Hard],Expr//=ToNewCanonical];
-	Expr=xAct`HiGGS`ToOrderCanonical[Expr,OptionValue[OrderOption]];
+	Expr//=ToNewCanonical;
 	Expr=Expr//NoScalar;
 	Expr//=ToNewCanonical;
 	Expr=Expr//NoScalar;

@@ -25,9 +25,6 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 	
-	(*a message*)
-	xAct`xTensor`Private`MakeDefInfo[DefTheory,(Evaluate@(Theory@$Theory)),{"$ToShellFreedomsValue for the theory",""}];
-
 	(*We don't want our theory-defining rules to have unintended side-effects... so we only keep zeros which pop out of the initial rules.*)
 	KeepOnlyObviousZeros[q_]:=If[q==0,0,1,1];
 

@@ -13,9 +13,6 @@ DefFieldStrengthShell[TheoryName_?StringQ]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 
-	(*a message*)
-	xAct`xTensor`Private`MakeDefInfo[DefTheory,(Evaluate@(Theory@$Theory)),{"$StrengthPShellToStrengthPO3 for the theory",""}];
-
 	TPShellDefinition= ShellParaB1p V[-a]TP1p[-b,-c]+
 	-(1/6)ShellParaB0m PT0m[-a,-b,-c]TP0m[]+
 	 ShellParaB1m Antisymmetrize[-PPara[-a,-b]TP1m[-c],{-b,-c}]+
