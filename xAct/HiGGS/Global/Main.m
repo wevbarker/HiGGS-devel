@@ -671,7 +671,8 @@ AutomaticRules[H,MakeRule[{H[-a,i]B[a,-j],G[i,-j]},MetricOn->All,ContractMetrics
 (*Rule to contract Greek indices*)
 AutomaticRules[H,MakeRule[{H[-a,i]B[c,-i],G[-a,c]},MetricOn->All,ContractMetrics->True]];
 
-G3Symb="\!\(\*SuperscriptBox[\(\[Gamma]\), \(\[DoubleVerticalBar]\)]\)";
+G3Symb=xAct`HiGGS`Private`SO3~StringJoin~"\[Gamma]";
+
 DefTensor[G3[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[G3Symb]];
 AutomaticRules[G3,MakeRule[{G3[-a,-b]G3[b,-d],G3[-a,-d]},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[G3,MakeRule[{G3[-a,a],3},MetricOn->All,ContractMetrics->True]];

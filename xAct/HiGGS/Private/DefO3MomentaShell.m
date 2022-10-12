@@ -12,11 +12,11 @@ DefO3MomentaShell[TheoryName_?StringQ]:=Module[{
 
 	Theory=Evaluate@Symbol@TheoryName;
 
-	tmp=ToO3[APiP[-a,-b,-c],TheoryNameOption->Evaluate@TheoryName];
+	tmp=ToO3[APiP[-a,-b,-c],ToShell->True,TheoryNameOption->Evaluate@TheoryName];
 	TheoryAPiPToAPiPO3=MakeRule[{APiP[-a,-b,-c],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];
 	tmp=CD[-z][tmp]//ToNewCanonical;
 	TheoryCDAPiPToCDAPiPO3=MakeRule[{CD[-z][APiP[-a,-b,-c]],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];
-	tmp=ToO3[BPiP[-a,-b],TheoryNameOption->Evaluate@TheoryName];
+	tmp=ToO3[BPiP[-a,-b],ToShell->True,TheoryNameOption->Evaluate@TheoryName];
 	TheoryBPiPToBPiPO3=MakeRule[{BPiP[-a,-b],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];
 	tmp=CD[-z][tmp]//ToNewCanonical;
 	TheoryCDBPiPToCDBPiPO3=MakeRule[{CD[-z][BPiP[-a,-b]],Evaluate[tmp]},MetricOn->All,ContractMetrics->True];

@@ -20,18 +20,5 @@ xAct`HiGGS`Private`Derivative3B=MakeRule[{CD[-a][B[b,-c]],G3[-a,d]CD[-d][B[b,-c]
 xAct`HiGGS`Private`Derivative3A=MakeRule[{CD[-a][A[b,e,-c]],G3[-a,d]CD[-d][A[b,e,-c]]},MetricOn->All,ContractMetrics->True];
 xAct`HiGGS`Private`Derivative3=Join[xAct`HiGGS`Private`Derivative3B,xAct`HiGGS`Private`Derivative3A];
 
-PoissonBracketParallel[LeftOperand_,RightOperand_,Theory_String,options___]:=Module[{Result},
-
-	(*$Timing=True;*)
-	BuildHiGGS[];
-	Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
-	DefTheory["Import"->Theory];
-	Result=PoissonBracket[LeftOperand,RightOperand,options];
-	ForceTiming[];
-
-Result];
-
-DistributeDefinitions@PoissonBracketParallel;
-
 TangentM4~AddIndices~((Symbol@("xAct`HiGGS`Private`Z"<>#))&/@(ToString/@Alphabet[]));
 TangentM4~AddIndices~((Symbol@("xAct`HiGGS`Private`Z"<>#<>"1"))&/@(ToString/@Alphabet[]));

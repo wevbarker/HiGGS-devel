@@ -7,6 +7,8 @@
 (*=======================*)
 
 (*
+- the ToNesterForm function is still not buried in Private`, and this could be quite hard...
+- ToShell and TheoryName are co-redundant, better to pass ToShell as a string or leave it as False
 - general indices for PoissonBracket please.
 - check the validity of the overall bracket
 

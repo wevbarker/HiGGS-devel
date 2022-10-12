@@ -16,7 +16,7 @@ ManualCovariantDerivative[DerivativeIndex_,Expr_,GreekIndices_,DummyIndex_]:=Mod
 DerivativeExpr];
 
 (* a function to smear the Poisson bracket which has been provided as a list *)
-Options[SmearPoissonBracket]={ToShell->False};
+Options[SmearPoissonBracket]={ToShell->False,TheoryNameOption->""};
 SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,RightSmearing_,OptionsPattern[]]:=Catch@Module[{
 	LeftFreeIndices,
 	RightFreeIndices,
@@ -62,7 +62,7 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTotal/.{Dot->Times};
 		SmearedEvaluatedBracketTotal//=ToNewCanonical;
 
-		SmearedEvaluatedBracketTotal//=ToNesterForm[#,ToShell->OptionValue@ToShell,xTensorCovD->True]&;
+		SmearedEvaluatedBracketTotal//=ToNesterForm[#,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption]&;
 
 		If[PossibleZeroQ@SmearedEvaluatedBracketTotal,
 		SmearedEvaluatedBracket=0,
@@ -76,7 +76,7 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 	SmearedEvaluatedBracket];
 
 (* a function to form the Poisson bracket on a given term *)
-Options[SmearedPoissonBracket]={ToShell->False};
+Options[SmearedPoissonBracket]={ToShell->False,TheoryNameOption->""};
 SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_},OptionsPattern[]]:=Catch@Module[{
 	UnevaluatedBracket,
 	EvaluatedBracket,
@@ -85,17 +85,72 @@ SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_
 	EvaluatedBracket=PoissonBracketNewList[LeftOperand,RightOperand,
 		xTensorCovD->True,
 		Surficial->True,
-		ToShell->False,
+		ToShell->OptionValue@ToShell,
+		TheoryNameOption->OptionValue@TheoryNameOption,
 		PrintAnswer->False];
-	(*Print@EvaluatedBracket;*)
-	SmearedEvaluatedBracket=SmearPoissonBracket[UnevaluatedBracket,EvaluatedBracket,LeftSmearing,RightSmearing,ToShell->OptionValue@ToShell];
+	SmearedEvaluatedBracket=SmearPoissonBracket[UnevaluatedBracket,EvaluatedBracket,LeftSmearing,RightSmearing,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption];
 	SmearedEvaluatedBracket];
 
 (* a function to test whether the argument is a derivative *)
 DQ[Expr_]:=((Head@Evaluate@Expr)==D);
 
+
+LeibnizList[Expr_,DifferentiableTensors_?ListQ]:=Module[{
+	ManipulatedExpr=Expr//NoScalar,
+	ManipulatedDiffenentiableTensors=DifferentiableTensors,
+	CanonicalVariables},
+
+	(* We will use D to create a Leibniz list, but we have to be careful that functions of tensors (as covariant derivatives and projectors are interpreted by Wolfram) are not differentiated according to chain rule but instead treated as atomic expressions to be fed into PoissonBracket *)	
+	ManipulatedExpr=Block[{	
+		CD,
+		GaugeCovD,
+		LorentzGaugeCovD,
+		ProjectorGP},
+
+		CD[Index_][Operand_]:=CDInert[Index,ToString@Operand];
+		GaugeCovD[Index_][Operand_]:=GaugeCovDInert[Index,ToString@Operand];
+		LorentzGaugeCovD[Index_][Operand_]:=LorentzGaugeCovDInert[Index,ToString@Operand];
+		ProjectorGP[Index_][Operand_]:=ProjectorGPInert[ToString@Operand];
+
+		Evaluate@ManipulatedExpr
+	];
+
+	(* The basic atomic units into which we split expressions include not only defined xTensors, but also now these heads *)
+	ManipulatedDiffenentiableTensors=ManipulatedDiffenentiableTensors~Join~{
+		CDInert,
+		GaugeCovDInert,
+		LorentzGaugeCovDInert,
+		ProjectorGPInert};
+
+	(* Use D to create a "Leibniz list" accordingly *)	
+	ManipulatedExpr=Flatten@List@((Evaluate@D[ManipulatedExpr,CanonicalVariables,NonConstants->ManipulatedDiffenentiableTensors])/.{Plus->List});
+
+	ManipulatedExpr=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@ManipulatedExpr;
+
+	(* We now want to activate the inert heads again *)
+	ManipulatedExpr=Block[{	
+		CDInert,
+		GaugeCovDInert,
+		LorentzGaugeCovDInert,
+		ProjectorGPInert},
+
+		CDInert[Index_,OperandString_]:=CD[Index][ToExpression@OperandString];
+		GaugeCovDInert[Index_,OperandString_]:=GaugeCovD[Index][ToExpression@OperandString];
+		LorentzGaugeCovDInert[Index_,OperandString_]:=LorentzGaugeCovD[Index][ToExpression@OperandString];
+		ProjectorGPInert[OperandString_]:=ProjectorGP[ToExpression@OperandString];
+
+		Evaluate@ManipulatedExpr
+	];
+
+	Print@ManipulatedExpr;
+
+	ManipulatedExpr];
+
 (*I'm sure we will have some to add!*)
-Options@PoissonBracket={Parallel->False,ToShell->False};
+Options@PoissonBracket={
+	Parallel->False,
+	ToShell->False,
+	TheoryNameOption->""};
 
 PoissonBracket[LeftOperand_?PossibleZeroQ,RightOperand_]:=0;
 PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ]:=0;
@@ -118,26 +173,21 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
 
+	(* list of xTensors which we want to be treated as atomic operands in each Poisson bracket, better to re-evaluate on each call in case new quantities were defined by the user *)
 	DifferentiableTensors=$Tensors~Complement~{
 	xAct`HiGGS`SmearingLeft,
-	xAct`HiGGS`DSmearingLeft,
-	xAct`HiGGS`DDSmearingLeft,
-	xAct`HiGGS`SmearingRight,
-	xAct`HiGGS`DSmearingRight,
-	xAct`HiGGS`DDSmearingRight};
+	xAct`HiGGS`SmearingRight};
 
 	LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@LeftOperand));
 	RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@RightOperand));
 
-	LeftList=Flatten@List@((Evaluate@D[(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)*LeftOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
-	RightList=Flatten@List@((Evaluate@D[(xAct`HiGGS`SmearingRight@@RightFreeIndices)*RightOperand,CanonicalVariables,NonConstants->DifferentiableTensors])/.{Plus->List});
 
 	SmearedUnevaluatedBracket={
-	Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
-	Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
+		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 
-	LeftExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@LeftList;
-	RightExpansion=({(First@(List@@(First@Cases[#,_?DQ,Infinity]))),({D}~Block~(D[x___]:=1;#))})&/@RightList;
+	LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
+	RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;
 
 	NotebookDelete@PrintVariable;
 
@@ -145,15 +195,13 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
-	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValue@ToShell];
+	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption];
 
 	If[OptionValue@Parallel,	
-(*
-		LeibnizArray=Outer[(ParallelSubmit@(Block[{PrintTemporary=Null&},SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell]]))&,LeftExpansion,RightExpansion,1];
-*)
-		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell]))&,LeftExpansion,RightExpansion,1];
+		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption]))&,LeftExpansion,RightExpansion,1];
 		Print@MatrixForm@LeibnizArray;
-		LeibnizArray=WaitAll[LeibnizArray];,
+		LeibnizArray=WaitAll[LeibnizArray];
+		Print@LeibnizArray;,
 		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
 	];
 
@@ -165,7 +213,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
 		EvaluatedBracket//=ToNewCanonical];
 
-	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValue@ToShell,xTensorCovD->True]&;
+	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption]&;
 
 	Print@" ** PoissonBracket: composed the total bracket:";
 

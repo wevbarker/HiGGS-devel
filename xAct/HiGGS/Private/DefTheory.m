@@ -28,7 +28,10 @@ UpdateTheoryAssociation[Name_?StringQ,AssocKey_,Val_,OptionsPattern[]]:=Module[{
 	(Evaluate@Symbol@Name)=TheoryAssociation;
 	NotebookDelete@PrintVariable;
 
+	DistributeDefinitions@Symbol@Name;
+
 	If[OptionValue@Advertise,PrintVariable=Print["** DefTheory: Defining association key ",ToString@AssocKey," for the theory association ",Name]];
+
 ];
 
 Options[DefTheory]={
