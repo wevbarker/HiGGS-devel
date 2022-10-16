@@ -20,7 +20,7 @@ PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Modul
 		ExpandedExpr+=ProjectionToExpand;
 		ExpandedExpr//=ToNewCanonical;
 
-		ProjectLorentzGaugeCovDRule=ProjectLorentzGaugeCovDRule~Join~MakeRule[{Evaluate@GradientToProject,Evaluate@ExpandedExpr},MetricOn->All,ContractMetrics->True];
+		ProjectParaLorentzGaugeCovDRule=ProjectParaLorentzGaugeCovDRule~Join~MakeRule[{Evaluate@GradientToProject,Evaluate@ExpandedExpr},MetricOn->All,ContractMetrics->True];
 
 		(* total projections to Lorentz gradients plus perpendicular Lorentz gradients *)
 
@@ -28,14 +28,15 @@ PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Modul
 		ExpandedExpr//=ProjectorToMetric;
 		ExpandedExpr//=ToNewCanonical;
 
-		ExpandLorentzGaugeCovDProjectionRule=ExpandLorentzGaugeCovDProjectionRule~Join~MakeRule[{Evaluate@ProjectionToExpand,Evaluate@ExpandedExpr},MetricOn->All,ContractMetrics->True];
+		ExpandParaLorentzGaugeCovDProjectionRule=ExpandParaLorentzGaugeCovDProjectionRule~Join~MakeRule[{Evaluate@ProjectionToExpand,Evaluate@ExpandedExpr},MetricOn->All,ContractMetrics->True];
 
 		(* gradients to projections of Lorentz gradients plus perpendicular gradients *)
 
-		CoordinateGradient=GradientToProject*xAct`HiGGS`G3[-xAct`HiGGS`w,xAct`HiGGS`u]*xAct`HiGGS`B[xAct`HiGGS`z,-xAct`HiGGS`u]//xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovD//ToNewCanonical;
+		CoordinateGradient=GradientToProject*xAct`HiGGS`G3[-xAct`HiGGS`w,xAct`HiGGS`u]*xAct`HiGGS`B[xAct`HiGGS`z,-xAct`HiGGS`u]//xAct`HiGGS`Private`ParaLorentzGaugeCovDToLorentzGaugeCovD//xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovD//ToNewCanonical;
 
 		ExpandedExpr=CoordinateGradient-xAct`HiGGS`G3[-xAct`HiGGS`w,xAct`HiGGS`u]*xAct`HiGGS`B[xAct`HiGGS`z,-xAct`HiGGS`u]*ProjectionToExpand;
-		ExpandedExpr=ExpandedExpr/.xAct`HiGGS`Private`ExpandLorentzGaugeCovDProjectionRule;
+		ExpandedExpr=ExpandedExpr/.xAct`HiGGS`Private`ExpandParaLorentzGaugeCovDProjectionRule;
+		ExpandedExpr//=xAct`HiGGS`Private`ParaLorentzGaugeCovDToLorentzGaugeCovD;
 		ExpandedExpr//=xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovD;
 		ExpandedExpr+=xAct`HiGGS`G3[-xAct`HiGGS`w,xAct`HiGGS`u]*xAct`HiGGS`B[xAct`HiGGS`z,-xAct`HiGGS`u]*ProjectionToExpand;
 		ExpandedExpr//=ToNewCanonical;	
@@ -51,9 +52,9 @@ PrecomputeDerivativeProjection[TensorHead_?xTensorQ]:=Catch@Module[{
 	SlotsOfTensorHead=SlotsOfTensor@TensorHead;
 
 	If[SlotsOfTensorHead===List@AnyIndices@xAct`HiGGS`TangentM4,
-		GradientToProject=(xAct`HiGGS`LorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;LengthSlots]]))))~Table~{LengthSlots,0,4};
+		GradientToProject=(xAct`HiGGS`ParaLorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;LengthSlots]]))))~Table~{LengthSlots,0,4};
 		PrecomputeDerivativeProjectionGradientToProject/@GradientToProject,
-		GradientToProject=xAct`HiGGS`LorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;Length@SlotsOfTensorHead]])));
+		GradientToProject=xAct`HiGGS`ParaLorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;Length@SlotsOfTensorHead]])));
 		PrecomputeDerivativeProjectionGradientToProject@GradientToProject];
 ];
 
