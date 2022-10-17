@@ -1,7 +1,9 @@
-(* this file defines the induced metric *)
+(*================================*)
+(*  Definition of induced metric  *)
+(*================================*)
 
 (* firstly define the parallel eta metric, recall that this has the same meaning as PPara, and so we may wish to merge the quantities at some point *)
-GPSymb="\!\(\*SuperscriptBox[OverscriptBox[\(\[Eta]\), \(^\)], \(\[DoubleVerticalBar]\)]\)";
+GPSymb="\!\(\*SuperscriptBox[\(\[Eta]\), \(\[DoubleVerticalBar]\)]\)";
 
 Quiet@DefMetric[1,GP[-a,-b],CDP,{"~","error"},InducedFrom->{G,V},PrintAs->GPSymb];
 
@@ -13,7 +15,6 @@ xAct`HiGGS`Private`GPToFoliG=MakeRule[{GP[-a,-b],G[-a,-b]-V[-a]V[-b]},MetricOn->
 
 xAct`HiGGS`Private`IfBuild["PrecomputeDerivativeProjections"];
 OpenLastCache[];
-
 
 (* another miscellaneous rule whose counterpart we need to form using induced structure *)
 

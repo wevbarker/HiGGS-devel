@@ -32,7 +32,7 @@ xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovDRule=Quiet@MakeRule[{LorentzGaugeC
 (*  Barred Roman index i, j, k, l 0,1,2,3, assumed to be based on Greek index alpha, beta, gamma 1,2,3  *)
 (*======================================================================================================*)
 
-xAct`HiGGS`Private`ParaLorentzGaugeCovDSymb=xAct`HiGGS`Private`SO3~StringJoin~"\[ScriptCapitalD]";
+xAct`HiGGS`Private`ParaLorentzGaugeCovDSymb=xAct`HiGGS`Private`SO3~StringJoin~"\!\(\*SuperscriptBox[\[ScriptCapitalD], \(\(\[DoubleVerticalBar]\)\)]\)";
 Catch@DefCovD[ParaLorentzGaugeCovD[-a],{"~",xAct`HiGGS`Private`ParaLorentzGaugeCovDSymb},FromMetric->G];
 
 (* laws for transforming between holonomic and anholonomic gauge covariant derivatives *)
@@ -41,7 +41,11 @@ xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovDRule=Quiet@MakeRule[{Lo
 
 xAct`HiGGS`Private`ParaLorentzGaugeCovDToLorentzGaugeCovDRule=Quiet@MakeRule[{ParaLorentzGaugeCovD[-a]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,LorentzGaugeCovD[-a]@AnyTensor-V[-a]V[b]LorentzGaugeCovD[-b]@AnyTensor},MetricOn->All,ContractMetrics->True];
 
-(* tensors and rules for shielding CD on gauge fields from GaugeCovD *)
+AutomaticRules[V,MakeRule[{V[a]ParaLorentzGaugeCovD[-a]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,0},MetricOn->All,ContractMetrics->True]];
+
+(*=====================================================================*)
+(*  tensors and rules for shielding CD on gauge fields from GaugeCovD  *)
+(*=====================================================================*)
 
 DefTensor[xAct`HiGGS`Private`CDB[-a, b, -c], M4];
 DefTensor[xAct`HiGGS`Private`CDA[-a, b, c, -d], M4, Antisymmetric[{b, c}]];

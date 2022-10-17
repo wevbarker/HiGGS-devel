@@ -105,11 +105,13 @@ LeibnizList[Expr_,DifferentiableTensors_?ListQ]:=Module[{
 		CD,
 		GaugeCovD,
 		LorentzGaugeCovD,
+		ParaLorentzGaugeCovD,
 		ProjectorGP},
 
 		CD[Index_][Operand_]:=CDInert[Index,ToString@Operand];
 		GaugeCovD[Index_][Operand_]:=GaugeCovDInert[Index,ToString@Operand];
 		LorentzGaugeCovD[Index_][Operand_]:=LorentzGaugeCovDInert[Index,ToString@Operand];
+		ParaLorentzGaugeCovD[Index_][Operand_]:=ParaLorentzGaugeCovDInert[Index,ToString@Operand];
 		ProjectorGP[Index_][Operand_]:=ProjectorGPInert[ToString@Operand];
 
 		Evaluate@ManipulatedExpr
@@ -132,11 +134,13 @@ LeibnizList[Expr_,DifferentiableTensors_?ListQ]:=Module[{
 		CDInert,
 		GaugeCovDInert,
 		LorentzGaugeCovDInert,
+		ParaLorentzGaugeCovDInert,
 		ProjectorGPInert},
 
 		CDInert[Index_,OperandString_]:=CD[Index][ToExpression@OperandString];
 		GaugeCovDInert[Index_,OperandString_]:=GaugeCovD[Index][ToExpression@OperandString];
 		LorentzGaugeCovDInert[Index_,OperandString_]:=LorentzGaugeCovD[Index][ToExpression@OperandString];
+		ParaLorentzGaugeCovDInert[Index_,OperandString_]:=ParaLorentzGaugeCovD[Index][ToExpression@OperandString];
 		ProjectorGPInert[OperandString_]:=ProjectorGP[ToExpression@OperandString];
 
 		Evaluate@ManipulatedExpr

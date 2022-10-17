@@ -1,4 +1,6 @@
-(* This file defines rules to exchange the gauge covariant derivative(s) *)
+(*=======================================*)
+(*  Conversion of covariant derivatives  *)
+(*=======================================*)
 
 (*selects tensor heads which refer to the spin-parity sectors*)
 NotGaugeFieldQ[Tensor_]:=!MatchQ[Head@Tensor,_?(StringMatchQ[SymbolName@#,
@@ -22,5 +24,15 @@ GaugeCovDToLorentzGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
 
 LorentzGaugeCovDToGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
 	ConvertedExpr=Expr/.xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovDRule;
+	ConvertedExpr//=ToNewCanonical;
+	ConvertedExpr];
+
+LorentzGaugeCovDToParaLorentzGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
+	ConvertedExpr=Expr/.xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovDRule;
+	ConvertedExpr//=ToNewCanonical;
+	ConvertedExpr];
+
+ParaLorentzGaugeCovDToLorentzGaugeCovD[Expr_]:=Catch@Module[{ConvertedExpr},
+	ConvertedExpr=Expr/.xAct`HiGGS`Private`ParaLorentzGaugeCovDToLorentzGaugeCovDRule;
 	ConvertedExpr//=ToNewCanonical;
 	ConvertedExpr];

@@ -105,7 +105,12 @@ CDToLorentzGaugeCovD[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
 		Expr=Expr/.xAct`HiGGS`Private`ProjectGaugeCovDRule;
 
 		Expr=Expr/.xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand;
-		Expr//=ToNewCanonical,
+		Expr//=ToNewCanonical;
+
+		(*this line to catch some stragglers*)
+		Expr//=xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovD;
+		Expr//=ToNewCanonical;
+		,
 
 		Expr=Expr/.xAct`HiGGS`DGrandActivate;
 		Expr=Expr/.xAct`HiGGS`DpGrandActivate;
@@ -202,5 +207,6 @@ ToNesterForm[x_,OptionsPattern[]]:=Module[{
 	Expr=Expr/.xAct`HiGGS`JiToJ;
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`HExpand;Expr//=ToNewCanonical;Expr//=GaugeCovDToLorentzGaugeCovD);
 	Expr//=ToNewCanonical;
+	(!CautiousNesterFormQ@Expr)~If~(Expr//=LorentzGaugeCovDToParaLorentzGaugeCovD;Expr//=ToNewCanonical;);
 	NotebookDelete[PrintVariable];
 Expr];

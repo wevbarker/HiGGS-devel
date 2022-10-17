@@ -53,9 +53,11 @@ PrecomputeDerivativeProjection[TensorHead_?xTensorQ]:=Catch@Module[{
 
 	If[SlotsOfTensorHead===List@AnyIndices@xAct`HiGGS`TangentM4,
 		GradientToProject=(xAct`HiGGS`ParaLorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;LengthSlots]]))))~Table~{LengthSlots,0,4};
-		PrecomputeDerivativeProjectionGradientToProject/@GradientToProject,
+		PrecomputeDerivativeProjectionGradientToProject/@GradientToProject;
+		(*AutomaticRules[Evaluate@TensorHead,MakeRule[{Evaluate[xAct`HiGGS`V[xAct`HiGGS`z]#],0},MetricOn->All,ContractMetrics->True]]&/@GradientToProject*),
 		GradientToProject=xAct`HiGGS`ParaLorentzGaugeCovD[-xAct`HiGGS`z]@(TensorHead@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;Length@SlotsOfTensorHead]])));
-		PrecomputeDerivativeProjectionGradientToProject@GradientToProject];
+		PrecomputeDerivativeProjectionGradientToProject@GradientToProject;
+		(*AutomaticRules[Evaluate@TensorHead,MakeRule[{Evaluate[xAct`HiGGS`V[xAct`HiGGS`z]GradientToProject],0},MetricOn->All,ContractMetrics->True]]*)];
 ];
 
 (*selects tensor heads which refer to the spin-parity sectors*)

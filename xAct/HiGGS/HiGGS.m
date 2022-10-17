@@ -314,7 +314,7 @@ BuildHiGGSPrivate[];
 
 (* if you want to recompile the HiGGS sources, pass "xAct`HiGGS`Private`Recompile->True" to the command below *)
 Begin["xAct`HiGGS`"];
-	xAct`HiGGS`Private`BuildHiGGS[];
+	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->False];
 End[];
  
 End[];

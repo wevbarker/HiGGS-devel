@@ -11,5 +11,6 @@ else
 	rsync -avh --exclude '*.mx' ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 fi
 
+tree xAct > ./.direcory_tree
 
 exit 0
