@@ -1,11 +1,11 @@
 (* provides the PoissonBracket function *)
 
 Options[PoissonBracketNewList]={
-	xTensorCovD->False,
-	ToShell->True,
+	xTensorCovD->True,
+	ToShell->False,
 	TheoryNameOption->"",
 	Hard->False,
-	Surficial->False,
+	Surficial->True,
 	GToFoliGOption->True,
 	PreTruncate->False,
 	NesterForm->True,
@@ -221,6 +221,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 
 			Print@(ToNewCanonical/@Expr);
 
+(*
 			If[OptionValue[NesterForm],
 			Expr=ToNesterForm[#,
 				ToShell->OptionValue[ToShell],
@@ -228,6 +229,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 				Hard->OptionValue[Hard],
 				GToFoliGOption->OptionValue[GToFoliGOption]]&/@Expr;
 			];
+*)
 		}];
 
 	NotebookDelete[PrintVariable];
