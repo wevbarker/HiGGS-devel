@@ -191,7 +191,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 			BarPartialLeftOpBPi BarVariationalRightOpB-
 			2BarPartialLeftOpAPi BarVariationalRightOpA+
 			ReplaceIndex[Evaluate[PartialLeftOpDBz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpBPi,IndexList[-Zr],Zu]+
-			2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zt]ManualCovariantDerivative[-Zt,BarVariationalRightOpAPi,IndexList[-Zs],Zu]-
+			2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpAPi,IndexList[-Zs],Zu]-
 			ReplaceIndex[Evaluate[PartialLeftOpDBPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpB,IndexList[Zr],Zu]-
 			2ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpA,IndexList[Zs],Zu];
 
@@ -216,12 +216,12 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 			Expr={D0Term,D1Term,D2Term};
 			Expr=Expr/.InertDerRev;
 			Expr=Expr/.Derivative3;
+			Expr=Expr/.GuageField3;
 
 			NotebookDelete[PrintVariable2];
 
 			Print@(ToNewCanonical/@Expr);
 
-(*
 			If[OptionValue[NesterForm],
 			Expr=ToNesterForm[#,
 				ToShell->OptionValue[ToShell],
@@ -229,7 +229,6 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 				Hard->OptionValue[Hard],
 				GToFoliGOption->OptionValue[GToFoliGOption]]&/@Expr;
 			];
-*)
 		}];
 
 	NotebookDelete[PrintVariable];

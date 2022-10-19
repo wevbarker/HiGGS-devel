@@ -20,5 +20,14 @@ xAct`HiGGS`Private`Derivative3B=MakeRule[{CD[-a][B[b,-c]],G3[-a,d]CD[-d][B[b,-c]
 xAct`HiGGS`Private`Derivative3A=MakeRule[{CD[-a][A[b,e,-c]],G3[-a,d]CD[-d][A[b,e,-c]]},MetricOn->All,ContractMetrics->True];
 xAct`HiGGS`Private`Derivative3=Join[xAct`HiGGS`Private`Derivative3B,xAct`HiGGS`Private`Derivative3A];
 
+xAct`HiGGS`Private`B3=MakeRule[{CD[-z][B[a,-b]],G3[-b,c]CD[-z][B[a,-c]]},MetricOn->All,ContractMetrics->True];
+(*
+xAct`HiGGS`Private`H3=MakeRule[{H[-a,b],G3[b,-c]B[-a,c]},MetricOn->All,ContractMetrics->True];
+xAct`HiGGS`Private`A3=MakeRule[{A[i,j,-b],G3[-b,c]A[i,j,-c]},MetricOn->All,ContractMetrics->True];
+xAct`HiGGS`Private`GuageField3=Join[xAct`HiGGS`Private`B3,xAct`HiGGS`Private`H3,xAct`HiGGS`Private`A3];
+*)
+xAct`HiGGS`Private`GuageField3=xAct`HiGGS`Private`B3;
+
+
 TangentM4~AddIndices~((Symbol@("xAct`HiGGS`Private`Z"<>#))&/@(ToString/@Alphabet[]));
 TangentM4~AddIndices~((Symbol@("xAct`HiGGS`Private`Z"<>#<>"1"))&/@(ToString/@Alphabet[]));

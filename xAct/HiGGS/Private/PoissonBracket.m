@@ -161,6 +161,7 @@ PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ]:=0;
 
 (* main function for nonlinear Poisson bracket *)
 PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern[]]:=Catch@Module[{
+	OptionValueToShell,
 	PrintVariable,
 	LeftExpansion,
 	LeftList,
@@ -174,6 +175,9 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	SmearedUnevaluatedBracket,
 	EvaluatedBracket,
 	OptionSmearedPoissonBracket},
+	
+	OptionValueToShell=StringQ@OptionValue@ToShell;
+	OptionValueTheoryNameOption=ToString@OptionValue@ToShell;
 
 	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
 
@@ -199,11 +203,11 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
-	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption];
+	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption];
 
 	If[OptionValue@Parallel,	
-		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption]))&,LeftExpansion,RightExpansion,1];
-		Print@MatrixForm@LeibnizArray;
+		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
+		Print@LeibnizArray;
 		LeibnizArray=WaitAll[LeibnizArray];
 		Print@LeibnizArray;,
 		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
@@ -217,7 +221,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
 		EvaluatedBracket//=ToNewCanonical];
 
-	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValue@ToShell,TheoryNameOption->OptionValue@TheoryNameOption]&;
+	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]&;
 
 	Print@" ** PoissonBracket: composed the total bracket:";
 
@@ -225,7 +229,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		EvaluatedBracket=0,
 		EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];	
 
-	If[OptionValue@ToShell,
+	If[OptionValueToShell,
 		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
 		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
 	];

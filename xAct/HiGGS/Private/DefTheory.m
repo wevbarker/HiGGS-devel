@@ -35,17 +35,17 @@ UpdateTheoryAssociation[Name_?StringQ,AssocKey_,Val_,OptionsPattern[]]:=Module[{
 ];
 
 Options[DefTheory]={
-	ExportOption->False,
-	ImportOption->False};
+	ExportTheory->False,
+	ImportTheory->False};
 
 DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{},
 	(*Firstly we remove all definitions which might be associated with a theory already*)
 	UndefTheory[];
-	If[OptionValue@ImportOption,
+	If[OptionValue@ImportTheory,
 
-		HiGGSPrint[" ** DefTheory: Incorporating the binary at "<>FileNameJoin@{"svy",TheoryName<>".thr.mx"}];
+		Print[" ** DefTheory: Incorporating the binary at "<>TheoryName<>".thr.mx"];
 
-		Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy",TheoryName<>".thr.mx"}<>";"],Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,"svy",TheoryName<>".thr.mx"}];Quit[];];,
+		Check[ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,TheoryName<>".thr.mx"}<>";"],Throw@Message[DefTheory::nobin,FileNameJoin@{$WorkingDirectory,TheoryName<>".thr.mx"}];Quit[];];,
 
 		(*check if a real theory was provided*)
 		If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
@@ -71,7 +71,8 @@ DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Catch@Modul
 		DefAngularSuperMomentum[TheoryName];
 	];
 
-	If[OptionValue@ExportOption,
-		HiGGSPrint[" ** DefTheory: Exporting the binary at "<>FileNameJoin@{"svy",TheoryName<>".thr.mx"}];
+	If[OptionValue@ExportTheory,
+		Print[" ** DefTheory: Exporting the binary at "<>TheoryName<>".thr.mx"];
+		DumpSave[FileNameJoin@{$WorkingDirectory,TheoryName<>".thr.mx"},{TheoryName}];
 	];
 ];

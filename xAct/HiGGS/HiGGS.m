@@ -216,26 +216,16 @@ Print[xAct`xCore`Private`bars]];
 (*==========================================================*)
 
 
-ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. In some sense, this \"simplifies\" the output of ToBasicForm.";
+ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. All Greek (coordinate) indices are replaced by Roman (Lorentzian) indices, there are no time derivatives, all quantities are canonical and there is no reference to the unphysical (time) part of the gauge fields or their conjugate momenta. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 Hard::usage="Hard is an option for several functions.";
 xTensorCovD::usage="xTensorCovD is a boolean option for ToNesterForm, ToBasicForm and NonlinearPoissonBracket, which determines whether the new structure of xTensor CovD derivatives and induced metrics should be used. Default is False.";
 ToBasicForm::usage="ToBasicForm[Expr] expresses Expr in terms of basic gauge fields. In some sense, this \"expands\" the output of ToNesterForm.";
 PoissonBracket::usage="PoissonBracket[LeftOperand,RightOperand] calculates a Poisson bracket between the operands.";
 Parallel::usage="Parallel is an option for several functions, which determines whether the calculation should be parallelised. Parallel will eventually replace the string option \"Parallel\".";
-NonlinearPoissonBracket::usage="NonlinearPoissonBracket[LeftOperand,RightOperand,Options] evaluates the nonlinear Poisson bracket {LeftOperand,RightOperand}, where both arguments must be in Nester form, as tested by NesterFormQ. Options are Parallel->False, ToShell->True and xTensorCovD->False.";
 DefTheory::usage="DefTheory[System] defines a theory using System, a system of equations to constrain the coupling coefficients.";
-ExportOption::usage="ExportOption is an option for DefTheory.";
-ImportOption::usage="ExportOption is an option for DefTheory.";
-
-(*
-$Theory::usage="$Theory is an association key for theories produced by DefTheory. UserDefinedTheory[$Theory] returns the set of equalities which determine the Lagrangian coupling values.";
-$ToTheory::usage="$ToTheory is an association key for theories produced by DefTheory. UserDefinedTheory[$ToTheory] returns the set of replacement rules which determine the Lagrangian coupling values.";
-$ToShellFreedoms::usage="$ToShellFreedoms is a (private) association key for theories produced by DefTheory.";
-$TheoryCDPiPToCDPiPO3::usage="$TheoryCDPiPToCDPiPO3 is an association key for theories produced by DefTheory.";
-$TheoryPiPToPiPO3::usage="$TheoryPiPToPiPO3 is an association key for theories produced by DefTheory.";
-$IfConstraintToTheoryNesterForm::usage="$IfConstraintToTheoryNesterForm is an association key for theories produced by DefTheory.";
-*)
+ExportTheory::usage="ExportTheory is a boolean option for DefTheory and StudyTheory, which determines whether the association for the theory should be exported as a thr.mx file. Default is False.";
+ImportTheory::usage="ImportTheory is a boolean option for DefTheory and StudyTheory, which determines whether the association for the theory should be imported as a thr.mx file. Default is False.";
 
 $IfConstraints::usage="$IfConstraints is an association key for theories produced by DefTheory.";
 $SuperHamiltonian::usage="$SuperHamiltonian is an association key for theories produced by DefTheory.";

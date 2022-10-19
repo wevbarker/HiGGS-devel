@@ -41,7 +41,7 @@ xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovDRule=Quiet@MakeRule[{Lo
 
 xAct`HiGGS`Private`ParaLorentzGaugeCovDToLorentzGaugeCovDRule=Quiet@MakeRule[{ParaLorentzGaugeCovD[-a]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,LorentzGaugeCovD[-a]@AnyTensor-V[-a]V[b]LorentzGaugeCovD[-b]@AnyTensor},MetricOn->All,ContractMetrics->True];
 
-AutomaticRules[V,MakeRule[{V[a]ParaLorentzGaugeCovD[-a]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,0},MetricOn->All,ContractMetrics->True]];
+AutomaticRules[V,Quiet@MakeRule[{V[a]ParaLorentzGaugeCovD[-a]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,0},MetricOn->All,ContractMetrics->True]];
 
 (*=====================================================================*)
 (*  tensors and rules for shielding CD on gauge fields from GaugeCovD  *)
