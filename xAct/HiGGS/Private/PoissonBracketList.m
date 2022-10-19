@@ -220,7 +220,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 
 			NotebookDelete[PrintVariable2];
 
-			Print@(ToNewCanonical/@Expr);
+			(*Print@(ToNewCanonical/@Expr);*)
 
 			If[OptionValue[NesterForm],
 			Expr=ToNesterForm[#,

@@ -146,7 +146,7 @@ LeibnizList[Expr_,DifferentiableTensors_?ListQ]:=Module[{
 		Evaluate@ManipulatedExpr
 	];
 
-	Print@ManipulatedExpr;
+	(*Print@ManipulatedExpr;*)
 
 	ManipulatedExpr];
 
@@ -209,7 +209,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
 		Print@LeibnizArray;
 		LeibnizArray=WaitAll[LeibnizArray];
-		Print@LeibnizArray;,
+		(*Print@LeibnizArray;*),
 		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
 	];
 
