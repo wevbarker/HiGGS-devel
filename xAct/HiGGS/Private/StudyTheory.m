@@ -1,107 +1,154 @@
-Options[StudyTheory]={
-	"Export"->False,
-	"Import"->False,
-	"DefTheory"->True,
-	"Brackets"->True,
-	"Velocities"->True};
+(*================*)
+(*  Study theory  *)
+(*================*)
 
-StudyTheory[InputBatch___:Null,OptionsPattern[]]:=Module[{
-	LaunchSome,
-	DefinedTheories,
-	IndIfConstraints2,
-	Jobs,
-	PreparePPM,
-	PPMs,
-	SavePPM,
-	PrepareVelocities,
-	Velocities,
-	SaveVelocity},
+PreparePPM[TheoryName_String]:=Module[{
+	PPMArguments,
+	IfConstraints,
+	NewIndexIfConstraints,
+	EvaluatedIfConstraints,
+	EvaluatedNewIndexIfConstraints,
+	Theory},
+
+	Theory=Evaluate@Symbol@TheoryName;
+
+	IfConstraints=Theory@$IfConstraints;
+	EvaluatedIfConstraints=Theory@$EvaluatedIfConstraints;
+
+	NewIndexIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`l,-xAct`HiGGS`m,-xAct`HiGGS`n}~Take~Length@FindFreeIndices@#))&/@IfConstraints;
+	EvaluatedNewIndexIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`l,-xAct`HiGGS`m,-xAct`HiGGS`n}~Take~Length@FindFreeIndices@#))&/@EvaluatedIfConstraints;
+
+	PPMArguments=Table[{
+				TheoryName,
+				IfConstraints[[ii]],
+				NewIndexIfConstraints[[jj]],
+				EvaluatedIfConstraints[[ii]],
+				EvaluatedNewIndexIfConstraints[[jj]]},
+		{ii,2(*Length@IfConstraints*)},
+		{jj,ii,2(*Length@IfConstraints*)}];
+PPMArguments];
+
+PrepareVelocities[TheoryName_String]:=Module[{
+	PPMArguments,
+	IfConstraints,
+	EvaluatedIfConstraints,
+	Theory},
+
+	Theory=Evaluate@Symbol@TheoryName;
+
+	IfConstraints=Theory@$IfConstraints;
+	EvaluatedIfConstraints=Theory@$EvaluatedIfConstraints;
+
+	VelocityArguments=Table[{
+				TheoryName,
+				IfConstraints[[ii]],
+				EvaluatedIfConstraints[[ii]]},
+		{ii,2(*Length@IfConstraints*)}];
+VelocityArguments];
+
+
 
 (*sometimes the launching of kernels simply hangs on the node: this repeats the process if it lasts more than n seconds*)
-xAct`HiGGS`$TryKernels=True;
-If[ValueQ@xAct`HiGGS`$Cores,
-While[xAct`HiGGS`$TryKernels,
-HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
-CloseKernels[];
-(*launch should be 32*)
-TimeConstrained[Check[LaunchKernels[xAct`HiGGS`$Cores],xAct`HiGGS`$TryKernels=False;];
-xAct`HiGGS`$TryKernels=False;,
-10,
-CloseKernels[];
-HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
-];
-];,
-While[xAct`HiGGS`$TryKernels,
-HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
-CloseKernels[];
-(*launch should be 32*)
-TimeConstrained[Check[LaunchKernels[],xAct`HiGGS`$TryKernels=False;];
-xAct`HiGGS`$TryKernels=False;,
-10,
-CloseKernels[];
-HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
-];
-];];
 
-If[OptionValue@"DefTheory",
-If[!OptionValue@"Import",
-If[OptionValue@"Velocities",
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->True]&@@@InputBatch;,
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;,
-Jobs=ParallelSubmit@DefTheoryParallel[#2,"Export"->#1,"Velocities"->False]&@@@InputBatch;
-];
-HiGGSPrint[Jobs];
-DefinedTheories=WaitAll[Jobs];
-];
-(*problems were encountered using DistributeDefinitions on the list of theory name strings for use in timing, so we use a binary*)
-Print@InputBatch;
-xAct`HiGGS`$TheoryNames=(#[[1]])&/@InputBatch;
-(FileNameJoin@{$WorkingDirectory,"svy","node-"<>xAct`HiGGS`$Node,"peta4.nom.mx"})~DumpSave~{xAct`HiGGS`$TheoryNames};
+
+InsistLaunchKernels[]:=Module[{$TryKernels},	
+	CloseKernels[];
+	LaunchKernels[];
+(*
+	$TryKernels=True;
+	If[ValueQ@xAct`HiGGS`$Cores,
+		While[$TryKernels,
+			Print[" ** StudyTheory: Attempting to launch kernels"];
+			CloseKernels[];
+			(*launch should be 32*)
+			TimeConstrained[
+				Check[LaunchKernels[xAct`HiGGS`$Cores],$TryKernels=False;];$TryKernels=False;,
+				10,
+				CloseKernels[];HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
+			];
+		];,
+		While[$TryKernels,
+			HiGGSPrint[" ** StudyTheory: Attempting to launch kernels"];
+			CloseKernels[];
+			(*launch should be 32*)
+			TimeConstrained[
+				Check[LaunchKernels[],$TryKernels=False;];$TryKernels=False;,
+				10,
+				CloseKernels[];HiGGSPrint[" ** StudyTheory: Failed to launch kernels, retrying"];
+			];
+		];
+	];
+*)
 ];
 
 
-If[OptionValue@"Brackets",
-PreparePPM[theory_String,conds_List]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-IndIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`l,-xAct`HiGGS`m,-xAct`HiGGS`n}~Take~Length@FindFreeIndices@#))&/@xAct`HiGGS`$IfConstraints;
-(*Evaluate lots of Poisson brackets*)
-PPMArguments=Table[{theory,xAct`HiGGS`$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@xAct`HiGGS`$IfConstraints},{jj,ii,Length@xAct`HiGGS`$IfConstraints}];
-PPMArguments];
-Jobs=(#1~PreparePPM~#2)&@@@InputBatch;
-Print@Jobs;
-Jobs=Map[(ParallelSubmit@PoissonBracketParallel[#[[2]],#[[3]],#[[1]],"Surficial"->True])&,Jobs,{3}];
-Print@Jobs;
-PPMs=WaitAll[Jobs];
-PPMs=Riffle[xAct`HiGGS`$TheoryNames,PPMs]~Partition~2;
-SavePPM[theory_String,PPM_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-xAct`HiGGS`$PPM=PPM;
-HiGGSPrint["$PPM value is ",xAct`HiGGS`$PPM];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
-(FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{xAct`HiGGS`$TheoryName,xAct`HiGGS`$Theory,xAct`HiGGS`$ToTheory,xAct`HiGGS`$ToShellFreedoms,xAct`HiGGS`$StrengthPShellToStrengthPO3,xAct`HiGGS`$PiPShellToPiPPO3,xAct`HiGGS`$TheoryCDPiPToCDPiPO3,xAct`HiGGS`$TheoryPiPToPiPO3,xAct`HiGGS`$IfConstraintToTheoryNesterForm,xAct`HiGGS`$IfConstraints,xAct`HiGGS`$InertVelocity,xAct`HiGGS`$ToOrderRules,xAct`HiGGS`$PPM};
-];
-HiGGSPrint[PPMs];
-SavePPM[#1,#2]&@@@PPMs;
-];
+
+Options[StudyTheory]={
+	Brackets->False,
+	Velocities->False};
+
+(*
+StudyTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=StudyTheory[{{TheoryName,InputSystem}},OptionsPattern[]];
+*)
+
+StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
+	InputBatch=ListOfTheories,
+	TheoryNames,
+	Jobs,
+	EvaluatedJobs,
+	PPMArray,
+	tmp,
+	EvaluatedPPMArray},
 
 
-If[OptionValue@"Velocities",
-PrepareVelocities[theory_String,conds_List]:=Module[{res,IndIfConstraints},
-DefTheory["Import"->theory];
-IndIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`q1,-xAct`HiGGS`p1,-xAct`HiGGS`v1}~Take~Length@FindFreeIndices@#))&/@xAct`HiGGS`$IfConstraints;
+	(*check if a real theory batch was provided*)
+	(If[!TheoryQ[#[[2]]],Throw@Message[DefTheory::nottheory,#[[2]]]])&/@InputBatch;
+	(If[!StringQ[#[[1]]],Throw@Message[DefTheory::nottheoryname,#[[1]]]])&/@InputBatch;
 
-{theory,IndIfConstraints}];
-Jobs=(#1~PrepareVelocities~#2)&@@@InputBatch;
-Velocities=VelocityParallel@Jobs;
-Velocities=Riffle[xAct`HiGGS`$TheoryNames,Velocities]~Partition~2;
-SaveVelocity[theory_String,Velocity_]:=Module[{res,PPMArguments,IndIfConstraints},
-DefTheory["Import"->theory];
-xAct`HiGGS`$Velocities=Velocity;
-HiGGSPrint["$Velocities value is ",xAct`HiGGS`$Velocities];
-HiGGSPrint[" ** StudyTheory: Exporting the binary at "<>FileNameJoin@{"svy",theory<>".thr.mx"}];
-(FileNameJoin@{$WorkingDirectory,"svy",theory<>".thr.mx"})~DumpSave~{xAct`HiGGS`$TheoryName,xAct`HiGGS`$Theory,xAct`HiGGS`$ToTheory,xAct`HiGGS`$ToShellFreedoms,xAct`HiGGS`$StrengthPShellToStrengthPO3,xAct`HiGGS`$PiPShellToPiPPO3,xAct`HiGGS`$TheoryCDPiPToCDPiPO3,xAct`HiGGS`$TheoryPiPToPiPO3,xAct`HiGGS`$IfConstraintToTheoryNesterForm,xAct`HiGGS`$IfConstraints,xAct`HiGGS`$InertVelocity,xAct`HiGGS`$ToOrderRules,xAct`HiGGS`$PPM,xAct`HiGGS`$Velocities};
-];
-HiGGSPrint[Velocities];
-SaveVelocity[#1,#2]&@@@Velocities;
-];
+	TheoryNames=(#[[1]])&/@InputBatch;
+	(*
+	InsistLaunchKernels[];
+	*)
+
+	(*-----------------*)
+	(*  Define theory  *)
+	(*-----------------*)
+
+	Jobs=HiGGSParallelSubmit@DefTheory[#1,#2,ImportTheory->True,ExportTheory->True]&@@@InputBatch;
+	Print@Jobs;
+	WaitAll[Jobs];
+
+	(*--------------------------------------------------------------*)
+	(*  Load saved theory files into master kernel, and distribute  *)
+	(*--------------------------------------------------------------*)
+
+	(DefTheory[#[[1]],ImportTheory->True])&/@InputBatch;
+	(Quiet@ToExpression@("DistributeDefinitions@"<>#))&/@TheoryNames;
+
+
+	(*----------------------------------------*)
+	(*  Calculate the primary Poisson matrix  *)
+	(*----------------------------------------*)
+
+	If[OptionValue@Brackets,
+		PPMArray=PreparePPM/@TheoryNames;
+		Print@PPMArray;
+		Jobs=Apply[HiGGSParallelSubmit@PoissonBracket[#4,#5,ToShell->#1]&,PPMArray,{3}];
+		Print@Jobs;
+		EvaluatedJobs=WaitAll[Jobs];
+		UpdateTheoryAssociation[#1,$PPM,#2,Advertise->True,ExportTheory->True]&~MapThread~{TheoryNames,EvaluatedJobs};
+	];
+
+	(*--------------------------------------------------------------------------------------*)
+	(*  Calculate the commutators of the primary if-constraints with the super-Hamiltonian  *)
+	(*--------------------------------------------------------------------------------------*)
+
+	If[OptionValue@Velocities,
+		VelocitiesArray=PrepareVelocities/@TheoryNames;
+		Print@VelocitiesArray;
+		EvaluatedJobs=Apply[PoissonBracket[#3,ToExpression@(#1<>"@$SuperHamiltonian"),ToShell->#1,Parallel->True]&,VelocitiesArray,{2}];
+		Print@EvaluatedJobs;
+		UpdateTheoryAssociation[#1,$Velocities,#2,Advertise->True,ExportTheory->True]&~MapThread~{TheoryNames,EvaluatedJobs};
+	];
+
 ];

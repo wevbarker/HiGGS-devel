@@ -107,6 +107,9 @@ CDToLorentzGaugeCovD[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
 		Expr=Expr/.xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand;
 		Expr//=ToNewCanonical;
 
+		Expr=Expr/.xAct`HiGGS`Private`ProjectedParaLorentzGaugeCovDVExpand;
+		Expr//=ToNewCanonical;
+
 		(*this line to catch some stragglers*)
 		Expr//=xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovD;
 		Expr//=ToNewCanonical;

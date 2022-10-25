@@ -19,3 +19,5 @@ OpenLastCache[];
 (* another miscellaneous rule whose counterpart we need to form using induced structure *)
 
 xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand=MakeRule[{Evaluate@(ProjectorGP@(LorentzGaugeCovD[-m]@V[-j])),Evaluate[Symmetrize[ProjectorGP@(LorentzGaugeCovD[-m]@V[-j]),{-m,-j}]-(1/2)V[-i]TP[i,-m,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
+
+xAct`HiGGS`Private`ProjectedParaLorentzGaugeCovDVExpand=MakeRule[{Evaluate@(ProjectorGP@(ParaLorentzGaugeCovD[-m]@V[-j])),Evaluate[Symmetrize[ProjectorGP@(ParaLorentzGaugeCovD[-m]@V[-j]),{-m,-j}]-(1/2)V[-i]TP[i,-m,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];

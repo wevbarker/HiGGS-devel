@@ -7,10 +7,9 @@
 (*=======================*)
 
 (*
-- the ToNesterForm function is still not buried in Private`, and this could be quite hard...
-- ToShell and TheoryName are co-redundant, better to pass ToShell as a string or leave it as False
 - general indices for PoissonBracket please.
 - check the validity of the overall bracket
+- clear up ambiguity over what G actually means, and how it prints
 
 - symbol of the 3-metric
 - dollar indices in the intermediate expressions
@@ -216,6 +215,7 @@ Print[xAct`xCore`Private`bars]];
 (*==========================================================*)
 
 
+NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expression in Nester form, and False otherwise.";
 ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. All Greek (coordinate) indices are replaced by Roman (Lorentzian) indices, there are no time derivatives, all quantities are canonical and there is no reference to the unphysical (time) part of the gauge fields or their conjugate momenta. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 Hard::usage="Hard is an option for several functions.";
@@ -228,15 +228,18 @@ ExportTheory::usage="ExportTheory is a boolean option for DefTheory and StudyThe
 ImportTheory::usage="ImportTheory is a boolean option for DefTheory and StudyTheory, which determines whether the association for the theory should be imported as a thr.mx file. Default is False.";
 
 $IfConstraints::usage="$IfConstraints is an association key for theories produced by DefTheory.";
+$EvaluatedIfConstraints::usage="$EvaluatedIfConstraints is an association key for theories produced by DefTheory.";
 $SuperHamiltonian::usage="$SuperHamiltonian is an association key for theories produced by DefTheory.";
 $LinearSuperMomentum::usage="$LinearSuperMomentum is an association key for theories produced by DefTheory.";
 $AngularSuperMomentum1p::usage="$AngularSuperMomentum is an association key for theories produced by DefTheory.";
 $AngularSuperMomentum1m::usage="$AngularSuperMomentum is an association key for theories produced by DefTheory.";
+$PPM::usage="$PPM is an association key for theories produced by DefTheory.";
+$Velocities::usage="$Velocities is an association key for theories produced by DefTheory.";
 
 UndefTheory::usage="UndefTheory[TheoryName] undefines a named theory.";
 StudyTheory::usage="StudyTheory[TheoryName] calculates the primary Poisson matrix and velocities of a named theory.";
-Velocity::usage="DEPRECIATED in v 2.0.0";
-NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expression in Nester form, and False otherwise.";
+Brackets::usage="Brackets is an option for StudyTheory, which determines whether the primary Poisson matrices should be computed. Default is False.";
+Velocities::usage="Velocities is an option for StudyTheory, which determines whether the velocities of the primary if-constraints should be computed. Default is False.";
 
 (*===================================================================*)
 (*  Declarations for convenience wrappers which we use beyond HiGGS  *)
@@ -290,13 +293,14 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"DefSuperHamiltonian.m",
 	"DefLinearSuperMomentum.m",
 	"DefAngularSuperMomentum.m",
+	"DefIfConstraints.m",
 	"DefTheory.m",
 	"HiGGSParallelSubmit.m",
+	"StudyTheory.m",
 	"Utils.m"};
 
 (*
 	"ViewTheory.m",
-	"StudyTheory.m",
 
 	*)
 

@@ -10,12 +10,13 @@ TheoryQ[x_]:=Module[{Bool},
 Bool];
 
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
+DefTheory::nottheoryname="Argument `1` is not a string from which a symbol can be defined to store the theory association.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
 
 
 UndefTheory[TheoryName_?StringQ]:=Clear@TheoryName;
 
-Options@UpdateTheoryAssociation={Advertise->False};
+Options@UpdateTheoryAssociation={Advertise->False,ExportTheory->False};
 
 UpdateTheoryAssociation[Name_?StringQ,AssocKey_,Val_,OptionsPattern[]]:=Module[{TheoryAssociation,PrintVariable},
 
@@ -30,7 +31,14 @@ UpdateTheoryAssociation[Name_?StringQ,AssocKey_,Val_,OptionsPattern[]]:=Module[{
 
 	DistributeDefinitions@Symbol@Name;
 
-	If[OptionValue@Advertise,PrintVariable=Print["** DefTheory: Defining association key ",ToString@AssocKey," for the theory association ",Name]];
+	If[OptionValue@Advertise,
+		Print["** DefTheory: Defining association key ",ToString@AssocKey," for the theory association ",Name];
+	];
+
+	If[OptionValue@ExportTheory,
+		Print[" ** DefTheory: Exporting the binary at "<>Name<>".thr.mx"];
+		DumpSave[FileNameJoin@{$WorkingDirectory,Name<>".thr.mx"},{Name}];
+	];
 
 ];
 
@@ -38,7 +46,7 @@ Options[DefTheory]={
 	ExportTheory->False,
 	ImportTheory->False};
 
-DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Catch@Module[{},
+DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Module[{},
 	(*Firstly we remove all definitions which might be associated with a theory already*)
 	UndefTheory[];
 	If[OptionValue@ImportTheory,
@@ -69,6 +77,7 @@ DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Catch@Modul
 		DefSuperHamiltonian[TheoryName];	
 		DefLinearSuperMomentum[TheoryName];
 		DefAngularSuperMomentum[TheoryName];
+		DefIfConstraints[TheoryName];
 	];
 
 	If[OptionValue@ExportTheory,

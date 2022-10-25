@@ -26,7 +26,7 @@ xAct`HiGGS`Private`H3=MakeRule[{H[-a,b],G3[b,-c]B[-a,c]},MetricOn->All,ContractM
 xAct`HiGGS`Private`A3=MakeRule[{A[i,j,-b],G3[-b,c]A[i,j,-c]},MetricOn->All,ContractMetrics->True];
 xAct`HiGGS`Private`GuageField3=Join[xAct`HiGGS`Private`B3,xAct`HiGGS`Private`H3,xAct`HiGGS`Private`A3];
 *)
-xAct`HiGGS`Private`GuageField3=xAct`HiGGS`Private`B3;
+xAct`HiGGS`Private`GaugeField3=xAct`HiGGS`Private`B3;
 
 
 TangentM4~AddIndices~((Symbol@("xAct`HiGGS`Private`Z"<>#))&/@(ToString/@Alphabet[]));

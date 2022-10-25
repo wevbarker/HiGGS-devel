@@ -12,7 +12,7 @@ Options[PoissonBracketNewList]={
 	PrintAnswer->True,
 	Parallel->False};
 
-PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module[{
+PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	Expr,
 	LeftOp,
 	RightOp,
@@ -98,7 +98,9 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 	LeftOpDummy=ReplaceDummies[LeftOp];
 	RightOpDummy=ReplaceDummies[RightOp];
 	LeftOpDummy=LeftOpDummy/.Derivative3;
+	LeftOpDummy=LeftOpDummy/.GaugeField3;
 	RightOpDummy=RightOpDummy/.Derivative3;
+	RightOpDummy=RightOpDummy/.GaugeField3;
 	LeftOpDummyInert=LeftOpDummy/.InertDer;
 	LeftOpDummyInert//=NoScalar;
 	RightOpDummyInert=RightOpDummy/.InertDer;
@@ -216,7 +218,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Catch@Module
 			Expr={D0Term,D1Term,D2Term};
 			Expr=Expr/.InertDerRev;
 			Expr=Expr/.Derivative3;
-			Expr=Expr/.GuageField3;
+			Expr=Expr/.GaugeField3;
 
 			NotebookDelete[PrintVariable2];
 

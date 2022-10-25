@@ -31,6 +31,7 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	Expr//=ProjectorToMetric;
 	Expr//=ToNewCanonical;
 
+	Expr//=ParaLorentzGaugeCovDToLorentzGaugeCovD;
 	Expr//=LorentzGaugeCovDToGaugeCovD;
 	Expr//=GaugeCovDToCD;
 	(**)

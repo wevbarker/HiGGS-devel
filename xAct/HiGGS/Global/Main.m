@@ -900,67 +900,41 @@ RLambdaDecompose=MakeRule[{RLambda[-a,-b,-c,-d],Evaluate[RLambdaDecomposeDefinit
 TLambdaDecompose=MakeRule[{TLambda[-a,-c,-d],Evaluate[TLambdaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthLambdaDecompose=Join[RLambdaDecompose,TLambdaDecompose];
 
-(*
-TPToT=MakeRule[{TP[-a,-b,-c],T[-a,-i,-j]PPara[i,-b]PPara[j,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-RPToR=MakeRule[{RP[-a,-b,-c,-d],R[-a,-b,-i,-j]PPara[i,-c]PPara[j,-d]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-StrengthPToStrength=Join[TPToT,RPToR];
-*)(*scheduled for decomission*)
-
 CDBCommute=MakeRule[{CD[-s][B[a,-r]],Evaluate[CD[-r][B[a,-s]]-2Antisymmetrize[A[a,-k,-s]B[k,-r],{-s,-r}]+B[b,-s]B[c,-r]T[a,-b,-c]]},MetricOn->All,ContractMetrics->True];(*Might want to write an equivalent version for Riemann Cartan curvature*)
 
 DefTensor[DV[-a,-j],M4,OrthogonalTo->{V[j]},PrintAs->xAct`HiGGS`Private`SymbolBuild[VSymb,"Derivative"->1]];
-(*xAct`HiGGS`Private`DeclareOrder[DV[-a,-j],1];*)
 DefTensor[DJ[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[JSymb,"Derivative"->1]];
-(*xAct`HiGGS`Private`DeclareOrder[DJ[-a],1];*)
+
+
+
+
+
+
+
+
+
 
 G3VCDBToG3DV=MakeRule[{G3[-l,n]V[-k]CD[-m][B[k,-n]],-G3[-l,n]B[j,-n]A[k,-j,-m]V[-k]-G3[-l,n]B[j,-n]DV[-m,-j]},MetricOn->All,ContractMetrics->True];
 
 G3HCDBToDJ=MakeRule[{G3[n,-s]H[-k,s]CD[-m][B[k,-n]],Ji[]DJ[-m]-V[k]H[-k,a]G3[-a,b](B[j,-b]DV[-m,-j]+V[-l]A[l,-j,-m]B[j,-b])},MetricOn->All,ContractMetrics->True];
 
-
-
 xAct`HiGGS`Private`BuildGlobally@"CovD.m";
-
 
 xAct`HiGGS`Private`BuildGlobally@"CDBToGaugeCovDB.m";
 
 
-(* ::Input::Initialization:: *)
-
-(*we want to be able to reverse the v and J derivatives also, this below just some syntax for that time*)
-(*
-G3DVToG3VCDB=MakeRule[{G3[-l,n]V[-k]CD[-m][B[k,-n]],-G3[-l,n]B[j,-n]A[k,-j,-m]V[-k]-G3[-l,n]B[j,-n]DV[-m,-j]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-(*the rules below should of course be generalised beyond simply the momenta -- these below now generalise to the field strengths*)
-DTP0mDeactivate=MakeRule[{DTP0m[-z],CD[-z][TP0m[]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DTP1pDeactivate=MakeRule[{DTP1p[-z,-a,-b],CD[-z][TP1p[-a,-b]]-A[i,-a,-z]TP1p[-i,-b]-A[i,-b,-z]TP1p[-a,-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DTP1mDeactivate=MakeRule[{DTP1m[-z,-a],CD[-z][TP1m[-a]]-A[i,-a,-z]TP1m[-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DTP2mDeactivate=MakeRule[{DTP2m[-z,-a,-b,-c],CD[-z][TP2m[-a,-b,-c]]-A[i,-a,-z]TP2m[-i,-b,-c]-A[i,-b,-z]TP2m[-a,-i,-c]-A[i,-c,-z]TP2m[-a,-b,-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP0pDeactivate=MakeRule[{DRP0p[-z],CD[-z][RP0p[]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP0mDeactivate=MakeRule[{DRP0m[-z],CD[-z][RP0m[]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP1pDeactivate=MakeRule[{DRP1p[-z,-a,-b],CD[-z][RP1p[-a,-b]]-A[i,-a,-z]RP1p[-i,-b]-A[i,-b,-z]RP1p[-a,-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP1mDeactivate=MakeRule[{DRP1m[-z,-a],CD[-z][RP1m[-a]]-A[i,-a,-z]RP1m[-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP2pDeactivate=MakeRule[{DRP2p[-z,-a,-b],CD[-z][RP2p[-a,-b]]-A[i,-a,-z]RP2p[-i,-b]-A[i,-b,-z]RP2p[-a,-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRP2mDeactivate=MakeRule[{DRP2m[-z,-a,-b,-c],CD[-z][RP2m[-a,-b,-c]]-A[i,-a,-z]RP2m[-i,-b,-c]-A[i,-b,-z]RP2m[-a,-i,-c]-A[i,-c,-z]RP2m[-a,-b,-i]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-DRPDeactivate=Join[DTP0mDeactivate,DTP1pDeactivate,DTP1mDeactivate,DTP2mDeactivate,DRP0pDeactivate,DRP0mDeactivate,DRP1pDeactivate,DRP1mDeactivate,DRP2pDeactivate,DRP2mDeactivate];
-*)
-
-DefTensor[DpJ[-z],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[JSymb,"Derivative"->2],OrthogonalTo->{V[z]}];
-xAct`HiGGS`Private`DeclareOrder[DpJ[-z],1];
-xAct`HiGGS`Private`DeclareOrder[DJ[-z],1,"approximation"->B[w,-z]DpJ[-w]+V[-v]B[v,-z]V[u]H[-u,w]DJ[-w]];
-DpJActivate=MakeRule[{G3[-y,z]DJ[-z],G3[-y,z]B[x,-z]DpJ[-x]},MetricOn->All,ContractMetrics->True];
-DefTensor[DpV[-z,-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[VSymb,"Derivative"->2],OrthogonalTo->{V[z],V[a]}];
-xAct`HiGGS`Private`DeclareOrder[DpV[-z,-a],1];
-xAct`HiGGS`Private`DeclareOrder[DV[-z,-a],1,"approximation"->B[w,-z]DpV[-w,-a]+V[-v]B[v,-z]V[u]H[-u,w]DV[-w,-a]];
-DpVActivate=MakeRule[{G3[-y,z]DV[-z,-a],Evaluate[G3[-y,z]B[x,-z]DpV[-x,-a]+(G[-a,i]-PPara[-a,i])G3[-y,z]DV[-z,-i]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
-
-DpVExpand=MakeRule[{DpV[-m,-j],Evaluate[Symmetrize[DpV[-m,-j],{-m,-j}]-(1/2)V[-i]TP[i,-m,-j]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
-
 AVepsilonGToAVEps=MakeRule[{A[-e,d,-f]epsilonG[-d,-a,-b,-c]V[e],A[-e,d,-f]V[e](V[-a]Eps[-d,-b,-c]-V[-b]Eps[-d,-a,-c]+V[-c]Eps[-d,-a,-b])},MetricOn->All,ContractMetrics->True];
+
 HEpsToHG3Eps=MakeRule[{Eps[-a,-b,c]H[-c,e],Eps[-a,-b,c]H[-c,f]G3[e,-f]},MetricOn->All,ContractMetrics->True];
+
 epsilonGToEpsV=MakeRule[{epsilonG[-a,-b,-c,-d],-V[-a]Eps[-b,-c,-d]+V[-b]Eps[-a,-c,-d]-V[-c]Eps[-a,-b,-d]+V[-d]Eps[-a,-b,-c]},MetricOn->All,ContractMetrics->True];
+
 DefTensor[Q[-a,-b],M4,OrthogonalTo->{V[a],V[b]}];
+
 xAct`HiGGS`Private`DeclareOrder[Q[-a,-b],1];
+
 AHEpsExpand=MakeRule[{A[-i,j,-m]Eps[-j,-p,-q]H[-k,m],Evaluate[Eps[-i,j,-z]Q[z,-k]Eps[-j,-p,-q]+PPerp[-i,a]PPara[-k,b]A[-a,j,-m]Eps[-j,-p,-q]H[-b,m]+PPara[-i,a]PPerp[-k,b]A[-a,j,-m]Eps[-j,-p,-q]H[-b,m]+PPerp[-i,a]PPerp[-k,b]A[-a,j,-m]Eps[-j,-p,-q]H[-b,m]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
+
 EpsEpsExpand=MakeRule[{Eps[i,a,b]Eps[-i,-c,-d],Evaluate[PPara[a,-c]PPara[b,-d]-PPara[a,-d]PPara[b,-c]/.PADMActivate]},MetricOn->All,ContractMetrics->True];
 
 DefTensor[CDAInert[-a,-b,-c,-d],M4,Antisymmetric[{-b,-c}]];
