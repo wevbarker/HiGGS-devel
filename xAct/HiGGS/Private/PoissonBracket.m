@@ -217,8 +217,10 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	If[LeibnizArray=={{0}},	
 		EvaluatedBracket=0,	
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		Print@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]);
 		EvaluatedBracket//=ToNewCanonical,
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		Print@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]);
 		EvaluatedBracket//=ToNewCanonical];
 
 	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]&;
