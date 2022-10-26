@@ -184,7 +184,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
 		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 
-	If[StringQ@OptionValue@AllocatedBracket,
+	If[!StringQ@OptionValue@AllocatedBracket,
 
 		(*-----------------------------------------------------------------------------------*)
 		(*  If PoissonBracket has been called just to print a previously-determined bracket  *)
