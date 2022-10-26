@@ -13,12 +13,9 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 	DefTheory[TheoryName,ImportTheory->True];
 	Theory=Evaluate@Symbol@TheoryName;
 
-
-
 	(*--------------------------------------------------*)
 	(*  Present our literature knowledge of the theory  *)
 	(*--------------------------------------------------*)
-
 
 	If[OptionValue[Literature],
 		DefIfConstraintToTheoryNesterForm[TheoryName];
@@ -37,41 +34,21 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 	(*  Present the primary Poisson matrix  *)
 	(*--------------------------------------*)
 
-
-
 	If[OptionValue[Brackets],
-		IndIfConstraints=(#~ChangeFreeIndices~({-xAct`HiGGS`l,-xAct`HiGGS`m,-xAct`HiGGS`n}~Take~Length@FindFreeIndices@#))&/@Global$IfConstraints;
-		Global$PPMlabels=Table[{Global$IfConstraints[[ii]],IndIfConstraints[[jj]]},{ii,Length@Global$IfConstraints},{jj,ii,Length@Global$IfConstraints}]~PadLeft~{Length@Global$IfConstraints,Length@Global$IfConstraints};
-		Global$PPM=Global$PPM~PadLeft~{Length@Global$IfConstraints,Length@Global$IfConstraints};
-		PrintBracket[x_,y_]:=Module[{nontrivial},
-		nontrivial=!(x=={0,0,0}||x=={0,0,0,0}||y==0);
-		If[nontrivial,
-			xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];,Null;,
-			xAct`HiGGS`Private`PrintPoissonBracket[y,x,ToShell->True];];
-		];
-		Print@" ** ViewTheory: encountered the following nonvanishing Poisson brackets:";
-		MapThread[PrintBracket,{Global$PPM,Global$PPMlabels},2];
+		PPMArray=PreparePPM@TheoryName;
+		FilledPPMArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#1[[4]],#1[[5]],#2},{PPMArray,Theory@$PPM}];
+		Print@FilledPPMArray;
+		Apply[PoissonBracket[#2,#3,ToShell->#1,AllocatedBracket->#6]&,FilledPPMArray,{1}];
 	];
-
-
-
 
 	(*----------------------------------------------------------------------------*)
 	(*  Present the commutators of the if-constraints with the super-Hamiltonian  *)
 	(*----------------------------------------------------------------------------*)
 
-
-
-
-	If[OptionValue["Velocities"],
-		IndVelocities=(#~ChangeFreeIndices~({-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k}~Take~Length@FindFreeIndices@#))&/@Global$Velocities;
-		PrintVelocity[x_,y_]:=Module[{nontrivial},
-		nontrivial=!(x==0);
-		If[nontrivial,
-		HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x],Null;,
-		HiGGSPrint["\!\(\*FractionBox[\(\[DifferentialD]\), \(\[DifferentialD]t\)]\)",y," \[TildeTilde] ",x]];
-		];
-		Print@" ** ViewTheory: encountered the following nonvanishing velocities:";
-		MapThread[PrintVelocity,{IndVelocities,Global$IfConstraints}];
+	If[OptionValue[Velocities],
+		VelocitiesArray=PrepareVelocities@TheoryName;
+		FilledVelocitiesArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#2},{VelocitiesArray,Theory@$Velocities}];
+		Print@FilledVelocitiesArray;
+		Apply[PoissonBracket[#2,SuperHamiltonian0p[],ToShell->#1,AllocatedBracket->#4]&,FilledVelocitiesArray,{1}];
 	];
 ];
