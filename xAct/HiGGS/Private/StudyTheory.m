@@ -24,8 +24,8 @@ PreparePPM[TheoryName_String]:=Module[{
 				NewIndexIfConstraints[[jj]],
 				EvaluatedIfConstraints[[ii]],
 				EvaluatedNewIndexIfConstraints[[jj]]},
-		{ii,2(*Length@IfConstraints*)},
-		{jj,ii,2(*Length@IfConstraints*)}];
+		{ii,Length@IfConstraints},
+		{jj,ii,Length@IfConstraints}];
 PPMArguments];
 
 PrepareVelocities[TheoryName_String]:=Module[{
