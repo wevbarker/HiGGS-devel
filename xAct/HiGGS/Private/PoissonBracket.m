@@ -236,10 +236,9 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 			LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
 			PrintVariable=PrintTemporary@LeibnizArray;
 			LeibnizArray=WaitAll[LeibnizArray];
-			NotebookDelete@PrintVariable;
+			NotebookDelete@PrintVariable;,
 			LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
 		];
-
 
 		If[LeibnizArray=={{0}},	
 			EvaluatedBracket=0,	
