@@ -3,8 +3,10 @@ Options[ViewTheory]={
 	Brackets->True,
 	Velocities->True};
 
-ViewTheory[theory_String,OptionsPattern[]]:=Module[{IndIfConstraints,ii,jj},
-DefTheory["Import"->theory];
+ViewTheory[theory_String,OptionsPattern[]]:=Module[{
+	IndIfConstraints,
+	ii,
+	jj},
 
 	If[OptionValue[Literature],
 		DefIfConstraintToTheoryNesterForm[Global$ToShellFreedoms,Global$ToTheory,Global$Theory];
