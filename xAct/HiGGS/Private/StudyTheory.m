@@ -97,8 +97,8 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 	Jobs,
 	EvaluatedJobs,
 	PPMArray,
-	tmp,
-	EvaluatedPPMArray},
+	EvaluatedPPMArray,
+	PrintVariable},
 
 
 	(*check if a real theory batch was provided*)
@@ -115,8 +115,9 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 	(*-----------------*)
 
 	Jobs=HiGGSParallelSubmit@DefTheory[#1,#2,ImportTheory->True,ExportTheory->True]&@@@InputBatch;
-	Print@Jobs;
+	PrintVariable=PrintTemporary@Jobs;
 	WaitAll[Jobs];
+	NotebookDelete@PrintVariable;
 
 	(*--------------------------------------------------------------*)
 	(*  Load saved theory files into master kernel, and distribute  *)
