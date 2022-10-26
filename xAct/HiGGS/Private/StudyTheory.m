@@ -133,7 +133,7 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 
 	If[OptionValue@Brackets,
 		PPMArray=PreparePPM/@TheoryNames;
-		Jobs=Apply[HiGGSParallelSubmit@PoissonBracket[#4,#5,ToShell->#1]&,PPMArray,{3}];
+		Jobs=Apply[HiGGSParallelSubmit@PoissonBracket[#4,#5,ToShell->#1,Method->"BruteForce"]&,PPMArray,{3}];
 		PrintVariable=PrintTemporary@Jobs;
 		EvaluatedJobs=WaitAll[Jobs];
 		NotebookDelete@PrintVariable;

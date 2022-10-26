@@ -155,7 +155,10 @@ Options@PoissonBracket={
 	Parallel->False,
 	ToShell->False,
 	TheoryNameOption->"",
-	AllocatedBracket->""};
+	AllocatedBracket->"",
+	Method->"NesterFormDecomposition"};
+
+PoissonBracket::nometh="Method `1` is not one of \"NesterFormDecomposition\" or \"BruteForce\".";
 
 PoissonBracket[LeftOperand_?PossibleZeroQ,RightOperand_,OptionsPattern[]]:=0;
 PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ,OptionsPattern[]]:=0;
@@ -210,8 +213,16 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		xAct`HiGGS`SmearingLeft,
 		xAct`HiGGS`SmearingRight};
 
-		LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
-		RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;
+		Switch[OptionValue@Method,
+			"NesterFormDecomposition",
+				LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
+				RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;,
+			"BruteForce",
+				LeftExpansion={{LeftOperand,SmearingLeft@@LeftFreeIndices}};
+				RightExpansion={{RightOperand,SmearingRight@@RightFreeIndices}};,
+			_,
+				Throw@Message[PoissonBracket::nometh,OptionValue@Method];
+		];
 
 		NotebookDelete@PrintVariable;
 
@@ -223,11 +234,9 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 		If[OptionValue@Parallel,	
 			LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
-			(*Print@Outer[((SmearedPoissonateBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];*)
 			PrintVariable=PrintTemporary@LeibnizArray;
 			LeibnizArray=WaitAll[LeibnizArray];
 			NotebookDelete@PrintVariable;
-			(*Print@LeibnizArray;*),
 			LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
 		];
 
