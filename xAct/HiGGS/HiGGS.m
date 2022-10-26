@@ -297,12 +297,8 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"DefTheory.m",
 	"HiGGSParallelSubmit.m",
 	"StudyTheory.m",
-	"Utils.m"};
-
-(*
 	"ViewTheory.m",
-
-	*)
+	"Utils.m"};
 
 BuildHiGGSPrivate[];
 
