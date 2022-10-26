@@ -207,7 +207,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	If[OptionValue@Parallel,	
 		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
-		Print@Outer[((SmearedPoissonateBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
+		(*Print@Outer[((SmearedPoissonateBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];*)
 		PrintVariable=PrintTemporary@LeibnizArray;
 		LeibnizArray=WaitAll[LeibnizArray];
 		NotebookDelete@PrintVariable;
@@ -218,14 +218,16 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	If[LeibnizArray=={{0}},	
 		EvaluatedBracket=0,	
-		Print@LeibnizArray;
+		(*Print@LeibnizArray;*)
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
 		EvaluatedBracket//=ToNewCanonical,
-		Print@LeibnizArray;
+		(*Print@LeibnizArray;*)
 		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
 		EvaluatedBracket//=ToNewCanonical];
 
 	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]&;
+	EvaluatedBracket//=CollectTensors;
+	EvaluatedBracket//=Simplify;
 
 	Print@" ** PoissonBracket: composed the total bracket:";
 

@@ -43,7 +43,7 @@ PrepareVelocities[TheoryName_String]:=Module[{
 				TheoryName,
 				IfConstraints[[ii]],
 				EvaluatedIfConstraints[[ii]]},
-		{ii,2(*Length@IfConstraints*)}];
+		{ii,Length@IfConstraints}];
 VelocityArguments];
 
 
@@ -133,10 +133,10 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 
 	If[OptionValue@Brackets,
 		PPMArray=PreparePPM/@TheoryNames;
-		Print@PPMArray;
 		Jobs=Apply[HiGGSParallelSubmit@PoissonBracket[#4,#5,ToShell->#1]&,PPMArray,{3}];
-		Print@Jobs;
+		PrintVariable=PrintTemporary@Jobs;
 		EvaluatedJobs=WaitAll[Jobs];
+		NotebookDelete@PrintVariable;
 		UpdateTheoryAssociation[#1,$PPM,#2,Advertise->True,ExportTheory->True]&~MapThread~{TheoryNames,EvaluatedJobs};
 	];
 
@@ -146,10 +146,9 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 
 	If[OptionValue@Velocities,
 		VelocitiesArray=PrepareVelocities/@TheoryNames;
-		Print@VelocitiesArray;
+		(*Print@VelocitiesArray;*)
 		EvaluatedJobs=Apply[PoissonBracket[#3,ToExpression@(#1<>"@$SuperHamiltonian"),ToShell->#1,Parallel->True]&,VelocitiesArray,{2}];
-		Print@EvaluatedJobs;
+		(*Print@EvaluatedJobs;*)
 		UpdateTheoryAssociation[#1,$Velocities,#2,Advertise->True,ExportTheory->True]&~MapThread~{TheoryNames,EvaluatedJobs};
 	];
-
 ];
