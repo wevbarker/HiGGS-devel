@@ -37,23 +37,23 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
 		SmearedEvaluatedBracketTerm1=
-		((EvaluatedBracket[[1]]//ToNewCanonical)~Dot~
-		(LeftSmearing)~Dot~
-		(RightSmearing))];
+		ReplaceDummies@((EvaluatedBracket[[1]]//ToNewCanonical)~Dot~
+		ReplaceDummies@(LeftSmearing)~Dot~
+		ReplaceDummies@(RightSmearing))];
 	
 		If[PossibleZeroQ@EvaluatedBracket[[2]],
 		SmearedEvaluatedBracketTerm2=0,
 		SmearedEvaluatedBracketTerm2=
-		((EvaluatedBracket[[2]]//ToNewCanonical)~Dot~
-		(LeftSmearing)~Dot~
-		(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@RightSmearing))];
+		ReplaceDummies@((EvaluatedBracket[[2]]//ToNewCanonical)~Dot~
+		ReplaceDummies@(LeftSmearing)~Dot~
+		ReplaceDummies@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@RightSmearing))];
 
 		If[PossibleZeroQ@EvaluatedBracket[[3]],
 		SmearedEvaluatedBracketTerm3=0,
 		SmearedEvaluatedBracketTerm3=
-		((EvaluatedBracket[[3]]//ToNewCanonical)~Dot~
-		(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
-		(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(xAct`HiGGS`G3[Zw1,-Zw]xAct`HiGGS`GaugeCovD[-Zw1]@RightSmearing)))];
+		ReplaceDummies@((EvaluatedBracket[[3]]//ToNewCanonical)~Dot~
+		ReplaceDummies@(xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Dot~
+		ReplaceDummies@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(xAct`HiGGS`G3[Zw1,-Zw]xAct`HiGGS`GaugeCovD[-Zw1]@RightSmearing)))];
 
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
