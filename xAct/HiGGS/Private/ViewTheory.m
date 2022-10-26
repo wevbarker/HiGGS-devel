@@ -3,13 +3,25 @@ Options[ViewTheory]={
 	Brackets->True,
 	Velocities->True};
 
-ViewTheory[theory_String,OptionsPattern[]]:=Module[{
+ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 	IndIfConstraints,
 	ii,
 	jj},
 
+	(*-------------------------------------*)
+	(*  DefTheory from some imported file  *)
+	(*-------------------------------------*)
+
+	DefTheory[TheoryName,ImportTheory->True];
+	Theory=Evaluate@Symbol@TheoryName;
+
 	If[OptionValue[Literature],
-		DefIfConstraintToTheoryNesterForm[Global$ToShellFreedoms,Global$ToTheory,Global$Theory];
+		DefIfConstraintToTheoryNesterForm[TheoryName];
+
+		Print["** DefTheory: The super-Hamiltonian is:"];
+		Print[SuperHamiltonian0p[]," \[Congruent] ",Theory@$SuperHamiltonian," \[TildeTilde] 0"];
+
+
 	];
 
 	If[OptionValue[Brackets],

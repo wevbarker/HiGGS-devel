@@ -2,8 +2,8 @@
 (*  Conversion of covariant derivatives  *)
 (*=======================================*)
 
-(*selects tensor heads which refer to the spin-parity sectors*)
-NotGaugeFieldQ[Tensor_]:=!MatchQ[Head@Tensor,_?(StringMatchQ[SymbolName@#,
+(*selects tensor heads which refer to the spin-parity sectors or other acceptable quantities*)
+NotGaugeFieldQ[Tensor_]:=!MatchQ[Head@Tensor,_?(StringMatchQ[ToString@Quiet@(SymbolName@#),
 ("B")|
 ("A")]&)];
 
