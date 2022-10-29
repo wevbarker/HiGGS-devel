@@ -240,6 +240,7 @@ UndefTheory::usage="UndefTheory[TheoryName] undefines a named theory.";
 StudyTheory::usage="StudyTheory[TheoryName] calculates the primary Poisson matrix and velocities of a named theory.";
 Brackets::usage="Brackets is an option for StudyTheory, which determines whether the primary Poisson matrices should be computed. Default is False.";
 Velocities::usage="Velocities is an option for StudyTheory, which determines whether the velocities of the primary if-constraints should be computed. Default is False.";
+ViewTheory::usage="ViewTheory[TheoryName] presents the literature-based information, primary Poisson matrix and velocities associated with a theory.";
 
 (*===================================================================*)
 (*  Declarations for convenience wrappers which we use beyond HiGGS  *)
