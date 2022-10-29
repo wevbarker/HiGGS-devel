@@ -21,13 +21,13 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 		DefIfConstraintToTheoryNesterForm[TheoryName];
 
 		Print["** DefTheory: The super-Hamiltonian is:"];
-		Print[SuperHamiltonian0p[]," \[Congruent] ",Theory@$SuperHamiltonian," \[TildeTilde] 0"];
+		Print[xAct`HiGGS`SuperHamiltonian0p[]," \[Congruent] ",Theory@$SuperHamiltonian," \[TildeTilde] 0"];
 
 		Print["** DefTheory: The linear super-momentum is:"];
-		Print[LinearSuperMomentum1m[-l]," \[Congruent] ",Theory@$LinearSuperMomentum," \[TildeTilde] 0"];
+		Print[xAct`HiGGS`LinearSuperMomentum1m[-xAct`HiGGS`l]," \[Congruent] ",Theory@$LinearSuperMomentum," \[TildeTilde] 0"];
 
 		Print["** DefTheory: The 1+ part of the angular super-momentum is:"];
-		Print[RotationalSuperMomentum1p[-n,-m]," \[Congruent] ",Theory@$AngularSuperMomentum1p," \[TildeTilde] 0"];
+		Print[xAct`HiGGS`RotationalSuperMomentum1p[-xAct`HiGGS`n,-xAct`HiGGS`m]," \[Congruent] ",Theory@$AngularSuperMomentum1p," \[TildeTilde] 0"];
 	];
 
 	(*--------------------------------------*)
@@ -36,7 +36,7 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 
 	If[OptionValue[Brackets],
 		PPMArray=PreparePPM@TheoryName;
-		FilledPPMArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#1[[4]],#1[[5]],#2},{PPMArray,Theory@$PPM}];
+		FilledPPMArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#1[[4]],#1[[5]],#2}&,{PPMArray~Flatten~1,Theory@$PPM~Flatten~1}];
 		Print@FilledPPMArray;
 		Apply[PoissonBracket[#2,#3,ToShell->#1,AllocatedBracket->#6]&,FilledPPMArray,{1}];
 	];
