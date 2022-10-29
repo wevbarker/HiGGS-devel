@@ -11,26 +11,26 @@ DefNesterFormShell[TheoryName_?StringQ]:=Module[{
 	Theory=Evaluate@Symbol@TheoryName;
 
 	NesterFormTensorsToReplace={
-		xAct`HiGGS`PIPB0p[],	
-		xAct`HiGGS`PIPB1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`PIPB1m[-xAct`HiGGS`i],	
-		xAct`HiGGS`IPB2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`IPA0p[],	
-		xAct`HiGGS`IPA0m[],	
-		xAct`HiGGS`IPA1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`IPA1m[-xAct`HiGGS`i],	
-		xAct`HiGGS`IPA2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`IPA2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k],	
-		xAct`HiGGS`P0m[],	
-		xAct`HiGGS`P1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`P1m[-xAct`HiGGS`i],	
-		xAct`HiGGS`P2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k],	
-		xAct`HiGGS`P0p[],	
-		xAct`HiGGS`P0m[],	
-		xAct`HiGGS`P1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`P1m[-xAct`HiGGS`i],	
-		xAct`HiGGS`P2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
-		xAct`HiGGS`P2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k]           
+		xAct`HiGGS`PiPB0p[],	
+		xAct`HiGGS`PiPB1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`PiPB1m[-xAct`HiGGS`i],	
+		xAct`HiGGS`PiPB2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`PiPA0p[],	
+		xAct`HiGGS`PiPA0m[],	
+		xAct`HiGGS`PiPA1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`PiPA1m[-xAct`HiGGS`i],	
+		xAct`HiGGS`PiPA2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`PiPA2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k],	
+		xAct`HiGGS`TP0m[],	
+		xAct`HiGGS`TP1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`TP1m[-xAct`HiGGS`i],	
+		xAct`HiGGS`TP2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k],	
+		xAct`HiGGS`RP0p[],	
+		xAct`HiGGS`RP0m[],	
+		xAct`HiGGS`RP1p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`RP1m[-xAct`HiGGS`i],	
+		xAct`HiGGS`RP2p[-xAct`HiGGS`i,-xAct`HiGGS`j],	
+		xAct`HiGGS`RP2m[-xAct`HiGGS`i,-xAct`HiGGS`j,-xAct`HiGGS`k]           
 	};
 
 	BasicFormTensorsToReplace=ToBasicForm/@NesterFormTensorsToReplace;

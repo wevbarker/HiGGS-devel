@@ -7,6 +7,8 @@
 (*=======================*)
 
 (*
+- redundant projection operators on derivatives of the spatial measure
+- Kroneker delta appears outside projection operators, not needed
 - general indices for PoissonBracket please.
 - check the validity of the overall bracket
 - clear up ambiguity over what G actually means, and how it prints
