@@ -41,6 +41,7 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 		Apply[PoissonBracket[#2,#3,ToShell->#1,AllocatedBracket->#6]&,FilledPPMArray,{1}];
 	];
 
+
 	(*----------------------------------------------------------------------------*)
 	(*  Present the commutators of the if-constraints with the super-Hamiltonian  *)
 	(*----------------------------------------------------------------------------*)
