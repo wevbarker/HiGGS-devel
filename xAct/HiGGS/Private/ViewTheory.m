@@ -37,10 +37,8 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 	If[OptionValue[Brackets],
 		PPMArray=PreparePPM@TheoryName;
 		FilledPPMArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#1[[4]],#1[[5]],#2}&,{PPMArray~Flatten~1,Theory@$PPM~Flatten~1}];
-		Print@FilledPPMArray;
 		Apply[AllocatedPoissonBracket[#2,#3,#6]&,FilledPPMArray,{1}];
 	];
-
 
 	(*----------------------------------------------------------------------------*)
 	(*  Present the commutators of the if-constraints with the super-Hamiltonian  *)
@@ -48,8 +46,7 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 
 	If[OptionValue[Velocities],
 		VelocitiesArray=PrepareVelocities@TheoryName;
-		FilledVelocitiesArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#2},{VelocitiesArray,Theory@$Velocities}];
-		Print@FilledVelocitiesArray;
-		Apply[PoissonBracket[#2,SuperHamiltonian0p[],ToShell->#1,AllocatedBracket->#4]&,FilledVelocitiesArray,{1}];
+		FilledVelocitiesArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#2}&,{VelocitiesArray,Theory@$Velocities}];
+		Apply[AllocatedPoissonBracket[#2,xAct`HiGGS`SuperHamiltonian0p[],#4]&,FilledVelocitiesArray,{1}];
 	];
 ];
