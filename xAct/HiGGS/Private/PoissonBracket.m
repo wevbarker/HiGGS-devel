@@ -154,8 +154,7 @@ LeibnizList[Expr_,DifferentiableTensors_?ListQ]:=Module[{
 Options@PoissonBracket={
 	Parallel->False,
 	ToShell->False,
-	TheoryNameOption->"",
-	AllocatedBracket->"",
+	TheoryNameOption->"",	
 	Method->"NesterFormDecomposition"};
 
 PoissonBracket::nometh="Method `1` is not one of \"NesterFormDecomposition\" or \"BruteForce\".";
@@ -163,7 +162,10 @@ PoissonBracket::nometh="Method `1` is not one of \"NesterFormDecomposition\" or 
 PoissonBracket[LeftOperand_?PossibleZeroQ,RightOperand_,OptionsPattern[]]:=0;
 PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ,OptionsPattern[]]:=0;
 
-(* main function for nonlinear Poisson bracket *)
+(*-------------------------------------------------------------------*)
+(*  The main function implementation for nonlinear Poisson brackets  *)
+(*-------------------------------------------------------------------*)
+
 PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern[]]:=Catch@Module[{
 	OptionValueToShell,
 	PrintVariable,
@@ -187,85 +189,99 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
 		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 
-	If[!StringQ@OptionValue@AllocatedBracket,
-
-		(*-----------------------------------------------------------------------------------*)
-		(*  If PoissonBracket has been called just to print a previously-determined bracket  *)
-		(*-----------------------------------------------------------------------------------*)
-
-		If[OptionValueToShell,
-			HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~AllocatedBracket);,
-			HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~AllocatedBracket);
-		];	
-		,
-
-		(*--------------------------------------------------------------------------------*)
-		(*  If PoissonBracket has been called to actually compute a bracket from scratch  *)
-		(*--------------------------------------------------------------------------------*)
 	
-		OptionValueToShell=StringQ@OptionValue@ToShell;
-		OptionValueTheoryNameOption=ToString@OptionValue@ToShell;
+	OptionValueToShell=StringQ@OptionValue@ToShell;
+	OptionValueTheoryNameOption=ToString@OptionValue@ToShell;
 
-		PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
+	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
 
-		(* list of xTensors which we want to be treated as atomic operands in each Poisson bracket, better to re-evaluate on each call in case new quantities were defined by the user *)
-		DifferentiableTensors=$Tensors~Complement~{
-		xAct`HiGGS`SmearingLeft,
-		xAct`HiGGS`SmearingRight};
+	(* list of xTensors which we want to be treated as atomic operands in each Poisson bracket, better to re-evaluate on each call in case new quantities were defined by the user *)
+	DifferentiableTensors=$Tensors~Complement~{
+	xAct`HiGGS`SmearingLeft,
+	xAct`HiGGS`SmearingRight};
 
-		Switch[OptionValue@Method,
-			"NesterFormDecomposition",
-				LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
-				RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;,
-			"BruteForce",
-				LeftExpansion={{LeftOperand,SmearingLeft@@LeftFreeIndices}};
-				RightExpansion={{RightOperand,SmearingRight@@RightFreeIndices}};,
-			_,
-				Throw@Message[PoissonBracket::nometh,OptionValue@Method];
-		];
+	Switch[OptionValue@Method,
+		"NesterFormDecomposition",
+			LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
+			RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;,
+		"BruteForce",
+			LeftExpansion={{LeftOperand,SmearingLeft@@LeftFreeIndices}};
+			RightExpansion={{RightOperand,SmearingRight@@RightFreeIndices}};,
+		_,
+			Throw@Message[PoissonBracket::nometh,OptionValue@Method];
+	];
 
-		NotebookDelete@PrintVariable;
+	NotebookDelete@PrintVariable;
 
-		Print[" ** PoissonBracket: Note that ",xAct`HiGGS`SmearingLeft[]," and ",xAct`HiGGS`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
+	Print[" ** PoissonBracket: Note that ",xAct`HiGGS`SmearingLeft[]," and ",xAct`HiGGS`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
 
-		Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
+	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
-		OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption];
+	OptionSmearedPoissonBracket[{LeftOp_,LeftSmear_},{RightOp_,RightSmear_}]:=SmearedPoissonBracket[{LeftOp,LeftSmear},{RightOp,RightSmear},ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption];
 
-		If[OptionValue@Parallel,	
-			LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
-			PrintVariable=PrintTemporary@LeibnizArray;
-			LeibnizArray=WaitAll[LeibnizArray];
-			NotebookDelete@PrintVariable;,
-			LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
-		];
+	If[OptionValue@Parallel,	
+		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]))&,LeftExpansion,RightExpansion,1];
+		PrintVariable=PrintTemporary@LeibnizArray;
+		LeibnizArray=WaitAll[LeibnizArray];
+		NotebookDelete@PrintVariable;,
+		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
+	];
 
-		If[LeibnizArray=={{0}},	
-			EvaluatedBracket=0,	
-			(*Print@LeibnizArray;*)
-			EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
-			EvaluatedBracket//=ToNewCanonical,
-			(*Print@LeibnizArray;*)
-			EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
-			EvaluatedBracket//=ToNewCanonical];
+	If[LeibnizArray=={{0}},	
+		EvaluatedBracket=0,	
+		(*Print@LeibnizArray;*)
+		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		EvaluatedBracket//=ToNewCanonical,
+		(*Print@LeibnizArray;*)
+		EvaluatedBracket=Total@(Head@First@(List@@#)&/@(DeleteCases[(LeibnizArray~Flatten~1),0,Infinity]))/.{Dot->Times};
+		EvaluatedBracket//=ToNewCanonical];
 
-		EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]&;
-		EvaluatedBracket//=CollectTensors;
-		EvaluatedBracket//=Simplify;
+	EvaluatedBracket//=ToNesterForm[#,ToShell->OptionValueToShell,TheoryNameOption->OptionValueTheoryNameOption]&;
+	EvaluatedBracket//=CollectTensors;
+	EvaluatedBracket//=Simplify;
 
-		Print@" ** PoissonBracket: composed the total bracket:";
+	Print@" ** PoissonBracket: composed the total bracket:";
 
-		If[PossibleZeroQ@EvaluatedBracket,
-			EvaluatedBracket=0,
-			EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];	
+	If[PossibleZeroQ@EvaluatedBracket,
+		EvaluatedBracket=0,
+		EvaluatedBracket=Integrate@@({(EvaluatedBracket)@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1];	
 
-		If[OptionValueToShell,
-			HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
-			HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
-		];
+	If[OptionValueToShell,
+		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
+		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
 	];
 
 EvaluatedBracket];
 
 PoissonBracket::nester="The current version of HiGGS can only calculate Poisson brackets on pairs of quantities in Nester form. The arguments provided were not a pair PoissonBracket[LeftOperand,RightOperand,Options...], where ToNesterForm[LeftOperand] and ToNesterForm[RightOperand] both return True."
 PoissonBracket[OtherArgs___,OptionsPattern[]]:=Throw@Message[PoissonBracket::nester];
+
+(*---------------------------------------------------------------------------------------*)
+(*  Sometimes we want to use the smearing functionality to print a pre-computed bracket  *)
+(*---------------------------------------------------------------------------------------*)
+
+AllocatedPoissonBracket[LeftOperand_,RightOperand_,AllocatedBracket_]:=Catch@Module[{
+	OptionValueToShell,
+	PrintVariable,
+	LeftExpansion,
+	LeftList,
+	RightExpansion,
+	RightList,
+	LeibnizArray,
+	DifferentiableTensors,
+	LeftFreeIndices,
+	RightFreeIndices,
+	CanonicalVariables,
+	SmearedUnevaluatedBracket,
+	EvaluatedBracket,
+	OptionSmearedPoissonBracket},
+
+	LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@LeftOperand));
+	RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@RightOperand));
+
+	SmearedUnevaluatedBracket={
+		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
+
+	HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~AllocatedBracket);
+];

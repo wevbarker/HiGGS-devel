@@ -38,7 +38,7 @@ ViewTheory[TheoryName_String,OptionsPattern[]]:=Module[{
 		PPMArray=PreparePPM@TheoryName;
 		FilledPPMArray=MapThread[{#1[[1]],#1[[2]],#1[[3]],#1[[4]],#1[[5]],#2}&,{PPMArray~Flatten~1,Theory@$PPM~Flatten~1}];
 		Print@FilledPPMArray;
-		Apply[PoissonBracket[#2,#3,ToShell->#1,AllocatedBracket->#6]&,FilledPPMArray,{1}];
+		Apply[AllocatedPoissonBracket[#2,#3,#6]&,FilledPPMArray,{1}];
 	];
 
 
