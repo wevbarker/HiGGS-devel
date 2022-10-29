@@ -269,7 +269,9 @@ ClearBuild[]:=Print@"ClearBuild";
 BuildGlobally[FileName_String]:=(Get[FileNameJoin@{$HiGGSInstallDirectory,"Global",FileName}];ClearBuild[]);
 BuildPrivately[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Private",FileName}];
 
-(* load all the functions which were written directly into vim *)
+(*-------------------------------------------------------------------------------------------------------*)
+(*  Load all the structures which constitute the Private` part of the package (this acts as a registry)  *)
+(*-------------------------------------------------------------------------------------------------------*)
 
 BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"BuildHiGGS.m",
@@ -295,6 +297,7 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"DefLinearSuperMomentum.m",
 	"DefAngularSuperMomentum.m",
 	"DefIfConstraints.m",
+	"DefNesterFormShell.m",
 	"DefTheory.m",
 	"HiGGSParallelSubmit.m",
 	"StudyTheory.m",
@@ -303,7 +306,10 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 
 BuildHiGGSPrivate[];
 
-(* if you want to recompile the HiGGS sources, pass "xAct`HiGGS`Private`Recompile->True" to the command below *)
+(*--------------------------------------------------------------------------------------------------------------*)
+(*  If you want to recompile the HiGGS sources, pass "xAct`HiGGS`Private`Recompile->True" to the command below  *)
+(*--------------------------------------------------------------------------------------------------------------*)
+
 Begin["xAct`HiGGS`"];
 	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->False];
 End[];
