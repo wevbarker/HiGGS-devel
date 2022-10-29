@@ -77,6 +77,7 @@ DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Module[{},
 		DefSuperHamiltonian[TheoryName];	
 		DefLinearSuperMomentum[TheoryName];
 		DefAngularSuperMomentum[TheoryName];
+		DefNesterFormShell[TheoryName];
 		DefIfConstraints[TheoryName];
 	];
 

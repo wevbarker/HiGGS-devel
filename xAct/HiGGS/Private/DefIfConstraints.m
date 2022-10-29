@@ -2,7 +2,7 @@
 (*  DefIfConstraints  *)
 (*====================*)
 
-DefIfConstraints[TheoryName_?StringQ,OptionsPattern[]]:=Module[{
+DefIfConstraints[TheoryName_?StringQ]:=Module[{
 	Theory,
 	IfConstraints,
 	EvaluatedIfConstraints},
