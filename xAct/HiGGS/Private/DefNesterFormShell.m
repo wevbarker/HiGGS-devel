@@ -2,6 +2,8 @@
 (*  DefNesterFormShell  *)
 (*----------------------*)
 
+TensorList[Expr_]:=DeleteDuplicates@Flatten@((Cases[ExtractSymbols@#,_?xTensorQ,Infinity])&/@(Flatten@({Expr/.Plus->List})));
+
 DefNesterFormShell[TheoryName_?StringQ]:=Module[{
 	Theory,
 	BasicFormTensorsToReplace,
@@ -36,6 +38,8 @@ DefNesterFormShell[TheoryName_?StringQ]:=Module[{
 	BasicFormTensorsToReplace=ToBasicForm/@NesterFormTensorsToReplace;
 
 	ShellNesterFormTensorsToReplace=ToNesterForm[#,ToShell->TheoryName]&/@BasicFormTensorsToReplace;
+
+	ShellNesterFormTensorsToReplace=MapThread[If[(TensorList@#1)==(TensorList@#2),#1,#2,#2]&,{NesterFormTensorsToReplace,ShellNesterFormTensorsToReplace}];
 
 	NesterFormShell={};
 
