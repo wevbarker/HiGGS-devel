@@ -114,7 +114,7 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 	(*  Define theory  *)
 	(*-----------------*)
 
-	Jobs=HiGGSParallelSubmit@DefTheory[#1,#2,ImportTheory->True,ExportTheory->True]&@@@InputBatch;
+	Jobs=HiGGSParallelSubmit@DefTheory[#1,#2,ImportTheory->False,ExportTheory->True]&@@@InputBatch;
 	PrintVariable=PrintTemporary@Jobs;
 	WaitAll[Jobs];
 	NotebookDelete@PrintVariable;
