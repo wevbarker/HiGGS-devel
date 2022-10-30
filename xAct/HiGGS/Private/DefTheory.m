@@ -58,11 +58,7 @@ DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Module[{},
 		(*check if a real theory was provided*)
 		If[!TheoryQ[InputSystem],Throw@Message[DefTheory::nottheory,InputSystem]];
 
-
-
-
 		Print["** DefTheory: The information presented below will be stored in the association ",TheoryName,", so you will be able to recover it later in your session by typing \"",TheoryName,"[<--some_association_key-->]\"."];
-
 
 		(*define the theory constant in xAct`HiGGS`*)
 		UpdateTheoryAssociation[TheoryName,$Theory,InputSystem];
