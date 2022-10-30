@@ -20,9 +20,9 @@ TotalToO3[x_,OptionsPattern[]]:=Module[{
 	Expr=Expr/.xAct`HiGGS`PiToPiP;
 	Expr=Expr/.xAct`HiGGS`PiToPiPHard;
 	Expr//=ToNewCanonical;
-	If[OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$TheoryCDPiPToCDPiPO3)),Expr=Expr/.$CDPiPToCDPiPO3];
+	If[StringQ@OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$TheoryCDPiPToCDPiPO3)),Expr=Expr/.$CDPiPToCDPiPO3];
 	Expr//=ToNewCanonical;
-	If[OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$TheoryPiPToPiPO3)),Expr=Expr/.PiPToPiPO3];
+	If[StringQ@OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$TheoryPiPToPiPO3)),Expr=Expr/.PiPToPiPO3];
 	Expr//=ToNewCanonical;
 	Expr=ToO3[Expr,ToShell->OptionValue@ToShell];
 	Expr//=ToNewCanonical;
@@ -85,46 +85,37 @@ CDBToGaugeCovDJGaugeCovDV[x_]:=Module[{Expr,PrintVariable},
 	NotebookDelete[PrintVariable];
 Expr];
 
-Options[CDToLorentzGaugeCovD]={UsexTensorCovD->False};
-CDToLorentzGaugeCovD[x_,OptionsPattern[]]:=Module[{Expr,PrintVariable},
+CDToLorentzGaugeCovD[x_]:=Module[{Expr,PrintVariable},
 	PrintVariable=PrintTemporary[" ** CDToLorentzGaugeCovD..."];
 	Expr=x;
-	If[OptionValue@UsexTensorCovD,
 
-		Expr=Expr/.xAct`HiGGS`Private`CDGaugeFieldsToInert;
-		Expr//=xAct`HiGGS`Private`CDToGaugeCovD;
-		Expr=Expr/.xAct`HiGGS`Private`CDGaugeFieldsFromInert;
+	Expr=Expr/.xAct`HiGGS`Private`CDGaugeFieldsToInert;
+	Expr//=xAct`HiGGS`Private`CDToGaugeCovD;
+	Expr=Expr/.xAct`HiGGS`Private`CDGaugeFieldsFromInert;
 
-		(*
-		Expr//=xAct`HiGGS`Private`GaugeCovDToLorentzGaugeCovD;
-		Expr=Expr/.xAct`HiGGS`ProjectorGP->ProjectWith@xAct`HiGGS`GP;
-		Expr=Expr/.xAct`HiGGS`Private`ProjectLorentzGaugeCovDRule;
-		*)
+	(*
+	Expr//=xAct`HiGGS`Private`GaugeCovDToLorentzGaugeCovD;
+	Expr=Expr/.xAct`HiGGS`ProjectorGP->ProjectWith@xAct`HiGGS`GP;
+	Expr=Expr/.xAct`HiGGS`Private`ProjectLorentzGaugeCovDRule;
+	*)
 
-		(*this line replaces the comments above, and should be an analogue to previous implementation without derivatives*)
-		Expr=Expr/.xAct`HiGGS`Private`ProjectGaugeCovDRule;
+	(*this line replaces the comments above, and should be an analogue to previous implementation without derivatives*)
+	Expr=Expr/.xAct`HiGGS`Private`ProjectGaugeCovDRule;
 
-		Expr=Expr/.xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand;
-		Expr//=ToNewCanonical;
+	Expr=Expr/.xAct`HiGGS`Private`ProjectedLorentzGaugeCovDVExpand;
+	Expr//=ToNewCanonical;
 
-		Expr=Expr/.xAct`HiGGS`Private`ProjectedParaLorentzGaugeCovDVExpand;
-		Expr//=ToNewCanonical;
+	Expr=Expr/.xAct`HiGGS`Private`ProjectedParaLorentzGaugeCovDVExpand;
+	Expr//=ToNewCanonical;
 
-		(*this line to catch some stragglers*)
-		Expr//=xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovD;
-		Expr//=ToNewCanonical;
-		,
-
-		Expr=Expr/.xAct`HiGGS`DGrandActivate;
-		Expr=Expr/.xAct`HiGGS`DpGrandActivate;
-
-		Expr=Expr/.xAct`HiGGS`DpVExpand;
-		Expr//=ToNewCanonical];
+	(*this line to catch some stragglers*)
+	Expr//=xAct`HiGGS`Private`LorentzGaugeCovDToParaLorentzGaugeCovD;
+	Expr//=ToNewCanonical;
 
 
-		Expr=Expr/.xAct`HiGGS`epsilonGVToEps;
-		Expr=Expr/.xAct`HiGGS`epsilonGToEpsV;
-		Expr//=ToNewCanonical;
+	Expr=Expr/.xAct`HiGGS`epsilonGVToEps;
+	Expr=Expr/.xAct`HiGGS`epsilonGToEpsV;
+	Expr//=ToNewCanonical;
 
 	NotebookDelete[PrintVariable];
 Expr];
@@ -175,8 +166,7 @@ Expr];
 Options[ToNesterForm]={
 	ToShell->False,
 	Hard->False,
-	GToFoliGOption->True,
-	xTensorCovD->True};
+	GToFoliGOption->True};
 
 ToNesterForm[x_,OptionsPattern[]]:=Module[{
 	Expr,		
@@ -194,12 +184,10 @@ ToNesterForm[x_,OptionsPattern[]]:=Module[{
 	If[StringQ@OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$ToTheory))];
 	(!CautiousNesterFormQ@Expr)~If~(Expr=PreSimplify[Expr,Hard->OptionValue[Hard]]);
 	Expr=TotalToO3[Expr,ToShell->OptionValue@ToShell];
-	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
+	(!CautiousNesterFormQ@Expr)~If~(Expr//=CDToLorentzGaugeCovD);
 	Expr=TotalToO3[Expr,ToShell->OptionValue@ToShell];
-	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue@xTensorCovD,
-		Expr//=CDBToGaugeCovDJGaugeCovDV,
-		Expr//=CDBToDJDV]);
-	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr~CDToLorentzGaugeCovD~(UsexTensorCovD->OptionValue@xTensorCovD));
+	(!CautiousNesterFormQ@Expr)~If~(Expr//=CDBToGaugeCovDJGaugeCovDV]);
+	(!CautiousNesterFormQ@Expr)~If~(Expr//=CDToLorentzGaugeCovD);
 	Expr=TotalToO3[Expr,ToShell->OptionValue@ToShell];
 	(!CautiousNesterFormQ@Expr)~If~(Expr//=CollapseA);
 	(!CautiousNesterFormQ@Expr)~If~(If[OptionValue[GToFoliGOption],Expr=Expr/.xAct`HiGGS`GToFoliG]);

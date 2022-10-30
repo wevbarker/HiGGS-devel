@@ -1,7 +1,6 @@
 (* provides the PoissonBracket function *)
 
 Options[PoissonBracketNewList]={
-	xTensorCovD->True,
 	ToShell->False,
 	Hard->False,
 	Surficial->True,

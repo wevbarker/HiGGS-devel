@@ -221,7 +221,6 @@ NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expre
 ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. All Greek (coordinate) indices are replaced by Roman (Lorentzian) indices, there are no time derivatives, all quantities are canonical and there is no reference to the unphysical (time) part of the gauge fields or their conjugate momenta. In some sense, this \"simplifies\" the output of ToBasicForm.";
 ToShell::usage="ToShell is an option for several functions, which determines whether the constraint shell of the defined theory should be imposed during the calculation. ToShell will eventually replace the string option \"ToShell\".";
 Hard::usage="Hard is an option for several functions.";
-xTensorCovD::usage="xTensorCovD is a boolean option for ToNesterForm, ToBasicForm and NonlinearPoissonBracket, which determines whether the new structure of xTensor CovD derivatives and induced metrics should be used. Default is False.";
 ToBasicForm::usage="ToBasicForm[Expr] expresses Expr in terms of basic gauge fields. In some sense, this \"expands\" the output of ToNesterForm.";
 PoissonBracket::usage="PoissonBracket[LeftOperand,RightOperand] calculates a Poisson bracket between the operands.";
 Parallel::usage="Parallel is an option for several functions, which determines whether the calculation should be parallelised. Parallel will eventually replace the string option \"Parallel\".";

@@ -85,7 +85,6 @@ SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_
 	SmearedEvaluatedBracket},
 	UnevaluatedBracket={LeftOperand,RightOperand};
 	EvaluatedBracket=PoissonBracketNewList[LeftOperand,RightOperand,
-		xTensorCovD->True,
 		Surficial->True,
 		ToShell->OptionValue@ToShell,
 		PrintAnswer->False];
