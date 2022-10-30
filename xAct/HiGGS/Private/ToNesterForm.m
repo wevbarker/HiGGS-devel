@@ -26,7 +26,7 @@ TotalToO3[x_,OptionsPattern[]]:=Module[{
 	Expr//=ToNewCanonical;
 	Expr=ToO3[Expr,ToShell->OptionValue@ToShell];
 	Expr//=ToNewCanonical;
-	If[StringQ@OptionValue@ToShell,Expr=Expr/.(Evaluate@(Theory@$NesterFormShell))];
+	If[StringQ@OptionValue@ToShell,Expr=Quiet@Check[Expr/.(Evaluate@(Theory@$NesterFormShell)),Expr]];
 	Expr//=ToNewCanonical;
 
 	NotebookDelete[PrintVariable];
