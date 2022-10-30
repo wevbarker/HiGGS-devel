@@ -106,9 +106,7 @@ StudyTheory[ListOfTheories_?ListQ,OptionsPattern[]]:=Module[{
 	(If[!StringQ[#[[1]]],Throw@Message[DefTheory::nottheoryname,#[[1]]]])&/@InputBatch;
 
 	TheoryNames=(#[[1]])&/@InputBatch;
-	(*
 	InsistLaunchKernels[];
-	*)
 
 	(*-----------------*)
 	(*  Define theory  *)
