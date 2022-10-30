@@ -55,7 +55,7 @@ DefSuperHamiltonian[TheoryName_?StringQ,OptionsPattern[]]:=Module[{
 	MainPart=MainPart//CollectTensors;
 	MainPart=MainPart//NoScalar;
 	MainPart=MainPart/.(Evaluate@(Theory@$IfConstraintToTheoryNesterForm));
-	MainPart=ToNesterForm[MainPart,ToShell->True,Hard->True,TheoryNameOption->TheoryName];
+	MainPart=ToNesterForm[MainPart,ToShell->TheoryName,Hard->True];
 	MainPart=MainPart//ToNewCanonical;
 	MainPart=MainPart//CollectTensors;
 

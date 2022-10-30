@@ -3,7 +3,6 @@
 Options[PoissonBracketNewList]={
 	xTensorCovD->True,
 	ToShell->False,
-	TheoryNameOption->"",
 	Hard->False,
 	Surficial->True,
 	GToFoliGOption->True,
@@ -226,8 +225,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 
 			If[OptionValue[NesterForm],
 			Expr=ToNesterForm[#,
-				ToShell->OptionValue[ToShell],
-				TheoryNameOption->OptionValue@TheoryNameOption,
+				ToShell->OptionValue@ToShell,	
 				Hard->OptionValue[Hard],
 				GToFoliGOption->OptionValue[GToFoliGOption]]&/@Expr;
 			];

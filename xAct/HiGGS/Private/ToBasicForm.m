@@ -4,8 +4,7 @@
 
 Options[ToBasicForm]={
 	Hard->False,
-	ToShell->False,
-	TheoryNameOption->""};
+	ToShell->False};
 
 ToBasicForm[x_,OptionsPattern[]]:=Module[{
 	Theory,
@@ -14,7 +13,7 @@ ToBasicForm[x_,OptionsPattern[]]:=Module[{
 
 	PrintVariable=PrintTemporary[" ** ToBasicForm..."];
 
-	If[OptionValue[ToShell],Theory=Evaluate@Symbol@OptionValue@TheoryNameOption];
+	If[StringQ@OptionValue@ToShell,Theory=Evaluate@Symbol@OptionValue@ToShell];
 
 	Expr=x;
 	Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar;
