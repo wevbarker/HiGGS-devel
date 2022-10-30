@@ -10,6 +10,7 @@ CrackProjectorGP[Expr_]:=Module[{CrackedExpr},
 		CrackedExpr=CrackedExpr~InducedDecomposition~{GP,V};
 		CrackedExpr//=NoScalar;
 		CrackedExpr//=ToCanonical;
+		CrackedExpr//=ReplaceDummies;
 	];
 CrackedExpr];
 
