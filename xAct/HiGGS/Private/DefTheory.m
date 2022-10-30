@@ -68,7 +68,13 @@ DefTheory[TheoryName_?StringQ,InputSystem___:Null,OptionsPattern[]]:=Module[{},
 		UpdateTheoryAssociation[TheoryName,$Theory,InputSystem];
 		(*these are rules we can always use to impose the theory*)
 		UpdateTheoryAssociation[TheoryName,$ToTheory,Quiet[Solve[InputSystem,Join[xAct`HiGGS`cAlp,xAct`HiGGS`cBet,{xAct`HiGGS`Alp0},xAct`HiGGS`Alp,xAct`HiGGS`Bet]][[1]]]];
-		(*these functions do all the hard work*)
+		(*this step is needed when processing theories which are not defined in the "==0" format (as was suggested to Manuel H.) -- if we run ComputeShellFreedoms using $ToTheory then we will pick up incorrect constraint structures in the shell*)
+		UpdateTheoryAssociation[TheoryName,$ToShellTheory,Quiet[Solve[((#~Complement~(#~DeleteCases~(_Symbol==_?PossibleZeroQ)))&@InputSystem),Join[xAct`HiGGS`cAlp,xAct`HiGGS`cBet,{xAct`HiGGS`Alp0},xAct`HiGGS`Alp,xAct`HiGGS`Bet]][[1]]]];
+
+		(*--------------------------------------------*)
+		(*  These functions do much of the hard work  *)
+		(*--------------------------------------------*)
+
 		ComputeShellFreedoms[TheoryName];
 		DefFieldStrengthShell[TheoryName];
 		DefMomentaShell[TheoryName];

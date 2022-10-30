@@ -30,29 +30,29 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 
 	(*We fix $ToOrderRules according to whether there is an Einstein--Hilbert term, recalling that this can change the order of certain constraints*)
 	$ToOrderRules={};
-	Switch[KeepOnlyObviousZeros@(xAct`HiGGS`Alp0/.(Evaluate@(Theory@$ToTheory))),0,$ToOrderRules=$ToNormalOrderRules,1,$ToOrderRules=$ToEHOrderRules];
+	Switch[KeepOnlyObviousZeros@(xAct`HiGGS`Alp0/.(Evaluate@(Theory@$ToShellTheory))),0,$ToOrderRules=$ToNormalOrderRules,1,$ToOrderRules=$ToEHOrderRules];
 
 	(*We impose the theory on the coefficients*)
-	cAlpPerpPerpTheory=KeepOnlyObviousZeros/@(cAlpPerpPerp/.TocAlp/.(Evaluate@(Theory@$ToTheory)));
-	cAlpPerpParaTheory=KeepOnlyObviousZeros/@(cAlpPerpPara/.TocAlp/.(Evaluate@(Theory@$ToTheory)));
-	cAlpParaPerpTheory=KeepOnlyObviousZeros/@(cAlpParaPerp/.TocAlp/.(Evaluate@(Theory@$ToTheory)));
-	cAlpParaParaTheory=KeepOnlyObviousZeros/@(cAlpParaPara/.TocAlp/.(Evaluate@(Theory@$ToTheory)));
-	cAlpDetTheory=KeepOnlyObviousZeros/@(cAlpDeterminants/.TocAlp/.(Evaluate@(Theory@$ToTheory)));
-	AlpPerpPerpTheory=KeepOnlyObviousZeros/@(AlpPerpPerp/.ToAlp/.(Evaluate@(Theory@$ToTheory)));
-	AlpPerpParaTheory=KeepOnlyObviousZeros/@(AlpPerpPara/.ToAlp/.(Evaluate@(Theory@$ToTheory)));
-	AlpParaPerpTheory=KeepOnlyObviousZeros/@(AlpParaPerp/.ToAlp/.(Evaluate@(Theory@$ToTheory)));
-	AlpParaParaTheory=KeepOnlyObviousZeros/@(AlpParaPara/.ToAlp/.(Evaluate@(Theory@$ToTheory)));
-	AlpDetTheory=KeepOnlyObviousZeros/@(AlpDeterminants/.ToAlp/.(Evaluate@(Theory@$ToTheory)));
-	cBetPerpPerpTheory=KeepOnlyObviousZeros/@(cBetPerpPerp/.TocBet/.(Evaluate@(Theory@$ToTheory)));
-	cBetPerpParaTheory=KeepOnlyObviousZeros/@(cBetPerpPara/.TocBet/.(Evaluate@(Theory@$ToTheory)));
-	cBetParaPerpTheory=KeepOnlyObviousZeros/@(cBetParaPerp/.TocBet/.(Evaluate@(Theory@$ToTheory)));
-	cBetParaParaTheory=KeepOnlyObviousZeros/@(cBetParaPara/.TocBet/.(Evaluate@(Theory@$ToTheory)));
-	cBetDetTheory=KeepOnlyObviousZeros/@(cBetDeterminants/.TocBet/.(Evaluate@(Theory@$ToTheory)));
-	BetPerpPerpTheory=KeepOnlyObviousZeros/@(BetPerpPerp/.ToBet/.(Evaluate@(Theory@$ToTheory)));
-	BetPerpParaTheory=KeepOnlyObviousZeros/@(BetPerpPara/.ToBet/.(Evaluate@(Theory@$ToTheory)));
-	BetParaPerpTheory=KeepOnlyObviousZeros/@(BetParaPerp/.ToBet/.(Evaluate@(Theory@$ToTheory)));
-	BetParaParaTheory=KeepOnlyObviousZeros/@(BetParaPara/.ToBet/.(Evaluate@(Theory@$ToTheory)));
-	BetDetTheory=KeepOnlyObviousZeros/@(BetDeterminants/.ToBet/.(Evaluate@(Theory@$ToTheory)));
+	cAlpPerpPerpTheory=KeepOnlyObviousZeros/@(cAlpPerpPerp/.TocAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	cAlpPerpParaTheory=KeepOnlyObviousZeros/@(cAlpPerpPara/.TocAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	cAlpParaPerpTheory=KeepOnlyObviousZeros/@(cAlpParaPerp/.TocAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	cAlpParaParaTheory=KeepOnlyObviousZeros/@(cAlpParaPara/.TocAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	cAlpDetTheory=KeepOnlyObviousZeros/@(cAlpDeterminants/.TocAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	AlpPerpPerpTheory=KeepOnlyObviousZeros/@(AlpPerpPerp/.ToAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	AlpPerpParaTheory=KeepOnlyObviousZeros/@(AlpPerpPara/.ToAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	AlpParaPerpTheory=KeepOnlyObviousZeros/@(AlpParaPerp/.ToAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	AlpParaParaTheory=KeepOnlyObviousZeros/@(AlpParaPara/.ToAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	AlpDetTheory=KeepOnlyObviousZeros/@(AlpDeterminants/.ToAlp/.(Evaluate@(Theory@$ToShellTheory)));
+	cBetPerpPerpTheory=KeepOnlyObviousZeros/@(cBetPerpPerp/.TocBet/.(Evaluate@(Theory@$ToShellTheory)));
+	cBetPerpParaTheory=KeepOnlyObviousZeros/@(cBetPerpPara/.TocBet/.(Evaluate@(Theory@$ToShellTheory)));
+	cBetParaPerpTheory=KeepOnlyObviousZeros/@(cBetParaPerp/.TocBet/.(Evaluate@(Theory@$ToShellTheory)));
+	cBetParaParaTheory=KeepOnlyObviousZeros/@(cBetParaPara/.TocBet/.(Evaluate@(Theory@$ToShellTheory)));
+	cBetDetTheory=KeepOnlyObviousZeros/@(cBetDeterminants/.TocBet/.(Evaluate@(Theory@$ToShellTheory)));
+	BetPerpPerpTheory=KeepOnlyObviousZeros/@(BetPerpPerp/.ToBet/.(Evaluate@(Theory@$ToShellTheory)));
+	BetPerpParaTheory=KeepOnlyObviousZeros/@(BetPerpPara/.ToBet/.(Evaluate@(Theory@$ToShellTheory)));
+	BetParaPerpTheory=KeepOnlyObviousZeros/@(BetParaPerp/.ToBet/.(Evaluate@(Theory@$ToShellTheory)));
+	BetParaParaTheory=KeepOnlyObviousZeros/@(BetParaPara/.ToBet/.(Evaluate@(Theory@$ToShellTheory)));
+	BetDetTheory=KeepOnlyObviousZeros/@(BetDeterminants/.ToBet/.(Evaluate@(Theory@$ToShellTheory)));
 
 	(*We construct the rule which sends the freedom coefficients to the shell*)
 	$ToShellFreedomsValue={};

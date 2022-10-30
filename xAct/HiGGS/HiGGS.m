@@ -22,8 +22,8 @@
 (*======================*)
 
 (*
+- RP1p//ToBasicForm//ToNesterForm is returning NEGATIVE of RP1p! Problem appears not to affect momenta and torsion, so there is likely some typo/coonvention clash in the binary sources
 - check effect on novel theories of the ToBasicForm problem with decomposed Lagrange multipliers
-- make sure ToBasicForm can decompose the new derivative structure
 - shift variables to xAct`HiGGS`
 - shift variables into xAct`HiGGS`Private`
 *)
