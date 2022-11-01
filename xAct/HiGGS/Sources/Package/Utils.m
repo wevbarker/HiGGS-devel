@@ -1,10 +1,14 @@
-BinaryLocation[RelevantTag_?StringQ]:=FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>RelevantTag<>".mx"};
+(*=========*)
+(*  Utils  *)
+(*=========*)
+
+BinaryLocation[RelevantTag_?StringQ]:=FileNameJoin@{$HiGGSInstallDirectory,"Binaries","Definitions",RelevantTag<>".mx"};
 BuildHiGGS::nobin="The binary at `1` cannot be found; quitting.";
 
 SetAttributes[IfBuild,HoldAll];
-IfBuild[RelevantTag_?StringQ,expr_]:=Catch@If[PrematureCellTags~MemberQ~RelevantTag,
+IfBuild[RelevantTag_?StringQ,expr_]:=Catch@If[PrematuroCellTags~MemberQ~RelevantTag,
 	Print[" ** BuildHiGGS: The binary at "<>BinaryLocation@RelevantTag<>" has been ignored."];,
-	If[ActiveCellTags~MemberQ~RelevantTag,
+	If[BinariesToRebuild~MemberQ~RelevantTag,
 		Print[" ** BuildHiGGS: Building the binary at "<>BinaryLocation@RelevantTag<>"..."];
 		$BinaryLocation=BinaryLocation@RelevantTag;
 		Evaluate@expr;,
@@ -20,12 +24,12 @@ IfBuild[RelevantTag_?StringQ,expr_]:=Catch@If[PrematureCellTags~MemberQ~Relevant
 	];
 ];
 
-IfBuild[RelevantTag_?StringQ]:=Catch@If[PrematureCellTags~MemberQ~RelevantTag,
+IfBuild[RelevantTag_?StringQ]:=Catch@If[PrematuroCellTags~MemberQ~RelevantTag,
 	Print[" ** BuildHiGGS: The binary at "<>BinaryLocation@RelevantTag<>" has been ignored."];,
-	If[ActiveCellTags~MemberQ~RelevantTag,
+	If[BinariesToRebuild~MemberQ~RelevantTag,
 		Print[" ** BuildHiGGS: Building the binary at "<>BinaryLocation@RelevantTag<>"..."];
 		$BinaryLocation=BinaryLocation@RelevantTag;
-		BuildGlobally[RelevantTag<>".m"];,
+		BuildRebuild[RelevantTag<>".m"];,
 		If[UnitTests~MemberQ~RelevantTag,
 			Print[" ** BuildHiGGS: The unit test labelled "<>RelevantTag<>" has been ignored."];,
 			Print[" ** BuildHiGGS: Incorporating the binary at "<>BinaryLocation@RelevantTag<>"..."];

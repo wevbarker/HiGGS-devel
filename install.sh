@@ -1,10 +1,11 @@
 #!/bin/bash
 
-#	copy everything under the xAct directory into the local Mathematica install
-
+#==================================#
+#  This file is a local installer  #
+#==================================#
 
 if [ "$1" = "--pull" ]; then
-	rsync -avh ~/.Mathematica/Applications/xAct/HiGGS/bin/* ./xAct/HiGGS/bin/ --delete
+	rsync -avh ~/.Mathematica/Applications/xAct/HiGGS/Binaries/* ./xAct/HiGGS/Binaries/ --delete
 elif [ "$1" = "--push" ]; then
 	rsync -avh ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 else

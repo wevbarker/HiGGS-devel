@@ -2,7 +2,11 @@
 (*  Induced  *)
 (*===========*)
 
-PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Module[{	
+PrecomputeSmearingToProject[SmearingToProject_]:=Module[{},
+	FullyProjectSmearingFunctionsRule=FullyProjectSmearingFunctionsRule~Join~MakeRule[{Evaluate@SmearingToProject,Evaluate@NoScalar@(SmearingToProject~InducedDecomposition~{xAct`HiGGS`GP,xAct`HiGGS`V})},MetricOn->All,ContractMetrics->True];
+];
+
+PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Module[{	
 	ExpandedExpr},		
 
 		ProjectionToExpand=xAct`HiGGS`ProjectorGP@GradientToProject;
@@ -10,6 +14,8 @@ PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Modul
 		(* Lorentz gradients to total projections plus perpendicular Lorentz gradients *)
 
 		ExpandedExpr=GradientToProject~InducedDecomposition~{xAct`HiGGS`GP,xAct`HiGGS`V};
+
+		FullyProjectParaLorentzGaugeCovDRule=FullyProjectParaLorentzGaugeCovDRule~Join~MakeRule[{Evaluate@GradientToProject,Evaluate@ExpandedExpr},MetricOn->All,ContractMetrics->True];
 
 		ExpandedExpr//=NoScalar;
 		ExpandedExpr//=ToNewCanonical;
@@ -45,7 +51,7 @@ PrecomputeDerivativeProjectionGradientToProject[GradientToProject_]:=Catch@Modul
 
 ];
 
-PrecomputeDerivativeProjection[TensorHead_?xTensorQ]:=Catch@Module[{
+PrecomputeDerivativeProjection[TensorHead_?xTensorQ]:=Module[{
 	SlotsOfTensorHead,
 	GradientToProject},
 
@@ -91,5 +97,7 @@ UnwantedTensorQ[TensorHead_]:=MatchQ[TensorHead,_?(StringMatchQ[SymbolName@#,
 	("AP"~~___)]&)];
 
 TensorsForDerivativeProjection[]:=((Cases[xAct`xTensor`$Tensors,_?NesterFormTensorQ])~Complement~(Cases[xAct`xTensor`$Tensors,_?UnwantedTensorQ]));
+SmearingFunctions[]:=((xAct`HiGGS`SmearingLeft@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;LengthSlots]])))~Table~{LengthSlots,0,4})~Join~((xAct`HiGGS`SmearingRight@@(("xAct`HiGGS`"~SymbolJoin~#)&/@(Alphabet[][[1;;LengthSlots]])))~Table~{LengthSlots,0,4});
 
 PrecomputeDerivativeProjections[]:=PrecomputeDerivativeProjection/@TensorsForDerivativeProjection[];
+PrecomputeSmearingProjections[]:=PrecomputeSmearingToProject/@SmearingFunctions[];
