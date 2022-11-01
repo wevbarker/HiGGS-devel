@@ -5,11 +5,11 @@
 #==================================#
 
 if [ "$1" = "--pull" ]; then
-	rsync -avh ~/.Mathematica/Applications/xAct/HiGGS/Binaries/* ./xAct/HiGGS/Binaries/ --delete
+	rsync -avh --force ~/.Mathematica/Applications/xAct/HiGGS/Binaries/* ./xAct/HiGGS/Binaries/ --delete
 elif [ "$1" = "--push" ]; then
-	rsync -avh ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
+	rsync -avh --force ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 else
-	rsync -avh --exclude '*.mx' ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
+	rsync -avh --force --exclude '*.mx' ./xAct/* ~/.Mathematica/Applications/xAct/ --delete
 fi
 
 tree xAct > ./.direcory_tree
