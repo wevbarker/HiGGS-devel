@@ -9,7 +9,7 @@
 BracketSimplify[Expr_]:=Module[{Simplified=Expr},
 	Simplified=Simplified/.{xAct`HiGGS`FoliG->xAct`HiGGS`GP};
 	Simplified//=ToNewCanonical;
-	Simplified=Simplified/.ProjectorGP->ProjectWith[GP];
+	Simplified=Simplified/.xAct`HiGGS`ProjectorGP->ProjectWith[xAct`HiGGS`GP];
 	Simplified//=ToNewCanonical;
 	Simplified=Simplified/.FullyProjectSmearingFunctionsRule;
 	Simplified//=ToNewCanonical;

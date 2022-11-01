@@ -17,17 +17,17 @@ RepairProjectorGP[Expr_]:=Module[{RepairedExpr},
 		(*  In most cases, we expect the argument not to be a sum  *)
 		(*---------------------------------------------------------*)
 
-		RepairedExpr=ProjectorGP@Expr,	
+		RepairedExpr=xAct`HiGGS`ProjectorGP@Expr,	
 
 		(*------------------------------------------------------------*)
 		(*  Otherwise, we re-decompose the argument and pass it back  *)
 		(*------------------------------------------------------------*)
 
-		RepairedExpr=Expr//ProjectWith@GP;
+		RepairedExpr=Expr//ProjectWith@xAct`HiGGS`GP;
 		RepairedExpr//=ToNewCanonical;
 		RepairedExpr//=ContractMetric;
 		RepairedExpr//=ScreenDollarIndices;
-		RepairedExpr=RepairedExpr~InducedDecomposition~{GP,V};
+		RepairedExpr=RepairedExpr~InducedDecomposition~{xAct`HiGGS`GP,xAct`HiGGS`V};
 		RepairedExpr//=NoScalar;
 		RepairedExpr//=ToCanonical;
 
@@ -44,13 +44,13 @@ RepairedExpr];
 (*--------------------------------------------------------------------------------*)
 
 InertProjectorGP[Expr_]:=Module[{InertExpr=Expr},
-		InertExpr=InertExpr/.{GP->FoliG};
-		InertExpr//=ProjectorGP;
+		InertExpr=InertExpr/.{xAct`HiGGS`GP->xAct`HiGGS`FoliG};
+		InertExpr//=xAct`HiGGS`ProjectorGP;
 InertExpr];
 
 ActiveProjectorGP[Expr_]:=Module[{ActiveExpr=Expr},
-		ActiveExpr=InertExpr/.{FoliG->GP};
-		ActiveExpr//=ProjectorGP;
+		ActiveExpr=InertExpr/.{xAct`HiGGS`FoliG->xAct`HiGGS`GP};
+		ActiveExpr//=xAct`HiGGS`ProjectorGP;
 ActiveExpr];
 
 ToNewCanonical[Expr_]:=Module[{
@@ -63,19 +63,19 @@ ToNewCanonical[Expr_]:=Module[{
 	(*  If broken Projectors were passed, first fix them on a case-by-case basis  *)
 	(*----------------------------------------------------------------------------*)
 
-	CanonicalisedExpr//=(Evaluate@(#/.{ProjectorGP->RepairProjectorGP}))&;
+	CanonicalisedExpr//=(Evaluate@(#/.{xAct`HiGGS`ProjectorGP->RepairProjectorGP}))&;
 
 	(*----------------------------------------------------*)
 	(*  Make induced derivatives inert within Projectors  *)
 	(*----------------------------------------------------*)
 
-	CanonicalisedExpr//=(Evaluate@(#/.{ProjectorGP->InertProjectorGP}))&;
+	CanonicalisedExpr//=(Evaluate@(#/.{xAct`HiGGS`ProjectorGP->InertProjectorGP}))&;
 
 	(*---------------------------------------------------------*)
 	(*  Expand all non-inert instances of induced derivatives  *)
 	(*---------------------------------------------------------*)
 
-	CanonicalisedExpr//=(Quiet@Check[#/.GPToFoliG,#])&;
+	CanonicalisedExpr//=(Quiet@Check[#/.xAct`HiGGS`GPToFoliG,#])&;
 
 	(*----------------------------*)
 	(*  Perform canonicalisation  *)
@@ -88,13 +88,13 @@ ToNewCanonical[Expr_]:=Module[{
 	(*  Re-activate the induced derivative within Projectors  *)
 	(*--------------------------------------------------------*)
 
-	CanonicalisedExpr//=(Evaluate@(#/.{ProjectorGP->ActiveProjectorGP}))&;
+	CanonicalisedExpr//=(Evaluate@(#/.{xAct`HiGGS`ProjectorGP->ActiveProjectorGP}))&;
 
 	(*---------------------------------------------------------*)
 	(*  If broken Projectors were generated, fix them on exit  *)
 	(*---------------------------------------------------------*)
 
-	CanonicalisedExpr//=(Evaluate@(#/.{ProjectorGP->RepairProjectorGP}))&;
+	CanonicalisedExpr//=(Evaluate@(#/.{xAct`HiGGS`ProjectorGP->RepairProjectorGP}))&;
 
 	(*------------------------------------------*)
 	(*  Finally, screen to make human-readable  *)
