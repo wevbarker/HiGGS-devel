@@ -216,7 +216,7 @@ BinaryNames={
 	"ProjectionNormalisations"
 };
 
-BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"Sources","Definitions",#<>".mx"}&);
+BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"Binaries","Definitions",#<>".mx"}&);
 BinariesToRebuild=BinaryNames~Complement~BuiltBinaries;
 
 (*-------------------*)
