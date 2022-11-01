@@ -1320,10 +1320,10 @@ DefConstantSymbol[AlpPerpPerp2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 AlpPerpPerp={AlpPerpPerp0p,AlpPerpPerp0m,AlpPerpPerp1p,AlpPerpPerp1m,AlpPerpPerp2p,AlpPerpPerp2m};
 xAct`HiGGS`Private`ClearBuild[];
 
-
+(*
 xAct`HiGGS`Private`IfBuild["TransferCouplingsPerpPerp"];
 OpenLastCache[];
-
+*)
 
 (* ::Input::Initialization:: *)
 (*Projection operators which define the O(3) decomposition of the canonical parts of field strengths*)
@@ -1403,10 +1403,10 @@ DefConstantSymbol[BetPerpPara2m,PrintAs->Colour["\!\(\*SubsuperscriptBox[Overscr
 BetPerpPara={BetPerpPara0p,BetPerpPara0m,BetPerpPara1p,BetPerpPara1m,BetPerpPara2p,BetPerpPara2m};
 xAct`HiGGS`Private`ClearBuild[];
 
-
+(*
 xAct`HiGGS`Private`IfBuild["TransferCouplingsPerpPara"];
 OpenLastCache[];
-
+*)
 
 (* ::Input::Initialization:: *)
 DefConstantSymbol[AlpParaPerp0p,PrintAs->Colour["\!\(\*SubsuperscriptBox[OverscriptBox[\(\[Alpha]\), \(^\)], SuperscriptBox[\(0\), \(+\)], \(\(\[DoubleVerticalBar]\)\(\[UpTee]\)\)]\)",$Coupling]];
@@ -1823,6 +1823,7 @@ xAct`HiGGS`Private`ClearBuild[];
 xAct`HiGGS`Private`IfBuild["ChiSing"];
 OpenLastCache[];
 
+(*
 
 (* ::Input::Initialization:: *)
 UBSymb="\!\(\*SubscriptBox[\(\[ScriptU]\), \(\[ScriptB]\)]\)";
@@ -2680,3 +2681,4 @@ xAct`HiGGS`Private`IfBuild["NesterFormIfConstraints"];
 OpenLastCache[];
 
 xAct`HiGGS`Private`BuildRebuild@"PoissonBracket.m";
+*)
