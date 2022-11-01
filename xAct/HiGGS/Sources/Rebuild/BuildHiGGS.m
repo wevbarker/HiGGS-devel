@@ -1823,8 +1823,6 @@ xAct`HiGGS`Private`ClearBuild[];
 xAct`HiGGS`Private`IfBuild["ChiSing"];
 OpenLastCache[];
 
-(*
-
 (* ::Input::Initialization:: *)
 UBSymb="\!\(\*SubscriptBox[\(\[ScriptU]\), \(\[ScriptB]\)]\)";
 DefTensor[UB0p[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[UBSymb,xAct`HiGGS`Private`Spin0p]];
@@ -2681,4 +2679,3 @@ xAct`HiGGS`Private`IfBuild["NesterFormIfConstraints"];
 OpenLastCache[];
 
 xAct`HiGGS`Private`BuildRebuild@"PoissonBracket.m";
-*)

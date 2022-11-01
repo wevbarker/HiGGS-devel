@@ -14,7 +14,7 @@ CrackProjectorGP[Expr_]:=Module[{CrackedExpr},
 	];
 CrackedExpr];
 
-ToNewCanonical[Expr_]:="ToNewCanonical"~TimeWrapper~Module[{temp,printer},
+ToNewCanonical[Expr_]:=Module[{temp,printer},
 	printer=PrintTemporary[" ** ToNewCanonical..."];
 
 	(*Beep[];*)
