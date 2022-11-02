@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14946,        334]
-NotebookOptionsPosition[     14054,        312]
-NotebookOutlinePosition[     14492,        329]
-CellTagsIndexPosition[     14449,        326]
+NotebookDataLength[     15138,        337]
+NotebookOptionsPosition[     14244,        315]
+NotebookOutlinePosition[     14682,        332]
+CellTagsIndexPosition[     14639,        329]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -126,7 +126,7 @@ Cell[BoxData[
           RowBox[{"cBet2", "\[Equal]", "0"}], ",", 
           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"\"\<Spin0p\>\"", ",", 
+       RowBox[{"\"\<SimpleSpin0p\>\"", ",", 
         RowBox[{"{", 
          RowBox[{
           RowBox[{"Alp1", "==", "0"}], ",", 
@@ -151,7 +151,7 @@ Cell[BoxData[
           RowBox[{"cBet3", "\[Equal]", "0"}]}], "}"}]}], "}"}], ",", 
       "\[IndentingNewLine]", 
       RowBox[{"{", 
-       RowBox[{"\"\<Spin0m\>\"", ",", 
+       RowBox[{"\"\<SimpleSpin0m\>\"", ",", 
         RowBox[{"{", 
          RowBox[{
           RowBox[{"Alp1", "==", "0"}], ",", 
@@ -290,19 +290,22 @@ Cell[BoxData[
    3.875799372885743*^9}, {3.875805803756205*^9, 3.875805804299315*^9}, {
    3.876303101748641*^9, 3.876303276812765*^9}, {3.87630348571734*^9, 
    3.876303498765115*^9}, {3.8763035987171593`*^9, 3.87630360781269*^9}, {
-   3.876303652589204*^9, 
-   3.876303685373021*^9}},ExpressionUUID->"23212912-05f6-46e2-8768-\
-3b9253e6d792"],
+   3.876303652589204*^9, 3.876303685373021*^9}, {3.8763042073216343`*^9, 
+   3.876304208545867*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"23212912-05f6-46e2-8768-3b9253e6d792"],
 
 Cell[BoxData[
- RowBox[{"ViewTheory", "[", 
-  RowBox[{"\"\<TEGR\>\"", ",", 
-   RowBox[{"Brackets", "->", "True"}], ",", 
-   RowBox[{"Velocities", "->", "True"}]}], "]"}]], "Input",
+ RowBox[{"Timing", "@", 
+  RowBox[{"ViewTheory", "[", 
+   RowBox[{"\"\<TEGR\>\"", ",", 
+    RowBox[{"Brackets", "->", "True"}], ",", 
+    RowBox[{"Velocities", "->", "False"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.876143606465811*^9, 3.876143630139503*^9}, {
   3.8761512953795547`*^9, 3.876151296345828*^9}, {3.876198358453394*^9, 
-  3.876198359042658*^9}},
- CellLabel->"In[2]:=",ExpressionUUID->"ed77b66d-96a0-475b-b181-d4c2edc41871"],
+  3.876198359042658*^9}, {3.876329758480123*^9, 3.876329759167553*^9}, {
+  3.876329789368088*^9, 
+  3.876329790983802*^9}},ExpressionUUID->"ed77b66d-96a0-475b-b181-\
+d4c2edc41871"],
 
 Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.876298811498865*^9, 
@@ -332,9 +335,9 @@ Cell[CellGroupData[{
 Cell[580, 22, 216, 4, 98, "Title",ExpressionUUID->"33fd9952-67c4-4232-a8dc-4bbf7436299e"],
 Cell[799, 28, 1110, 19, 104, "Text",ExpressionUUID->"106e14e2-8add-4489-bff4-1b3a4c205aec"],
 Cell[1912, 49, 1573, 21, 30, "Input",ExpressionUUID->"5d2a558d-bfb2-4fcf-ab7a-620b399e58c4"],
-Cell[3488, 72, 9969, 222, 415, "Input",ExpressionUUID->"23212912-05f6-46e2-8768-3b9253e6d792"],
-Cell[13460, 296, 423, 8, 29, "Input",ExpressionUUID->"ed77b66d-96a0-475b-b181-d4c2edc41871"],
-Cell[13886, 306, 152, 3, 29, "Input",ExpressionUUID->"0dc300d9-0fca-4857-b957-842c0f891f0b"]
+Cell[3488, 72, 10050, 222, 415, "Input",ExpressionUUID->"23212912-05f6-46e2-8768-3b9253e6d792"],
+Cell[13541, 296, 532, 11, 29, "Input",ExpressionUUID->"ed77b66d-96a0-475b-b181-d4c2edc41871"],
+Cell[14076, 309, 152, 3, 29, "Input",ExpressionUUID->"0dc300d9-0fca-4857-b957-842c0f891f0b"]
 }, Open  ]]
 }
 ]
