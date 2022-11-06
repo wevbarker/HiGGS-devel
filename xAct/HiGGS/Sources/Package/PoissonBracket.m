@@ -16,6 +16,7 @@ BracketSimplify[Expr_]:=Module[{Simplified=Expr},
 	Simplified=Simplified/.FullyProjectParaLorentzGaugeCovDRule;
 	Simplified//=ToNewCanonical;
 	Simplified//=CollectTensors;
+	Simplified//=ScreenDollarIndices;	(*I believe this is made necessary by CollectTensors, which can introduce dummies?*)
 	Simplified//=Simplify;
 Simplified];
 
@@ -107,10 +108,7 @@ SmearedPoissonBracket[{LeftOperand_,LeftSmearing_},{RightOperand_,RightSmearing_
 	EvaluatedBracket,
 	SmearedEvaluatedBracket},
 	UnevaluatedBracket={LeftOperand,RightOperand};
-	EvaluatedBracket=PoissonBracketNewList[LeftOperand,RightOperand,
-		Surficial->True,
-		ToShell->OptionValue@ToShell,
-		PrintAnswer->False];
+	EvaluatedBracket=PoissonBracketNewList[LeftOperand,RightOperand,ToShell->OptionValue@ToShell];
 	SmearedEvaluatedBracket=SmearPoissonBracket[UnevaluatedBracket,EvaluatedBracket,LeftSmearing,RightSmearing,ToShell->OptionValue@ToShell];
 	SmearedEvaluatedBracket];
 
