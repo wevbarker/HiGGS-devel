@@ -1,3 +1,7 @@
+(*================*)
+(*  CanonicalPhi  *)
+(*================*)
+
 PhiB0pDefinition=PB0p[e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiActivate//ActivateGeneralO3Projections;
 PhiB1pDefinition=PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiActivate//ActivateGeneralO3Projections;
 PhiB2pDefinition=PB2p[-n,-m,e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiActivate//ActivateGeneralO3Projections;

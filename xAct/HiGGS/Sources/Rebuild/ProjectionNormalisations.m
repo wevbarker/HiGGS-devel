@@ -1,3 +1,7 @@
+(*============================*)
+(*  ProjectionNormalisations  *)
+(*============================*)
+
 Solutions={};
 tmp=PB0pT[-n,-m,a,c]-cPerpB0p PB0p[g,h]PBPara[-g,-h,-n,-m]PB0p[e,f]PBPara[-e,-f,a,c]/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Solutions=Join[Solutions,Solve[ToConstantSymbolEquations[tmp==0],cPerpB0p][[1]]];

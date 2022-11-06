@@ -1,3 +1,7 @@
+(*=================================*)
+(*  ProjectionNormalisationsCheck  *)
+(*=================================*)
+
 xAct`HiGGS`Private`HiGGSPrint[Style["B0p",Blue,20]];
 tmp=PB0p[g,h]PBPara[-g,-h,-n,-m]PB0p[e,f]PBPara[-e,-f,n,m]-(1/cPerpB0p)/.TocPerp/.NewPO3TActivate/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 xAct`HiGGS`Private`HiGGSPrint[tmp];

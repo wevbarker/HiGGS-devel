@@ -1,6 +1,6 @@
-(*----------------------*)
+(*======================*)
 (*  DefNesterFormShell  *)
-(*----------------------*)
+(*======================*)
 
 TensorList[Expr_]:=DeleteDuplicates@Flatten@((Cases[ExtractSymbols@#,_?xTensorQ,Infinity])&/@(Flatten@({Expr/.Plus->List})));
 

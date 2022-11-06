@@ -1,3 +1,7 @@
+(*========================*)
+(*  ComputeShellFreedoms  *)
+(*========================*)
+
 ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 	Theory,
 	$ToShellFreedomsValue,

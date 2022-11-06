@@ -1,3 +1,7 @@
+(*==============*)
+(*  ViewTheory  *)
+(*==============*)
+
 Options[ViewTheory]={
 	Literature->True,
 	Brackets->True,

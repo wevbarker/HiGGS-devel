@@ -1,4 +1,6 @@
-(* provides some alternatives to the D versions of these rules *)
+(*===================*)
+(*  CDBToGaugeCovDB  *)
+(*===================*)
 
 xAct`HiGGS`Private`G3VCDBToG3GaugeCovDV=MakeRule[{G3[-l,n]V[-k]CD[-m][B[k,-n]],-G3[-l,n]B[j,-n]A[k,-j,-m]V[-k]-G3[-l,n]B[j,-n]GaugeCovD[-m][V[-j]]},MetricOn->All,ContractMetrics->True];
 

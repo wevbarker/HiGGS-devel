@@ -1,3 +1,7 @@
+(*=============================*)
+(*  TransferCouplingsPerpPerp  *)
+(*=============================*)
+
 Transfer$CouplingsPerpPerpSolutions={};
 tmp=BetPerpPerp0p PB0p[g,h]PBPara[-g,-h,a,e]- PB0p[x,z]PBPara[-x,-z,i,f]V[g]PPara[-f,h]V[-c]PPara[e,-d](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])/.PO3PiActivate/.PActivate/.PADMPiActivate/.PADMActivate//ToCanonical//CollectTensors;
 Transfer$CouplingsPerpPerpSolutions=Join[Transfer$CouplingsPerpPerpSolutions,Solve[ToConstantSymbolEquations[tmp==0],BetPerpPerp0p][[1]]];

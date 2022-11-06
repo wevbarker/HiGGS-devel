@@ -1,4 +1,6 @@
-(* provides the PoissonBracket function *)
+(*==================*)
+(*  PoissonBracket  *)
+(*==================*)
 
 DefTensor[xAct`HiGGS`Private`CDBDummy[-a,-b,-c],M4];
 DefTensor[xAct`HiGGS`Private`CDADummy[-a,-b,-c,-d],M4,Antisymmetric[{-b,-c}]];

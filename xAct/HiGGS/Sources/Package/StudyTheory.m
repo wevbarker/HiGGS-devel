@@ -1,6 +1,6 @@
-(*================*)
-(*  Study theory  *)
-(*================*)
+(*===============*)
+(*  StudyTheory  *)
+(*===============*)
 
 PreparePPM[TheoryName_String]:=Module[{
 	PPMArguments,

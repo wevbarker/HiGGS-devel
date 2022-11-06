@@ -1,3 +1,7 @@
+(*============*)
+(*  Smearing  *)
+(*============*)
+
 (*This snippet is a patch to the Global` part of the build, to be implemented near PoissonBracket, so that xAct`HiGGS`Private`PrintPoissonBracket is facilitated. These lines just define the smearing functions.*)
 
 (*some dummy coordinate functions, where x^0 is the time which defines the slicing*)

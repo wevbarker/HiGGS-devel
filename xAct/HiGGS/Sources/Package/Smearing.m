@@ -1,3 +1,7 @@
+(*============*)
+(*  Smearing  *)
+(*============*)
+
 (*The purpose of this file is to provide a function to xAct`HiGGS`Private` which prints the bracket output with the HiGGS-like List head in a mathematically meaningful form using smearing functions. Our understanding of the smearing function formalism is kindly suggested by Manuel Hohmann, through refs 1111.5490, 1111.5498, 1309.4685.*)
 
 (* xTensor throws "Cannot decide orthogonality to the variable-rank tensor" errors when contracting metric on the variable-index smearing functions, thus we need to tweak xtensor to declare all such functions to not be (strictly) orthogonal to the foliation *)
