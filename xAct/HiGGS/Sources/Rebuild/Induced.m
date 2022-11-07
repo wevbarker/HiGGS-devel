@@ -1,6 +1,6 @@
-(*================================*)
-(*  Definition of induced metric  *)
-(*================================*)
+(*===========*)
+(*  Induced  *)
+(*===========*)
 
 (* firstly define the parallel eta metric, recall that this has the same meaning as PPara, and so we may wish to merge the quantities at some point *)
 GPSymb="\!\(\*SuperscriptBox[\(\[Eta]\), \(\[DoubleVerticalBar]\)]\)";

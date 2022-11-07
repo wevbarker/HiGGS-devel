@@ -1,3 +1,7 @@
+(*===================================*)
+(*  PrecomputeDerivativeProjections  *)
+(*===================================*)
+
 Begin["xAct`HiGGS`Private`"];
 
 ProjectLorentzGaugeCovDRule={};

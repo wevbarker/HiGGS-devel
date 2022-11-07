@@ -1,6 +1,6 @@
-(*=========================*)
-(*  PoissonBracketNewList  *)
-(*=========================*)
+(*======================*)
+(*  PoissonBracketList  *)
+(*======================*)
 
 Options[PoissonBracketNewList]={
 	ToShell->False,

@@ -1,3 +1,7 @@
+(*======================*)
+(*  GeneralComplements  *)
+(*======================*)
+
 Begin["xAct`HiGGS`Private`"];
 
 xAct`HiGGS`Private`HiGGSPrint["OrigBComplementDefinition..."];

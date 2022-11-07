@@ -1,4 +1,6 @@
-(* ::Package:: *)
+(*=============*)
+(*  VarAction  *)
+(*=============*)
 
 Needs["xAct`xPert`"]
 Needs["xAct`xTensor`"]

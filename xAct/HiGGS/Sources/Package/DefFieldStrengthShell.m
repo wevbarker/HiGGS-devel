@@ -1,3 +1,7 @@
+(*=========================*)
+(*  DefFieldStrengthShell  *)
+(*=========================*)
+
 DefFieldStrengthShell[TheoryName_?StringQ]:=Module[{
 	Theory,
 	$StrengthPShellToStrengthPO3Value,

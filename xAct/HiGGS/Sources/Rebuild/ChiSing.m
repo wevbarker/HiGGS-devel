@@ -1,3 +1,7 @@
+(*===========*)
+(*  ChiSing  *)
+(*===========*)
+
 ChiSingExtraB1pDefinition=(BetPerpPerp1p/cBetPerpPerp1p)PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]BChiSingExtra[-a,-c]/.ToBet/.TocBet/.BChiSingExtraActivate//ActivateGeneralO3Projections;
 ChiSingExtraB1mDefinition=(BetPerpPerp1m/cBetPerpPerp1m)PB1m[-n,f]PBPerp[-f,a,c]BChiSingExtra[-a,-c]/.ToBet/.TocBet/.BChiSingExtraActivate//ActivateGeneralO3Projections;
 

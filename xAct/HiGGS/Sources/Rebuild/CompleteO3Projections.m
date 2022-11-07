@@ -1,3 +1,7 @@
+(*=========================*)
+(*  CompleteO3Projections  *)
+(*=========================*)
+
 PB0pTDefinition=(1/3)PPara[-n,-m]PB0p[e,f]PBPara[-e,-f,a,c]/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical;
 PB1pTDefinition=PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical;
 PB2pTDefinition=PB2p[-n,-m,e,f]PBPara[-e,-f,a,c]/.PO3PiActivate/.PADMPiActivate/.PADMActivate//ToCanonical;

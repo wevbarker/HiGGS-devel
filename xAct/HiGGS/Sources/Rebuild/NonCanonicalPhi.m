@@ -1,3 +1,7 @@
+(*===================*)
+(*  NonCanonicalPhi  *)
+(*===================*)
+
 PhiNonCanonicalB0pDefinition=PB0p[e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiNonCanonicalActivate//ActivateGeneralO3Projections;
 PhiNonCanonicalB1pDefinition=PB1p[-n,-m,e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiNonCanonicalActivate//ActivateGeneralO3Projections;
 PhiNonCanonicalB2pDefinition=PB2p[-n,-m,e,f]PBPara[-e,-f,a,c]BPhi[-a,-c]/.BPhiNonCanonicalActivate//ActivateGeneralO3Projections;

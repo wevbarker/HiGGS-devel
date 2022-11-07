@@ -1,4 +1,7 @@
-(*Here are the generalised freedom coefficients*)
+(*========================*)
+(*  ComputeShellFreedoms  *)
+(*========================*)
+
 Begin["xAct`HiGGS`Private`"];
 	DefNiceConstantSymbol[ShellPara,ToExpression[#]]&/@ASectorNames;
 	DefNiceConstantSymbol[ShellOrig,ToExpression[#]]&/@ASectorNames;
