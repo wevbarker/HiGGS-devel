@@ -70,7 +70,7 @@ Print["HiGGS incorporates code by Cyril Pitrou."];
 (*  Modify the path to accommodate notebook and install directories  *)
 (*-------------------------------------------------------------------*)
 
-If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
+Quiet@If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
 $Path~AppendTo~$WorkingDirectory;
 $HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
   
