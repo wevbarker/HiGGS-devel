@@ -1,27 +1,24 @@
-(*===========================*)
-(*  HiGGS main package file  *)
-(*===========================*)
+(*=========*)
+(*  HiGGS  *)
+(*=========*)
 
-(*=======================*)
+(*-----------------------*)
 (*  Cosmetic to-do list  *)
-(*=======================*)
+(*-----------------------*)
 
 (*
 - redundant projection operators on derivatives of the spatial measure
-- Kroneker delta appears outside projection operators, not needed
 - general indices for PoissonBracket please.
-- check the validity of the overall bracket
 - clear up ambiguity over what G actually means, and how it prints
-
-- symbol of the 3-metric
 - dollar indices in the intermediate expressions
 *)
 
-(*======================*)
+(*----------------------*)
 (*  Serious to-do list  *)
-(*======================*)
+(*----------------------*)
 
 (*
+- check the validity of the overall bracket
 - Ambiguous use of ToShell for super-Hamiltonian
 - RP1p//ToBasicForm//ToNesterForm is returning NEGATIVE of RP1p! Problem appears not to affect momenta and torsion, so there is likely some typo/coonvention clash in the binary sources
 - check effect on novel theories of the ToBasicForm problem with decomposed Lagrange multipliers
@@ -29,11 +26,18 @@
 - shift variables into xAct`HiGGS`Private`
 *)
 
+(*------------------------------*)
+(*  Change version number here  *)
+(*------------------------------*)
 
-(*xAct`HiGGS`$Version={"2.0.0",{2022,9,4}};*)
-(**)
+(*
+xAct`HiGGS`$Version={"2.0.0",{2022,11,4}};
+*)
 xAct`HiGGS`$Version={"2.0.0-developer",DateList@FileDate@$InputFileName~Drop~(-3)};
-(**)
+
+(*----------------------------------*)
+(*  Suppress some shadowing errors  *)
+(*----------------------------------*)
 
 xAct`HiGGS`$Timing;
 Off[Global`$Timing::shdw];
@@ -42,15 +46,17 @@ Off[Global`$Node::shdw];
  
 If[Unevaluated[xAct`xCore`Private`$LastPackage]===xAct`xCore`Private`$LastPackage,xAct`xCore`Private`$LastPackage="xAct`HiGGS`"];
 
-
 (*===============*)
 (*  xAct`HiGGS`  *)
 (*===============*)
-
  
 BeginPackage["xAct`HiGGS`",{"xAct`xTensor`","xAct`xPerm`","xAct`xCore`","xAct`xTras`"}];
  
 ParallelNeeds["xAct`HiGGS`"];
+
+(*----------------------------------------------------------------------------------------------*)
+(*  The Hamiltonian analysis makes some long outputs, so it is prererable to scroll to the end  *)
+(*----------------------------------------------------------------------------------------------*)
  
 SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
  
@@ -58,21 +64,21 @@ Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
 Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
 Print[xAct`xCore`Private`bars];
-(*Print["HiGGS is an open source dependent of the xAct bundle."];*)
-Print["HiGGS incorporates example code by Cyril Pitrou."];
+Print["HiGGS incorporates code by Cyril Pitrou."];
+
+(*-------------------------------------------------------------------*)
+(*  Modify the path to accommodate notebook and install directories  *)
+(*-------------------------------------------------------------------*)
+
+Quiet@If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
+$Path~AppendTo~$WorkingDirectory;
+$HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
+  
+(*------------------------------*)
+(*  Node variable for HPC use   *)
+(*------------------------------*)
  
-(*
-If[!ValueQ@Global`$Timing,
-Global`$Timing=False;
-Global`$Node="";
-];
-*)
-(*
-Print["Some hard-to-suppress error messages may appear below..."];
-*)
 Quiet[
-DistributeDefinitions@$Timing;
-DistributeDefinitions@Global`$Timing;
 If[!ValueQ@$Node,
 $Node=Global`$Node;
 If[!ValueQ@$Node,$Node=""];
@@ -80,131 +86,11 @@ DistributeDefinitions@$Node;
 DistributeDefinitions@Global`$Node;
 ];
 ];
-(*
-Print["...and that should be it: no further errors should appear below here."];
-Print[xAct`xCore`Private`bars];
-*)
-(*,Print["issues"],{$Node::shdw,Global`$Node::shdw,$Timing::shdw,Global`$Timing::shdw}*)
-
-
- 
-(*Because the developer version of HiGGS is not installed, and sits locally, we need this*)
-(*was Needs called on the HiGGS package from a notebook?*)
-If[NotebookDirectory[]==$Failed,$WorkingDirectory=Directory[];,$WorkingDirectory=NotebookDirectory[];,$WorkingDirectory=NotebookDirectory[];];
-(*Print["The working directory is "<>$WorkingDirectory];*)
-$Path~AppendTo~$WorkingDirectory;
-$HiGGSInstallDirectory=Select[FileNameJoin[{#,"xAct/HiGGS"}]&/@$Path,DirectoryQ][[1]];
-(*Print["At least one HiGGS installation directory was found at "<>$HiGGSInstallDirectory<>"."];
-Print[xAct`xCore`Private`bars];*)
-
-
- 
-ActiveCellTags={};
-UnitTests={"CheckOrthogonality","ShowIrreps","ProjectionNormalisationsCheck","ShowIrreps","documentation"};
-PrematureCellTags={"TransferCouplingsPerpPerp","TransferCouplingsPerpPara"};
-BinaryNames={"O13Projections","CompleteO3Projections","ProjectionNormalisations","CanonicalPhi","NonCanonicalPhi","ChiPerp","ChiSing","GeneralComplements","CDPiPToCDPiPO3","PiPToPiPO3","PrecomputeDerivativeProjections","NesterFormIfConstraints"};
-BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"bin/build/"<>#<>".mx"}&);
-ActiveCellTags=ActiveCellTags~Join~(BinaryNames~Complement~BuiltBinaries);
-
-
- 
-(*time when the package is called*)
-$HiGGSBuildTime=AbsoluteTime[];
-(*set up a file to record the start time of a job*)
-$BuildTimeFilename=Quiet@FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.chr.mx"};
-(*is this the first kernel launched in the job? if so, record start time to file, otherwise import the file*)
-Quiet@If[!FileExistsQ@$BuildTimeFilename,
-$BuildTimeFilename~DumpSave~{$HiGGSBuildTime},
-ToExpression@("<<"<>$BuildTimeFilename<>";");
-];
-(*return time since start time*)
-HiGGSAbsoluteTime[]:=Module[{},AbsoluteTime[]-$HiGGSBuildTime];
-
-
- 
-(*remember to modify this if you want to time another function in Global/Main.nb *)
-$TimedFunctionList={"BuildHiGGS","DefTheory","Velocity","PoissonBracket","DeclareOrder","ToOrderCanonical","VarAction","ToNewCanonical"};
-(*initial zeroes, i.e. the default line*)
-$HiGGSTimingLine=0.~ConstantArray~(20*2Length@$TimedFunctionList);
-
-
- 
-(*which kernel are we in? This sets the file in which we record stats*)
-$HiGGSTimingFile=Quiet@FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"chr","kernel-"<>ToString@$KernelID<>".chr.csv"};
-(*a function which writes all current data to the kernel file*)
-WriteHiGGSTimingData[]:=Module[{HiGGSOutputStream},
-(*open the stream*)
-HiGGSOutputStream=OpenAppend[$HiGGSTimingFile];
-WriteString[HiGGSOutputStream,ExportString[#,"CSV"]]&@$HiGGSTimingData;
-Close[HiGGSOutputStream];
-(*Zero the data again, so that we don't have always to be carrying it around*)
-$HiGGSTimingData={};
-];
-
-
- 
-(*headers for the timing file*)
-$HiGGSTimingData={};
-(*$HiGGSTimingData~AppendTo~Flatten@(Flatten@(({#,#})&/@$TimedFunctionList)~ConstantArray~10)*)
-$HiGGSTimingData~AppendTo~$HiGGSTimingLine;
-(*open the kernel files and write the function headers*)
-Quiet[WriteHiGGSTimingData[]];
-
-
- 
-(*Try timing, i.e. this only works to print to file once every $PauseSeconds*)
-$PauseSeconds=6;
-$LastMultiple=0;
-TryTiming[]:=Module[{PrintDamper,HiGGSOutputStream,printer},
-PrintDamper=AbsoluteTime[];
-If[(Ceiling@PrintDamper~Divisible~$PauseSeconds)&&!(Ceiling@PrintDamper/$PauseSeconds==$LastMultiple),
-printer=PrintTemporary[" ** TryTiming: recording timing statistics"];
-(*
-$HiGGSTimingFile~Export~$HiGGSTimingData;
-*)
-(*do all the writing here*)
-WriteHiGGSTimingData[];
-(*log the last multiple of seconds on which we were allowed to print*)
-$LastMultiple=Ceiling@PrintDamper/$PauseSeconds;
-NotebookDelete[printer];
-];
-];
-
-
- 
-(*This is redefined only when the theory batch is introduced, but only needed beyond that point anyway*)
 Quiet@ToExpression["<<"<>FileNameJoin@{$WorkingDirectory,"svy","node-"<>$Node,"peta4.nom.mx"}<>";"];
-
-
  
-(*don't try timing until we call the function in expr*)
-TimeWrapper~SetAttributes~HoldAll;
-(*the actual timing function*)
-TimeWrapper[Label_String,expr_]:=Module[{res,temp,TimingNowPosition,TimingDurationPosition,$HiGGSTimingNow,$HiGGSTimingDuration,NewHiGGSTimingLine,PrintDamper},
-If[Global`$Timing,
-$HiGGSTimingNow=HiGGSAbsoluteTime[];
-(*Label=ToString@Head@expr;*)(*nothing wrong with this, but we'll include it later*)
-res=AbsoluteTiming@expr;
-temp=Evaluate@res[[2]];
-$HiGGSTimingDuration=Evaluate@res[[1]];
-If[StringQ@$TheoryName,TimingDurationPosition=(2Length@$TimedFunctionList)(($TheoryNames~Position~$TheoryName)[[1]][[1]])+2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
-TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);,
-TimingDurationPosition=2((Flatten@($TimedFunctionList~Position~Label))[[1]]);];
-TimingNowPosition=TimingDurationPosition-1;
-NewHiGGSTimingLine=$HiGGSTimingLine~ReplacePart~(TimingDurationPosition->$HiGGSTimingDuration);
-NewHiGGSTimingLine=NewHiGGSTimingLine~ReplacePart~(TimingNowPosition->$HiGGSTimingNow);
-$HiGGSTimingData~AppendTo~NewHiGGSTimingLine;
-(*need to be careful not to spend all our time printing *)
-TryTiming[];,
-temp=Evaluate@expr,
-temp=Evaluate@expr];
-temp];
-
-
- 
-ForceTiming[]:=WriteHiGGSTimingData[];
-
-
+(*--------------*)
+(*  Disclaimer  *)
+(*--------------*)
  
 If[xAct`xCore`Private`$LastPackage==="xAct`HiGGS`",
 Unset[xAct`xCore`Private`$LastPackage];
@@ -212,11 +98,9 @@ Print[xAct`xCore`Private`bars];
 Print["These packages come with ABSOLUTELY NO WARRANTY; for details type Disclaimer[]. This is free software, and you are welcome to redistribute it under certain conditions. See the General Public License for details."];
 Print[xAct`xCore`Private`bars]];
 
-
-(*==========================================================*)
+(*----------------------------------------------------------*)
 (*  Declaration of provied functions and symbols for HiGGS  *)
-(*==========================================================*)
-
+(*----------------------------------------------------------*)
 
 NesterFormQ::usage="NesterFormQ[Expr] gives True if Expr is a valid tensor expression in Nester form, and False otherwise.";
 ToNesterForm::usage="ToNesterForm[Expr] expresses Expr via human-readable spin-parity irreps of gauge-covariant quantities. All Greek (coordinate) indices are replaced by Roman (Lorentzian) indices, there are no time derivatives, all quantities are canonical and there is no reference to the unphysical (time) part of the gauge fields or their conjugate momenta. In some sense, this \"simplifies\" the output of ToBasicForm.";
@@ -244,9 +128,9 @@ Brackets::usage="Brackets is an option for StudyTheory, which determines whether
 Velocities::usage="Velocities is an option for StudyTheory, which determines whether the velocities of the primary if-constraints should be computed. Default is False.";
 ViewTheory::usage="ViewTheory[TheoryName] presents the literature-based information, primary Poisson matrix and velocities associated with a theory.";
 
-(*===================================================================*)
+(*-------------------------------------------------------------------*)
 (*  Declarations for convenience wrappers which we use beyond HiGGS  *)
-(*===================================================================*)
+(*-------------------------------------------------------------------*)
 
 MakeQuotientRule::usage="MakeQuotientRule[{xTensor,Expr}] makes a rule which takes an expression Expr containing single instance of an xTensor, with a specified valence and some constant or scalar coefficient, assumes that same expression to be zero, and replaces future instances of that xTensor accordingly. The options include the same options as for MakeRule.";
 Canonicalise::usage="Canonicalise is an option for MakeQuotientRule, which determines whether ToCanonical is run on the solved expression. Default is True.";
@@ -257,25 +141,16 @@ ToNewCanonical::usage="ToNewCanonical[Expr] is a convenience wrapper for ScreenD
 (*  xAct`HiGGS`Private`  *)
 (*=======================*)
 
-
 Begin["xAct`HiGGS`Private`"];
 
-(* delete print cells during build *)
-$PrintCellsBeforeBuildHiGGS=.;
-(*
-ClearBuild[]:=NotebookDelete@(Flatten@Cells[SelectedNotebook[],CellStyle->{"Print"}]~Complement~$PrintCellsBeforeBuildHiGGS);
-*)
-(*
-ClearBuild[]:=Print@"ClearBuild";
-*)
-BuildGlobally[FileName_String]:=(Get[FileNameJoin@{$HiGGSInstallDirectory,"Global",FileName}];ClearBuild[]);
-BuildPrivately[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Private",FileName}];
+BuildPackage[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Sources","Package",FileName}];
+BuildRebuild[FileName_String]:=Get[FileNameJoin@{$HiGGSInstallDirectory,"Sources","Rebuild",FileName}];
 
 (*-------------------------------------------------------------------------------------------------------*)
 (*  Load all the structures which constitute the Private` part of the package (this acts as a registry)  *)
 (*-------------------------------------------------------------------------------------------------------*)
 
-BuildHiGGSPrivate[]:=BuildPrivately/@{
+BuildHiGGSPackage[]:=BuildPackage/@{
 	"BuildHiGGS.m",
 	"ToNewCanonical.m",
 	"MakeQuotientRule.m",
@@ -304,9 +179,62 @@ BuildHiGGSPrivate[]:=BuildPrivately/@{
 	"HiGGSParallelSubmit.m",
 	"StudyTheory.m",
 	"ViewTheory.m",
-	"Utils.m"};
+	"Utils.m"
+};
 
-BuildHiGGSPrivate[];
+BuildHiGGSPackage[];
+
+(*-----------------------*)
+(*  Cached binary files  *)
+(*-----------------------*)
+
+UnitTests={
+	"CheckOrthogonality",
+	"ShowIrreps",
+	"ProjectionNormalisationsCheck",
+	"ShowIrreps",
+	"documentation"
+};
+
+NotYetImplemented={
+	"TransferCouplingsPerpPerp",
+	"TransferCouplingsPerpPara"
+};
+
+BinaryNames={
+	"CanonicalPhi",
+	"CDPiPToCDPiPO3",
+	"ChiPerp",
+	"ChiSing",
+	"CompleteO3Projections",
+	"GeneralComplements",
+	"NesterFormIfConstraints",
+	"NonCanonicalPhi",
+	"O13Projections",
+	"PiPToPiPO3",
+	"PrecomputeDerivativeProjections",
+	"ProjectionNormalisations"
+};
+
+BuiltBinaries=BinaryNames~Select~(FileExistsQ@FileNameJoin@{$HiGGSInstallDirectory,"Binaries","Definitions",#<>".mx"}&);
+BinariesToRebuild=BinaryNames~Complement~BuiltBinaries;
+
+(*-------------------*)
+(*  Cached contexts  *)
+(*-------------------*)
+
+(*----------------------------------------------------------------------------------------------------------------------*)
+(*  note that TangentM4` is not listed by default, and you have to do some digging in the xTensor source to obtain it!  *)
+(*----------------------------------------------------------------------------------------------------------------------*)
+
+ContextList={	
+	"xAct`HiGGS`",
+	"xAct`HiGGS`Private`",
+	"xAct`xTensor`",
+	"xAct`xTensor`Private`",
+	"TangentM4`",
+	"xAct`HiGGS`"
+};
 
 (*--------------------------------------------------------------------------------------------------------------*)
 (*  If you want to recompile the HiGGS sources, pass "xAct`HiGGS`Private`Recompile->True" to the command below  *)
