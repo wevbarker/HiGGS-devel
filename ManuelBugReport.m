@@ -20,6 +20,7 @@ Print@"In Nester form, and for the couplings of the TEGR:";
 
 Combination//=ToBasicForm;
 Combination=Combination/.TEGR@xAct`HiGGS`Private`$ToTheory;
+Combination=ToNesterForm[Combination, ToShell->False];
 
 Print@Combination;
 
