@@ -82,6 +82,11 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 
 	PrintVariable={};
 	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracketNewList..."];
+
+	Print@"PoissonBracketNewList was called on vars";
+	Print@LeftOperand;
+	Print@RightOperand;
+	Print@"Here ends commentary";
 		
 	LeftOp=ToBasicForm[LeftOperand,Hard->True];
 	LeftOp//=NoScalar;
