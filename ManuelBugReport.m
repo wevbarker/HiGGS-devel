@@ -24,4 +24,8 @@ Combination=ToNesterForm[Combination, ToShell->False];
 
 Print@Combination;
 
+Print@"Okay, so recalling that for the TEGR we switched out all the dimensionful couplings for rational numbers, something of the shape returned above looks fairly sensible. Now we will try to compute the Poisson bracket with the super-Hamiltonian. Notice here that there is no need to remove ProjectorGP at all, this is already done internally:";
+
+MyNewVelocity = PoissonBracket[Combination,TEGR@$SuperHamiltonian,ToShell->False];
+
 Quit[];
