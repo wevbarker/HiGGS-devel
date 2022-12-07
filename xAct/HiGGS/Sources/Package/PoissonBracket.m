@@ -228,11 +228,11 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	Switch[OptionValue@Method,
 		"NesterFormDecomposition",
-			LeftExpansion=((SmearingLeft@@LeftFreeIndices)*LeftOperand)~LeibnizList~DifferentiableTensors;
-			RightExpansion=((SmearingRight@@RightFreeIndices)*RightOperand)~LeibnizList~DifferentiableTensors;,
+			LeftExpansion=(ReplaceDummies@((SmearingLeft@@LeftFreeIndices)*LeftOperand))~LeibnizList~DifferentiableTensors;
+			RightExpansion=(ReplaceDummies@((SmearingRight@@RightFreeIndices)*RightOperand))~LeibnizList~DifferentiableTensors;,
 		"BruteForce",
-			LeftExpansion={{LeftOperand,SmearingLeft@@LeftFreeIndices}};
-			RightExpansion={{RightOperand,SmearingRight@@RightFreeIndices}};,
+			LeftExpansion={{ReplaceDummies@LeftOperand,SmearingLeft@@LeftFreeIndices}};
+			RightExpansion={{ReplaceDummies@RightOperand,SmearingRight@@RightFreeIndices}};,
 		_,
 			Throw@Message[PoissonBracket::nometh,OptionValue@Method];
 	];
