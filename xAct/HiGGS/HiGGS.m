@@ -62,7 +62,7 @@ SetOptions[$FrontEndSession,EvaluationCompletionAction->"ScrollToOutput"];
  
 Print[xAct`xCore`Private`bars];
 Print["Package xAct`HiGGS`  version ",$Version[[1]],", ",$Version[[2]]];
-Print["CopyRight \[Copyright] 2022, Will E. V. Barker, under the General Public License."];
+Print["CopyRight \[Copyright] 2022, Will E. V. Barker and Manuel Hohmann, under the General Public License."];
 Print[xAct`xCore`Private`bars];
 Print["HiGGS incorporates code by Cyril Pitrou."];
 
