@@ -60,23 +60,23 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
 		SmearedEvaluatedBracketTerm1=
-		((ReplaceDummies@(NoScalar@(EvaluatedBracket[[1]]//ToNewCanonical)))~Dot~
-		(ReplaceDummies@(NoScalar@LeftSmearing))~Dot~
-		(ReplaceDummies@(NoScalar@RightSmearing)))];
+		((ReplaceDummiesZ1@(NoScalar@(EvaluatedBracket[[1]]//ToNewCanonical)))~Dot~
+		(ReplaceDummiesZ2@(NoScalar@LeftSmearing))~Dot~
+		(ReplaceDummiesZ3@(NoScalar@RightSmearing)))];
 	
 		If[PossibleZeroQ@EvaluatedBracket[[2]],
 		SmearedEvaluatedBracketTerm2=0,
 		SmearedEvaluatedBracketTerm2=
-		((ReplaceDummies@(NoScalar@(EvaluatedBracket[[2]]//ToNewCanonical)))~Dot~
-		(ReplaceDummies@(NoScalar@LeftSmearing))~Dot~
-		(ReplaceDummies@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(NoScalar@RightSmearing))))];
+		((ReplaceDummiesZ1@(NoScalar@(EvaluatedBracket[[2]]//ToNewCanonical)))~Dot~
+		(ReplaceDummiesZ2@(NoScalar@LeftSmearing))~Dot~
+		(ReplaceDummiesZ3@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(NoScalar@RightSmearing))))];
 
 		If[PossibleZeroQ@EvaluatedBracket[[3]],
 		SmearedEvaluatedBracketTerm3=0,
 		SmearedEvaluatedBracketTerm3=
-		((ReplaceDummies@(NoScalar@(EvaluatedBracket[[3]]//ToNewCanonical)))~Dot~
-		(ReplaceDummies@(xAct`HiGGS`SmearingLeft@@LeftFreeIndices))~Dot~
-		(ReplaceDummies@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(xAct`HiGGS`G3[Zw1,-Zw]xAct`HiGGS`GaugeCovD[-Zw1]@(NoScalar@RightSmearing)))))];
+		((ReplaceDummiesZ1@(NoScalar@(EvaluatedBracket[[3]]//ToNewCanonical)))~Dot~
+		(ReplaceDummiesZ2@(xAct`HiGGS`SmearingLeft@@LeftFreeIndices))~Dot~
+		(ReplaceDummiesZ3@(xAct`HiGGS`G3[Zz1,-Zz]xAct`HiGGS`GaugeCovD[-Zz1]@(xAct`HiGGS`G3[Zw1,-Zw]xAct`HiGGS`GaugeCovD[-Zw1]@(NoScalar@RightSmearing)))))];
 
 		SmearedEvaluatedBracketTotal=SmearedEvaluatedBracketTerm1+
 		SmearedEvaluatedBracketTerm2+
@@ -228,11 +228,11 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	Switch[OptionValue@Method,
 		"NesterFormDecomposition",
-			LeftExpansion=(ReplaceDummies@((SmearingLeft@@LeftFreeIndices)*LeftOperand))~LeibnizList~DifferentiableTensors;
-			RightExpansion=(ReplaceDummies@((SmearingRight@@RightFreeIndices)*RightOperand))~LeibnizList~DifferentiableTensors;,
+			LeftExpansion=(ReplaceDummiesZ4@((SmearingLeft@@LeftFreeIndices)*LeftOperand))~LeibnizList~DifferentiableTensors;
+			RightExpansion=(ReplaceDummiesZ5@((SmearingRight@@RightFreeIndices)*RightOperand))~LeibnizList~DifferentiableTensors;,
 		"BruteForce",
-			LeftExpansion={{ReplaceDummies@LeftOperand,SmearingLeft@@LeftFreeIndices}};
-			RightExpansion={{ReplaceDummies@RightOperand,SmearingRight@@RightFreeIndices}};,
+			LeftExpansion={{ReplaceDummiesZ4@LeftOperand,SmearingLeft@@LeftFreeIndices}};
+			RightExpansion={{ReplaceDummiesZ5@RightOperand,SmearingRight@@RightFreeIndices}};,
 		_,
 			Throw@Message[PoissonBracket::nometh,OptionValue@Method];
 	];

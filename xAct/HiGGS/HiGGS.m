@@ -164,6 +164,7 @@ BuildHiGGSPackage[]:=BuildPackage/@{
 	"VarAction.m",
 	"PoissonBracketList.m",
 	"PoissonBracket.m",
+	"InternalIndices.m",
 	"ComputeShellFreedoms.m",
 	"DefFieldStrengthShell.m",
 	"DefMomentaShell.m",
