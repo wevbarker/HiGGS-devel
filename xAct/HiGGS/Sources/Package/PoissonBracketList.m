@@ -82,7 +82,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 
 	PrintVariable={};
 	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracketNewList..."];
-		
+	
 	LeftOp=ToBasicForm[LeftOperand,Hard->True];
 	LeftOp//=NoScalar;
 	If[OptionValue[PreTruncate],LeftOp=LeftOp//ToNewCanonical];

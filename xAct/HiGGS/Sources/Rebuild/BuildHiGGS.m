@@ -2679,3 +2679,5 @@ xAct`HiGGS`Private`IfBuild["NesterFormIfConstraints"];
 OpenLastCache[];
 
 xAct`HiGGS`Private`BuildRebuild@"PoissonBracket.m";
+
+xAct`HiGGS`Private`BuildRebuild@"InternalIndices.m";
