@@ -17,45 +17,12 @@ xAct
     │       └── ProjectionNormalisations.mx
     ├── COPYING
     ├── Documentation
-    │   └── Examples
-    │       ├── appcg.job.m
-    │       ├── appcg.job.nb
-    │       ├── appcg.job.sh
-    │       ├── appcg.plt.py
-    │       ├── appcg.plt.sh
-    │       ├── fig
-    │       │   ├── poissonbracket_2
-    │       │   ├── poissonbracket_212-2fig.pdf
-    │       │   ├── poissonbracket_3
-    │       │   ├── poissonbracket_315-1fig.pdf
-    │       │   ├── poissonbracketreadme
-    │       │   ├── poissonbracketreadme8-1fig.pdf
-    │       │   ├── yonester
-    │       │   ├── yonester17-10fig.pdf
-    │       │   ├── yonester17-2fig.pdf
-    │       │   ├── yonester17-3fig.pdf
-    │       │   ├── yonester17-4fig.pdf
-    │       │   ├── yonester17-5fig.pdf
-    │       │   ├── yonester17-6fig.pdf
-    │       │   ├── yonester17-7fig.pdf
-    │       │   ├── yonester17-8fig.pdf
-    │       │   └── yonester17-9fig.pdf
-    │       ├── peta4.job.m
-    │       ├── peta4.job.nb
-    │       ├── peta4.job.sh
-    │       ├── peta4.job.slm
-    │       ├── peta4.plt.py
-    │       ├── peta4.plt.sh
-    │       ├── peta4.rdm.png
-    │       ├── peta4.svy.m
-    │       ├── peta4.svy.nb
-    │       ├── svy
-    │       │   ├── EinsteinCartan.thr.mx
-    │       │   ├── EinsteinCartan_vel.thr.mx
-    │       │   ├── simple_spin_1p.thr.mx
-    │       │   └── simple_spin_1p_vel.thr.mx
-    │       ├── tutor.nb
-    │       └── tutor.png
+    │   └── English
+    │       ├── Guides
+    │       ├── ReferencePages
+    │       │   └── Symbols
+    │       │       └── PoissonBracket.nb
+    │       └── Tutorials
     ├── HiGGS.m
     ├── Kernel
     │   └── init.wl
@@ -77,6 +44,7 @@ xAct
         │   ├── HiGGSParallelSubmit.m
         │   ├── ImposeTheory.m
         │   ├── Induced.m
+        │   ├── InternalIndices.m
         │   ├── MakeQuotientRule.m
         │   ├── NesterFormQ.m
         │   ├── PoissonBracketList.m
@@ -104,6 +72,7 @@ xAct
             ├── DefManifold.m
             ├── GeneralComplements.m
             ├── Induced.m
+            ├── InternalIndices.m
             ├── NesterFormIfConstraints.m
             ├── NonCanonicalPhi.m
             ├── PiPToPiPO3.m
@@ -115,4 +84,4 @@ xAct
             ├── TransferCouplingsPerpPara.m
             └── TransferCouplingsPerpPerp.m
 
-12 directories, 103 files
+14 directories, 70 files
