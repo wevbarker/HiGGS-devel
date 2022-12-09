@@ -11,6 +11,7 @@
 - general indices for PoissonBracket please.
 - clear up ambiguity over what G actually means, and how it prints
 - dollar indices in the intermediate expressions
+- one of the example lines of code in the README is wrong, as pointed out by Zhiyuan! It the code corresponds to a `surficial' commutator, so look at the image file to see what is actually needed. 
 *)
 
 (*----------------------*)
