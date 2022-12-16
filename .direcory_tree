@@ -77,6 +77,7 @@ xAct
         │   ├── HiGGSParallelSubmit.m
         │   ├── ImposeTheory.m
         │   ├── Induced.m
+        │   ├── InternalIndices.m
         │   ├── MakeQuotientRule.m
         │   ├── NesterFormQ.m
         │   ├── PoissonBracketList.m
@@ -104,6 +105,7 @@ xAct
             ├── DefManifold.m
             ├── GeneralComplements.m
             ├── Induced.m
+            ├── InternalIndices.m
             ├── NesterFormIfConstraints.m
             ├── NonCanonicalPhi.m
             ├── PiPToPiPO3.m
@@ -115,4 +117,4 @@ xAct
             ├── TransferCouplingsPerpPara.m
             └── TransferCouplingsPerpPerp.m
 
-12 directories, 103 files
+12 directories, 105 files
