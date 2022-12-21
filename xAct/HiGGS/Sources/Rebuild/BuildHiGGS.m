@@ -57,9 +57,9 @@ DefTensor[R6[], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[RSymb,xAct`HiGGS`Pr
 xAct`HiGGS`Private`DeclareOrder[R6[], 1]; 
 DefTensor[T1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,xAct`HiGGS`Private`SO1]]; 
 xAct`HiGGS`Private`DeclareOrder[T1[-i,-j,-k], 1]; 
-DefTensor[T2[-i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,xAct`HiGGS`Private`SO2]]; 
+DefTensor[T2[i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,xAct`HiGGS`Private`SO2]]; 
 xAct`HiGGS`Private`DeclareOrder[T2[-i], 1]; 
-DefTensor[T3[-i], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[TSymb,xAct`HiGGS`Private`SO3]]; 
+DefTensor[T3[i], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[TSymb,xAct`HiGGS`Private`SO3]]; 
 xAct`HiGGS`Private`DeclareOrder[T3[-i], 1]; 
 AutomaticRules[R1,MakeRule[{R1[a,a1,b,-b],0},MetricOn->All,ContractMetrics->True]];
 AutomaticRules[R1,MakeRule[{R1[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
