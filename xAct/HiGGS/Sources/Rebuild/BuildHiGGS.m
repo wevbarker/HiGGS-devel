@@ -171,7 +171,7 @@ epsilonG[-i,-j,-k,-m]Sigma3[m];
 
 
 (* ::Input::Initialization:: *)
-TauSymb="\[Tau]";
+TauSymb="\[Tau](\[CapitalDelta]+\[ScriptCapitalK])";
 DefTensor[Tau[-i,-j],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TauSymb],Dagger->Complex];
 xAct`HiGGS`Private`DeclareOrder[Tau[-i,-j], 1]; 
 xAct`HiGGS`Private`ClearBuild[];
