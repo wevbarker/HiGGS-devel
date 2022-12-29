@@ -622,6 +622,9 @@ DefConstantSymbol[Bet5,PrintAs->xAct`HiGGS`Private`SymbolBuild[BetSymb,xAct`HiGG
 DefConstantSymbol[Bet6,PrintAs->xAct`HiGGS`Private`SymbolBuild[BetSymb,xAct`HiGGS`Private`dSO6,"Constant"->True]];
 
 Bet={Bet1,Bet2,Bet3};
+
+xAct`HiGGS`Private`BuildRebuild@"KarananasCouplings.m";
+
 xAct`HiGGS`Private`ClearBuild[];
 
 
