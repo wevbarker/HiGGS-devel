@@ -3,7 +3,7 @@
 (*======================*)
 
 kRSymb="\[ScriptR]";
-kLambdaSymb="\[Lambda]2";
+kLambdaSymb="\[Lambda]";
 DefConstantSymbol[kLambda,PrintAs->xAct`HiGGS`Private`SymbolBuild[kLambdaSymb,xAct`HiGGS`Private`dSOX,"Constant"->True]];
 DefConstantSymbol[kR1,PrintAs->xAct`HiGGS`Private`SymbolBuild[kRSymb,xAct`HiGGS`Private`dSO1,"Constant"->True]];
 DefConstantSymbol[kR2,PrintAs->xAct`HiGGS`Private`SymbolBuild[kRSymb,xAct`HiGGS`Private`dSO2,"Constant"->True]];
