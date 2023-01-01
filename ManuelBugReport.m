@@ -65,7 +65,7 @@ contain the scalar and odd-vector tetrad momenta:";
 Print@TestTerm;
 Comment@"In this there is only a derivative of S2, not S1, so we integrate by
 parts to antisymmetrise:";
-Expr=-J[]GaugeCovD[-a][G3[a,-c]B[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2]/.PADMActivate;
+Expr=-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2]/.PADMActivate;
 Expr//=xAct`HiGGS`Private`GaugeCovDToCD;
 Expr//=ToCanonical;
 Print@Expr;
