@@ -77,17 +77,20 @@ divergences (partial derivatives using strictly three spatial coordinates) of
 some quantities. It seems natural that if these partial divergences were to be
 written covariantly by pulling out a factor of the measure J from under the
 derivative, then the (now covariant) divergence would act on a vector (not a
-vector density) with one raised Greek index. Now I have to remind myself that
-conjugate momenta contain (in some sense) an implicit factor of the measure
-already, as compared with e.g. the fields or field strength tensors, and so
-once J has been pulled out the covariant derivative could be acting on a second
-power of momentum divided by a squared J. Equivalently, the surface term could
-be a partial (spatial-index) divergence of a square momentum divided by a
-single power of J. There is only one such term we can use to antisymmetrise:";
-AntisymmetrizedTerm=TestTerm-CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]];
+	vector density) with one raised Greek index. Now I have to remind
+myself that conjugate momenta contain (by their definition from the Lagrangian
+	density) an implicit factor of the measure already, as compared with
+e.g. the fields or field strength tensors, and so once J has been pulled out
+the covariant derivative could be acting on a second power of momentum divided
+by a squared J. Equivalently, the surface term could be a partial
+(spatial-index) divergence of a second power of momentum divided by a single
+power of J. On this basis, there is only one such term we can use to
+antisymmetrise the given expression:";
+AntisymmetrizedTerm=HoldForm[TestTerm-CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]];
 Print@AntisymmetrizedTerm;
 
 Comment@"Simplifying the whole thing as above:";
+AntisymmetrizedTerm//=ReleaseHold;
 AntisymmetrizedTerm=AntisymmetrizedTerm/.PADMActivate;
 AntisymmetrizedTerm//=Expand;
 AntisymmetrizedTerm//=ContractMetric[#,OverDerivatives->True]&;
