@@ -65,7 +65,15 @@ contain the scalar and odd-vector tetrad momenta:";
 Print@TestTerm;
 Comment@"In this there is only a derivative of S2, not S1, so we integrate by
 parts to antisymmetrise:";
-TestTerm=TestTerm-J[]ParaLorentzGaugeCovD[-a][SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[a]/6/J[]^2];
+Expr=-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2];
+Expr//=ToBasicForm;
+Print@Expr;
+Expr//=ToNester;
+Print@Expr;
+Quit[];
+
+TestTerm=TestTerm-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2];
+(*TestTerm=TestTerm-J[]ParaLorentzGaugeCovD[-a][SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[a]/6/J[]^2];*)
 TestTerm//=Expand;
 TestTerm//=ContractMetric[#,OverDerivatives->True]&;
 TestTerm//=ToCanonical;
