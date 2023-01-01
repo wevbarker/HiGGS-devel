@@ -66,6 +66,8 @@ Print@TestTerm;
 Comment@"In this there is only a derivative of S2, not S1, so we integrate by
 parts to antisymmetrise:";
 (*Expr=-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2]/.PADMActivate;*)
+
+(*
 Expr=-CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]/.PADMActivate;
 Expr//=xAct`HiGGS`Private`GaugeCovDToCD;
 Expr//=ToCanonical;
@@ -73,8 +75,9 @@ Print@Expr;
 Expr//=ToNesterForm;
 Print@Expr;
 Quit[];
+*)
 
-TestTerm=TestTerm-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2];
+TestTerm=TestTerm-CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]/.PADMActivate;
 (*TestTerm=TestTerm-J[]ParaLorentzGaugeCovD[-a][SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[a]/6/J[]^2];*)
 TestTerm//=Expand;
 TestTerm//=ContractMetric[#,OverDerivatives->True]&;
