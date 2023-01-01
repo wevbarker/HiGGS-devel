@@ -76,6 +76,7 @@ follows:";
 TestTerm//=ToBasicForm;
 TestTerm//=ToNesterForm;
 TestTerm//=ToCanonical;
+Print@TestTerm;
 Comment@"And here above are the problematic J-terms.";
 Comment@"Basic form of the TP1m[-a]";
 term1=TP1m[-a]//ToBasicForm;
