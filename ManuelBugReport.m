@@ -33,7 +33,7 @@ Quit[];
 
 Get@FileNameJoin@{NotebookDirectory[],"AutoCommutator.mx"};
 
-Print@"Here is the auto-commutator recovered from the file";
+Comment@"...here is the auto-commutator recovered from the file";
 Print@AutoCommutator;
 
 Comment@"Now from this statement of the auto commutator we follow Manuel's
@@ -59,7 +59,9 @@ AntisymmetrizedTerm//=ToCanonical;
 Print@AntisymmetrizedTerm;
 
 Comment@"So now indeed there is antisymmetry, but there is a covariant
-derivative acting on an induced metric. To make this vanish, we force as
+derivative acting on an induced metric. The fact that this does not vanish
+automatically is indeed a bug, and perhaps I can fix this within the future of
+this branch before the next merge. For now, to make this vanish, we force as
 follows:";
 AntisymmetrizedTerm//=ToBasicForm;
 AntisymmetrizedTerm//=ToNesterForm;
@@ -68,28 +70,45 @@ Print@AntisymmetrizedTerm;
 Comment@"And here above we can see the torsion and measure terms (which can
 	surely never cancel).";
 
-Comment@"One possible line of thinking here, is that the term which was used to
-antisymmeterise above does not constitute a surface term. If Poisson brackets
-are well defined for functionals obtained by integrating densities (scalars
-	times the spatial measure J) over a constant-time hypersurface, then it
-does seem fair that the output of PoissonBracket should be defined up to
-divergences (partial derivatives using strictly three spatial coordinates) of
-some quantities. It seems natural that if these partial divergences were to be
-written covariantly by pulling out a factor of the measure J from under the
-derivative, then the (now covariant) divergence would act on a vector (not a
-	vector density) with one raised Greek index. Now I have to remind
-myself that conjugate momenta contain (by their definition from the Lagrangian
-	density) an implicit factor of the measure already, as compared with
-e.g. the fields or field strength tensors, and so once J has been pulled out
-the covariant derivative could be acting on a second power of momentum divided
-by a squared J. Equivalently, the surface term could be a partial
+Comment@"It seems to me that one possible line of thinking here, might be that
+the term which we used above to antisymmeterise does not properly constitute a
+surface term. If Poisson brackets are well defined for functionals obtained by
+integrating densities (scalars multiplied by the spatial measure J) over a
+constant-time hypersurface, then it does seem that the output of PoissonBracket
+should be unique only up to divergences (partial derivatives using strictly
+	three spatial coordinates) of some quantities, and I guess that is your
+design. It seems natural (but I cannot for the moment make it quite precise)
+that if these partial divergences were to be written covariantly by pulling out
+a factor of the measure J from under the derivative, then the (now covariant)
+divergence must act on a vector (not a vector density) with one raised Greek
+index. Now to proceed I have to remind myself that conjugate momenta contain
+(by their definition from the Lagrangian density) an implicit factor of the
+measure already, as compared with e.g. the fields or field strength tensors,
+and so once J has been pulled out the covariant derivative could (amongst other
+	kinds of terms) be acting on a second power of momentum divided by a
+squared J. Equivalently, the whole surface term could be a partial
 (spatial-index) divergence of a second power of momentum divided by a single
 power of J. On this basis, there is only one such term we can use to
 antisymmetrise the given expression:";
 AntisymmetrizedTerm=TestTerm-HoldForm[CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]];
 Print@AntisymmetrizedTerm;
 
-Comment@"Simplifying the whole thing as above:";
+Comment@"To doubly-clarify here, since the documentation is still not written,
+CD is always the partial derivative with Greek (coordinate) indices implied, G3
+contracts strictly with Greek indices and picks out only the spatial
+coordinates (i.e. G[0,a]=0, I use G3 to enforce Blagojevic's alpha, beta Greek
+indices running from 1,3), PPara carries only Lorentz indices and projects
+parallel to the hypersurface (it is mathematically equivalent to the induced
+	metric, one of the many-too-many ways that the induced metric can be
+written, for historical reasons! This I hope to improve), and H is the inverse
+translational gauge field with both Greek and Lorenz indices. In fact, I only
+include PPara for safety, since I'm about to call ToNesterForm on a nonlinear
+quantity (which is dangerous, it could give a very large non-covariant output
+	as you know!) -- the parallel character is implied already by the
+Lorentz index on the PiPB1m, and this could be seen by expanding the whole
+thing with ToBasicForm.";
+
+Comment@"Okay so, simplifying the whole thing as above:";
 AntisymmetrizedTerm//=ReleaseHold;
 AntisymmetrizedTerm=AntisymmetrizedTerm/.PADMActivate;
 AntisymmetrizedTerm//=Expand;
