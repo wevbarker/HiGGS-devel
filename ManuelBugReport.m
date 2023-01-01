@@ -2,7 +2,7 @@
 (*  A short file to address Manuel's email  *)
 (*==========================================*)
 
-Comment@"This time around I have no patience for the notebook at all, so let's
+Print@"This time around I have no patience for the notebook at all, so let's
 just load something to allow better formatting in vi...";
 
 Get@FileNameJoin@{NotebookDirectory[],"VimFormat.m"};
@@ -68,7 +68,7 @@ parts to antisymmetrise:";
 Expr=-J[]GaugeCovD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]^2];
 Expr//=ToBasicForm;
 Print@Expr;
-Expr//=ToNester;
+Expr//=ToNesterForm;
 Print@Expr;
 Quit[];
 
