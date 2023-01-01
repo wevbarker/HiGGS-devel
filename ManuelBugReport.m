@@ -39,11 +39,17 @@ Comment@"Okay, so recalling that for the TEGR we switched out all the dimensionf
 Comment@"Note above that you can pass the option Parallel. This evaluates each sub-bracket on a separate core: I am using the threadripper with sixteen cores (the limit is from my Mathematica license) and the whole velocity takes me about twenty minutes. As you write in your email, the output is rather lengthy! It fills my whole window, but at least it appears to be covariant. I can notice that the 1^+ and 1^- tetrad momenta, and torsion irreps, appear very frequently. On this basis, I'd be tempted to try collecting these somehow into the their primary constraint form (e.g. write a replacement rule manually), and work from there. Another thing I see lots of is the 2^- torsion: this may remain simply because its cyclic symmetry cannot be handled by xAct, so some careful treatment there might be needed. Making sense of this looks like a pretty brutal task to be honest, so let me know as soon as you suspect there is an error in the code (i.e. when your hand calculations produce something that couldn't possibly match the output).";
 
 Comment@"Now to move on to your second problem, the auto-commutator of the super-Hamiltonian. Before we begin, I can imagine this will be the toughest computation that has so far been attempted, because the complexity of typical velocities will be squared in some sense. As you can see below, I'm expecting that the preferred method to find the auto-commutator is again by using exactly the form stored in the theory association -- no need for any converting of the projector heads. The first time I tried this computation, was able to immediately recover your error. This turned out to be quite a difficult bug within HiGGS, but I think now it is solved. In the end the computation only took about half an hour, and the output was very short (about ten lines). Hopefully there will turn out to be a correlation between short and correct outputs!";
-
+(*
 AutoCommutator = PoissonBracket[TEGR@$SuperHamiltonian,TEGR@$SuperHamiltonian,ToShell->False,Parallel->True];
 Comment@"Since it takes a while to obtain I save this...";
 DumpSave[FileNameJoin@{NotebookDirectory[],"AutoCommutator.mx"},{AutoCommutator}];
 Quit[];
+*)
+
+Get@FileNameJoin@{NotebookDirectory[],"AutoCommutator.mx"};
+
+Print@"Here is the AutoCommutator recovered from the file";
+Print@AutoCommutator;
 
 Comment@"Now from this statement of the auto commutator we follow Manuel's computations in the email from 23rd Dec.";
 
