@@ -77,3 +77,8 @@ TestTerm//=ToBasicForm;
 TestTerm//=ToNesterForm;
 TestTerm//=ToCanonical;
 Comment@"And here above are the problematic J-terms.";
+Comment@"Basic form of the TP1m[-a]";
+term1=TP1m[-a]//ToBasicForm;
+Print@term1;
+term2=ParaLorentzGaugeCovD[-a][J[]]//ToBasicForm;
+Print@term2;
