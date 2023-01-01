@@ -86,7 +86,7 @@ by a squared J. Equivalently, the surface term could be a partial
 (spatial-index) divergence of a second power of momentum divided by a single
 power of J. On this basis, there is only one such term we can use to
 antisymmetrise the given expression:";
-AntisymmetrizedTerm=HoldForm[TestTerm-CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]];
+AntisymmetrizedTerm=TestTerm-HoldForm[CD[-a][G3[a,-c]H[-b,c]PPara[b,-k]SmearingLeft[]SmearingRight[]PiPB0p[]PiPB1m[k]/6/J[]]];
 Print@AntisymmetrizedTerm;
 
 Comment@"Simplifying the whole thing as above:";
@@ -99,3 +99,5 @@ AntisymmetrizedTerm//=ToBasicForm;
 AntisymmetrizedTerm//=ToNesterForm;
 AntisymmetrizedTerm//=ToCanonical;
 Print@AntisymmetrizedTerm;
+
+Quit[];
