@@ -29,20 +29,10 @@ xAct`HiGGS`Private`DeclareOrder[T[a, -b, -c], 1];
 WSymb="\[ScriptCapitalW]";
 DefTensor[W[a, b, -d, -e], M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[WSymb]]; 
 xAct`HiGGS`Private`DeclareOrder[W[a, b, -d, -e], 1]; 
-RLambdaSymb="\!\(\*SubscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\)]\)"
-DefTensor[RLambda[a, b, -d, -e], M4, {Antisymmetric[{a, b}], Antisymmetric[{-d, -e}]},PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaSymb]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda[a, b, -d, -e], 1]; 
-TLambdaSymb="\!\(\*SubscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\)]\)";
-DefTensor[TLambda[a, -d, -e], M4, Antisymmetric[{-d, -e}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaSymb]]; 
-xAct`HiGGS`Private`DeclareOrder[TLambda[a, -d, -e], 1];
-xAct`HiGGS`Private`ClearBuild[];
 
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaBasic.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiBasic.m";
 
-(* ::Input::Initialization:: *)
-(*
-(*This is where we get the notation for generating sets of permutations from, not the documentation!*)
-xAct`HiGGS`Private`HiGGSPrint[RiemannSymmetry[{-i,-j,-m,-n}]];
-*)
 DefTensor[R1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->xAct`HiGGS`Private`SymbolBuild[RSymb,xAct`HiGGS`Private`SO1]]; 
 xAct`HiGGS`Private`DeclareOrder[R1[-i,-j,-m,-n], 1]; 
 DefTensor[R2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RSymb,xAct`HiGGS`Private`SO2]]; 
@@ -90,23 +80,8 @@ StrengthSO13Activate=Join[RSO13Activate,TSO13Activate];
 xAct`HiGGS`Private`ClearBuild[];
 
 
-(*
-(1/2)(R[a,-i,-a,-j]+R[a,-j,-a,-i])-(1/4)G[-i,-j]R[a,b,-a,-b]/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
-%//ToNewCanonical;
-%//ToCanonical;
-*)
 R4Activate=MakeRule[{R4[-i,-j],(1/2)(R[a,-i,-a,-j]+R[a,-j,-a,-i])-(1/4)G[-i,-j]R[a,b,-a,-b]},MetricOn->All,ContractMetrics->True];
-(*
-(1/2)(R[a,-i,-a,-j]-R[a,-j,-a,-i])/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
-%//ToNewCanonical;
-%//ToCanonical;
-*)
 R5Activate=MakeRule[{R5[-i,-j],(1/2)(R[a,-i,-a,-j]-R[a,-j,-a,-i])},MetricOn->All,ContractMetrics->True];
-(*
--R[a,b,-a,-b]/.StrengthSO13Activate/.StrengthLambdaSO13Activate;
-%//ToNewCanonical;
-%//ToCanonical;
-*)
 R6Activate=MakeRule[{R6[],-R[a,b,-a,-b]},MetricOn->All,ContractMetrics->True];
 RActivate=Join[R4Activate,R5Activate,R6Activate];
 xAct`HiGGS`Private`ClearBuild[];
@@ -176,55 +151,8 @@ DefTensor[Tau[-i,-j],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TauSymb],Dagger-
 xAct`HiGGS`Private`DeclareOrder[Tau[-i,-j], 1]; 
 xAct`HiGGS`Private`ClearBuild[];
 
-
-(* ::Input::Initialization:: *)
-DefTensor[RLambda1[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs ->xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO1]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda1[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda2[-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO2]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda2[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda3[-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO3]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda3[-i,-j,-m,-n], 1]; 
-DefTensor[RLambda4[-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO4]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda4[-i,-j], 1]; 
-DefTensor[RLambda5[-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO5]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda5[-i,-j], 1]; 
-DefTensor[RLambda6[], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,xAct`HiGGS`Private`SO6]]; 
-xAct`HiGGS`Private`DeclareOrder[RLambda6[], 1]; 
-DefTensor[TLambda1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,xAct`HiGGS`Private`SO1]]; 
-xAct`HiGGS`Private`DeclareOrder[TLambda1[-i,-j,-k], 1]; 
-DefTensor[TLambda2[-i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,xAct`HiGGS`Private`SO2]]; 
-xAct`HiGGS`Private`DeclareOrder[TLambda2[-i], 1]; 
-DefTensor[TLambda3[-i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,xAct`HiGGS`Private`SO3]]; 
-xAct`HiGGS`Private`DeclareOrder[TLambda3[-i], 1]; 
-AutomaticRules[RLambda1,MakeRule[{RLambda1[a,a1,b,-b],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambda1,MakeRule[{RLambda1[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
-(*AutomaticRules[RLambda1,MakeRule[{RLambda1[a,-a,a1,-a1],0},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];*)(*redundant*)
-(*AutomaticRules[RLambda1,MakeRule[{RLambda1[a,a1,-a,-a1],0},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];*)(*redundant*)
-AutomaticRules[RLambda2,MakeRule[{RLambda2[a,b,a1,-b],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambda4,MakeRule[{RLambda4[a,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[TLambda1,MakeRule[{TLambda1[a,a1,-a1],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[TLambda1,MakeRule[{TLambda1[a,-a,-a1],0},MetricOn->All,ContractMetrics->True]];
-
-RLambdaDefinition=RLambda3[-i,-j,-m,-n]+
-(2/3)(2RLambda1[-i,-j,-m,-n]+
-RLambda1[-i,-m,-j,-n])+
-RLambda2[-i,-j,-m,-n]+
-(1/2)(G[-i,-m](RLambda5[-j,-n]+RLambda4[-j,-n])+
-G[-j,-n](RLambda5[-i,-m]+RLambda4[-i,-m])-
-G[-j,-m](RLambda5[-i,-n]+RLambda4[-i,-n])-
-G[-i,-n](RLambda5[-j,-m]+RLambda4[-j,-m]))-
-(1/12)(G[-i,-m]G[-j,-n]-G[-i,-n]G[-j,-m])RLambda6[];
-
-TLambdaDefinition=(2/3)(TLambda1[-i,-j,-k]-TLambda1[-i,-k,-j])+
-(1/3)(G[-i,-j]TLambda2[-k]-G[-i,-k]TLambda2[-j])+
-epsilonG[-i,-j,-k,-m]TLambda3[m];
-
-RLambdaSO13Activate=MakeRule[{RLambda[-i,-j,-m,-n],Evaluate[RLambdaDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaSO13Activate=MakeRule[{TLambda[-i,-j,-k],Evaluate[TLambdaDefinition]},MetricOn->All,ContractMetrics->True];
-
-StrengthLambdaSO13Activate=Join[RLambdaSO13Activate,TLambdaSO13Activate];
-xAct`HiGGS`Private`ClearBuild[];
-
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaSO13.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiSO13.m";
 
 (* ::Input::Initialization:: *)
 DefTensor[Spin1[-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> "\!\(\*OverscriptBox[\(\[Sigma]\), \((1)\)]\)"]; 
@@ -245,8 +173,6 @@ xAct`HiGGS`Private`DeclareOrder[STensor[-i,-j,-k],1];
 
 SpinSO13Activate=MakeRule[{STensor[-i,-j,-k],Evaluate[SpinDefinition]},MetricOn->All,ContractMetrics->True];
 
-StrengthLambdaSO13Activate=Join[RLambdaSO13Activate,TLambdaSO13Activate];
-xAct`HiGGS`Private`ClearBuild[];
 
 
 (* ::Input::Initialization:: *)
@@ -427,25 +353,6 @@ xAct`HiGGS`Private`HiGGSPrint[tmp];
 tmp=PT3[-i,-j,-k,a,b,c]T[-a,-b,-c]/.PActivate/.StrengthSO13Activate//ToNewCanonical;
 xAct`HiGGS`Private`HiGGSPrint[tmp];
 
-tmp=PR1[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PR2[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PR3[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PR4[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PR5[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PR6[-i,-j,-k,-l,a,b,c,d]RLambda[-a,-b,-c,-d]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PT1[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PT2[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-tmp=PT3[-i,-j,-k,a,b,c]TLambda[-a,-b,-c]/.PActivate/.StrengthLambdaSO13Activate//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[tmp];
-xAct`HiGGS`Private`ClearBuild[];
 ];
 
 
@@ -853,16 +760,8 @@ TPToT=MakeRule[{TP[-a,-b,-c],PPara[-b,e]PPara[-c,f]T[-a,-e,-f]},MetricOn->All,Co
 RPToR=MakeRule[{RP[-a,-b,-c,-d],PPara[-c,e]PPara[-d,f]R[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
 StrengthPToStrength=Join[TPToT,RPToR];
 
-(*Defining parallel field strength multipliers*)
-RLambdaPpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
-DefTensor[RLambdaP[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPpSymb],OrthogonalTo->{V[c],V[d]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP[-a,-b,-c,-d],1];
-TLambdaPpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
-DefTensor[TLambdaP[-a,-c,-d],M4,Antisymmetric[{-c,-d}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPpSymb],OrthogonalTo->{V[c],V[d]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaP[-a,-c,-d],1];
-TLambdaPToTLambda=MakeRule[{TLambdaP[-a,-b,-c],PPara[-b,e]PPara[-c,f]TLambda[-a,-e,-f]},MetricOn->All,ContractMetrics->True];
-RLambdaPToRLambda=MakeRule[{RLambdaP[-a,-b,-c,-d],PPara[-c,e]PPara[-d,f]RLambda[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
-StrengthLambdaPToStrengthLambda=Join[RLambdaPToRLambda,TLambdaPToTLambda];
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaPerpPara.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiPerpPara.m";
 
 (*Defining perpendicular field strengths, i.e. the non-canonical parts*)
 TPerppSymb="\!\(\*SuperscriptBox[\(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
@@ -875,16 +774,8 @@ TPerpToT=MakeRule[{TPerp[-a,-b],PPara[-b,f]V[g]T[-a,-f,-g]},MetricOn->All,Contra
 RPerpToR=MakeRule[{RPerp[-a,-b,-c],PPara[-c,e]V[f]R[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
 StrengthPerpToStrength=Join[TPerpToT,RPerpToR];
 
-(*Defining perpendicular field strength multipliers*)
-TLambdaPerppSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
-DefTensor[TLambdaPerp[-a,-b],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPerppSymb],OrthogonalTo->{V[b]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaPerp[-a,-b],1];
-RLambdaPerppSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
-DefTensor[RLambdaPerp[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerppSymb],OrthogonalTo->{V[c]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp[-a,-b,-c],1];
-TLambdaPerpToTLambda=MakeRule[{TLambdaPerp[-a,-b],PPara[-b,f]V[g]TLambda[-a,-f,-g]},MetricOn->All,ContractMetrics->True];
-RLambdaPerpToRLambda=MakeRule[{RLambdaPerp[-a,-b,-c],PPara[-c,e]V[f]RLambda[-a,-b,-e,-f]},MetricOn->All,ContractMetrics->True];
-StrengthLambdaPerpToStrengthLambda=Join[RLambdaPerpToRLambda,TLambdaPerpToTLambda];
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaPerpParaInverse.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiPerpParaInverse.m";
 
 RDecomposeDefinition=RP[-a,-b,-c,-d]+2Antisymmetrize[V[-d]RPerp[-a,-b,-c],{-c,-d}]/.ExpandStrengths/.PADMActivate//ToCanonical//CollectTensors//ScreenDollarIndices//CollectTensors;
 TDecomposeDefinition=TP[-a,-c,-d]+2Antisymmetrize[V[-d]TPerp[-a,-c],{-c,-d}]/.ExpandStrengths/.PADMActivate//ToCanonical//CollectTensors//ScreenDollarIndices//CollectTensors;
@@ -892,25 +783,13 @@ RDecompose=MakeRule[{R[-a,-b,-c,-d],Evaluate[RDecomposeDefinition]},MetricOn->Al
 TDecompose=MakeRule[{T[-a,-c,-d],Evaluate[TDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
 StrengthDecompose=Join[RDecompose,TDecompose];
 
-RLambdaDecomposeDefinition=RLambdaP[-a,-b,-c,-d]+2Antisymmetrize[V[-d]RLambdaPerp[-a,-b,-c],{-c,-d}]/.ExpandStrengths/.PADMActivate//ToCanonical//CollectTensors//ScreenDollarIndices//CollectTensors;
-TLambdaDecomposeDefinition=TLambdaP[-a,-c,-d]+2Antisymmetrize[V[-d]TLambdaPerp[-a,-c],{-c,-d}]/.ExpandStrengths/.PADMActivate//ToCanonical//CollectTensors//ScreenDollarIndices//CollectTensors;
-RLambdaDecompose=MakeRule[{RLambda[-a,-b,-c,-d],Evaluate[RLambdaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaDecompose=MakeRule[{TLambda[-a,-c,-d],Evaluate[TLambdaDecomposeDefinition]},MetricOn->All,ContractMetrics->True];
-StrengthLambdaDecompose=Join[RLambdaDecompose,TLambdaDecompose];
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaPerpParaDecompose.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiPerpParaDecompose.m";
 
 CDBCommute=MakeRule[{CD[-s][B[a,-r]],Evaluate[CD[-r][B[a,-s]]-2Antisymmetrize[A[a,-k,-s]B[k,-r],{-s,-r}]+B[b,-s]B[c,-r]T[a,-b,-c]]},MetricOn->All,ContractMetrics->True];(*Might want to write an equivalent version for Riemann Cartan curvature*)
 
 DefTensor[DV[-a,-j],M4,OrthogonalTo->{V[j]},PrintAs->xAct`HiGGS`Private`SymbolBuild[VSymb,"Derivative"->1]];
 DefTensor[DJ[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[JSymb,"Derivative"->1]];
-
-
-
-
-
-
-
-
-
 
 G3VCDBToG3DV=MakeRule[{G3[-l,n]V[-k]CD[-m][B[k,-n]],-G3[-l,n]B[j,-n]A[k,-j,-m]V[-k]-G3[-l,n]B[j,-n]DV[-m,-j]},MetricOn->All,ContractMetrics->True];
 
@@ -951,223 +830,7 @@ HG3VAToHVA=MakeRule[{H[-i,j]G3[-j,m]V[b]A[i,-b,-c],Evaluate[HVADefinition]},Metr
 xAct`HiGGS`Private`ClearBuild[];
 
 
-(* ::Input::Initialization:: *)
 
-(*Tools for covariance check, which is useful for emergencies but otherwise commented out*)
-(*
-DefTensor[CCoord[-a,-b,c],M4,Symmetric[{-a,-b}]]
-DefTensor[FLorentz[-a,-b,-c],M4,PrintAs\[Rule]"FAIL\[CapitalLambda]"]
-DefTensor[FCoord[-a,-b,-c],M4,PrintAs\[Rule]"FAIL\[CapitalChi]"]
-DefTensor[Lorentz[a,-b],M4,PrintAs\[Rule]"\[CapitalLambda]"]
-AutomaticRules[Lorentz,MakeRule[{Lorentz[-a,-b]Lorentz[a,-c],G[-b,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
-AutomaticRules[Lorentz,MakeRule[{Lorentz[-b,-a]Lorentz[-c,a],G[-c,-b]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
-DefTensor[Coord[a,-b],M4,PrintAs\[Rule]"\[CapitalChi]"]
-AutomaticRules[Coord,MakeRule[{Coord[-a,-b]Coord[a,-c],G[-b,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
-AutomaticRules[Coord,MakeRule[{Coord[-b,-a]Coord[-c,a],G[-c,-b]},MetricOn\[Rule]All,ContractMetrics\[Rule]True]];
-
-DefTensor[CDBInert[-a,b,-c],M4];
-DefTensor[CDAInert[-a,b,c,-d],M4,Antisymmetric[{b,c}]];
-ToCDBInert=MakeRule[{CD[-a][B[b,-c]],CDBInert[-a,b,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-ToCDAInert=MakeRule[{CD[-a][A[b,c,-d]],CDAInert[-a,b,c,-d]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-ToCDInert=Join[ToCDBInert,ToCDAInert];
-
-GaugeB=MakeRule[{B[b,-c],Lorentz[b,-j]Coord[-c,k]B[j,-k]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeH=MakeRule[{H[-b,c],Lorentz[-b,j]Coord[c,-k]H[-j,k]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeV=MakeRule[{V[b],Lorentz[b,-j]V[j]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeA=MakeRule[{A[b,c,-d],Lorentz[b,-j]Lorentz[c,-k]Coord[-d,l]A[j,k,-l]-Lorentz[c,j]Coord[-d,l]CD[-l][Lorentz[b,-j]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeMe=Join[GaugeB,GaugeH,GaugeV,GaugeA];
-
-GaugeCDA=MakeRule[{CDAInert[-a,b,c,-d],Coord[-a,i]CD[-i][Lorentz[b,-j]Lorentz[c,-k]Coord[-d,l]A[j,k,-l]-Lorentz[c,j]Coord[-d,l]CD[-l][Lorentz[b,-j]]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeCDB=MakeRule[{CDBInert[-a,b,-c],Coord[-a,i]CD[-i][Lorentz[b,-j]Coord[-c,k]B[j,-k]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-GaugeMeInert=Join[GaugeCDB,GaugeCDA];
-
-ToCCoord=MakeRule[{CD[-a][Coord[-b,c]],Coord[s,-a]CCoord[-s,-b,c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-
-DefTensor[Toten[b,-c,d],M4,Symmetric[{b,d}]];
-(*SwitchMe=MakeRule[{Lorentz[a,-b]CD[-c][Lorentz[-a,-d]],Toten[-b,-c,-d]-Lorentz[-a,-d]CD[-c][Lorentz[a,-b]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];*)
-(*SwitchMe=MakeRule[{Lorentz[a,-b]CD[-c][Lorentz[-a,-d]],-Lorentz[-a,-d]CD[-c][Lorentz[a,-b]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];*)
-CommuteMe=MakeRule[{Lorentz[a,-b]CD[-c][Lorentz[-a,-d]],Evaluate[Antisymmetrize[Lorentz[a,-b]CD[-c][Lorentz[-a,-d]],{-b,-d}]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-SwitchMe=MakeRule[{Lorentz[a,-b]CD[-c][Lorentz[-a,-d]],-Lorentz[-a,-d]CD[-c][Lorentz[a,-b]]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-
-FlagLorentz=MakeRule[{CD[-a][Lorentz[-b,-c]],FLorentz[-a,-b,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-FlagCoord=MakeRule[{CD[-a][Coord[-b,-c]],FCoord[-a,-b,-c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-FlagBroken=Join[FlagLorentz,FlagCoord];
-
-ManRemoveG3=MakeRule[{G3[-b,c],G[-b,c]},MetricOn\[Rule]All,ContractMetrics\[Rule]True];
-
-GaugeShift[x_]:=Module[{exp},
-exp=x;
-xAct`HiGGS`Private`HiGGSPrint[Style["Manually removing G3",Blue,10]];
-exp=exp/.ManRemoveG3;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["Converting to inert",Blue,10]];
-exp=exp/.ToCDInert;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["transforming gauge",Blue,10]];
-exp=exp/.GaugeMe;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["transforming CD gauge",Blue,10]];
-exp=exp/.GaugeMeInert;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["transforming to coordinate Hessian",Blue,10]];
-exp=exp/.ToCCoord;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["removing scalar",Blue,10]];
-exp=exp//NoScalar;
-xAct`HiGGS`Private`HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
-exp=exp/.SwitchMe;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["removing scalar",Blue,10]];
-exp=exp//NoScalar;
-xAct`HiGGS`Private`HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
-exp=exp/.CommuteMe;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["removing scalar",Blue,10]];
-exp=exp//NoScalar;
-xAct`HiGGS`Private`HiGGSPrint[Style["commuting Lorentz gradients",Blue,10]];
-exp=exp/.SwitchMe;
-xAct`HiGGS`Private`HiGGSPrint[Style["simplifying",Blue,10]];
-exp=exp//ToCanonical//ScreenDollarIndices//ContractMetric//CollectTensors;
-xAct`HiGGS`Private`HiGGSPrint[Style["raising flags",Blue,10]];
-exp=exp/.FlagBroken;
-exp];
-*)
-
-
-
-MakeDDeactivate[Tensor_?xTensorQ[Indices___]]:=Module[{NewIndex,QuotientRule,DTensorActivate,DTensor,DTensorDeactivate,DTensorDeactivateDefinition},
-NewIndex=First@((First@IndicesOfVBundle@TangentM4)~Complement~((PowerExpand@Sqrt@(#^2))&/@List@Indices));
-DTensor=ToExpression@("D"<>ToString@Tensor);
-DTensorDeactivateDefinition=CD[-NewIndex]@Tensor[Indices]/.ToExpression@(ToString@DTensor<>"Activate");
-DTensorDeactivateDefinition=DTensorDeactivateDefinition-CD[-NewIndex]@Tensor[Indices];
-DTensorDeactivate=MakeQuotientRule[{DTensor[-NewIndex,Indices],Evaluate@DTensorDeactivateDefinition}];
-ToExpression[ToString@DTensor<>"Deactivate", InputForm, Function[name, name = DTensorDeactivate, HoldAll]];
-DDeactivate=DDeactivate~Join~DTensorDeactivate;
-];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DefTensor[DR[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->xAct`HiGGS`Private`SymbolBuild[RSymb,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR[-z,-i,-j,-m,-n],1];
-DefTensor[DRLambda[-z,-i,-j,-m,-n], M4,{Antisymmetric[{-i, -j}], Antisymmetric[{-m, -n}]}, PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda[-z,-i,-j,-m,-n],1];
-DefTensor[DT[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DT[-z,-i,-j,-k],1];
-DefTensor[DTLambda[-z,-i,-j,-k], M4,Antisymmetric[{-j,-k}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,"Derivative"->1]];
-xAct`HiGGS`Private`DeclareOrder[DTLambda[-z,-i,-j,-k],1];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DefTensor[DRLambda1[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO1,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda1[-z,-i,-j,-m,-n],1];
-DefTensor[DRLambda2[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO2,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda2[-z,-i,-j,-m,-n],1];
-DefTensor[DRLambda3[-z,-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO3,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda3[-z,-i,-j,-m,-n],1];
-DefTensor[DRLambda4[-z,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO4,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda4[-z,-i,-j],1];
-DefTensor[DRLambda5[-z,-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO5,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DRLambda5[-z,-i,-j],1];
-DefTensor[DRLambda6[-z], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[RLambdaSymb,SO6,"Derivative"->1]];
-xAct`HiGGS`Private`DeclareOrder[DRLambda6[-z],1];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DefTensor[DR1[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[Cycles[{-i,-j},{-m,-n}],Cycles[{-i,-m}],Cycles[{-j,-n}]]], PrintAs->xAct`HiGGS`Private`SymbolBuild[RSymb,SO1,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR1[-z,-i,-j,-m,-n],1];
-DefTensor[DR2[-z,-i,-j,-m,-n], M4,StrongGenSet[{-i,-j,-m,-n},GenSet[-Cycles[{-i,-m},{-j,-n}],-Cycles[{-i,-j}],-Cycles[{-m,-n}]]], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RSymb,SO2,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR2[-z,-i,-j,-m,-n],1];
-DefTensor[DR3[-z,-i,-j,-m,-n], M4,Antisymmetric[{-i,-j,-m,-n}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RSymb,SO3,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR3[-z,-i,-j,-m,-n],1];
-DefTensor[DR4[-z,-i,-j], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RSymb,SO4,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR4[-z,-i,-j],1];
-DefTensor[DR5[-z,-i,-j], M4,Antisymmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[RSymb,SO5,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DR5[-z,-i,-j],1];
-DefTensor[DR6[-z], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[RSymb,SO6,"Derivative"->1]];
-xAct`HiGGS`Private`DeclareOrder[DR6[-z],1];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DefTensor[DT1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,SO1,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DT1[-z,-i,-j,-k],1];
-DefTensor[DT2[-z,-i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TSymb,SO2,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DT2[-z,-i],1];
-DefTensor[DT3[-z,-i], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[TSymb,SO3,"Derivative"->1]];
-xAct`HiGGS`Private`DeclareOrder[DT3[-z,-i],1];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DefTensor[DTLambda1[-z,-i,-j,-k], M4,Symmetric[{-i,-j}], PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,SO1,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DTLambda1[-z,-i,-j,-k],1];
-DefTensor[DTLambda2[-z,-i], M4, PrintAs -> xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,SO2,"Derivative"->1]]; 
-xAct`HiGGS`Private`DeclareOrder[DTLambda2[-z,-i],1];
-DefTensor[DTLambda3[-z,-i], M4, PrintAs ->xAct`HiGGS`Private`SymbolBuild[TLambdaSymb,SO3,"Derivative"->1]];
-xAct`HiGGS`Private`DeclareOrder[DTLambda3[-z,-i],1];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DRActivate=MakeRule[{CD[-z][R[-a,-b,-c,-d]],DR[-z,-a,-b,-c,-d]+A[i,-a,-z]R[-i,-b,-c,-d]+A[i,-b,-z]R[-a,-i,-c,-d]+A[i,-c,-z]R[-a,-b,-i,-d]+A[i,-d,-z]R[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DRLambdaActivate=MakeRule[{CD[-z][RLambda[-a,-b,-c,-d]],DRLambda[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda[-i,-b,-c,-d]+A[i,-b,-z]RLambda[-a,-i,-c,-d]+A[i,-c,-z]RLambda[-a,-b,-i,-d]+A[i,-d,-z]RLambda[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DTLambdaActivate=MakeRule[{CD[-z][TLambda[-a,-b,-c]],DTLambda[-z,-a,-b,-c]+A[i,-a,-z]TLambda[-i,-b,-c]+A[i,-b,-z]TLambda[-a,-i,-c]+A[i,-c,-z]TLambda[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
-DTActivate=MakeRule[{CD[-z][T[-a,-b,-c]],DT[-z,-a,-b,-c]+A[i,-a,-z]T[-i,-b,-c]+A[i,-b,-z]T[-a,-i,-c]+A[i,-c,-z]T[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DR1Activate=MakeRule[{CD[-z][R1[-a,-b,-c,-d]],DR1[-z,-a,-b,-c,-d]+A[i,-a,-z]R1[-i,-b,-c,-d]+A[i,-b,-z]R1[-a,-i,-c,-d]+A[i,-c,-z]R1[-a,-b,-i,-d]+A[i,-d,-z]R1[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DR2Activate=MakeRule[{CD[-z][R2[-a,-b,-c,-d]],DR2[-z,-a,-b,-c,-d]+A[i,-a,-z]R2[-i,-b,-c,-d]+A[i,-b,-z]R2[-a,-i,-c,-d]+A[i,-c,-z]R2[-a,-b,-i,-d]+A[i,-d,-z]R2[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DR3Activate=MakeRule[{CD[-z][R3[-a,-b,-c,-d]],DR3[-z,-a,-b,-c,-d]+A[i,-a,-z]R3[-i,-b,-c,-d]+A[i,-b,-z]R3[-a,-i,-c,-d]+A[i,-c,-z]R3[-a,-b,-i,-d]+A[i,-d,-z]R3[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DR4Activate=MakeRule[{CD[-z][R4[-a,-b]],DR4[-z,-a,-b]+A[i,-a,-z]R4[-i,-b]+A[i,-b,-z]R4[-a,-i]},MetricOn->All,ContractMetrics->True];
-DR5Activate=MakeRule[{CD[-z][R5[-a,-b]],DR5[-z,-a,-b]+A[i,-a,-z]R5[-i,-b]+A[i,-b,-z]R5[-a,-i]},MetricOn->All,ContractMetrics->True];
-DR6Activate=MakeRule[{CD[-z][R6[]],DR6[-z]},MetricOn->All,ContractMetrics->True];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DRLambda1Activate=MakeRule[{CD[-z][RLambda1[-a,-b,-c,-d]],DRLambda1[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda1[-i,-b,-c,-d]+A[i,-b,-z]RLambda1[-a,-i,-c,-d]+A[i,-c,-z]RLambda1[-a,-b,-i,-d]+A[i,-d,-z]RLambda1[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DRLambda2Activate=MakeRule[{CD[-z][RLambda2[-a,-b,-c,-d]],DRLambda2[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda2[-i,-b,-c,-d]+A[i,-b,-z]RLambda2[-a,-i,-c,-d]+A[i,-c,-z]RLambda2[-a,-b,-i,-d]+A[i,-d,-z]RLambda2[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DRLambda3Activate=MakeRule[{CD[-z][RLambda3[-a,-b,-c,-d]],DRLambda3[-z,-a,-b,-c,-d]+A[i,-a,-z]RLambda3[-i,-b,-c,-d]+A[i,-b,-z]RLambda3[-a,-i,-c,-d]+A[i,-c,-z]RLambda3[-a,-b,-i,-d]+A[i,-d,-z]RLambda3[-a,-b,-c,-i]},MetricOn->All,ContractMetrics->True];
-DRLambda4Activate=MakeRule[{CD[-z][RLambda4[-a,-b]],DRLambda4[-z,-a,-b]+A[i,-a,-z]RLambda4[-i,-b]+A[i,-b,-z]RLambda4[-a,-i]},MetricOn->All,ContractMetrics->True];
-DRLambda5Activate=MakeRule[{CD[-z][RLambda5[-a,-b]],DRLambda5[-z,-a,-b]+A[i,-a,-z]RLambda5[-i,-b]+A[i,-b,-z]RLambda5[-a,-i]},MetricOn->All,ContractMetrics->True];
-DRLambda6Activate=MakeRule[{CD[-z][RLambda6[]],DRLambda6[-z]},MetricOn->All,ContractMetrics->True];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DT1Activate=MakeRule[{CD[-z][T1[-a,-b,-c]],DT1[-z,-a,-b,-c]+A[i,-a,-z]T1[-i,-b,-c]+A[i,-b,-z]T1[-a,-i,-c]+A[i,-c,-z]T1[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
-DT2Activate=MakeRule[{CD[-z][T2[-a]],DT2[-z,-a]+A[i,-a,-z]T2[-i]},MetricOn->All,ContractMetrics->True];
-DT3Activate=MakeRule[{CD[-z][T3[-a]],DT3[-z,-a]+A[i,-a,-z]T3[-i]},MetricOn->All,ContractMetrics->True];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DTLambda1Activate=MakeRule[{CD[-z][TLambda1[-a,-b,-c]],DTLambda1[-z,-a,-b,-c]+A[i,-a,-z]TLambda1[-i,-b,-c]+A[i,-b,-z]TLambda1[-a,-i,-c]+A[i,-c,-z]TLambda1[-a,-b,-i]},MetricOn->All,ContractMetrics->True];
-DTLambda2Activate=MakeRule[{CD[-z][TLambda2[-a]],DTLambda2[-z,-a]+A[i,-a,-z]TLambda2[-i]},MetricOn->All,ContractMetrics->True];
-DTLambda3Activate=MakeRule[{CD[-z][TLambda3[-a]],DTLambda3[-z,-a]+A[i,-a,-z]TLambda3[-i]},MetricOn->All,ContractMetrics->True];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-(* ::Input::Initialization:: *)
-DActivate=Join[DRActivate,DRLambdaActivate,DTActivate,DTLambdaActivate,DR1Activate,DR2Activate,DR3Activate,DR4Activate,DR5Activate,DR6Activate,DRLambda1Activate,DRLambda2Activate,DRLambda3Activate,DRLambda4Activate,DRLambda5Activate,DRLambda6Activate,DT1Activate,DT2Activate,DT3Activate,DTLambda1Activate,DTLambda2Activate,DTLambda3Activate];
-xAct`HiGGS`Private`ClearBuild[];
-
-
-DDeactivate={};
-MakeDDeactivate/@{R[a,b,c,d],RLambda[a,b,c,d],T[a,b,c],TLambda[a,b,c],R1[a,b,c,d],R2[a,b,c,d],R3[a,b,c,d],R4[a,b],R5[a,b],R6[],RLambda1[a,b,c,d],RLambda2[a,b,c,d],RLambda3[a,b,c,d],RLambda4[a,b],RLambda5[a,b],RLambda6[],T[a,b,c],T1[a,b,c],T2[a],T3[a],TLambda[a,b,c],TLambda1[a,b,c],TLambda2[a],TLambda3[a]};
-xAct`HiGGS`Private`ClearBuild[];
 
 
 
@@ -1695,7 +1358,6 @@ xAct`HiGGS`Private`ClearBuild[];
 xAct`HiGGS`Private`IfBuild["CanonicalPhi"];
 OpenLastCache[];
 
-
 (* ::Input::Initialization:: *)
 BPhiNonCanonicalDefinition=4V[g]B[-k,-o]G3[o,-z]H[h,z](Bet1 PT1[-i,-g,-h,a,c,d]+Bet2 PT2[-i,-g,-h,a,c,d]+Bet3 PT3[-i,-g,-h,a,c,d])(PPerp[-c,m]PPara[-d,n]T[-a,-m,-n]+PPara[-c,m]PPerp[-d,n]T[-a,-m,-n]);
 BPhiNonCanonicalActivate=MakeRule[{BPhi[-i,-k],Evaluate[BPhiNonCanonicalDefinition]},MetricOn->All,ContractMetrics->True];
@@ -2167,38 +1829,18 @@ PADMTActivate=Join[PTPerpActivate,PTParaActivate];
 PADMRActivate=Join[PRPerpActivate,PRParaActivate];
 xAct`HiGGS`Private`ClearBuild[];
 
+xAct`HiGGS`Private`BuildRebuild@"IfConstraints/VarPhiPerp/Definitions.m";
+xAct`HiGGS`Private`BuildRebuild@"IfConstraints/VarPhiPerp/Activation.m";
+xAct`HiGGS`Private`IfBuild["IfConstraints/VarPhiPerp/Rules"];
+OpenLastCache[];
 
-(* ::Input::Initialization:: *)
-(*O(3) decomposition of the canonical parts of Riemann-Cartan multiplier*)
-TLambdaPSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[DoubleVerticalBar]\)]\)";
-DefTensor[TLambdaP0m[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPSymb,xAct`HiGGS`Private`Spin0m]];
-xAct`HiGGS`Private`DeclareOrder[TLambdaP0m[],1];
-DefTensor[TLambdaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPSymb,xAct`HiGGS`Private`Spin1p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaP1p[-a,-b],1];
-DefTensor[TLambdaP1m[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPSymb,xAct`HiGGS`Private`Spin1m],OrthogonalTo->{V[a]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaP1m[-a],1];
-DefTensor[TLambdaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPSymb,xAct`HiGGS`Private`Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaP2m[-a,-b,-c],1];
-RLambdaPSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[DoubleVerticalBar]\)]\)";
-DefTensor[RLambdaP0p[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin0p]];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP0p[],1];
-DefTensor[RLambdaP0m[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin0m]];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP0m[],1];
-DefTensor[RLambdaP1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin1p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP1p[-a,-b],1];
-DefTensor[RLambdaP1m[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin1m],OrthogonalTo->{V[a]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP1m[-a],1];
-DefTensor[RLambdaP2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin2p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP2p[-a,-b],1];
-DefTensor[RLambdaP2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPSymb,xAct`HiGGS`Private`Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaP2m[-a,-b,-c],1];
-AutomaticRules[RLambdaP2m,MakeRule[{RLambdaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambdaP2m,MakeRule[{epsilonG[a,b,c,d]RLambdaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambdaP2p,MakeRule[{RLambdaP2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[TLambdaP2m,MakeRule[{TLambdaP2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[TLambdaP2m,MakeRule[{epsilonG[a,b,c,d]TLambdaP2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-xAct`HiGGS`Private`ClearBuild[];
+xAct`HiGGS`Private`BuildRebuild@"IfConstraints/VarPhiPara/Definitions.m";
+xAct`HiGGS`Private`BuildRebuild@"IfConstraints/VarPhiPara/Activation.m";
+xAct`HiGGS`Private`IfBuild["IfConstraints/VarPhiPara/Rules"];
+OpenLastCache[];
 
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaParaSO3.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiParaSO3.m";
 
 (* ::Input::Initialization:: *)
 (*O(3) decomposition of the non-canonical parts of field strengths*)
@@ -2230,36 +1872,8 @@ AutomaticRules[RPerp2m,MakeRule[{epsilonG[a,b,c,d]RPerp2m[-a,-b,-c],0},MetricOn-
 AutomaticRules[RPerp2p,MakeRule[{RPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
 xAct`HiGGS`Private`ClearBuild[];
 
-
-(* ::Input::Initialization:: *)
-TLambdaPerpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalT]\), \(\[UpTee]\)]\)";
-DefTensor[TLambdaPerp0p[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPerpSymb,xAct`HiGGS`Private`Spin0p]];
-xAct`HiGGS`Private`DeclareOrder[TLambdaPerp0p[],1];
-DefTensor[TLambdaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPerpSymb,xAct`HiGGS`Private`Spin1p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaPerp1p[-a,-b],1];
-DefTensor[TLambdaPerp1m[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPerpSymb,xAct`HiGGS`Private`Spin1m],OrthogonalTo->{V[a]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaPerp1m[-a],1];
-DefTensor[TLambdaPerp2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[TLambdaPerpSymb,xAct`HiGGS`Private`Spin2p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[TLambdaPerp2p[-a,-b],1];
-RLambdaPerpSymb="\!\(\*SubsuperscriptBox[\(\[Lambda]\), \(\[ScriptCapitalR]\), \(\[UpTee]\)]\)";
-DefTensor[RLambdaPerp0p[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin0p]];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp0p[],1];
-DefTensor[RLambdaPerp0m[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin0m]];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp0m[],1];
-DefTensor[RLambdaPerp1p[-a,-b],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin1p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp1p[-a,-b],1];
-DefTensor[RLambdaPerp1m[-a],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin1m],OrthogonalTo->{V[a]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp1m[-a],1];
-DefTensor[RLambdaPerp2p[-a,-b],M4,Symmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin2p],OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp2p[-a,-b],1];
-DefTensor[RLambdaPerp2m[-a,-b,-c],M4,Antisymmetric[{-a,-b}],PrintAs->xAct`HiGGS`Private`SymbolBuild[RLambdaPerpSymb,xAct`HiGGS`Private`Spin2m],OrthogonalTo->{V[a],V[b],V[c]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerp2m[-a,-b,-c],1];
-AutomaticRules[RLambdaPerp2m,MakeRule[{RLambdaPerp2m[a,-b,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambdaPerp2m,MakeRule[{epsilonG[a,b,c,d]RLambdaPerp2m[-a,-b,-c],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[RLambdaPerp2p,MakeRule[{RLambdaPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-AutomaticRules[TLambdaPerp2p,MakeRule[{TLambdaPerp2p[a,-a],0},MetricOn->All,ContractMetrics->True]];
-xAct`HiGGS`Private`ClearBuild[];
-
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaPerpSO3.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiPerpSO3.m";
 
 (* ::Input::Initialization:: *)
 (*These rules then expand the O(3) parts in terms of the canonical parts*)
@@ -2320,66 +1934,8 @@ RPActivate=MakeRule[{RP[-a,-b,-c,-d],Evaluate[RPDefinition]},MetricOn->All,Contr
 StrengthPToStrengthPO3=Join[TPActivate,RPActivate];
 xAct`HiGGS`Private`ClearBuild[];
 
-
-(* ::Input::Initialization:: *)
-(*These rules then expand the O(3) parts in terms of the canonical parts*)
-
-TLambdaP0mDefinition=PT0m[e,f,g]PTPara[-e,-f,-g,a,b,c]TLambdaP[-a,-b,-c]/.PO3TActivate/.PADMTActivate//ToCanonical;
-TLambdaP1pDefinition=PT1p[-n,-m,e,f]PTPerp[-e,-f,a,b,c]TLambdaP[-a,-b,-c]/.PO3TActivate/.PADMTActivate//ToCanonical;
-TLambdaP1mDefinition=PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,b,c]TLambdaP[-a,-b,-c]/.PO3TActivate/.PADMTActivate//ToCanonical;
-TLambdaP2mDefinition=PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,b,c]TLambdaP[-a,-b,-c]/.PO3TActivate/.PADMTActivate//ToCanonical;
-
-RLambdaP0pDefinition=PR0p[e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-RLambdaP0mDefinition=PR0m[e,f,g]PRPerp[-e,-f,-g,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-RLambdaP1pDefinition=PR1p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-RLambdaP1mDefinition=PR1m[-n,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-RLambdaP2pDefinition=PR2p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-RLambdaP2mDefinition=PR2m[-n,-m,-o,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]RLambdaP[-a,-b,-c,-d]/.PO3RActivate/.PADMRActivate//ToCanonical;
-
-TLambdaP0mActivate=MakeRule[{TLambdaP0m[],Scalar[Evaluate[TLambdaP0mDefinition]]},MetricOn->All,ContractMetrics->True];
-TLambdaP1pActivate=MakeRule[{TLambdaP1p[-n,-m],Evaluate[TLambdaP1pDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaP1mActivate=MakeRule[{TLambdaP1m[-n],Evaluate[TLambdaP1mDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaP2mActivate=MakeRule[{TLambdaP2m[-n,-m,-o],Evaluate[TLambdaP2mDefinition]},MetricOn->All,ContractMetrics->True];
-
-RLambdaP0pActivate=MakeRule[{RLambdaP0p[],Scalar[Evaluate[RLambdaP0pDefinition]]},MetricOn->All,ContractMetrics->True];
-RLambdaP0mActivate=MakeRule[{RLambdaP0m[],Scalar[Evaluate[RLambdaP0mDefinition]]},MetricOn->All,ContractMetrics->True];
-RLambdaP1pActivate=MakeRule[{RLambdaP1p[-n,-m],Evaluate[RLambdaP1pDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaP1mActivate=MakeRule[{RLambdaP1m[-n],Evaluate[RLambdaP1mDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaP2pActivate=MakeRule[{RLambdaP2p[-n,-m],Evaluate[RLambdaP2pDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaP2mActivate=MakeRule[{RLambdaP2m[-n,-m,-o],Evaluate[RLambdaP2mDefinition]},MetricOn->All,ContractMetrics->True];
-
-TLambdaPO3Activate=Join[TLambdaP0mActivate,TLambdaP1pActivate,TLambdaP1mActivate,TLambdaP2mActivate];
-RLambdaPO3Activate=Join[RLambdaP0pActivate,RLambdaP0mActivate,RLambdaP1pActivate,RLambdaP1mActivate,RLambdaP2pActivate,RLambdaP2mActivate];
-
-TLambdaPDefinition= V[-a]TLambdaP1p[-b,-c]+
--(1/6) PT0m[-a,-b,-c]TLambdaP0m[]+
- Antisymmetrize[-PPara[-a,-b]TLambdaP1m[-c],{-b,-c}]+
-(4/3) TLambdaP2m[-b,-c,-a]/.PO3TActivate/.PADMActivate//ToCanonical;
-
-DefTensor[RLambdaPPara[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]},OrthogonalTo->{V[a],V[b],V[c],V[d]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPPara[-a,-b,-c,-d],1];
-DefTensor[RLambdaPPerp[-a,-b,-c],M4,Antisymmetric[{-b,-c}],OrthogonalTo->{V[a],V[b],V[c]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPPerp[-a,-b,-c],1];
-
-RLambdaPParaDefinition=-(1/6)(PPara[-a,-d]PPara[-b,-c]-PPara[-a,-c]PPara[-b,-d])RLambdaP0p[]-
-(PPara[-b,-d]RLambdaP1p[-a,-c]-PPara[-b,-c]RLambdaP1p[-a,-d]-PPara[-a,-d]RLambdaP1p[-b,-c]+PPara[-a,-c]RLambdaP1p[-b,-d])+
-(PPara[-b,-d]RLambdaP2p[-a,-c]-PPara[-b,-c]RLambdaP2p[-a,-d]-PPara[-a,-d]RLambdaP2p[-b,-c]+PPara[-a,-c]RLambdaP2p[-b,-d]);
-RLambdaPPerpDefinition=-(1/6) PR0m[-a,-b,-c]RLambdaP0m[]+ Antisymmetrize[-PPara[-a,-b]RLambdaP1m[-c],{-b,-c}]+(4/3) RLambdaP2m[-b,-c,-a];
-
-RLambdaPParaActivate=MakeRule[{RLambdaPPara[-a,-b,-c,-d],Evaluate[RLambdaPParaDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPPerpActivate=MakeRule[{RLambdaPPerp[-a,-b,-c],Evaluate[RLambdaPPerpDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPParaPerpActivate=Join[RLambdaPParaActivate,RLambdaPPerpActivate];
-
-RLambdaPDefinition= RLambdaPPara[-a,-b,-c,-d]+2Antisymmetrize[V[-a]RLambdaPPerp[-b,-c,-d],{-a,-b}]/.RLambdaPParaPerpActivate/.PO3RActivate/.PADMActivate//ToCanonical;
-
-TLambdaPDefinition=TLambdaPDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-RLambdaPDefinition=RLambdaPDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-
-TLambdaPActivate=MakeRule[{TLambdaP[-a,-b,-c],Evaluate[TLambdaPDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPActivate=MakeRule[{RLambdaP[-a,-b,-c,-d],Evaluate[RLambdaPDefinition]},MetricOn->All,ContractMetrics->True];
-StrengthLambdaPToStrengthLambdaPO3=Join[TLambdaPActivate,RLambdaPActivate];
-xAct`HiGGS`Private`ClearBuild[];
-
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaSO3.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiSO3.m";
 
 (* ::Input::Initialization:: *)
 (*These rules then expand the O(3) parts in terms of the canonical parts*)
@@ -2449,66 +2005,8 @@ RPerpActivate=MakeRule[{RPerp[-a,-b,-c],Evaluate[RPerpDefinition]},MetricOn->All
 StrengthPerpToStrengthPerpO3=Join[TPerpActivate,RPerpActivate];
 xAct`HiGGS`Private`ClearBuild[];
 
-
-(* ::Input::Initialization:: *)
-(*These rules then expand the O(3) parts in terms of the canonical parts*)
-TLambdaPerp0pDefinition=PPerpT0p[e,f]PPerpTPara[-e,-f,a,b]TLambdaPerp[-a,-b]/.PPerpO3TActivate/.PPerpADMTActivate//ToCanonical;
-TLambdaPerp1pDefinition=PPerpT1p[-n,-m,e,f]PPerpTPara[-e,-f,a,b]TLambdaPerp[-a,-b]/.PPerpO3TActivate/.PPerpADMTActivate//ToCanonical;
-TLambdaPerp1mDefinition=PPerpT1m[-n,e]PPerpTPerp[-e,a,b]TLambdaPerp[-a,-b]/.PPerpO3TActivate/.PPerpADMTActivate//ToCanonical;
-TLambdaPerp2pDefinition=PPerpT2p[-n,-m,e,f]PPerpTPara[-e,-f,a,b]TLambdaPerp[-a,-b]/.PPerpO3TActivate/.PPerpADMTActivate//ToCanonical;
-
-RLambdaPerp0pDefinition=PPerpR0p[e,f]PPerpRPerp[-e,-f,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-RLambdaPerp0mDefinition=PPerpR0m[e,f,g]PPerpRPara[-e,-f,-g,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-RLambdaPerp1pDefinition=PPerpR1p[-n,-m,e,f]PPerpRPerp[-e,-f,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-RLambdaPerp1mDefinition=PPerpR1m[-n,e,f,g]PPerpRPara[-e,-f,-g,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-RLambdaPerp2pDefinition=PPerpR2p[-n,-m,e,f]PPerpRPerp[-e,-f,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-RLambdaPerp2mDefinition=PPerpR2m[-n,-m,-o,e,f,g]PPerpRPara[-e,-f,-g,a,b,c]RLambdaPerp[-a,-b,-c]/.PPerpO3RActivate/.PPerpADMRActivate//ToCanonical;
-
-TLambdaPerp0pActivate=MakeRule[{TLambdaPerp0p[],Scalar[Evaluate[TLambdaPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
-TLambdaPerp1pActivate=MakeRule[{TLambdaPerp1p[-n,-m],Evaluate[TLambdaPerp1pDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaPerp1mActivate=MakeRule[{TLambdaPerp1m[-n],Evaluate[TLambdaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
-TLambdaPerp2pActivate=MakeRule[{TLambdaPerp2p[-n,-m],Evaluate[TLambdaPerp2pDefinition]},MetricOn->All,ContractMetrics->True];
-
-RLambdaPerp0pActivate=MakeRule[{RLambdaPerp0p[],Scalar[Evaluate[RLambdaPerp0pDefinition]]},MetricOn->All,ContractMetrics->True];
-RLambdaPerp0mActivate=MakeRule[{RLambdaPerp0m[],Scalar[Evaluate[RLambdaPerp0mDefinition]]},MetricOn->All,ContractMetrics->True];
-RLambdaPerp1pActivate=MakeRule[{RLambdaPerp1p[-n,-m],Evaluate[RLambdaPerp1pDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerp1mActivate=MakeRule[{RLambdaPerp1m[-n],Evaluate[RLambdaPerp1mDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerp2pActivate=MakeRule[{RLambdaPerp2p[-n,-m],Evaluate[RLambdaPerp2pDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerp2mActivate=MakeRule[{RLambdaPerp2m[-n,-m,-o],Evaluate[RLambdaPerp2mDefinition]},MetricOn->All,ContractMetrics->True];
-
-TLambdaPerpO3Activate=Join[TLambdaPerp0pActivate,TLambdaPerp1pActivate,TLambdaPerp1mActivate,TLambdaPerp2pActivate];
-RLambdaPerpO3Activate=Join[RLambdaPerp0pActivate,RLambdaPerp0mActivate,RLambdaPerp1pActivate,RLambdaPerp1mActivate,RLambdaPerp2pActivate,RLambdaPerp2mActivate];
-
-TLambdaPerpDefinition= V[-a]TLambdaPerp1m[-b]+
-TLambdaPerp1p[-a,-b]+
-TLambdaPerp2p[-a,-b]+
-(1/3)PPara[-a,-b]TLambdaPerp0p[]/.PPerpO3TActivate/.PADMActivate//ToCanonical;
-
-DefTensor[RLambdaPerpPerp[-a,-b],M4,OrthogonalTo->{V[a],V[b]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerpPerp[-a,-b],1];
-DefTensor[RLambdaPerpPara[-a,-b,-c],M4,Antisymmetric[{-a,-b}],OrthogonalTo->{V[a],V[b],V[c]}];
-xAct`HiGGS`Private`DeclareOrder[RLambdaPerpPara[-a,-b,-c],1];
-
-RLambdaPerpPerpDefinition=RLambdaPerp1p[-a,-b]+
-RLambdaPerp2p[-a,-b]-
-(1/3)PPara[-a,-b]RLambdaPerp0p[]/.PPerpO3RActivate/.PADMActivate//ToCanonical;
-RLambdaPerpParaDefinition=-(1/6) PR0m[-a,-b,-c]RLambdaPerp0m[]-Antisymmetrize[-PPara[-c,-a]RLambdaPerp1m[-b],{-a,-b}]+(4/3) RLambdaPerp2m[-a,-b,-c]/.PPerpO3RActivate/.PADMActivate//ToCanonical;
-
-RLambdaPerpPerpActivate=MakeRule[{RLambdaPerpPerp[-a,-b],Evaluate[RLambdaPerpPerpDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerpParaActivate=MakeRule[{RLambdaPerpPara[-a,-b,-c],Evaluate[RLambdaPerpParaDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerpParaPerpActivate=Join[RLambdaPerpParaActivate,RLambdaPerpPerpActivate];
-
-RLambdaPerpDefinition= RLambdaPerpPara[-a,-b,-c]+2Antisymmetrize[V[-a]RLambdaPerpPerp[-b,-c],{-a,-b}]/.RLambdaPerpParaPerpActivate/.PO3RActivate/.PADMActivate//ToCanonical;
-
-TLambdaPerpDefinition=TLambdaPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-
-RLambdaPerpDefinition=RLambdaPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-
-TLambdaPerpActivate=MakeRule[{TLambdaPerp[-a,-b],Evaluate[TLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
-RLambdaPerpActivate=MakeRule[{RLambdaPerp[-a,-b,-c],Evaluate[RLambdaPerpDefinition]},MetricOn->All,ContractMetrics->True];
-StrengthLambdaPerpToStrengthLambdaPerpO3=Join[TLambdaPerpActivate,RLambdaPerpActivate];
-(*Again used to be Join...*)
-xAct`HiGGS`Private`ClearBuild[];
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaSO3Inverse.m";
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiSO3Inverse.m";
 
 xAct`HiGGS`Private`IfBuild["PiPToPiPO3"];
 OpenLastCache[];
@@ -2676,6 +2174,9 @@ xAct`HiGGS`Private`IfBuild["CDPiPToCDPiPO3"];
 OpenLastCache[];
 
 xAct`HiGGS`Private`IfBuild["NesterFormIfConstraints"];
+OpenLastCache[];
+
+xAct`HiGGS`Private`IfBuild["NesterFormIfConstraintsVarPhi"];
 OpenLastCache[];
 
 xAct`HiGGS`Private`BuildRebuild@"PoissonBracket.m";

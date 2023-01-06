@@ -155,28 +155,13 @@ BuildHiGGSPackage[]:=BuildPackage/@{
 	"BuildHiGGS.m",
 	"ToNewCanonical.m",
 	"MakeQuotientRule.m",
-	"ToO3.m",
 	"ToNesterForm.m",
 	"ToBasicForm.m",
 	"Smearing.m",
-	"NesterFormQ.m",
 	"CovD.m",
 	"Induced.m",
-	"VarAction.m",
-	"PoissonBracketList.m",
 	"PoissonBracket.m",
 	"InternalIndices.m",
-	"ComputeShellFreedoms.m",
-	"DefFieldStrengthShell.m",
-	"DefMomentaShell.m",
-	"DefO3MomentaShell.m",
-	"ImposeTheory.m",
-	"DefIfConstraintToTheoryNesterForm.m",
-	"DefSuperHamiltonian.m",
-	"DefLinearSuperMomentum.m",
-	"DefAngularSuperMomentum.m",
-	"DefIfConstraints.m",
-	"DefNesterFormShell.m",
 	"DefTheory.m",
 	"HiGGSParallelSubmit.m",
 	"StudyTheory.m",
@@ -204,6 +189,8 @@ NotYetImplemented={
 };
 
 BinaryNames={
+	"IfConstraints/VarPhiPerp/Rules",
+	"IfConstraints/VarPhiPara/Rules",
 	"CanonicalPhi",
 	"CDPiPToCDPiPO3",
 	"ChiPerp",
@@ -211,6 +198,7 @@ BinaryNames={
 	"CompleteO3Projections",
 	"GeneralComplements",
 	"NesterFormIfConstraints",
+	"NesterFormIfConstraintsVarPhi",
 	"NonCanonicalPhi",
 	"O13Projections",
 	"PiPToPiPO3",
@@ -243,7 +231,7 @@ ContextList={
 (*--------------------------------------------------------------------------------------------------------------*)
 
 Begin["xAct`HiGGS`"];
-	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->False];
+	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->True];
 End[];
  
 End[];

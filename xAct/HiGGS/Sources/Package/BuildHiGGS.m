@@ -2,33 +2,10 @@
 (*  BuildHiGGS  *)
 (*==============*)
 
-SaveBinaryContext[Context_String]:=DumpSave[FileNameJoin[{$HiGGSInstallDirectory,"Binaries","Contexts",Context<>".mx"}],Context];
-
-SaveBinaryContexts[]:=Module[{PrintVariable},
-	Run@("rm -rf "<>FileNameJoin[{$HiGGSInstallDirectory,"Binaries","Contexts"}]<>"/*");
-	PrintVariable=PrintTemporary[" ** BuildHiGGS: saving binary definitions for the context ",
-		Context];
-	SaveBinaryContext/@ContextList;
-	NotebookDelete@PrintVariable;	
-];
-
-LoadBinaryContext[Context_String]:=Module[{PrintVariable},
-	PrintVariable=PrintTemporary[" ** BuildHiGGS: loading binary definitions for the context ",
-		Context];
-	Off@(RuleDelayed::rhs);(* again emulating the xTensor sources *)
-	Get[FileNameJoin[{$HiGGSInstallDirectory,"Binaries","Contexts",#<>".mx"}]]&/@ContextList;
-	On@(RuleDelayed::rhs);
-	NotebookDelete@PrintVariable;	
-];
-
-LoadHiGGS[]:=Catch@Module[{PrintVariable,InitialMemory,Progress},
-	PrintVariable=PrintTemporary[" ** BuildHiGGS: loading binary definitions..."];
-	InitialMemory=MemoryInUse[];
-	Progress=PrintTemporary@ProgressIndicator[Dynamic[N[(Refresh[MemoryInUse[],UpdateInterval->0.1]-InitialMemory)/10^8]],Appearance->"Percolate"];
-	LoadBinaryContext/@ContextList;
-	NotebookDelete@PrintVariable;	
-	NotebookDelete@Progress;
-];
+BuildPackage@"BuildHiGGS/SaveBinaryContext.m";
+BuildPackage@"BuildHiGGS/SaveBinaryContexts.m";
+BuildPackage@"BuildHiGGS/LoadBinaryContext.m";
+BuildPackage@"BuildHiGGS/LoadHiGGS.m";
 
 Options@BuildHiGGS={Recompile->False};
 BuildHiGGS[OptionsPattern[]]:=Module[{PrintVariable},

@@ -20,51 +20,75 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	VariationalLeftOpB,
 	VariationalRightOpB,
 	VariationalLeftOpA,
+	VariationalLeftOpTLambda,
 	VariationalRightOpA,
+	VariationalRightOpTLambda,
 	VariationalLeftOpBPi,
 	VariationalRightOpBPi,
 	VariationalLeftOpAPi,
+	VariationalLeftOpTLambdaPi,
 	VariationalRightOpAPi,
+	VariationalRightOpTLambdaPi,
 	PartialLeftOpB,
 	PartialRightOpB,
 	PartialLeftOpA,
+	PartialLeftOpTLambda,
 	PartialRightOpA,
+	PartialRightOpTLambda,
 	PartialLeftOpBPi,
 	PartialRightOpBPi,
 	PartialLeftOpAPi,
+	PartialLeftOpTLambdaPi,
 	PartialRightOpAPi,
+	PartialRightOpTLambdaPi,
 	PartialLeftOpDBz,
 	PartialRightOpDBz,
 	PartialLeftOpDAz,
+	PartialLeftOpDTLambdaz,
 	PartialRightOpDAz,
+	PartialRightOpDTLambdaz,
 	PartialLeftOpDBPiz,
 	PartialRightOpDBPiz,
 	PartialLeftOpDAPiz,
+	PartialLeftOpDTLambdaPiz,
 	PartialRightOpDAPiz,
+	PartialRightOpDTLambdaPiz,
 	PartialLeftOpDBv,
 	PartialRightOpDBv,
 	PartialLeftOpDAv,
+	PartialLeftOpDTLambdav,
 	PartialRightOpDAv,
+	PartialRightOpDTLambdav,
 	PartialLeftOpDBPiv,
 	PartialRightOpDBPiv,
 	PartialLeftOpDAPiv,
+	PartialLeftOpDTLambdaPiv,
 	PartialRightOpDAPiv,
+	PartialRightOpDTLambdaPiv,
 	BarPartialLeftOpB,
 	BarPartialRightOpB,
 	BarPartialLeftOpA,
+	BarPartialLeftOpTLambda,
 	BarPartialRightOpA,
+	BarPartialRightOpTLambda,
 	BarPartialLeftOpBPi,
 	BarPartialRightOpBPi,
 	BarPartialLeftOpAPi,
+	BarPartialLeftOpTLambdaPi,
 	BarPartialRightOpAPi,
+	BarPartialRightOpTLambdaPi,
 	BarVariationalLeftOpB,
 	BarVariationalRightOpB,
 	BarVariationalLeftOpA,
+	BarVariationalLeftOpTLambda,
 	BarVariationalRightOpA,
+	BarVariationalRightOpTLambda,
 	BarVariationalLeftOpBPi,
 	BarVariationalRightOpBPi,
 	BarVariationalLeftOpAPi,
+	BarVariationalLeftOpTLambdaPi,
 	BarVariationalRightOpAPi,
+	BarVariationalRightOpTLambdaPi,
 	DeltaDelta,
 	DDeltaDelta,
 	DeltaDDelta,
@@ -131,6 +155,11 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	VariationalLeftOpAPi=NewVarAction[LeftOpDummy,xAct`HiGGS`APi[-Zq,-Zr,Zs]];
 	VariationalRightOpAPi=NewVarAction[RightOpDummy,xAct`HiGGS`APi[-Zq,-Zr,Zs]];
 
+	VariationalLeftOpTLambda=NewVarAction[LeftOpDummy,xAct`HiGGS`TLambda[Zs,-Zq,-Zr]];
+	VariationalRightOpTLambda=NewVarAction[RightOpDummy,xAct`HiGGS`TLambda[Zs,-Zq,-Zr]];
+	VariationalLeftOpTLambdaPi=NewVarAction[LeftOpDummy,xAct`HiGGS`TLambdaPi[-Zs,Zq,Zr]];
+	VariationalRightOpTLambdaPi=NewVarAction[RightOpDummy,xAct`HiGGS`TLambdaPi[-Zs,Zq,Zr]];
+
 	PartialLeftOpB=
 		NewVarAction[LeftOpDummyInert,xAct`HiGGS`B[Zq,-Zr]]
 		+xAct`HiGGS`DVDB[-Zx,-Zq,Zr]NewVarAction[LeftOpDummyInert,xAct`HiGGS`V[-Zx]]
@@ -168,6 +197,21 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	PartialLeftOpDAPiv=NewVarAction[LeftOpDummyInert,CDAPiDummy[-Zv,-Zq,-Zr,Zs]];
 	PartialRightOpDAPiv=NewVarAction[RightOpDummyInert,CDAPiDummy[-Zv,-Zq,-Zr,Zs]];
 
+	PartialLeftOpTLambda=NewVarAction[LeftOpDummyInert,xAct`HiGGS`TLambda[Zs,-Zq,-Zr]];
+	PartialRightOpTLambda=NewVarAction[RightOpDummyInert,xAct`HiGGS`TLambda[Zs,-Zq,-Zr]];
+	PartialLeftOpTLambdaPi=NewVarAction[LeftOpDummyInert,xAct`HiGGS`TLambdaPi[-Zs,Zq,Zr]];
+	PartialRightOpTLambdaPi=NewVarAction[RightOpDummyInert,xAct`HiGGS`TLambdaPi[-Zs,Zq,Zr]];
+
+	PartialLeftOpDTLambdaz=NewVarAction[LeftOpDummyInert,CDADummy[-Zz,Zs,-Zq,-Zr]];
+	PartialRightOpDTLambdaz=NewVarAction[RightOpDummyInert,CDTLambdaDummy[-Zz,Zs,-Zq,-Zr]];
+	PartialLeftOpDTLambdaPiz=NewVarAction[LeftOpDummyInert,CDTLambdaPiDummy[-Zz,-Zs,Zq,Zr]];
+	PartialRightOpDTLambdaPiz=NewVarAction[RightOpDummyInert,CDTLambdaPiDummy[-Zz,-Zs,Zq,Zr]];
+
+	PartialLeftOpDTLambdav=NewVarAction[LeftOpDummyInert,CDTLambdaDummy[-Zv,Zs,-Zq,-Zr]];
+	PartialRightOpDTLambdav=NewVarAction[RightOpDummyInert,CDTLambdaDummy[-Zv,Zs,-Zq,-Zr]];
+	PartialLeftOpDTLambdaPiv=NewVarAction[LeftOpDummyInert,CDTLambdaPiDummy[-Zv,-Zs,Zq,Zr]];
+	PartialRightOpDTLambdaPiv=NewVarAction[RightOpDummyInert,CDTLambdaPiDummy[-Zv,-Zs,Zq,Zr]];
+
 	(*--------------------------------*)
 	(*  Composing barred derivatives  *)
 	(*--------------------------------*)
@@ -183,6 +227,12 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	BarPartialRightOpBPi=ReplaceDummies@(PartialRightOpBPi+ReplaceIndex[Evaluate[PartialRightOpDBPiz],Zq->Zw] xAct`HiGGS`A[Zq,-Zw,-Zz]);
 	BarPartialLeftOpAPi=ReplaceDummies@(PartialLeftOpAPi+ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zq->Zw] xAct`HiGGS`A[Zq,-Zw,-Zz]+ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zr->Zw] xAct`HiGGS`A[Zr,-Zw,-Zz]);
 	BarPartialRightOpAPi=ReplaceDummies@(PartialRightOpAPi+ReplaceIndex[Evaluate[PartialRightOpDAPiz],Zq->Zw] xAct`HiGGS`A[Zq,-Zw,-Zz]+ReplaceIndex[Evaluate[PartialRightOpDAPiz],Zr->Zw] xAct`HiGGS`A[Zr,-Zw,-Zz]);
+
+	BarPartialLeftOpTLambda=ReplaceDummies@(PartialLeftOpTLambda+ReplaceIndex[Evaluate[PartialLeftOpDTLambdaz],Zq->Zw] xAct`HiGGS`A[Zq,-Zw,-Zz]+ReplaceIndex[Evaluate[PartialLeftOpDTLambdaz],Zr->Zw] xAct`HiGGS`A[Zr,-Zw,-Zz]-ReplaceIndex[Evaluate[PartialLeftOpDTLambdaz],-Zs->-Zw] xAct`HiGGS`A[Zw,-Zs,-Zz]);
+	BarPartialRightOpTLambda=ReplaceDummies@(PartialRightOpTLambda+ReplaceIndex[Evaluate[PartialRightOpDTLambdaz],Zq->Zw] xAct`HiGGS`A[Zq,-Zw,-Zz]+ReplaceIndex[Evaluate[PartialRightOpDTLambdaz],Zr->Zw] xAct`HiGGS`A[Zr,-Zw,-Zz]-ReplaceIndex[Evaluate[PartialRightOpDTLambdaz],-Zs->-Zw] xAct`HiGGS`A[Zw,-Zs,-Zz]);
+	BarPartialLeftOpTLambdaPi=ReplaceDummies@(PartialLeftOpTLambdaPi-ReplaceIndex[Evaluate[PartialLeftOpDTLambdaPiz],-Zq->-Zw] xAct`HiGGS`A[Zw,-Zq,-Zz]-ReplaceIndex[Evaluate[PartialLeftOpDTLambdaPiz],-Zr->-Zw] xAct`HiGGS`A[Zw,-Zr,-Zz]+ReplaceIndex[Evaluate[PartialLeftOpDTLambdaPiz],Zs->Zw] xAct`HiGGS`A[Zs,-Zw,-Zz]);
+	BarPartialRightOpTLambdaPi=ReplaceDummies@(PartialRightOpTLambdaPi-ReplaceIndex[Evaluate[PartialRightOpDTLambdaPiz],-Zq->-Zw] xAct`HiGGS`A[Zw,-Zq,-Zz]-ReplaceIndex[Evaluate[PartialRightOpDTLambdaPiz],-Zr->-Zw] xAct`HiGGS`A[Zw,-Zr,-Zz]+ReplaceIndex[Evaluate[PartialRightOpDTLambdaPiz],Zs->Zw] xAct`HiGGS`A[Zs,-Zw,-Zz]);
+
 	BarVariationalLeftOpB=ReplaceDummies@(BarPartialLeftOpB-ManualCovariantDerivative[-Zz,PartialLeftOpDBz,IndexList[Zz,Zr],Zw]);
 	BarVariationalRightOpB=ReplaceDummies@(BarPartialRightOpB-ManualCovariantDerivative[-Zz,PartialRightOpDBz,IndexList[Zz,Zr],Zw]);
 	BarVariationalLeftOpA=ReplaceDummies@(BarPartialLeftOpA-ManualCovariantDerivative[-Zz,PartialLeftOpDAz,IndexList[Zz,Zs],Zw]);
@@ -192,6 +242,11 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	BarVariationalLeftOpAPi=ReplaceDummies@(BarPartialLeftOpAPi-ManualCovariantDerivative[-Zz,PartialLeftOpDAPiz,IndexList[Zz,-Zs],Zw]);
 	BarVariationalRightOpAPi=ReplaceDummies@(BarPartialRightOpAPi-ManualCovariantDerivative[-Zz,PartialRightOpDAPiz,IndexList[Zz,-Zs],Zw]);
 
+	BarVariationalLeftOpTLambda=ReplaceDummies@(BarPartialLeftOpTLambda-ManualCovariantDerivative[-Zz,PartialLeftOpDTLambdaz,IndexList[Zz],Zw]);
+	BarVariationalRightOpTLambda=ReplaceDummies@(BarPartialRightOpTLambda-ManualCovariantDerivative[-Zz,PartialRightOpDTLambdaz,IndexList[Zz],Zw]);
+	BarVariationalLeftOpTLambdaPi=ReplaceDummies@(BarPartialLeftOpTLambdaPi-ManualCovariantDerivative[-Zz,PartialLeftOpDTLambdaPiz,IndexList[Zz],Zw]);
+	BarVariationalRightOpTLambdaPi=ReplaceDummies@(BarPartialRightOpTLambdaPi-ManualCovariantDerivative[-Zz,PartialRightOpDTLambdaPiz,IndexList[Zz],Zw]);
+
 	(*------------------------------------------------------------------------*)
 	(*  Composing covariant coefficients of covariant differential operators  *)
 	(*------------------------------------------------------------------------*)
@@ -199,31 +254,43 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	PrintVariable2=PrintVariable2~Append~PrintTemporary[" ** PoissonBracket: Finding kernel coefficients..."];
 
 	D0Term=BarPartialLeftOpB BarVariationalRightOpBPi+
-	2BarPartialLeftOpA BarVariationalRightOpAPi-
+	2BarPartialLeftOpTLambda BarVariationalRightOpTLambdaPi+
+	2BarPartialLeftOpTLambda BarVariationalRightOpTLambdaPi-
 	BarPartialLeftOpBPi BarVariationalRightOpB-
-	2BarPartialLeftOpAPi BarVariationalRightOpA+
+	2BarPartialLeftOpAPi BarVariationalRightOpA-
+	2BarPartialLeftOpTLambdaPi BarVariationalRightOpTLambda+
 	ReplaceIndex[Evaluate[PartialLeftOpDBz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpBPi,IndexList[-Zr],Zu]+
-	2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpAPi,IndexList[-Zs],Zu]-
+	2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpAPi,IndexList[-Zs],Zu]+
+	2ReplaceIndex[Evaluate[PartialLeftOpDTLambdaz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpTLambdaPi,IndexList[],Zu]-
 	ReplaceIndex[Evaluate[PartialLeftOpDBPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpB,IndexList[Zr],Zu]-
-	2ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpA,IndexList[Zs],Zu];
+	2ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpA,IndexList[Zs],Zu]-
+	2ReplaceIndex[Evaluate[PartialLeftOpDTLambdaPiz],Zz->Zt] ManualCovariantDerivative[-Zt,BarVariationalRightOpTLambda,IndexList[],Zu];
 
 	D1Term=(-PartialLeftOpDBPiz BarVariationalRightOpB-
-	2PartialLeftOpDAPiz BarVariationalRightOpA+
+	2PartialLeftOpDAPiz BarVariationalRightOpA-
+	2PartialLeftOpDTLambdaPiz BarVariationalRightOpTLambda+
 	PartialLeftOpDBz BarVariationalRightOpBPi+
 	2PartialLeftOpDAz BarVariationalRightOpAPi+
+	2PartialLeftOpDTLambdaz BarVariationalRightOpTLambdaPi+
 	BarPartialLeftOpBPi PartialRightOpDBz+
-	2BarPartialLeftOpAPi PartialRightOpDAz-
+	2BarPartialLeftOpAPi PartialRightOpDAz+
+	2BarPartialLeftOpTLambdaPi PartialRightOpDTLambdaz-
 	BarPartialLeftOpB PartialRightOpDBPiz-
-	2BarPartialLeftOpA PartialRightOpDAPiz+
+	2BarPartialLeftOpA PartialRightOpDAPiz-
+	2BarPartialLeftOpTLambda PartialRightOpDTLambdaPiz+
 	ReplaceIndex[Evaluate[PartialLeftOpDBPiz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDBz,IndexList[Zz,Zr],Zu]+
-	2ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDAz,IndexList[Zz,Zs],Zu]-
+	2ReplaceIndex[Evaluate[PartialLeftOpDAPiz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDAz,IndexList[Zz,Zs],Zu]+
+	2ReplaceIndex[Evaluate[PartialLeftOpDTLambdaPiz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDTLambdaz,IndexList[Zz],Zu]-
 	ReplaceIndex[Evaluate[PartialLeftOpDBz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDBPiz,IndexList[Zz,-Zr],Zu]-
-	2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDAPiz,IndexList[Zz,-Zs],Zu]);
+	2ReplaceIndex[Evaluate[PartialLeftOpDAz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDAPiz,IndexList[Zz,-Zs],Zu]-
+	2ReplaceIndex[Evaluate[PartialLeftOpDTLambdaz],Zz->Zw] ManualCovariantDerivative[-Zw,PartialRightOpDTLambdaPiz,IndexList[Zz],Zu]);
 
 	D2Term=PartialLeftOpDBz ReplaceIndex[Evaluate[PartialRightOpDBPiz],Zz->Zw]+
-	2PartialLeftOpDAz ReplaceIndex[Evaluate[PartialRightOpDAPiz],Zz->Zw]-
+	2PartialLeftOpDAz ReplaceIndex[Evaluate[PartialRightOpDAPiz],Zz->Zw]+
+	2PartialLeftOpDTLambdaz ReplaceIndex[Evaluate[PartialRightOpDTLambdaPiz],Zz->Zw]-
 	PartialLeftOpDBPiz ReplaceIndex[Evaluate[PartialRightOpDBz],Zz->Zw]-
-	2PartialLeftOpDAPiz ReplaceIndex[Evaluate[PartialRightOpDAz],Zz->Zw];
+	2PartialLeftOpDAPiz ReplaceIndex[Evaluate[PartialRightOpDAz],Zz->Zw]-
+	2PartialLeftOpDTLambdaPiz ReplaceIndex[Evaluate[PartialRightOpDTLambdaz],Zz->Zw];
 
 	Expr={D0Term,D1Term,D2Term};
 	Expr=Expr/.InertDerRev;

@@ -66,6 +66,9 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+			AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 			If[AlpPerpPerpTheory[[ii]]==0,
 				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->0"]]];,
 				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
@@ -75,21 +78,33 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
-					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];,
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 				];,
 				If[AlpPerpPerpTheory[[ii]]==0,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
-					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];,
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[ASectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[ASectorNames[[ii]]]<>"->1"]]];
 				];
 			];
 		];
@@ -106,6 +121,9 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					If[BetPerpPerpTheory[[ii]]==0,
 						AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]];,
 						AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
@@ -113,6 +131,9 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					If[BetPerpPerpTheory[[ii]]==0,
 						AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]];,
 						AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
@@ -121,6 +142,9 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+				AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 				If[BetPerpPerpTheory[[ii]]==0,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]];,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
@@ -131,21 +155,33 @@ ComputeShellFreedoms[TheoryName_?StringQ]:=Module[{
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
-					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];,
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 				];,
 				If[BetPerpPerpTheory[[ii]]==0,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
-					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];,
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];,
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellOrig"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPara"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerp"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
 					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSing"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellParaLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellPerpLamb"<>ToString[BSectorNames[[ii]]]<>"->0"]]];
+					AppendTo[$ToShellFreedomsValue,Evaluate[ToExpression["xAct`HiGGS`Private`ShellSingLamb"<>ToString[BSectorNames[[ii]]]<>"->1"]]];
 				];
 			];
 		];

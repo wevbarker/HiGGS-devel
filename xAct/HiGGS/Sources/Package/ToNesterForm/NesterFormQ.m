@@ -34,6 +34,18 @@ NesterFormQ[Expr_]:=Catch@Module[{TensorList,FinalBool},
 			xAct`HiGGS`ChiParaB1m,xAct`HiGGS`ChiParaB2p,xAct`HiGGS`ChiParaB2m,
 			xAct`HiGGS`ChiParaA0p,xAct`HiGGS`ChiParaA0m,xAct`HiGGS`ChiParaA1p,
 			xAct`HiGGS`ChiParaA1m,xAct`HiGGS`ChiParaA2p,xAct`HiGGS`ChiParaA2m,
+			xAct`HiGGS`VarPhiSingB0p,xAct`HiGGS`VarPhiSingB0m,xAct`HiGGS`VarPhiSingB1p,
+			xAct`HiGGS`VarPhiSingB1m,xAct`HiGGS`VarPhiSingB2p,xAct`HiGGS`VarPhiSingB2m,
+			xAct`HiGGS`VarPhiSingA0p,xAct`HiGGS`VarPhiSingA0m,xAct`HiGGS`VarPhiSingA1p,
+			xAct`HiGGS`VarPhiSingA1m,xAct`HiGGS`VarPhiSingA2p,xAct`HiGGS`VarPhiSingA2m,
+			xAct`HiGGS`VarPhiPerpB0p,xAct`HiGGS`VarPhiPerpB0m,xAct`HiGGS`VarPhiPerpB1p,
+			xAct`HiGGS`VarPhiPerpB1m,xAct`HiGGS`VarPhiPerpB2p,xAct`HiGGS`VarPhiPerpB2m,
+			xAct`HiGGS`VarPhiPerpA0p,xAct`HiGGS`VarPhiPerpA0m,xAct`HiGGS`VarPhiPerpA1p,
+			xAct`HiGGS`VarPhiPerpA1m,xAct`HiGGS`VarPhiPerpA2p,xAct`HiGGS`VarPhiPerpA2m,
+			xAct`HiGGS`VarPhiParaB0p,xAct`HiGGS`VarPhiParaB0m,xAct`HiGGS`VarPhiParaB1p,
+			xAct`HiGGS`VarPhiParaB1m,xAct`HiGGS`VarPhiParaB2p,xAct`HiGGS`VarPhiParaB2m,
+			xAct`HiGGS`VarPhiParaA0p,xAct`HiGGS`VarPhiParaA0m,xAct`HiGGS`VarPhiParaA1p,
+			xAct`HiGGS`VarPhiParaA1m,xAct`HiGGS`VarPhiParaA2p,xAct`HiGGS`VarPhiParaA2m,
 			xAct`HiGGS`CD,xAct`HiGGS`GaugeCovD,xAct`HiGGS`LorentzGaugeCovD
 		})	
 		)~Check~(False));

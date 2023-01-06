@@ -2,45 +2,25 @@
 (*  DefTheory  *)
 (*=============*)
 
-TheoryQ[x_]:=Module[{Bool},
-	Bool=ListQ[x];
-	If[Bool,
-	Bool=Flatten@{{xAct`HiGGS`Alp0},xAct`HiGGS`Alp,xAct`HiGGS`Bet,xAct`HiGGS`cAlp,xAct`HiGGS`cBet}~SubsetQ~Flatten@(Variables/@Flatten@((List@@(#))&/@x));
-];
-Bool];
+BuildPackage@"DefTheory/ComputeShellFreedoms.m";
+BuildPackage@"DefTheory/DefFieldStrengthShell.m";
+BuildPackage@"DefTheory/DefMomentaShell.m";
+BuildPackage@"DefTheory/DefO3MomentaShell.m";
+BuildPackage@"DefTheory/ImposeTheory.m";
+BuildPackage@"DefTheory/DefIfConstraintToTheoryNesterForm.m";
+BuildPackage@"DefTheory/DefSuperHamiltonian.m";
+BuildPackage@"DefTheory/DefLinearSuperMomentum.m";
+BuildPackage@"DefTheory/DefAngularSuperMomentum.m";
+BuildPackage@"DefTheory/DefIfConstraints.m";
+BuildPackage@"DefTheory/DefNesterFormShell.m";
+
+BuildPackage@"DefTheory/TheoryQ.m";
+BuildPackage@"DefTheory/UndefTheory.m";
+BuildPackage@"DefTheory/UpdateTheoryAssociation.m";
 
 DefTheory::nottheory="Argument `1` is not a linear system in Alp0,...,Alp6, Bet1,...,Bet3, cAlp1,...,cAlp6 and cBet1,...,cBet3, e.g. {Alp0+Alp1==0,...}.";
 DefTheory::nottheoryname="Argument `1` is not a string from which a symbol can be defined to store the theory association.";
 DefTheory::nobin="The binary at `1` cannot be found; quitting.";
-
-
-UndefTheory[TheoryName_?StringQ]:=Clear@TheoryName;
-
-Options@UpdateTheoryAssociation={Advertise->False,ExportTheory->False};
-
-UpdateTheoryAssociation[Name_?StringQ,AssocKey_,Val_,OptionsPattern[]]:=Module[{TheoryAssociation,PrintVariable},
-
-	PrintVariable=PrintTemporary["** DefTheory: Defining association key ",ToString@AssocKey," for the theory association ",Name];
-
-	If[!(AssociationQ@Evaluate@Symbol@Name),(Evaluate@Symbol@Name)=<||>];
-	TheoryAssociation=Evaluate@Symbol@Name;
-	Clear@Name;
-	TheoryAssociation@AssocKey=Val;
-	(Evaluate@Symbol@Name)=TheoryAssociation;
-	NotebookDelete@PrintVariable;
-
-	Quiet@Catch@DistributeDefinitions@Symbol@Name;
-
-	If[OptionValue@Advertise,
-		Print["** DefTheory: Defining association key ",ToString@AssocKey," for the theory association ",Name];
-	];
-
-	If[OptionValue@ExportTheory,
-		Print[" ** DefTheory: Exporting the binary at "<>Name<>".thr.mx"];
-		DumpSave[FileNameJoin@{$WorkingDirectory,Name<>".thr.mx"},{Name}];
-	];
-
-];
 
 Options[DefTheory]={
 	ExportTheory->False,
