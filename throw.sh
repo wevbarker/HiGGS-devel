@@ -6,7 +6,7 @@
 
 
 if [ "$1" = "--newton" ]; then
-	rsync -avh --force ./ newton:~/HiGGS-devel/ --delete
+	rsync -avh -e 'ssh -A -J appcs' --force --exclude '.git' ./ newton:~/HiGGS-devel/ --delete
 elif [ "$1" = "--green" ]; then
 	rsync -avh --force ./ green:~/Documents/HiGGS-devel/ --delete
 elif [ "$1" = "--red" ]; then

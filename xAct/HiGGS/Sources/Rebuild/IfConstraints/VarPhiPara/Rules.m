@@ -2,17 +2,17 @@
 (*  Rules  *)
 (*=========*)
 
-VarPhiParaB0mDefinition=PT0m[e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate;
-VarPhiParaB1pDefinition=PT1p[-n,-m,e,f]PTPerp[-e,-f,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate;
-VarPhiParaB1mDefinition=PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate;
-VarPhiParaB2mDefinition=PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate;
+VarPhiParaB0mDefinition=PT0m[e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate//ActivateGeneralO3Projections;
+VarPhiParaB1pDefinition=PT1p[-n,-m,e,f]PTPerp[-e,-f,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate//ActivateGeneralO3Projections;
+VarPhiParaB1mDefinition=PT1m[-n,e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate//ActivateGeneralO3Projections;
+VarPhiParaB2mDefinition=PT2m[-n,-m,-o,e,f,g]PTPara[-e,-f,-g,a,b,c]BVarPhiPara[-a,-b,-c]/.BVarPhiParaActivate/.PO3TActivate/.PADMTActivate//ActivateGeneralO3Projections;
 
-VarPhiParaA0pDefinition=PR0p[e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
-VarPhiParaA0mDefinition=PR0m[e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
-VarPhiParaA1pDefinition=PR1p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
-VarPhiParaA1mDefinition=PR1m[-n,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
-VarPhiParaA2pDefinition=PR2p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
-VarPhiParaA2mDefinition=PR2m[-n,-m,-o,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate;
+VarPhiParaA0pDefinition=PR0p[e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
+VarPhiParaA0mDefinition=PR0m[e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
+VarPhiParaA1pDefinition=PR1p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
+VarPhiParaA1mDefinition=PR1m[-n,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
+VarPhiParaA2pDefinition=PR2p[-n,-m,e,f,g,h]PRPara[-e,-f,-g,-h,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
+VarPhiParaA2mDefinition=PR2m[-n,-m,-o,e,f,g]PRPerp[-e,-f,-g,a,b,c,d]AVarPhiPara[-a,-b,-c,-d]/.AVarPhiParaActivate/.PO3RActivate/.PADMRActivate//ActivateGeneralO3Projections;
 
 VarPhiParaB0mActivate=MakeRule[{VarPhiParaB0m[],Scalar[Evaluate[VarPhiParaB0mDefinition]]},MetricOn->All,ContractMetrics->True];
 VarPhiParaB1pActivate=MakeRule[{VarPhiParaB1p[-n,-m],Evaluate[VarPhiParaB1pDefinition]},MetricOn->All,ContractMetrics->True];
