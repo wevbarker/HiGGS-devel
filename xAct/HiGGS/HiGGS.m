@@ -231,7 +231,7 @@ ContextList={
 (*--------------------------------------------------------------------------------------------------------------*)
 
 Begin["xAct`HiGGS`"];
-	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->True];
+	xAct`HiGGS`Private`BuildHiGGS[xAct`HiGGS`Private`Recompile->False];
 End[];
  
 End[];

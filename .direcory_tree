@@ -20,6 +20,7 @@ xAct
     │       │   └── VarPhiPerp
     │       │       └── Rules.mx
     │       ├── NesterFormIfConstraints.mx
+    │       ├── NesterFormIfConstraintsVarPhi.mx
     │       ├── NonCanonicalPhi.mx
     │       ├── O13Projections.mx
     │       ├── PiPToPiPO3.mx
@@ -163,8 +164,10 @@ xAct
             │       ├── LambdaPiPerpSO3.m
             │       ├── LambdaPiSO13.m
             │       ├── LambdaPiSO3Inverse.m
-            │       └── LambdaPiSO3.m
+            │       ├── LambdaPiSO3.m
+            │       └── LambdaPiToShell.m
             ├── IfConstraints
+            │   ├── ActivateGeneralO3Projections.m
             │   ├── VarPhiPara
             │   │   ├── Activation.m
             │   │   ├── Definitions.m
@@ -187,4 +190,4 @@ xAct
             ├── TransferCouplingsPerpPara.m
             └── TransferCouplingsPerpPerp.m
 
-26 directories, 161 files
+26 directories, 164 files

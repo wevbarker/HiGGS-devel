@@ -5,12 +5,12 @@
 DefTensor[BVarPhiPara[-a,-b,-c],M4,Antisymmetric[{-b,-c}]];
 
 BVarPhiParaDefinition=(
-	-B[-l,-u]G3[u,-v]H[g,v]B[-k,-o]G3[o,-z]H[h,z](
+	-PPara[-l,g]PPara[-k,h](
 		cBet1 PT1[-i,-g,-h,a,c,d]
 		+cBet2 PT2[-i,-g,-h,a,c,d]
 		+cBet3 PT3[-i,-g,-h,a,c,d]
 	)PPara[-c,m]PPara[-d,n]TLambdaPi[-a,-m,-n]
-	-B[-l,-u]G3[u,-v]H[g,v]B[-k,-o]G3[o,-z]H[h,z](
+	-PPara[-l,g]PPara[-k,h](
 		cBet1 PT1[-i,-g,-h,a,c,d]
 		+cBet2 PT2[-i,-g,-h,a,c,d]
 		+cBet3 PT3[-i,-g,-h,a,c,d]
@@ -25,7 +25,7 @@ BVarPhiParaActivate=MakeRule[{BVarPhiPara[-i,-l,-k],Evaluate[BVarPhiParaDefiniti
 DefTensor[AVarPhiPara[-a,-b,-c,-d],M4,{Antisymmetric[{-a,-b}],Antisymmetric[{-c,-d}]}];
 
 AVarPhiParaDefinition=(
-	-2B[-l,-u]G3[u,-v]H[g,v]B[-k,-o]G3[o,-z]H[h,z](
+	-2PPara[-l,g]PPara[-k,h](
 		cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]
 		+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]
 		+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]
@@ -33,7 +33,7 @@ AVarPhiParaDefinition=(
 		+cAlp5 PR5[-i,-j,-g,-h,a,b,c,d]
 		+cAlp6 PR6[-i,-j,-g,-h,a,b,c,d]
 	)PPara[-c,m]PPara[-d,n]RLambdaPi[-a,-b,-m,-n]
-	-2B[-l,-u]G3[u,-v]H[g,v]B[-k,-o]G3[o,-z]H[h,z](
+	-2PPara[-l,g]PPara[-k,h](
 		cAlp1 PR1[-i,-j,-g,-h,a,b,c,d]
 		+cAlp2 PR2[-i,-j,-g,-h,a,b,c,d]
 		+cAlp3 PR3[-i,-j,-g,-h,a,b,c,d]

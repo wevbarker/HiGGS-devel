@@ -916,10 +916,7 @@ APiPToAPi=MakeRule[{APiP[-i,-j,l],APi[-i,-j,k]G3[-k,a]B[l,-a]},MetricOn->All,Con
 BPiPToBPi=MakeRule[{BPiP[-i,l],BPi[-i,k]G3[-k,a]B[l,-a]},MetricOn->All,ContractMetrics->True];
 PiPToPi=Join[APiPToAPi,BPiPToBPi];
 
-ActivateGeneralO3Projections[expr_]:=Module[{exp,kern},exp=Evaluate[expr];exp=exp//ToCanonical;exp=exp/.PActivate;exp=exp//ToCanonical;exp=exp/.PADMActivate;exp=exp//ToCanonical;exp=exp/.PADMPiActivate;exp=exp//ToCanonical;exp=exp/.PO3PiActivate;exp=exp//ToCanonical;exp=exp/.HG3BExpandLazy;exp=exp//ContractMetric;exp=exp//ToCanonical;
-exp=exp//CollectTensors;exp];
-xAct`HiGGS`Private`ClearBuild[];
-
+xAct`HiGGS`Private`BuildRebuild@"IfConstraints/ActivateGeneralO3Projections.m";
 
 (* ::Input::Initialization:: *)
 PBTSymb="\[InvisiblePrefixScriptBase]\!\(\*SubscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[ScriptB]\)]\)";
@@ -1988,17 +1985,7 @@ RPerpParaPerpActivate=Join[RPerpParaActivate,RPerpPerpActivate];
 RPerpDefinition= RPerpPara[-a,-b,-c]+2Antisymmetrize[V[-a]RPerpPerp[-b,-c],{-a,-b}]/.RPerpParaPerpActivate/.PO3RActivate/.PADMActivate//ToCanonical;
 
 TPerpDefinition=TPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-(*
-TPerpDefinition=TPerpDefinition/.TPerpO3Activate//NoScalar//ToNewCanonical;
-xAct`HiGGS`Private`HiGGSPrint[TPerpDefinition];
-*)
 RPerpDefinition=RPerpDefinition//CollectTensors//ScreenDollarIndices//CollectTensors;
-(*
-RPerpDefinition=RPerpDefinition/.RPerpO3Activate//NoScalar;
-RPerpDefinition=RPerpDefinition//ToNewCanonical;
-RPerpDefinition=RPerpDefinition//ToCanonical;
-xAct`HiGGS`Private`HiGGSPrint[RPerpDefinition];
-*)
 
 TPerpActivate=MakeRule[{TPerp[-a,-b],Evaluate[TPerpDefinition]},MetricOn->All,ContractMetrics->True];
 RPerpActivate=MakeRule[{RPerp[-a,-b,-c],Evaluate[RPerpDefinition]},MetricOn->All,ContractMetrics->True];
@@ -2007,6 +1994,8 @@ xAct`HiGGS`Private`ClearBuild[];
 
 xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/Lambda/LambdaSO3Inverse.m";
 xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiSO3Inverse.m";
+
+xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiToShell.m";
 
 xAct`HiGGS`Private`IfBuild["PiPToPiPO3"];
 OpenLastCache[];

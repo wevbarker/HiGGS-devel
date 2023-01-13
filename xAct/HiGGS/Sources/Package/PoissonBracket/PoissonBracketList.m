@@ -254,7 +254,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	PrintVariable2=PrintVariable2~Append~PrintTemporary[" ** PoissonBracket: Finding kernel coefficients..."];
 
 	D0Term=BarPartialLeftOpB BarVariationalRightOpBPi+
-	2BarPartialLeftOpTLambda BarVariationalRightOpTLambdaPi+
+	2BarPartialLeftOpA BarVariationalRightOpAPi+
 	2BarPartialLeftOpTLambda BarVariationalRightOpTLambdaPi-
 	BarPartialLeftOpBPi BarVariationalRightOpB-
 	2BarPartialLeftOpAPi BarVariationalRightOpA-

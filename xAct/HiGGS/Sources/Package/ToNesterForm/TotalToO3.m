@@ -3,18 +3,18 @@
 (*=============*)
 
 Options[TotalToO3]={ToShell->False};
-TotalToO3[x_,OptionsPattern[]]:=Module[{
-	Expr,
+TotalToO3[InputExpr_,OptionsPattern[]]:=Module[{
+	Expr=InputExpr,
 	PrintVariable,
 	Theory},
 
 	If[StringQ@OptionValue@ToShell,Theory=Evaluate@Symbol@OptionValue@ToShell];
 
-	PrintVariable=PrintTemporary[" ** TotalToO3 with ToShell ",OptionValue[ToShell],"..."];
-	Expr=x;
+	PrintVariable=PrintTemporary[" ** TotalToO3..."];
+	If[StringQ@OptionValue@ToShell,Expr=Expr/.xAct`HiGGS`Private`LambdaPiToShell];
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiP;
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiPHard;
-	Expr=Expr//NoScalar/.xAct`HiGGS`PiToPiP;
+	Expr//=NoScalar;
 	Expr=Expr/.xAct`HiGGS`PiToPiP;
 	Expr=Expr/.xAct`HiGGS`PiToPiPHard;
 	Expr//=ToNewCanonical;
