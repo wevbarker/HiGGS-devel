@@ -148,6 +148,7 @@ dSpin1p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(1\), \(+\)]]\)";
 dSpin1m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(1\), \(-\)]]\)";
 dSpin2p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(2\), \(+\)]]\)";
 dSpin2m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(2\), \(-\)]]\)";
+dSOX="\!\(\*UnderscriptBox[\(.\), \(.\)]\)";
 dSO0="\!\(\*UnderscriptBox[\(.\), \(0\)]\)";
 dSO1="\!\(\*UnderscriptBox[\(.\), \(1\)]\)";
 dSO2="\!\(\*UnderscriptBox[\(.\), \(2\)]\)";

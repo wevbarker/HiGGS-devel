@@ -178,6 +178,7 @@ xAct
             │       └── Rules.m
             ├── Induced.m
             ├── InternalIndices.m
+            ├── KarananasCouplings.m
             ├── NesterFormIfConstraints.m
             ├── NesterFormIfConstraintsVarPhi.m
             ├── NonCanonicalPhi.m
@@ -189,5 +190,3 @@ xAct
             ├── Smearing.m
             ├── TransferCouplingsPerpPara.m
             └── TransferCouplingsPerpPerp.m
-
-26 directories, 164 files
