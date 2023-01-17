@@ -10,7 +10,7 @@ TotalToO3[InputExpr_,OptionsPattern[]]:=Module[{
 
 	If[StringQ@OptionValue@ToShell,Theory=Evaluate@Symbol@OptionValue@ToShell];
 
-	PrintVariable=PrintTemporary[" ** TotalToO3..."];
+	PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`TotalToO3..."];
 	If[StringQ@OptionValue@ToShell,Expr=Expr/.xAct`HiGGS`Private`LambdaPiToShell];
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiP;
 	Expr=Expr/.xAct`HiGGS`CDPiToCDPiPHard;

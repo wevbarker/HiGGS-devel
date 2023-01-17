@@ -10,8 +10,13 @@ Dummies2={Dummies1[[1]]}~Join~Table[Superscript[\[ScriptY],i],{i,1,3}];
 
 (*the smearing functions, and their gauge-covariant (with greek index) derivatives*)
 
-SmearingLeftSymb="\!\(\*SubscriptBox[\(\[ScriptCapitalS]\), \((1)\)]\)";
-SmearingRightSymb="\!\(\*SubscriptBox[\(\[ScriptCapitalS]\), \((2)\)]\)";
+SmearingLeftSymb="\[ScriptCapitalS]";
+SmearingRightSymb="\[ScriptCapitalS]";
 
-DefTensor[SmearingLeft[AnyIndices@TangentM4],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild@SmearingLeftSymb];
-DefTensor[SmearingRight[AnyIndices@TangentM4],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild@SmearingRightSymb];
+DefTensor[SmearingLeft[AnyIndices@TangentM4],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[SmearingLeftSymb,xAct`HiGGS`Private`SmearingLeftIndex,"Smearing"->True]];
+DefTensor[SmearingRight[AnyIndices@TangentM4],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[SmearingRightSymb,xAct`HiGGS`Private`SmearingRightIndex,"Smearing"->True]];
+
+(*make sure that the internal covariant derivative cannot act on the smearing functions*)
+
+xAct`HiGGS`Private`LeibnizListCovD[Index_][SmearingLeft[Indices__]]^=0;
+xAct`HiGGS`Private`LeibnizListCovD[Index_][SmearingRight[Indices__]]^=0;

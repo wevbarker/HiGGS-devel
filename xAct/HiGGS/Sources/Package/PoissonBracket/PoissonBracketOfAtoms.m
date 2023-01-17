@@ -1,15 +1,15 @@
-(*======================*)
-(*  PoissonBracketList  *)
-(*======================*)
+(*=========================*)
+(*  PoissonBracketOfAtoms  *)
+(*=========================*)
 
-Options[PoissonBracketNewList]={
+Options[PoissonBracketOfAtoms]={
 	ToShell->False,
 	GToFoliGOption->True,
 	PreTruncate->False,
 	NesterForm->True,
 	Parallel->False};
 
-PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
+PoissonBracketOfAtoms[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	Expr,
 	LeftOp,
 	RightOp,
@@ -96,28 +96,20 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	D0Term,
 	D1Term,
 	D2Term,
-	PrintVariable,
-	PrintVariable2,
-	PrintVariable3},
+	PrintVariable},
+
+	PrintVariable=PrintTemporary@" ** xAct`HiGGS`Private`PoissonBracketOfAtoms...";
 
 	(*----------------------------------*)
 	(*  Initial processing of operands  *)
 	(*----------------------------------*)
 
-	PrintVariable={};
-	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracketNewList..."];
-	
 	LeftOp=ToBasicForm[LeftOperand,Hard->True];
 	LeftOp//=NoScalar;
 	If[OptionValue[PreTruncate],LeftOp=LeftOp//ToNewCanonical];
 	RightOp=ToBasicForm[RightOperand,Hard->True];
 	RightOp//=NoScalar;
 	If[OptionValue[PreTruncate],RightOp=RightOp//ToNewCanonical];
-
-	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracket: BasicForm of left operand is:"];
-	PrintVariable=PrintVariable~Append~PrintTemporary[LeftOp];
-	PrintVariable=PrintVariable~Append~PrintTemporary[" ** PoissonBracket: BasicForm of right operand is:"];
-	PrintVariable=PrintVariable~Append~PrintTemporary[RightOp];
 
 	LeftOpDummy=ReplaceDummies[LeftOp];
 	RightOpDummy=ReplaceDummies[RightOp];
@@ -216,9 +208,6 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	(*  Composing barred derivatives  *)
 	(*--------------------------------*)
 
-	PrintVariable2={};
-	PrintVariable2=PrintVariable2~Append~PrintTemporary[" ** PoissonBracket: Finding barred derivatives..."];
-
 	BarPartialLeftOpB=ReplaceDummies@(PartialLeftOpB-ReplaceIndex[Evaluate[PartialLeftOpDBz],-Zq->-Zw] xAct`HiGGS`A[Zw,-Zq,-Zz]);
 	BarPartialRightOpB=ReplaceDummies@(PartialRightOpB-ReplaceIndex[Evaluate[PartialRightOpDBz],-Zq->-Zw] xAct`HiGGS`A[Zw,-Zq,-Zz]);
 	BarPartialLeftOpA=ReplaceDummies@(PartialLeftOpA-ReplaceIndex[Evaluate[PartialLeftOpDAz],-Zq->-Zw] xAct`HiGGS`A[Zw,-Zq,-Zz]-ReplaceIndex[Evaluate[PartialLeftOpDAz],-Zr->-Zw] xAct`HiGGS`A[Zw,-Zr,-Zz]);
@@ -250,8 +239,6 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	(*------------------------------------------------------------------------*)
 	(*  Composing covariant coefficients of covariant differential operators  *)
 	(*------------------------------------------------------------------------*)
-
-	PrintVariable2=PrintVariable2~Append~PrintTemporary[" ** PoissonBracket: Finding kernel coefficients..."];
 
 	D0Term=BarPartialLeftOpB BarVariationalRightOpBPi+
 	2BarPartialLeftOpA BarVariationalRightOpAPi+
@@ -297,9 +284,7 @@ PoissonBracketNewList[LeftOperand_,RightOperand_,OptionsPattern[]]:=Module[{
 	Expr=Expr/.Derivative3;
 	Expr=Expr/.GaugeField3;
 
-	NotebookDelete[PrintVariable2];
-
 	Expr=ToNesterForm[#,ToShell->OptionValue@ToShell,GToFoliGOption->OptionValue@GToFoliGOption]&/@Expr;
 
-	NotebookDelete[PrintVariable];
+	NotebookDelete@PrintVariable;
 Expr];

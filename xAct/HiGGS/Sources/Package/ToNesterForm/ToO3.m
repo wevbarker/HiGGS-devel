@@ -10,7 +10,7 @@ ToO3[InputExpr_,OptionsPattern[]]:=Module[{
 
 	If[StringQ@OptionValue@ToShell,Theory=Evaluate@Symbol@OptionValue@ToShell];
 	
-	PrintVariable=PrintTemporary[" ** ToO3..."];
+	PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`ToO3..."];
 	Expr=Expr//NoScalar/.xAct`HiGGS`PiToPiP;
 	Expr=Expr/.xAct`HiGGS`PiToPiP;
 	Expr=Expr//ToNewCanonical;

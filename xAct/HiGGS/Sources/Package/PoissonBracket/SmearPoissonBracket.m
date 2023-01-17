@@ -8,6 +8,7 @@
 
 Options[SmearPoissonBracket]={ToShell->False};
 SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,RightSmearing_,OptionsPattern[]]:=Catch@Module[{
+	PrintVariable,
 	LeftFreeIndices,
 	RightFreeIndices,
 	SmearedUnevaluatedBracket,
@@ -17,12 +18,14 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 	SmearedEvaluatedBracketTerm3,
 	SmearedEvaluatedBracketTotal},
 
+	PrintVariable=PrintTemporary@" ** xAct`HiGGS`Private`SmearPoissonBracket...";
+
 		LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[1]]));
 		RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@UnevaluatedBracket[[2]]));
 
 		SmearedUnevaluatedBracket={
-		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
-		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
+		Integrate@@({((UnevaluatedBracket[[1]])~Dot~(LeftSmearing~Style~(Background->RGBColor[0.95,0.95,0.95])))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((UnevaluatedBracket[[2]])~Dot~(RightSmearing~Style~(Background->RGBColor[0.95,0.95,0.95])))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 	
 		If[PossibleZeroQ@EvaluatedBracket[[1]],
 		SmearedEvaluatedBracketTerm1=0,
@@ -62,5 +65,6 @@ SmearPoissonBracket[UnevaluatedBracket_List,EvaluatedBracket_List,LeftSmearing_,
 			HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~SmearedEvaluatedBracket);,
 			HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~SmearedEvaluatedBracket);
 		];
+		NotebookDelete@PrintVariable;
 
 SmearedEvaluatedBracket];

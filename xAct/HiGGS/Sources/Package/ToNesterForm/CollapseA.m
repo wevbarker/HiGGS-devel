@@ -2,9 +2,8 @@
 (*  CollapseA  *)
 (*=============*)
 
-CollapseA[x_]:=Module[{Expr,PrintVariable},
-	PrintVariable=PrintTemporary[" ** CollapseA..."];
-	Expr=x;
+CollapseA[InputExpr_]:=Module[{Expr=InputExpr,PrintVariable},
+	PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`CollapseA..."];
 	Expr=Expr/.xAct`HiGGS`CDAToCDAInert;
 	Expr=Expr/.xAct`HiGGS`AExpand;
 	Expr=Expr/.xAct`HiGGS`G3HExpand;

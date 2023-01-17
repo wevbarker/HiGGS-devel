@@ -37,12 +37,24 @@ xAct`HiGGS`Private`GaugeCovDToLorentzGaugeCovDRule=Quiet@MakeRule[{G3[-b,a]Gauge
 
 xAct`HiGGS`Private`LorentzGaugeCovDToGaugeCovDRule=Quiet@MakeRule[{LorentzGaugeCovD[-c]@AnyTensor_?xAct`HiGGS`Private`NotGaugeFieldQ,H[-c,b]G3[-b,a]GaugeCovD[-a]@AnyTensor},MetricOn->All,ContractMetrics->True];
 
-(*======================================================================================================*)
-(*  Barred Roman index i, j, k, l 0,1,2,3, assumed to be based on Greek index alpha, beta, gamma 1,2,3  *)
-(*======================================================================================================*)
+(*=========================================*)
+(*  Barred Roman index i, j, k, l 0,1,2,3  *)
+(*=========================================*)
+
+(*===============================================================*)
+(*  Assumed to be based on Greek index alpha, beta, gamma 1,2,3  *)
+(*===============================================================*)
 
 xAct`HiGGS`Private`ParaLorentzGaugeCovDSymb=xAct`HiGGS`Private`SO3~StringJoin~"\!\(\*SuperscriptBox[\[ScriptCapitalD], \(\(\[DoubleVerticalBar]\)\)]\)";
 Catch@DefCovD[ParaLorentzGaugeCovD[-a],{"~",xAct`HiGGS`Private`ParaLorentzGaugeCovDSymb},FromMetric->G];
+
+(*====================================================*)
+(*  fake derivative, for internal use in LeibnizList  *)
+(*====================================================*)
+
+Begin["xAct`HiGGS`Private`"];
+Catch@DefCovD[LeibnizListCovD[-a],{"*","LeibnizListCovD"},FromMetric->G];
+End[];
 
 (* laws for transforming between holonomic and anholonomic gauge covariant derivatives *)
 

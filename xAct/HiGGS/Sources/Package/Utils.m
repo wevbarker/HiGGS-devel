@@ -124,6 +124,7 @@ $Coupling=RGBColor[1,0,0];
 Colour[x_String,ColorKey_]:=ColorString[x,ColorKey];
 (*a more systematic way to format tensors*)
 $TensorColour=RGBColor[0,0,0];
+$SmearingColour=Gray;
 $IrrepColour=RGBColor[0,0,1];
 Spin0p="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(0\), \(+\)]]\)";
 Spin0m="\!\(\*OverscriptBox[\(.\), SuperscriptBox[\(0\), \(-\)]]\)";
@@ -138,6 +139,8 @@ SO3="\!\(\*OverscriptBox[\(.\), \(3\)]\)";
 SO4="\!\(\*OverscriptBox[\(.\), \(4\)]\)";
 SO5="\!\(\*OverscriptBox[\(.\), \(5\)]\)";
 SO6="\!\(\*OverscriptBox[\(.\), \(6\)]\)";
+xAct`HiGGS`Private`SmearingLeftIndex="\!\(\*OverscriptBox[\(.\), \((1)\)]\)";
+xAct`HiGGS`Private`SmearingRightIndex="\!\(\*OverscriptBox[\(.\), \((2)\)]\)";
 GB="\!\(\*OverscriptBox[\(.\), \(GB\)]\)";
 dSpin0p="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(+\)]]\)";
 dSpin0m="\!\(\*UnderscriptBox[\(.\), SuperscriptBox[\(0\), \(-\)]]\)";
@@ -155,20 +158,24 @@ dSO6="\!\(\*UnderscriptBox[\(.\), \(6\)]\)";
 dGB="\!\(\*UnderscriptBox[\(.\), \(GB\)]\)";
 
 (* ::Input::Initialization:: *)
-Options[SymbolBuild]={"Derivative"->0,"Constant"->False};
+Options[SymbolBuild]={"Derivative"->0,"Constant"->False,"Smearing"->False};
 SymbolBuild[TensorSymbol_,IrrepSymbol:_?StringQ :"",OptionsPattern[]]:=Module[{res},
 If[PossibleZeroQ@StringLength@IrrepSymbol,
 res=ColorString[TensorSymbol,$TensorColour];,
+
 If[OptionValue@"Constant",
-res=ColorString[TensorSymbol,$Coupling]~StringJoin~ColorString[IrrepSymbol,$IrrepColour];,
-res=ColorString[IrrepSymbol,$IrrepColour]~StringJoin~ColorString[TensorSymbol,$TensorColour];
+	res=ColorString[TensorSymbol,$Coupling]~StringJoin~ColorString[IrrepSymbol,$IrrepColour];,
+	If[OptionValue@"Smearing",
+		res=ColorString[IrrepSymbol,$SmearingColour]~StringJoin~ColorString[TensorSymbol,$SmearingColour];,
+		res=ColorString[IrrepSymbol,$IrrepColour]~StringJoin~ColorString[TensorSymbol,$TensorColour];
+	];
 ];
 ];
 If[OptionValue@"Derivative"==1,
-res="\[GothicCapitalD]"~StringJoin~res;
+	res="\[GothicCapitalD]"~StringJoin~res;
 ];
 If[OptionValue@"Derivative"==2,
-res="(\[ScriptCapitalD]"~StringJoin~res;
-res=res~StringJoin~"\!\(\*SuperscriptBox[\()\), \(\[DoubleVerticalBar]\)]\)";
+	res="(\[ScriptCapitalD]"~StringJoin~res;
+	res=res~StringJoin~"\!\(\*SuperscriptBox[\()\), \(\[DoubleVerticalBar]\)]\)";
 ];
 res];

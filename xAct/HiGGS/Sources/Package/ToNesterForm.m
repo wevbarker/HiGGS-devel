@@ -6,7 +6,6 @@ BuildPackage@"ToNesterForm/NesterFormQ.m";
 BuildPackage@"ToNesterForm/CautiousNesterFormQ.m";
 BuildPackage@"ToNesterForm/ToO3.m";
 BuildPackage@"ToNesterForm/TotalToO3.m";
-BuildPackage@"ToNesterForm/CDBToDJDV.m";
 BuildPackage@"ToNesterForm/CDBToGaugeCovDJGaugeCovDV.m";
 BuildPackage@"ToNesterForm/CDToLorentzGaugeCovD.m";
 BuildPackage@"ToNesterForm/CollapseA.m";
@@ -17,15 +16,15 @@ Options[ToNesterForm]={
 	Hard->False,
 	GToFoliGOption->True};
 
-ToNesterForm[x_,OptionsPattern[]]:=Module[{
-	Expr,		
+ToNesterForm[InputExpr_,OptionsPattern[]]:=Module[{
+	Expr=InputExpr,		
 	PrintVariable,
 	Theory},
 
 	If[StringQ@OptionValue@ToShell,Theory=Evaluate@Symbol@OptionValue@ToShell];
 	
-	PrintVariable=PrintTemporary[" ** ToNesterForm with Hard ",OptionValue[Hard]," and GToFoliGOption ",OptionValue[GToFoliGOption],"..."];
-	Expr=x;
+	PrintVariable=PrintTemporary@" ** ToNesterForm...";
+
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`PhiActivate//NoScalar);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`ChiParaActivate//NoScalar);
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`ChiPerpActivate//NoScalar);
@@ -48,5 +47,5 @@ ToNesterForm[x_,OptionsPattern[]]:=Module[{
 	(!CautiousNesterFormQ@Expr)~If~(Expr=Expr/.xAct`HiGGS`HExpand;Expr//=ToNewCanonical;Expr//=GaugeCovDToLorentzGaugeCovD);
 	Expr//=ToNewCanonical;
 	(!CautiousNesterFormQ@Expr)~If~(Expr//=LorentzGaugeCovDToParaLorentzGaugeCovD;Expr//=ToNewCanonical;);
-	NotebookDelete[PrintVariable];
+	NotebookDelete@PrintVariable;
 Expr];

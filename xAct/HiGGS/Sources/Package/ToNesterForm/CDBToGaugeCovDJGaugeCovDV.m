@@ -2,9 +2,8 @@
 (*  CDBToGaugeCovDJGaugeCovDV  *)
 (*=============================*)
 
-CDBToGaugeCovDJGaugeCovDV[x_]:=Module[{Expr,PrintVariable},
-	PrintVariable=PrintTemporary[" ** CDBToGaugeCovDJGaugeCovDV..."];
-	Expr=x;
+CDBToGaugeCovDJGaugeCovDV[InputExpr_]:=Module[{Expr=InputExpr,PrintVariable},
+	PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`CDBToGaugeCovDJGaugeCovDV..."];
 	Expr=Expr/.G3HCDBToGaugeCovDJ;
 	Expr//=ToNewCanonical;
 	Expr=Expr/.G3VCDBToG3GaugeCovDV;

@@ -3,12 +3,11 @@
 (*==================*)
 
 BuildPackage@"PoissonBracket/VarAction.m";
-BuildPackage@"PoissonBracket/PoissonBracketList.m";
+BuildPackage@"PoissonBracket/PoissonBracketOfAtoms.m";
 BuildPackage@"PoissonBracket/BracketSimplify.m";
 BuildPackage@"PoissonBracket/ManualCovariantDerivative.m";
 BuildPackage@"PoissonBracket/SmearPoissonBracket.m";
 BuildPackage@"PoissonBracket/SmearedPoissonBracket.m";
-BuildPackage@"PoissonBracket/DQ.m";
 BuildPackage@"PoissonBracket/LeibnizList.m";
 BuildPackage@"PoissonBracket/AllocatedPoissonBracket.m";
 
@@ -28,12 +27,12 @@ PoissonBracket[LeftOperand_,RightOperand_?PossibleZeroQ,OptionsPattern[]]:=0;
 
 PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern[]]:=Catch@Module[{
 	PrintVariable,
+	PrintVariable2,
 	LeftExpansion,
 	LeftList,
 	RightExpansion,
 	RightList,
 	LeibnizArray,
-	DifferentiableTensors,
 	LeftFreeIndices,
 	RightFreeIndices,
 	CanonicalVariables,
@@ -41,26 +40,19 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 	EvaluatedBracket,
 	OptionSmearedPoissonBracket},
 
+	PrintVariable=PrintTemporary@" ** PoissonBracket...";
+
 	LeftFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@LeftOperand));
 	RightFreeIndices=(-#)&/@(FindFreeIndices@(Evaluate@RightOperand));
 
 	SmearedUnevaluatedBracket={
-		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
-		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->Yellow)))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
+		Integrate@@({((LeftOperand)~Dot~((xAct`HiGGS`SmearingLeft@@LeftFreeIndices)~Style~(Background->RGBColor[0.95,0.95,0.95])))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies1,
+		Integrate@@({((RightOperand)~Dot~((xAct`HiGGS`SmearingRight@@RightFreeIndices)~Style~(Background->RGBColor[0.95,0.95,0.95])))@@#}~Join~(#[[2;;4]]))&@xAct`HiGGS`Dummies2};
 	
-	PrintVariable=PrintTemporary[" ** PoissonBracket: organising covariant sub-brackets according to Leibniz rule..."];
-
-	(*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*)
-	(*  list of xTensors which we want to be treated as atomic operands in each Poisson bracket, better to re-evaluate on each call in case new quantities were defined by the user  *)
-	(*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*)
-	DifferentiableTensors=$Tensors~Complement~{
-	xAct`HiGGS`SmearingLeft,
-	xAct`HiGGS`SmearingRight};
-
 	Switch[OptionValue@Method,
 		"NesterFormDecomposition",
-			LeftExpansion=(ReplaceDummiesZ4@((SmearingLeft@@LeftFreeIndices)*LeftOperand))~LeibnizList~DifferentiableTensors;
-			RightExpansion=(ReplaceDummiesZ5@((SmearingRight@@RightFreeIndices)*RightOperand))~LeibnizList~DifferentiableTensors;,
+			LeftExpansion=(ReplaceDummiesZ4@((SmearingLeft@@LeftFreeIndices)*LeftOperand))//LeibnizList;
+			RightExpansion=(ReplaceDummiesZ5@((SmearingRight@@RightFreeIndices)*RightOperand))//LeibnizList;,
 		"BruteForce",
 			LeftExpansion={{ReplaceDummiesZ4@LeftOperand,SmearingLeft@@LeftFreeIndices}};
 			RightExpansion={{ReplaceDummiesZ5@RightOperand,SmearingRight@@RightFreeIndices}};,
@@ -68,9 +60,7 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 			Throw@Message[PoissonBracket::nometh,OptionValue@Method];
 	];
 
-	NotebookDelete@PrintVariable;
-
-	Print[" ** PoissonBracket: Note that ",xAct`HiGGS`SmearingLeft[]," and ",xAct`HiGGS`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the yellow background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
+	Print[" ** PoissonBracket: Note that ",xAct`HiGGS`SmearingLeft[]," and ",xAct`HiGGS`SmearingRight[]," are arbitrarily-indexed and independent smearing functions, the gray background indicates that the quantity is formally held constant, and the center dot is an ordinary multiplication."];
 
 	Print@" ** PoissonBracket: evaluated the following covariant sub-brackets according to Leibniz rule:";
 
@@ -78,9 +68,9 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 
 	If[OptionValue@Parallel,	
 		LeibnizArray=Outer[(HiGGSParallelSubmit@(SmearedPoissonBracket[#1,#2,ToShell->OptionValue@ToShell]))&,LeftExpansion,RightExpansion,1];
-		PrintVariable=PrintTemporary@LeibnizArray;
+		PrintVariable2=PrintTemporary@LeibnizArray;
 		LeibnizArray=WaitAll[LeibnizArray];
-		NotebookDelete@PrintVariable;,
+		NotebookDelete@PrintVariable2;,
 		LeibnizArray=Outer[OptionSmearedPoissonBracket,LeftExpansion,RightExpansion,1]
 	];
 
@@ -104,6 +94,8 @@ PoissonBracket[LeftOperand_?NesterFormQ,RightOperand_?NesterFormQ,OptionsPattern
 		HiGGSPrint@(SmearedUnevaluatedBracket~TildeTilde~EvaluatedBracket);,
 		HiGGSPrint@(SmearedUnevaluatedBracket~Congruent~EvaluatedBracket);
 	];
+
+	NotebookDelete@PrintVariable;
 
 EvaluatedBracket];
 

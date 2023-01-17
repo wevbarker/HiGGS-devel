@@ -102,10 +102,11 @@ xAct
         │   ├── PoissonBracket
         │   │   ├── AllocatedPoissonBracket.m
         │   │   ├── BracketSimplify.m
-        │   │   ├── DQ.m
+        │   │   ├── LeibnizListCovDQ.m
+        │   │   ├── LeibnizListCovInt.m
         │   │   ├── LeibnizList.m
         │   │   ├── ManualCovariantDerivative.m
-        │   │   ├── PoissonBracketList.m
+        │   │   ├── PoissonBracketOfAtoms.m
         │   │   ├── SmearedPoissonBracket.m
         │   │   ├── SmearPoissonBracket.m
         │   │   └── VarAction.m
@@ -115,7 +116,6 @@ xAct
         │   ├── ToBasicForm.m
         │   ├── ToNesterForm
         │   │   ├── CautiousNesterFormQ.m
-        │   │   ├── CDBToDJDV.m
         │   │   ├── CDBToGaugeCovDJGaugeCovDV.m
         │   │   ├── CDToLorentzGaugeCovD.m
         │   │   ├── CollapseA.m

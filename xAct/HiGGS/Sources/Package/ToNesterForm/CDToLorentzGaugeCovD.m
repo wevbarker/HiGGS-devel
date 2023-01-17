@@ -2,9 +2,8 @@
 (*  CDToLorentzGaugeCovD  *)
 (*========================*)
 
-CDToLorentzGaugeCovD[x_]:=Module[{Expr,PrintVariable},
-	PrintVariable=PrintTemporary[" ** CDToLorentzGaugeCovD..."];
-	Expr=x;
+CDToLorentzGaugeCovD[InputExpr_]:=Module[{Expr=InputExpr,PrintVariable},
+	PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`CDToLorentzGaugeCovD..."];
 
 	Expr=Expr/.xAct`HiGGS`Private`CDGaugeFieldsToInert;
 	Expr//=xAct`HiGGS`Private`CDToGaugeCovD;

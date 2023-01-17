@@ -4,8 +4,8 @@
 
 Needs["xAct`xPert`"]
 Needs["xAct`xTensor`"]
-PerturbAction[expr_,g_?MetricQ[a_?UpIndexQ,b_?UpIndexQ]|g_?MetricQ[a_?DownIndexQ,b_?DownIndexQ]]:=Module[{pertexpr,res,dgloc,(*dummyloc,*)hp,printer},
-printer=PrintTemporary[" ** VarAction..."];
+PerturbAction[expr_,g_?MetricQ[a_?UpIndexQ,b_?UpIndexQ]|g_?MetricQ[a_?DownIndexQ,b_?DownIndexQ]]:=Module[{pertexpr,res,dgloc,(*dummyloc,*)hp,PrintVariable},
+PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`VarAction..."];
 (* We define the metric perturbation, if not defined already *)
 dgloc=SymbolJoin["\[Delta]",g];
 hp=Head@Perturbation[g[DownIndex@a,DownIndex@b]];
@@ -21,12 +21,12 @@ pertexpr=(If[DownIndexQ[a],1,-1])*ToCanonical@ContractMetric@ExpandPerturbation@
 (*We then use VarD. It happens that some trivial Kronecker appear which need to be handle manually *)
 res=ToCanonical[(SameDummies@ContractMetric@VarD[dgloc[LI[1],a,b],CovDOfMetric[g]][pertexpr])/.delta[-LI[n_],LI[m_]]:>KroneckerDelta[NoScalar[n],NoScalar[m]]];
 ];
-NotebookDelete[printer];
+NotebookDelete[PrintVariable];
 res
 ]
 
-PerturbAction[expr_,tensor_?xTensorQ,covd_]:=Module[{res,dummyloc,pertexpr,inds,printer},
-printer=PrintTemporary[" ** VarAction..."];
+PerturbAction[expr_,tensor_?xTensorQ,covd_]:=Module[{res,dummyloc,pertexpr,inds,PrintVariable},
+PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`VarAction..."];
 Block[{$DefInfoQ=False},
 
 (* We use a dummy name for the variation of the tensor, 
@@ -43,12 +43,12 @@ pertexpr=(ToCanonical@ContractMetric[ExpandPerturbation@Perturbation[expr]/.Pert
 (* With this simple head, VarD works correctly. Again we need to handel some trivial Kronecker *)
 res=ToCanonical[(SameDummies@ContractMetric@VarD[dummyloc@@inds,covd][pertexpr])/.delta[-LI[n_],LI[m_]]:>KroneckerDelta[NoScalar[n],NoScalar[m]]];
 ];
-NotebookDelete[printer];
+NotebookDelete[PrintVariable];
 res
 ]
 PerturbAction[expr_,tensor_[inds___]]:=PerturbAction[expr,tensor[inds],CovDOfMetric@First@$Metrics]
-PerturbAction[expr_,tensor_?xTensorQ[inds___],covd_]:=Module[{res,dummyloc,pertexpr,printer},
-printer=PrintTemporary[" ** VarAction..."];
+PerturbAction[expr_,tensor_?xTensorQ[inds___],covd_]:=Module[{res,dummyloc,pertexpr,PrintVariable},
+PrintVariable=PrintTemporary[" ** xAct`HiGGS`Private`VarAction..."];
 Block[{$DefInfoQ=False},
 dummyloc=SymbolJoin["Var",tensor];
 
@@ -60,7 +60,7 @@ pertexpr=(ToCanonical@ContractMetric[ExpandPerturbation@Perturbation[expr]/.Pert
 (* VarD and removal of KroneckerDelta*)
 res=ToCanonical[(SameDummies@ContractMetric@VarD[dummyloc[inds],covd][pertexpr])/.delta[-LI[n_],LI[m_]]:>KroneckerDelta[NoScalar[n],NoScalar[m]]];
 ];
-NotebookDelete[printer];
+NotebookDelete[PrintVariable];
 res
 ]
 VarAction[expr_,g_?MetricQ[as__?((UpIndexQ[#]||DownIndexQ[#])&)]]:=Module[{sqrtg},
