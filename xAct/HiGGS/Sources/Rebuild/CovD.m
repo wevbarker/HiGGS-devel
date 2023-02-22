@@ -16,12 +16,13 @@ Quiet@ChangeCovD[CD[-a]@B[a,-d],CD,GaugeCovD];
 ChristoffelCDGaugeCovD~AutomaticRules~MakeRule[{ChristoffelCDGaugeCovD[a,-b,-c],A[-c,a,-b]},MetricOn->All,ContractMetrics->True];
 
 (* something which has the potential to be really quite important is the action of this new covariant derivative on the original gauge fields. We will see below that the functionality of the other kinds of covariant derivative is only provided for derivatives not acting on the gauge fields. However we can extend GaugeCovD to the gauge fields deliberately with some rules *)
-
+(*these rules were removed after they caused a serious problem with PSALTer, during the linearisation of the models. In the long run, PSALTer will be separated out from HiGGS, so these will be re-implemented at that time *)
+(*
 B~AutomaticRules~MakeRule[{B[a,-b]A[b,-c,-d],0},MetricOn->All,ContractMetrics->True];
 (* for good measure, we also use the non-fundamental H *)
 H~AutomaticRules~MakeRule[{H[-a,b]A[c,-b,-d],0},MetricOn->All,ContractMetrics->True];
 A~AutomaticRules~MakeRule[{A[i,a,-b]A[b,-c,-d],0},MetricOn->All,ContractMetrics->True];
-
+*)
 (* these last two steps above have yet to be checked against the calibration on Newton *)
 
 (*===============================================================================================*)
