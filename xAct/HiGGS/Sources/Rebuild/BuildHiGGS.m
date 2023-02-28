@@ -86,6 +86,9 @@ R6Activate=MakeRule[{R6[],-R[a,b,-a,-b]},MetricOn->All,ContractMetrics->True];
 RActivate=Join[R4Activate,R5Activate,R6Activate];
 xAct`HiGGS`Private`ClearBuild[];
 
+(*============================*)
+(*  To be removed to PSALTer  *)
+(*============================*)
 
 (* ::Input::Initialization:: *)
 ASymb="\[ScriptCapitalA]";
@@ -173,7 +176,9 @@ xAct`HiGGS`Private`DeclareOrder[STensor[-i,-j,-k],1];
 
 SpinSO13Activate=MakeRule[{STensor[-i,-j,-k],Evaluate[SpinDefinition]},MetricOn->All,ContractMetrics->True];
 
-
+(*==========================*)
+(*  End of PSALTer removal  *)
+(*==========================*)
 
 (* ::Input::Initialization:: *)
 PpRSymb="\!\(\*SubscriptBox[OverscriptBox[\(\[ScriptCapitalP]\), \(^\)], \(\[ScriptCapitalR]\)]\)";
@@ -1568,6 +1573,9 @@ PiPA2mActivate=MakeRule[{PiPA2m[-n,-m,-o],Evaluate[PiPA2mDefinition]},MetricOn->
 PiPO3Activate=Join[PiPB0pActivate,PiPB1pActivate,PiPB1mActivate,PiPB2pActivate,PiPA0pActivate,PiPA0mActivate,PiPA1pActivate,PiPA1mActivate,PiPA2pActivate,PiPA2mActivate];
 xAct`HiGGS`Private`ClearBuild[];
 
+(*===========================*)
+(*  Begin remove to PSALTer  *)
+(*===========================*)
 
 (* ::Input::Initialization:: *)
 DefTensor[FP0p[],M4,PrintAs->xAct`HiGGS`Private`SymbolBuild[FPSymb,xAct`HiGGS`Private`Spin0p],Dagger->Complex];
@@ -1779,6 +1787,9 @@ SigmaPerp1mActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp1m[-n],Evaluate[Dagger@S
 SourcePerpO3Activate=Join[TauPerp0pActivate,TauPerp1mActivate,SigmaPerp1pActivate,SigmaPerp1mActivate,TauPerp0pActivateD,TauPerp1mActivateD,SigmaPerp1pActivateD,SigmaPerp1mActivateD];
 xAct`HiGGS`Private`ClearBuild[];
 
+(*=========================*)
+(*  End remove to PSALTer  *)
+(*=========================*)
 
 (* ::Input::Initialization:: *)
 (*O(3) decomposition of the canonical parts of field strengths*)
@@ -2003,6 +2014,10 @@ xAct`HiGGS`Private`BuildRebuild@"GeometricMultipliers/LambdaPi/LambdaPiToShell.m
 xAct`HiGGS`Private`IfBuild["PiPToPiPO3"];
 OpenLastCache[];
 
+(*=========================*)
+(*  Begin move to PSALTer  *)
+(*=========================*)
+
 (* ::Input::Initialization:: *)
 FPDefinition=((1/3)PPara[-n,-m]FP0p[]+
   FP1p[-n,-m]+
@@ -2073,6 +2088,9 @@ SigmaPerpActivateD=MakeRule[{Evaluate@Dagger@SigmaPerp[-n,-m],Evaluate[Dagger@Si
 SourcePerpToGaugePO3=Join[TauPerpActivate,SigmaPerpActivate,TauPerpActivateD,SigmaPerpActivateD];
 xAct`HiGGS`Private`ClearBuild[];
 
+(*=======================*)
+(*  End move to PSALTer  *)
+(*=======================*)
 
 (* ::Input::Initialization:: *)
 ChiParaBSymb="\!\(\*SubsuperscriptBox[\(\[Chi]\), \(\[ScriptB]\), \(\[DoubleVerticalBar]\)]\)";

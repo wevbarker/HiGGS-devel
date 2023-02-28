@@ -21,7 +21,7 @@ BuildHiGGS[OptionsPattern[]]:=Module[{PrintVariable},
 			now quit. Please reload HiGGS.";
 			Quit[];,
 
-			Quiet@Check[
+			If[FileExistsQ@FileNameJoin[{$HiGGSInstallDirectory,"Binaries","Contexts","xAct`HiGGS`.mx"}],
 
 				PrintVariable=PrintTemporary@" ** BuildHiGGS: Attempting to load HiGGS as usual
 				from context binaries...";
