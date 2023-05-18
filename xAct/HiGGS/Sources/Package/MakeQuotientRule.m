@@ -6,7 +6,7 @@ Options[MakeQuotientRule]={
 	MetricOn->All,
 	ContractMetrics->True,
 	Canonicalise->True,
-	Verify->True,
+	Verify->False,
 	Method->"SolveTensors"};
 
 MakeQuotientRule::method="Option Method should be strings \"SolveTensors\" or \"Coefficient\".";
@@ -32,7 +32,7 @@ MakeQuotientRule[{xTensor_[Indices___],Expr_},OptionsPattern[]]:=Module[{
 	];
 
 	If[OptionValue@Canonicalise,
-		Print@" ** MakeQuotientRule: canonicalised expression with tensor substituted by rule:";ReplacementValue=ToCanonical@ReplacementValue;
+		(*Print@" ** MakeQuotientRule: canonicalised expression with tensor substituted by rule:";*)ReplacementValue=ToCanonical@ReplacementValue;
 	];
 
 	If[OptionValue@Verify,
