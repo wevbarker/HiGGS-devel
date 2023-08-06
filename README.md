@@ -2,8 +2,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2206.00658-b31b1b.svg)](https://arxiv.org/abs/2206.00658)
 [![arXiv](https://img.shields.io/badge/arXiv-2205.13534-b31b1b.svg)](https://arxiv.org/abs/2205.13534)
 [![arXiv](https://img.shields.io/badge/arXiv-2101.02645-b31b1b.svg)](https://arxiv.org/abs/2101.02645)
-<!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4361667.svg)](https://zenodo.org/badge/latestdoi/291184118)-->
-<img src="xAct/HiGGS/Documentation/Examples/peta4.rdm.png" width="1000">
+<img src="xAct/HiGGS/Documentation/Logo/GitHubLogo.png" width="1000">
 
 # Hamiltonian Gauge Gravity Surveyor (HiGGS)
 ## Version 1.2.3
