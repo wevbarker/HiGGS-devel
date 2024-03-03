@@ -19,7 +19,7 @@
 #! numfiles= ls /home/wb263/HiGGS_development/peta4.nd* | wc -l - 1
 #! echo $numfiles
 
-#SBATCH --cpus-per-task=32
+#SBATCH --cpus-per-task=56
 #! #SBATCH --array=0-1
 #SBATCH --array=0-13
 
